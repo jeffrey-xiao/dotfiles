@@ -11,7 +11,9 @@ set tm=500
 
 set hlsearch
 syntax enable
+set background=dark
+colorscheme solarized
 
 autocmd filetype cpp nnoremap <F4> :!g++ -std=c++11  % -o %:r <CR>
-autocmd filetype cpp nnoremap <F5> :!g++ -std=c++11  % -o %:r && ./%:r < ~/Documents/data/in.txt > ~/Documents/data/out.txt <CR>
+autocmd filetype cpp nnoremap <F5> :!g++ -std=c++11  % -o %:r && ./%:r<CR>
 

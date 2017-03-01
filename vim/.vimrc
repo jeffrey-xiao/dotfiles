@@ -1,15 +1,21 @@
+set nocompatible
+set t_Co=256
 set tabstop=2
 set shiftwidth=2
 set autoindent
 set smartindent
 set cindent
+set nowrap
 set number
 set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
 
-set hlsearch
+set nohlsearch
+set incsearch
+set ignorecase
+set ruler
 syntax enable
 set background=dark
 colorscheme solarized

@@ -1,0 +1,20 @@
+{
+	"always_show_minimap_viewport": true,
+	"bold_folder_labels": true,
+	"caret_style": "phase",
+	"color_scheme": "Packages/User/SBSCompare.tmTheme",
+	"drag_text": false,
+	"font_face": "Ubuntu Mono",
+	"font_size": 13,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"indent_guide_options":
+	[
+		"draw_normal",
+		"draw_active"
+	],
+	"material_theme_contrast_mode": true,
+	"theme": "Material Solarized Dark.sublime-theme"
+}

@@ -1,0 +1,21 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"BracketHighlighter",
+		"Compare Side-By-Side",
+		"CSScomb",
+		"DocBlockr",
+		"Git",
+		"GitGutter",
+		"LaTeXTools",
+		"Materialize",
+		"Package Control",
+		"SideBarEnhancements",
+		"SublimeCodeIntel",
+		"Terminal"
+	]
+}

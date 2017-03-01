@@ -24,3 +24,8 @@ ln -sfv "$DOTFILES_DIR/system/.bash_profile" ~
 ln -sfv "$DOTFILES_DIR/system/.inputrc" ~
 
 ln -sfv "$DOTFILES_DIR/other/redshift.conf" ~/.config
+
+for obj in $DOTFILES_DIR/sublime/*
+do
+	ln -sfv "$obj" ~/.config/sublime-text-3/Packages/User/
+done

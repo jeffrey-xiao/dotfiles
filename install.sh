@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Saves current changes in the directory and pulls from remote
+git stash
+git pull
+git stash apply
+
 # Get current directory
 export DOTFILES_DIR
 

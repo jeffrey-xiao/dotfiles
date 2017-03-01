@@ -109,3 +109,6 @@
 [push]
 	default = simple
 	followTags = true
+
+[credential "https://github.com"]
+	username = jeffreyxiao

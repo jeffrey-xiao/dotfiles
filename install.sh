@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-# Saves current changes in the directory and pulls from remote
-git stash
-git pull
-
 # Get current directory
 export DOTFILES_DIR
 
@@ -36,6 +32,3 @@ if [ ! -f ~/.vim/autoload/plug.vim ]; then
 	sudo apt-get install python-dev python3-dev
 	~/.vim/plugged/youcompleteme/install.py --clang-completer
 fi
-
-git stash apply
-

@@ -66,7 +66,7 @@ set ruler
 
 syntax enable
 set background=dark
-silent colorscheme solarized
+silent! colorscheme solarized
 
 autocmd filetype cpp nnoremap <F4> :!g++ -std=c++11  % -o %:r <CR>
 autocmd filetype cpp nnoremap <F5> :!g++ -std=c++11  % -o %:r && ./%:r<CR>

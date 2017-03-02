@@ -3,9 +3,8 @@
 # Saves current changes in the directory and pulls from remote
 git stash
 git pull
-git stash apply
 
-if [ ! -f ~/.vim/autoload/plug.vim ]
+if [ ! -f ~/.vim/autoload/plug.vim ]; then
 	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	vim -c PlugInstall -c q!
 	sudo apt-get install build-essential cmake
@@ -37,3 +36,6 @@ ln -sfv "$DOTFILES_DIR/other/.ycm_extra_conf.py" ~
 mkdir -p ~/.config/sublime-text-3/Packages
 rm -rf ~/.config/sublime-text-3/Packages/User
 ln -sfnv "$DOTFILES_DIR/sublime/User" ~/.config/sublime-text-3/Packages
+
+git stash apply
+

@@ -6,4 +6,5 @@
             "view_command": "qpdfview --unique"
         }
     },
+    "preview_math_mode": "none"
 }

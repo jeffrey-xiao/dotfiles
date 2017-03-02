@@ -5,6 +5,14 @@ git stash
 git pull
 git stash apply
 
+if [ ! -f ~/.vim/autoload/plug.vim ]
+	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	vim -c PlugInstall -c q!
+	sudo apt-get install build-essential cmake
+	sudo apt-get install python-dev python3-dev
+	~/.vim/bundle/YouCompleteMe/install.py --clan-completer
+fi
+
 # Get current directory
 export DOTFILES_DIR
 

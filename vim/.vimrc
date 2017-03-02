@@ -1,10 +1,3 @@
-" Automatic installation if not installed
-if empty(glob('~/.vim/autoload/plug.vim'))
-	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-   \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
 call plug#begin('~/.vim/plugged')
 
 " Color Scheme
@@ -73,7 +66,7 @@ set ruler
 
 syntax enable
 set background=dark
-colorscheme solarized
+silent colorscheme solarized
 
 autocmd filetype cpp nnoremap <F4> :!g++ -std=c++11  % -o %:r <CR>
 autocmd filetype cpp nnoremap <F5> :!g++ -std=c++11  % -o %:r && ./%:r<CR>

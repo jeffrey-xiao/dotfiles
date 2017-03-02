@@ -35,6 +35,13 @@ autocmd vimenter * NERDTree
 " Ctrl + n to open NerdTree
 map <C-n> :NERDTreeToggle<CR>
 
+" Default NerdTreeTags open on startup
+let g:nerdtree_tabs_open_on_console_startup=1
+
+" Config for YouCompleteMe
+let g:ycm_complete_in_comments=0
+let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
+
 " Close vim when NERDTree is the only tab left
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 

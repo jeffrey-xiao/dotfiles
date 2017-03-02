@@ -24,6 +24,7 @@ ln -sfv "$DOTFILES_DIR/system/.bash_profile" ~
 ln -sfv "$DOTFILES_DIR/system/.inputrc" ~
 
 ln -sfv "$DOTFILES_DIR/other/redshift.conf" ~/.config
+ln -sfv "$DOTFILES_DIR/other/.ycm_extra_conf.py" ~
 
 for obj in $DOTFILES_DIR/sublime/*
 do

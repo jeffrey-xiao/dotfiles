@@ -17,7 +17,8 @@ ln -sfv "$DOTFILES_DIR/vim/.vimrc" ~
 
 rm -rf ~/.vim
 ln -sfnv "$DOTFILES_DIR/vim/.vim" ~
-
+vim -c PlugInstall -c q! -c q!
+ 
 ln -sfv "$DOTFILES_DIR/system/.bash_aliases" ~
 ln -sfv "$DOTFILES_DIR/system/.bashrc" ~
 ln -sfv "$DOTFILES_DIR/system/.dircolors" ~

@@ -14,6 +14,8 @@ ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
 ln -sfv "$DOTFILES_DIR/git/.gitignore_global" ~
 
 ln -sfv "$DOTFILES_DIR/vim/.vimrc" ~
+
+rm -rf ~/.vim
 ln -sfnv "$DOTFILES_DIR/vim/.vim" ~
 
 ln -sfv "$DOTFILES_DIR/system/.bash_aliases" ~
@@ -23,10 +25,10 @@ ln -sfv "$DOTFILES_DIR/system/.profile" ~
 ln -sfv "$DOTFILES_DIR/system/.bash_profile" ~
 ln -sfv "$DOTFILES_DIR/system/.inputrc" ~
 
-mkdir ~/.config
+mkdir -p ~/.config
 ln -sfv "$DOTFILES_DIR/other/redshift.conf" ~/.config
 ln -sfv "$DOTFILES_DIR/other/.ycm_extra_conf.py" ~
 
-mkdir ~/.config/sublime-text-3/Packages
+mkdir -p ~/.config/sublime-text-3/Packages
 rm -rf ~/.config/sublime-text-3/Packages/User
 ln -sfnv "$DOTFILES_DIR/sublime/User" ~/.config/sublime-text-3/Packages

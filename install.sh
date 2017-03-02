@@ -25,10 +25,9 @@ mkdir -p ~/.config/sublime-text-3/Packages
 rm -rf ~/.config/sublime-text-3/Packages/User
 ln -sfnv "$DOTFILES_DIR/sublime/User" ~/.config/sublime-text-3/Packages
 
-if [ ! -f ~/.vim/autoload/plug.vim ]; then
-	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	vim -c PlugInstall -c q! -c q!
-	sudo apt-get install build-essential cmake
-	sudo apt-get install python-dev python3-dev
-	~/.vim/plugged/youcompleteme/install.py --clang-completer
-fi
+rm -rf ~/.vim
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+vim -c PlugInstall -c q! -c q!
+sudo apt-get install build-essential cmake
+sudo apt-get install python-dev python3-dev
+~/.vim/plugged/youcompleteme/install.py --clang-completer

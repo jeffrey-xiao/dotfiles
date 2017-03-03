@@ -9,6 +9,10 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
+Plug 'kien/ctrlp.vim'
+Plug 'raimondi/delimitmate'
+Plug 'yggdroot/indentline' " Need to configure
+Plug 'tpope/vim-commentary'
 
 " Languages
 Plug 'fatih/vim-go'
@@ -45,10 +49,16 @@ let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
 " Close vim when NERDTree is the only tab left
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+let g:indentLine_color_term = 239
+let g:indentLine_char='│'
+
+let g:delimitMate_expand_cr=1
+
 set nocompatible
 set t_Co=256
 set tabstop=2
 set shiftwidth=2
+set expandtab
 set autoindent
 set smartindent
 set cindent

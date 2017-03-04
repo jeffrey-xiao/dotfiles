@@ -25,11 +25,10 @@ Plug 'digitaltoad/vim-jade'
 Plug 'moll/vim-node'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
-
-" Javascript
 Plug 'jelera/vim-javascript-syntax'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'jaawerth/nrun.vim'
+Plug 'lervag/vimtex'
 
 call plug#end()
 

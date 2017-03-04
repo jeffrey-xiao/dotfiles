@@ -11,8 +11,10 @@ Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'kien/ctrlp.vim'
 Plug 'raimondi/delimitmate'
-Plug 'yggdroot/indentline' 
+Plug 'yggdroot/indentline'
 Plug 'tpope/vim-commentary'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Languages
 Plug 'fatih/vim-go'
@@ -54,6 +56,11 @@ let g:indentLine_char='┊'
 
 " adds a new line before the autocompleted bracket
 let g:delimitMate_expand_cr=1
+
+" options for airline
+let g:airline_theme='solarized'
+let g:airline#extensions#tabline#enabled=1
+let g:airline_section_z = airline#section#create(['windowswap', '', '%l%\/%L%', '\:%3v'])
 
 set nocompatible
 set t_Co=256

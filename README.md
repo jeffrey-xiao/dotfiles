@@ -7,7 +7,6 @@ This repository contains all the dot files I use for my Ubuntu machine.
  - audio: ncmpcpp
 
 ## Installation
-### General Installation
 ~~~
 git clone https://github.com/jeffrey-xiao/dotfiles.git
 cd dotfiles

@@ -1,0 +1,33 @@
+# Required files
+db_file            "~/.config/mpd/database"
+log_file           "~/.config/mpd/log"
+
+# Optional files
+music_directory    "/media/jeffreyxiao/Windows8_OS/Users/Jeffrey/Desktop/Music"
+playlist_directory "~/.config/mpd/playlists"
+pid_file           "~/.config/mpd/pid"
+state_file         "~/.config/mpd/state"
+sticker_file       "~/.config/mpd/sticker.sql"
+
+# FFT output for visualizer
+audio_output {
+  type            "fifo"
+  name            "Visualizer feed"
+  path            "/tmp/mpd.fifo"
+  format          "44100:16:2"
+}
+
+#audio_output {  
+# type  "alsa"  
+# name  "mpd alsamixer-output"  
+#}  
+
+# Audio output
+audio_output {  
+  type  "pulse"  
+  name  "mpd pulse-audio-output"  
+}  
+
+# Other config
+bind_to_address   "localhost"
+user              "jeffreyxiao"

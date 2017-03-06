@@ -99,3 +99,7 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# Environment variables for MPD
+MPD_HOST=127.0.0.1
+MPD_PORT=6600

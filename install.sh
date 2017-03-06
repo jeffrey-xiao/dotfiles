@@ -17,9 +17,13 @@ ln -sfv "$DOTFILES_DIR/system/.profile" ~
 ln -sfv "$DOTFILES_DIR/system/.bash_profile" ~
 ln -sfv "$DOTFILES_DIR/system/.inputrc" ~
 
-mkdir -p ~/.config
+mkdir -p ~/.config/mpd/playlists
+ln -sfv "$DOTFILES_DIR/other/.mpdconf" ~/.config/mpd
 ln -sfv "$DOTFILES_DIR/other/redshift.conf" ~/.config
 ln -sfv "$DOTFILES_DIR/other/.ycm_extra_conf.py" ~
+
+mkdir -p ~/.ncmpcpp
+ln -sfv "$DOTFILES_DIR/other/config" ~/.ncmpcpp
 
 mkdir -p ~/.config/sublime-text-3/Packages
 rm -rf ~/.config/sublime-text-3/Packages/User

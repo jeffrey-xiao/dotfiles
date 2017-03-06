@@ -1,0 +1,114 @@
+## Directories
+ncmpcpp_directory = ~/.ncmpcpp
+lyrics_directory = ~/.lyrics
+
+## Connection settings
+mpd_host = localhost
+mpd_port = 6600 
+mpd_connection_timeout = 5
+
+## Needed for tag editor and file operations to work.
+mpd_music_dir = /media/jeffreyxiao/Windows8_OS/Users/Jeffrey/Desktop/Music
+mpd_crossfade_time = 5
+
+## Music Visualizer options
+visualizer_fifo_path = /tmp/mpd.fifo
+visualizer_output_name = "Visualizer feed"
+visualizer_in_stereo = yes
+visualizer_sample_multiplier = 1
+visualizer_sync_interval = 30
+visualizer_type = spectrum
+visualizer_look = ●▮
+visualizer_color = cyan
+# visualizer_color = blue, cyan, green, yellow, magenta, red
+# visualizer_color = 41, 83, 119, 155, 185, 215, 209, 203, 197, 161
+
+## Highlighting always on
+playlist_disable_highlight_delay = 0
+
+## Formatting
+song_list_format = "$8 {%l}$8 | $7{%20a} $7| $6{%t} $R $(59){%20b}"
+song_status_format = {%a - }{%b - }{{%t}|{%f}}
+song_library_format = {%t}|{%f}
+
+now_playing_prefix = $b
+now_playing_suffix = $/b
+
+selected_item_prefix = $6
+selected_item_suffix = $9
+modified_item_prefix = $3> $9
+
+song_window_title_format = {%a - }{{%t}|{%f}}
+song_columns_list_format = (5f)[white]{l} (30)[cyan]{a} (50)[cyan]{t|f:Title} (10)[cyan]{b} 
+
+## TODO
+execute_on_song_change = ""
+
+## Display modes for various panes
+playlist_display_mode = classic
+browser_display_mode = columns
+search_engine_display_mode = classic
+playlist_editor_display_mode = classic
+user_interface = classic
+
+## Progress bar appearance
+progressbar_look = "─╼ "
+progressbar_boldness = yes
+
+## Startup Settings
+startup_screen = visualizer
+startup_slave_screen = playlist
+startup_slave_screen_focus = no
+locked_screen_width_part = 40
+ask_for_locked_screen_width_part = yes
+jump_to_now_playing_song_at_start = yes
+
+## External settings
+search_engine_default_search_mode = 1
+external_editor = vim
+use_console_editor = yes
+
+## Colors
+colors_enabled = yes
+empty_tag_color = cyan
+header_window_color = cyan
+volume_color = cyan
+state_line_color = cyan
+
+state_flags_color = default
+
+main_window_color = yellow
+
+color1 = cyan
+color2 = cyan
+
+main_window_highlight_color = yellow
+
+statusbar_color = cyan
+active_column_color = red
+active_window_border = red
+window_border_color = red
+
+## Tag Options
+empty_tag_marker = ""
+tags_separator = " | "
+tag_editor_extended_numeration = no
+default_tag_editor_pattern = %n - %t
+media_library_primary_tag = artist
+
+## UI Settings
+discard_colors_if_item_is_selected = yes
+enable_window_title = yes
+header_visibility = yes
+statusbar_visibility = yes
+titles_visibility = no
+
+display_volume_level = yes
+display_bitrate = no
+display_remaining_time = no
+clock_display_seconds = no
+
+## Other settings
+mouse_support = no
+mouse_list_scroll_whole_page = no
+ignore_leading_the = yes

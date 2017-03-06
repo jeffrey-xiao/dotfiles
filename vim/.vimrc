@@ -61,7 +61,7 @@ let g:delimitMate_expand_cr=1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
-          
+
 " unicode symbols
 let g:airline_left_sep = '»'
 let g:airline_left_sep = '▶'
@@ -121,3 +121,6 @@ silent! colorscheme solarized
 autocmd filetype cpp nnoremap <F4> :!g++ -std=c++11  % -o %:r <CR>
 autocmd filetype cpp nnoremap <F5> :!g++ -std=c++11  % -o %:r && ./%:r<CR>
 
+autocmd filetype tex nmap <F4> <plug>(vimtex-errors)
+autocmd filetype tex nmap <F5> <plug>(vimtex-view)
+g:vimtex_disable_version_warning=1

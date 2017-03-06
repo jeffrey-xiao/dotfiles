@@ -27,7 +27,7 @@ visualizer_color = cyan
 playlist_disable_highlight_delay = 0
 
 ## Formatting
-song_list_format = "$8 {%l}$8 | $7{%20a} $7| $6{%t} $R $(59){%20b}"
+song_list_format = "$8 {%l}$8 | $7{%30a} $7| $6{{%t}|{%f}} $R $(59){%40b}"
 song_status_format = {%a - }{%b - }{{%t}|{%f}}
 song_library_format = {%t}|{%f}
 

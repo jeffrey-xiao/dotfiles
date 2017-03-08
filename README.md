@@ -2,9 +2,10 @@
 This repository contains all the dot files I use for my Ubuntu machine.
 
 ## Software Used
- - shell: bash
- - editor: vim/sublime
- - audio: ncmpcpp
+ - **shell**: bash
+ - **editor**: vim/sublime
+ - **audio**: ncmpcpp/mpd
+ - **irc**: weechat
 
 ## Installation
 ~~~

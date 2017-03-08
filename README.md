@@ -1,9 +1,9 @@
 ## Dotfiles
 This repository contains all the dot files I use for my Ubuntu machine.
 
-## Software Used
+## Software I Use
  - **shell**: bash
- - **editor**: vim/sublime
+ - **editor**: vim/sublime/eclipse
  - **audio**: ncmpcpp/mpd
  - **irc**: weechat
 

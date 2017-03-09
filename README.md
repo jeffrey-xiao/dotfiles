@@ -5,7 +5,7 @@ This repository contains all the dot files I use for my Ubuntu machine.
 ```
 shell       → bash
 editor      → vim/sublime/eclipse
-audio       → ncmpcpp/mpd
+audio       → ncmpcpp/mpd/mpc
 irc         → weechat
 DM/WM       → i3
 Monitor     → i3blocks

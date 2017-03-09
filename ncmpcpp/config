@@ -4,7 +4,7 @@ lyrics_directory = ~/.lyrics
 
 ## Connection settings
 mpd_host = localhost
-mpd_port = 6600 
+mpd_port = 6600
 mpd_connection_timeout = 5
 
 ## Needed for tag editor and file operations to work.
@@ -18,7 +18,7 @@ visualizer_in_stereo = yes
 visualizer_sample_multiplier = 1
 visualizer_sync_interval = 30
 visualizer_type = spectrum
-visualizer_look = ●▮
+visualizer_look = ●|
 visualizer_color = cyan
 # visualizer_color = blue, cyan, green, yellow, magenta, red
 # visualizer_color = 41, 83, 119, 155, 185, 215, 209, 203, 197, 161
@@ -39,7 +39,7 @@ selected_item_suffix = $9
 modified_item_prefix = $3> $9
 
 song_window_title_format = {%a - }{{%t}|{%f}}
-song_columns_list_format = (5f)[white]{l} (30)[cyan]{a} (50)[cyan]{t|f:Title} (10)[cyan]{b} 
+song_columns_list_format = (5f)[white]{l} (30)[cyan]{a} (50)[cyan]{t|f:Title} (10)[cyan]{b}
 
 ## TODO
 execute_on_song_change = ""

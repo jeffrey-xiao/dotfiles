@@ -2,7 +2,6 @@
 
 # Get current directory
 export DOTFILES_DIR
-
 DOTFILES_DIR=$(pwd)
 
 # Linking git options
@@ -36,14 +35,21 @@ mkdir -p ~/.config/sublime-text-3/Packages
 rm -rf ~/.config/sublime-text-3/Packages/User
 ln -sfnv "$DOTFILES_DIR/sublime/User" ~/.config/sublime-text-3/Packages
 
+# Linking compton options
+ln -sfv "$DOTFILES_DIR/compton/.compton.conf" ~
+
+# Linking i3 options
+rm -rf ~/.config/i3
+ln -sfnv "$DOTFILES_DIR/i3" ~/.config
+
 # Linking other options
 ln -sfv "$DOTFILES_DIR/other/redshift.conf" ~/.config
 ln -sfv "$DOTFILES_DIR/other/.ycm_extra_conf.py" ~
 
 # Reinstalling all vim packages via Plug and building YouCompleteMe
-rm -rf ~/.vim
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-vim -c PlugInstall -c q! -c q!
-sudo apt-get install build-essential cmake
-sudo apt-get install python-dev python3-dev
-~/.vim/plugged/youcompleteme/install.py --clang-completer
+#rm -rf ~/.vim
+#curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+#vim -c PlugInstall -c q! -c q!
+#sudo apt-get install build-essential cmake
+#sudo apt-get install python-dev python3-dev
+#~/.vim/plugged/youcompleteme/install.py --clang-completer

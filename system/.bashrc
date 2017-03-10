@@ -78,7 +78,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -101,5 +101,8 @@ if ! shopt -oq posix; then
 fi
 
 # Environment variables for MPD
-MPD_HOST=127.0.0.1
-MPD_PORT=6600
+export MPD_HOST=127.0.0.1
+export MPD_PORT=6600
+
+# Environment variables for location
+export CITY="Waterloo"

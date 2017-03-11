@@ -1,17 +1,15 @@
-# i3 config file (v4)
+# Mod key
 set $mod Mod1
 
-gaps inner 5
-gaps outer 0
+# Configuration for gaps
+gaps inner 10
+gaps outer 5
 smart_gaps on
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Ubuntu Mono 12
-
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
+font pango:DejaVu Sans Mono 12
+font pango:FontAwesome 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -23,7 +21,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
-bindsym $mod+d exec rofi -show run -lines 10 -eh 2 -width 100 -padding 300 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "#5294e2" -hlfg "#ffffff" -font "Ubuntu Mono 16"
+bindsym $mod+d exec rofi -show run -lines 10 -eh 2 -width 100 -padding 300 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "#5294e2" -hlfg "#ffffff" -font "DejaVu Sans Mono 16"
 
 # change focus
 bindsym $mod+h focus left
@@ -78,10 +76,12 @@ bindsym $mod+a focus parent
 # workspace configuration
 set $workspace1 "1: &#xf268;"
 set $workspace2 "2: &#xf121;"
+set $workspace9 "9: &#xf03d;"
 set $workspace10 "10: &#xf025;"
 
 # default workspaces for applications
 assign [class="Chromium-browser"] $workspace1
+assign [class="vlc"]              $workspace9
 # assign [class="Gnome-terminal"] $workspace2
 
 bindsym $mod+1 workspace $workspace1
@@ -92,7 +92,7 @@ bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
+bindsym $mod+9 workspace $workspace9
 bindsym $mod+0 workspace $workspace10
 
 # move focused container to workspace
@@ -104,7 +104,7 @@ bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
 # reload the configuration file
@@ -161,8 +161,9 @@ for_window [class="^.*"] border pixel 0
 # bar
 bar {
   position top
-  font pango: Ubuntu Mono 12
+  font pango: DejaVu Sans Mono 10
   status_command i3blocks -c "$HOME/.config/i3/i3blocks.conf"
+  height 25
   colors {
     background $bar-bg-color
     separator #757575

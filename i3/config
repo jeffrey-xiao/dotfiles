@@ -1,7 +1,9 @@
 # i3 config file (v4)
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
-
 set $mod Mod1
+
+gaps inner 5
+gaps outer 0
+smart_gaps on
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -76,7 +78,7 @@ bindsym $mod+a focus parent
 # workspace configuration
 set $workspace1 "1: &#xf268;"
 set $workspace2 "2: &#xf121;"
-set $workspace10 "10: &#xf144;"
+set $workspace10 "10: &#xf025;"
 
 # default workspaces for applications
 assign [class="Chromium-browser"] $workspace1
@@ -154,7 +156,7 @@ client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-co
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
 
 hide_edge_borders both
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 0
 
 # bar
 bar {

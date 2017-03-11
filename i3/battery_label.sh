@@ -2,13 +2,13 @@
 res="$(/usr/share/i3blocks/battery)"
 bat=$(echo $res | cut -d'%' -f 1)
 if [ $bat -le 10 ]; then
-  echo ""
+  echo " "
 elif [ $bat -le 25 ]; then
-  echo ""
+  echo " "
 elif [ $bat -le 50 ]; then
-  echo ""
+  echo " "
 elif [ $bat -le 75 ]; then
-  echo ""
+  echo " "
 else
-  echo ""
+  echo " "
 fi

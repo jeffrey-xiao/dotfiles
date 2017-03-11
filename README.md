@@ -7,8 +7,8 @@ shell       → bash
 editor      → vim/sublime/eclipse
 audio       → ncmpcpp/mpd/mpc
 irc         → weechat
-DM/WM       → i3
-Monitor     → i3blocks
+DM/WM       → i3-gaps
+Monitor     → i3blocks-gaps
 Multiplexer → tmux
 ```
 
@@ -19,6 +19,7 @@ Multiplexer → tmux
  - Git
  - Redshift
  - Compton
+ - i3lock
 
 ## Installation
 ~~~

@@ -1,5 +1,5 @@
 #!/bin/bash
- 
+
 scrot /tmp/screen.png
 convert /tmp/screen.png -scale 10% -scale 1000% /tmp/screen.png
 
@@ -21,7 +21,7 @@ for RES in $SR
   SROY=$(echo $RES | cut -d'x' -f 2 | cut -d'+' -f 3) # y offset
   PX=$(($SROX + $SRX/2 - $RX/2))
   PY=$(($SROY + $SRY/2 - $RY/2))
- 
+
   convert /tmp/screen.png "$HOME/.config/i3/lock.png" -geometry +$PX+$PY -composite -matte  /tmp/screen.png
 done
 i3lock -e -u -n -i /tmp/screen.png

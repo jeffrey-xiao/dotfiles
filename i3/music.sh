@@ -1,7 +1,19 @@
 #include #!/bin/bash
 
 filter () {
-  tr '\n' ' ' | grep -Po '.*(?=\[(playing|paused)\])' | xargs -0 | tr -d '\n'
+  tr '\n' ' ' | output
+}
+
+output () {
+  read status
+  echo "$status" | grep -Po '.*(?=\[(playing|paused)\])' | xargs -0 | tr -d '\n'
+  isPlaying=$(echo "$status" | grep -Pcim1 '.*(?=\[playing\])')
+  isPaused=$(echo "$status" | grep -Pcim1 '.*(?=\[paused\])')
+  if [ "$isPlaying" -eq 1 ]; then
+    echo -n " "
+  elif [ "$isPaused" -eq 1 ]; then
+    echo -n " "
+  fi
 }
 
 case $BLOCK_BUTTON in

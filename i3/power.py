@@ -21,11 +21,11 @@ class i3_exit:
 
     def reboot_action(self,btn):
         self.disable_buttons()
-        os.system("systemtcl reboot")
+        os.system("systemctl reboot")
 
     def shutdown_action(self,btn):
         self.disable_buttons()
-        os.system("systemtcl poweroff")
+        os.system("systemctl poweroff")
 
     def create_window(self):
         self.window = gtk.Window()

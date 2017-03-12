@@ -164,6 +164,7 @@ bar {
   font pango: DejaVu Sans Mono 10
   status_command i3blocks -c "$HOME/.config/i3/i3blocks.conf"
   height 25
+  separator_symbol "|"
   colors {
     background $bar-bg-color
     separator #757575

@@ -23,25 +23,25 @@ bindsym $mod+Shift+q kill
 # start rofi (a program launcher)
 bindsym $mod+d exec rofi -show run -lines 10 -eh 2 -width 100 -padding 300 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "#5294e2" -hlfg "#ffffff" -font "DejaVu Sans Mono 16"
 
-# change focus
+# change focus: vim bindings
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# alternatively, you can use the cursor keys:
+# change focus: cursor keys
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# move focused window
+# move focused window: vim bindings
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-# alternatively, you can use the cursor keys:
+# move focused window: cursor keys
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
@@ -71,7 +71,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+# bindsym $mod+d focus child
 
 # workspace configuration
 set $workspace1 "1: &#xf268;"
@@ -127,7 +127,7 @@ mode "resize" {
         bindsym k resize shrink height 10 px or 10 ppt
         bindsym l resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
+        # same bindings, but for the cursor keys
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
@@ -158,7 +158,7 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 hide_edge_borders both
 for_window [class="^.*"] border pixel 0
 
-# bar
+# status bar
 bar {
   position top
   font pango: DejaVu Sans Mono 10
@@ -179,15 +179,19 @@ bar {
 # shortcut for i3lock
 bindsym $mod+Shift+x exec ". $HOME/.config/i3/lock.sh"
 
+# shortcuts for moving workspaces 
+bindsym $mod+Ctrl+h move workspace to output right
+bindsym $mod+Ctrl+l move workspace to output left
+
 bindsym $mod+Shift+a focus parent,kill
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse set Master 1%+ #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse set Master 1%- #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id amixer -D pulse set Master 0+ toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse set Master 1%+  # increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse set Master 1%-  # decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id amixer -D pulse set Master 0+ toggle   # mute sound
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20   # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
 # Touchpad controls

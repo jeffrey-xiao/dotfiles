@@ -14,14 +14,13 @@
 
 use strict;
 use warnings;
-use utf8;
 
 my $acpi;
 my $status;
 my $percent;
 my $ac_adapt;
 my $full_text;
-my $short_text;
+my $icon = "";
 my $bat_number = $ENV{BLOCK_INSTANCE} || 0;
 
 # read the first line of the "acpi" command output
@@ -31,59 +30,62 @@ close(ACPI);
 
 # fail on unexpected output
 if ($acpi !~ /: (\w+), (\d+)%/) {
-	die "$acpi\n";
+  die "$acpi\n";
 }
 
 $status = $1;
 $percent = $2;
-$full_text = "$percent%";
+
+if ($status eq 'Unknown') {
+  open (AC_ADAPTER, "acpi -a |") or die;
+  $ac_adapt = <AC_ADAPTER>;
+  close(AC_ADAPTER);
+
+  if ($ac_adapt =~ /: ([\w-]+)/) {
+    $ac_adapt = $1;
+
+    if ($ac_adapt eq 'on-line') {
+      $status = 'Charging';
+    } elsif ($ac_adapt eq 'off-line') {
+      $status = 'Discharging';
+    }
+  }
+}
 
 if ($status eq 'Discharging') {
-	$full_text .= ' DIS';
-} elsif ($status eq 'Charging') {
-	$full_text .= ' CHR';
-} elsif ($status eq 'Unknown') {
-	open (AC_ADAPTER, "acpi -a |") or die;
-	$ac_adapt = <AC_ADAPTER>;
-	close(AC_ADAPTER);
-
-	if ($ac_adapt =~ /: ([\w-]+)/) {
-		$ac_adapt = $1;
-
-		if ($ac_adapt eq 'on-line') {
-			$full_text .= ' CHR';
-		} elsif ($ac_adapt eq 'off-line') {
-			$full_text .= ' DIS';
-		}
-	}
+  if ($percent < 10) {
+    $icon = "";
+  } elsif ($percent < 25) {
+    $icon = "";
+  } elsif ($percent < 50) {
+    $icon = "";
+  } elsif ($percent < 75) {
+    $icon = "";
+  } else {
+    $icon = "";
+  }
 }
 
-$short_text = $full_text;
-
-if ($acpi =~ /(\d\d:\d\d):/) {
-	$full_text .= " ($1)";
-}
+$full_text = $icon . "  " . $percent . "%";
 
 # print text
-print "$full_text\n";
-print "$short_text\n";
+print "$full_text\n\n";
 
 # consider color and urgent flag only on discharge
 if ($status eq 'Discharging') {
+  if ($percent < 20) {
+    print "#FF0000\n";
+  } elsif ($percent < 40) {
+    print "#FFAE00\n";
+  } elsif ($percent < 60) {
+    print "#FFF600\n";
+  } elsif ($percent < 85) {
+    print "#A8FF00\n";
+  }
 
-	if ($percent < 20) {
-		print "#FF0000\n";
-	} elsif ($percent < 40) {
-		print "#FFAE00\n";
-	} elsif ($percent < 60) {
-		print "#FFF600\n";
-	} elsif ($percent < 85) {
-		print "#A8FF00\n";
-	}
-
-	if ($percent < 5) {
-		exit(33);
-	}
+  if ($percent < 5) {
+    exit(33);
+  }
 }
 
 exit(0);

@@ -3,9 +3,9 @@ res="$(~/.config/i3/volume 5 pulse)"
 vol=$(echo $res | cut -d'%' -f 1)
 
 if [ $vol -le 10 ]; then
-  echo " "
+  echo -n " "
 elif [ $vol -le 50 ]; then
-  echo " "
+  echo -n " "
 else
-  echo " "
+  echo -n " "
 fi

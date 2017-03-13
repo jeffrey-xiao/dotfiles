@@ -146,7 +146,7 @@ set $inactive-bg-color   #2f343f
 set $text-color          #f3f4f5
 set $inactive-text-color #676E7D
 set $urgent-bg-color     #E53935
-set $bar-bg-color        #2A2E38
+set $bar-bg-color        #1D1F21
 
 # window colors
 #                       border              background         text                 indicator
@@ -161,10 +161,9 @@ for_window [class="^.*"] border pixel 0
 # status bar
 bar {
   position top
-  font pango: DejaVu Sans Mono 10
+  font pango: DejaVu Sans Mono for Powerline 10
   status_command i3blocks -c "$HOME/.config/i3/i3blocks.conf"
-  height 25
-  separator_symbol "|"
+  height 19
   colors {
     background $bar-bg-color
     separator #757575
@@ -179,16 +178,16 @@ bar {
 # shortcut for i3lock
 bindsym $mod+Shift+x exec ". $HOME/.config/i3/lock.sh"
 
-# shortcuts for moving workspaces 
+# shortcuts for moving workspaces
 bindsym $mod+Ctrl+h move workspace to output right
 bindsym $mod+Ctrl+l move workspace to output left
 
 bindsym $mod+Shift+a focus parent,kill
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse set Master 1%+  # increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse set Master 1%-  # decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id amixer -D pulse set Master 0+ toggle   # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -D pulse set Master 1%+; pkill -RTMIN+10 i3blocks"  # increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D pulse set Master 1%-; pkill -RTMIN+10 i3blocks"  # decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id "amixer -D pulse set Master 0+ toggle ; pkill -RTMIN+10 i3blocks"  # mute sound
 
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20   # increase screen brightness

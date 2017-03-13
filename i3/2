@@ -5,15 +5,15 @@ full_text=
 separator=false
 
 [separator]
-color=#454A4F
+color=#60676E
 
 [music]
 interval=5
 command=~/.config/i3/music.sh
-background=#454A4F
+background=#60676E
 
 [separator]
-background=#454A4F
+background=#60676E
 color=#1D1F21
 
 [weather]
@@ -22,57 +22,57 @@ command=~/.config/i3/weather.sh
 
 [separator]
 background=#1D1F21
-color=#454A4F
+color=#60676E
 
 [volume_label]
-interval=once
-signal=10
+interval=1
 command=~/.config/i3/volume_label.sh
 separator=false
 separator_block_width=0
-background=#454A4F
+background=#60676E
 
 [volume]
-interval=once
-instance=Master
+interval=1
 signal=10
 command=~/.config/i3/volume 5 pulse
-background=#454A4F
+background=#60676E
 
 [separator]
-background=#454A4F
+background=#60676E
 color=#1D1F21
 
 [cpu_usage]
+label=
 interval=10
 command=~/.config/i3/cpu_usage
 
 [separator]
 background=#1D1F21
-color=#454A4F
+color=#60676E
 
 [battery]
 interval=30
 command=~/.config/i3/battery
-background=#454A4F
+background=#60676E
 
 [separator]
-background=#454A4F
+background=#60676E
 color=#1D1F21
 
 [time]
-command=echo "   $(date '+%a %b %d %H:%M') "
+label=
+command=date '+%a %b %d %H:%M'
 interval=1
 
 [separator]
 background=#1D1F21
-color=#454A4F
+color=#60676E
 
 [power]
 command=~/.config/i3/power.sh
 interval=60
-background=#454A4F
+background=#60676E
 
 [separator]
-background=#454A4F
+background=#60676E
 color=#1D1F21

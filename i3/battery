@@ -69,7 +69,7 @@ if ($status eq 'Discharging') {
 $full_text = $icon . "  " . $percent . "%";
 
 # print text
-print "$full_text\n\n";
+print " $full_text \n\n";
 
 # consider color and urgent flag only on discharge
 if ($status eq 'Discharging') {

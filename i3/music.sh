@@ -6,13 +6,13 @@ filter () {
 
 output () {
   read status
-  echo "$status" | grep -Po '.*(?=\[(playing|paused)\])' | xargs -0 | tr -d '\n'
+  echo " $status" | grep -Po '.*(?=\[(playing|paused)\])' | xargs -0 | tr -d '\n'
   isPlaying=$(echo "$status" | grep -Pcim1 '.*(?=\[playing\])')
   isPaused=$(echo "$status" | grep -Pcim1 '.*(?=\[paused\])')
   if [ "$isPlaying" -eq 1 ]; then
-    echo -n " "
+    echo -n "  "
   elif [ "$isPaused" -eq 1 ]; then
-    echo -n " "
+    echo -n "  "
   fi
 }
 

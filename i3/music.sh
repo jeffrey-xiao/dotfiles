@@ -13,6 +13,8 @@ output () {
     echo -n "  "
   elif [ "$isPaused" -eq 1 ]; then
     echo -n "  "
+  else
+    echo -n " No MPD Server "
   fi
 }
 

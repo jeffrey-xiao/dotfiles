@@ -8,7 +8,7 @@ smart_gaps on
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:DejaVu Sans Mono 12
+font pango:Droid Sans Mono Dotted for Powerline 11
 font pango:FontAwesome 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -21,7 +21,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
-bindsym $mod+d exec rofi -show run -lines 10 -eh 2 -width 100 -padding 300 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "#5294e2" -hlfg "#ffffff" -font "DejaVu Sans Mono 16"
+bindsym $mod+d exec rofi -show run -lines 10 -eh 2 -width 100 -padding 300 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "#5294e2" -hlfg "#ffffff" -font "Droid Sans Mono Dotted for Powerline 11"
 
 # change focus: vim bindings
 bindsym $mod+h focus left
@@ -84,6 +84,7 @@ assign [class="Chromium-browser"] $workspace1
 assign [class="vlc"]              $workspace9
 # assign [class="Gnome-terminal"] $workspace2
 
+# navigating to workspaces
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace 3
@@ -109,10 +110,13 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
+
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec ~/.config/i3/power.py
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -145,23 +149,25 @@ set $bg-color            #2f343f
 set $inactive-bg-color   #2f343f
 set $text-color          #f3f4f5
 set $inactive-text-color #676E7D
-set $urgent-bg-color     #E53935
+set $urgent-text         #E53925
+set $urgent-bg-color     #2f343f
 set $bar-bg-color        #1D1F21
 
 # window colors
 #                       border              background         text                 indicator
-client.focused          $bg-color           $bg-color          $text-color          #00ff00
+client.focused          $bg-color           #216dc6            $text-color          #00ff00
 client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
 client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
-client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
+client.urgent           $urgent-bg-color    $urgent-bg-color   $urgent-text         #00ff00
 
 hide_edge_borders both
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 3
+for_window [class="Power.py"] border pixel 0
 
 # status bar
 bar {
   position top
-  font pango: DejaVu Sans Mono for Powerline 10
+  font pango: Droid Sans Mono Dotted for Powerline 11
   status_command i3blocks -c "$HOME/.config/i3/i3blocks.conf"
   height 19
   colors {
@@ -171,7 +177,7 @@ bar {
     focused_workspace    $bar-bg-color      $bar-bg-color      $text-color
     active_workspace     $bar-bg-color      $bar-bg-color      $inactive-text-color
     inactive_workspace   $bar-bg-color      $bar-bg-color      $inactive-text-color
-    urgent_workspace     $urgent-bg-color   $urgent-bg-color   $text-color
+    urgent_workspace     $urgent-bg-color   $urgent-bg-color   $urgent-text
   }
 }
 
@@ -182,25 +188,31 @@ bindsym $mod+Shift+x exec ". $HOME/.config/i3/lock.sh"
 bindsym $mod+Ctrl+h move workspace to output right
 bindsym $mod+Ctrl+l move workspace to output left
 
+# killing applications
 bindsym $mod+Shift+a focus parent,kill
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -D pulse set Master 1%+; pkill -RTMIN+10 i3blocks"  # increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D pulse set Master 1%-; pkill -RTMIN+10 i3blocks"  # decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id "amixer -D pulse set Master 0+ toggle ; pkill -RTMIN+10 i3blocks"  # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -D pulse set Master 1%+; pkill -RTMIN+10 i3blocks"
+bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D pulse set Master 1%-; pkill -RTMIN+10 i3blocks"
+bindsym XF86AudioMute exec --no-startup-id "amixer -D pulse set Master 0+ toggle ; pkill -RTMIN+10 i3blocks"
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20   # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20
 
 # Touchpad controls
-bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
 bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
+
+# Mpd controls
+bindsym $mod+p exec "mpc toggle; pkill -RTMIN+9 i3blocks"
+bindsym $mod+bracketleft exec "mpc next; pkill -RTMIN+9 i3blocks"
+bindsym $mod+bracketright exec "mpc prev; pkill -RTMIN+9 i3blocks"
 
 # Set wallpaper
 exec_always feh --bg-scale "/home/jeffreyxiao/.config/i3/wallpaper.png"

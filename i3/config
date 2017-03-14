@@ -21,7 +21,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
-bindsym $mod+d exec rofi -show run -lines 10 -eh 2 -width 100 -padding 300 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "#5294e2" -hlfg "#ffffff" -font "Droid Sans Mono Dotted for Powerline 11"
+bindsym $mod+d exec rofi -show run -lines 10 -eh 2 -width 100 -padding 300 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "#5294e2" -hlfg "#ffffff" -font "Droid Sans Mono Dotted for Powerline 16"
 
 # change focus: vim bindings
 bindsym $mod+h focus left
@@ -145,17 +145,22 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Color definitions
-set $bg-color            #2f343f
-set $inactive-bg-color   #2f343f
-set $text-color          #f3f4f5
-set $inactive-text-color #676E7D
-set $urgent-text         #E53925
-set $urgent-bg-color     #2f343f
-set $bar-bg-color        #1D1F21
+set $bg-color            #002b36
+set $inactive-bg-color   #002b36
+set $text-color          #eee8d5
+set $inactive-text-color #eee8d5
+set $urgent-text         #dc322f
+set $urgent-bg-color     #002b36
+set $active-border       #b58900
+
+set $active-bar-bg-color     #eee8d5
+set $inactive-bar-bg-color   #002b36
+set $active-bar-text-color   #002b36
+set $inactive-bar-text-color #eee8d5
 
 # window colors
 #                       border              background         text                 indicator
-client.focused          $bg-color           #216dc6            $text-color          #00ff00
+client.focused          $bg-color           $active-border     $text-color          #00ff00
 client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
 client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
 client.urgent           $urgent-bg-color    $urgent-bg-color   $urgent-text         #00ff00
@@ -171,13 +176,13 @@ bar {
   status_command i3blocks -c "$HOME/.config/i3/i3blocks.conf"
   height 19
   colors {
-    background $bar-bg-color
+    background $inactive-bar-bg-color
     separator #757575
-    #                    border             background         text
-    focused_workspace    $bar-bg-color      $bar-bg-color      $text-color
-    active_workspace     $bar-bg-color      $bar-bg-color      $inactive-text-color
-    inactive_workspace   $bar-bg-color      $bar-bg-color      $inactive-text-color
-    urgent_workspace     $urgent-bg-color   $urgent-bg-color   $urgent-text
+    #                    border                     background              text
+    focused_workspace    $active-bar-bg-color       $active-bar-bg-color    $active-bar-text-color
+    active_workspace     $inactive-bar-bg-color     $inactive-bar-bg-color  $inactive-bar-text-color
+    inactive_workspace   $inactive-bar-bg-color     $inactive-bar-bg-color  $inactive-bar-text-color
+    urgent_workspace     $inactive-bar-bg-color     $inactive-bar-bg-color  $urgent-text
   }
 }
 

@@ -10,9 +10,9 @@ output () {
   isPlaying=$(echo "$status" | grep -Pcim1 '.*(?=\[playing\])')
   isPaused=$(echo "$status" | grep -Pcim1 '.*(?=\[paused\])')
   if [ "$isPlaying" -eq 1 ]; then
-    echo -n "  "
+    echo -n "  "
   elif [ "$isPaused" -eq 1 ]; then
-    echo -n "  "
+    echo -n "  "
   else
     echo -n " No MPD Server "
   fi

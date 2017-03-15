@@ -21,10 +21,12 @@ class i3_exit:
 
     def reboot_action(self,btn):
         self.disable_buttons()
+        os.system("i3-msg [class=\".*\"] kill")
         os.system("systemctl reboot")
 
     def shutdown_action(self,btn):
         self.disable_buttons()
+        os.system("i3-msg [class=\".*\"] kill")
         os.system("systemctl poweroff")
 
     def create_window(self):

@@ -17,9 +17,10 @@ Xft.hintstyle:              hintslight
 URxvt.scrollstyle: plain
 URxvt*scrollColor: #777777
 URxvt.thickness: 2
+
 !! Shading
-!URxvt.transparent:   true
-!URxvt.shading:       5
+urxvt*depth: 32
+urxvt*background: [95]#002b36 
 
 !! black dark/light
 *color0: #073642
@@ -52,4 +53,5 @@ URxvt.thickness: 2
 !! white dark/light
 *color7: #eee8d5
 *color15: #fdf6e3
-URxvt.font: xft:DejaVu Sans Mono for Powerline:pixelsize=14
+URxvt.font: xft:Droid Sans Mono for Powerline:pixelsize=14
+URxvt.letterSpace: -1

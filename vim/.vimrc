@@ -94,6 +94,10 @@ let g:airline_theme='solarized'
 let g:airline#extensions#tabline#enabled=1
 let g:airline_section_z = airline#section#create(['windowswap', '', '%l%\/%L%', '\:%3v'])
 
+" vimtex options
+let g:vimtex_latexmk_callback=0
+let g:tex_conceal = ""
+
 set nocompatible
 set t_Co=256
 set tabstop=2
@@ -118,6 +122,10 @@ syntax enable
 set background=dark
 silent! colorscheme solarized
 
+hi Normal ctermbg=none
+highlight NonText ctermbg=none
+
+" key bindings
 autocmd filetype cpp nnoremap <F4> :!g++ -std=c++11  % -o %:r <CR>
 autocmd filetype cpp nnoremap <F5> :!g++ -std=c++11  % -o %:r && ./%:r<CR>
 
@@ -125,5 +133,3 @@ autocmd filetype tex nmap <F3> <plug>(vimtex-compile-toggle)
 autocmd filetype tex nmap <F4> <plug>(vimtex-errors)
 autocmd filetype tex nmap <F5> <plug>(vimtex-view)
 
-let g:vimtex_latexmk_callback=0
-let g:tex_conceal = ""

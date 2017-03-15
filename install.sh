@@ -18,6 +18,7 @@ ln -sfv "$DOTFILES_DIR/system/.dircolors" ~
 ln -sfv "$DOTFILES_DIR/system/.profile" ~
 ln -sfv "$DOTFILES_DIR/system/.bash_profile" ~
 ln -sfv "$DOTFILES_DIR/system/.inputrc" ~
+ln -sfv "$DOTFILES_DIR/system/.Xresources" ~
 
 # Linking mpd and creating a playlist folder
 mkdir -p ~/.config/mpd/playlists

@@ -1,6 +1,6 @@
 !! Xft settings
 Xft.dpi:                    96
-Xft.antialias:              false
+Xft.antialias:              true
 Xft.rgba:                   rgb
 Xft.hinting:                true
 Xft.hintstyle:              hintslight
@@ -52,4 +52,4 @@ URxvt.thickness: 2
 !! white dark/light
 *color7: #eee8d5
 *color15: #fdf6e3
-URxvt.font: xft:Droid Sans Mono for Powerline:pixelsize=14
+URxvt.font: xft:DejaVu Sans Mono for Powerline:pixelsize=14

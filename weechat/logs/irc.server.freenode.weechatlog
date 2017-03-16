@@ -1,0 +1,669 @@
+2017-03-05 23:11:45	--	irc: connecting to server chat.freenode.net/6667...
+2017-03-05 23:11:46	--	irc: connected to chat.freenode.net/6667 (2001:1bc0:c1::6667)
+2017-03-05 23:11:46	--	kornbluth.freenode.net: *** Looking up your hostname...
+2017-03-05 23:11:46	--	kornbluth.freenode.net: *** Checking Ident
+2017-03-05 23:11:46	--	kornbluth.freenode.net: *** Couldn't look up your hostname
+2017-03-05 23:11:52	--	kornbluth.freenode.net: *** No Ident response
+2017-03-05 23:11:52	--	Welcome to the freenode Internet Relay Chat Network jeffreyxiao
+2017-03-05 23:11:52	--	Your host is kornbluth.freenode.net[2001:1bc0:c1::6667/6667], running version ircd-seven-1.1.4
+2017-03-05 23:11:52	--	This server was created Sat Feb 11 2017 at 18:38:04 UTC
+2017-03-05 23:11:52	--	kornbluth.freenode.net ircd-seven-1.1.4 DOQRSZaghilopswz CFILMPQSbcefgijklmnopqrstvz bkloveqjfI
+2017-03-05 23:11:52	--	CHANTYPES=# EXCEPTS INVEX CHANMODES=eIbq,k,flj,CFLMPQScgimnprstz CHANLIMIT=#:120 PREFIX=(ov)@+ MAXLIST=bqeI:100 MODES=4 NETWORK=freenode STATUSMSG=@+ CALLERID=g CASEMAPPING=rfc1459 :are supported by this server
+2017-03-05 23:11:52	--	CHARSET=ascii NICKLEN=16 CHANNELLEN=50 TOPICLEN=390 DEAF=D FNC TARGMAX=NAMES:1,LIST:1,KICK:1,WHOIS:1,PRIVMSG:4,NOTICE:4,ACCEPT:,MONITOR: EXTBAN=$,ajrxz CLIENTVER=3.0 SAFELIST ELIST=CTU CPRIVMSG :are supported by this server
+2017-03-05 23:11:52	--	CNOTICE KNOCK WHOX ETRACE :are supported by this server
+2017-03-05 23:11:52	--	There are 118 users and 81257 invisible on 27 servers
+2017-03-05 23:11:52	--	24 :IRC Operators online
+2017-03-05 23:11:52	--	9 :unknown connection(s)
+2017-03-05 23:11:52	--	57488 :channels formed
+2017-03-05 23:11:52	--	I have 6824 clients and 1 servers
+2017-03-05 23:11:52	--	6824 7528 :Current local users 6824, max 7528
+2017-03-05 23:11:52	--	81375 93467 :Current global users 81375, max 93467
+2017-03-05 23:11:52	--	Highest connection count: 7529 (7528 clients) (323255 connections received)
+2017-03-05 23:11:52	--	- kornbluth.freenode.net Message of the Day -
+2017-03-05 23:11:52	--	- Welcome to kornbluth.freenode.net in Frankfurt, DE, EU.
+2017-03-05 23:11:52	--	- Thanks to Probe Networks (www.probe-networks.de) for
+2017-03-05 23:11:52	--	- sponsoring this server!
+2017-03-05 23:11:52	--	-
+2017-03-05 23:11:52	--	- KORNBLUTH, CYRIL M. [1923-1958].  Born in New York City and
+2017-03-05 23:11:52	--	- an active member of the Futurians, Cyril Kornbluth sold his
+2017-03-05 23:11:52	--	- first story professionally at age 15.  By the 1940's his
+2017-03-05 23:11:52	--	- stories appeared widely under several pennames, including
+2017-03-05 23:11:52	--	- S.D. Gottesman and Cecil Corman.  He left his university
+2017-03-05 23:11:52	--	- studies in Chicago to serve in the Army in Europe during
+2017-03-05 23:11:52	--	- WWII, then returned to school and work in Chicago until he
+2017-03-05 23:11:52	--	- began writing full-time in 1951.  The author of The Marching
+2017-03-05 23:11:52	--	- Morons and the novels The Space Merchants (with Frederik
+2017-03-05 23:11:52	--	- Pohl) and The Syndic, he's best known for his biting social
+2017-03-05 23:11:52	--	- satire and his collaborations with Pohl and with Judith
+2017-03-05 23:11:52	--	- Merril.
+2017-03-05 23:11:52	--	- Welcome to freenode - supporting the free and open source
+2017-03-05 23:11:52	--	- software communities since 1998.
+2017-03-05 23:11:52	--	-
+2017-03-05 23:11:52	--	- By connecting to freenode you indicate that you have read and
+2017-03-05 23:11:52	--	- accept our policies as set out on http://www.freenode.net
+2017-03-05 23:11:52	--	- freenode runs an open proxy scanner. Please join #freenode for
+2017-03-05 23:11:52	--	- any network-related questions or queries, where a number of
+2017-03-05 23:11:52	--	- volunteer staff and helpful users will be happy to assist you.
+2017-03-05 23:11:52	--	-
+2017-03-05 23:11:52	--	- You can meet us at FOSSCON (http://www.fosscon.org) where we get
+2017-03-05 23:11:52	--	- together with like-minded FOSS enthusiasts for talks and
+2017-03-05 23:11:52	--	- real-life collaboration.
+2017-03-05 23:11:52	--	-
+2017-03-05 23:11:52	--	- We would like to thank Private Internet Access
+2017-03-05 23:11:52	--	- (https://www.privateinternetaccess.com/) and the other
+2017-03-05 23:11:52	--	- organisations that help keep freenode and our other projects
+2017-03-05 23:11:52	--	- running for their sustained support.
+2017-03-05 23:11:52	--	-
+2017-03-05 23:11:52	--	- In particular we would like to thank the sponsor
+2017-03-05 23:11:52	--	- of this server, details of which can be found above.
+2017-03-05 23:11:52	--	-
+2017-03-05 23:11:52	--	End of /MOTD command.
+2017-03-05 23:11:52	--	User mode [+i] by jeffreyxiao
+2017-03-15 21:24:36	--	irc: connecting to server chat.freenode.net/6667...
+2017-03-15 21:24:37	--	irc: connected to chat.freenode.net/6667 (2a00:1a28:1100:11::42)
+2017-03-15 21:24:37	--	sinisalo.freenode.net: *** Looking up your hostname...
+2017-03-15 21:24:37	--	sinisalo.freenode.net: *** Checking Ident
+2017-03-15 21:24:39	--	sinisalo.freenode.net: *** Couldn't look up your hostname
+2017-03-15 21:24:43	--	sinisalo.freenode.net: *** No Ident response
+2017-03-15 21:24:43	--	Welcome to the freenode Internet Relay Chat Network jeffreyxiao
+2017-03-15 21:24:43	--	Your host is sinisalo.freenode.net[2a00:1a28:1100:11::42/6667], running version ircd-seven-1.1.4
+2017-03-15 21:24:43	--	This server was created Wed Jan 18 2017 at 02:26:19 CET
+2017-03-15 21:24:43	--	sinisalo.freenode.net ircd-seven-1.1.4 DOQRSZaghilopswz CFILMPQSbcefgijklmnopqrstvz bkloveqjfI
+2017-03-15 21:24:43	--	CHANTYPES=# EXCEPTS INVEX CHANMODES=eIbq,k,flj,CFLMPQScgimnprstz CHANLIMIT=#:120 PREFIX=(ov)@+ MAXLIST=bqeI:100 MODES=4 NETWORK=freenode STATUSMSG=@+ CALLERID=g CASEMAPPING=rfc1459 :are supported by this server
+2017-03-15 21:24:43	--	CHARSET=ascii NICKLEN=16 CHANNELLEN=50 TOPICLEN=390 DEAF=D FNC TARGMAX=NAMES:1,LIST:1,KICK:1,WHOIS:1,PRIVMSG:4,NOTICE:4,ACCEPT:,MONITOR: EXTBAN=$,ajrxz CLIENTVER=3.0 WHOX KNOCK ETRACE :are supported by this server
+2017-03-15 21:24:43	--	SAFELIST ELIST=CTU CPRIVMSG CNOTICE :are supported by this server
+2017-03-15 21:24:43	--	There are 125 users and 84514 invisible on 27 servers
+2017-03-15 21:24:43	--	23 :IRC Operators online
+2017-03-15 21:24:43	--	15 :unknown connection(s)
+2017-03-15 21:24:43	--	58203 :channels formed
+2017-03-15 21:24:43	--	I have 8107 clients and 1 servers
+2017-03-15 21:24:43	--	8107 8763 :Current local users 8107, max 8763
+2017-03-15 21:24:43	--	84639 93467 :Current global users 84639, max 93467
+2017-03-15 21:24:43	--	Highest connection count: 8764 (8763 clients) (536606 connections received)
+2017-03-15 21:24:43	--	- sinisalo.freenode.net Message of the Day -
+2017-03-15 21:24:43	--	- Welcome to sinisalo.freenode.net in Stockholm, SE.
+2017-03-15 21:24:43	--	- Thanks to http://www.portlane.com/ for sponsoring
+2017-03-15 21:24:43	--	- this server!
+2017-03-15 21:24:43	--	-
+2017-03-15 21:24:43	--	-
+2017-03-15 21:24:43	--	- SINISALO, (ANNA) JOHANNA (1958-), a Finnish science fiction
+2017-03-15 21:24:43	--	- and fantasy novelist and a script writer. Her novel 'Not
+2017-03-15 21:24:43	--	- Before Sundown' (orig. 'Ennen päivänlaskua ei voi'
+2017-03-15 21:24:43	--	- published in Finnish in 2000, when it also won the biggest
+2017-03-15 21:24:43	--	- literature award of Finland) was awarded The James Tiptree
+2017-03-15 21:24:43	--	- Jr. award in 2004.  She was nominated for a Nebula award in
+2017-03-15 21:24:43	--	- 2009 for her short story Baby Doll.  Their most recent work
+2017-03-15 21:24:43	--	- includes screenwriting for the film 'Iron Sky'.
+2017-03-15 21:24:43	--	-
+2017-03-15 21:24:43	--	- Welcome to freenode - supporting the free and open source
+2017-03-15 21:24:43	--	- software communities since 1998.
+2017-03-15 21:24:43	--	-
+2017-03-15 21:24:43	--	- By connecting to freenode you indicate that you have read and
+2017-03-15 21:24:43	--	- accept our policies as set out on http://www.freenode.net
+2017-03-15 21:24:43	--	- freenode runs an open proxy scanner. Please join #freenode for
+2017-03-15 21:24:43	--	- any network-related questions or queries, where a number of
+2017-03-15 21:24:43	--	- volunteer staff and helpful users will be happy to assist you.
+2017-03-15 21:24:43	--	-
+2017-03-15 21:24:43	--	- You can meet us at FOSSCON (http://www.fosscon.org) where we get
+2017-03-15 21:24:43	--	- together with like-minded FOSS enthusiasts for talks and
+2017-03-15 21:24:43	--	- real-life collaboration.
+2017-03-15 21:24:43	--	-
+2017-03-15 21:24:43	--	- We would like to thank Private Internet Access
+2017-03-15 21:24:43	--	- (https://www.privateinternetaccess.com/) and the other
+2017-03-15 21:24:43	--	- organisations that help keep freenode and our other projects
+2017-03-15 21:24:43	--	- running for their sustained support.
+2017-03-15 21:24:43	--	-
+2017-03-15 21:24:43	--	- In particular we would like to thank the sponsor
+2017-03-15 21:24:43	--	- of this server, details of which can be found above.
+2017-03-15 21:24:43	--	-
+2017-03-15 21:24:43	--	End of /MOTD command.
+2017-03-15 21:24:43	--	User mode [+i] by jeffreyxiao
+2017-03-15 21:25:46	--	irc: disconnected from server
+2017-03-15 21:25:52	--	irc: connecting to server chat.freenode.net/6667...
+2017-03-15 21:25:52	--	irc: connected to chat.freenode.net/6667 (2a01:7e00::f03c:91ff:fee2:413b)
+2017-03-15 21:25:52	--	niven.freenode.net: *** Looking up your hostname...
+2017-03-15 21:25:52	--	niven.freenode.net: *** Checking Ident
+2017-03-15 21:25:54	--	niven.freenode.net: *** Couldn't look up your hostname
+2017-03-15 21:25:59	--	niven.freenode.net: *** No Ident response
+2017-03-15 21:25:59	--	Welcome to the freenode Internet Relay Chat Network jeffreyxiao
+2017-03-15 21:25:59	--	Your host is niven.freenode.net[2a01:7e00::f03c:91ff:fee2:413b/6667], running version ircd-seven-1.1.4
+2017-03-15 21:25:59	--	This server was created Thu Jan 5 2017 at 04:18:05 UTC
+2017-03-15 21:25:59	--	niven.freenode.net ircd-seven-1.1.4 DOQRSZaghilopswz CFILMPQSbcefgijklmnopqrstvz bkloveqjfI
+2017-03-15 21:25:59	--	CHANTYPES=# EXCEPTS INVEX CHANMODES=eIbq,k,flj,CFLMPQScgimnprstz CHANLIMIT=#:120 PREFIX=(ov)@+ MAXLIST=bqeI:100 MODES=4 NETWORK=freenode STATUSMSG=@+ CALLERID=g CASEMAPPING=rfc1459 :are supported by this server
+2017-03-15 21:25:59	--	CHARSET=ascii NICKLEN=16 CHANNELLEN=50 TOPICLEN=390 DEAF=D FNC TARGMAX=NAMES:1,LIST:1,KICK:1,WHOIS:1,PRIVMSG:4,NOTICE:4,ACCEPT:,MONITOR: EXTBAN=$,ajrxz CLIENTVER=3.0 SAFELIST ELIST=CTU CPRIVMSG :are supported by this server
+2017-03-15 21:25:59	--	CNOTICE WHOX ETRACE KNOCK :are supported by this server
+2017-03-15 21:25:59	--	There are 125 users and 84507 invisible on 27 servers
+2017-03-15 21:25:59	--	23 :IRC Operators online
+2017-03-15 21:25:59	--	17 :unknown connection(s)
+2017-03-15 21:25:59	--	58182 :channels formed
+2017-03-15 21:25:59	--	I have 8245 clients and 1 servers
+2017-03-15 21:25:59	--	8245 8929 :Current local users 8245, max 8929
+2017-03-15 21:25:59	--	84632 93467 :Current global users 84632, max 93467
+2017-03-15 21:25:59	--	Highest connection count: 8930 (8929 clients) (734781 connections received)
+2017-03-15 21:25:59	--	- niven.freenode.net Message of the Day -
+2017-03-15 21:25:59	--	- Welcome to niven.freenode.net in London, United Kingdom, EU.
+2017-03-15 21:25:59	--	- thanks to Linode for sponsoring this server!
+2017-03-15 21:25:59	--	-
+2017-03-15 21:25:59	--	- NIVEN, LAWRENCE VAN COTT [1938-].  Architect of Known Space,
+2017-03-15 21:25:59	--	- the setting of Protector, World of Ptaavs and the
+2017-03-15 21:25:59	--	- Ringworld series.  Author of "Flash Crowd", a canonical
+2017-03-15 21:25:59	--	- sociological hard science fiction short story dealing with
+2017-03-15 21:25:59	--	- effects of near instantaneous transportation on a modern
+2017-03-15 21:25:59	--	- technological society.  In addition, he is well known for his
+2017-03-15 21:25:59	--	- collaborations with Jerry Pournelle, including The Mote in
+2017-03-15 21:25:59	--	- God's Eye and Lucifer's Hammer.
+2017-03-15 21:25:59	--	-
+2017-03-15 21:25:59	--	- Welcome to freenode - supporting the free and open source
+2017-03-15 21:25:59	--	- software communities since 1998.
+2017-03-15 21:25:59	--	-
+2017-03-15 21:25:59	--	- By connecting to freenode you indicate that you have read and
+2017-03-15 21:25:59	--	- accept our policies as set out on http://www.freenode.net
+2017-03-15 21:25:59	--	- freenode runs an open proxy scanner. Please join #freenode for
+2017-03-15 21:25:59	--	- any network-related questions or queries, where a number of
+2017-03-15 21:25:59	--	- volunteer staff and helpful users will be happy to assist you.
+2017-03-15 21:25:59	--	-
+2017-03-15 21:25:59	--	- You can meet us at FOSSCON (http://www.fosscon.org) where we get
+2017-03-15 21:25:59	--	- together with like-minded FOSS enthusiasts for talks and
+2017-03-15 21:25:59	--	- real-life collaboration.
+2017-03-15 21:25:59	--	-
+2017-03-15 21:25:59	--	- We would like to thank Private Internet Access
+2017-03-15 21:25:59	--	- (https://www.privateinternetaccess.com/) and the other
+2017-03-15 21:25:59	--	- organisations that help keep freenode and our other projects
+2017-03-15 21:25:59	--	- running for their sustained support.
+2017-03-15 21:25:59	--	-
+2017-03-15 21:25:59	--	- In particular we would like to thank the sponsor
+2017-03-15 21:25:59	--	- of this server, details of which can be found above.
+2017-03-15 21:25:59	--	-
+2017-03-15 21:25:59	--	End of /MOTD command.
+2017-03-15 21:25:59	--	User mode [+i] by jeffreyxiao
+2017-03-15 21:26:04	--	irc: disconnected from server
+2017-03-15 21:27:50	--	irc: connecting to server chat.freenode.net/6667...
+2017-03-15 21:27:50	--	irc: connected to chat.freenode.net/6667 (2a01:7e00::f03c:91ff:fee2:413b)
+2017-03-15 21:27:50	--	niven.freenode.net: *** Looking up your hostname...
+2017-03-15 21:27:51	--	niven.freenode.net: *** Checking Ident
+2017-03-15 21:27:52	--	niven.freenode.net: *** Couldn't look up your hostname
+2017-03-15 21:27:59	--	niven.freenode.net: *** No Ident response
+2017-03-15 21:27:59	--	Welcome to the freenode Internet Relay Chat Network jeffreyxiao
+2017-03-15 21:27:59	--	Your host is niven.freenode.net[2a01:7e00::f03c:91ff:fee2:413b/6667], running version ircd-seven-1.1.4
+2017-03-15 21:27:59	--	This server was created Thu Jan 5 2017 at 04:18:05 UTC
+2017-03-15 21:27:59	--	niven.freenode.net ircd-seven-1.1.4 DOQRSZaghilopswz CFILMPQSbcefgijklmnopqrstvz bkloveqjfI
+2017-03-15 21:27:59	--	CHANTYPES=# EXCEPTS INVEX CHANMODES=eIbq,k,flj,CFLMPQScgimnprstz CHANLIMIT=#:120 PREFIX=(ov)@+ MAXLIST=bqeI:100 MODES=4 NETWORK=freenode STATUSMSG=@+ CALLERID=g CASEMAPPING=rfc1459 :are supported by this server
+2017-03-15 21:27:59	--	CHARSET=ascii NICKLEN=16 CHANNELLEN=50 TOPICLEN=390 DEAF=D FNC TARGMAX=NAMES:1,LIST:1,KICK:1,WHOIS:1,PRIVMSG:4,NOTICE:4,ACCEPT:,MONITOR: EXTBAN=$,ajrxz CLIENTVER=3.0 SAFELIST ELIST=CTU CPRIVMSG :are supported by this server
+2017-03-15 21:27:59	--	CNOTICE WHOX ETRACE KNOCK :are supported by this server
+2017-03-15 21:27:59	--	There are 125 users and 84506 invisible on 27 servers
+2017-03-15 21:27:59	--	23 :IRC Operators online
+2017-03-15 21:27:59	--	23 :unknown connection(s)
+2017-03-15 21:27:59	--	58199 :channels formed
+2017-03-15 21:27:59	--	I have 8244 clients and 1 servers
+2017-03-15 21:27:59	--	8244 8929 :Current local users 8244, max 8929
+2017-03-15 21:27:59	--	84631 93467 :Current global users 84631, max 93467
+2017-03-15 21:27:59	--	Highest connection count: 8930 (8929 clients) (734804 connections received)
+2017-03-15 21:27:59	--	- niven.freenode.net Message of the Day -
+2017-03-15 21:27:59	--	- Welcome to niven.freenode.net in London, United Kingdom, EU.
+2017-03-15 21:27:59	--	- thanks to Linode for sponsoring this server!
+2017-03-15 21:27:59	--	-
+2017-03-15 21:27:59	--	- NIVEN, LAWRENCE VAN COTT [1938-].  Architect of Known Space,
+2017-03-15 21:27:59	--	- the setting of Protector, World of Ptaavs and the
+2017-03-15 21:27:59	--	- Ringworld series.  Author of "Flash Crowd", a canonical
+2017-03-15 21:27:59	--	- sociological hard science fiction short story dealing with
+2017-03-15 21:27:59	--	- effects of near instantaneous transportation on a modern
+2017-03-15 21:27:59	--	- technological society.  In addition, he is well known for his
+2017-03-15 21:27:59	--	- collaborations with Jerry Pournelle, including The Mote in
+2017-03-15 21:27:59	--	- God's Eye and Lucifer's Hammer.
+2017-03-15 21:27:59	--	-
+2017-03-15 21:27:59	--	- Welcome to freenode - supporting the free and open source
+2017-03-15 21:27:59	--	- software communities since 1998.
+2017-03-15 21:27:59	--	-
+2017-03-15 21:27:59	--	- By connecting to freenode you indicate that you have read and
+2017-03-15 21:27:59	--	- accept our policies as set out on http://www.freenode.net
+2017-03-15 21:27:59	--	- freenode runs an open proxy scanner. Please join #freenode for
+2017-03-15 21:27:59	--	- any network-related questions or queries, where a number of
+2017-03-15 21:27:59	--	- volunteer staff and helpful users will be happy to assist you.
+2017-03-15 21:27:59	--	-
+2017-03-15 21:27:59	--	- You can meet us at FOSSCON (http://www.fosscon.org) where we get
+2017-03-15 21:27:59	--	- together with like-minded FOSS enthusiasts for talks and
+2017-03-15 21:27:59	--	- real-life collaboration.
+2017-03-15 21:27:59	--	-
+2017-03-15 21:27:59	--	- We would like to thank Private Internet Access
+2017-03-15 21:27:59	--	- (https://www.privateinternetaccess.com/) and the other
+2017-03-15 21:27:59	--	- organisations that help keep freenode and our other projects
+2017-03-15 21:27:59	--	- running for their sustained support.
+2017-03-15 21:27:59	--	-
+2017-03-15 21:27:59	--	- In particular we would like to thank the sponsor
+2017-03-15 21:27:59	--	- of this server, details of which can be found above.
+2017-03-15 21:27:59	--	-
+2017-03-15 21:27:59	--	End of /MOTD command.
+2017-03-15 21:27:59	--	User mode [+i] by jeffreyxiao
+2017-03-15 21:31:54	--	irc: disconnected from server
+2017-03-15 21:32:21	--	irc: connecting to server chat.freenode.net/6667...
+2017-03-15 21:32:21	--	irc: connected to chat.freenode.net/6667 (2600:3c02::f03c:91ff:fe59:7d2e)
+2017-03-15 21:32:21	--	moon.freenode.net: *** Looking up your hostname...
+2017-03-15 21:32:22	--	moon.freenode.net: *** Checking Ident
+2017-03-15 21:32:22	--	moon.freenode.net: *** Couldn't look up your hostname
+2017-03-15 21:32:30	--	moon.freenode.net: *** No Ident response
+2017-03-15 21:32:30	--	Welcome to the freenode Internet Relay Chat Network jeffreyxiao
+2017-03-15 21:32:30	--	Your host is moon.freenode.net[2600:3c02::f03c:91ff:fe59:7d2e/6667], running version ircd-seven-1.1.4
+2017-03-15 21:32:30	--	This server was created Wed Jan 4 2017 at 21:44:53 UTC
+2017-03-15 21:32:30	--	moon.freenode.net ircd-seven-1.1.4 DOQRSZaghilopswz CFILMPQSbcefgijklmnopqrstvz bkloveqjfI
+2017-03-15 21:32:30	--	CHANTYPES=# EXCEPTS INVEX CHANMODES=eIbq,k,flj,CFLMPQScgimnprstz CHANLIMIT=#:120 PREFIX=(ov)@+ MAXLIST=bqeI:100 MODES=4 NETWORK=freenode STATUSMSG=@+ CALLERID=g CASEMAPPING=rfc1459 :are supported by this server
+2017-03-15 21:32:30	--	CHARSET=ascii NICKLEN=16 CHANNELLEN=50 TOPICLEN=390 DEAF=D FNC TARGMAX=NAMES:1,LIST:1,KICK:1,WHOIS:1,PRIVMSG:4,NOTICE:4,ACCEPT:,MONITOR: EXTBAN=$,ajrxz CLIENTVER=3.0 SAFELIST ELIST=CTU CPRIVMSG :are supported by this server
+2017-03-15 21:32:30	--	CNOTICE WHOX ETRACE KNOCK :are supported by this server
+2017-03-15 21:32:30	--	There are 125 users and 84507 invisible on 27 servers
+2017-03-15 21:32:30	--	23 :IRC Operators online
+2017-03-15 21:32:30	--	11 :unknown connection(s)
+2017-03-15 21:32:30	--	58191 :channels formed
+2017-03-15 21:32:30	--	I have 7567 clients and 1 servers
+2017-03-15 21:32:30	--	7567 8204 :Current local users 7567, max 8204
+2017-03-15 21:32:30	--	84632 93467 :Current global users 84632, max 93467
+2017-03-15 21:32:30	--	Highest connection count: 8205 (8204 clients) (263548 connections received)
+2017-03-15 21:32:30	--	- moon.freenode.net Message of the Day -
+2017-03-15 21:32:30	--	- Welcome to freenode - supporting the free and open source
+2017-03-15 21:32:30	--	- software communities since 1998.
+2017-03-15 21:32:30	--	-
+2017-03-15 21:32:30	--	- By connecting to freenode you indicate that you have read and
+2017-03-15 21:32:30	--	- accept our policies as set out on http://www.freenode.net
+2017-03-15 21:32:30	--	- freenode runs an open proxy scanner. Please join #freenode for
+2017-03-15 21:32:30	--	- any network-related questions or queries, where a number of
+2017-03-15 21:32:30	--	- volunteer staff and helpful users will be happy to assist you.
+2017-03-15 21:32:30	--	-
+2017-03-15 21:32:30	--	- You can meet us at FOSSCON (http://www.fosscon.org) where we get
+2017-03-15 21:32:30	--	- together with like-minded FOSS enthusiasts for talks and
+2017-03-15 21:32:30	--	- real-life collaboration.
+2017-03-15 21:32:30	--	-
+2017-03-15 21:32:30	--	- We would like to thank Private Internet Access
+2017-03-15 21:32:30	--	- (https://www.privateinternetaccess.com/) and the other
+2017-03-15 21:32:30	--	- organisations that help keep freenode and our other projects
+2017-03-15 21:32:30	--	- running for their sustained support.
+2017-03-15 21:32:30	--	-
+2017-03-15 21:32:30	--	- In particular we would like to thank the sponsor
+2017-03-15 21:32:30	--	- of this server, details of which can be found above.
+2017-03-15 21:32:30	--	-
+2017-03-15 21:32:30	--	End of /MOTD command.
+2017-03-15 21:32:30	--	User mode [+i] by jeffreyxiao
+2017-03-15 21:35:43	--	irc: connecting to server chat.freenode.net/6667...
+2017-03-15 21:35:43	--	irc: connected to chat.freenode.net/6667 (2001:5a0:3604:1:64:86:243:181)
+2017-03-15 21:35:43	--	karatkievich.freenode.net: *** Looking up your hostname...
+2017-03-15 21:35:43	--	karatkievich.freenode.net: *** Checking Ident
+2017-03-15 21:35:44	--	karatkievich.freenode.net: *** Couldn't look up your hostname
+2017-03-15 21:35:50	--	karatkievich.freenode.net: *** No Ident response
+2017-03-15 21:35:50	--	Welcome to the freenode Internet Relay Chat Network jeffreyxiao
+2017-03-15 21:35:50	--	Your host is karatkievich.freenode.net[2001:5a0:3604:1:64:86:243:181/6667], running version ircd-seven-1.1.4
+2017-03-15 21:35:50	--	This server was created Sun Jan 8 2017 at 22:54:39 EST
+2017-03-15 21:35:50	--	karatkievich.freenode.net ircd-seven-1.1.4 DOQRSZaghilopswz CFILMPQSbcefgijklmnopqrstvz bkloveqjfI
+2017-03-15 21:35:50	--	CHANTYPES=# EXCEPTS INVEX CHANMODES=eIbq,k,flj,CFLMPQScgimnprstz CHANLIMIT=#:120 PREFIX=(ov)@+ MAXLIST=bqeI:100 MODES=4 NETWORK=freenode STATUSMSG=@+ CALLERID=g CASEMAPPING=rfc1459 :are supported by this server
+2017-03-15 21:35:50	--	CHARSET=ascii NICKLEN=16 CHANNELLEN=50 TOPICLEN=390 DEAF=D FNC TARGMAX=NAMES:1,LIST:1,KICK:1,WHOIS:1,PRIVMSG:4,NOTICE:4,ACCEPT:,MONITOR: EXTBAN=$,ajrxz CLIENTVER=3.0 CPRIVMSG CNOTICE ETRACE :are supported by this server
+2017-03-15 21:35:50	--	KNOCK SAFELIST ELIST=CTU WHOX :are supported by this server
+2017-03-15 21:35:50	--	There are 125 users and 84475 invisible on 27 servers
+2017-03-15 21:35:50	--	23 :IRC Operators online
+2017-03-15 21:35:50	--	8 :unknown connection(s)
+2017-03-15 21:35:50	--	58200 :channels formed
+2017-03-15 21:35:50	--	I have 5571 clients and 1 servers
+2017-03-15 21:35:50	--	5571 8508 :Current local users 5571, max 8508
+2017-03-15 21:35:50	--	84600 93467 :Current global users 84600, max 93467
+2017-03-15 21:35:50	--	Highest connection count: 8509 (8508 clients) (749126 connections received)
+2017-03-15 21:35:50	--	- karatkievich.freenode.net Message of the Day -
+2017-03-15 21:35:50	--	- Welcome to karatkievich.freenode.net. Thanks to
+2017-03-15 21:35:50	--	- http://www.tatacommunications.com/ for sponsoring
+2017-03-15 21:35:50	--	- this server!
+2017-03-15 21:35:50	--	-
+2017-03-15 21:35:50	--	- KARATKIEVICH, ULADZIMIR (1930-1984) was a Belarusian
+2017-03-15 21:35:50	--	- romantic writer. After his first published work was a poem
+2017-03-15 21:35:50	--	- in 1951, he followed up with novels, short stories, plays,
+2017-03-15 21:35:50	--	- essays, articles and screenplays. His probably most popular
+2017-03-15 21:35:50	--	- work is the novel 'King Stakh's Wild Hunt' (1964). Most his
+2017-03-15 21:35:50	--	- novels are about Belarus's past.  He won many national
+2017-03-15 21:35:50	--	- literary awards and influenced the Belarusian literature's
+2017-03-15 21:35:50	--	- development of historical themes.
+2017-03-15 21:35:50	--	-
+2017-03-15 21:35:50	--	-
+2017-03-15 21:35:50	--	- Welcome to freenode - supporting the free and open source
+2017-03-15 21:35:50	--	- software communities since 1998.
+2017-03-15 21:35:50	--	-
+2017-03-15 21:35:50	--	- By connecting to freenode you indicate that you have read and
+2017-03-15 21:35:50	--	- accept our policies as set out on http://www.freenode.net
+2017-03-15 21:35:50	--	- freenode runs an open proxy scanner. Please join #freenode for
+2017-03-15 21:35:50	--	- any network-related questions or queries, where a number of
+2017-03-15 21:35:50	--	- volunteer staff and helpful users will be happy to assist you.
+2017-03-15 21:35:50	--	-
+2017-03-15 21:35:50	--	- You can meet us at FOSSCON (http://www.fosscon.org) where we get
+2017-03-15 21:35:50	--	- together with like-minded FOSS enthusiasts for talks and
+2017-03-15 21:35:50	--	- real-life collaboration.
+2017-03-15 21:35:50	--	-
+2017-03-15 21:35:50	--	- We would like to thank Private Internet Access
+2017-03-15 21:35:50	--	- (https://www.privateinternetaccess.com/) and the other
+2017-03-15 21:35:50	--	- organisations that help keep freenode and our other projects
+2017-03-15 21:35:50	--	- running for their sustained support.
+2017-03-15 21:35:50	--	-
+2017-03-15 21:35:50	--	- In particular we would like to thank the sponsor
+2017-03-15 21:35:50	--	- of this server, details of which can be found above.
+2017-03-15 21:35:50	--	-
+2017-03-15 21:35:50	--	End of /MOTD command.
+2017-03-15 21:35:50	--	User mode [+i] by jeffreyxiao
+2017-03-15 21:37:24	=!=	irc: this buffer is not a channel!
+2017-03-15 21:41:22	--	irc: connecting to server chat.freenode.net/6667...
+2017-03-15 21:41:22	--	irc: connected to chat.freenode.net/6667 (2600:3c02::f03c:91ff:fe59:7d2e)
+2017-03-15 21:41:22	--	moon.freenode.net: *** Looking up your hostname...
+2017-03-15 21:41:22	--	moon.freenode.net: *** Checking Ident
+2017-03-15 21:41:23	--	moon.freenode.net: *** Couldn't look up your hostname
+2017-03-15 21:41:31	--	moon.freenode.net: *** No Ident response
+2017-03-15 21:41:31	--	Welcome to the freenode Internet Relay Chat Network jeffreyxiao
+2017-03-15 21:41:31	--	Your host is moon.freenode.net[2600:3c02::f03c:91ff:fe59:7d2e/6667], running version ircd-seven-1.1.4
+2017-03-15 21:41:31	--	This server was created Wed Jan 4 2017 at 21:44:53 UTC
+2017-03-15 21:41:31	--	moon.freenode.net ircd-seven-1.1.4 DOQRSZaghilopswz CFILMPQSbcefgijklmnopqrstvz bkloveqjfI
+2017-03-15 21:41:31	--	CHANTYPES=# EXCEPTS INVEX CHANMODES=eIbq,k,flj,CFLMPQScgimnprstz CHANLIMIT=#:120 PREFIX=(ov)@+ MAXLIST=bqeI:100 MODES=4 NETWORK=freenode STATUSMSG=@+ CALLERID=g CASEMAPPING=rfc1459 :are supported by this server
+2017-03-15 21:41:31	--	CHARSET=ascii NICKLEN=16 CHANNELLEN=50 TOPICLEN=390 DEAF=D FNC TARGMAX=NAMES:1,LIST:1,KICK:1,WHOIS:1,PRIVMSG:4,NOTICE:4,ACCEPT:,MONITOR: EXTBAN=$,ajrxz CLIENTVER=3.0 SAFELIST ELIST=CTU CPRIVMSG :are supported by this server
+2017-03-15 21:41:31	--	CNOTICE WHOX ETRACE KNOCK :are supported by this server
+2017-03-15 21:41:31	--	There are 124 users and 84453 invisible on 27 servers
+2017-03-15 21:41:31	--	23 :IRC Operators online
+2017-03-15 21:41:31	--	15 :unknown connection(s)
+2017-03-15 21:41:31	--	58189 :channels formed
+2017-03-15 21:41:31	--	I have 7565 clients and 1 servers
+2017-03-15 21:41:31	--	7565 8204 :Current local users 7565, max 8204
+2017-03-15 21:41:31	--	84577 93467 :Current global users 84577, max 93467
+2017-03-15 21:41:31	--	Highest connection count: 8205 (8204 clients) (263642 connections received)
+2017-03-15 21:41:31	--	- moon.freenode.net Message of the Day -
+2017-03-15 21:41:31	--	- Welcome to freenode - supporting the free and open source
+2017-03-15 21:41:31	--	- software communities since 1998.
+2017-03-15 21:41:31	--	-
+2017-03-15 21:41:31	--	- By connecting to freenode you indicate that you have read and
+2017-03-15 21:41:31	--	- accept our policies as set out on http://www.freenode.net
+2017-03-15 21:41:31	--	- freenode runs an open proxy scanner. Please join #freenode for
+2017-03-15 21:41:31	--	- any network-related questions or queries, where a number of
+2017-03-15 21:41:31	--	- volunteer staff and helpful users will be happy to assist you.
+2017-03-15 21:41:31	--	-
+2017-03-15 21:41:31	--	- You can meet us at FOSSCON (http://www.fosscon.org) where we get
+2017-03-15 21:41:31	--	- together with like-minded FOSS enthusiasts for talks and
+2017-03-15 21:41:31	--	- real-life collaboration.
+2017-03-15 21:41:31	--	-
+2017-03-15 21:41:31	--	- We would like to thank Private Internet Access
+2017-03-15 21:41:31	--	- (https://www.privateinternetaccess.com/) and the other
+2017-03-15 21:41:31	--	- organisations that help keep freenode and our other projects
+2017-03-15 21:41:31	--	- running for their sustained support.
+2017-03-15 21:41:31	--	-
+2017-03-15 21:41:31	--	- In particular we would like to thank the sponsor
+2017-03-15 21:41:31	--	- of this server, details of which can be found above.
+2017-03-15 21:41:31	--	-
+2017-03-15 21:41:31	--	End of /MOTD command.
+2017-03-15 21:41:31	--	User mode [+i] by jeffreyxiao
+2017-03-15 21:45:08	=!=	irc: this buffer is not a channel!
+2017-03-15 21:45:15	--	irc: connecting to server chat.freenode.net/6667...
+2017-03-15 21:45:15	--	irc: connected to chat.freenode.net/6667 (2600:3c02::f03c:91ff:fe59:7d2e)
+2017-03-15 21:45:15	--	moon.freenode.net: *** Looking up your hostname...
+2017-03-15 21:45:15	--	moon.freenode.net: *** Checking Ident
+2017-03-15 21:45:16	--	moon.freenode.net: *** Couldn't look up your hostname
+2017-03-15 21:45:21	--	moon.freenode.net: *** No Ident response
+2017-03-15 21:45:21	--	Welcome to the freenode Internet Relay Chat Network jeffreyxiao
+2017-03-15 21:45:21	--	Your host is moon.freenode.net[2600:3c02::f03c:91ff:fe59:7d2e/6667], running version ircd-seven-1.1.4
+2017-03-15 21:45:21	--	This server was created Wed Jan 4 2017 at 21:44:53 UTC
+2017-03-15 21:45:21	--	moon.freenode.net ircd-seven-1.1.4 DOQRSZaghilopswz CFILMPQSbcefgijklmnopqrstvz bkloveqjfI
+2017-03-15 21:45:21	--	CHANTYPES=# EXCEPTS INVEX CHANMODES=eIbq,k,flj,CFLMPQScgimnprstz CHANLIMIT=#:120 PREFIX=(ov)@+ MAXLIST=bqeI:100 MODES=4 NETWORK=freenode STATUSMSG=@+ CALLERID=g CASEMAPPING=rfc1459 :are supported by this server
+2017-03-15 21:45:21	--	CHARSET=ascii NICKLEN=16 CHANNELLEN=50 TOPICLEN=390 DEAF=D FNC TARGMAX=NAMES:1,LIST:1,KICK:1,WHOIS:1,PRIVMSG:4,NOTICE:4,ACCEPT:,MONITOR: EXTBAN=$,ajrxz CLIENTVER=3.0 SAFELIST ELIST=CTU CPRIVMSG :are supported by this server
+2017-03-15 21:45:21	--	CNOTICE WHOX ETRACE KNOCK :are supported by this server
+2017-03-15 21:45:21	--	There are 124 users and 84453 invisible on 27 servers
+2017-03-15 21:45:21	--	23 :IRC Operators online
+2017-03-15 21:45:21	--	14 :unknown connection(s)
+2017-03-15 21:45:21	--	58181 :channels formed
+2017-03-15 21:45:21	--	I have 7567 clients and 1 servers
+2017-03-15 21:45:21	--	7567 8204 :Current local users 7567, max 8204
+2017-03-15 21:45:21	--	84577 93467 :Current global users 84577, max 93467
+2017-03-15 21:45:21	--	Highest connection count: 8205 (8204 clients) (263685 connections received)
+2017-03-15 21:45:21	--	- moon.freenode.net Message of the Day -
+2017-03-15 21:45:21	--	- Welcome to freenode - supporting the free and open source
+2017-03-15 21:45:21	--	- software communities since 1998.
+2017-03-15 21:45:21	--	-
+2017-03-15 21:45:21	--	- By connecting to freenode you indicate that you have read and
+2017-03-15 21:45:21	--	- accept our policies as set out on http://www.freenode.net
+2017-03-15 21:45:21	--	- freenode runs an open proxy scanner. Please join #freenode for
+2017-03-15 21:45:21	--	- any network-related questions or queries, where a number of
+2017-03-15 21:45:21	--	- volunteer staff and helpful users will be happy to assist you.
+2017-03-15 21:45:21	--	-
+2017-03-15 21:45:21	--	- You can meet us at FOSSCON (http://www.fosscon.org) where we get
+2017-03-15 21:45:21	--	- together with like-minded FOSS enthusiasts for talks and
+2017-03-15 21:45:21	--	- real-life collaboration.
+2017-03-15 21:45:21	--	-
+2017-03-15 21:45:21	--	- We would like to thank Private Internet Access
+2017-03-15 21:45:21	--	- (https://www.privateinternetaccess.com/) and the other
+2017-03-15 21:45:21	--	- organisations that help keep freenode and our other projects
+2017-03-15 21:45:21	--	- running for their sustained support.
+2017-03-15 21:45:21	--	-
+2017-03-15 21:45:21	--	- In particular we would like to thank the sponsor
+2017-03-15 21:45:21	--	- of this server, details of which can be found above.
+2017-03-15 21:45:21	--	-
+2017-03-15 21:45:21	--	End of /MOTD command.
+2017-03-15 21:45:21	--	User mode [+i] by jeffreyxiao
+2017-03-15 21:49:34	ℹ 	irc: connecting to server chat.freenode.net/6667...
+2017-03-15 21:49:34	ℹ 	irc: connected to chat.freenode.net/6667 (2a00:1a28:1100:11::42)
+2017-03-15 21:49:34	ℹ 	sinisalo.freenode.net: *** Looking up your hostname...
+2017-03-15 21:49:34	ℹ 	sinisalo.freenode.net: *** Checking Ident
+2017-03-15 21:49:37	ℹ 	sinisalo.freenode.net: *** Couldn't look up your hostname
+2017-03-15 21:49:44	ℹ 	sinisalo.freenode.net: *** No Ident response
+2017-03-15 21:49:44	ℹ 	Welcome to the freenode Internet Relay Chat Network jeffreyxiao
+2017-03-15 21:49:44	ℹ 	Your host is sinisalo.freenode.net[2a00:1a28:1100:11::42/6667], running version ircd-seven-1.1.4
+2017-03-15 21:49:44	ℹ 	This server was created Wed Jan 18 2017 at 02:26:19 CET
+2017-03-15 21:49:44	ℹ 	sinisalo.freenode.net ircd-seven-1.1.4 DOQRSZaghilopswz CFILMPQSbcefgijklmnopqrstvz bkloveqjfI
+2017-03-15 21:49:44	ℹ 	CHANTYPES=# EXCEPTS INVEX CHANMODES=eIbq,k,flj,CFLMPQScgimnprstz CHANLIMIT=#:120 PREFIX=(ov)@+ MAXLIST=bqeI:100 MODES=4 NETWORK=freenode STATUSMSG=@+ CALLERID=g CASEMAPPING=rfc1459 :are supported by this server
+2017-03-15 21:49:44	ℹ 	CHARSET=ascii NICKLEN=16 CHANNELLEN=50 TOPICLEN=390 DEAF=D FNC TARGMAX=NAMES:1,LIST:1,KICK:1,WHOIS:1,PRIVMSG:4,NOTICE:4,ACCEPT:,MONITOR: EXTBAN=$,ajrxz CLIENTVER=3.0 WHOX KNOCK ETRACE :are supported by this server
+2017-03-15 21:49:44	ℹ 	SAFELIST ELIST=CTU CPRIVMSG CNOTICE :are supported by this server
+2017-03-15 21:49:44	ℹ 	There are 124 users and 84394 invisible on 27 servers
+2017-03-15 21:49:44	ℹ 	23 :IRC Operators online
+2017-03-15 21:49:44	ℹ 	14 :unknown connection(s)
+2017-03-15 21:49:44	ℹ 	58180 :channels formed
+2017-03-15 21:49:44	ℹ 	I have 8061 clients and 1 servers
+2017-03-15 21:49:44	ℹ 	8061 8763 :Current local users 8061, max 8763
+2017-03-15 21:49:44	ℹ 	84518 93467 :Current global users 84518, max 93467
+2017-03-15 21:49:44	ℹ 	Highest connection count: 8764 (8763 clients) (536778 connections received)
+2017-03-15 21:49:44	ℹ 	- sinisalo.freenode.net Message of the Day -
+2017-03-15 21:49:44	ℹ 	- Welcome to sinisalo.freenode.net in Stockholm, SE.
+2017-03-15 21:49:44	ℹ 	- Thanks to http://www.portlane.com/ for sponsoring
+2017-03-15 21:49:44	ℹ 	- this server!
+2017-03-15 21:49:44	ℹ 	-
+2017-03-15 21:49:44	ℹ 	-
+2017-03-15 21:49:44	ℹ 	- SINISALO, (ANNA) JOHANNA (1958-), a Finnish science fiction
+2017-03-15 21:49:44	ℹ 	- and fantasy novelist and a script writer. Her novel 'Not
+2017-03-15 21:49:44	ℹ 	- Before Sundown' (orig. 'Ennen päivänlaskua ei voi'
+2017-03-15 21:49:44	ℹ 	- published in Finnish in 2000, when it also won the biggest
+2017-03-15 21:49:44	ℹ 	- literature award of Finland) was awarded The James Tiptree
+2017-03-15 21:49:44	ℹ 	- Jr. award in 2004.  She was nominated for a Nebula award in
+2017-03-15 21:49:44	ℹ 	- 2009 for her short story Baby Doll.  Their most recent work
+2017-03-15 21:49:44	ℹ 	- includes screenwriting for the film 'Iron Sky'.
+2017-03-15 21:49:44	ℹ 	-
+2017-03-15 21:49:44	ℹ 	- Welcome to freenode - supporting the free and open source
+2017-03-15 21:49:44	ℹ 	- software communities since 1998.
+2017-03-15 21:49:44	ℹ 	-
+2017-03-15 21:49:44	ℹ 	- By connecting to freenode you indicate that you have read and
+2017-03-15 21:49:44	ℹ 	- accept our policies as set out on http://www.freenode.net
+2017-03-15 21:49:44	ℹ 	- freenode runs an open proxy scanner. Please join #freenode for
+2017-03-15 21:49:44	ℹ 	- any network-related questions or queries, where a number of
+2017-03-15 21:49:44	ℹ 	- volunteer staff and helpful users will be happy to assist you.
+2017-03-15 21:49:44	ℹ 	-
+2017-03-15 21:49:44	ℹ 	- You can meet us at FOSSCON (http://www.fosscon.org) where we get
+2017-03-15 21:49:44	ℹ 	- together with like-minded FOSS enthusiasts for talks and
+2017-03-15 21:49:44	ℹ 	- real-life collaboration.
+2017-03-15 21:49:44	ℹ 	-
+2017-03-15 21:49:44	ℹ 	- We would like to thank Private Internet Access
+2017-03-15 21:49:44	ℹ 	- (https://www.privateinternetaccess.com/) and the other
+2017-03-15 21:49:44	ℹ 	- organisations that help keep freenode and our other projects
+2017-03-15 21:49:44	ℹ 	- running for their sustained support.
+2017-03-15 21:49:44	ℹ 	-
+2017-03-15 21:49:44	ℹ 	- In particular we would like to thank the sponsor
+2017-03-15 21:49:44	ℹ 	- of this server, details of which can be found above.
+2017-03-15 21:49:44	ℹ 	-
+2017-03-15 21:49:44	ℹ 	End of /MOTD command.
+2017-03-15 21:49:44	ℹ 	User mode [+i] by jeffreyxiao
+2017-03-15 21:53:05	⇄	irc: connecting to server chat.freenode.net/6667...
+2017-03-15 21:53:05	⇄	irc: connected to chat.freenode.net/6667 (2a00:1a28:1100:11::42)
+2017-03-15 21:53:05	⇄	sinisalo.freenode.net: *** Looking up your hostname...
+2017-03-15 21:53:06	⇄	sinisalo.freenode.net: *** Checking Ident
+2017-03-15 21:53:08	⇄	sinisalo.freenode.net: *** Couldn't look up your hostname
+2017-03-15 21:53:11	⇄	sinisalo.freenode.net: *** No Ident response
+2017-03-15 21:53:11	⇄	Welcome to the freenode Internet Relay Chat Network jeffreyxiao
+2017-03-15 21:53:11	⇄	Your host is sinisalo.freenode.net[2a00:1a28:1100:11::42/6667], running version ircd-seven-1.1.4
+2017-03-15 21:53:11	⇄	This server was created Wed Jan 18 2017 at 02:26:19 CET
+2017-03-15 21:53:11	⇄	sinisalo.freenode.net ircd-seven-1.1.4 DOQRSZaghilopswz CFILMPQSbcefgijklmnopqrstvz bkloveqjfI
+2017-03-15 21:53:11	⇄	CHANTYPES=# EXCEPTS INVEX CHANMODES=eIbq,k,flj,CFLMPQScgimnprstz CHANLIMIT=#:120 PREFIX=(ov)@+ MAXLIST=bqeI:100 MODES=4 NETWORK=freenode STATUSMSG=@+ CALLERID=g CASEMAPPING=rfc1459 :are supported by this server
+2017-03-15 21:53:11	⇄	CHARSET=ascii NICKLEN=16 CHANNELLEN=50 TOPICLEN=390 DEAF=D FNC TARGMAX=NAMES:1,LIST:1,KICK:1,WHOIS:1,PRIVMSG:4,NOTICE:4,ACCEPT:,MONITOR: EXTBAN=$,ajrxz CLIENTVER=3.0 WHOX KNOCK ETRACE :are supported by this server
+2017-03-15 21:53:11	⇄	SAFELIST ELIST=CTU CPRIVMSG CNOTICE :are supported by this server
+2017-03-15 21:53:11	⇄	There are 124 users and 84392 invisible on 27 servers
+2017-03-15 21:53:11	⇄	23 :IRC Operators online
+2017-03-15 21:53:11	⇄	14 :unknown connection(s)
+2017-03-15 21:53:11	⇄	58171 :channels formed
+2017-03-15 21:53:11	⇄	I have 8060 clients and 1 servers
+2017-03-15 21:53:11	⇄	8060 8763 :Current local users 8060, max 8763
+2017-03-15 21:53:11	⇄	84516 93467 :Current global users 84516, max 93467
+2017-03-15 21:53:11	⇄	Highest connection count: 8764 (8763 clients) (536803 connections received)
+2017-03-15 21:53:11	⇄	- sinisalo.freenode.net Message of the Day -
+2017-03-15 21:53:11	⇄	- Welcome to sinisalo.freenode.net in Stockholm, SE.
+2017-03-15 21:53:11	⇄	- Thanks to http://www.portlane.com/ for sponsoring
+2017-03-15 21:53:11	⇄	- this server!
+2017-03-15 21:53:11	⇄	-
+2017-03-15 21:53:11	⇄	-
+2017-03-15 21:53:11	⇄	- SINISALO, (ANNA) JOHANNA (1958-), a Finnish science fiction
+2017-03-15 21:53:11	⇄	- and fantasy novelist and a script writer. Her novel 'Not
+2017-03-15 21:53:11	⇄	- Before Sundown' (orig. 'Ennen päivänlaskua ei voi'
+2017-03-15 21:53:11	⇄	- published in Finnish in 2000, when it also won the biggest
+2017-03-15 21:53:11	⇄	- literature award of Finland) was awarded The James Tiptree
+2017-03-15 21:53:11	⇄	- Jr. award in 2004.  She was nominated for a Nebula award in
+2017-03-15 21:53:11	⇄	- 2009 for her short story Baby Doll.  Their most recent work
+2017-03-15 21:53:11	⇄	- includes screenwriting for the film 'Iron Sky'.
+2017-03-15 21:53:11	⇄	-
+2017-03-15 21:53:11	⇄	- Welcome to freenode - supporting the free and open source
+2017-03-15 21:53:11	⇄	- software communities since 1998.
+2017-03-15 21:53:11	⇄	-
+2017-03-15 21:53:11	⇄	- By connecting to freenode you indicate that you have read and
+2017-03-15 21:53:11	⇄	- accept our policies as set out on http://www.freenode.net
+2017-03-15 21:53:11	⇄	- freenode runs an open proxy scanner. Please join #freenode for
+2017-03-15 21:53:11	⇄	- any network-related questions or queries, where a number of
+2017-03-15 21:53:11	⇄	- volunteer staff and helpful users will be happy to assist you.
+2017-03-15 21:53:11	⇄	-
+2017-03-15 21:53:11	⇄	- You can meet us at FOSSCON (http://www.fosscon.org) where we get
+2017-03-15 21:53:11	⇄	- together with like-minded FOSS enthusiasts for talks and
+2017-03-15 21:53:11	⇄	- real-life collaboration.
+2017-03-15 21:53:11	⇄	-
+2017-03-15 21:53:11	⇄	- We would like to thank Private Internet Access
+2017-03-15 21:53:11	⇄	- (https://www.privateinternetaccess.com/) and the other
+2017-03-15 21:53:11	⇄	- organisations that help keep freenode and our other projects
+2017-03-15 21:53:11	⇄	- running for their sustained support.
+2017-03-15 21:53:11	⇄	-
+2017-03-15 21:53:11	⇄	- In particular we would like to thank the sponsor
+2017-03-15 21:53:11	⇄	- of this server, details of which can be found above.
+2017-03-15 21:53:11	⇄	-
+2017-03-15 21:53:11	⇄	End of /MOTD command.
+2017-03-15 21:53:11	⇄	User mode [+i] by jeffreyxiao
+2017-03-15 21:53:52	⇄	irc: connecting to server chat.freenode.net/6667...
+2017-03-15 21:53:52	⇄	irc: connected to chat.freenode.net/6667 (2a01:7e00::f03c:91ff:fee2:413b)
+2017-03-15 21:53:52	⇄	niven.freenode.net: *** Looking up your hostname...
+2017-03-15 21:53:52	⇄	niven.freenode.net: *** Checking Ident
+2017-03-15 21:53:54	⇄	niven.freenode.net: *** Couldn't look up your hostname
+2017-03-15 21:53:59	⇄	niven.freenode.net: *** No Ident response
+2017-03-15 21:53:59	⇄	Welcome to the freenode Internet Relay Chat Network jeffreyxiao
+2017-03-15 21:53:59	⇄	Your host is niven.freenode.net[2a01:7e00::f03c:91ff:fee2:413b/6667], running version ircd-seven-1.1.4
+2017-03-15 21:53:59	⇄	This server was created Thu Jan 5 2017 at 04:18:05 UTC
+2017-03-15 21:53:59	⇄	niven.freenode.net ircd-seven-1.1.4 DOQRSZaghilopswz CFILMPQSbcefgijklmnopqrstvz bkloveqjfI
+2017-03-15 21:53:59	⇄	CHANTYPES=# EXCEPTS INVEX CHANMODES=eIbq,k,flj,CFLMPQScgimnprstz CHANLIMIT=#:120 PREFIX=(ov)@+ MAXLIST=bqeI:100 MODES=4 NETWORK=freenode STATUSMSG=@+ CALLERID=g CASEMAPPING=rfc1459 :are supported by this server
+2017-03-15 21:53:59	⇄	CHARSET=ascii NICKLEN=16 CHANNELLEN=50 TOPICLEN=390 DEAF=D FNC TARGMAX=NAMES:1,LIST:1,KICK:1,WHOIS:1,PRIVMSG:4,NOTICE:4,ACCEPT:,MONITOR: EXTBAN=$,ajrxz CLIENTVER=3.0 SAFELIST ELIST=CTU CPRIVMSG :are supported by this server
+2017-03-15 21:53:59	⇄	CNOTICE WHOX ETRACE KNOCK :are supported by this server
+2017-03-15 21:53:59	⇄	There are 124 users and 84388 invisible on 27 servers
+2017-03-15 21:53:59	⇄	23 :IRC Operators online
+2017-03-15 21:53:59	⇄	12 :unknown connection(s)
+2017-03-15 21:53:59	⇄	58170 :channels formed
+2017-03-15 21:53:59	⇄	I have 8233 clients and 1 servers
+2017-03-15 21:53:59	⇄	8233 8929 :Current local users 8233, max 8929
+2017-03-15 21:53:59	⇄	84512 93467 :Current global users 84512, max 93467
+2017-03-15 21:53:59	⇄	Highest connection count: 8930 (8929 clients) (734987 connections received)
+2017-03-15 21:53:59	⇄	- niven.freenode.net Message of the Day -
+2017-03-15 21:53:59	⇄	- Welcome to niven.freenode.net in London, United Kingdom, EU.
+2017-03-15 21:53:59	⇄	- thanks to Linode for sponsoring this server!
+2017-03-15 21:53:59	⇄	-
+2017-03-15 21:53:59	⇄	- NIVEN, LAWRENCE VAN COTT [1938-].  Architect of Known Space,
+2017-03-15 21:53:59	⇄	- the setting of Protector, World of Ptaavs and the
+2017-03-15 21:53:59	⇄	- Ringworld series.  Author of "Flash Crowd", a canonical
+2017-03-15 21:53:59	⇄	- sociological hard science fiction short story dealing with
+2017-03-15 21:53:59	⇄	- effects of near instantaneous transportation on a modern
+2017-03-15 21:53:59	⇄	- technological society.  In addition, he is well known for his
+2017-03-15 21:53:59	⇄	- collaborations with Jerry Pournelle, including The Mote in
+2017-03-15 21:53:59	⇄	- God's Eye and Lucifer's Hammer.
+2017-03-15 21:53:59	⇄	-
+2017-03-15 21:53:59	⇄	- Welcome to freenode - supporting the free and open source
+2017-03-15 21:53:59	⇄	- software communities since 1998.
+2017-03-15 21:53:59	⇄	-
+2017-03-15 21:53:59	⇄	- By connecting to freenode you indicate that you have read and
+2017-03-15 21:53:59	⇄	- accept our policies as set out on http://www.freenode.net
+2017-03-15 21:53:59	⇄	- freenode runs an open proxy scanner. Please join #freenode for
+2017-03-15 21:53:59	⇄	- any network-related questions or queries, where a number of
+2017-03-15 21:53:59	⇄	- volunteer staff and helpful users will be happy to assist you.
+2017-03-15 21:53:59	⇄	-
+2017-03-15 21:53:59	⇄	- You can meet us at FOSSCON (http://www.fosscon.org) where we get
+2017-03-15 21:53:59	⇄	- together with like-minded FOSS enthusiasts for talks and
+2017-03-15 21:53:59	⇄	- real-life collaboration.
+2017-03-15 21:53:59	⇄	-
+2017-03-15 21:53:59	⇄	- We would like to thank Private Internet Access
+2017-03-15 21:53:59	⇄	- (https://www.privateinternetaccess.com/) and the other
+2017-03-15 21:53:59	⇄	- organisations that help keep freenode and our other projects
+2017-03-15 21:53:59	⇄	- running for their sustained support.
+2017-03-15 21:53:59	⇄	-
+2017-03-15 21:53:59	⇄	- In particular we would like to thank the sponsor
+2017-03-15 21:53:59	⇄	- of this server, details of which can be found above.
+2017-03-15 21:53:59	⇄	-
+2017-03-15 21:53:59	⇄	End of /MOTD command.
+2017-03-15 21:53:59	⇄	User mode [+i] by jeffreyxiao
+2017-03-15 21:54:15	⇄	irc: connecting to server chat.freenode.net/6667...
+2017-03-15 21:54:15	⇄	irc: connected to chat.freenode.net/6667 (2001:1bc0:c1::6667)
+2017-03-15 21:54:15	⇄	kornbluth.freenode.net: *** Looking up your hostname...
+2017-03-15 21:54:15	⇄	kornbluth.freenode.net: *** Checking Ident
+2017-03-15 21:54:15	⇄	kornbluth.freenode.net: *** Couldn't look up your hostname
+2017-03-15 21:54:23	⇄	kornbluth.freenode.net: *** No Ident response
+2017-03-15 21:54:23	⇄	Welcome to the freenode Internet Relay Chat Network jeffreyxiao
+2017-03-15 21:54:23	⇄	Your host is kornbluth.freenode.net[2001:1bc0:c1::6667/6667], running version ircd-seven-1.1.4
+2017-03-15 21:54:23	⇄	This server was created Sat Feb 11 2017 at 18:38:04 UTC
+2017-03-15 21:54:23	⇄	kornbluth.freenode.net ircd-seven-1.1.4 DOQRSZaghilopswz CFILMPQSbcefgijklmnopqrstvz bkloveqjfI
+2017-03-15 21:54:23	⇄	CHANTYPES=# EXCEPTS INVEX CHANMODES=eIbq,k,flj,CFLMPQScgimnprstz CHANLIMIT=#:120 PREFIX=(ov)@+ MAXLIST=bqeI:100 MODES=4 NETWORK=freenode STATUSMSG=@+ CALLERID=g CASEMAPPING=rfc1459 :are supported by this server
+2017-03-15 21:54:23	⇄	CHARSET=ascii NICKLEN=16 CHANNELLEN=50 TOPICLEN=390 DEAF=D FNC TARGMAX=NAMES:1,LIST:1,KICK:1,WHOIS:1,PRIVMSG:4,NOTICE:4,ACCEPT:,MONITOR: EXTBAN=$,ajrxz CLIENTVER=3.0 SAFELIST ELIST=CTU CPRIVMSG :are supported by this server
+2017-03-15 21:54:23	⇄	CNOTICE KNOCK WHOX ETRACE :are supported by this server
+2017-03-15 21:54:23	⇄	There are 124 users and 84388 invisible on 27 servers
+2017-03-15 21:54:23	⇄	23 :IRC Operators online
+2017-03-15 21:54:23	⇄	8 :unknown connection(s)
+2017-03-15 21:54:23	⇄	58171 :channels formed
+2017-03-15 21:54:23	⇄	I have 7050 clients and 1 servers
+2017-03-15 21:54:23	⇄	7050 7804 :Current local users 7050, max 7804
+2017-03-15 21:54:23	⇄	84512 93467 :Current global users 84512, max 93467
+2017-03-15 21:54:23	⇄	Highest connection count: 7805 (7804 clients) (487877 connections received)
+2017-03-15 21:54:23	⇄	- kornbluth.freenode.net Message of the Day -
+2017-03-15 21:54:23	⇄	- Welcome to kornbluth.freenode.net in Frankfurt, DE, EU.
+2017-03-15 21:54:23	⇄	- Thanks to Probe Networks (www.probe-networks.de) for
+2017-03-15 21:54:23	⇄	- sponsoring this server!
+2017-03-15 21:54:23	⇄	-
+2017-03-15 21:54:23	⇄	- KORNBLUTH, CYRIL M. [1923-1958].  Born in New York City and
+2017-03-15 21:54:23	⇄	- an active member of the Futurians, Cyril Kornbluth sold his
+2017-03-15 21:54:23	⇄	- first story professionally at age 15.  By the 1940's his
+2017-03-15 21:54:23	⇄	- stories appeared widely under several pennames, including
+2017-03-15 21:54:23	⇄	- S.D. Gottesman and Cecil Corman.  He left his university
+2017-03-15 21:54:23	⇄	- studies in Chicago to serve in the Army in Europe during
+2017-03-15 21:54:23	⇄	- WWII, then returned to school and work in Chicago until he
+2017-03-15 21:54:23	⇄	- began writing full-time in 1951.  The author of The Marching
+2017-03-15 21:54:23	⇄	- Morons and the novels The Space Merchants (with Frederik
+2017-03-15 21:54:23	⇄	- Pohl) and The Syndic, he's best known for his biting social
+2017-03-15 21:54:23	⇄	- satire and his collaborations with Pohl and with Judith
+2017-03-15 21:54:23	⇄	- Merril.
+2017-03-15 21:54:23	⇄	- Welcome to freenode - supporting the free and open source
+2017-03-15 21:54:23	⇄	- software communities since 1998.
+2017-03-15 21:54:23	⇄	-
+2017-03-15 21:54:23	⇄	- By connecting to freenode you indicate that you have read and
+2017-03-15 21:54:23	⇄	- accept our policies as set out on http://www.freenode.net
+2017-03-15 21:54:23	⇄	- freenode runs an open proxy scanner. Please join #freenode for
+2017-03-15 21:54:23	⇄	- any network-related questions or queries, where a number of
+2017-03-15 21:54:23	⇄	- volunteer staff and helpful users will be happy to assist you.
+2017-03-15 21:54:23	⇄	-
+2017-03-15 21:54:23	⇄	- You can meet us at FOSSCON (http://www.fosscon.org) where we get
+2017-03-15 21:54:23	⇄	- together with like-minded FOSS enthusiasts for talks and
+2017-03-15 21:54:23	⇄	- real-life collaboration.
+2017-03-15 21:54:23	⇄	-
+2017-03-15 21:54:23	⇄	- We would like to thank Private Internet Access
+2017-03-15 21:54:23	⇄	- (https://www.privateinternetaccess.com/) and the other
+2017-03-15 21:54:23	⇄	- organisations that help keep freenode and our other projects
+2017-03-15 21:54:23	⇄	- running for their sustained support.
+2017-03-15 21:54:23	⇄	-
+2017-03-15 21:54:23	⇄	- In particular we would like to thank the sponsor
+2017-03-15 21:54:23	⇄	- of this server, details of which can be found above.
+2017-03-15 21:54:23	⇄	-
+2017-03-15 21:54:23	⇄	End of /MOTD command.
+2017-03-15 21:54:23	⇄	User mode [+i] by jeffreyxiao

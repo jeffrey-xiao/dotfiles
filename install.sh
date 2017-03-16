@@ -43,6 +43,10 @@ ln -sfv "$DOTFILES_DIR/compton/.compton.conf" ~
 rm -rf ~/.config/i3
 ln -sfnv "$DOTFILES_DIR/i3" ~/.config
 
+# Linking weechat options
+rm -rf ~/.weechat
+ln -sfvT "$DOTFILES_DIR/weechat" ~/.weechat
+
 # Linking other options
 ln -sfv "$DOTFILES_DIR/other/redshift.conf" ~/.config
 ln -sfv "$DOTFILES_DIR/other/.ycm_extra_conf.py" ~

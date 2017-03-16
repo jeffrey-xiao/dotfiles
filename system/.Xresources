@@ -13,10 +13,14 @@ Xft.hintstyle:              hintslight
 *pointerColorBackground: #586e75
 *pointerColorForeground: #93a1a1
 
-! scrollbar
+!! scrollbar
 URxvt.scrollstyle: plain
 URxvt*scrollColor: #777777
 URxvt.thickness: 2
+
+!! Font
+URxvt.font: xft:Droid Sans Mono for Powerline:pixelsize=14
+URxvt.letterSpace: -1
 
 !! Shading
 urxvt*depth: 32
@@ -53,5 +57,3 @@ urxvt*background: [95]#002b36
 !! white dark/light
 *color7: #eee8d5
 *color15: #fdf6e3
-URxvt.font: xft:Droid Sans Mono for Powerline:pixelsize=14
-URxvt.letterSpace: -1

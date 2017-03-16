@@ -6,4 +6,5 @@ sublime/User/Package\ Control.cache
 sublime/User/Package\ Control.last-run
 
 # Ignore weechat logs
-weechat.log
+weechat/weechat.log
+weechat/logs

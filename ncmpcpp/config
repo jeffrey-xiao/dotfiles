@@ -41,8 +41,8 @@ modified_item_prefix = $3> $9
 song_window_title_format = {%a - }{{%t}|{%f}}
 song_columns_list_format = (5f)[white]{l} (30)[cyan]{a} (50)[cyan]{t|f:Title} (10)[cyan]{b}
 
-## TODO
-execute_on_song_change = ""
+## Update i3blocks music block
+execute_on_song_change = "pkill -RTMIN+9 i3blocks;"
 
 ## Display modes for various panes
 playlist_display_mode = classic

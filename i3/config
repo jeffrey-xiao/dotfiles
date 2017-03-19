@@ -216,8 +216,8 @@ bindsym XF86AudioPrev exec playerctl previous
 
 # Mpd controls
 bindsym $mod+p exec "mpc toggle; pkill -RTMIN+9 i3blocks"
-bindsym $mod+bracketleft exec "mpc next; pkill -RTMIN+9 i3blocks"
-bindsym $mod+bracketright exec "mpc prev; pkill -RTMIN+9 i3blocks"
+bindsym $mod+bracketleft exec "mpc next"
+bindsym $mod+bracketright exec "mpc prev"
 
 # Set wallpaper
 exec_always feh --bg-scale "/home/jeffreyxiao/.config/i3/wallpaper.png"

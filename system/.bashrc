@@ -1,4 +1,4 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
+# ~/.bashr: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
@@ -106,3 +106,7 @@ export MPD_PORT=6600
 
 # Environment variables for location
 export CITY="Waterloo"
+
+# Envinroment variables for ranger
+export EDITOR=vim
+export PAGER=less

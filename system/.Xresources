@@ -23,8 +23,12 @@ URxvt.font: xft:Ubuntu Mono derivative Powerline:pixelsize=16
 URxvt.letterSpace: 0
 
 !! Shading
-urxvt*depth: 32
-urxvt*background: [90]#002b36 
+! urxvt*depth: 32
+! urxvt*background: [90]#002b36
+
+urxvt*transparent: true
+urxvt*shading: 108
+urxvt*tintColor: #002b36
 
 !! black dark/light
 *color0: #073642

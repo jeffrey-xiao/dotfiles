@@ -47,6 +47,14 @@ ln -sfnv "$DOTFILES_DIR/i3" ~/.config
 rm -rf ~/.weechat
 ln -sfvT "$DOTFILES_DIR/weechat" ~/.weechat
 
+# Linking ranger options
+mkdir -p ~/.config/ranger
+ln -sfv "$DOTFILES_DIR/ranger/commands.py" ~/.config/ranger
+ln -sfv "$DOTFILES_DIR/ranger/commands_full.py" ~/.config/ranger
+ln -sfv "$DOTFILES_DIR/ranger/rc.conf" ~/.config/ranger
+ln -sfv "$DOTFILES_DIR/ranger/rifle.conf" ~/.config/ranger
+ln -sfv "$DOTFILES_DIR/ranger/scope.sh" ~/.config/ranger
+
 # Linking other options
 ln -sfv "$DOTFILES_DIR/other/redshift.conf" ~/.config
 ln -sfv "$DOTFILES_DIR/other/.ycm_extra_conf.py" ~

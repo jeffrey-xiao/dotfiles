@@ -7,8 +7,9 @@ shell       → bash
 editor      → vim/sublime/eclipse
 audio       → ncmpcpp/mpd/mpc
 irc         → weechat
-DM/WM       → i3-gaps
-Monitor     → i3blocks-gaps
+FM          → nautilus/ranger
+DE/WM       → i3-gaps
+Monitor     → i3blocks-gaps/thop
 Multiplexer → tmux
 ```
 

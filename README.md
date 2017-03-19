@@ -9,7 +9,7 @@ audio       → ncmpcpp/mpd/mpc
 irc         → weechat
 FM          → nautilus/ranger
 DE/WM       → i3-gaps
-Monitor     → i3blocks-gaps/thop
+Monitor     → i3blocks-gaps/htop
 Multiplexer → tmux
 ```
 

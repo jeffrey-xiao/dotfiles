@@ -2,8 +2,8 @@
 set $mod Mod1
 
 # Configuration for gaps
-gaps inner 10
-gaps outer 5
+gaps inner 20
+gaps outer -10
 smart_gaps on
 
 # Font for window titles. Will also be used by the bar unless a different font

@@ -4,6 +4,7 @@ set $mod Mod1
 # Configuration for gaps
 gaps inner 20
 gaps outer -10
+smart_gaps on
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -20,7 +21,7 @@ bindsym $mod+Return exec urxvt
 bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
-bindsym $mod+d exec rofi -show run -lines 10 -eh 2 -width 100 -padding 300 -opacity "95" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$active-border" -hlfg "$text-color" -font "Droid Sans Mono Dotted for Powerline 16"
+bindsym $mod+d exec rofi -show run -lines 10 -eh 2 -width 100 -padding 300 -opacity "95" -bw 0 -bc "$base03" -bg "$base03" -fg "$base2" -hlbg "$yellow" -hlfg "$base2" -font "Droid Sans Mono Dotted for Powerline 16"
 
 # change focus: vim bindings
 bindsym $mod+h focus left
@@ -150,25 +151,34 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Color definitions
-set $bg-color            #002b36
-set $inactive-bg-color   #002b36
-set $text-color          #eee8d5
-set $inactive-text-color #eee8d5
-set $urgent-text         #dc322f
-set $urgent-bg-color     #002b36
-set $active-border       #b58900
+set $base03    #002b36
+set $base02    #073642
+set $base01    #586e75
+set $base00    #657b83
+set $base0     #839496
+set $base1     #93a1a1
+set $base2     #eee8d5
+set $base3     #fdf6e3
+set $yellow    #b58900
+set $orange    #cb4b16
+set $red       #dc322f
+set $magenta   #d33682
+set $violet    #6c71c4
+set $blue      #268bd2
+set $cyan      #2aa198
+set $green     #859900
 
 set $active-bar-bg-color     #fdf6e3
-set $inactive-bar-bg-color   #839496
+set $inactive-bar-bg-color   #93a1a1
 set $active-bar-text-color   #002b36
 set $inactive-bar-text-color #002b36
 
 # window colors
-#                       border              background         text                 indicator
-client.focused          $bg-color           $active-border     $text-color          #00ff00
-client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
-client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
-client.urgent           $urgent-bg-color    $urgent-bg-color   $urgent-text         #00ff00
+#                       border     background    text      indicator
+client.focused          $base03    $yellow       $base2    #00ff00
+client.unfocused        $base03    $base03       $base2    #00ff00
+client.focused_inactive $base03    $base03       $base2    #00ff00
+client.urgent           $base03    $base03       $red      #00ff00
 
 hide_edge_borders both
 for_window [class="^.*"] border pixel 3
@@ -179,16 +189,15 @@ bar {
   position top
   font pango: Droid Sans Mono Dotted for Powerline 11
   status_command i3blocks -c "$HOME/.config/i3/i3blocks.conf"
-  height 19
+  height 18
   strip_workspace_numbers yes
   colors {
-    background $bg-color
-    separator #757575
+    background $base03
     #                    border                     background              text
     focused_workspace    $active-bar-bg-color       $active-bar-bg-color    $active-bar-text-color
     active_workspace     $inactive-bar-bg-color     $inactive-bar-bg-color  $inactive-bar-text-color
     inactive_workspace   $inactive-bar-bg-color     $inactive-bar-bg-color  $inactive-bar-text-color
-    urgent_workspace     $inactive-bar-bg-color     $inactive-bar-bg-color  $urgent-text
+    urgent_workspace     $red                       $red                    $inactive-bar-text-color
   }
 }
 

@@ -43,21 +43,21 @@ map <C-n> :NERDTreeToggle<CR>
 " Default NerdTreeTags open on startup
 let g:nerdtree_tabs_open_on_console_startup=1
 
+" Close vim when NERDTree is the only tab left
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 " Config for YouCompleteMe
 let g:ycm_complete_in_comments=0
 let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
 
-" Close vim when NERDTree is the only tab left
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" options for the indent line
+" Config for the indent line
 let g:indentLine_color_term = 239
 let g:indentLine_char='┊'
 
-" adds a new line before the autocompleted bracket
+" Adds a new line before the autocompleted bracket
 let g:delimitMate_expand_cr=1
 
-" options for airline
+" Config for airline
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
@@ -94,10 +94,11 @@ let g:airline_theme='solarized'
 let g:airline#extensions#tabline#enabled=1
 let g:airline_section_z = airline#section#create(['windowswap', '', '%l%\/%L%', '\:%3v'])
 
-" vimtex options
+" Config for vimtex 
 let g:vimtex_latexmk_callback=0
 let g:tex_conceal = ""
 
+" General config
 set nocompatible
 set t_Co=256
 set tabstop=2
@@ -122,7 +123,7 @@ syntax enable
 set background=dark
 silent! colorscheme solarized
 
-" key bindings
+" Key bindings
 autocmd filetype cpp nnoremap <F4> :!g++ -std=c++11  % -o %:r <CR>
 autocmd filetype cpp nnoremap <F5> :!g++ -std=c++11  % -o %:r && ./%:r<CR>
 
@@ -130,14 +131,15 @@ autocmd filetype tex nmap <F3> <plug>(vimtex-compile-toggle)
 autocmd filetype tex nmap <F4> <plug>(vimtex-errors)
 autocmd filetype tex nmap <F5> <plug>(vimtex-view)
 
-" highlighting for transparent background
+nnoremap <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+vnoremap <C-c> "+y
+
+" Highlighting for transparent background
 hi Normal ctermbg=none
 highlight NonText ctermbg=none
 
-" custom highlighting for vimtex
+" Custom highlighting for vimtex
 highlight texMathMatcher ctermbg=none
 highlight texMathZoneX ctermbg=none
 highlight texRefLabel ctermbg=none
 highlight texStatement ctermbg=none
-
-

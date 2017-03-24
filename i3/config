@@ -224,10 +224,14 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20
 bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh
 
 # Media player controls
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+#bindsym XF86AudioPlay exec playerctl play
+#bindsym XF86AudioPause exec playerctl pause
+#bindsym XF86AudioNext exec playerctl next
+#bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPlay exec mpc play
+bindsym XF86AudioPause exec mpc pause
+bindsym XF86AudioNext exec mpc next
+bindsym XF86AudioPrev exec mpc prev
 
 # Mpd controls
 bindsym $mod+p exec "mpc toggle; pkill -RTMIN+9 i3blocks"
@@ -251,3 +255,4 @@ exec --no-startup-id i3-msg 'workspace $ws10; exec urxvt -e ncmpcpp; workspace $
 exec --no-startup-id compton -f
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
+exec --no-startup-id xautolock -time 10 -locker '. $HOME/.config/i3/lock.sh'

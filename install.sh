@@ -55,6 +55,12 @@ ln -sfv "$DOTFILES_DIR/ranger/rc.conf" ~/.config/ranger
 ln -sfv "$DOTFILES_DIR/ranger/rifle.conf" ~/.config/ranger
 ln -sfv "$DOTFILES_DIR/ranger/scope.sh" ~/.config/ranger
 
+# Linking mpv options
+mkdir -p ~/.config/mpv
+rm -rf ~/.config/mpv/lua-settings
+ln -sfnT "$DOTFILES_DIR/mpv/lua-settings" ~/.config/mpv/lua-settings
+ln -sfv "$DOTFILES_DIR/mpv/mpv.conf" ~/.config/mpv
+
 # Linking other options
 ln -sfv "$DOTFILES_DIR/other/redshift.conf" ~/.config
 ln -sfv "$DOTFILES_DIR/other/.ycm_extra_conf.py" ~

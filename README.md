@@ -11,7 +11,7 @@ fm          → nautilus/ranger
 de/wm       → i3-gaps
 monitor     → i3blocks-gaps/htop
 multiplexer → tmux
-vidio       → mpv
+video       → mpv
 ```
 
 ## Dependencies

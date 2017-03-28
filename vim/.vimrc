@@ -94,7 +94,7 @@ let g:airline_theme='solarized'
 let g:airline#extensions#tabline#enabled=1
 let g:airline_section_z = airline#section#create(['windowswap', '', '%l%\/%L%', '\:%3v'])
 
-" Config for vimtex 
+" Config for vimtex
 let g:vimtex_latexmk_callback=0
 let g:tex_conceal = ""
 

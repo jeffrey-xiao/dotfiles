@@ -183,6 +183,7 @@ client.urgent           $base03    $base03       $red      #00ff00
 hide_edge_borders both
 for_window [class="^.*"] border pixel 3
 for_window [class="Power.py"] border pixel 0
+for_window [class="Gsimplecal"] border pixel 0
 
 # status bar
 bar {

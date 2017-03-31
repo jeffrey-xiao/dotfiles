@@ -12,6 +12,7 @@ ln -sfv "$DOTFILES_DIR/git/.gitignore_global" ~
 ln -sfv "$DOTFILES_DIR/vim/.vimrc" ~
 
 # Linking system options
+ln -sfv "$DOTFILES_DIR/system/.bash_powerline.sh" ~
 ln -sfv "$DOTFILES_DIR/system/.bash_aliases" ~
 ln -sfv "$DOTFILES_DIR/system/.bashrc" ~
 ln -sfv "$DOTFILES_DIR/system/.dircolors" ~

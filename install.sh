@@ -59,7 +59,7 @@ ln -sfv "$DOTFILES_DIR/ranger/scope.sh" ~/.config/ranger
 # Linking mpv options
 mkdir -p ~/.config/mpv
 rm -rf ~/.config/mpv/lua-settings
-ln -sfnT "$DOTFILES_DIR/mpv/lua-settings" ~/.config/mpv/lua-settings
+ln -sfnv "$DOTFILES_DIR/mpv/lua-settings" ~/.config/mpv
 ln -sfv "$DOTFILES_DIR/mpv/mpv.conf" ~/.config/mpv
 
 # Linking other options

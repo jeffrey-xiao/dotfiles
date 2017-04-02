@@ -23,7 +23,7 @@ ln -sfv "$DOTFILES_DIR/system/.Xresources" ~
 
 # Linking mpd and creating a playlist folder
 mkdir -p ~/.config/mpd/playlists
-ln -sfv "$DOTFILES_DIR/mpd/.mpdconf" ~/.config/mpd
+ln -sfv "$DOTFILES_DIR/mpd/mpd.conf" ~/.config/mpd
 
 # Linking ncmpcpp options
 mkdir -p ~/.ncmpcpp

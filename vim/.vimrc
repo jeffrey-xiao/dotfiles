@@ -35,13 +35,14 @@ Plug 'lervag/vimtex'
 call plug#end()
 
 " Config for Nerdtree
-autocmd vimenter * NERDTree
+" Autostart on vim startup
+" autocmd vimenter * NERDTree
 
 " Ctrl + n to open NerdTree
 map <C-n> :NERDTreeToggle<CR>
 
 " Default NerdTreeTags open on startup
-let g:nerdtree_tabs_open_on_console_startup=1
+let g:nerdtree_tabs_open_on_console_startup=0
 
 " Close vim when NERDTree is the only tab left
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif

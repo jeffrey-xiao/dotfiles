@@ -1,24 +1,36 @@
 call plug#begin('~/.vim/plugged')
 
-" Color Scheme
+"" Color Scheme
 Plug 'altercation/vim-colors-solarized'
 
 " Useful plugs
+" Auto completio
 Plug 'valloric/youcompleteme'
+
+"" Git integration
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+
+" File explorer
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
+Plug 'majutsushi/tagbar'
 Plug 'kien/ctrlp.vim'
+
+" Auto brackets, indents and better comments
 Plug 'raimondi/delimitmate'
 Plug 'yggdroot/indentline'
 Plug 'tpope/vim-commentary'
+
+" Status line 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" Languages
-Plug 'fatih/vim-go'
+" Emmet
 Plug 'mattn/emmet-vim'
+
+"" Languages
+Plug 'fatih/vim-go'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'guns/vim-clojure-static'
@@ -34,7 +46,7 @@ Plug 'lervag/vimtex'
 
 call plug#end()
 
-" Config for Nerdtree
+"" Config for Nerdtree
 " Autostart on vim startup
 " autocmd vimenter * NERDTree
 
@@ -47,18 +59,19 @@ let g:nerdtree_tabs_open_on_console_startup=0
 " Close vim when NERDTree is the only tab left
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" Config for YouCompleteMe
+"" Config for YouCompleteMe
 let g:ycm_complete_in_comments=0
 let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
 
-" Config for the indent line
+"" Config for the indentLine
 let g:indentLine_color_term = 239
 let g:indentLine_char='┊'
 
+"" Config for delimitMate
 " Adds a new line before the autocompleted bracket
 let g:delimitMate_expand_cr=1
 
-" Config for airline
+"" Config for airline
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
@@ -95,11 +108,11 @@ let g:airline_theme='solarized'
 let g:airline#extensions#tabline#enabled=1
 let g:airline_section_z = airline#section#create(['windowswap', '', '%l%\/%L%', '\:%3v'])
 
-" Config for vimtex
+"" Config for vimtex
 let g:vimtex_latexmk_callback=0
 let g:tex_conceal = ""
 
-" General config
+"" General config
 set nocompatible
 set t_Co=256
 set tabstop=2
@@ -119,12 +132,13 @@ set nohlsearch
 set incsearch
 set ignorecase
 set ruler
+set laststatus=2
 
 syntax enable
 set background=dark
 silent! colorscheme solarized
 
-" Key bindings
+"" Key bindings
 autocmd filetype cpp nnoremap <F4> :!g++ -std=c++11  % -o %:r <CR>
 autocmd filetype cpp nnoremap <F5> :!g++ -std=c++11  % -o %:r && ./%:r<CR>
 
@@ -133,8 +147,10 @@ autocmd filetype tex nmap <F4> <plug>(vimtex-errors)
 autocmd filetype tex nmap <F5> <plug>(vimtex-view)
 
 nnoremap <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+nmap <F8> :TagbarToggle<CR>
 vnoremap <C-c> "+y
 
+"" Highlighting options
 " Highlighting for transparent background
 hi Normal ctermbg=none
 highlight NonText ctermbg=none

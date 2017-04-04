@@ -65,14 +65,3 @@ ln -sfv "$DOTFILES_DIR/mpv/mpv.conf" ~/.config/mpv
 ## Linking other options
 ln -sfv "$DOTFILES_DIR/other/redshift.conf" ~/.config
 ln -sfv "$DOTFILES_DIR/other/.ycm_extra_conf.py" ~
-
-## Reinstalling all vim packages via Plug and building YouCompleteMe
-# Dependencies
-#sudo apt-get install build-essential cmake
-#sudo apt-get install python-dev python3-dev
-#sudo apt-get curl
-
-#rm -rf ~/.vim
-#curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-#vim -c PlugInstall -c q! -c q!
-#~/.vim/plugged/youcompleteme/install.py --clang-completer

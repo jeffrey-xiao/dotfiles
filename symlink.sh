@@ -12,14 +12,9 @@ ln -sfv "$DOTFILES_DIR/git/.gitignore_global" ~
 ln -sfv "$DOTFILES_DIR/vim/.vimrc" ~
 
 ## Linking system options
-ln -sfv "$DOTFILES_DIR/system/.bash_powerline.sh" ~
-ln -sfv "$DOTFILES_DIR/system/.bash_aliases" ~
-ln -sfv "$DOTFILES_DIR/system/.bashrc" ~
-ln -sfv "$DOTFILES_DIR/system/.dircolors" ~
-ln -sfv "$DOTFILES_DIR/system/.profile" ~
-ln -sfv "$DOTFILES_DIR/system/.bash_profile" ~
-ln -sfv "$DOTFILES_DIR/system/.inputrc" ~
-ln -sfv "$DOTFILES_DIR/system/.Xresources" ~
+for f in $(ls -A $DOTFILES_DIR/system); do
+  ln -sfv "$DOTFILES_DIR/system/$f" ~
+done
 
 ## Linking mpd and creating a playlist folder
 mkdir -p ~/.config/mpd/playlists
@@ -50,11 +45,9 @@ ln -sfvT "$DOTFILES_DIR/weechat" ~/.weechat
 
 ## Linking ranger options
 mkdir -p ~/.config/ranger
-ln -sfv "$DOTFILES_DIR/ranger/commands.py" ~/.config/ranger
-ln -sfv "$DOTFILES_DIR/ranger/commands_full.py" ~/.config/ranger
-ln -sfv "$DOTFILES_DIR/ranger/rc.conf" ~/.config/ranger
-ln -sfv "$DOTFILES_DIR/ranger/rifle.conf" ~/.config/ranger
-ln -sfv "$DOTFILES_DIR/ranger/scope.sh" ~/.config/ranger
+for f in $(ls -A $DOTFILES_DIR/ranger); do
+  ln -sfv "$DOTFILES_DIR/ranger/$f" ~/.config/ranger
+done
 
 ## Linking mpv options
 mkdir -p ~/.config/mpv

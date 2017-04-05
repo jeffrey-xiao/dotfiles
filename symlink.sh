@@ -15,6 +15,7 @@ ln -sfv "$DOTFILES_DIR/vim/.vimrc" ~
 for f in $(ls -A $DOTFILES_DIR/system); do
   ln -sfv "$DOTFILES_DIR/system/$f" ~
 done
+xrdb ~/.Xresources
 
 ## Linking mpd and creating a playlist folder
 mkdir -p ~/.config/mpd/playlists
@@ -56,5 +57,7 @@ ln -sfnv "$DOTFILES_DIR/mpv/lua-settings" ~/.config/mpv
 ln -sfv "$DOTFILES_DIR/mpv/mpv.conf" ~/.config/mpv
 
 ## Linking other options
+mkdir -p ~/.config/htop
 ln -sfv "$DOTFILES_DIR/other/redshift.conf" ~/.config
 ln -sfv "$DOTFILES_DIR/other/.ycm_extra_conf.py" ~
+ln -sfv "$DOTFILES_DIR/other/htoprc" ~/.config/htop

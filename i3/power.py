@@ -19,6 +19,11 @@ class i3_exit:
         self.disable_buttons()
         gtk.main_quit()
 
+    def logout_action(self,btn):
+        self.disable_buttons()
+        os.system("i3-msg [class=\".*\"] kill")
+        os.system("i3-msg exit")
+
     def reboot_action(self,btn):
         self.disable_buttons()
         os.system("i3-msg [class=\".*\"] kill")
@@ -49,6 +54,15 @@ class i3_exit:
         self.cancel.connect("clicked", self.cancel_action)
         self.button_box.pack_start(self.cancel)
         self.cancel.show()
+
+        #Logout button
+        self.logout = gtk.Button("")
+        self.logout.get_child().set_markup("<span font-family='DejaVu Sans Mono' font-size='large'>Logout</span>")
+        self.logout.set_border_width(4)
+        self.logout.connect("clicked", self.logout_action)
+        self.button_box.pack_start(self.logout)
+        self.logout.show()
+
 
         #Reboot button
         self.reboot = gtk.Button("")

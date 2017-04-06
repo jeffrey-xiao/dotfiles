@@ -16,6 +16,7 @@ Xft.hintstyle:              hintslight
 !! scrollbar
 URxvt.scrollstyle: plain
 URxvt*scrollColor: #777777
+URxvt*scrollBar_right: true
 URxvt.thickness: 2
 
 !! Font

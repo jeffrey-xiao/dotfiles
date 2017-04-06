@@ -15,13 +15,14 @@ video       → mpv
 ```
 
 ## Dependencies
- - Scrot
- - ImageMaverick
- - FontAwesome
- - Git
- - Redshift
- - Compton
- - i3lock
+```
+scrot
+imagemagick
+fonts-font-awesome
+redshift
+compton
+i3lock
+```
 
 ## Installation
 ~~~

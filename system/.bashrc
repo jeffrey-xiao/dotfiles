@@ -60,7 +60,7 @@ fi
 
 # Function definitions
 if [ -f ~/.bash_functions ]; then
-  . ~/.bash_aliases
+  . ~/.bash_functions
 fi
 
 # Enable programmable completion features

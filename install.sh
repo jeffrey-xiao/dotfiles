@@ -8,6 +8,7 @@ log_file=$DOTFILES_DIR/install.log
 echo -n "" > $log_file
 
 ## Installing necessary applications
+# Download eclipse, i3-gaps, and i3blocks-gaps from source
 for f in \
   redshift \
   sublime-text vim-gnome \
@@ -23,7 +24,7 @@ for f in \
 do
   echo $f
   sudo apt-get install -y $f
-  if [ $(dpkg-query -W -f='${Status}' nano 2>/dev/null | grep -c "ok installed") -eq 1 ]; then
+  if [ $(dpkg-query -W -f='${Status}' $f 2>/dev/null | grep -c "ok installed") -eq 1 ]; then
     echo "$f successfully installed." >> $log_file
   else
     echo "$f failed to install." >> $log_file

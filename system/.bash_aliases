@@ -10,7 +10,7 @@ alias mv='mv -iv'
 alias cp='cp -iv'
 
 # Extensions for ls
-alias ll='ls -lF --color=auto'
+alias ll='ls -lhF --color=auto'
 alias lla='ls -alF --color=auto'
 alias la='ls -aF --color=auto'
 alias ls='ls -F --color=auto'
@@ -23,12 +23,13 @@ alias fgrep='fgrep --color=auto'
 # Handy shortcuts
 alias h='history'
 alias j='jobs -['
+alias mkdir='mkdir -pv'
 
 # Installation
 alias apt-get='sudo apt-get'
 
 # Update on one command
-alias update='sudo apt-get update && sudo apt-get upgrade'
+alias update='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist upgrade'
 
 # Add an "alert" alias for long running commands.  Use like so:
 # 	sleep 10; alert

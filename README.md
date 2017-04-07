@@ -28,5 +28,8 @@ i3lock
 ~~~
 git clone https://github.com/jeffrey-xiao/dotfiles.git
 cd dotfiles
-source ./install.sh
+. ./install.sh
+. ./symlink.sh
 ~~~
+
+Any errors with the installation will appear in `./install.log`.

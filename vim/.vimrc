@@ -22,7 +22,7 @@ Plug 'raimondi/delimitmate'
 Plug 'yggdroot/indentline'
 Plug 'tpope/vim-commentary'
 
-" Status line 
+" Status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -110,7 +110,7 @@ let g:airline_section_z = airline#section#create(['windowswap', '', '%l%\/%L%', 
 
 "" Config for vimtex
 let g:vimtex_latexmk_callback=0
-let g:tex_conceal = ""
+let g:tex_conceal=""
 
 "" General config
 set nocompatible
@@ -139,6 +139,7 @@ set background=dark
 silent! colorscheme solarized
 
 "" Key bindings
+let mapleader="\\"
 autocmd filetype cpp nnoremap <F4> :!g++ -std=c++11  % -o %:r <CR>
 autocmd filetype cpp nnoremap <F5> :!g++ -std=c++11  % -o %:r && ./%:r<CR>
 
@@ -149,6 +150,18 @@ autocmd filetype tex nmap <F5> <plug>(vimtex-view)
 nnoremap <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 nmap <F8> :TagbarToggle<CR>
 vnoremap <C-c> "+y
+
+"" Easy split navigation
+nnoremap <C-J>      <C-W>j
+nnoremap <C-K>      <C-W>k
+nnoremap <C-L>      <C-W>l
+nnoremap <C-H>      <C-W>h
+
+"" CtrlP bindings
+nmap <leader>pp :CtrlP<CR>
+nmap <leader>pb :CtrlPBuffer<CR>
+nmap <leader>pm :CtrlPMixed<CR>
+nmap <leader>ps :CtrlPMRU<CR>
 
 "" Highlighting options
 " Highlighting for transparent background

@@ -21,7 +21,7 @@ font pango:Droid Sans Mono Dotted for Powerline 11
 floating_modifier $mod
 
 # application shortcuts
-bindsym $mod+t exec $terminal
+bindsym $mod+Return exec $terminal
 bindsym $mod+b exec $browser
 bindsym $mod+m exec $music
 bindsym $mod+n exec $explorer

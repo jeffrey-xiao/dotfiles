@@ -29,7 +29,7 @@ alias mkdir='mkdir -pv'
 alias apt-get='sudo apt-get'
 
 # Update on one command
-alias update='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist upgrade'
+alias update='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade'
 
 # Add an "alert" alias for long running commands.  Use like so:
 # 	sleep 10; alert

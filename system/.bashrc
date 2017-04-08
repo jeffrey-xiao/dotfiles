@@ -74,6 +74,7 @@ fi
 
 # Environment variables for MPD
 export MPD_HOST=~/.config/mpd/socket
+# export MPD_HOST=localhost
 export MPD_PORT=6600
 
 # Environment variables for location

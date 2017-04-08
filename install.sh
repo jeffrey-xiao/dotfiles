@@ -10,6 +10,7 @@ echo -n "" > $log_file
 ## Installing necessary applications
 # ppa for youtube-dl
 sudo add-apt-repository ppa:nilarimogard/webupd8
+# ppa for sublime-text-3
 sudo add-apt-repository ppa:webupd8team/sublime-text-3
 sudo apt-get update
 

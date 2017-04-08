@@ -73,7 +73,7 @@ if ! shopt -oq posix; then
 fi
 
 # Environment variables for MPD
-export MPD_HOST=127.0.0.1
+export MPD_HOST=~/.config/mpd/socket
 export MPD_PORT=6600
 
 # Environment variables for location

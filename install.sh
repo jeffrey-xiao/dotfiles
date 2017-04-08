@@ -10,6 +10,7 @@ echo -n "" > $log_file
 ## Installing necessary applications
 # ppa for youtube-dl
 sudo add-apt-repository ppa:nilarimogard/webupd8
+sudo add-apt-repository ppa:webupd8team/sublime-text-3
 sudo apt-get update
 
 # Download eclipse, i3-gaps, and i3blocks-gaps from source

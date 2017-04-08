@@ -4,7 +4,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'
 
 " Useful plugs
-" Auto completio
+" Auto completion
 Plug 'valloric/youcompleteme'
 
 "" Git integration
@@ -123,6 +123,7 @@ set smartindent
 set cindent
 set nowrap
 set number
+set relativenumber
 set noerrorbells
 set novisualbell
 set t_vb=

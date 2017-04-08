@@ -17,7 +17,7 @@ sudo apt-get update
 for f in \
   rxvt-unicode-256color \
   redshift \
-  sublime-text vim-gnome \
+  sublime-text-installer vim-gnome \
   mpd mpc ncmpcpp \
   mpv \
   weechat \

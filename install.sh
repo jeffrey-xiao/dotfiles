@@ -22,7 +22,6 @@ for f in \
   build-essential cmake python-dev python3-dev curl \
   fonts-font-awesome
 do
-  echo $f
   sudo apt-get install -y $f
   if [ $(dpkg-query -W -f='${Status}' $f 2>/dev/null | grep -c "ok installed") -eq 1 ]; then
     echo "$f successfully installed." >> $log_file

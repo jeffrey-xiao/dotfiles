@@ -8,10 +8,16 @@ log_file=$DOTFILES_DIR/install.log
 echo -n "" > $log_file
 
 ## Installing necessary applications
+# ppa for youtube-dl
+sudo add-apt-repository ppa:nilarimogard/webupd8
+sudo add-apt-repository ppa:webupd8team/sublime-text-3
+sudo apt-get update
+
 # Download eclipse, i3-gaps, and i3blocks-gaps from source
 for f in \
+  rxvt-unicode-256color \
   redshift \
-  sublime-text vim-gnome \
+  sublime-text-installer vim-gnome \
   mpd mpc ncmpcpp \
   mpv \
   weechat \
@@ -20,7 +26,8 @@ for f in \
   tmux \
   scrot imagemagick compton i3lock \
   build-essential cmake python-dev python3-dev curl \
-  fonts-font-awesome
+  fonts-font-awesome \
+  youtube-dl
 do
   sudo apt-get install -y $f
   if [ $(dpkg-query -W -f='${Status}' $f 2>/dev/null | grep -c "ok installed") -eq 1 ]; then

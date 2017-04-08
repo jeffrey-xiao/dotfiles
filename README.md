@@ -3,6 +3,7 @@ This repository contains all the dot files I use for my Ubuntu machine.
 
 ## Software I Use
 ```
+terminal    → rxvt-unicode
 shell       → bash
 editor      → vim/sublime/eclipse
 audio       → ncmpcpp/mpd/mpc
@@ -33,3 +34,8 @@ cd dotfiles
 ~~~
 
 Any errors with the installation will appear in `./install.log`.
+
+## Personal Use
+ - change the username and email in `.gitconfig`
+ - change the user in `mpd.conf`
+ - change the location in `redshift.conf`

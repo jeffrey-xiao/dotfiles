@@ -21,6 +21,7 @@ xrdb ~/.Xresources
 mkdir -p ~/.config/mpd/playlists
 ln -sfv "$DOTFILES_DIR/mpd/mpd.conf" ~/.config/mpd
 touch ~/.config/mpd/database
+touch ~/.config/mpd/socket
 
 ## Linking ncmpcpp options
 mkdir -p ~/.ncmpcpp

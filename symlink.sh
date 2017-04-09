@@ -25,6 +25,7 @@ touch ~/.config/mpd/database
 ## Linking ncmpcpp options
 mkdir -p ~/.ncmpcpp
 ln -sfv "$DOTFILES_DIR/ncmpcpp/config" ~/.ncmpcpp
+ln -sfv "$DOTFILES_DIR/ncmpcpp/bindings" ~/.ncmpcpp
 
 ## Linking tmux options
 ln -sfv "$DOTFILES_DIR/tmux/.tmux.conf" ~

@@ -58,6 +58,12 @@ rm -rf ~/.config/mpv/lua-settings
 ln -sfnv "$DOTFILES_DIR/mpv/lua-settings" ~/.config/mpv
 ln -sfv "$DOTFILES_DIR/mpv/mpv.conf" ~/.config/mpv
 
+## Linking qpdfview options
+mkdir -p ~/.config/qpdfview
+for f in $(ls -A $DOTFILES_DIR/qpdfview); do
+  ln -sfv "$DOTFILES_DIR/qpdfview/$f" ~/.config/qpdfview
+done
+
 ## Linking other options
 mkdir -p ~/.config/htop
 ln -sfv "$DOTFILES_DIR/other/redshift.conf" ~/.config

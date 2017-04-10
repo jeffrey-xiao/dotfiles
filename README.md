@@ -13,6 +13,7 @@ de/wm       → i3-gaps
 monitor     → i3blocks-gaps/htop
 multiplexer → tmux
 video       → mpv
+viewer      → qpdfview
 ```
 
 ## Dependencies

@@ -4,68 +4,41 @@
 export DOTFILES_DIR
 DOTFILES_DIR=$(pwd)
 
-## Linking git options
-ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
-ln -sfv "$DOTFILES_DIR/git/.gitignore_global" ~
-
-## Linking vim options
-ln -sfv "$DOTFILES_DIR/vim/.vimrc" ~
-
-## Linking system options
-for f in $(ls -A $DOTFILES_DIR/system); do
-  ln -sfv "$DOTFILES_DIR/system/$f" ~
+## Linking to ~
+for folder in git vim system compton tmux; do
+  for f in $DOTFILES_DIR/$folder/*; do
+    ln -sfv "$f" ~
+  done
 done
-xrdb ~/.Xresources
 
-## Linking mpd and creating a playlist folder
+## Linking to ~/$folder
+for folder in ncmpcpp weechat; do
+  # rm -rf ~/.$folder
+  mkdir -p ~/.$folder
+  for f in $DOTFILES_DIR/$folder/*; do
+    echo $f
+    ln -sfv "$f" ~/.$folder
+  done
+done
+
+## Linking to .config/$folder
+for folder in mpd sublime-text-3/Packages/User i3 ranger mpv qpdfview; do
+  # rm -rf ~/.config/$folder
+  mkdir -p ~/.config/$folder
+  for f in $DOTFILES_DIR/$folder/*; do
+    ln -sfv "$f" ~/.config/$folder
+  done
+done
+
+## Creating a playlist folder for mpd and database file
 mkdir -p ~/.config/mpd/playlists
-ln -sfv "$DOTFILES_DIR/mpd/mpd.conf" ~/.config/mpd
 touch ~/.config/mpd/database
 
-## Linking ncmpcpp options
-mkdir -p ~/.ncmpcpp
-ln -sfv "$DOTFILES_DIR/ncmpcpp/config" ~/.ncmpcpp
-ln -sfv "$DOTFILES_DIR/ncmpcpp/bindings" ~/.ncmpcpp
-
-## Linking tmux options
-ln -sfv "$DOTFILES_DIR/tmux/.tmux.conf" ~
-
-## Linking sublime text package options
-mkdir -p ~/.config/sublime-text-3/Packages
-rm -rf ~/.config/sublime-text-3/Packages/User
-ln -sfnv "$DOTFILES_DIR/sublime/User" ~/.config/sublime-text-3/Packages
-
-## Linking compton options
-ln -sfv "$DOTFILES_DIR/compton/.compton.conf" ~
-
-## Linking i3 options
-rm -rf ~/.config/i3
-ln -sfnv "$DOTFILES_DIR/i3" ~/.config
-
-## Linking weechat options
-rm -rf ~/.weechat
-ln -sfvT "$DOTFILES_DIR/weechat" ~/.weechat
-
-## Linking ranger options
-mkdir -p ~/.config/ranger
-for f in $(ls -A $DOTFILES_DIR/ranger); do
-  ln -sfv "$DOTFILES_DIR/ranger/$f" ~/.config/ranger
-done
-
-## Linking mpv options
-mkdir -p ~/.config/mpv
-rm -rf ~/.config/mpv/lua-settings
-ln -sfnv "$DOTFILES_DIR/mpv/lua-settings" ~/.config/mpv
-ln -sfv "$DOTFILES_DIR/mpv/mpv.conf" ~/.config/mpv
-
-## Linking qpdfview options
-mkdir -p ~/.config/qpdfview
-for f in $(ls -A $DOTFILES_DIR/qpdfview); do
-  ln -sfv "$DOTFILES_DIR/qpdfview/$f" ~/.config/qpdfview
-done
+xrdb ~/.Xresources
 
 ## Linking other options
 mkdir -p ~/.config/htop
 ln -sfv "$DOTFILES_DIR/other/redshift.conf" ~/.config
 ln -sfv "$DOTFILES_DIR/other/.ycm_extra_conf.py" ~
 ln -sfv "$DOTFILES_DIR/other/htoprc" ~/.config/htop
+ln -sfv "$DOTFILES_DIR/other/fonts.conf" ~/.config/fontconfig

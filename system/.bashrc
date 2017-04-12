@@ -13,6 +13,8 @@ shopt -s histappend
 # Check window size and update LINES and COLUMNS
 shopt -s checkwinsize
 
+shopt -s dotglob
+
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
 #shopt -s globstar

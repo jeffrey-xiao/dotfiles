@@ -2,6 +2,9 @@
 	"bootstrapped": true,
 	"in_process_packages":
 	[
+		"CSScomb",
+		"LaTeXTools",
+		"SublimeCodeIntel"
 	],
 	"installed_packages":
 	[

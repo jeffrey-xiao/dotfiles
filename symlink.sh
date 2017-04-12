@@ -22,7 +22,7 @@ for folder in ncmpcpp weechat; do
 done
 
 ## Linking to .config/$folder
-for folder in mpd sublime-text-3/Packages/User i3 ranger mpv qpdfview; do
+for folder in mpd sublime-text-3/Packages/User i3 ranger mpv qpdfview fontconfig htop; do
   # rm -rf ~/.config/$folder
   mkdir -p ~/.config/$folder
   for f in $DOTFILES_DIR/$folder/*; do
@@ -37,8 +37,4 @@ touch ~/.config/mpd/database
 xrdb ~/.Xresources
 
 ## Linking other options
-mkdir -p ~/.config/htop
 ln -sfv "$DOTFILES_DIR/other/redshift.conf" ~/.config
-ln -sfv "$DOTFILES_DIR/other/.ycm_extra_conf.py" ~
-ln -sfv "$DOTFILES_DIR/other/htoprc" ~/.config/htop
-ln -sfv "$DOTFILES_DIR/other/fonts.conf" ~/.config/fontconfig

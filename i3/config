@@ -105,9 +105,7 @@ set $ws10 "10:0"
 
 # default workspaces for applications
 assign [class="Chromium-browser"] $ws1
-assign [class="vlc"]              $ws9
 assign [class="mpv"]              $ws9
-# assign [class="Gnome-terminal"] $ws2
 
 # navigating to workspaces
 bindsym $mod+1 workspace $ws1
@@ -188,8 +186,8 @@ bindsym XF86AudioPrev exec mpc prev
 
 # MPD controls
 bindsym $mod+p exec "mpc toggle; pkill -RTMIN+9 i3blocks"
-bindsym $mod+bracketleft exec "mpc next"
-bindsym $mod+bracketright exec "mpc prev"
+bindsym $mod+bracketleft exec "mpc prev"
+bindsym $mod+bracketright exec "mpc next"
 
 # Color definitions
 set $base03    #002b36
@@ -222,9 +220,8 @@ client.focused_inactive $base03    $base03       $base2    #00ff00
 client.urgent           $base03    $base03       $red      #00ff00
 
 hide_edge_borders both
-for_window [class="^.*"] border pixel 3
-for_window [class="Power.py"] border pixel 0
-for_window [class="Gsimplecal"] border pixel 0
+for_window [class="^.*"]        border pixel 3
+for_window [class="Power.py"]   border pixel 0
 
 new_float none
 

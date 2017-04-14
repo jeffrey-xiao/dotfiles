@@ -4,6 +4,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'
 
 " Useful plugs
+" Templates
+Plug 'tibabit/vim-templates'
+
 " Auto completion
 Plug 'valloric/youcompleteme'
 
@@ -45,6 +48,10 @@ Plug 'jaawerth/nrun.vim'
 Plug 'lervag/vimtex'
 
 call plug#end()
+
+"" Config for VimTemplates
+let g:tmpl_search_paths=['~/Templates']
+let g:tmpl_auto_initialize=0
 
 "" Config for Nerdtree
 " Autostart on vim startup
@@ -159,6 +166,7 @@ nnoremap <C-L>      <C-W>l
 nnoremap <C-H>      <C-W>h
 
 "" CtrlP bindings
+let g:ctrlp_cmd = 'CtrlPBuffer'
 nmap <leader>pp :CtrlP<CR>
 nmap <leader>pb :CtrlPBuffer<CR>
 nmap <leader>pm :CtrlPMixed<CR>

@@ -28,7 +28,7 @@ for f in \
   scrot imagemagick compton i3lock \
   build-essential cmake python-dev python3-dev curl \
   fonts-font-awesome \
-  youtube-dl qpdfview w3m atool
+  youtube-dl qpdfview w3m acpi sysstat feh jq blueman-applet xautolock atool
 do
   sudo apt-get install -y $f
   if [ $(dpkg-query -W -f='${Status}' $f 2>/dev/null | grep -c "ok installed") -eq 1 ]; then

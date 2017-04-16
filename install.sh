@@ -25,10 +25,12 @@ for f in \
   nautilus ranger \
   htop \
   tmux \
-  scrot imagemagick compton i3lock \
+  chromium-browser \
+  scrot imagemagick compton i3lock rofi \
   build-essential cmake python-dev python3-dev curl \
-  fonts-font-awesome \
-  youtube-dl qpdfview w3m acpi sysstat feh jq blueman-applet xautolock atool
+  fonts-font-awesome x11-xserver-utils playerctl \
+  youtube-dl qpdfview w3m acpi sysstat feh jq blueman \
+  xautolock atool redshift-gtk xbacklight gnome-settings-daemon network-manager
 do
   sudo apt-get install -y $f
   if [ $(dpkg-query -W -f='${Status}' $f 2>/dev/null | grep -c "ok installed") -eq 1 ]; then

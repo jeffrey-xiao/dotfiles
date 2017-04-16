@@ -56,7 +56,7 @@ case "$extension" in
         try unrar -p- lt "$path" && { dump | trim; exit 0; } || exit 1;;
     # PDF documents:
     pdf)
-        try convert -quality 80 -density 300 -interlace none "$path" "${cached}" && exit 6;;
+        try convert -quality 80 -density 300 -interlace none "$path[0]" "${cached}" && exit 6;;
     # BitTorrent Files
     torrent)
         try transmission-show "$path" && { dump | trim; exit 5; } || exit 1;;

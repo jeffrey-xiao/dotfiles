@@ -30,7 +30,7 @@ for f in \
   build-essential cmake python-dev python3-dev curl \
   fonts-font-awesome x11-xserver-utils playerctl \
   youtube-dl qpdfview w3m acpi sysstat feh jq blueman \
-  xautolock atool redshift-gtk xbacklight gnome-settings-daemon network-manager
+  xautolock atool redshift-gtk xbacklight gnome-settings-daemon network-manager xclip
 do
   sudo apt-get install -y $f
   if [ $(dpkg-query -W -f='${Status}' $f 2>/dev/null | grep -c "ok installed") -eq 1 ]; then

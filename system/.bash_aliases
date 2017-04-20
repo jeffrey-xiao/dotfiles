@@ -37,4 +37,4 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal ||     
 
 
 # Screenshot directly to clipboard
-alias scrotclip='scrot -s ~/Pictures/tmp.png && xclip ~/Pictures/tmp.png -selection clipboard -t image/png && rm ~/Pictures/tmp.png -f'
+alias scrotclip='scrot -s ~/tmp/tmp.png && xclip ~/tmp/tmp.png -selection clipboard -t image/png && rm ~/tmp/tmp.png -f'

@@ -85,3 +85,6 @@ export CITY="Waterloo"
 # Envinroment variables for ranger
 export EDITOR=vim
 export PAGER=less
+
+# Adding usr binaries to path
+export PATH=$PATH:~/bin

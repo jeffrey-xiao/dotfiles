@@ -17,14 +17,7 @@ viewer      → qpdfview
 ```
 
 ## Dependencies
-```
-scrot
-imagemagick
-fonts-font-awesome
-redshift
-compton
-i3lock
-```
+A full list of dependencies and installed software will appear in `./install.log`.
 
 ## Installation
 ~~~

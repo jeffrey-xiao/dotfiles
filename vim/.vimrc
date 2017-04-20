@@ -148,8 +148,8 @@ silent! colorscheme solarized
 
 "" Key bindings
 let mapleader="\\"
-autocmd filetype cpp nnoremap <F4> :!g++ -std=c++11  % -o %:r <CR>
-autocmd filetype cpp nnoremap <F5> :!g++ -std=c++11  % -o %:r && ./%:r<CR>
+autocmd filetype cpp nnoremap <F4> :!g++ -std=c++11 % -o %:r <CR>
+autocmd filetype cpp nnoremap <F5> :!g++ -std=c++11 % -o %:r && %:r<CR>
 
 autocmd filetype tex nmap <F3> <plug>(vimtex-compile-toggle)
 autocmd filetype tex nmap <F4> <plug>(vimtex-errors)

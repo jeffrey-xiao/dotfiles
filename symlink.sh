@@ -37,7 +37,7 @@ touch ~/.config/mpd/database
 xrdb ~/.Xresources
 
 ## Linking other options
-mkdir ~/tmp
-mkdir ~/bin
+mkdir ~/.tmp
+mkdir ~/.bin
 ln -sfv "$DOTFILES_DIR/other/redshift.conf" ~/.config
-ln -sfv "$DOTFILES_DIR/other/umpv" ~/bin
+ln -sfv "$DOTFILES_DIR/other/umpv" ~/.bin

@@ -87,4 +87,4 @@ export EDITOR=vim
 export PAGER=less
 
 # Adding usr binaries to path
-export PATH=$PATH:~/bin
+export PATH=$PATH:~/.bin

@@ -50,7 +50,7 @@ Plug 'lervag/vimtex'
 call plug#end()
 
 "" Config for VimTemplates
-let g:tmpl_search_paths=['~/Templates']
+let g:tmpl_search_paths=['~/.templates']
 let g:tmpl_auto_initialize=0
 
 "" Config for Nerdtree

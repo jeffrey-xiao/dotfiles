@@ -7,7 +7,13 @@ convert /tmp/screen.png -scale 10% -scale 1000% /tmp/screen.png
 PX=0
 PY=0
 # lockscreen image info
-R=$(file "$HOME/.config/i3/lock.png" | grep -o '[0-9]* x [0-9]*')
+if [ -L "$HOME/.config/i3/lock.png" ]; then
+  FILE=$(readlink -f "$HOME/.config/i3/lock.png")
+else
+  FILE="$HOME/.config/i3.lock.png"
+fi
+
+R=$(file $FILE | grep -o '[0-9]* x [0-9]*')
 RX=$(echo $R | cut -d' ' -f 1)
 RY=$(echo $R | cut -d' ' -f 3)
 

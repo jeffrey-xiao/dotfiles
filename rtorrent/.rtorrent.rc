@@ -1,0 +1,91 @@
+# Maximum and minimum number of peers to connect to per torrent.
+min_peers = 1
+max_peers = 100
+
+# Maximum and minimum number of peers to seed to per torrent.
+min_peers_seed = 1
+max_peers_seed = 50
+
+# Maximum number of uploads single torrent may use
+max_uploads = 10
+
+# Maximum number of simultaneous downloads
+max_downloads_global = 10
+# Maximum number of simultaneous uploads
+max_uploads_global = 20
+
+# Global upload and download rate in KiB. "0" for unlimited.
+download_rate = 0
+upload_rate = 300
+
+# Default directory to save the downloaded torrents.
+directory = ~/Downloads/incomplete
+
+# Default session directory. Make sure you don't run multiple instance
+# of rtorrent using the same session directory. Perhaps using a
+# relative path?
+session = ~/.rtorrent.sessions
+
+# Watch a directory for new torrents, and stop those that have been
+# deleted.
+schedule = watch_directory,5,5,"load_start=~/Downloads/*.torrent,d.set_custom1=~/Downloads/complete"
+schedule = tied_directory,6,5,start_tied=
+schedule = untied_directory,7,5,stop_untied=
+
+# system.method.insert=checkdir,simple,"not=\"$equal={d.get_custom1=,d.get_base_path=}\""
+# system.method.insert=movecheck,simple,"and={checkdir=,d.get_complete=,d.get_custom1}"
+# system.method.insert=movedir,simple,"d.set_directory=$d.get_custom1=;execute mv,-u,$d.get_path_path=,$d.get_custom1=;d.set_custom1;d.stop=;d.start="
+# system.method.set_key=event.download.hash_done,move_hashed,"branch={$movecheck=,movedir=}"
+
+# Close torrents when diskspace is low.
+schedule = low_diskspace,5,60,close_low_diskspace=2000M
+
+# Periodically save session data
+schedule = session_save,240,300,session_save=
+
+ratio.enable=
+ratio.min.set=100
+ratio.max.set=100
+ratio.upload.set=0
+system.method.set = group.seeding.ratio.command, d.close=, d.erase=
+
+# Move files to ~/Downloads/complete when download completes
+system.method.set_key = event.download.finished,move_complete,"d.set_directory=~/Downloads/complete; execute=mv,-n,$d.get_base_path=,~/Downloads/complete"
+
+port_range = 33101-33199
+port_random = yes
+
+# Encryption options
+encryption = allow_incoming,try_outgoing,enable_retry,prefer_plaintext
+
+# Sort the main view by ratio
+view.sort_current = main,greater=d.get_ratio=
+view.sort_new = main,less=d.get_ratio=
+view.sort = main
+
+# Sort the seeding view by the upload rate and only show torrents with peers
+view.sort_current = seeding,greater=d.get_up_rate=
+view.filter = seeding,"and=d.get_complete=,d.get_peers_connected="
+view.sort_new = seeding,less=d.get_up_rate=
+view.sort = seeding
+
+# Sort the leeching view by name
+view.sort_current = leeching,greater=d.get_name=
+view.sort_new = leeching,greater=d.get_name=
+view.sort = leeching
+
+# Filter the active view by connected peers
+view.sort_current = active,less=d.get_name=
+view.sort_new = leeching,less=d.get_name=
+view.filter = active,d.get_peers_connected=
+view.sort = active
+
+schedule = sort_main,11,5,view.sort=main
+schedule = sort_seeding,12,5,view.sort=seeding
+schedule = sort_leeching,13,5,view.sort=leeching
+schedule = sort_active,14,5,view.sort=active
+
+# DHT Options
+dht = auto
+dht_port = 6881
+peer_exchange = yes

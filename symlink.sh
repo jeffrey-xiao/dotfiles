@@ -5,13 +5,14 @@ export DOTFILES_DIR
 DOTFILES_DIR=$(pwd)
 
 ## Linking to ~
-for folder in git vim system compton tmux; do
+for folder in git vim system compton tmux rtorrent; do
   for f in $DOTFILES_DIR/$folder/*; do
+    echo $f
     ln -sfv "$f" ~
   done
 done
 
-## Linking to ~/$folder
+## Linking to ~/.$folder
 for folder in ncmpcpp weechat templates; do
   # rm -rf ~/.$folder
   mkdir -p ~/.$folder
@@ -35,8 +36,7 @@ mkdir -p ~/.config/mpd/playlists
 touch ~/.config/mpd/database
 
 ## Linking other options
-mkdir ~/.tmp
-mkdir ~/.bin
+mkdir -p ~/.tmp ~/.bin ~/Downloads/complete ~/Downloads/incomplete ~/.rtorrent.sessions
 ln -sfv "$DOTFILES_DIR/other/redshift.conf" ~/.config
 ln -sfv "$DOTFILES_DIR/other/umpv" ~/.bin
 xrdb ~/.Xresources

@@ -254,6 +254,7 @@ exec_always xrandr --output eDP1 --mode 1600x900
 # Configure startup applications
 exec udisksctl mount --block-device /dev/sda5
 exec --no-startup-id i3-msg 'exec [ ! -s ~/.config/mpd/pid ] && mpd '
+exec --no-startup-id redshift
 exec --no-startup-id redshift-gtk
 exec --no-startup-id i3-msg 'workspace $ws10; exec urxvt -e ncmpcpp; workspace $ws1;'
 exec --no-startup-id compton -f

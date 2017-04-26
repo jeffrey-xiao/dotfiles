@@ -1,4 +1,4 @@
-#include #!/bin/bash
+#!/bin/bash
 
 filter () {
   tr '\n' ' ' | output

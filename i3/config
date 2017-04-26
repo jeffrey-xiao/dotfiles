@@ -5,7 +5,9 @@ set $mod Mod1
 set $browser  chromium-browser
 set $explorer urxvt -e ranger
 set $music    urxvt -e ncmpcpp
+set $torrent  urxvt -e rtorrent
 set $terminal urxvt
+
 
 # Configuration for gaps
 gaps inner 20
@@ -25,6 +27,9 @@ bindsym $mod+Return exec $terminal
 bindsym $mod+b exec $browser
 bindsym $mod+m exec $music
 bindsym $mod+n exec $explorer
+bindsym $mod+t exec $torrent
+bindsym Print exec scrot ~/.tmp/tmp.png && xclip ~/.tmp/tmp.png -selection clipboard -t image/png && rm ~/.tmp/tmp.png -f
+bindsym --release Shift+Print exec scrot -s ~/.tmp/tmp.png && xclip ~/.tmp/tmp.png -selection clipboard -t image/png && rm ~/.tmp/tmp.png -f
 
 # kill focused window
 bindsym $mod+Shift+q kill

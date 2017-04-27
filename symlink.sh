@@ -13,7 +13,7 @@ for folder in git vim system compton tmux rtorrent; do
 done
 
 ## Linking to ~/.$folder
-for folder in ncmpcpp weechat templates; do
+for folder in ncmpcpp weechat templates bin; do
   # rm -rf ~/.$folder
   mkdir -p ~/.$folder
   for f in $DOTFILES_DIR/$folder/*; do
@@ -38,5 +38,4 @@ touch ~/.config/mpd/database
 ## Linking other options
 mkdir -p ~/.tmp ~/.bin ~/Downloads/complete ~/Downloads/incomplete ~/.rtorrent.sessions
 ln -sfv "$DOTFILES_DIR/other/redshift.conf" ~/.config
-ln -sfv "$DOTFILES_DIR/other/umpv" ~/.bin
 xrdb ~/.Xresources

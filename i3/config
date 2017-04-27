@@ -141,10 +141,10 @@ bindsym $mod+Ctrl+h move workspace to output right
 bindsym $mod+Ctrl+l move workspace to output left
 
 # options for logging out, restarting, and shutting down
-bindsym $mod+Shift+e exec ~/.config/i3/power.py
+bindsym $mod+Shift+e exec power
 
 # shortcut for i3lock
-bindsym $mod+Shift+x exec ". $HOME/.config/i3/lock.sh"
+bindsym $mod+Shift+x exec lock
 
 # resize window (can also use mouse)
 mode "resize" {
@@ -177,7 +177,7 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 20
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20
 
 # Touchpad controls
-bindsym XF86TouchpadToggle exec ~/.config/i3/toggletouchpad.sh
+bindsym XF86TouchpadToggle exec toggletouchpad
 
 # Media player controls
 #bindsym XF86AudioPlay exec playerctl play
@@ -226,7 +226,7 @@ client.urgent           $base03    $base03       $red      #00ff00
 
 hide_edge_borders both
 for_window [class="^.*"]        border pixel 3
-for_window [class="Power.py"]   border pixel 0
+for_window [class="Power"]   border pixel 0
 
 new_float none
 

@@ -3,14 +3,14 @@ call plug#begin('~/.vim/plugged')
 "" Color Scheme
 Plug 'altercation/vim-colors-solarized'
 
-" Useful plugs
+"" Useful plugs
 " Templates
 Plug 'tibabit/vim-templates'
 
 " Auto completion
 Plug 'valloric/youcompleteme'
 
-"" Git integration
+" Git integration
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
@@ -34,10 +34,9 @@ Plug 'mattn/emmet-vim'
 
 "" Languages
 Plug 'fatih/vim-go'
-Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'neovimhaskell/haskell-vim'
-Plug 'guns/vim-clojure-static'
 Plug 'wlangstroth/vim-racket'
+Plug 'guns/vim-clojure-static'
 Plug 'digitaltoad/vim-jade'
 Plug 'moll/vim-node'
 Plug 'mxw/vim-jsx'
@@ -46,6 +45,7 @@ Plug 'jelera/vim-javascript-syntax'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'jaawerth/nrun.vim'
 Plug 'lervag/vimtex'
+Plug 'octol/vim-cpp-enhanced-highlight'
 
 call plug#end()
 
@@ -83,7 +83,7 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 
-" unicode symbols
+" Unicode symbols
 let g:airline_left_sep = '»'
 let g:airline_left_sep = '▶'
 let g:airline_right_sep = '«'

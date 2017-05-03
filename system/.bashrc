@@ -79,9 +79,6 @@ export MPD_HOST=~/.config/mpd/socket
 # export MPD_HOST=localhost
 export MPD_PORT=6600
 
-# Environment variables for location
-export CITY="Waterloo"
-
 # Envinroment variables for ranger
 export EDITOR=vim
 export PAGER=less

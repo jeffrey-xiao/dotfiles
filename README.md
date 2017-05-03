@@ -30,6 +30,9 @@ cd dotfiles
 Any errors with the installation will appear in `./install.log`.
 
 ## Personal Use
- - change the username and email in `.gitconfig`
- - change the user in `mpd.conf`
- - change the location in `redshift.conf`
+ - change the username and email in `git/.gitconfig`
+ - change the user in `mpd/mpd.conf`
+ - change the location in `other/redshift.conf`
+ - change the city in `system/.profile`
+ - change the API key in `bin/weather`
+ - change the username in `weechat/irc.conf`

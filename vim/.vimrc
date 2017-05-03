@@ -127,6 +127,7 @@ set shiftwidth=2
 set expandtab
 set autoindent
 set smartindent
+set autoread
 set cindent
 set nowrap
 set number
@@ -147,7 +148,7 @@ set background=dark
 silent! colorscheme solarized
 
 "" Key bindings
-let mapleader="\\"
+let mapleader="\<Space>"
 autocmd filetype cpp nnoremap <F4> :!g++ -std=c++11 % -o %:r <CR>
 autocmd filetype cpp nnoremap <F5> :!g++ -std=c++11 % -o %:r && %:p:r<CR>
 
@@ -167,10 +168,10 @@ nnoremap <C-H>      <C-W>h
 
 "" CtrlP bindings
 let g:ctrlp_cmd = 'CtrlPBuffer'
-nmap <leader>pp :CtrlP<CR>
-nmap <leader>pb :CtrlPBuffer<CR>
-nmap <leader>pm :CtrlPMixed<CR>
-nmap <leader>ps :CtrlPMRU<CR>
+nmap <leader>p :CtrlP<CR>
+nmap <leader>b :CtrlPBuffer<CR>
+nmap <leader>m :CtrlPMixed<CR>
+nmap <leader>s :CtrlPMRU<CR>
 
 "" Highlighting options
 " Highlighting for transparent background

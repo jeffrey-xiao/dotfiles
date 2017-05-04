@@ -1,0 +1,53 @@
+bin:
+  link: "~/.bin"
+compton:
+  link: "~"
+fontconfig:
+  link: "~/.config/fontconfig"
+git:
+  link: "~"
+htop:
+  link: "~/.config/htop"
+i3:
+  link: "~/.config/i3"
+mpd:
+  link: "~/.config/mpd"
+  scripts:
+    - "mkdir -pv ~/.config/mpd/playlists"
+    - "touch ~/.config/mpd/database"
+mpv:
+  link: "~/.config/mpv"
+ncmpcpp:
+  link: "~/.ncmpcpp"
+other:
+  link:
+    redshift.conf: "~/.config"
+qpdfview:
+  link: "~/.config/qpdfview"
+ranger:
+  link: "~/.config/ranger"
+rtorrent:
+  link: "~"
+  scripts:
+    - "mkdir -pv ~/Downloads/complete ~/Downloads/incomplete ~/.rtorrent.sessions"
+sublime-text-3/Packages/User:
+  link: "~/.config/sublime-text-3/Packages/User"
+system:
+  link: "~"
+  scripts:
+    - "xrdb ~/.Xresources"
+    - "git clone https://github.com/powerline/fonts ~/fonts"
+    - ". ~/fonts/install.sh"
+templates:
+  link: "~/.templates"
+tmux:
+  link: "~"
+vim:
+  link: "~"
+  scripts:
+    - "rm -rf ~/.vim"
+    - "curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+    - "vim -c PlugInstall -c q! -c q!"
+    - "~/.vim/plugged/youcompleteme/install.py --clang-completer"
+weechat:
+  link: "~/.weechat"

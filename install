@@ -10,10 +10,14 @@ import shlex
 
 def readOptions () :
     parser = argparse.ArgumentParser(description="Installation script for dotfiles.")
-    parser.add_argument("-d", dest="dir",  help="root directory of dotfiles", metavar="folder")
-    parser.add_argument("-c", dest="conf", help="config file for symlinking and installing", metavar="file")
-    parser.add_argument("-p", dest="prompt", help="prompt user before installing package", action="store_true")
-    parser.add_argument("-u", dest="update", help="only update symlinks", action="store_true")
+    parser.add_argument("-d", dest="dir", metavar="folder",
+        help="root directory of dotfiles")
+    parser.add_argument("-c", dest="conf", metavar="file",
+        help="config file for symlinking and installing")
+    parser.add_argument("-p", dest="prompt", action="store_true",
+        help="prompt user before installing package")
+    parser.add_argument("-u", dest="update", action="store_true",
+        help="only update symlinks")
 
     return parser.parse_args()
 
@@ -32,53 +36,62 @@ if __name__ == "__main__":
 
     for package in packages:
         if args.prompt:
-            if raw_input("\nInstall {} (Y/n)? ".format(package)).strip() == "n":
+            if raw_input("\nInstall {} (Y/n)? ".format(package)).strip().lower() == "n":
                 continue
         else:
             print "\nInstalling {}".format(package)
 
-        linkLocations = {}
+        linkLocations = []
         overwrite = True
-        scripts = []
+        prelink = []
+        postlink = []
         dependencies = []
+        symlinkedFiles = set()
 
         if not 'link' in packages[package]:
             raise ValueError('No link attribute set.')
-        elif isinstance(packages[package]['link'], dict):
+        elif isinstance(packages[package]['link'], list):
             linkLocations = packages[package]['link']
         else:
-            linkLocations = {
-                "*": packages[package]['link'],
-                ".*": packages[package]['link']
-            }
+            linkLocations = [
+                {"*": packages[package]['link']},
+                {".*": packages[package]['link']}
+            ]
 
         if 'overwrite' in packages[package]:
             overwrite = packages[package]['overwrite']
 
-        if 'scripts' in packages[package]:
-            scripts = packages[package]['scripts']
+        if 'prelink' in packages[package]:
+            prelink = packages[package]['prelink']
+
+        if 'postlink' in packages[package]:
+            postlink = packages[package]['postlink']
 
         if 'dependencies' in packages[package]:
             dependencies = packages[package]['dependencies']
 
-        symlinkedFiles = set()
-        for pattern, path in linkLocations.iteritems():
-            location = expandPath(path)
-            subprocess.call(["mkdir", "-pv", location])
-            for filename in glob.iglob(os.path.join(dir, package, pattern)):
-                basename = os.path.basename(filename)
-                if basename in symlinkedFiles:
-                    continue
-                symlinkedFiles.add(basename)
+        if not args.update:
+            for script in prelink:
+                subprocess.call([os.path.expanduser(token) for token in shlex.split(script)])
+            for dependency in dependencies:
+                subprocess.call(["sudo", "apt-get", "install", dependency])
 
-                if overwrite:
-                    subprocess.call(["ln", "-sfv", filename, expandPath(location)])
-                else:
-                    subprocess.call(["ln", "-sv", filename, expandPath(location)])
+        for linkLocation in linkLocations:
+            for pattern, path in linkLocation.iteritems():
+                location = expandPath(path)
+                subprocess.call(["mkdir", "-pv", location])
+                for filename in glob.iglob(os.path.join(dir, package, pattern)):
+                    basename = os.path.basename(filename)
+                    if basename in symlinkedFiles:
+                        continue
+                    symlinkedFiles.add(basename)
+
+                    if overwrite:
+                        subprocess.call(["rm", os.path.join(expandPath(location), basename)], stderr=open(os.devnull, 'wb'))
+                        subprocess.call(["ln", "-sfv", filename, expandPath(location)])
+                    else:
+                        subprocess.call(["ln", "-sv", filename, expandPath(location)])
 
         if not args.update:
-            for script in scripts:
+            for script in postlink:
                 subprocess.call([os.path.expanduser(token) for token in shlex.split(script)])
-
-            for dependency in dependencies:
-                print "sudo apt-get install {}".format(dependency)

@@ -19,7 +19,6 @@ i3:
     - "imagemagick"
     - "i3lock"
     - "rofi"
-    - "i3lock"
     - "fonts-font-awesome"
     - "acpi"
     - "sysstat"
@@ -77,6 +76,8 @@ rtorrent:
   link: "~"
   postlink:
     - "mkdir -pv ~/Downloads/complete ~/Downloads/incomplete ~/.rtorrent.sessions"
+  dependencies:
+    - "rtorrent"
 sublime-text-3/Packages/User:
   prelink:
     - "sudo add-apt-repository ppa:webupd8team/sublime-text-3"

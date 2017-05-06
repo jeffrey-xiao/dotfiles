@@ -1,5 +1,6 @@
 bin:
   link: "~/.bin"
+  overwrite: False
 compton:
   link: "~"
   dependencies:

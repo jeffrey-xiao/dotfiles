@@ -20,14 +20,24 @@ viewer      → qpdfview
 A full list of dependencies and installed software will appear in `./install.log`.
 
 ## Installation
+### With included bash scripts
 ~~~
 git clone https://github.com/jeffrey-xiao/dotfiles.git
 cd dotfiles
 . ./install.sh
 . ./symlink.sh
 ~~~
-
 Any errors with the installation will appear in `./install.log`.
+
+### With [dotinstall](https://github.com/jeffrey-xiao/dotinstall)
+~~~
+git clone https://github.com/jeffrey-xiao/dotfiles.git
+cd dotfiles
+git submodule update --init --recursive
+chmod +x ./dotinstall/install
+./dotinstall/install
+~~~
+
 
 ## Personal Use
  - change the username and email in `git/.gitconfig`

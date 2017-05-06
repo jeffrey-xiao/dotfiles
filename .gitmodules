@@ -1,0 +1,3 @@
+[submodule "dotinstall"]
+	path = dotinstall
+	url = https://github.com/jeffrey-xiao/dotinstall

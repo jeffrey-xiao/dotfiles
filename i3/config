@@ -264,5 +264,5 @@ exec --no-startup-id i3-msg 'workspace $ws10; exec urxvt -e ncmpcpp; workspace $
 exec --no-startup-id compton -f
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
-exec --no-startup-id xautolock -time 10 -locker '. $HOME/.config/i3/lock.sh'
+exec --no-startup-id xautolock -time 10 -locker 'lock'
 exec --no-startup-id gnome-settings-daemon

@@ -10,9 +10,9 @@ max_peers_seed = 50
 max_uploads = 10
 
 # Maximum number of simultaneous downloads
-max_downloads_global = 10
+max_downloads_global = 30
 # Maximum number of simultaneous uploads
-max_uploads_global = 20
+max_uploads_global = 30
 
 # Global upload and download rate in KiB. "0" for unlimited.
 download_rate = 0
@@ -81,6 +81,12 @@ schedule = sort_leeching,13,5,view.sort=leeching
 schedule = sort_active,14,5,view.sort=active
 
 # DHT Options
-dht = auto
+dht = on
 dht_port = 6881
 peer_exchange = yes
+dht.mode.set = on
+
+# Logging
+# log.open_file = "log", (cat,"~/Downloads/logs/rtorrent-",(system.time),".log")
+# log.add_output = "info", "log"
+# log.add_output = "debug", "log"

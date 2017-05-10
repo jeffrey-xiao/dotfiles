@@ -3,21 +3,23 @@ This repository contains all the dot files I use for my Ubuntu machine.
 
 ## Software I Use
 ```
-terminal    → rxvt-unicode
-shell       → bash
-editor      → vim/sublime/eclipse
 audio       → ncmpcpp/mpd/mpc
-irc         → weechat
-fm          → nautilus/ranger
 de/wm       → i3-gaps
+editor      → vim/sublime/eclipse
+fm          → nautilus/ranger
+irc         → weechat
 monitor     → i3blocks-gaps/htop
 multiplexer → tmux
+shell       → bash
+terminal    → rxvt-unicode
+torrent     → rtorrent
 video       → mpv
 viewer      → qpdfview
 ```
 
 ## Dependencies
-A full list of dependencies and installed software will appear in `./install.log`.
+A full list of dependencies and installed software will appear in `./install.log` when using bash script.
+Alternatively, you can check `./config.yaml` to see the dependencies by package.
 
 ## Installation
 ### With included bash scripts

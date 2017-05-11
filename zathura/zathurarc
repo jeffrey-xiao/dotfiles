@@ -1,0 +1,19 @@
+# zoom and scroll step size
+set zooom-step 20
+set scroll-step 80
+
+# copy selection to system clipboard
+set selection-clipboard clipboard
+
+# enable incremental search
+set incremental-search true
+
+# zoom
+map <C-i> zoom in
+map <C-o> zoom out
+
+# background color
+set recolor
+set recolor-darkcolor "#002b36"
+set recolor-lightcolor "#fdf6e3"
+set default-bg "#002b36"

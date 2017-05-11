@@ -116,8 +116,9 @@ let g:airline#extensions#tabline#enabled=1
 let g:airline_section_z = airline#section#create(['windowswap', '', '%l%\/%L%', '\:%3v'])
 
 "" Config for vimtex
-let g:vimtex_latexmk_callback=0
-let g:tex_conceal=""
+let g:vimtex_compiler_latexmk = {'callback' : 0}
+let g:latex_view_general_viewer = "zathura"
+let g:vimtex_view_method = "zathura"
 
 "" General config
 set nocompatible
@@ -152,7 +153,7 @@ let mapleader="\<Space>"
 autocmd filetype cpp nnoremap <F4> :!g++ -std=c++11 % -o %:r <CR>
 autocmd filetype cpp nnoremap <F5> :!g++ -std=c++11 % -o %:r && %:p:r<CR>
 
-autocmd filetype tex nmap <F3> <plug>(vimtex-compile-toggle)
+autocmd filetype tex nmap <F3> <plug>(vimtex-compile)
 autocmd filetype tex nmap <F4> <plug>(vimtex-errors)
 autocmd filetype tex nmap <F5> <plug>(vimtex-view)
 

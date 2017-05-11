@@ -60,11 +60,6 @@ other:
     - "nautilus"
     - "chromium-browser"
     - "youtube-dl"
-zathura:
-  link: "~/.config/zathura"
-  dependencies:
-    - "zathura"
-    - "xdotool"
 qpdfview:
   link: "~/.config/qpdfview"
   dependencies:

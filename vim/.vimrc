@@ -117,8 +117,6 @@ let g:airline_section_z = airline#section#create(['windowswap', '', '%l%\/%L%', 
 
 "" Config for vimtex
 let g:vimtex_compiler_latexmk = {'callback' : 0}
-let g:latex_view_general_viewer = "zathura"
-let g:vimtex_view_method = "zathura"
 
 "" General config
 set nocompatible

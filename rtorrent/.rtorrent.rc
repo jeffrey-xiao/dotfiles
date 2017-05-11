@@ -85,6 +85,7 @@ dht = on
 dht_port = 6881
 peer_exchange = yes
 dht.mode.set = on
+schedule = dht_node,30,0,"dht.add_node=dht.transmissionbt.com"
 
 # Logging
 # log.open_file = "log", (cat,"~/Downloads/logs/rtorrent-",(system.time),".log")

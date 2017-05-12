@@ -99,6 +99,7 @@ __twoline() {
 
     local marks
 
+    local stat="$($git_eng status --porcelain --branch | grep '^##' | grep -o '\[.\+\]$')"
     local all="$(git status --porcelain 2>/dev/null | wc -l)"
     local mod="$(git status --porcelain -uno 2>/dev/null | wc -l )"
     local unt="$(($all-$mod))"

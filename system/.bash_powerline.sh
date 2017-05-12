@@ -6,8 +6,8 @@ __powerline() {
   readonly PS_SYMBOL_DARWIN=''
   readonly PS_SYMBOL_LINUX='$'
   readonly PS_SYMBOL_OTHER='%'
-  readonly GIT_BRANCH_SYMBOL='⑂ '
-  readonly GIT_BRANCH_CHANGED_SYMBOL='+'
+  readonly GIT_MODIFIED_SYMBOL="*"
+  readonly GIT_UNTRACKED_SYMBOL="?"
   readonly GIT_NEED_PUSH_SYMBOL='⇡'
   readonly GIT_NEED_PULL_SYMBOL='⇣'
   readonly RIGHT_ARROW=''
@@ -120,15 +120,18 @@ __powerline() {
 
     local marks
 
-    # branch is modified?
-    [ -n "$($git_eng status --porcelain)" ] && marks+=" $GIT_BRANCH_CHANGED_SYMBOL"
-
-    # how many commits local branch is ahead/behind of remote?
     local stat="$($git_eng status --porcelain --branch | grep '^##' | grep -o '\[.\+\]$')"
-    local aheadN="$(echo $stat | grep -o 'ahead [[:digit:]]\+' | grep -o '[[:digit:]]\+')"
-    local behindN="$(echo $stat | grep -o 'behind [[:digit:]]\+' | grep -o '[[:digit:]]\+')"
-    [ -n "$aheadN" ] && marks+=" $GIT_NEED_PUSH_SYMBOL$aheadN"
-    [ -n "$behindN" ] && marks+=" $GIT_NEED_PULL_SYMBOL$behindN"
+    local all="$(git status --porcelain 2>/dev/null | wc -l)"
+    local mod="$(git status --porcelain -uno 2>/dev/null | wc -l )"
+    local unt="$(($all-$mod))"
+    local commit="$(git rev-list HEAD --abbrev-commit --abbrev=0 -n1 2>/dev/null)"
+    local ahead="$(echo $stat | grep -o 'ahead [[:digit:]]\+' | grep -o '[[:digit:]]\+')"
+    local behind="$(echo $stat | grep -o 'behind [[:digit:]]\+' | grep -o '[[:digit:]]\+')"
+
+    [ "$mod" -eq "0" ] || marks+=" $GIT_MODIFIED_SYMBOL$mod"
+    [ "$unt" -eq "0" ] || marks+=" $GIT_UNTRACKED_SYMBOL$unt"
+    [ -n "$ahead" ] && marks+=" $GIT_NEED_PUSH_SYMBOL$ahead"
+    [ -n "$behind" ] && marks+=" $GIT_NEED_PULL_SYMBOL$behind"
 
     # print the git branch segment without a trailing newline
     printf " $GIT_BRANCH_SYMBOL$branch$marks "

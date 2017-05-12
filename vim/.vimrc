@@ -167,6 +167,7 @@ nnoremap <C-H>      <C-W>h
 
 "" CtrlP bindings
 let g:ctrlp_cmd = 'CtrlPBuffer'
+let g:ctrlp_show_hidden = 1
 nmap <leader>p :CtrlP<CR>
 nmap <leader>b :CtrlPBuffer<CR>
 nmap <leader>m :CtrlPMixed<CR>

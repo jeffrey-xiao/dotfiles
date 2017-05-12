@@ -35,7 +35,7 @@ if [ -n "$force_color_prompt" ]; then
     color_prompt=
   fi
 fi
-. ~/.bash_powerline.sh
+. ~/.bash_twoline.sh
 unset color_prompt force_color_prompt
 
 # Set title to user@host:dir

@@ -1,18 +1,18 @@
 ## Directories
-ncmpcpp_directory = ~/.ncmpcpp
-lyrics_directory = ~/.lyrics
+ncmpcpp_directory = "$HOME/.ncmpcpp"
+lyrics_directory = "$HOME/.lyrics"
 
 ## Connection settings
-mpd_host = ~/.config/mpd/socket
+mpd_host = "$HOME/.config/mpd/socket"
 mpd_port = 6600
 mpd_connection_timeout = 5
 
 ## Needed for tag editor and file operations to work.
-mpd_music_dir = ~/Music
+mpd_music_dir = "$HOME/Music"
 mpd_crossfade_time = 5
 
 ## Music Visualizer options
-visualizer_fifo_path = /tmp/mpd.fifo
+visualizer_fifo_path = "/tmp/mpd.fifo"
 visualizer_output_name = "Visualizer feed"
 visualizer_in_stereo = yes
 visualizer_sample_multiplier = 1

@@ -8,14 +8,12 @@ set $music    urxvt -e ncmpcpp
 set $torrent  urxvt -e rtorrent
 set $terminal urxvt
 
-
 # Configuration for gaps
 gaps inner 20
 gaps outer -10
 smart_gaps on
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
+# Font for window titles
 font pango:FontAwesome 10
 font pango:Droid Sans Mono Dotted for Powerline 11
 
@@ -148,7 +146,6 @@ bindsym $mod+Shift+x exec lock
 
 # resize window (can also use mouse)
 mode "resize" {
-  # These bindings trigger as soon as you enter the resize mode
   # Vim bindings
   bindsym h resize shrink width 5 px or 5 ppt
   bindsym j resize grow height 5 px or 5 ppt
@@ -225,8 +222,8 @@ client.focused_inactive $base03    $base03       $base2    #00ff00
 client.urgent           $base03    $base03       $red      #00ff00
 
 hide_edge_borders both
-for_window [class="^.*"]        border pixel 3
-for_window [class="Power"]   border pixel 0
+for_window [class="^.*"]    border pixel 3
+for_window [class="Power"]  border pixel 0
 
 new_float none
 
@@ -254,7 +251,7 @@ exec_always feh --bg-scale "$HOME/.config/i3/wallpaper.png"
 exec_always xrandr --output eDP1 --mode 1600x900
 
 # Configure secondary monitor
-# exec_always xrandr --output DP1 --mode 1920x1080 --right-of eDP1
+#exec_always xrandr --output DP1 --mode 1920x1080 --right-of eDP1
 
 # Configure startup applications
 exec udisksctl mount --block-device /dev/sda5

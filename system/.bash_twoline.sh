@@ -1,4 +1,4 @@
-#!/usr/bin/env has
+#!/usr/bin/env bash
 
 __twoline() {
   # Unicode symbols
@@ -117,9 +117,9 @@ __twoline() {
 
   __formatted_path() {
     if [ $(id -u) -eq 0 ]; then
-      printf "$FG_BLUE\w$RESET"
+      printf "$FG_BLUE\W$RESET"
     else
-      printf "$FG_YELLOW\w$RESET"
+      printf "$FG_YELLOW\W$RESET"
     fi
   }
 

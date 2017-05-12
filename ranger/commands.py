@@ -60,6 +60,5 @@ class compress(Command):
 
     def tab(self):
         """ Complete with current folder name """
-
         extension = ['.zip', '.tar.gz', '.rar', '.7z']
         return ['compress ' + os.path.basename(self.fm.thisdir.path) + ext for ext in extension]

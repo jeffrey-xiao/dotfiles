@@ -54,8 +54,8 @@ let g:tmpl_search_paths=['~/.templates']
 let g:tmpl_auto_initialize=0
 
 "" Config for Nerdtree
-" Autostart on vim startup
-" autocmd vimenter * NERDTree
+"Autostart on vim startup
+"autocmd vimenter * NERDTree
 
 " Ctrl + n to open NerdTree
 map <C-n> :NERDTreeToggle<CR>
@@ -118,6 +118,10 @@ let g:airline_section_z = airline#section#create(['windowswap', '', '%l%\/%L%', 
 "" Config for vimtex
 let g:vimtex_compiler_latexmk = {'callback' : 0}
 
+"" Config for ctrlp
+let g:ctrlp_cmd = 'CtrlPBuffer'
+let g:ctrlp_show_hidden = 1
+
 "" General config
 set nocompatible
 set t_Co=256
@@ -135,15 +139,13 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
-
 set nohlsearch
 set incsearch
 set ignorecase
 set ruler
 set laststatus=2
-
-syntax enable
 set background=dark
+syntax enable
 silent! colorscheme solarized
 
 "" Key bindings
@@ -156,18 +158,16 @@ autocmd filetype tex nmap <F4> <plug>(vimtex-errors)
 autocmd filetype tex nmap <F5> <plug>(vimtex-view)
 
 nnoremap <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
-nmap <F8> :TagbarToggle<CR>
 vnoremap <C-c> "+y
+nmap <F8> :TagbarToggle<CR>
 
 "" Easy split navigation
-nnoremap <C-J>      <C-W>j
-nnoremap <C-K>      <C-W>k
-nnoremap <C-L>      <C-W>l
-nnoremap <C-H>      <C-W>h
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-L> <C-W>l
+nnoremap <C-H> <C-W>h
 
 "" CtrlP bindings
-let g:ctrlp_cmd = 'CtrlPBuffer'
-let g:ctrlp_show_hidden = 1
 nmap <leader>p :CtrlP<CR>
 nmap <leader>b :CtrlPBuffer<CR>
 nmap <leader>m :CtrlPMixed<CR>

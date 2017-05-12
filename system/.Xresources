@@ -24,8 +24,8 @@ URxvt.font: xft:Droid Sans Mono for Powerline:pixelsize=14
 URxvt.letterSpace: -1.5
 
 !! Real transparency
-! urxvt*depth: 32
-! urxvt*background: [90]#002b36
+!urxvt*depth: 32
+!urxvt*background: [90]#002b36
 
 !! Fake transparency
 urxvt*transparent: true

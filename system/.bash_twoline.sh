@@ -2,7 +2,7 @@
 
 __twoline() {
   # Unicode symbols
-  readonly GIT_MODIFIED_SYMBOL="!"
+  readonly GIT_MODIFIED_SYMBOL="*"
   readonly GIT_UNTRACKED_SYMBOL="?"
   readonly GIT_NEED_PUSH_SYMBOL='⇡'
   readonly GIT_NEED_PULL_SYMBOL='⇣'
@@ -112,14 +112,14 @@ __twoline() {
     [ -n "$behind" ] && marks+=" $GIT_NEED_PULL_SYMBOL$behind"
 
     # print the git branch segment without a trailing newline
-    printf "$FG_BASE1$branch$marks$FG_RESET"
+    printf "$FG_YELLOW$branch$marks$FG_RESET"
   }
 
   __formatted_path() {
     if [ $(id -u) -eq 0 ]; then
-      printf "$FG_YELLOW\w$RESET"
+      printf "$FG_BLUE\w$RESET"
     else
-      printf "$FG_BASE1\w$RESET"
+      printf "$FG_YELLOW\w$RESET"
     fi
   }
 

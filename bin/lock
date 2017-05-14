@@ -8,10 +8,10 @@ PX=0
 PY=0
 
 # lockscreen image info
-if [ -L "$HOME/.config/i3/lock.png" ]; then
-  FILE=$(readlink -f "$HOME/.config/i3/lock.png")
+if [ -L ~/.config/i3/lock.png ]; then
+  FILE=$(readlink -f ~/.config/i3/lock.png)
 else
-  FILE="$HOME/.config/i3.lock.png"
+  FILE=~/.config/i3.lock.png
 fi
 
 R=$(file $FILE | grep -o '[0-9]* x [0-9]*')
@@ -29,7 +29,7 @@ for RES in $SR
   PX=$(($SROX + $SRX/2 - $RX/2))
   PY=$(($SROY + $SRY/2 - $RY/2))
 
-  convert /tmp/screen.png "$HOME/.config/i3/lock.png" -geometry +$PX+$PY -composite -matte  /tmp/screen.png
+  convert /tmp/screen.png ~/.config/i3/lock.png -geometry +$PX+$PY -composite -matte  /tmp/screen.png
 done
 
 i3lock -e -u -n -i /tmp/screen.png

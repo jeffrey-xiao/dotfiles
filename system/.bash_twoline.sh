@@ -118,9 +118,9 @@ __twoline() {
 
   __formatted_path() {
     if [ $(id -u) -eq 0 ]; then
-      printf "$FG_BLUE\W$RESET"
+      printf "$FG_BLUE\w$RESET"
     else
-      printf "$FG_YELLOW\W$RESET"
+      printf "$FG_YELLOW\w$RESET"
     fi
   }
 
@@ -149,4 +149,3 @@ __twoline() {
 PROMPT_DIRTRIM=3
  __twoline
 unset __twoline
-# export PS1="┌─[\[\e[01;32m\]\u\[\e[00m\]@\[\e[01;32m\]\h\[\e[00m\]:\[\e[1;34m\]\w\[\e[0m\]]\n└─╼"

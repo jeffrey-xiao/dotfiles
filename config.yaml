@@ -43,6 +43,8 @@ mpv:
   dependencies:
     - "mpv"
 ncmpcpp:
+  prelink:
+    - "mkdir -p ~/Pictures/screenshots"
   link: "~/.ncmpcpp"
   dependencies:
     - "ncmpcpp"

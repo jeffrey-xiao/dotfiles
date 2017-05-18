@@ -88,9 +88,14 @@ sublime-text-3/Packages/User:
 system:
   link: "~"
   postlink:
-    - "xrdb ~/.Xresources"
-    - "git clone https://github.com/powerline/fonts ~/fonts"
+    - "git clone https://github.com/powerline/fonts ~/fonts/powerline-fonts"
     - ". ~/fonts/install.sh"
+    - "git clone https://github.com/sunaku/tamzen-font ~/fonts/tamzen-font"
+    - "xset fp+ ~/fonts/tamzen-font/bdf"
+    - "xset fp rehash"
+    - "mkdir ~/.fonts"
+    - "cp ~/fonts/tamzen-font/bdf/TamzenForPowerline8x16* ~/.fonts"
+    - "xrdb ~/.Xresources"
   dependencies:
     - "rxvt-unicode-256color"
 templates:

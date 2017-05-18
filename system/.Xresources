@@ -20,8 +20,8 @@ URxvt*scrollBar_right: true
 URxvt.thickness: 2
 
 !! Font
-URxvt.font: xft:Droid Sans Mono for Powerline:pixelsize=14
-URxvt.letterSpace: -1.5
+URxvt.font: -*-tamzenforpowerline-medium-*-*-*-16-*-*-*-*-*-*-*
+URxvt.letterSpace: 0.0
 
 !! Real transparency
 !urxvt*depth: 32

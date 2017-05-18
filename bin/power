@@ -10,6 +10,7 @@ import os
 import getpass
 
 class i3_exit:
+    font = 'TamzenForPowerline'
     def disable_buttons(self):
         self.cancel.set_sensitive(False)
         self.reboot.set_sensitive(False)
@@ -49,7 +50,7 @@ class i3_exit:
 
         #Cancel button
         self.cancel = gtk.Button("")
-        self.cancel.get_child().set_markup("<span font-family='DejaVu Sans Mono' font-size='large'>Cancel</span>")
+        self.cancel.get_child().set_markup("<span font-family='{}' font-size='large'>Cancel</span>".format(i3_exit.font))
         self.cancel.set_border_width(4)
         self.cancel.connect("clicked", self.cancel_action)
         self.button_box.pack_start(self.cancel)
@@ -57,7 +58,7 @@ class i3_exit:
 
         #Logout button
         self.logout = gtk.Button("")
-        self.logout.get_child().set_markup("<span font-family='DejaVu Sans Mono' font-size='large'>Logout</span>")
+        self.logout.get_child().set_markup("<span font-family='{}' font-size='large'>Logout</span>".format(i3_exit.font))
         self.logout.set_border_width(4)
         self.logout.connect("clicked", self.logout_action)
         self.button_box.pack_start(self.logout)
@@ -66,7 +67,7 @@ class i3_exit:
 
         #Reboot button
         self.reboot = gtk.Button("")
-        self.reboot.get_child().set_markup("<span font-family='DejaVu Sans Mono' font-size='large'>Reboot</span>")
+        self.reboot.get_child().set_markup("<span font-family='{}' font-size='large'>Reboot</span>".format(i3_exit.font))
         self.reboot.set_border_width(4)
         self.reboot.connect("clicked", self.reboot_action)
         self.button_box.pack_start(self.reboot)
@@ -74,7 +75,7 @@ class i3_exit:
 
         #Shutdown button
         self.shutdown = gtk.Button("")
-        self.shutdown.get_child().set_markup("<span font-family='DejaVu Sans Mono' font-size='large'>Shut Down</span>")
+        self.shutdown.get_child().set_markup("<span font-family='{}' font-size='large'>Shut Down</span>".format(i3_exit.font))
         self.shutdown.set_border_width(4)
         self.shutdown.connect("clicked", self.shutdown_action)
         self.button_box.pack_start(self.shutdown)

@@ -15,7 +15,7 @@ smart_gaps on
 
 # Font for window titles
 font pango:FontAwesome 10
-font pango:Droid Sans Mono Dotted for Powerline 11
+font pango:TamzenForPowerline 11
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -33,7 +33,7 @@ bindsym --release Shift+Print exec scrot -s ~/.tmp/tmp.png && xclip ~/.tmp/tmp.p
 bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
-bindsym $mod+d exec rofi -show run -lines 10 -eh 2 -width 100 -padding 300 -opacity "95" -bw 0 -bc "$base03" -bg "$base03" -fg "$base2" -hlbg "$yellow" -hlfg "$base2" -font "Droid Sans Mono Dotted for Powerline 16"
+bindsym $mod+d exec rofi -show run -lines 10 -eh 2 -width 100 -padding 300 -opacity "95" -bw 0 -bc "$base03" -bg "$base03" -fg "$base2" -hlbg "$yellow" -hlfg "$base2" -font "TamzenForPowerline 16"
 
 # change focus: vim bindings
 bindsym $mod+h focus left
@@ -230,7 +230,7 @@ new_float none
 # status bar
 bar {
   position top
-  font pango: Droid Sans Mono Dotted for Powerline, FontAwesome 11
+  font pango: TamzenForPowerline, FontAwesome 10.5
   status_command i3blocks -c "$HOME/.config/i3/i3blocks.conf"
   height 18
   strip_workspace_numbers yes

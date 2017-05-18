@@ -117,6 +117,7 @@ let g:airline_section_z = airline#section#create(['windowswap', '', '%l%\/%L%', 
 
 "" Config for vimtex
 let g:vimtex_compiler_latexmk = {'callback' : 0}
+let g:tex_conceal = ""
 
 "" Config for ctrlp
 let g:ctrlp_cmd = 'CtrlPBuffer'
@@ -175,7 +176,7 @@ nmap <leader>s :CtrlPMRU<CR>
 
 "" Highlighting options
 " Highlighting for transparent background
-hi Normal ctermbg=none
+hi Normal guibg=none ctermbg=none
 highlight NonText ctermbg=none
 
 " Custom highlighting for vimtex

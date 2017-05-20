@@ -47,4 +47,7 @@ chmod +x ./dotinstall/install
  - change the location in `other/redshift.conf`
  - change the city in `system/.profile`
  - change the API key in `bin/weather`
- - change the username in `weechat/irc.conf`
+ - change the username and nicks in `weechat/irc.conf`
+ - change the flags for `YouCompleteMe` in `vim/.ycm_extra_conf.y`
+
+Everything else works out of the box.

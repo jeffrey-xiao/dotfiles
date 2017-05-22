@@ -263,3 +263,5 @@ exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 exec --no-startup-id xautolock -time 10 -locker 'lock'
 exec --no-startup-id gnome-settings-daemon
+exec --no-startup-id xset fp+ ~/fonts/tamzen-font/bdf
+exec --no-startup-id xset fp rehash

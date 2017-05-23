@@ -6,7 +6,8 @@ __powerline() {
   readonly PS_SYMBOL_DARWIN=''
   readonly PS_SYMBOL_LINUX='$'
   readonly PS_SYMBOL_OTHER='%'
-  readonly GIT_MODIFIED_SYMBOL="*"
+  readonly GIT_UNCOMMITED_SYMBOL="+"
+  readonly GIT_UNSTAGED_SYMBOL="*"
   readonly GIT_UNTRACKED_SYMBOL="?"
   readonly GIT_NEED_PUSH_SYMBOL='⇡'
   readonly GIT_NEED_PULL_SYMBOL='⇣'
@@ -108,35 +109,6 @@ __powerline() {
     esac
   fi
 
-  __git_info() {
-    [ -x "$(which git)" ] || return    # git not found
-
-    local git_eng="env LANG=C git"   # force git output in English to make our work easier
-    # get current branch name or short SHA1 hash for detached head
-    local branch="$($git_eng symbolic-ref --short HEAD 2>/dev/null || $git_eng describe --tags --always 2>/dev/null)"
-    [ -n "$branch" ] || return  # git branch not found
-
-    $git_eng status &>/dev/null || return
-
-    local marks
-
-    local stat="$($git_eng status --porcelain --branch | grep '^##' | grep -o '\[.\+\]$')"
-    local all="$(git status --porcelain 2>/dev/null | wc -l)"
-    local mod="$(git status --porcelain -uno 2>/dev/null | wc -l )"
-    local unt="$(($all-$mod))"
-    local commit="$(git rev-list HEAD --abbrev-commit --abbrev=0 -n1 2>/dev/null)"
-    local ahead="$(echo $stat | grep -o 'ahead [[:digit:]]\+' | grep -o '[[:digit:]]\+')"
-    local behind="$(echo $stat | grep -o 'behind [[:digit:]]\+' | grep -o '[[:digit:]]\+')"
-
-    [ "$mod" -eq "0" ] || marks+=" $GIT_MODIFIED_SYMBOL$mod"
-    [ "$unt" -eq "0" ] || marks+=" $GIT_UNTRACKED_SYMBOL$unt"
-    [ -n "$ahead" ] && marks+=" $GIT_NEED_PUSH_SYMBOL$ahead"
-    [ -n "$behind" ] && marks+=" $GIT_NEED_PULL_SYMBOL$behind"
-
-    # print the git branch segment without a trailing newline
-    printf " $GIT_BRANCH_SYMBOL$branch$marks "
-  }
-
   split_pwd() {
     # Only show ellipses for directory trees -gt 3
     # Otherwise use the default pwd as the current \w replacement
@@ -158,7 +130,7 @@ __powerline() {
       local FG_EXIT="$FG_RED"
     fi
 
-    __powerline_git_info="$(__git_info)"
+    __powerline_git_info=" $(__git_info)"
     if [[ -z "${__powerline_git_info// }" ]]; then
       PS1="$BG_BASE1$FG_BASE3 \W $RESET$BG_EXIT$FG_BASE1$RIGHT_ARROW$RESET"
     else
@@ -167,6 +139,7 @@ __powerline() {
     fi
     PS1+="$BG_EXIT$FG_BASE3 $PS_SYMBOL $RESET$FG_EXIT$RIGHT_ARROW$RESET "
   }
+  source ~/.bash_git_info.sh
   PROMPT_COMMAND=ps1
 }
 

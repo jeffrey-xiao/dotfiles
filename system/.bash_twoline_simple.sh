@@ -3,11 +3,11 @@
 __twoline() {
 
   # Git symbols
-  local GIT_UNCOMMITED_SYMBOL="+"
-  local GIT_UNSTAGED_SYMBOL="*"
-  local GIT_UNTRACKED_SYMBOL="?"
-  local GIT_NEED_PUSH_SYMBOL='⇡'
-  local GIT_NEED_PULL_SYMBOL='⇣'
+  readonly GIT_UNCOMMITED_SYMBOL="+"
+  readonly GIT_UNSTAGED_SYMBOL="*"
+  readonly GIT_UNTRACKED_SYMBOL="?"
+  readonly GIT_NEED_PUSH_SYMBOL='⇡'
+  readonly GIT_NEED_PULL_SYMBOL='⇣'
 
   # Solarized colorscheme
   if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then

@@ -112,7 +112,7 @@ __twoline() {
       PS1="$__twoline_formatted_path\n"
       PS1+="$FG_EXIT> $RESET"
     else
-      PS1="$__twoline_formatted_path on $FG_YELLOW${__twoline_git_info}$RESET\n"
+      PS1="$__twoline_formatted_path on $FG_MAGENTA${__twoline_git_info}$RESET\n"
       PS1+="$FG_EXIT> $RESET"
     fi
   }

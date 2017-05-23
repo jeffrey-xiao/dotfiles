@@ -116,6 +116,7 @@ __twoline() {
       PS1+="$FG_EXIT└─╼$RESET "
     fi
   }
+  source ~/.bash_git_info.sh
   PROMPT_COMMAND=ps1
 }
 PROMPT_DIRTRIM=3

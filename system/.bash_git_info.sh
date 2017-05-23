@@ -18,8 +18,8 @@ __git_info() {
 
     local stat="$($git_eng status --porcelain --branch | grep '^##' | grep -o '\[.\+\]$')"
     local all="$(git status --porcelain 2>/dev/null | wc -l | trim)"
-    local unstaged="$(git status --porcelain 2>/dev/null | grep "^ M" | wc -l | trim)"
-    local uncommited="$(git status --porcelain 2>/dev/null | grep "^M" | wc -l | trim)"
+    local unstaged="$(git status --porcelain 2>/dev/null | grep "^ \w" | wc -l | trim)"
+    local uncommited="$(git status --porcelain 2>/dev/null | grep "^\w\(\w\|\s\)" | wc -l | trim)"
     local untracked="$(($all-$unstaged-$uncommited))"
     local commit="$(git rev-list HEAD --abbrev-commit --abbrev=0 -n1 2>/dev/null)"
     local ahead="$(echo $stat | grep -o 'ahead [[:digit:]]\+' | grep -o '[[:digit:]]\+')"

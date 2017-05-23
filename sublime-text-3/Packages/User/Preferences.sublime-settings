@@ -8,9 +8,6 @@
 	"font_size": 12,
 	"ignored_packages":
 	[
-		"CSScomb",
-		"LaTeXTools",
-		"SublimeCodeIntel",
 		"Vintage"
 	],
 	"indent_guide_options":

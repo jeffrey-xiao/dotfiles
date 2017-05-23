@@ -33,7 +33,7 @@ bindsym --release Shift+Print exec scrot -s ~/.tmp/tmp.png && xclip ~/.tmp/tmp.p
 bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
-bindsym $mod+d exec rofi -show run -lines 10 -eh 2 -width 100 -padding 300 -opacity "95" -bw 0 -bc "$base03" -bg "$base03" -fg "$base2" -hlbg "$yellow" -hlfg "$base2" -font "TamzenForPowerline 16"
+bindsym $mod+d exec rofi -show run
 
 # change focus: vim bindings
 bindsym $mod+h focus left

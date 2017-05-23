@@ -51,6 +51,7 @@ URxvt.scrollstyle:        plain
 URxvt*scrollColor:        #777777
 URxvt*scrollBar_right:    true
 URxvt.thickness:          2
+URxvt.internalBorder:     10
 
 !! Font
 URxvt.font:               -*-tamzenforpowerline-medium-*-*-*-16-*-*-*-*-*-*-*

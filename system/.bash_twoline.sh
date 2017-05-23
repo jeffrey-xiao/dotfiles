@@ -2,7 +2,8 @@
 
 __twoline() {
   # Unicode symbols
-  readonly GIT_MODIFIED_SYMBOL="*"
+  readonly GIT_UNCOMMITED_SYMBOL="+"
+  readonly GIT_UNSTAGED_SYMBOL="*"
   readonly GIT_UNTRACKED_SYMBOL="?"
   readonly GIT_NEED_PUSH_SYMBOL='⇡'
   readonly GIT_NEED_PULL_SYMBOL='⇣'
@@ -87,35 +88,6 @@ __twoline() {
   readonly RESET="\[$(tput sgr0)\]"
   readonly BOLD="\[$(tput bold)\]"
 
-  __git_info() {
-    [ -x "$(which git)" ] || return    # git not found
-
-    local git_eng="env LANG=C git"   # force git output in English to make our work easier
-    # get current branch name or short SHA1 hash for detached head
-    local branch="$($git_eng symbolic-ref --short HEAD 2>/dev/null || $git_eng describe --tags --always 2>/dev/null)"
-    [ -n "$branch" ] || return  # git branch not found
-
-    $git_eng status &>/dev/null || return
-
-    local marks
-
-    local stat="$($git_eng status --porcelain --branch | grep '^##' | grep -o '\[.\+\]$')"
-    local all="$(git status --porcelain 2>/dev/null | wc -l)"
-    local mod="$(git status --porcelain -uno 2>/dev/null | wc -l )"
-    local unt="$(($all-$mod))"
-    local commit="$(git rev-list HEAD --abbrev-commit --abbrev=0 -n1 2>/dev/null)"
-    local ahead="$(echo $stat | grep -o 'ahead [[:digit:]]\+' | grep -o '[[:digit:]]\+')"
-    local behind="$(echo $stat | grep -o 'behind [[:digit:]]\+' | grep -o '[[:digit:]]\+')"
-
-    [ "$mod" -eq "0" ] || marks+=" $GIT_MODIFIED_SYMBOL$mod"
-    [ "$unt" -eq "0" ] || marks+=" $GIT_UNTRACKED_SYMBOL$unt"
-    [ -n "$ahead" ] && marks+=" $GIT_NEED_PUSH_SYMBOL$ahead"
-    [ -n "$behind" ] && marks+=" $GIT_NEED_PULL_SYMBOL$behind"
-
-    # print the git branch segment without a trailing newline
-    printf "$FG_YELLOW$branch$marks$FG_RESET"
-  }
-
   __formatted_path() {
     if [ $(id -u) -eq 0 ]; then
       printf "$FG_BLUE\w$RESET"
@@ -140,10 +112,11 @@ __twoline() {
       PS1="$FG_EXIT┌─[$RESET$__twoline_formatted_path$FG_EXIT]$RESET\n"
       PS1+="$FG_EXIT└─╼$RESET "
     else
-      PS1="$FG_EXIT┌─[$RESET$__twoline_formatted_path$FG_EXIT]─[$RESET${__twoline_git_info}$FG_EXIT]$RESET\n"
+      PS1="$FG_EXIT┌─[$RESET$__twoline_formatted_path$FG_EXIT]─[$RESET$FG_YELLOW${__twoline_git_info}$RESET$FG_EXIT]$RESET\n"
       PS1+="$FG_EXIT└─╼$RESET "
     fi
   }
+  source ~/.bash_git_info.sh
   PROMPT_COMMAND=ps1
 }
 PROMPT_DIRTRIM=3

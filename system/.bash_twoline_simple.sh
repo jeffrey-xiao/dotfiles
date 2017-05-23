@@ -1,20 +1,13 @@
 #!/usr/bin/env bash
 
-__powerline() {
+__twoline() {
 
-  # Unicode symbols
-  readonly PS_SYMBOL_DARWIN=''
-  readonly PS_SYMBOL_LINUX='$'
-  readonly PS_SYMBOL_OTHER='%'
+  # Git symbols
   readonly GIT_UNCOMMITED_SYMBOL="+"
   readonly GIT_UNSTAGED_SYMBOL="*"
   readonly GIT_UNTRACKED_SYMBOL="?"
   readonly GIT_NEED_PUSH_SYMBOL='⇡'
   readonly GIT_NEED_PULL_SYMBOL='⇣'
-  readonly RIGHT_ARROW=''
-  readonly LEFT_ARROW=''
-  readonly RIGHT_SEP=''
-  readonly LEFT_SEP=''
 
   # Solarized colorscheme
   if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
@@ -96,26 +89,11 @@ __powerline() {
   readonly RESET="\[$(tput sgr0)\]"
   readonly BOLD="\[$(tput bold)\]"
 
-  if [[ -z "$PS_SYMBOL" ]]; then
-    case "$(uname)" in
-      Darwin)
-        PS_SYMBOL=$PS_SYMBOL_DARWIN
-        ;;
-      Linux)
-        PS_SYMBOL=$PS_SYMBOL_LINUX
-        ;;
-      *)
-        PS_SYMBOL=$PS_SYMBOL_OTHER
-    esac
-  fi
-
-  split_pwd() {
-    # Only show ellipses for directory trees -gt 3
-    # Otherwise use the default pwd as the current \w replacement
-    if [ $(pwd | grep -o '/' | wc -l) -gt 3 ]; then
-      pwd | cut -d'/' -f4-5 | xargs -I{} echo {}"/.../${PWD##*/}"
+  __formatted_path() {
+    if [ $(id -u) -eq 0 ]; then
+      printf "$FG_BLUE\w$RESET"
     else
-      pwd
+      printf "$FG_YELLOW\w$RESET"
     fi
   }
 
@@ -123,25 +101,23 @@ __powerline() {
     # Check the exit code of the previous command and display different
     # colors in the prompt accordingly.
     if [ $? -eq 0 ]; then
-      local BG_EXIT="$BG_GREEN"
       local FG_EXIT="$FG_GREEN"
     else
-      local BG_EXIT="$BG_RED"
       local FG_EXIT="$FG_RED"
     fi
 
-    __powerline_git_info=" $(__git_info)"
-    if [[ -z "${__powerline_git_info// }" ]]; then
-      PS1="$BG_BASE1$FG_BASE3 \W $RESET$BG_EXIT$FG_BASE1$RIGHT_ARROW$RESET"
+    __twoline_git_info="$(__git_info)"
+    __twoline_formatted_path="$(__formatted_path)"
+    if [[ -z "${__twoline_git_info// }" ]]; then
+      PS1="$__twoline_formatted_path\n"
+      PS1+="$FG_EXIT> $RESET"
     else
-      PS1="$BG_BASE1$FG_BASE3 \W $RESET$BG_BLUE$FG_BASE1$RIGHT_ARROW$RESET"
-      PS1+="$BG_BLUE$FG_BASE3\${__powerline_git_info}$RESET$BG_EXIT$FG_BLUE$RIGHT_ARROW$RESET"
+      PS1="$__twoline_formatted_path on $FG_MAGENTA${__twoline_git_info}$RESET\n"
+      PS1+="$FG_EXIT> $RESET"
     fi
-    PS1+="$BG_EXIT$FG_BASE3 $PS_SYMBOL $RESET$FG_EXIT$RIGHT_ARROW$RESET "
   }
   source ~/.bash_git_info.sh
   PROMPT_COMMAND=ps1
 }
-
-__powerline
-unset __powerline
+ __twoline
+unset __twoline

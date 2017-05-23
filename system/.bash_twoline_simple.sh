@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 __twoline() {
-  # Git symbols
-  readonly GIT_MODIFIED_SYMBOL="*"
+  # Unicode symbols
+  readonly GIT_UNCOMMITED_SYMBOL="+"
+  readonly GIT_UNSTAGED_SYMBOL="*"
   readonly GIT_UNTRACKED_SYMBOL="?"
   readonly GIT_NEED_PUSH_SYMBOL='⇡'
   readonly GIT_NEED_PULL_SYMBOL='⇣'
@@ -101,14 +102,16 @@ __twoline() {
 
     local stat="$($git_eng status --porcelain --branch | grep '^##' | grep -o '\[.\+\]$')"
     local all="$(git status --porcelain 2>/dev/null | wc -l | trim)"
-    local mod="$(git status --porcelain -uno 2>/dev/null | wc -l | trim)"
-    local unt="$(($all-$mod))"
+    local unstaged="$(git status --porcelain 2>/dev/null | grep "^ M" | wc -l | trim)"
+    local uncommited="$(git status --porcelain 2>/dev/null | grep "^M" | wc -l | trim)"
+    local untracked="$(($all-$unstaged-$uncommited))"
     local commit="$(git rev-list HEAD --abbrev-commit --abbrev=0 -n1 2>/dev/null)"
     local ahead="$(echo $stat | grep -o 'ahead [[:digit:]]\+' | grep -o '[[:digit:]]\+')"
     local behind="$(echo $stat | grep -o 'behind [[:digit:]]\+' | grep -o '[[:digit:]]\+')"
 
-    [ "$mod" -eq "0" ] || marks+=" $GIT_MODIFIED_SYMBOL$mod"
-    [ "$unt" -eq "0" ] || marks+=" $GIT_UNTRACKED_SYMBOL$unt"
+    [ "$untracked" -eq "0" ] || marks+=" $GIT_UNTRACKED_SYMBOL$untracked"
+    [ "$unstaged" -eq "0" ] || marks+=" $GIT_UNSTAGED_SYMBOL$unstaged"
+    [ "$uncommited" -eq "0" ] || marks+=" $GIT_UNCOMMITED_SYMBOL$uncommited"
     [ -n "$ahead" ] && marks+=" $GIT_NEED_PUSH_SYMBOL$ahead"
     [ -n "$behind" ] && marks+=" $GIT_NEED_PULL_SYMBOL$behind"
 

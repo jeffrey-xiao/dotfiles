@@ -12,7 +12,6 @@ shopt -s histappend
 
 # Check window size and update LINES and COLUMNS
 shopt -s checkwinsize
-
 shopt -s dotglob
 
 # If set, the pattern "**" used in a pathname expansion context will
@@ -35,7 +34,7 @@ if [ -n "$force_color_prompt" ]; then
     color_prompt=
   fi
 fi
-. ~/.bash_twoline_simple.sh
+. ~/.bash_twoline.sh
 unset color_prompt force_color_prompt
 
 # Set title to user@host:dir
@@ -76,9 +75,12 @@ fi
 
 # Environment variables for MPD
 export MPD_HOST=~/.config/mpd/socket
-# export MPD_HOST=localhost
 export MPD_PORT=6600
 
 # Envinroment variables for ranger
 export EDITOR=vim
 export PAGER=less
+
+# Base 16 config
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"

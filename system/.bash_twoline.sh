@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 __twoline() {
-  # Unicode symbols
+
+  # Git symbols
   readonly GIT_UNCOMMITED_SYMBOL="+"
   readonly GIT_UNSTAGED_SYMBOL="*"
   readonly GIT_UNTRACKED_SYMBOL="?"

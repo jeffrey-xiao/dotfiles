@@ -80,7 +80,3 @@ export MPD_PORT=6600
 # Envinroment variables for ranger
 export EDITOR=vim
 export PAGER=less
-
-# Base 16 config
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"

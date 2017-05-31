@@ -10,11 +10,11 @@ max_peers_seed = 50
 max_uploads = 10
 
 # Maximum number of simultaneous downloads and uploads
-max_downloads_global = 30
+max_downloads_global = 50
 max_uploads_global = 30
 
 # Global upload and download rate in KiB. "0" for unlimited.
-throttle.global_down.max_rate.set_kb = 50
+throttle.global_down.max_rate.set_kb = 0
 throttle.global_up.max_rate.set_kb = 300
 
 # Default directory to save the downloaded torrents.
@@ -38,8 +38,8 @@ schedule = session_save,240,300,session_save=
 
 # Ratio config
 group.seeding.ratio.enable=
-group2.seeding.ratio.min.set=10
-group2.seeding.ratio.max.set=20
+group2.seeding.ratio.min.set=100
+group2.seeding.ratio.max.set=200
 group2.seeding.ratio.upload.set=20M
 
 # Move files to ~/Downloads/complete when download completes

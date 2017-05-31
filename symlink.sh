@@ -4,10 +4,12 @@
 export DOTFILES_DIR
 DOTFILES_DIR=$(pwd)
 
+shopt -s nullglob
+shopt -s dotglob
+
 ## Linking to ~
 for folder in git vim system compton tmux rtorrent; do
   for f in $DOTFILES_DIR/$folder/*; do
-    echo $f
     ln -sfv "$f" ~
   done
 done
@@ -17,7 +19,6 @@ for folder in ncmpcpp weechat templates bin; do
   # rm -rf ~/.$folder
   mkdir -p ~/.$folder
   for f in $DOTFILES_DIR/$folder/*; do
-    echo $f
     ln -sfv "$f" ~/.$folder
   done
 done

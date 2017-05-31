@@ -245,7 +245,7 @@ bar {
 }
 
 # Set wallpaper
-exec_always feh --bg-scale "$HOME/.config/i3/wallpaper.png"
+exec_always feh --bg-scale "$HOME/.config/i3/images/wallpaper.png"
 
 # Configure monitor
 exec_always xrandr --output eDP1 --mode 1600x900

@@ -14,19 +14,21 @@ max_downloads_global = 30
 max_uploads_global = 30
 
 # Global upload and download rate in KiB. "0" for unlimited.
-download_rate = 0
-upload_rate = 300
+throttle.global_down.max_rate.set_kb = 50
+throttle.global_up.max_rate.set_kb = 300
 
 # Default directory to save the downloaded torrents.
-directory = ~/Downloads/incomplete
+directory.default.set = ~/Downloads/incomplete
 
 # Default session directory.
 session = ~/.rtorrent.sessions
 
-# Watch a directory for new torrents, and stop those that have been deleted.
-schedule = watch_directory,5,5,"load_start=~/Downloads/*.torrent"
-schedule = tied_directory,6,5,start_tied=
-schedule = untied_directory,7,5,stop_untied=
+# Watch a directory for new torrents
+schedule2 = watch_directory_1,5,5,"load_start=~/Downloads/*.torrent,d.set_custom1=~/Downloads/complete"
+
+# Restart torrents that have been copied back and stop those that have been deleted
+schedule2 = tied_directory,1,30,start_tied=
+schedule2 = untied_directory,1,30,close_untied=
 
 # Close torrents when diskspace is low.
 schedule = low_diskspace,5,60,close_low_diskspace=2000M
@@ -35,14 +37,13 @@ schedule = low_diskspace,5,60,close_low_diskspace=2000M
 schedule = session_save,240,300,session_save=
 
 # Ratio config
-ratio.enable=
-ratio.min.set=100
-ratio.max.set=100
-ratio.upload.set=0
-system.method.set = group.seeding.ratio.command, d.close=, d.erase=
+group.seeding.ratio.enable=
+group2.seeding.ratio.min.set=10
+group2.seeding.ratio.max.set=20
+group2.seeding.ratio.upload.set=20M
 
 # Move files to ~/Downloads/complete when download completes
-system.method.set_key = event.download.finished,move_complete,"d.set_directory=~/Downloads/complete; execute=mv,-n,$d.get_base_path=,~/Downloads/complete"
+system.method.set_key = event.download.finished,move_complete,"d.set_directory=$d.get_custom1=; execute=mv,-n,$d.get_base_path=,$d.get_custom1="
 
 port_range = 33101-33199
 port_random = yes

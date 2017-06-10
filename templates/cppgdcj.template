@@ -1,0 +1,18 @@
+#include <message.h>
+#include <bits/stdc++.h>
+#include ""
+
+using namespace std;
+
+#define MASTER_NODE 0
+#define INF (1L << 60)
+#define DONE -1
+
+typedef long long LL;
+
+int main () {
+  LL nodes = NumberOfNodes();
+  LL id = MyNodeId();
+
+  return 0;
+}

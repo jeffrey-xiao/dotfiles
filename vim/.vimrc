@@ -125,26 +125,34 @@ let g:ctrlp_show_hidden = 1
 
 "" General config
 set nocompatible
-set t_Co=256
+set wildmenu
+
 set tabstop=2
 set shiftwidth=2
 set expandtab
 set autoindent
 set smartindent
-set autoread
+set smarttab
 set cindent
 set nowrap
+set autoread
+
 set number
 set relativenumber
+set ruler
+set laststatus=2
+
 set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
+
 set nohlsearch
 set incsearch
 set ignorecase
-set ruler
-set laststatus=2
+set smartcase
+
+set t_Co=256
 set background=dark
 syntax enable
 silent! colorscheme solarized

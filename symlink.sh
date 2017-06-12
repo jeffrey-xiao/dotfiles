@@ -24,7 +24,7 @@ for folder in ncmpcpp weechat templates bin; do
 done
 
 ## Linking to .config/$folder
-for folder in mpd sublime-text-3/Packages/User i3 ranger mpv qpdfview fontconfig htop; do
+for folder in mpd sublime-text-3/Packages/User i3 ranger mpv qpdfview fontconfig htop dunst; do
   # rm -rf ~/.config/$folder
   mkdir -p ~/.config/$folder
   for f in $DOTFILES_DIR/$folder/*; do

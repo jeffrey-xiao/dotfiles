@@ -4,6 +4,10 @@ compton:
   link: "~"
   dependencies:
     - "compton"
+dunst:
+  link: "~/.config/dunst"
+  dependencies:
+    - "dunst"
 fontconfig:
   link: "~/.config/fontconfig"
 git:

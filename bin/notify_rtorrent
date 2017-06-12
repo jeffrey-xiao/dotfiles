@@ -1,0 +1,2 @@
+#!/bin/bash
+notify-send "RTorrent: Download Finished" "$1"

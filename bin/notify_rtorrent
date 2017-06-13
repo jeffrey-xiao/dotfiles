@@ -1,2 +1,2 @@
 #!/bin/bash
-notify-send "RTorrent: Download Finished" "$1"
+notify-send -u "critical" "RTorrent: Download Finished" "$1"

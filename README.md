@@ -3,18 +3,19 @@ This repository contains all the dot files I use for my Ubuntu machine.
 
 ## Software I Use
 ```
-audio       → ncmpcpp/mpd/mpc
-de/wm       → i3-gaps
-editor      → vim/sublime/eclipse
-fm          → nautilus/ranger
-irc         → weechat
-monitor     → i3blocks-gaps/htop
-multiplexer → tmux
-shell       → bash
-terminal    → rxvt-unicode
-torrent     → rtorrent
-video       → mpv
-viewer      → qpdfview
+audio         → ncmpcpp/mpd/mpc
+de/wm         → i3-gaps
+editor        → vim/sublime/eclipse
+fm            → nautilus/ranger
+irc           → weechat
+monitor       → i3blocks-gaps/htop
+multiplexer   → tmux
+notifications → dunst
+shell         → bash
+terminal      → rxvt-unicode
+torrent       → rtorrent
+video         → mpv
+viewer        → qpdfview
 ```
 
 ## Dependencies

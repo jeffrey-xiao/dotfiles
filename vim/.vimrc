@@ -21,7 +21,7 @@ Plug 'majutsushi/tagbar'
 Plug 'kien/ctrlp.vim'
 
 " Auto brackets, indents and better comments
-Plug 'raimondi/delimitmate'
+" Plug 'raimondi/delimitmate'
 Plug 'yggdroot/indentline'
 Plug 'tpope/vim-commentary'
 
@@ -76,7 +76,11 @@ let g:indentLine_char='┊'
 
 "" Config for delimitMate
 " Adds a new line before the autocompleted bracket
-let g:delimitMate_expand_cr=1
+let g:delimitMate_autoclose = 1
+let g:delimitMate_matchpairs = "(:),[:],{:},<:>"
+let g:delimitMate_expand_space = 1
+let g:delimitMate_expand_cr = 1
+let g:delimitMate_expand_inside_quotes = 1
 
 "" Config for airline
 if !exists('g:airline_symbols')
@@ -126,8 +130,11 @@ let g:ctrlp_show_hidden = 1
 "" General config
 set nocompatible
 set wildmenu
+set conceallevel=0
+set backspace=2
 
 set tabstop=2
+set softtabstop=2
 set shiftwidth=2
 set expandtab
 set autoindent

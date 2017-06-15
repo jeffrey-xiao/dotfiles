@@ -30,7 +30,8 @@ for f in \
   build-essential cmake python-dev python3-dev curl \
   fonts-font-awesome x11-xserver-utils playerctl \
   youtube-dl qpdfview w3m acpi sysstat feh jq blueman \
-  xautolock atool redshift-gtk xbacklight gnome-settings-daemon network-manager xclip
+  xautolock atool redshift-gtk xbacklight gnome-settings-daemon network-manager xclip \
+  dunst
 do
   sudo apt-get install -y $f
   if [ $(dpkg-query -W -f='${Status}' $f 2>/dev/null | grep -c "ok installed") -eq 1 ]; then
@@ -41,11 +42,15 @@ do
 done
 
 ## Reinstalling all vim packages via Plug and building YouCompleteMe
-#rm -rf ~/.vim
-#curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-#vim -c PlugInstall -c q! -c q!
-#~/.vim/plugged/youcompleteme/install.py --clang-completer
+rm -rf ~/.vim
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+vim -c PlugInstall -c q! -c q!
+~/.vim/plugged/youcompleteme/install.py --clang-completer
 
 ## Installing powerline fonts
-#git clone https://github.com/powerline/fonts ~/fonts
-#. ~/fonts/install.sh
+git clone https://github.com/powerline/fonts ~/fonts/powerline-fonts
+. ~/fonts/install.sh
+git clone https://github.com/sunaku/tamzen-font ~/fonts/tamzen-font
+mkdir ~/.fonts
+cp ~/fonts/tamzen-font/bdf/TamzenForPowerline8x16* ~/.fonts
+xrdb ~/.Xresources

@@ -166,8 +166,8 @@ silent! colorscheme solarized
 
 "" Key bindings
 let mapleader="\<Space>"
-autocmd filetype cpp nnoremap <F4> :!g++ -std=c++11 % -o %:r <CR>
-autocmd filetype cpp nnoremap <F5> :!g++ -std=c++11 % -o %:r && %:p:r<CR>
+autocmd filetype cpp nnoremap <F4> :!g++ -std=c++14 % -o %:r <CR>
+autocmd filetype cpp nnoremap <F5> :!g++ -std=c++14 % -o %:r && %:p:r<CR>
 
 autocmd filetype tex nmap <F3> <plug>(vimtex-compile)
 autocmd filetype tex nmap <F4> <plug>(vimtex-errors)

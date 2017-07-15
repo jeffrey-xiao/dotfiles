@@ -49,6 +49,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 
 call plug#end()
 
+""" Config for plugins
 "" Config for VimTemplates
 let g:tmpl_search_paths=['~/.templates']
 let g:tmpl_auto_initialize=0
@@ -73,6 +74,7 @@ let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
 "" Config for the indentLine
 let g:indentLine_color_term = 239
 let g:indentLine_char='┊'
+let g:indentLine_conceallevel = 0
 
 "" Config for delimitMate
 " Adds a new line before the autocompleted bracket
@@ -83,6 +85,7 @@ let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_inside_quotes = 1
 
 "" Config for airline
+" Initialize dictionary for airline symbols
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
@@ -106,7 +109,7 @@ let g:airline_symbols.spell = 'Ꞩ'
 let g:airline_symbols.notexists = '∄'
 let g:airline_symbols.whitespace ='Ξ'
 
-" powerline symbols
+" Powerline symbols
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
@@ -115,6 +118,7 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
+" Other airline config
 let g:airline_theme='solarized'
 let g:airline#extensions#tabline#enabled=1
 let g:airline_section_z = airline#section#create(['windowswap', '', '%l%\/%L%', '\:%3v'])
@@ -127,12 +131,8 @@ let g:tex_conceal = ""
 let g:ctrlp_cmd = 'CtrlPBuffer'
 let g:ctrlp_show_hidden = 1
 
-"" General config
-set nocompatible
-set wildmenu
-set conceallevel=0
-set backspace=2
-
+""" General config
+"" Indentation
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
@@ -142,46 +142,65 @@ set smartindent
 set smarttab
 set cindent
 set nowrap
-set autoread
 
+"" Line/column numbers
 set number
 set relativenumber
 set ruler
 set laststatus=2
 
+"" No beeping or error sounds
 set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
 
+"" Searching config
 set nohlsearch
 set incsearch
 set ignorecase
 set smartcase
 
+"" Color scheme config
 set t_Co=256
 set background=dark
 syntax enable
 silent! colorscheme solarized
 
-"" Key bindings
+"" Other config
+set nocompatible
+set wildmenu
+set conceallevel=0
+set backspace=2
+set autoread
+
+""" Key bindings
+"" Remap leader
 let mapleader="\<Space>"
+
+"" Cpp bindings: compile, and compile and run
 autocmd filetype cpp nnoremap <F4> :!g++ -std=c++14 % -o %:r <CR>
 autocmd filetype cpp nnoremap <F5> :!g++ -std=c++14 % -o %:r && %:p:r<CR>
 
+"" Latex bindings
 autocmd filetype tex nmap <F3> <plug>(vimtex-compile)
 autocmd filetype tex nmap <F4> <plug>(vimtex-errors)
 autocmd filetype tex nmap <F5> <plug>(vimtex-view)
 
+"" Delete trailing whitespace
 nnoremap <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
+"" Toggle tagbar
+nmap <F7> :TagbarToggle<CR>
+
+"" Copy into clipboard
 vnoremap <C-c> "+y
-nmap <F8> :TagbarToggle<CR>
 
 "" Easy split navigation
-nnoremap <C-J> <C-W>j
-nnoremap <C-K> <C-W>k
-nnoremap <C-L> <C-W>l
-nnoremap <C-H> <C-W>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <C-h> <C-w>h
 
 "" CtrlP bindings
 nmap <leader>p :CtrlP<CR>
@@ -189,12 +208,17 @@ nmap <leader>b :CtrlPBuffer<CR>
 nmap <leader>m :CtrlPMixed<CR>
 nmap <leader>s :CtrlPMRU<CR>
 
-"" Highlighting options
-" Highlighting for transparent background
+""" Highlighting config
+"" Underline current line
+set cursorline
+hi clear CursorLine
+hi CursorLine gui=underline cterm=underline
+
+"" Highlighting for transparent background
 hi Normal guibg=none ctermbg=none
 highlight NonText ctermbg=none
 
-" Custom highlighting for vimtex
+"" Custom highlighting for vimtex
 highlight texMathMatcher ctermbg=none
 highlight texMathZoneX ctermbg=none
 highlight texRefLabel ctermbg=none

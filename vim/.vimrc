@@ -56,7 +56,7 @@ let g:tmpl_auto_initialize=0
 
 "" Config for Nerdtree
 "Autostart on vim startup
-"autocmd vimenter * NERDTree
+"au vimenter * NERDTree
 
 " Ctrl + n to open NerdTree
 map <C-n> :NERDTreeToggle<CR>
@@ -65,7 +65,7 @@ map <C-n> :NERDTreeToggle<CR>
 let g:nerdtree_tabs_open_on_console_startup=0
 
 " Close vim when NERDTree is the only tab left
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 "" Config for YouCompleteMe
 let g:ycm_complete_in_comments=0
@@ -133,12 +133,16 @@ let g:ctrlp_cmd = 'CtrlPBuffer'
 let g:ctrlp_show_hidden = 1
 
 if executable('ack')
+  set grepprg=ack\ -i\ --nocolor\ --nogroup\ ""\ %s
   let g:ctrlp_user_command = 'ack "" %s -g --nocolor'
   let g:ctrlp_use_caching = 0
 elseif executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
   let g:ctrlp_use_caching = 0
 endif
+
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 "" Always have quickfix take entire bot
 au Filetype qf wincmd J
@@ -197,13 +201,13 @@ set autoread
 let mapleader="\<Space>"
 
 "" Cpp bindings: compile, and compile and run
-autocmd filetype cpp nnoremap <F4> :!g++ -std=c++14 % -o %:r <CR>
-autocmd filetype cpp nnoremap <F5> :!g++ -std=c++14 % -o %:r && %:p:r<CR>
+au Filetype cpp nnoremap <F4> :!g++ -std=c++14 % -o %:r <CR>
+au Filetype cpp nnoremap <F5> :!g++ -std=c++14 % -o %:r && %:p:r<CR>
 
 "" Latex bindings
-autocmd filetype tex nmap <F3> <plug>(vimtex-compile)
-autocmd filetype tex nmap <F4> <plug>(vimtex-errors)
-autocmd filetype tex nmap <F5> <plug>(vimtex-view)
+au Filetype tex nmap <F3> <plug>(vimtex-compile)
+au Filetype tex nmap <F4> <plug>(vimtex-errors)
+au Filetype tex nmap <F5> <plug>(vimtex-view)
 
 "" Delete trailing whitespace
 nnoremap <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>

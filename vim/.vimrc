@@ -70,6 +70,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 "" Config for YouCompleteMe
 let g:ycm_complete_in_comments=0
 let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
+set shortmess+=c
 
 "" Config for the indentLine
 let g:indentLine_color_term = 239
@@ -130,6 +131,23 @@ let g:tex_conceal = ""
 "" Config for ctrlp
 let g:ctrlp_cmd = 'CtrlPBuffer'
 let g:ctrlp_show_hidden = 1
+
+if executable('ack')
+  let g:ctrlp_user_command = 'ack "" %s -g --nocolor'
+  let g:ctrlp_use_caching = 0
+elseif executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_use_caching = 0
+endif
+
+"" Always have quickfix take entire bot
+au Filetype qf wincmd J
+
+"" Adjust quickfix window height to be 10 lines
+au Filetype qf call AdjustWindowHeight(3, 10)
+function! AdjustWindowHeight(minHeight, maxHeight)
+  exe max([min([line("$"), a:maxHeight]), a:minHeight]) . "wincmd _"
+endfunction
 
 """ General config
 "" Indentation
@@ -206,7 +224,7 @@ nnoremap <C-h> <C-w>h
 nmap <leader>p :CtrlP<CR>
 nmap <leader>b :CtrlPBuffer<CR>
 nmap <leader>m :CtrlPMixed<CR>
-nmap <leader>s :CtrlPMRU<CR>
+nmap <leader>a :CtrlPMRU<CR>
 
 """ Highlighting config
 "" Underline current line

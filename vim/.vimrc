@@ -1,3 +1,24 @@
+""" Functions
+function! AdjustHeight(minHeight, maxHeight)
+  exe max([min([line("$"), a:maxHeight]), a:minHeight])."wincmd _"
+endfunction
+
+let g:CXX="g++"
+let g:CXX_FLAGS="-std=c++14"
+function CompileCpp ()
+  let fileName = expand('%')
+  let baseName = expand('%:r')
+  cex! system(g:CXX.' '.g:CXX_FLAGS.' '.fileName.' -o '.baseName)
+  echo 'Finished compiling!'
+  cw
+endfunction
+
+function RunCpp ()
+  let filePath = expand('%:p:r')
+  execute '!'.filePath
+endfunction
+
+""" Plugins
 call plug#begin('~/.vim/plugged')
 
 "" Color Scheme
@@ -49,6 +70,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 
 call plug#end()
 
+
 """ Config for plugins
 "" Config for VimTemplates
 let g:tmpl_search_paths=['~/.templates']
@@ -70,7 +92,6 @@ au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTre
 "" Config for YouCompleteMe
 let g:ycm_complete_in_comments=0
 let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
-set shortmess+=c
 
 "" Config for the indentLine
 let g:indentLine_color_term = 239
@@ -142,36 +163,6 @@ elseif executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
-nnoremap K :execute 'grep!"\b"'.expand('<cword>').'"\b"'<CR>:cw<CR>
-
-"" Always have quickfix take entire bot
-au Filetype qf wincmd J
-
-"" Adjust quickfix window height to be 10 lines
-au Filetype qf call AdjustHeight(3, 10)
-function! AdjustHeight(minHeight, maxHeight)
-  exe max([min([line("$"), a:maxHeight]), a:minHeight]) . "wincmd _"
-endfunction
-
-"" Convenient quickfix macros
-" Open in new tab
-au Filetype qf nnoremap t <C-W><CR><C-W>T
-" Open in new tab and focus on results
-au Filetype qf nnoremap <Leader>t <C-W><CR><C-W>TgT<C-W>p
-" Open
-au Filetype qf nnoremap o <CR>
-" Open and focus on results
-au Filetype qf nnoremap <Leader>o <CR><C-W>b
-" Open in vertical split
-au Filetype qf nnoremap v <C-W><CR><C-W>H<C-W>b<C-W>J:call AdjustHeight(3, 10)<CR><C-W>t
-" Open in vertical split and focus on results
-au Filetype qf nnoremap <Leader>v <C-W><CR><C-W>H<C-W>b<C-W>J:call AdjustHeight(3, 10)<CR>
-" Open in horizontal split
-au Filetype qf nnoremap h <C-W><CR><C-W>K
-" Open in horizontal split and focus on results
-au Filetype qf nnoremap <Leader>h <C-W><CR><C-W>K<C-W>b
-" Quit
-au Filetype qf nnoremap q :ccl<CR>
 
 """ General config
 "" Indentation
@@ -215,19 +206,12 @@ set wildmenu
 set conceallevel=0
 set backspace=2
 set autoread
+set shortmess+=c
+
 
 """ Key bindings
 "" Remap leader
 let mapleader="\<Space>"
-
-"" Cpp bindings: compile, and compile and run
-au Filetype cpp nnoremap <F4> :!g++ -std=c++14 % -o %:r <CR>
-au Filetype cpp nnoremap <F5> :!g++ -std=c++14 % -o %:r && %:p:r<CR>
-
-"" Latex bindings
-au Filetype tex nmap <F3> <plug>(vimtex-compile)
-au Filetype tex nmap <F4> <plug>(vimtex-errors)
-au Filetype tex nmap <F5> <plug>(vimtex-view)
 
 "" Delete trailing whitespace
 nnoremap <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
@@ -253,6 +237,10 @@ nmap <leader>b :CtrlPBuffer<CR>
 nmap <leader>m :CtrlPMixed<CR>
 nmap <leader>a :CtrlPMRU<CR>
 
+"" Grep for word under cursor
+nnoremap K :execute 'grep!"\b"'.expand('<cword>').'"\b"'<CR>:cw<CR>
+
+
 """ Highlighting config
 "" Underline current line
 set cursorline
@@ -268,3 +256,49 @@ highlight texMathMatcher ctermbg=none
 highlight texMathZoneX ctermbg=none
 highlight texRefLabel ctermbg=none
 highlight texStatement ctermbg=none
+
+
+""" Autocommands
+"" Quick fix related autocommands
+augroup quick_fix_group
+  autocmd!
+  "" Always have quickfix take entire bot
+  au Filetype qf wincmd J
+
+  "" Adjust quickfix window height to be 10 lines
+  au Filetype qf call AdjustHeight(3, 10)
+
+  "" Convenient quickfix macros
+  " Open in new tab
+  au Filetype qf nnoremap t <C-W><CR><C-W>T
+  " Open in new tab and focus on results
+  au Filetype qf nnoremap <Leader>t <C-W><CR><C-W>TgT<C-W>p
+  " Open
+  au Filetype qf nnoremap o <CR>
+  " Open and focus on results
+  au Filetype qf nnoremap <Leader>o <CR><C-W>b
+  " Open in vertical split
+  au Filetype qf nnoremap v <C-W><CR><C-W>H<C-W>b<C-W>J:call AdjustHeight(3, 10)<CR><C-W>t
+  " Open in vertical split and focus on results
+  au Filetype qf nnoremap <Leader>v <C-W><CR><C-W>H<C-W>b<C-W>J:call AdjustHeight(3, 10)<CR>
+  " Open in horizontal split
+  au Filetype qf nnoremap h <C-W><CR><C-W>K
+  " Open in horizontal split and focus on results
+  au Filetype qf nnoremap <Leader>h <C-W><CR><C-W>K<C-W>b
+  " Quit
+  au Filetype qf nnoremap q :ccl<CR>
+augroup END
+
+"" cpp related autocommands
+augroup cpp_group
+  au Filetype cpp nnoremap <F4> :call CompileCpp()<CR>
+  au Filetype cpp nnoremap <F5> :call RunCpp()<CR>
+
+augroup END
+
+"" latex related autocommands
+augroup latex_group
+  au Filetype tex nmap <F3> <plug>(vimtex-compile)
+  au Filetype tex nmap <F4> <plug>(vimtex-errors)
+  au Filetype tex nmap <F5> <plug>(vimtex-view)
+augroup END

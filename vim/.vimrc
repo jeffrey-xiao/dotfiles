@@ -142,16 +142,36 @@ elseif executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+nnoremap K :execute 'grep!"\b"'.expand('<cword>').'"\b"'<CR>:cw<CR>
 
 "" Always have quickfix take entire bot
 au Filetype qf wincmd J
 
 "" Adjust quickfix window height to be 10 lines
-au Filetype qf call AdjustWindowHeight(3, 10)
-function! AdjustWindowHeight(minHeight, maxHeight)
+au Filetype qf call AdjustHeight(3, 10)
+function! AdjustHeight(minHeight, maxHeight)
   exe max([min([line("$"), a:maxHeight]), a:minHeight]) . "wincmd _"
 endfunction
+
+"" Convenient quickfix macros
+" Open in new tab
+au Filetype qf nnoremap t <C-W><CR><C-W>T
+" Open in new tab and focus on results
+au Filetype qf nnoremap <Leader>t <C-W><CR><C-W>TgT<C-W>p
+" Open
+au Filetype qf nnoremap o <CR>
+" Open and focus on results
+au Filetype qf nnoremap <Leader>o <CR><C-W>b
+" Open in vertical split
+au Filetype qf nnoremap v <C-W><CR><C-W>H<C-W>b<C-W>J:call AdjustHeight(3, 10)<CR><C-W>t
+" Open in vertical split and focus on results
+au Filetype qf nnoremap <Leader>v <C-W><CR><C-W>H<C-W>b<C-W>J:call AdjustHeight(3, 10)<CR>
+" Open in horizontal split
+au Filetype qf nnoremap h <C-W><CR><C-W>K
+" Open in horizontal split and focus on results
+au Filetype qf nnoremap <Leader>h <C-W><CR><C-W>K<C-W>b
+" Quit
+au Filetype qf nnoremap q :ccl<CR>
 
 """ General config
 "" Indentation
@@ -223,6 +243,9 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
+
+set splitbelow
+set splitright
 
 "" CtrlP bindings
 nmap <leader>p :CtrlP<CR>

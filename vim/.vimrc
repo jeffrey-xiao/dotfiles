@@ -6,16 +6,16 @@ endfunction
 let g:CXX="g++"
 let g:CXX_FLAGS="-std=c++14"
 function CompileCpp ()
-  let fileName = expand('%')
-  let baseName = expand('%:r')
-  cex! system(g:CXX.' '.g:CXX_FLAGS.' '.fileName.' -o '.baseName)
+  let l:fileName = expand('%')
+  let l:baseName = expand('%:r')
+  cex! system(g:CXX.' '.g:CXX_FLAGS.' '.l:fileName.' -o '.l:baseName)
   echo 'Finished compiling!'
   cw
 endfunction
 
 function RunCpp ()
-  let filePath = expand('%:p:r')
-  execute '!'.filePath
+  let l:filePath = expand('%:p:r')
+  execute '!'.l:filePath
 endfunction
 
 """ Plugins
@@ -211,7 +211,7 @@ set shortmess+=c
 
 """ Key bindings
 "" Remap leader
-let mapleader="\<Space>"
+let g:mapleader="\<Space>"
 
 "" Delete trailing whitespace
 nnoremap <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
@@ -261,7 +261,6 @@ highlight texStatement ctermbg=none
 """ Autocommands
 "" Quick fix related autocommands
 augroup quick_fix_group
-  autocmd!
   "" Always have quickfix take entire bot
   au Filetype qf wincmd J
 
@@ -270,35 +269,34 @@ augroup quick_fix_group
 
   "" Convenient quickfix macros
   " Open in new tab
-  au Filetype qf nnoremap t <C-W><CR><C-W>T
+  au Filetype qf nnoremap <buffer> t <C-W><CR><C-W>T
   " Open in new tab and focus on results
-  au Filetype qf nnoremap <Leader>t <C-W><CR><C-W>TgT<C-W>p
+  au Filetype qf nnoremap <buffer> <Leader>t <C-W><CR><C-W>TgT<C-W>p
   " Open
-  au Filetype qf nnoremap o <CR>
+  au Filetype qf nnoremap <buffer> o <CR>
   " Open and focus on results
-  au Filetype qf nnoremap <Leader>o <CR><C-W>b
+  au Filetype qf nnoremap <buffer> <Leader>o <CR><C-W>b
   " Open in vertical split
-  au Filetype qf nnoremap v <C-W><CR><C-W>H<C-W>b<C-W>J:call AdjustHeight(3, 10)<CR><C-W>t
+  au Filetype qf nnoremap <buffer> v <C-W><CR><C-W>H<C-W>b<C-W>J:call AdjustHeight(3, 10)<CR><C-W>t
   " Open in vertical split and focus on results
-  au Filetype qf nnoremap <Leader>v <C-W><CR><C-W>H<C-W>b<C-W>J:call AdjustHeight(3, 10)<CR>
+  au Filetype qf nnoremap <buffer> <Leader>v <C-W><CR><C-W>H<C-W>b<C-W>J:call AdjustHeight(3, 10)<CR>
   " Open in horizontal split
-  au Filetype qf nnoremap h <C-W><CR><C-W>K
+  au Filetype qf nnoremap <buffer> h <C-W><CR><C-W>K
   " Open in horizontal split and focus on results
-  au Filetype qf nnoremap <Leader>h <C-W><CR><C-W>K<C-W>b
+  au Filetype qf nnoremap <buffer> <Leader>h <C-W><CR><C-W>K<C-W>b
   " Quit
-  au Filetype qf nnoremap q :ccl<CR>
+  au Filetype qf nnoremap <buffer> q :ccl<CR>
 augroup END
 
 "" cpp related autocommands
 augroup cpp_group
-  au Filetype cpp nnoremap <F4> :call CompileCpp()<CR>
-  au Filetype cpp nnoremap <F5> :call RunCpp()<CR>
-
+  au Filetype cpp nnoremap <buffer> <F4> :call CompileCpp()<CR>
+  au Filetype cpp nnoremap <buffer> <F5> :call RunCpp()<CR>
 augroup END
 
 "" latex related autocommands
 augroup latex_group
-  au Filetype tex nmap <F3> <plug>(vimtex-compile)
-  au Filetype tex nmap <F4> <plug>(vimtex-errors)
-  au Filetype tex nmap <F5> <plug>(vimtex-view)
+  au Filetype tex nmap <buffer> <F3> <plug>(vimtex-compile)
+  au Filetype tex nmap <buffer> <F4> <plug>(vimtex-errors)
+  au Filetype tex nmap <buffer> <F5> <plug>(vimtex-view)
 augroup END

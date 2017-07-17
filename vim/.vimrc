@@ -213,6 +213,9 @@ set shortmess+=c
 "" Remap leader
 let g:mapleader="\<Space>"
 
+nnoremap <expr> j v:count ? 'j' : 'gj'
+nnoremap <expr> k v:count ? 'k' : 'gk'
+
 "" Delete trailing whitespace
 nnoremap <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
@@ -286,6 +289,9 @@ augroup quick_fix_group
   au Filetype qf nnoremap <buffer> <Leader>h <C-W><CR><C-W>K<C-W>b
   " Quit
   au Filetype qf nnoremap <buffer> q :ccl<CR>
+
+  au Filetype qf nnoremap <Leader>. :cn<CR>
+  au Filetype qf nnoremap <Leader>, :cp<CR>
 augroup END
 
 "" cpp related autocommands

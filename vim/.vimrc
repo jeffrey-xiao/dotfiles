@@ -248,17 +248,20 @@ nnoremap K :execute 'grep!"\b"'.expand('<cword>').'"\b"'<CR>:cw<CR>
 "" Underline current line
 set cursorline
 hi clear CursorLine
-hi CursorLine gui=underline cterm=underline
+hi CursorLine cterm=underline
 
 "" Highlighting for transparent background
-hi Normal guibg=none ctermbg=none
-highlight NonText ctermbg=none
+hi Normal ctermbg=none
+hi NonText ctermbg=none
+hi LineNr ctermbg=none
+hi SignColumn ctermbg=none
+hi VertSplit ctermbg=none
 
 "" Custom highlighting for vimtex
-highlight texMathMatcher ctermbg=none
-highlight texMathZoneX ctermbg=none
-highlight texRefLabel ctermbg=none
-highlight texStatement ctermbg=none
+hi texMathMatcher ctermbg=none
+hi texMathZoneX ctermbg=none
+hi texRefLabel ctermbg=none
+hi texStatement ctermbg=none
 
 
 """ Autocommands

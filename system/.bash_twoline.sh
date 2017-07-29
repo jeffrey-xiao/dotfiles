@@ -106,18 +106,23 @@ __twoline() {
       local FG_EXIT="$FG_RED"
     fi
 
-
+    __twoline_virtual_env="${VIRTUAL_ENV##*/}"
     __twoline_git_info="$(__git_info)"
-    __twoline_formatted_path="$(__formatted_path)"
-    if [[ -z "${__twoline_git_info// }" ]]; then
-      PS1="$FG_EXIT┌─[$RESET$__twoline_formatted_path$FG_EXIT]$RESET\n"
-      PS1+="$FG_EXIT└─╼$RESET "
-    else
-      PS1="$FG_EXIT┌─[$RESET$__twoline_formatted_path$FG_EXIT]─[$RESET$FG_YELLOW${__twoline_git_info}$RESET$FG_EXIT]$RESET\n"
-      PS1+="$FG_EXIT└─╼$RESET "
+
+    if [[ ! -z "${__twoline_virtual_env// }" ]]; then
+      __twoline_virtual_env="[$RESET$FG_YELLOW${__twoline_virtual_env}$RESET$FG_EXIT]-"
     fi
+
+    if [[ ! -z "${__twoline_git_info// }" ]]; then
+      __twoline_git_info="-[$RESET$FG_YELLOW${__twoline_git_info}$RESET$FG_EXIT]$RESET"
+    fi
+
+    __twoline_formatted_path="$(__formatted_path)"
+    PS1="$FG_EXIT┌─${__twoline_virtual_env}[$RESET$__twoline_formatted_path$FG_EXIT]${__twoline_git_info}\n"
+    PS1+="$FG_EXIT└─╼$RESET "
   }
   source ~/.bash_git_info.sh
+  source ~/.bash_virtual_env_info.sh
   PROMPT_COMMAND=ps1
 }
 PROMPT_DIRTRIM=3

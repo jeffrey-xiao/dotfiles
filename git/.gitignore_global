@@ -63,3 +63,7 @@ Desktop.ini
 node_modules
 bower_components
 npm-debug.log
+
+# Ack and Ag ignore
+.ackrc
+.ignore

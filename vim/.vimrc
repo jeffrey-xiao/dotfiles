@@ -309,3 +309,12 @@ augroup latex_group
   au Filetype tex nmap <buffer> <F4> <plug>(vimtex-errors)
   au Filetype tex nmap <buffer> <F5> <plug>(vimtex-view)
 augroup END
+
+augroup markdown_group
+  au Filetype markdown hi def link markdownItalic NONE
+  au Filetype markdown hi def link markdownItalicDelimiter NONE
+  au Filetype markdown hi def link markdownBold NONE
+  au Filetype markdown hi def link markdownBoldDelimiter NONE
+  au Filetype markdown hi def link markdownBoldItalic NONE
+  au Filetype markdown hi def link markdownBoldItalicDelimiter NONE
+augroup END

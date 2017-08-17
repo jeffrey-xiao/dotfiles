@@ -2,7 +2,7 @@
 set $mod Mod1
 
 # Application variables
-set $browser  chromium-browser
+set $browser  firefox
 set $explorer urxvt -e ranger
 set $music    urxvt -e ncmpcpp
 set $torrent  urxvt -e rtorrent
@@ -14,8 +14,7 @@ gaps outer -10
 smart_gaps on
 
 # Font for window titles
-font pango:FontAwesome 10
-font pango:TamzenForPowerline 11
+font pango:Monoid Tight 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -107,7 +106,7 @@ set $ws9 "9:9"
 set $ws10 "10:0"
 
 # Default workspaces for applications
-assign [class="Chromium-browser"] $ws1
+assign [class="Firefox"]          $ws1
 assign [class="mpv"]              $ws9
 
 # Navigating to workspaces
@@ -177,17 +176,13 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20
 bindsym XF86TouchpadToggle exec toggletouchpad
 
 # Media player controls
-#bindsym XF86AudioPlay exec playerctl play
-#bindsym XF86AudioPause exec playerctl pause
-#bindsym XF86AudioNext exec playerctl next
-#bindsym XF86AudioPlay exec playerctl play
 bindsym XF86AudioPlay exec mpc play
 bindsym XF86AudioPause exec mpc pause
 bindsym XF86AudioNext exec mpc next
 bindsym XF86AudioPrev exec mpc prev
 
 # MPD controls
-bindsym $mod+p exec "mpc toggle; pkill -RTMIN+9 i3blocks"
+bindsym $mod+p exec "mpc toggle"
 bindsym $mod+bracketleft exec "mpc prev"
 bindsym $mod+bracketright exec "mpc next"
 
@@ -227,23 +222,6 @@ for_window [class="Power"]  border pixel 0
 
 new_float none
 
-# Status bar
-bar {
-  position top
-  font pango: TamzenForPowerline, FontAwesome 10.5
-  status_command i3blocks -c "$HOME/.config/i3/i3blocks.conf"
-  height 18
-  strip_workspace_numbers yes
-  colors {
-    background $base03
-    #                    border                     background              text
-    focused_workspace    $active-bar-bg-color       $active-bar-bg-color    $active-bar-text-color
-    active_workspace     $inactive-bar-bg-color     $inactive-bar-bg-color  $inactive-bar-text-color
-    inactive_workspace   $inactive-bar-bg-color     $inactive-bar-bg-color  $inactive-bar-text-color
-    urgent_workspace     $red                       $red                    $inactive-bar-text-color
-  }
-}
-
 # Set wallpaper
 exec_always feh --bg-scale "$HOME/.config/i3/images/wallpaper.png"
 
@@ -254,26 +232,15 @@ exec_always xrandr --output eDP1 --mode 1600x900
 #exec_always xrandr --output DP1 --mode 1920x1080 --right-of eDP1
 
 ## Configure startup applications
-# Mount Windows drive
-exec udisksctl mount --block-device /dev/sda5
-
 # Appearance and notifications
 exec --no-startup-id gnome-settings-daemon
 exec --no-startup-id dunst -c ~/.config/dunst/dunstrc
 exec --no-startup-id compton -f
 
 # Tray applets
-exec --no-startup-id redshift-gtk
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 
 # Music player
 exec --no-startup-id i3-msg 'exec [ ! -s ~/.config/mpd/pid ] && mpd '
 exec --no-startup-id i3-msg 'workspace $ws10; exec urxvt -e ncmpcpp; workspace $ws1;'
-
-# Locker
-exec --no-startup-id xautolock -time 10 -locker 'lock'
-
-# Initialize fonts
-exec --no-startup-id xset fp+ ~/fonts/tamzen-font/bdf
-exec --no-startup-id xset fp rehash

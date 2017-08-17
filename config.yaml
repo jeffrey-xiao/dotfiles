@@ -19,21 +19,22 @@ htop:
 i3:
   link: "~/.config/i3"
   dependencies:
+    - "i3"
     - "scrot"
     - "imagemagick"
     - "i3lock"
     - "rofi"
-    - "fonts-font-awesome"
     - "acpi"
     - "sysstat"
     - "feh"
     - "jq"
     - "blueman"
-    - "xautolock"
     - "xbacklight"
     - "gnome-settings-daemon"
     - "network-manager"
     - "xclip"
+  postlink:
+    - "mkdir -p ~/.tmp"
 mpd:
   link: "~/.config/mpd"
   postlink:
@@ -43,33 +44,29 @@ mpd:
     - "mpd"
     - "mpc"
 mpv:
+  prelink:
+    - "mkdir -p ~/Pictures/screenshots"
   link: "~/.config/mpv"
   dependencies:
     - "mpv"
 ncmpcpp:
-  prelink:
-    - "mkdir -p ~/Pictures/screenshots"
   link: "~/.ncmpcpp"
   dependencies:
     - "ncmpcpp"
 other:
-  prelink:
-    - "sudo add-apt-repository ppa:nilarimogard/webupd8"
-    - "sudo apt-get update"
   link:
     - redshift.conf: "~/.config"
     - "*": "~/dotfiles"
     - ".*": "~/dotfiles"
   dependencies:
     - "redshift"
-    - "redshift-gtk"
     - "nautilus"
-    - "chromium-browser"
     - "youtube-dl"
-qpdfview:
-  link: "~/.config/qpdfview"
+polybar:
+  link: "~/.config/polybar"
   dependencies:
-    - "qpdfview"
+    - "polybar"
+    - "font-awesome-ttf"
 ranger:
   link: "~/.config/ranger"
   dependencies:
@@ -77,31 +74,20 @@ ranger:
     - "imagemagick"
     - "w3m"
     - "feh"
-    - "atool"
 rtorrent:
   link: "~"
   postlink:
     - "mkdir -pv ~/Downloads/complete ~/Downloads/incomplete ~/.rtorrent.sessions"
   dependencies:
     - "rtorrent"
-sublime-text-3/Packages/User:
-  prelink:
-    - "sudo add-apt-repository ppa:webupd8team/sublime-text-3"
-    - "sudo apt-get update"
-  link: "~/.config/sublime-text-3/Packages/User"
-  dependencies:
-    - "sublime-text-installer"
 system:
   link: "~"
   postlink:
     - "git clone https://github.com/powerline/fonts ~/fonts/powerline-fonts"
     - ". ~/fonts/install.sh"
-    - "git clone https://github.com/sunaku/tamzen-font ~/fonts/tamzen-font"
-    - "mkdir ~/.fonts"
-    - "cp ~/fonts/tamzen-font/bdf/TamzenForPowerline8x16* ~/.fonts"
-    - "xrdb ~/.Xresources"
   dependencies:
-    - "rxvt-unicode-256color"
+    - "rxvt-unicode"
+    - "xrdb"
 templates:
   link: "~/.templates"
 tmux:
@@ -116,13 +102,18 @@ vim:
     - "vim -c PlugInstall -c q! -c q!"
     - "~/.vim/plugged/youcompleteme/install.py --clang-completer"
   dependencies:
-    - "vim-gnome"
-    - "build-essential"
+    - "vim"
     - "cmake"
-    - "python-dev"
-    - "python3-dev"
+    - "make"
     - "curl"
+    - "g++"
+    - "system.devel"
 weechat:
   link: "~/.weechat"
   dependencies:
     - "weechat"
+zathura:
+  link: "~/.config/zathura"
+  dependencies:
+    - "zathura"
+    - "xdotool"

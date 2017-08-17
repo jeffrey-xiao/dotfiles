@@ -1,6 +1,6 @@
 [global]
-    font = "TamzenForPowerline 12"
-    allow_markup = yes
+    font = "Monoid Tight 10"
+    markup = yes
     format = "<b>%s</b>\n%b"
     sort = yes
     indicate_hidden = yes
@@ -21,10 +21,8 @@
     horizontal_padding = 8
     separator_color = "#b58900"
     startup_notification = false
-
-[frame]
-    width = 1
     color = "#002b36"
+    width = 1
 
 [shortcuts]
     close = ctrl+space

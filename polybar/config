@@ -1,0 +1,152 @@
+[colors]
+base03 = #002b36
+base02 = #073642
+base01 = #586e75
+base00 = #657b83
+base0 = #839496
+base1 = #93a1a1
+base2 = #eee8d5
+base3 = #fdf6e3
+yellow = #b58900
+orange = #cb4b16
+red = #dc322f
+magenta = #d33682
+violet = #6c71c4
+blue = #268bd2
+cyan = #2aa198
+green = #859900
+
+[bar/top]
+width = 100%
+height = 30
+
+background = ${colors.base03}
+foreground = ${colors.yellow}
+
+line-size = 3
+
+padding = 0
+module-margin = 1
+
+font-0 = Monoid Tight:size=10;4
+font-1 = FontAwesome:size=10;4
+
+modules-left = i3 mpd
+modules-center = date
+modules-right = memory cpu network volume battery
+
+[module/i3]
+type = internal/i3
+pin-workspaces = true
+strip-wsnumbers = true
+index-sort = true
+
+format = <label-state> <label-mode>
+
+label-focused = %name%
+label-focused-foreground = ${colors.base1}
+label-focused-background = ${colors.base03}
+label-focused-underline = ${colors.base1}
+label-focused-padding = 2
+
+label-unfocused = %name%
+label-unfocused-foreground = ${colors.base1}
+label-unfocused-background = ${colors.base03}
+label-unfocused-padding = 2
+
+label-urgent = %name%
+label-urgent-foreground = ${colors.red}
+label-urgent-background = ${colors.base03}
+label-urgent-underline = ${colors.red}
+label-urgent-padding = 2
+
+[module/mpd]
+type = internal/mpd
+
+host = 127.0.0.1
+port = 6600
+
+format-online = <toggle> <label-song>
+label-song = %artist% - %title%
+label-offline = MPD is offline
+icon-play = 
+icon-pause = 
+
+[module/cpu]
+type = internal/cpu
+
+interval = 3
+
+label =  %percentage%%
+label-foreground = ${colors.green}
+
+[module/memory]
+type = internal/memory
+
+interval = 3
+
+label =  %gb_used%/%gb_free%
+label-foreground = ${colors.yellow}
+
+[module/volume]
+type = internal/volume
+
+format-volume = <ramp-volume> <label-volume>
+format-volume-foreground = ${colors.yellow}
+
+label-muted =  muted
+label-muted-foreground = ${colors.yellow}
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+[module/network]
+type = internal/network
+
+interface = wlp2s0
+
+label-connected =  %essid%
+label-disconnected =  none
+
+label-connected-foreground = ${colors.blue}
+label-disconnected-foreground = ${colors.red}
+
+[module/battery]
+type = internal/battery
+
+full-at = 99
+
+; Use following command to get battery and adapter
+; $ ls -1 /sys/class/power_supply/
+battery = BAT0
+adapter = ADP0
+
+time-format = %H:%M
+
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+
+label-charging =  %percentage%%
+label-discharging = %percentage%%
+label-full =  %percentage%%
+
+animation-charging-0 = %{F#859900}%{F-}
+animation-charging-1 = %{F#859900}%{F-}
+animation-charging-2 = %{F#859900}%{F-}
+animation-charging-3 = %{F#859900}%{F-}
+animation-charging-4 = %{F#859900}%{F-}
+
+ramp-capacity-0 = %{F#AB4642}%{F-}
+ramp-capacity-1 = %{F#AB4642}%{F-}
+ramp-capacity-2 = %{F#F7CA88}%{F-}
+ramp-capacity-3 = %{F#A1B56C}%{F-}
+ramp-capacity-4 = %{F#A1B56C}%{F-}
+
+[module/date]
+type = internal/date
+
+date = %A, %B %e
+time = %H:%M
+
+label = %date% - %time%

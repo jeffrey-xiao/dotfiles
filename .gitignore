@@ -8,3 +8,6 @@ sublime/User/Package\ Control.last-run
 # Ignore weechat logs
 weechat/weechat.log
 weechat/logs
+
+# Ignore virtualenv
+venv/

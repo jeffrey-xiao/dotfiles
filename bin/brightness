@@ -1,0 +1,11 @@
+#!/bin/sh
+
+brightness_file="/sys/class/backlight/intel_backlight/brightness"
+max_brightness_file="/sys/class/backlight/intel_backlight/max_brightness"
+
+curr_brightness=`cat $brightness_file`
+min_brightness=0
+max_brightness=`cat $max_brightness_file`
+
+echo $(($curr_brightness + $1)) > $brightness_file
+

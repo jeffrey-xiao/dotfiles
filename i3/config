@@ -171,8 +171,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D pulse set Master 1%
 bindsym XF86AudioMute exec --no-startup-id "amixer -D pulse set Master 0+ toggle ; pkill -RTMIN+10 i3blocks"
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20
+bindsym XF86MonBrightnessUp exec brightness +50
+bindsym XF86MonBrightnessDown exec brightness -50
 
 # Touchpad controls
 bindsym XF86TouchpadToggle exec toggletouchpad
@@ -235,7 +235,7 @@ exec_always xrandr --output eDP1 --mode 1600x900
 
 ## Configure startup applications
 # Launch polybar
-exec --no-startup-id launch_polybar
+exec_always launch-polybar
 
 # Appearance and notifications
 exec --no-startup-id redshift
@@ -248,4 +248,3 @@ exec --no-startup-id blueman-applet
 
 # Music player
 exec --no-startup-id i3-msg 'exec [ ! -s ~/.config/mpd/pid ] && mpd '
-exec --no-startup-id i3-msg 'workspace $ws10; exec urxvt -e ncmpcpp; workspace $ws1;'

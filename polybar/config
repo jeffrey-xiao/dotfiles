@@ -16,6 +16,10 @@ blue = #268bd2
 cyan = #2aa198
 green = #859900
 
+white0 = #a4b4b9
+white1 = #c3cbcc
+white2 = #dce1e1
+
 [bar/top]
 width = 100%
 height = 30
@@ -47,17 +51,17 @@ format = <label-state> <label-mode>
 label-focused = %name%
 label-focused-foreground = ${colors.base03}
 label-focused-background = ${colors.base2}
-label-focused-padding = 2
+label-focused-padding = 1
 
 label-unfocused = %name%
 label-unfocused-foreground = ${colors.base03}
 label-unfocused-background = ${colors.base0}
-label-unfocused-padding = 2
+label-unfocused-padding = 1
 
 label-urgent = %name%
 label-urgent-foreground = ${colors.base03}
 label-urgent-background = ${colors.red}
-label-urgent-padding = 2
+label-urgent-padding = 1
 
 [module/mpd]
 type = internal/mpd
@@ -83,7 +87,7 @@ interval = 3
 
 label =  %percentage_used%%
 label-foreground = ${colors.base03}
-label-background = ${colors.base00}
+label-background = ${colors.white0}
 label-padding = 1
 
 [module/cpu]
@@ -93,20 +97,35 @@ interval = 3
 
 label =  %percentage%%
 label-foreground = ${colors.base03}
-label-background = ${colors.base0}
+label-background = ${colors.white1}
 label-padding = 1
+
+[module/network]
+type = internal/network
+
+interface = wlp2s0
+
+label-connected =  %essid%
+label-connected-foreground = ${colors.base03}
+label-connected-background = ${colors.white2}
+label-connected-padding = 1
+
+label-disconnected =  none
+label-disconnected-foreground = ${colors.base03}
+label-disconnected-background = ${colors.white2}
+label-disconnected-padding = 1
 
 [module/volume]
 type = internal/volume
 
 format-volume = <ramp-volume> <label-volume>
 format-volume-foreground = ${colors.base03}
-format-volume-background = ${colors.base0}
+format-volume-background = ${colors.white1}
 format-volume-padding = 1
 
 label-muted =  muted
 label-muted-foreground = ${colors.base03}
-label-muted-background = ${colors.base0}
+label-muted-background = ${colors.white1}
 
 ramp-volume-0 = 
 ramp-volume-1 = 
@@ -127,17 +146,17 @@ format-discharging = <ramp-capacity> <label-discharging>
 
 label-charging = %percentage%%
 label-charging-foreground = ${colors.base03}
-label-charging-background = ${colors.base00}
+label-charging-background = ${colors.white0}
 label-charging-padding = 1
 
 label-discharging = %percentage%%
 label-discharging-foreground = ${colors.base3}
-label-discharging-background = ${colors.base00}
+label-discharging-background = ${colors.white0}
 label-discharging-padding = 1
 
 label-full =  %percentage%%
 label-full-foreground = ${colors.base03}
-label-full-background = ${colors.base00}
+label-full-background = ${colors.white0}
 label-full-padding = 1
 
 animation-charging-0 = 
@@ -151,21 +170,6 @@ ramp-capacity-1 = 
 ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
-
-[module/network]
-type = internal/network
-
-interface = wlp2s0
-
-label-connected =  %essid%
-label-connected-foreground = ${colors.base03}
-label-connected-background = ${colors.base1}
-label-connected-padding = 1
-
-label-disconnected =  none
-label-disconnected-foreground = ${colors.base03}
-label-disconnected-background = ${colors.base1}
-label-disconnected-padding = 1
 
 [module/date]
 type = internal/date

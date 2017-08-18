@@ -5,8 +5,9 @@ set $mod Mod1
 set $browser  firefox
 set $explorer urxvt -e ranger
 set $music    urxvt -e ncmpcpp
-set $torrent  urxvt -e rtorrent
+set $torrent  urxvt -e bash -c rtorrent
 set $terminal urxvt
+set $network nm
 
 # Configuration for gaps
 gaps inner 20
@@ -23,8 +24,9 @@ floating_modifier $mod
 bindsym $mod+Return exec $terminal
 bindsym $mod+b exec $browser
 bindsym $mod+m exec $music
-bindsym $mod+n exec $explorer
+bindsym $mod+n exec nm
 bindsym $mod+t exec $torrent
+bindsym $mod+y exec $explorer
 bindsym Print exec scrot ~/.tmp/tmp.png && xclip ~/.tmp/tmp.png -selection clipboard -t image/png && rm ~/.tmp/tmp.png -f && notify-send -u "low" "Took screenshot (window)"
 bindsym --release Shift+Print exec scrot -s ~/.tmp/tmp.png && xclip ~/.tmp/tmp.png -selection clipboard -t image/png && rm ~/.tmp/tmp.png -f && notify-send -u "low" "Took screenshot (area)"
 
@@ -232,13 +234,16 @@ exec_always xrandr --output eDP1 --mode 1600x900
 #exec_always xrandr --output DP1 --mode 1920x1080 --right-of eDP1
 
 ## Configure startup applications
+# Launch polybar
+exec --no-startup-id launch_polybar
+
 # Appearance and notifications
+exec --no-startup-id redshift
 exec --no-startup-id gnome-settings-daemon
 exec --no-startup-id dunst -c ~/.config/dunst/dunstrc
 exec --no-startup-id compton -f
 
 # Tray applets
-exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 
 # Music player

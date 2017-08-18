@@ -26,10 +26,11 @@ foreground = ${colors.yellow}
 line-size = 3
 
 padding = 0
-module-margin = 1
 
 font-0 = Monoid Tight:size=10;4
 font-1 = FontAwesome:size=10;4
+
+tray-position = right
 
 modules-left = i3 mpd
 modules-center = date
@@ -44,20 +45,18 @@ index-sort = true
 format = <label-state> <label-mode>
 
 label-focused = %name%
-label-focused-foreground = ${colors.base1}
-label-focused-background = ${colors.base03}
-label-focused-underline = ${colors.base1}
+label-focused-foreground = ${colors.base03}
+label-focused-background = ${colors.base2}
 label-focused-padding = 2
 
 label-unfocused = %name%
-label-unfocused-foreground = ${colors.base1}
-label-unfocused-background = ${colors.base03}
+label-unfocused-foreground = ${colors.base03}
+label-unfocused-background = ${colors.base0}
 label-unfocused-padding = 2
 
 label-urgent = %name%
-label-urgent-foreground = ${colors.red}
-label-urgent-background = ${colors.base03}
-label-urgent-underline = ${colors.red}
+label-urgent-foreground = ${colors.base03}
+label-urgent-background = ${colors.red}
 label-urgent-padding = 2
 
 [module/mpd]
@@ -67,10 +66,25 @@ host = 127.0.0.1
 port = 6600
 
 format-online = <toggle> <label-song>
+format-online-padding = 2
+
+format-offline = <label-offline>
+format-offline-padding = 2
+
 label-song = %artist% - %title%
 label-offline = MPD is offline
 icon-play = 
 icon-pause = 
+
+[module/memory]
+type = internal/memory
+
+interval = 3
+
+label =  %percentage_used%%
+label-foreground = ${colors.base03}
+label-background = ${colors.base00}
+label-padding = 1
 
 [module/cpu]
 type = internal/cpu
@@ -78,39 +92,25 @@ type = internal/cpu
 interval = 3
 
 label =  %percentage%%
-label-foreground = ${colors.green}
-
-[module/memory]
-type = internal/memory
-
-interval = 3
-
-label =  %gb_used%/%gb_free%
-label-foreground = ${colors.yellow}
+label-foreground = ${colors.base03}
+label-background = ${colors.base0}
+label-padding = 1
 
 [module/volume]
 type = internal/volume
 
 format-volume = <ramp-volume> <label-volume>
-format-volume-foreground = ${colors.yellow}
+format-volume-foreground = ${colors.base03}
+format-volume-background = ${colors.base0}
+format-volume-padding = 1
 
 label-muted =  muted
-label-muted-foreground = ${colors.yellow}
+label-muted-foreground = ${colors.base03}
+label-muted-background = ${colors.base0}
 
 ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
-
-[module/network]
-type = internal/network
-
-interface = wlp2s0
-
-label-connected =  %essid%
-label-disconnected =  none
-
-label-connected-foreground = ${colors.blue}
-label-disconnected-foreground = ${colors.red}
 
 [module/battery]
 type = internal/battery
@@ -122,31 +122,82 @@ full-at = 99
 battery = BAT0
 adapter = ADP0
 
-time-format = %H:%M
-
 format-charging = <animation-charging> <label-charging>
 format-discharging = <ramp-capacity> <label-discharging>
 
-label-charging =  %percentage%%
+label-charging = %percentage%%
+label-charging-foreground = ${colors.base03}
+label-charging-background = ${colors.base00}
+label-charging-padding = 1
+
 label-discharging = %percentage%%
+label-discharging-foreground = ${colors.base3}
+label-discharging-background = ${colors.base00}
+label-discharging-padding = 1
+
 label-full =  %percentage%%
+label-full-foreground = ${colors.base03}
+label-full-background = ${colors.base00}
+label-full-padding = 1
 
-animation-charging-0 = %{F#859900}%{F-}
-animation-charging-1 = %{F#859900}%{F-}
-animation-charging-2 = %{F#859900}%{F-}
-animation-charging-3 = %{F#859900}%{F-}
-animation-charging-4 = %{F#859900}%{F-}
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
 
-ramp-capacity-0 = %{F#AB4642}%{F-}
-ramp-capacity-1 = %{F#AB4642}%{F-}
-ramp-capacity-2 = %{F#F7CA88}%{F-}
-ramp-capacity-3 = %{F#A1B56C}%{F-}
-ramp-capacity-4 = %{F#A1B56C}%{F-}
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+[module/network]
+type = internal/network
+
+interface = wlp2s0
+
+label-connected =  %essid%
+label-connected-foreground = ${colors.base03}
+label-connected-background = ${colors.base1}
+label-connected-padding = 1
+
+label-disconnected =  none
+label-disconnected-foreground = ${colors.base03}
+label-disconnected-background = ${colors.base1}
+label-disconnected-padding = 1
 
 [module/date]
 type = internal/date
 
-date = %A, %B %e
+date = %a, %b %e
 time = %H:%M
 
 label = %date% - %time%
+
+[module/powermenu]
+type = custom/menu
+
+format-padding = 1
+
+label-open = 
+label-open-foreground = ${colors.green}
+label-close =  cancel
+label-close-foreground = ${colors.green}
+label-separator = |
+label-separator-foreground = ${colors.green}
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = " power off "
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = " reboot "
+menu-1-1-exec = systemctl reboot
+
+menu-2-0 = power off
+menu-2-0-exec = systemctl poweroff
+menu-2-1 = " cancel "
+menu-2-1-exec = menu-open-0

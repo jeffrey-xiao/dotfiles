@@ -209,6 +209,8 @@ set conceallevel=0
 set backspace=2
 set autoread
 set shortmess+=c
+set nobackup
+set nowritebackup
 
 
 """ Key bindings

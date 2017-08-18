@@ -19,6 +19,7 @@ URxvt*scrollColor:        #777777
 URxvt*scrollBar_right:    true
 URxvt.thickness:          2
 URxvt.internalBorder:     5
+URxvt*termName: rxvt
 
 !! Font
 URxvt.font:               xft:Monoid Tight:size=10
@@ -53,16 +54,15 @@ urxvt*tintColor:    #002b36
 
 !! Rofi config
 rofi.lines: 10
-rofi.eh: 1
+rofi.eh: 2
 rofi.width: 100
 rofi.padding: 300
 rofi.bw: 0
 rofi.yoffset: 0
 rofi.font: Monoid Tight 13
-rofi.line-margin: 20
 
 rofi.color-enabled: true
-rofi.color-window: argb:F2002b36, argb:F2002b36, argb:F2002b36
-rofi.color-normal: argb:F2002b36, argb:F2b58900, argb:F2002b36, argb:F2b58900, argb:F2002b36
-rofi.color-urgent: argb:F2002b36, argb:F2b58900, argb:F2002b36, argb:F2b58900, argb:F2002b36
-rofi.color-active: argb:F2002b36, argb:F2b58900, argb:F2002b36, argb:F2b58900, argb:F2002b36
+rofi.color-window: argb:f2002b36, argb:f2002b36, argb:f2002b36
+rofi.color-normal: argb:00002b36, argb:f2b58900, argb:00002b36, argb:f2b58900, argb:f2002b36
+rofi.color-urgent: argb:00002b36, argb:f2b58900, argb:00002b36, argb:f2b58900, argb:f2002b36
+rofi.color-active: argb:00002b36, argb:f2b58900, argb:00002b36, argb:f2b58900, argb:f2002b36

@@ -25,7 +25,7 @@ width = 100%
 height = 30
 
 background = ${colors.base03}
-foreground = ${colors.yellow}
+foreground = ${colors.base2}
 
 line-size = 3
 
@@ -142,7 +142,13 @@ battery = BAT0
 adapter = ADP0
 
 format-charging = <animation-charging> <label-charging>
+format-charging-padding = 1
+format-charging-foreground = ${colors.base03}
+format-charging-background = ${colors.white0}
+
 format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-foreground = ${colors.base03}
+format-discharging-background = ${colors.white0}
 
 label-charging = %percentage%%
 label-charging-foreground = ${colors.base03}
@@ -150,14 +156,14 @@ label-charging-background = ${colors.white0}
 label-charging-padding = 1
 
 label-discharging = %percentage%%
-label-discharging-foreground = ${colors.base3}
+label-discharging-foreground = ${colors.base03}
 label-discharging-background = ${colors.white0}
-label-discharging-padding = 1
+label-discharging-padding-right = 1
 
 label-full =  %percentage%%
 label-full-foreground = ${colors.base03}
 label-full-background = ${colors.white0}
-label-full-padding = 1
+label-full-padding-right = 1
 
 animation-charging-0 = 
 animation-charging-1 = 
@@ -165,11 +171,11 @@ animation-charging-2 = 
 animation-charging-3 = 
 animation-charging-4 = 
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
+ramp-capacity-0 = " "
+ramp-capacity-1 = " "
+ramp-capacity-2 = " "
+ramp-capacity-3 = " "
+ramp-capacity-4 = " "
 
 [module/date]
 type = internal/date

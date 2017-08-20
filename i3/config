@@ -234,9 +234,6 @@ exec_always xrandr --output eDP1 --mode 1600x900
 #exec_always xrandr --output DP1 --mode 1920x1080 --right-of eDP1
 
 ## Configure startup applications
-# Launch polybar
-exec_always launch-polybar
-
 # Appearance and notifications
 exec --no-startup-id redshift
 exec --no-startup-id gnome-settings-daemon
@@ -248,3 +245,6 @@ exec --no-startup-id blueman-applet
 
 # Music player
 exec --no-startup-id i3-msg "exec ps -e | grep --quiet mpd || mpd"
+
+# Launch polybar
+exec_always launch-polybar

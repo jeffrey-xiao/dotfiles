@@ -5,7 +5,7 @@ set $mod Mod1
 set $browser  firefox
 set $explorer urxvt -e ranger
 set $music    urxvt -e ncmpcpp
-set $torrent  urxvt -e bash -c rtorrent
+set $torrent  urxvt -e rtorrent
 set $terminal urxvt
 set $network nm
 

@@ -19,7 +19,7 @@ URxvt*scrollColor:        #777777
 URxvt*scrollBar_right:    true
 URxvt.thickness:          2
 URxvt.internalBorder:     5
-URxvt*termName: rxvt
+URxvt*termName:           xterm-256color
 
 !! Font
 URxvt.font:               xft:Monoid Tight:size=10

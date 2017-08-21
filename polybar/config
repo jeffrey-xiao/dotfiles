@@ -142,7 +142,6 @@ battery = BAT0
 adapter = ADP0
 
 format-charging = <animation-charging> <label-charging>
-format-charging-padding = 1
 format-charging-foreground = ${colors.base03}
 format-charging-background = ${colors.white0}
 
@@ -153,7 +152,7 @@ format-discharging-background = ${colors.white0}
 label-charging = %percentage%%
 label-charging-foreground = ${colors.base03}
 label-charging-background = ${colors.white0}
-label-charging-padding = 1
+label-charging-padding-right = 1
 
 label-discharging = %percentage%%
 label-discharging-foreground = ${colors.base03}

@@ -8,8 +8,14 @@ dunst:
   link: "~/.config/dunst"
   dependencies:
     - "dunst"
-fontconfig:
-  link: "~/.config/fontconfig"
+fonts:
+  link:
+    - fonts.conf: "~/.config/fontconfig"
+    - "*": "~/.fonts"
+    - ".*": "~/.fonts"
+  postlink:
+    - "git clone https://github.com/powerline/fonts ~/fonts/powerline-fonts"
+    - ". ~/fonts/install.sh"
 git:
   link: "~"
 htop:
@@ -54,13 +60,9 @@ ncmpcpp:
   dependencies:
     - "ncmpcpp"
 other:
-  link:
-    - redshift.conf: "~/.config"
-    - "*": "~/dotfiles"
-    - ".*": "~/dotfiles"
+  link: "~/.config"
   dependencies:
     - "redshift"
-    - "nautilus"
     - "youtube-dl"
 polybar:
   link: "~/.config/polybar"
@@ -82,9 +84,6 @@ rtorrent:
     - "rtorrent"
 system:
   link: "~"
-  postlink:
-    - "git clone https://github.com/powerline/fonts ~/fonts/powerline-fonts"
-    - ". ~/fonts/install.sh"
   dependencies:
     - "rxvt-unicode"
     - "xrdb"

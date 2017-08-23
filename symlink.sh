@@ -24,7 +24,7 @@ for folder in ncmpcpp weechat templates bin; do
 done
 
 ## Linking to .config/$folder
-for folder in mpd sublime-text-3/Packages/User i3 ranger mpv qpdfview fontconfig htop dunst; do
+for folder in mpd i3 ranger mpv fontconfig htop dunst polybar zathura; do
   # rm -rf ~/.config/$folder
   mkdir -p ~/.config/$folder
   for f in $DOTFILES_DIR/$folder/*; do
@@ -37,6 +37,12 @@ mkdir -p ~/.config/mpd/playlists
 touch ~/.config/mpd/database
 
 ## Linking other options
-mkdir -p ~/.tmp ~/.bin ~/Downloads/complete ~/Downloads/incomplete ~/.rtorrent.sessions
+mkdir -pv ~/.tmp ~/.bin ~/Downloads/complete ~/Downloads/incomplete ~/.rtorrent.sessions
+mkdir -pv ~/Pictures/screenshots
 ln -sfv "$DOTFILES_DIR/other/redshift.conf" ~/.config
+ln -sfv "$DOTFILES_DIR/fonts/fonts.conf" ~/.config/fontconf
+
+for f in $DOTFILES_DIR/fonts/*.ttf; do
+  ln -sfv "$f" ~/.fonts
+done
 xrdb ~/.Xresources

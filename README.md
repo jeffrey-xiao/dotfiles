@@ -5,17 +5,17 @@ This repository contains all the dot files I use for my Ubuntu machine.
 ```
 audio         → ncmpcpp/mpd/mpc
 de/wm         → i3-gaps
-editor        → vim/sublime/eclipse
-fm            → nautilus/ranger
+editor        → vim
+fm            → ranger
 irc           → weechat
-monitor       → i3blocks-gaps/htop
+monitor       → polybar/htop
 multiplexer   → tmux
 notifications → dunst
+pdf viewer    → zathura
 shell         → bash
 terminal      → rxvt-unicode
 torrent       → rtorrent
 video         → mpv
-viewer        → qpdfview
 ```
 
 ## Dependencies

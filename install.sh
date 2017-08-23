@@ -1,40 +1,43 @@
 #!/usr/bin/env bash
 
+## Join array with delimiter
+function join { local IFS="$1"; shift; echo "$*"; }
+
 ## Get current directory
-export DOTFILES_DIR
 DOTFILES_DIR=$(pwd)
 
 log_file=$DOTFILES_DIR/install.log
 echo -n "" > $log_file
 
-## Installing necessary applications
-# ppa for youtube-dl
-sudo add-apt-repository ppa:nilarimogard/webupd8
-# ppa for sublime-text-3
-sudo add-apt-repository ppa:webupd8team/sublime-text-3
-sudo apt-get update
-
-# Download eclipse, i3-gaps, and i3blocks-gaps from source
-for f in \
-  rxvt-unicode-256color \
-  redshift \
-  sublime-text-installer vim-gnome \
-  mpd mpc ncmpcpp \
-  mpv \
-  weechat \
-  nautilus ranger \
-  htop \
-  tmux \
-  chromium-browser \
-  scrot imagemagick compton i3lock rofi \
-  build-essential cmake python-dev python3-dev curl \
-  fonts-font-awesome x11-xserver-utils playerctl \
-  youtube-dl qpdfview w3m acpi sysstat feh jq blueman \
-  xautolock atool redshift-gtk xbacklight gnome-settings-daemon network-manager xclip \
+declare -a programs=(
+  compton
   dunst
+  htop
+  i3 scrot imagemagick i3lock rofi acpi sysstat feh jq blueman xbacklight gnome-settings-daemon network-manager xclip
+  mpd mpc
+  mpv
+  ncmpcpp
+  redshift youtube-dl
+  polybar font-awesome-ttf
+  ranger w3m feh
+  rtorrent
+  rxvt-unicode xrdb
+  tmux
+  vim cmake make curl g++
+  weechat
+  zathura
+  xdotool
+)
+programs_string=$(join " " "${programs[@]}")
+installed_program_list=$(eopkg li -i)
+
+## Installing necessary applications (need to install component system.devel separately)
+sudo eopkg it -y $programs_string
+
+## Checking if applications are installed
+for f in ${programs[@]}
 do
-  sudo apt-get install -y $f
-  if [ $(dpkg-query -W -f='${Status}' $f 2>/dev/null | grep -c "ok installed") -eq 1 ]; then
+  if [ $(echo $installed_program_list | grep -c "$f ") -eq 1 ]; then
     echo "$f successfully installed." >> $log_file
   else
     echo "$f failed to install." >> $log_file
@@ -50,7 +53,4 @@ vim -c PlugInstall -c q! -c q!
 ## Installing powerline fonts
 git clone https://github.com/powerline/fonts ~/fonts/powerline-fonts
 . ~/fonts/install.sh
-git clone https://github.com/sunaku/tamzen-font ~/fonts/tamzen-font
-mkdir ~/.fonts
-cp ~/fonts/tamzen-font/bdf/TamzenForPowerline8x16* ~/.fonts
 xrdb ~/.Xresources

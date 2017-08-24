@@ -37,7 +37,7 @@ font-1 = FontAwesome:size=10;4
 tray-position = right
 
 modules-left = i3 mpd
-modules-center = date
+modules-center = date separator weather
 modules-right = memory cpu network volume battery
 
 [module/i3]
@@ -183,6 +183,15 @@ date = %a, %b %e
 time = %H:%M
 
 label = %date% - %time%
+
+[module/separator]
+type = custom/text
+content = " | "
+
+[module/weather]
+type = custom/script
+exec = weather
+interval = 300
 
 [module/powermenu]
 type = custom/menu

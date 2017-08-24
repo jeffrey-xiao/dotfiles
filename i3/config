@@ -247,4 +247,4 @@ exec --no-startup-id blueman-applet
 exec --no-startup-id i3-msg "exec ps -e | grep --quiet mpd || mpd"
 
 # Launch polybar
-exec_always launch-polybar
+exec_always --no-startup-id launch-polybar

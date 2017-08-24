@@ -31,8 +31,14 @@ line-size = 3
 
 padding = 0
 
+; Default font
 font-0 = Monoid Tight:size=10;4
-font-1 = FontAwesome:size=10;4
+
+; Japanese characters
+font-1 = M+ 2c:style=regular:size=13;4
+
+; Icons
+font-2 = FontAwesome:size=10;4
 
 tray-position = right
 
@@ -79,6 +85,23 @@ label-song = %artist% - %title%
 label-offline = MPD is offline
 icon-play = 
 icon-pause = 
+
+[module/date]
+type = internal/date
+
+date = %a, %b %e
+time = %H:%M
+
+label = %date% - %time%
+
+[module/separator]
+type = custom/text
+content = " | "
+
+[module/weather]
+type = custom/script
+exec = weather
+interval = 300
 
 [module/memory]
 type = internal/memory
@@ -175,23 +198,6 @@ ramp-capacity-1 = " "
 ramp-capacity-2 = " "
 ramp-capacity-3 = " "
 ramp-capacity-4 = " "
-
-[module/date]
-type = internal/date
-
-date = %a, %b %e
-time = %H:%M
-
-label = %date% - %time%
-
-[module/separator]
-type = custom/text
-content = " | "
-
-[module/weather]
-type = custom/script
-exec = weather
-interval = 300
 
 [module/powermenu]
 type = custom/menu

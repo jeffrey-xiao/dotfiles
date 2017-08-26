@@ -1,27 +1,32 @@
 bin:
   link: "~/.bin"
+
 compton:
   link: "~"
   dependencies:
     - "compton"
+
 dunst:
   link: "~/.config/dunst"
   dependencies:
     - "dunst"
+
 fonts:
   link:
     - fonts.conf: "~/.config/fontconfig"
     - "*": "~/.fonts"
-    - ".*": "~/.fonts"
   postlink:
     - "git clone https://github.com/powerline/fonts ~/fonts/powerline-fonts"
     - ". ~/fonts/install.sh"
+
 git:
   link: "~"
+
 htop:
   link: "~/.config/htop"
   dependencies:
     - "htop"
+
 i3:
   link: "~/.config/i3"
   dependencies:
@@ -41,6 +46,7 @@ i3:
     - "xclip"
   postlink:
     - "mkdir -p ~/.tmp"
+
 mpd:
   link: "~/.config/mpd"
   postlink:
@@ -49,26 +55,31 @@ mpd:
   dependencies:
     - "mpd"
     - "mpc"
+
 mpv:
   prelink:
     - "mkdir -p ~/Pictures/screenshots"
   link: "~/.config/mpv"
   dependencies:
     - "mpv"
+
 ncmpcpp:
   link: "~/.ncmpcpp"
   dependencies:
     - "ncmpcpp"
+
 other:
   link: "~/.config"
   dependencies:
     - "redshift"
     - "youtube-dl"
+
 polybar:
   link: "~/.config/polybar"
   dependencies:
     - "polybar"
     - "font-awesome-ttf"
+
 ranger:
   link: "~/.config/ranger"
   dependencies:
@@ -76,23 +87,29 @@ ranger:
     - "imagemagick"
     - "w3m"
     - "feh"
+
 rtorrent:
   link: "~"
   postlink:
     - "mkdir -pv ~/Downloads/complete ~/Downloads/incomplete ~/.rtorrent.sessions"
   dependencies:
     - "rtorrent"
+
 system:
   link: "~"
   dependencies:
     - "rxvt-unicode"
     - "xrdb"
+
 templates:
   link: "~/.templates"
+
 tmux:
   link: "~"
   dependencies:
     - "tmux"
+
+# Install `system.devel` component
 vim:
   link: "~"
   postlink:
@@ -106,12 +123,19 @@ vim:
     - "make"
     - "curl"
     - "g++"
+    - "ack"
+
 weechat:
   link: "~/.weechat"
   dependencies:
     - "weechat"
+
+# Install `zathura` and `zathura-pdf-poppler` from source
 zathura:
   link: "~/.config/zathura"
   dependencies:
-    - "zathura"
     - "xdotool"
+    - "poppler-devel"
+    - "texlive-devel"
+    - "girara-devel"
+    - "texlive-all"

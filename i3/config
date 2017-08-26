@@ -228,10 +228,10 @@ new_float none
 exec_always feh --bg-scale "$HOME/.config/i3/images/wallpaper.png"
 
 # Configure monitor
-exec_always xrandr --output eDP1 --mode 1600x900
+exec_always xrandr --output eDP-1 --mode 1600x900
 
 # Configure secondary monitor
-#exec_always xrandr --output DP1 --mode 1920x1080 --right-of eDP1
+exec_always xrandr --output DP-1 --mode 1920x1080 --left-of eDP-1
 
 ## Configure startup applications
 # Appearance and notifications

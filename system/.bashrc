@@ -35,7 +35,7 @@ if [ -n "$force_color_prompt" ]; then
     color_prompt=
   fi
 fi
-. ~/.bash_twoline.sh
+. ~/.bash_twoline_simple.sh
 unset color_prompt force_color_prompt
 
 # Set title to user@host:dir

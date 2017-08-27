@@ -108,6 +108,7 @@ __twoline() {
 
     __twoline_virtual_env="${VIRTUAL_ENV##*/}"
     __twoline_git_info="$(__git_info)"
+    __twoline_formatted_path="$(__formatted_path)"
 
     if [[ ! -z "${__twoline_virtual_env// }" ]]; then
       __twoline_virtual_env="[$RESET$FG_YELLOW${__twoline_virtual_env}$RESET$FG_EXIT]-"
@@ -117,7 +118,6 @@ __twoline() {
       __twoline_git_info="-[$RESET$FG_YELLOW${__twoline_git_info}$RESET$FG_EXIT]$RESET"
     fi
 
-    __twoline_formatted_path="$(__formatted_path)"
     PS1="$FG_EXIT┌─${__twoline_virtual_env}[$RESET$__twoline_formatted_path$FG_EXIT]${__twoline_git_info}\n"
     PS1+="$FG_EXIT└─╼$RESET "
   }

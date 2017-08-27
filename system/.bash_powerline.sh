@@ -109,16 +109,6 @@ __powerline() {
     esac
   fi
 
-  split_pwd() {
-    # Only show ellipses for directory trees -gt 3
-    # Otherwise use the default pwd as the current \w replacement
-    if [ $(pwd | grep -o '/' | wc -l) -gt 3 ]; then
-      pwd | cut -d'/' -f4-5 | xargs -I{} echo {}"/.../${PWD##*/}"
-    else
-      pwd
-    fi
-  }
-
   ps1() {
     # Check the exit code of the previous command and display different
     # colors in the prompt accordingly.

@@ -73,7 +73,7 @@ def dmenu_cmd(num_lines, prompt="Networks: ", active_lines=None):  # pylint: dis
         elif "p" in args_dict:
             del args_dict["p"]
         if "rofi" in dmenu_command:
-            lines = "-i -dmenu -lines"
+            lines = "-i -fullscreen -dmenu -lines"
             # rofi doesn't support 0 length line, it requires at least -lines=1
             # see https://github.com/DaveDavenport/rofi/issues/252
             num_lines = num_lines or 1
@@ -438,7 +438,7 @@ def get_passphrase():
                 pin = res.split("D ")[1]
         return pin
     else:
-        return Popen(dmenu_cmd(0, "Passphrase"),
+        return Popen(dmenu_cmd(0, "Passphrase: "),
                      stdin=PIPE, stdout=PIPE).communicate()[0].decode(ENC)
 
 

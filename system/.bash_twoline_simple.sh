@@ -106,17 +106,24 @@ __twoline() {
       local FG_EXIT="$FG_RED"
     fi
 
+    __twoline_virtual_env="${VIRTUAL_ENV##*/}"
     __twoline_git_info="$(__git_info)"
     __twoline_formatted_path="$(__formatted_path)"
-    if [[ -z "${__twoline_git_info// }" ]]; then
-      PS1="$__twoline_formatted_path\n"
-      PS1+="$FG_EXIT> $RESET"
-    else
-      PS1="$__twoline_formatted_path on $FG_MAGENTA${__twoline_git_info}$RESET\n"
-      PS1+="$FG_EXIT> $RESET"
+
+    if [[ ! -z "${__twoline_virtual_env// }" ]]; then
+      __twoline_virtual_env=" with $FG_YELLOW${__twoline_virtual_env}$RESET"
     fi
+
+    if [[ ! -z "${__twoline_git_info// }" ]]; then
+      __twoline_git_info=" on $RESET$FG_YELLOW${__twoline_git_info}$RESET"
+    fi
+
+    PS1="\n$__twoline_formatted_path$__twoline_git_info$__twoline_virtual_env\n"
+    PS1+="$FG_EXIT➤ $RESET"
+    PS2="$FG_EXIT➤ $RESET"
   }
   source ~/.bash_git_info.sh
+  source ~/.bash_virtual_env_info.sh
   PROMPT_COMMAND=ps1
 }
  __twoline

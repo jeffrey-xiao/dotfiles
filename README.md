@@ -36,9 +36,8 @@ Any errors with the installation will appear in `./install.log`.
 ~~~
 git clone https://github.com/jeffrey-xiao/dotfiles.git
 cd dotfiles
-git submodule update --init --recursive
-pip3 install -r ./dotinstall/requirements.txt
-python3 ./dotinstall/install.py
+pip3 install dotinstall
+dotinstall
 ~~~
 
 

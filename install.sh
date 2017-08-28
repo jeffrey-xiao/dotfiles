@@ -23,16 +23,16 @@ declare -a programs=(
   rtorrent
   rxvt-unicode xrdb
   tmux
-  vim cmake make curl g++
+  vim cmake make curl g++ ack
   weechat
-  zathura
-  xdotool
+  xdotool poppler-devel texlive-devel girara-devel texlive-all
 )
 programs_string=$(join " " "${programs[@]}")
 installed_program_list=$(eopkg li -i)
 
 ## Installing necessary applications (need to install component system.devel separately)
 sudo eopkg it -y $programs_string
+sudo eopkg it -yc system.devel
 
 ## Checking if applications are installed
 for f in ${programs[@]}

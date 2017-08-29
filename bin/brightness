@@ -7,5 +7,13 @@ curr_brightness=`cat $brightness_file`
 min_brightness=0
 max_brightness=`cat $max_brightness_file`
 
-echo $(($curr_brightness + $1)) > $brightness_file
+if [ "$(($curr_brightness + $1))" -gt "$max_brightness" ]; then
+  curr_brightness=$max_brightness
+elif [ "$(($curr_brightness + $1))" -lt "$min_brightness" ]; then
+  curr_brightness=$min_brightness
+else
+  curr_brightness=$(($curr_brightness + $1))
+fi
+
+echo "echo $curr_brightness > $brightness_file" | sudo bash
 

@@ -139,3 +139,9 @@ zathura:
     - "texlive-devel"
     - "girara-devel"
     - "texlive-all"
+  postlink:
+    - "mkdir -p ~/Documents/source"
+    - "git clone https://github.com/pwmt/zathura ~/Documents/source/zathura"
+    - "git clone https://github.com/pwmt/zathura-pdf-poppler ~/Documents/source/zathura-pdf-poppler"
+    - "cd ~/Documents/source/zathura && sudo make install"
+    - "cd ~/Documents/source/zathura-pdf-poppler && sudo make install"

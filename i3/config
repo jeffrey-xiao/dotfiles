@@ -228,7 +228,9 @@ new_float none
 exec_always feh --bg-scale "$HOME/.config/i3/images/wallpaper.png"
 
 # Configure monitor
-exec_always xrandr --output eDP-1 --mode 1600x900_60.00
+exec_always xrandr --newmode "1600x900_60.00" 118.25 1600 1696 1856 2112 900 903 908 934 -hsync +vsync
+exec_always xrandr --addmode eDP-1 "1600x900_60.00"
+exec_always xrandr --output eDP-1 --mode "1600x900_60.00"
 
 # Configure secondary monitor
 # exec_always xrandr --output DP-1 --mode 1920x1080 --left-of eDP-1
@@ -242,6 +244,7 @@ exec --no-startup-id compton -f
 
 # Tray applets
 exec --no-startup-id blueman-applet
+exec --no-startup-id nm-applet
 
 # Music player
 exec --no-startup-id i3-msg "exec ps -e | grep --quiet mpd || mpd"

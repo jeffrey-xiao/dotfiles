@@ -45,7 +45,7 @@ tray-position = right
 
 modules-left = i3 mpd
 modules-center = date separator weather
-modules-right = memory cpu network volume battery
+modules-right = memory cpu wired-network network volume battery
 
 [module/i3]
 type = internal/i3
@@ -128,6 +128,15 @@ label =  %percentage%%
 label-foreground = ${colors.base03}
 label-background = ${colors.white1}
 label-padding = 1
+
+[module/wired-network]
+type = internal/network
+interface = enp1s0
+
+label-connected =  %local_ip%
+label-connected-foreground = ${colors.base03}
+label-connected-background = ${colors.white2}
+label-connected-padding-left = 1
 
 [module/network]
 type = internal/network

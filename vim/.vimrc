@@ -42,7 +42,7 @@ Plug 'majutsushi/tagbar'
 Plug 'kien/ctrlp.vim'
 
 " Auto brackets, indents and better comments
-" Plug 'raimondi/delimitmate'
+Plug 'raimondi/delimitmate'
 Plug 'yggdroot/indentline'
 Plug 'tpope/vim-commentary'
 

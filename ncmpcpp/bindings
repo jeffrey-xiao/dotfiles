@@ -4,19 +4,19 @@ def_key "K"
   page_up
 
 def_key "j"
-	scroll_down
+  scroll_down
 def_key "k"
-	scroll_up
+  scroll_up
 def_key "h"
-	previous_column
+  previous_column
 def_key "l"
-	next_column
+  next_column
 
 def_key "."
-	show_lyrics
+  show_lyrics
 
 def_key "n"
-	next_found_item
+  next_found_item
 def_key "N"
-	previous_found_item
+  previous_found_item
 

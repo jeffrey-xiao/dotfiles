@@ -209,8 +209,10 @@ set conceallevel=0
 set backspace=2
 set autoread
 set shortmess+=c
-set nobackup
-set nowritebackup
+set encoding=utf-8
+set undodir=~/.vim/.undo//
+set backupdir=~/.vim/.backup//
+set directory=~/.vim/.swp//
 
 
 """ Key bindings

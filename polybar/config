@@ -23,7 +23,7 @@ white2 = #dce1e1
 [bar/top]
 monitor = ${env:MONITOR}
 width = 100%
-height = 30
+height = 24
 
 background = ${colors.base03}
 foreground = ${colors.base2}
@@ -33,13 +33,13 @@ line-size = 3
 padding = 0
 
 ; Default font
-font-0 = TamzenForPowerline:size=16;4
+font-0 = TamzenForPowerline:size=18;2
 
 ; Japanese characters
-font-1 = M+ 2c:style=regular:size=13;4
+font-1 = M+ 2c:style=regular:size=13;2
 
 ; Icons
-font-2 = FontAwesome:size=10;4
+font-2 = FontAwesome:size=10;2
 
 tray-position = right
 

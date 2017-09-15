@@ -1,5 +1,5 @@
 ## Dotfiles
-This repository contains all the dot files I use for my Ubuntu machine.
+This repository contains all the dot files I use for my Solus machine.
 
 ## Software I Use
 ```

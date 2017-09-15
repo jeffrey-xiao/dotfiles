@@ -51,10 +51,3 @@ mkdir -pv ~/.tmp ~/.bin ~/Downloads/complete ~/Downloads/incomplete ~/.rtorrent.
 mkdir -pv ~/Pictures/screenshots
 
 xrdb ~/.Xresources
-
-## Install zathura from source
-mkdir -pv ~/Documents/source
-git clone https://github.com/pwmt/zathura ~/Documents/source/zathura
-git clone https://github.com/pwmt/zathura-pdf-poppler ~/Documents/source/zathura-pdf-poppler
-cd ~/Documents/source/zathura && sudo make install
-cd ~/Documents/source/zathura-pdf-poppler && sudo make install

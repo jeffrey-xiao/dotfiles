@@ -230,6 +230,10 @@ exec_always feh --bg-scale "$HOME/.config/i3/images/wallpaper.png"
 # Configure displays
 exec_always --no-startup-id setup-displays
 
+# Configure fonts
+exec --no-startup-id xset +fp ~/.fonts
+exec --no-startup-id xset fp rehash
+
 ## Configure startup applications
 # Appearance and notifications
 exec --no-startup-id redshift

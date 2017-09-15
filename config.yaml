@@ -20,8 +20,6 @@ fonts:
     - ". ~/fonts/install.sh"
     - "sudo rm /usr/share/fonts/conf.d/70-no-bitmaps.conf"
     - "sudo ln -sv /usr/share/fontconfig/conf.avail/70-yes-bitmaps.conf /usr/share/fonts/conf.d"
-    - "xset +fp ~/.fonts"
-    - "xset fp rehash"
     - "fc-cache -fv"
   dependencies:
     - "xset"

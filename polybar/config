@@ -33,7 +33,7 @@ line-size = 3
 padding = 0
 
 ; Default font
-font-0 = Monoid Tight:size=10;4
+font-0 = TamzenForPowerline:size=16;4
 
 ; Japanese characters
 font-1 = M+ 2c:style=regular:size=13;4

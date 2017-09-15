@@ -1,5 +1,5 @@
 [global]
-    font = "Monoid Tight 10"
+    font = "TamzenForPowerline 10"
     markup = yes
     format = "<b>%s</b>\n%b"
     sort = yes

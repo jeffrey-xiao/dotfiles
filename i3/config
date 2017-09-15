@@ -15,7 +15,7 @@ gaps outer -10
 smart_gaps on
 
 # Font for window titles
-font pango:Monoid Tight 10
+font pango: TamzenForPowerline 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod

@@ -18,6 +18,11 @@ fonts:
   postlink:
     - "git clone https://github.com/powerline/fonts ~/fonts/powerline-fonts"
     - ". ~/fonts/install.sh"
+    - "xset +fp ~/.fonts"
+    - "xset fp rehash"
+    - "fc-cache -fv"
+  dependencies:
+    - "xset"
 
 git:
   link: "~"

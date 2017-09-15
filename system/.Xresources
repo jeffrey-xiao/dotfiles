@@ -22,9 +22,9 @@ URxvt.internalBorder:     5
 URxvt*termName:           xterm-256color
 
 !! Font
-URxvt.font:               xft:Monoid Tight:size=10
-URxvt.boldFont:           xft:Monoid Tight:size=10
-URxvt.letterSpace:        -1.0
+URxvt.font:               -misc-tamzenforpowerline-medium-r-normal--16-116-100-100-c-80-iso8859-1
+URxvt.boldFont:           -misc-tamzenforpowerline-medium-r-normal--16-116-100-100-c-80-iso8859-1
+URxvt.letterSpace:        0.0
 
 !! Real transparency
 !urxvt*depth:       32
@@ -59,7 +59,7 @@ rofi.width: 100
 rofi.padding: 300
 rofi.bw: 0
 rofi.yoffset: 0
-rofi.font: Monoid Tight 13
+rofi.font: TamzenForPowerline 16
 
 rofi.color-enabled: true
 rofi.color-window: argb:f2002b36, argb:f2002b36, argb:f2002b36

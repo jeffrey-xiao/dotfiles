@@ -7,8 +7,11 @@ fi
 xrandr --addmode eDP-1 "1600x900-60.00"
 
 if xrandr | grep -q "\bDP-1 connected\b"; then
-  xrandr --output DP-1 --mode 1920x1080 --left-of eDP-1
   xrandr --output eDP-1 --mode "1600x900-60.00"
+  xrandr --output DP-1 --mode 1920x1080 --left-of eDP-1
 else
   xrandr --output eDP-1 --mode 1920x1080
 fi
+
+launch-polybar
+feh --bg-scale "$HOME/.config/i3/images/wallpaper.png"

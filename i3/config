@@ -175,7 +175,7 @@ bindsym XF86MonBrightnessUp exec "sudo brightness +50"
 bindsym XF86MonBrightnessDown exec "sudo brightness -50"
 
 # Touchpad controls
-bindsym XF86TouchpadToggle exec toggletouchpad
+bindsym XF86TouchpadToggle exec toggle-touchpad
 
 # Media player controls
 bindsym XF86AudioPlay exec mpc play
@@ -244,9 +244,3 @@ exec --no-startup-id i3-msg "exec ps -e | grep --quiet mpd || mpd"
 
 # Configure displays
 exec_always --no-startup-id setup-displays
-
-# Launch polybar
-exec_always --no-startup-id launch-polybar
-
-# Set wallpaper
-exec_always --no-startup-id feh --bg-scale "$HOME/.config/i3/images/wallpaper.png"

@@ -224,12 +224,6 @@ for_window [class="Power"]  border pixel 0
 
 new_float none
 
-# Set wallpaper
-exec_always feh --bg-scale "$HOME/.config/i3/images/wallpaper.png"
-
-# Configure displays
-exec_always --no-startup-id setup-displays
-
 # Configure fonts
 exec --no-startup-id xset +fp ~/.fonts
 exec --no-startup-id xset fp rehash
@@ -248,5 +242,11 @@ exec --no-startup-id nm-applet
 # Music player
 exec --no-startup-id i3-msg "exec ps -e | grep --quiet mpd || mpd"
 
+# Configure displays
+exec_always --no-startup-id setup-displays
+
 # Launch polybar
 exec_always --no-startup-id launch-polybar
+
+# Set wallpaper
+exec_always --no-startup-id feh --bg-scale "$HOME/.config/i3/images/wallpaper.png"

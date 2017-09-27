@@ -49,6 +49,7 @@ Plug 'tpope/vim-commentary'
 " Status line
 Plug 'itchyny/lightline.vim'
 Plug 'mgee/lightline-bufferline'
+Plug 'romainl/vim-qf'
 
 " Emmet
 Plug 'mattn/emmet-vim'
@@ -116,6 +117,7 @@ let g:lightline = {
       \     [ 'gitbranch', 'gitinfo' ],
       \   ],
       \   'right': [
+      \     [ 'warnings' ],
       \     [ 'lineinfo' ],
       \     [ 'fileformat', 'fileencoding', 'filetype' ],
       \   ],
@@ -144,6 +146,7 @@ let g:lightline = {
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head',
       \   'gitinfo': 'LightLineGitInfo',
+      \   'warnings': 'LightLineWarnings',
       \ },
       \ }
 
@@ -154,6 +157,33 @@ function! LightLineGitInfo()
   else
     return ""
   endif
+endfunction
+
+autocmd cursorhold,bufwritepost * unlet! b:warning_flags
+
+function! LightLineWarnings()
+  if !exists("b:warning_flags")
+    let tabs = search('^\t', 'nw') != 0
+    let spaces = search('^ ', 'nw') != 0
+    let b:warning_flags = ""
+
+    " Mixed indenting
+    if tabs && spaces
+      let b:warning_flags .= 'M'
+
+    " Inconsistent indenting
+    elseif (spaces && !&et) || (tabs && &et)
+      let b:warning_flags .= 'I'
+    endif
+
+    " Trailing spaces
+    if search('\s\+$', 'nw') != 0
+      let b:warning_flags .= 'T'
+    endif
+    echo "HERE"
+  endif
+
+  return b:warning_flags
 endfunction
 
 set showtabline=2

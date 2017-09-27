@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 filter () {
   tr '\n' ' ' | output

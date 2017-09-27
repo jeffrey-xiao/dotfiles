@@ -49,25 +49,32 @@ Plug 'tpope/vim-commentary'
 " Status line
 Plug 'itchyny/lightline.vim'
 Plug 'mgee/lightline-bufferline'
-Plug 'romainl/vim-qf'
 
-" Emmet
-Plug 'mattn/emmet-vim'
+" Improves quick fix window
+Plug 'romainl/vim-qf'
 
 "" Languages
 Plug 'fatih/vim-go'
-Plug 'neovimhaskell/haskell-vim'
-Plug 'wlangstroth/vim-racket'
-Plug 'guns/vim-clojure-static'
-Plug 'digitaltoad/vim-jade'
+
 Plug 'moll/vim-node'
-Plug 'mxw/vim-jsx'
+Plug 'jaawerth/nrun.vim'
+
+Plug 'mattn/emmet-vim'
+
 Plug 'pangloss/vim-javascript'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'maksimr/vim-jsbeautify'
-Plug 'jaawerth/nrun.vim'
-Plug 'lervag/vimtex'
+Plug 'mxw/vim-jsx'
+
 Plug 'octol/vim-cpp-enhanced-highlight'
+
+Plug 'lervag/vimtex'
+
+" Plug 'wlangstroth/vim-racket'
+
+" Plug 'guns/vim-clojure-static'
+
+" Plug 'digitaltoad/vim-jade'
 
 call plug#end()
 
@@ -160,7 +167,6 @@ function! LightLineGitInfo()
 endfunction
 
 autocmd cursorhold,bufwritepost * unlet! b:warning_flags
-
 function! LightLineWarnings()
   if !exists("b:warning_flags")
     let tabs = search('^\t', 'nw') != 0
@@ -185,8 +191,6 @@ function! LightLineWarnings()
 
   return b:warning_flags
 endfunction
-
-set showtabline=2
 
 "" Config for vimtex
 let g:vimtex_compiler_latexmk = {'callback' : 0}
@@ -221,6 +225,7 @@ set smarttab
 set cindent
 set nowrap
 set lazyredraw
+set showtabline=2
 
 "" Line/column numbers
 set number

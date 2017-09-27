@@ -5,7 +5,7 @@ endfunction
 
 let g:CXX="g++"
 let g:CXX_FLAGS="-std=c++14"
-function CompileCpp ()
+function! CompileCpp ()
   let l:fileName = expand('%')
   let l:baseName = expand('%:r')
   cex! system(g:CXX.' '.g:CXX_FLAGS.' '.l:fileName.' -o '.l:baseName)
@@ -13,7 +13,7 @@ function CompileCpp ()
   cw
 endfunction
 
-function RunCpp ()
+function! RunCpp ()
   let l:filePath = expand('%:p:r')
   execute '!'.l:filePath
 endfunction
@@ -177,6 +177,7 @@ set smartindent
 set smarttab
 set cindent
 set nowrap
+set lazyredraw
 
 "" Line/column numbers
 set number
@@ -219,8 +220,13 @@ set directory=~/.vim/.swp//
 "" Remap leader
 let g:mapleader="\<Space>"
 
+"" Regular j, k moves across visual lines
+"" Numbered j, k moves across physical lines
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
+
+"" Reload .vimrc
+map rr :source ~/.vimrc<CR>
 
 "" Delete trailing whitespace
 nnoremap <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
@@ -268,6 +274,9 @@ hi texMathMatcher ctermbg=none
 hi texMathZoneX ctermbg=none
 hi texRefLabel ctermbg=none
 hi texStatement ctermbg=none
+
+"" Highlighting for GitGutter symbols
+highlight clear SignColumn
 
 
 """ Autocommands

@@ -279,7 +279,6 @@ nmap <F7> :TagbarToggle<CR>
 
 "" Copy into clipboard
 vnoremap <C-c> "+y
-nnoremap <C-v> "+v
 
 "" Easy split navigation
 nnoremap <C-j> <C-w>j

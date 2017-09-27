@@ -25,6 +25,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'
 
 "" Useful plugs
+Plug 'tpope/vim-unimpaired'
+
 " Templates
 Plug 'tibabit/vim-templates'
 
@@ -36,10 +38,11 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
 " File explorer
-Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
-Plug 'majutsushi/tagbar'
 Plug 'kien/ctrlp.vim'
+Plug 'justinmk/vim-dirvish'
+
+" Tags
+Plug 'ludovicchabant/vim-gutentags'
 
 " Auto brackets, indents and better comments
 Plug 'raimondi/delimitmate'
@@ -84,27 +87,20 @@ call plug#end()
 let g:tmpl_search_paths=['~/.templates']
 let g:tmpl_auto_initialize=0
 
-"" Config for Nerdtree
-"Autostart on vim startup
-"au vimenter * NERDTree
+"" Config for Dirvish
+let g:dirvish_mode = ':sort ,^.*[\/],'
 
-" Ctrl + n to open NerdTree
-map <C-n> :NERDTreeToggle<CR>
-
-" Default NerdTreeTags open on startup
-let g:nerdtree_tabs_open_on_console_startup=0
-
-" Close vim when NERDTree is the only tab left
-au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"" Config for Gutentags
+let g:gutentags_cache_dir='~/.tags'
+let g:gutentags_generate_on_empty_buffer=1
 
 "" Config for YouCompleteMe
 let g:ycm_complete_in_comments=0
 let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
 
-"" Config for the indentLine
+"" Config for IndentLine
 let g:indentLine_color_term = 239
 let g:indentLine_char='┊'
-let g:indentLine_conceallevel = 0
 
 "" Config for delimitMate
 " Adds a new line before the autocompleted bracket
@@ -186,7 +182,6 @@ function! LightLineWarnings()
     if search('\s\+$', 'nw') != 0
       let b:warning_flags .= 'T'
     endif
-    echo "HERE"
   endif
 
   return b:warning_flags
@@ -224,8 +219,6 @@ set smartindent
 set smarttab
 set cindent
 set nowrap
-set lazyredraw
-set showtabline=2
 
 "" Line/column numbers
 set number
@@ -262,6 +255,8 @@ set encoding=utf-8
 set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
+set lazyredraw
+set showtabline=2
 
 
 """ Key bindings
@@ -284,6 +279,7 @@ nmap <F7> :TagbarToggle<CR>
 
 "" Copy into clipboard
 vnoremap <C-c> "+y
+nnoremap <C-v> "+v
 
 "" Easy split navigation
 nnoremap <C-j> <C-w>j
@@ -299,6 +295,10 @@ nmap <leader>p :CtrlP<CR>
 nmap <leader>b :CtrlPBuffer<CR>
 nmap <leader>m :CtrlPMixed<CR>
 nmap <leader>a :CtrlPMRU<CR>
+nmap <leader>t :CtrlPTag<CR>
+
+"" Dirvish bindings
+nmap <leader>y :Dirvish<CR>
 
 "" Grep for word under cursor
 nnoremap K :execute 'grep!"\b"'.expand('<cword>').'"\b"'<CR>:cw<CR>
@@ -355,15 +355,13 @@ augroup quick_fix_group
   au Filetype qf nnoremap <buffer> <Leader>h <C-W><CR><C-W>K<C-W>b
   " Quit
   au Filetype qf nnoremap <buffer> q :ccl<CR>
-
-  au Filetype qf nnoremap <Leader>. :cn<CR>
-  au Filetype qf nnoremap <Leader>, :cp<CR>
 augroup END
 
 "" cpp related autocommands
 augroup cpp_group
   au Filetype cpp nnoremap <buffer> <F4> :call CompileCpp()<CR>
   au Filetype cpp nnoremap <buffer> <F5> :call RunCpp()<CR>
+  let g:delimitMate_matchpairs = "(:),[:],{:}"
 augroup END
 
 "" latex related autocommands

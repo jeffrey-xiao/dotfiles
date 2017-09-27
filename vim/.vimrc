@@ -47,8 +47,8 @@ Plug 'yggdroot/indentline'
 Plug 'tpope/vim-commentary'
 
 " Status line
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
+Plug 'mgee/lightline-bufferline'
 
 " Emmet
 Plug 'mattn/emmet-vim'
@@ -106,44 +106,57 @@ let g:delimitMate_expand_space = 1
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_inside_quotes = 1
 
-"" Config for airline
-" Initialize dictionary for airline symbols
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
+"" Config for lightline
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ 'active': {
+      \   'left': [
+      \     [ 'mode', 'paste' ],
+      \     [ 'readonly', 'filename' ],
+      \     [ 'gitbranch', 'gitinfo' ],
+      \   ],
+      \   'right': [
+      \     [ 'lineinfo' ],
+      \     [ 'fileformat', 'fileencoding', 'filetype' ],
+      \   ],
+      \ },
+      \ 'tabline': {
+      \   'left': [ [ 'tabs', 'buffers' ] ],
+      \   'right': [ [ 'close' ] ],
+      \ },
+      \ 'tab': {
+      \   'active': [ 'tabnum' ],
+      \   'inactive': [ 'tabnum' ],
+      \ },
+      \ 'enable': {
+      \   'statusline': 1,
+      \   'tabline': 1,
+      \ },
+      \ 'component_expand': {
+      \   'buffers': 'lightline#bufferline#buffers',
+      \ },
+      \ 'component_type': {
+      \   'buffers': 'tabsel',
+      \ },
+      \ 'component': {
+      \   'lineinfo': '%l/%L:%3v',
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head',
+      \   'gitinfo': 'LightLineGitInfo',
+      \ },
+      \ }
 
-" Unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.crypt = '🔒'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.maxlinenr = '☰'
-let g:airline_symbols.maxlinenr = ''
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.spell = 'Ꞩ'
-let g:airline_symbols.notexists = '∄'
-let g:airline_symbols.whitespace ='Ξ'
+function! LightLineGitInfo()
+  if fugitive#head() != ""
+    let info = GitGutterGetHunkSummary()
+    return "+".info[0]." ~".info[1]." -".info[2]
+  else
+    return ""
+  endif
+endfunction
 
-" Powerline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
-
-" Other airline config
-let g:airline_theme='solarized'
-let g:airline#extensions#tabline#enabled=1
-let g:airline_section_z = airline#section#create(['windowswap', '', '%l%\/%L%', '\:%3v'])
+set showtabline=2
 
 "" Config for vimtex
 let g:vimtex_compiler_latexmk = {'callback' : 0}

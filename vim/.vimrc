@@ -253,11 +253,12 @@ set backspace=2
 set autoread
 set shortmess+=c
 set encoding=utf-8
+set lazyredraw
+set showtabline=2
+set undofile
 set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
-set lazyredraw
-set showtabline=2
 
 
 """ Key bindings
@@ -361,7 +362,7 @@ augroup END
 augroup cpp_group
   au Filetype cpp nnoremap <buffer> <F4> :call CompileCpp()<CR>
   au Filetype cpp nnoremap <buffer> <F5> :call RunCpp()<CR>
-  let g:delimitMate_matchpairs = "(:),[:],{:}"
+  au Filetype cpp let g:delimitMate_matchpairs = "(:),[:],{:}"
 augroup END
 
 "" latex related autocommands

@@ -24,7 +24,7 @@ declare -a programs=(
   rtorrent
   rxvt-unicode xrdb
   tmux
-  vim cmake make curl g++ ack
+  vim cmake make curl g++ ack ctags
   weechat
   xdotool poppler-devel texlive-devel girara-devel texlive-all
 )
@@ -50,7 +50,7 @@ rm -rf ~/.vim
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim -c PlugInstall -c q! -c q!
 ~/.vim/plugged/youcompleteme/install.py --clang-completer
-mkdir -p ~/.vim/.undo ~/.vim/.backup ~/.vim/.swp
+mkdir -p ~/.vim/.undo ~/.vim/.backup ~/.vim/.swp ~/.tags
 
 ## Installing powerline fonts
 git clone https://github.com/powerline/fonts ~/fonts/powerline-fonts

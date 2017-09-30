@@ -66,3 +66,7 @@ rofi.color-window: argb:f2002b36, argb:f2002b36, argb:f2002b36
 rofi.color-normal: argb:00002b36, argb:f2b58900, argb:00002b36, argb:f2b58900, argb:f2002b36
 rofi.color-urgent: argb:00002b36, argb:f2b58900, argb:00002b36, argb:f2b58900, argb:f2002b36
 rofi.color-active: argb:00002b36, argb:f2b58900, argb:00002b36, argb:f2b58900, argb:f2002b36
+
+rofi.terminal: urxvt
+rofi.ssh-client: ssh
+rofi.ssh-command: {terminal} -e {ssh-client} {host}

@@ -26,6 +26,7 @@ Plug 'altercation/vim-colors-solarized'
 
 "" Useful plugs
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-eunuch'
 
 " Templates
 Plug 'tibabit/vim-templates'
@@ -269,7 +270,7 @@ nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
 
 "" Reload .vimrc
-map rr :source ~/.vimrc<CR>
+map <leader>rr :source ~/.vimrc<CR>
 
 "" Delete trailing whitespace
 nnoremap <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>

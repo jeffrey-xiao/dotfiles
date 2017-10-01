@@ -24,7 +24,7 @@ declare -a programs=(
   rtorrent
   rxvt-unicode xrdb
   tmux
-  vim cmake make curl g++ ack ctags
+  vim curl ack ctags pip llvm-clang nodejs
   weechat
   xdotool poppler-devel texlive-devel girara-devel texlive-all
 )
@@ -49,8 +49,10 @@ done
 rm -rf ~/.vim
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim -c PlugInstall -c q! -c q!
-~/.vim/plugged/youcompleteme/install.py --clang-completer
 mkdir -p ~/.vim/.undo ~/.vim/.backup ~/.vim/.swp ~/.tags
+sudo pip install jedi flake8 autopep8
+sudo npm install -g eslint tern
+cd ~/.vim/plugged/tern_for_vim && npm install
 
 ## Installing powerline fonts
 git clone https://github.com/powerline/fonts ~/fonts/powerline-fonts

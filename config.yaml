@@ -124,6 +124,7 @@ vim:
     - "mkdir -p ~/.vim/.undo ~/.vim/.backup ~/.vim/.swp ~/.tags"
     - "sudo pip install jedi flake8 autopep8"
     - "sudo npm install -g eslint tern"
+    - "cd ~/.vim/plugged/tern_for_vim && npm install"
   dependencies:
     - "vim"
     - "curl"
@@ -131,7 +132,7 @@ vim:
     - "ctags"
     - "pip"
     - "llvm-clang"
-    - "node"
+    - "nodejs"
 
 weechat:
   link: "~/.weechat"

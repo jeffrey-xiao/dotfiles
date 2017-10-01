@@ -364,6 +364,9 @@ nmap Y y$
 "" Sudoedit a file
 cmap w!! %!sudo tee > /dev/null %
 
+"" Neocompleter bindings
+inoremap <expr><Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
 
 """ Highlighting config
 "" Underline current line

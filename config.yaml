@@ -121,16 +121,17 @@ vim:
     - "rm -rf ~/.vim"
     - "curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
     - "vim -c PlugInstall -c q! -c q!"
-    - "~/.vim/plugged/youcompleteme/install.py --clang-completer"
     - "mkdir -p ~/.vim/.undo ~/.vim/.backup ~/.vim/.swp ~/.tags"
+    - "sudo pip install jedi flake8 autopep8"
+    - "sudo npm install -g eslint tern"
   dependencies:
     - "vim"
-    - "cmake"
-    - "make"
     - "curl"
-    - "g++"
     - "ack"
     - "ctags"
+    - "pip"
+    - "llvm-clang"
+    - "node"
 
 weechat:
   link: "~/.weechat"

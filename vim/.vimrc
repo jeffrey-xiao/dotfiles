@@ -30,32 +30,34 @@ Plug 'altercation/vim-colors-solarized'
 "" Useful plugs
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-surround'
 Plug 'romainl/vim-qf'
 
 "" Templates
 Plug 'tibabit/vim-templates'
 
-"" Auto completion and better highlighting
+"" Auto completion, linting, and better highlighting, 
+Plug 'maralla/completor.vim'
+Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
-Plug 'Valloric/YouCompleteMe'
 
-" Git integration
+"" Git integration
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
-" File explorer
+"" File explorer
 Plug 'kien/ctrlp.vim'
 Plug 'justinmk/vim-dirvish'
 
-" Tags
+"" Tags
 Plug 'ludovicchabant/vim-gutentags'
 
-" Auto brackets, indents and better comments
+"" Auto brackets, indents and better comments
 Plug 'raimondi/delimitmate'
 Plug 'yggdroot/indentline'
 Plug 'tpope/vim-commentary'
 
-" Status line
+"" Status line
 Plug 'itchyny/lightline.vim'
 Plug 'mgee/lightline-bufferline'
 
@@ -78,6 +80,26 @@ call plug#end()
 
 
 """ Config for plugins
+"" Config for Completor
+let g:completor_python_binary = '/usr/bin/python'
+let g:completor_clang_binary = '/usr/bin/clang'
+let g:completor_refresh_always = 0
+let g:completor_completion_delay = 0
+
+let g:completor_c_omni_trigger = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+let g:completor_cpp_omni_trigger = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+
+"" Config for Ale
+let g:ale_linters = {
+      \ 'javascript': [ 'eslint' ],
+      \ 'python': [ 'autopep', 'flake8', 'pylint' ],
+      \ 'cpp': [ 'gcc', 'clang' ],
+      \}
+
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
 "" Config for VimTemplates
 let g:tmpl_search_paths=['~/.templates']
 let g:tmpl_auto_initialize=0

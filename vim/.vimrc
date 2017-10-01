@@ -37,7 +37,14 @@ Plug 'romainl/vim-qf'
 Plug 'tibabit/vim-templates'
 
 "" Auto completion, linting, and better highlighting, 
-Plug 'maralla/completor.vim'
+Plug 'Shougo/neocomplete.vim'
+Plug 'Shougo/neoinclude.vim'
+
+Plug 'ternjs/tern_for_vim'
+Plug 'davidhalter/jedi-vim'
+Plug 'justmao945/vim-clang'
+Plug 'lervag/vimtex'
+
 Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
 
@@ -70,7 +77,6 @@ Plug 'mxw/vim-jsx'
 Plug 'jaawerth/nrun.vim'
 Plug 'mattn/emmet-vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'lervag/vimtex'
 " Plug 'maksimr/vim-jsbeautify'
 " Plug 'wlangstroth/vim-racket'
 " Plug 'guns/vim-clojure-static'
@@ -80,14 +86,49 @@ call plug#end()
 
 
 """ Config for plugins
-"" Config for Completor
-let g:completor_python_binary = '/usr/bin/python'
-let g:completor_clang_binary = '/usr/bin/clang'
-let g:completor_refresh_always = 0
-let g:completor_completion_delay = 0
+"" Config for neocomplete  
+" Config for clang
+let g:clang_auto = 0
+let g:clang_c_completeopt = 'menuone'
+let g:clang_cpp_completeopt = 'menuone'
+let g:clang_exec = 'clang'
+let g:clang_cpp_options = '-std=c++14'
 
-let g:completor_c_omni_trigger = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-let g:completor_cpp_omni_trigger = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+" Config for jedi
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#smart_auto_mappings = 0
+
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#auto_complete_delay = 0
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+
+let g:neocomplete#sources#omni#input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
+let g:neocomplete#sources#omni#input_patterns.tex =
+        \ '\v\\%('
+        \ . '\a*%(ref|cite)\a*%(\s*\[[^]]*\])?\s*\{[^{}]*'
+        \ . '|includegraphics%(\s*\[[^]]*\])?\s*\{[^{}]*'
+        \ . '|%(include|input)\s*\{[^{}]*'
+        \ . ')'
+
+autocmd FileType python setlocal omnifunc=jedi#completions
+autocmd FileType javascript setlocal omnifunc=tern#Complete
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
 
 "" Config for Ale
 let g:ale_linters = {

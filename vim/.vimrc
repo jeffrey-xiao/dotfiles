@@ -1,3 +1,6 @@
+filetype plugin indent on
+syntax enable
+
 """ Functions
 function! AdjustHeight(minHeight, maxHeight)
   exe max([min([line("$"), a:maxHeight]), a:minHeight])."wincmd _"
@@ -27,12 +30,14 @@ Plug 'altercation/vim-colors-solarized'
 "" Useful plugs
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-eunuch'
+Plug 'romainl/vim-qf'
 
-" Templates
+"" Templates
 Plug 'tibabit/vim-templates'
 
-" Auto completion
-Plug 'valloric/youcompleteme'
+"" Auto completion and better highlighting
+Plug 'sheerun/vim-polyglot'
+Plug 'Valloric/YouCompleteMe'
 
 " Git integration
 Plug 'airblade/vim-gitgutter'
@@ -54,30 +59,19 @@ Plug 'tpope/vim-commentary'
 Plug 'itchyny/lightline.vim'
 Plug 'mgee/lightline-bufferline'
 
-" Improves quick fix window
-Plug 'romainl/vim-qf'
-
 "" Languages
 Plug 'fatih/vim-go'
-
 Plug 'moll/vim-node'
-Plug 'jaawerth/nrun.vim'
-
-Plug 'mattn/emmet-vim'
-
 Plug 'pangloss/vim-javascript'
 Plug 'jelera/vim-javascript-syntax'
-Plug 'maksimr/vim-jsbeautify'
 Plug 'mxw/vim-jsx'
-
+Plug 'jaawerth/nrun.vim'
+Plug 'mattn/emmet-vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
-
 Plug 'lervag/vimtex'
-
+" Plug 'maksimr/vim-jsbeautify'
 " Plug 'wlangstroth/vim-racket'
-
 " Plug 'guns/vim-clojure-static'
-
 " Plug 'digitaltoad/vim-jade'
 
 call plug#end()
@@ -242,7 +236,6 @@ set smartcase
 "" Color scheme config
 set t_Co=256
 set background=dark
-syntax enable
 silent! colorscheme solarized
 
 "" Other config
@@ -251,6 +244,7 @@ set wildmenu
 set conceallevel=0
 set backspace=2
 set autoread
+set autowrite
 set shortmess+=c
 set encoding=utf-8
 set lazyredraw
@@ -298,11 +292,14 @@ nmap <leader>m :CtrlPMixed<CR>
 nmap <leader>a :CtrlPMRU<CR>
 nmap <leader>t :CtrlPTag<CR>
 
-"" Dirvish bindings
-nmap <leader>y :Dirvish<CR>
-
 "" Grep for word under cursor
 nnoremap K :execute 'grep!"\b"'.expand('<cword>').'"\b"'<CR>:cw<CR>
+
+"" Consistent behavior
+nmap Y y$
+
+"" Sudoedit a file
+cmap w!! %!sudo tee > /dev/null %
 
 
 """ Highlighting config

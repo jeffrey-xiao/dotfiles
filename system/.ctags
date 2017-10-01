@@ -1,0 +1,9 @@
+--python-kinds=-i
+
+--tag-relative=yes
+--recurse=yes
+--exclude=venv
+--exclude=.tox
+--exclude=.git
+--exclude=node_modules
+

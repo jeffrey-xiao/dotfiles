@@ -126,11 +126,14 @@ let g:neocomplete#sources#omni#input_patterns.tex =
         \ . '|%(include|input)\s*\{[^{}]*'
         \ . ')'
 
-autocmd FileType python setlocal omnifunc=jedi#completions
-autocmd FileType javascript setlocal omnifunc=tern#Complete
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+augroup neocomplete_group
+  au!
+  au FileType python setlocal omnifunc=jedi#completions
+  au FileType javascript setlocal omnifunc=tern#Complete
+  au FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  au FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+augroup END
 
 "" Config for Ale
 let g:ale_linters = {
@@ -149,14 +152,14 @@ let g:tmpl_auto_initialize=0
 
 "" Config for Dirvish
 let g:dirvish_mode = ':sort ,^.*[\/],'
+augroup dirvish_group
+  au!
+  au FileType dirvish nnoremap <buffer> zh :g@\v/\.[^\/]+/?$@d<CR>
+augroup END
 
 "" Config for Gutentags
 let g:gutentags_cache_dir='~/.tags'
 let g:gutentags_generate_on_empty_buffer=1
-
-"" Config for YouCompleteMe
-let g:ycm_complete_in_comments=0
-let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
 
 "" Config for IndentLine
 let g:indentLine_color_term = 239
@@ -279,7 +282,7 @@ set smarttab
 set cindent
 set nowrap
 
-"" Line/column numbers
+"" Line/column numberS
 set number
 set relativenumber
 set laststatus=2
@@ -334,14 +337,8 @@ let g:mapleader="\<Space>"
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
 
-"" Reload .vimrc
-map <leader>rr :source ~/.vimrc<CR>
-
 "" Delete trailing whitespace
 nnoremap <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
-
-"" Toggle tagbar
-nmap <F7> :TagbarToggle<CR>
 
 "" Copy into clipboard
 vnoremap <C-c> "+y
@@ -354,6 +351,9 @@ nnoremap <C-h> <C-w>h
 
 set splitbelow
 set splitright
+
+"" Reload .vimrc
+map <leader>rr :source ~/.vimrc<CR>
 
 "" Fugitive bindings
 nnoremap <Leader>gs :Gstatus<CR>

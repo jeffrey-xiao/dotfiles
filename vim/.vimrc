@@ -1,7 +1,7 @@
-filetype plugin indent on
 if !exists("g:syntax_on")
   syntax enable
 endif
+
 
 """ Functions
 function! AdjustHeight(minHeight, maxHeight)
@@ -22,6 +22,7 @@ function! RunCpp ()
   let l:filePath = expand('%:p:r')
   execute '!'.l:filePath
 endfunction
+
 
 """ Plugins
 call plug#begin('~/.vim/plugged')
@@ -130,7 +131,6 @@ autocmd FileType javascript setlocal omnifunc=tern#Complete
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
 
 "" Config for Ale
 let g:ale_linters = {
@@ -287,6 +287,7 @@ set laststatus=2
 "" No beeping or error sounds
 set noerrorbells
 set novisualbell
+set belloff=all
 set t_vb=
 set tm=500
 
@@ -302,8 +303,14 @@ set background=dark
 silent! colorscheme solarized
 
 "" Other config
-set nocompatible
 set wildmenu
+set wildmode=full
+set wildignore+=.hg,.git,.svn                    " Version control
+set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
+set wildignore+=*.sw?                            " Vim swap files
+set wildignore+=*.DS_Store                       " OSX garbage
 set conceallevel=0
 set backspace=2
 set autoread
@@ -348,6 +355,17 @@ nnoremap <C-h> <C-w>h
 set splitbelow
 set splitright
 
+"" Fugitive bindings
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gd :Gdiff<CR>
+nnoremap <Leader>gD :Gdiff HEAD<CR>
+nnoremap <Leader>gc :Gcommit<CR>
+nnoremap <Leader>gl :Git log<CR>
+nnoremap <Leader>gp :Git push<CR>
+nnoremap <Leader>gw :Gwrite<CR>
+nnoremap <Leader>gr :Gremove<CR>
+nnoremap <Leader>gg :Ggrep<Space>
+
 "" CtrlP bindings
 nmap <leader>p :CtrlP<CR>
 nmap <leader>b :CtrlPBuffer<CR>
@@ -368,6 +386,7 @@ cmap w!! %!sudo tee > /dev/null %
 inoremap <expr><Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
 
+
 """ Highlighting config
 "" Underline current line
 set cursorline
@@ -378,7 +397,6 @@ hi CursorLine cterm=underline
 hi Normal ctermbg=none
 hi NonText ctermbg=none
 hi LineNr ctermbg=none
-hi SignColumn ctermbg=none
 hi VertSplit ctermbg=none
 
 "" Highlighting for GitGutter symbols
@@ -388,6 +406,7 @@ hi clear SignColumn
 """ Autocommands
 "" Quick fix related autocommands
 augroup quick_fix_group
+  au!
   "" Always have quickfix take entire bot
   au Filetype qf wincmd J
 
@@ -417,6 +436,7 @@ augroup END
 
 "" cpp related autocommands
 augroup cpp_group
+  au!
   au Filetype cpp nnoremap <buffer> <F4> :call CompileCpp()<CR>
   au Filetype cpp nnoremap <buffer> <F5> :call RunCpp()<CR>
   au Filetype cpp let g:delimitMate_matchpairs = "(:),[:],{:}"
@@ -424,6 +444,7 @@ augroup END
 
 "" latex related autocommands
 augroup latex_group
+  au!
   au Filetype tex nmap <buffer> <F3> <plug>(vimtex-compile)
   au Filetype tex nmap <buffer> <F4> <plug>(vimtex-errors)
   au Filetype tex nmap <buffer> <F5> <plug>(vimtex-view)
@@ -434,6 +455,7 @@ augroup latex_group
 augroup END
 
 augroup markdown_group
+  au!
   au Filetype markdown hi def link markdownItalic NONE
   au Filetype markdown hi def link markdownItalicDelimiter NONE
   au Filetype markdown hi def link markdownBold NONE

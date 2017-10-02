@@ -1,5 +1,7 @@
 filetype plugin indent on
-syntax enable
+if !exists("g:syntax_on")
+  syntax enable
+endif
 
 """ Functions
 function! AdjustHeight(minHeight, maxHeight)
@@ -273,7 +275,6 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 set autoindent
-set smartindent
 set smarttab
 set cindent
 set nowrap
@@ -281,7 +282,6 @@ set nowrap
 "" Line/column numbers
 set number
 set relativenumber
-set ruler
 set laststatus=2
 
 "" No beeping or error sounds
@@ -381,14 +381,8 @@ hi LineNr ctermbg=none
 hi SignColumn ctermbg=none
 hi VertSplit ctermbg=none
 
-"" Custom highlighting for vimtex
-hi texMathMatcher ctermbg=none
-hi texMathZoneX ctermbg=none
-hi texRefLabel ctermbg=none
-hi texStatement ctermbg=none
-
 "" Highlighting for GitGutter symbols
-highlight clear SignColumn
+hi clear SignColumn
 
 
 """ Autocommands
@@ -433,6 +427,10 @@ augroup latex_group
   au Filetype tex nmap <buffer> <F3> <plug>(vimtex-compile)
   au Filetype tex nmap <buffer> <F4> <plug>(vimtex-errors)
   au Filetype tex nmap <buffer> <F5> <plug>(vimtex-view)
+  au Filetype tex hi texMathMatcher ctermbg=none
+  au Filetype tex hi texMathZoneX ctermbg=none
+  au Filetype tex hi texRefLabel ctermbg=none
+  au Filetype tex hi texStatement ctermbg=none
 augroup END
 
 augroup markdown_group

@@ -45,7 +45,7 @@ Plug 'Shougo/neoinclude.vim'
 
 Plug 'ternjs/tern_for_vim'
 Plug 'davidhalter/jedi-vim'
-Plug 'justmao945/vim-clang'
+Plug 'Rip-Rip/clang_complete'
 Plug 'lervag/vimtex'
 
 Plug 'w0rp/ale'
@@ -90,12 +90,14 @@ call plug#end()
 
 """ Config for plugins
 "" Config for neocomplete  
-" Config for clang
-let g:clang_auto = 0
-let g:clang_c_completeopt = 'menuone'
-let g:clang_cpp_completeopt = 'menuone'
-let g:clang_exec = 'clang'
-let g:clang_cpp_options = '-std=c++14'
+" Config for clang_complete
+let g:clang_complete_auto = 0
+let g:clang_auto_select = 0
+let g:clang_omnicppcomplete_compliance = 0
+let g:clang_make_default_keymappings = 0
+let g:clang_user_options = '-std=c++11' 
+let g:clang_close_preview = 1
+set completeopt-=preview
 
 " Config for jedi
 let g:jedi#completions_enabled = 0

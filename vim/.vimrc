@@ -89,7 +89,7 @@ call plug#end()
 
 
 """ Config for plugins
-"" Config for neocomplete  
+"" Config for completion plugins
 " Config for clang_complete
 let g:clang_complete_auto = 0
 let g:clang_auto_select = 0
@@ -104,10 +104,12 @@ let g:jedi#completions_enabled = 0
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#smart_auto_mappings = 0
 
+" Config for neocomplete
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#auto_complete_delay = 0
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#max_list = 10
 
 if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}

@@ -28,13 +28,14 @@ endfunction
 call plug#begin('~/.vim/plugged')
 
 "" Color Scheme
-Plug 'altercation/vim-colors-solarized'
+Plug 'romainl/flattened'
 
 "" Useful plugs
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
 Plug 'romainl/vim-qf'
+Plug 'romainl/vim-qlist'
 
 "" Templates
 Plug 'tibabit/vim-templates'
@@ -80,6 +81,7 @@ Plug 'mxw/vim-jsx'
 Plug 'jaawerth/nrun.vim'
 Plug 'mattn/emmet-vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'hkmix/vim-george'
 " Plug 'maksimr/vim-jsbeautify'
 " Plug 'wlangstroth/vim-racket'
 " Plug 'guns/vim-clojure-static'
@@ -172,10 +174,10 @@ let g:indentLine_char='┊'
 "" Config for delimitMate
 " Adds a new line before the autocompleted bracket
 let g:delimitMate_autoclose = 1
-let g:delimitMate_matchpairs = "(:),[:],{:},<:>"
 let g:delimitMate_expand_space = 1
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_inside_quotes = 1
+let g:delimitMate_matchpairs = "(:),[:],{:}"
 
 "" Config for lightline
 let g:lightline = {
@@ -307,7 +309,7 @@ set smartcase
 "" Color scheme config
 set t_Co=256
 set background=dark
-silent! colorscheme solarized
+silent! colorscheme flattened_dark
 
 "" Other config
 set wildmenu
@@ -443,7 +445,6 @@ augroup cpp_group
   au!
   au Filetype cpp nnoremap <buffer> <F4> :call CompileCpp()<CR>
   au Filetype cpp nnoremap <buffer> <F5> :call RunCpp()<CR>
-  au Filetype cpp let g:delimitMate_matchpairs = "(:),[:],{:}"
 augroup END
 
 "" latex related autocommands

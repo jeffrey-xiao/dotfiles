@@ -81,3 +81,6 @@ export MPD_PORT=6600
 # Envinroment variables for ranger
 export EDITOR=vim
 export PAGER=less
+
+# Source fzf if directory exists
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

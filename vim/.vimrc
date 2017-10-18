@@ -31,16 +31,27 @@ call plug#begin('~/.vim/plugged')
 Plug 'romainl/flattened'
 
 "" Useful plugs
+" Handy bracket mappings
 Plug 'tpope/vim-unimpaired'
+" UNIX shell commands
 Plug 'tpope/vim-eunuch'
+" Surrounding text
 Plug 'tpope/vim-surround'
+" Keybindings for easily commenting out text
+Plug 'tpope/vim-commentary'
+" Improves quickfix
 Plug 'romainl/vim-qf'
+" Pipe ilist and dlist into quickfix
 Plug 'romainl/vim-qlist'
+" Auto brackets
+Plug 'raimondi/delimitmate'
+" Indent character
+Plug 'yggdroot/indentline'
 
 "" Templates
 Plug 'tibabit/vim-templates'
 
-"" Auto completion, linting, and better highlighting, 
+"" Auto completion, linting, and better highlighting
 Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neoinclude.vim'
 
@@ -57,16 +68,11 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
 "" File explorer
-Plug 'kien/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'justinmk/vim-dirvish'
 
 "" Tags
 Plug 'ludovicchabant/vim-gutentags'
-
-"" Auto brackets, indents and better comments
-Plug 'raimondi/delimitmate'
-Plug 'yggdroot/indentline'
-Plug 'tpope/vim-commentary'
 
 "" Status line
 Plug 'itchyny/lightline.vim'
@@ -97,7 +103,7 @@ let g:clang_complete_auto = 0
 let g:clang_auto_select = 0
 let g:clang_omnicppcomplete_compliance = 0
 let g:clang_make_default_keymappings = 0
-let g:clang_user_options = '-std=c++11' 
+let g:clang_user_options = '-std=c++11'
 let g:clang_close_preview = 1
 set completeopt-=preview
 
@@ -181,7 +187,7 @@ let g:delimitMate_matchpairs = "(:),[:],{:}"
 
 "" Config for lightline
 let g:lightline = {
-      \ 'colorscheme': 'solarized',
+      \ 'colorscheme': 'flattened_dark',
       \ 'active': {
       \   'left': [
       \     [ 'mode', 'paste' ],
@@ -262,18 +268,43 @@ let g:latex_view_general_viewer = "zathura"
 let g:vimtex_view_method = "zathura"
 let g:tex_conceal = ""
 
-"" Config for ctrlp
-let g:ctrlp_cmd = 'CtrlPBuffer'
-let g:ctrlp_show_hidden = 1
+"" Config for fzf
+function! s:tags_sink(lines)
+  if empty(a:lines)
+    return
+  endif
+  let cmd = get({
+        \ 'ctrl-t': 'tabedit',
+        \ 'ctrl-x': 'split',
+        \ 'ctrl-v': 'vsplit',
+        \ }, remove(a:lines, 0), 'e')
+  let query = a:lines[0]
+  let parts = split(query, '\t\zs')
+  let excmd = matchstr(parts[2:], '^.*\ze;"\t')
+  execute 'silent ' cmd parts[1][:-2]
+  let [magic, &magic] = [&magic, 0]
+  execute excmd
+  let &magic = magic
+endfunction
+
+command! Tags call fzf#run(fzf#wrap({
+        \ 'source':  'cat '.join(map(tagfiles(), 'fnamemodify(v:val, ":S")')).
+        \            '| grep -v -a ^!',
+        \ 'options': '+m -d "\t" --with-nth 1,4.. -n 1 --tiebreak=index --expect=ctrl-x,ctrl-v',
+        \ 'down':    '40%',
+        \ 'sink*':    function('s:tags_sink')
+        \ }))
+command! Buffers call fzf#run(fzf#wrap({
+      \ 'source': map(range(1, bufnr('$')), 'bufname(v:val)')
+      \ }))
+command! MRU call fzf#run(fzf#wrap({
+      \ 'source': v:oldfiles
+      \ }))
 
 if executable('ack')
   set grepprg=ack\ -i\ --nocolor\ --nogroup\ ""\ %s
-  let g:ctrlp_user_command = 'ack "" %s -g --nocolor'
-  let g:ctrlp_use_caching = 0
 elseif executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-  let g:ctrlp_use_caching = 0
 endif
 
 
@@ -372,12 +403,11 @@ nnoremap <Leader>gw :Gwrite<CR>
 nnoremap <Leader>gr :Gremove<CR>
 nnoremap <Leader>gg :Ggrep<Space>
 
-"" CtrlP bindings
-nmap <leader>p :CtrlP<CR>
-nmap <leader>b :CtrlPBuffer<CR>
-nmap <leader>m :CtrlPMixed<CR>
-nmap <leader>a :CtrlPMRU<CR>
-nmap <leader>t :CtrlPTag<CR>
+"" Fzf keybindings
+nmap <leader>b :Buffers<CR>
+nmap <leader>p :FZF<CR>
+nmap <leader>m :MRU<CR>
+nmap <leader>t :Tags<CR>
 
 "" Grep for word under cursor
 nnoremap K :execute 'grep!"\b"'.expand('<cword>').'"\b"'<CR>:cw<CR>
@@ -467,4 +497,10 @@ augroup markdown_group
   au Filetype markdown hi def link markdownBoldDelimiter NONE
   au Filetype markdown hi def link markdownBoldItalic NONE
   au Filetype markdown hi def link markdownBoldItalicDelimiter NONE
+augroup END
+
+augroup java_group
+  au!
+  au Filetype java nnoremap <buffer> <F4> :!javac %<CR>
+  au Filetype java nnoremap <buffer> <F5> :!java %:r<CR>
 augroup END

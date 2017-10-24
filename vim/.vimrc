@@ -9,7 +9,7 @@ function! AdjustHeight(minHeight, maxHeight)
 endfunction
 
 let g:CXX="g++"
-let g:CXX_FLAGS="-std=c++14"
+let g:CXX_FLAGS="-std=c++14 -g -Wall -Wextra -fsanitize=undefined,address"
 function! CompileCpp ()
   let l:fileName = expand('%')
   let l:baseName = expand('%:r')
@@ -157,6 +157,7 @@ let g:ale_linters = {
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_set_quickfix = 1
 
 "" Config for VimTemplates
 let g:tmpl_search_paths=['~/.templates']
@@ -291,14 +292,13 @@ command! Tags call fzf#run(fzf#wrap({
         \ 'source':  'cat '.join(map(tagfiles(), 'fnamemodify(v:val, ":S")')).
         \            '| grep -v -a ^!',
         \ 'options': '+m -d "\t" --with-nth 1,4.. -n 1 --tiebreak=index --expect=ctrl-x,ctrl-v',
-        \ 'down':    '40%',
-        \ 'sink*':    function('s:tags_sink')
+        \ 'sink*':    function('s:tags_sink'),
         \ }))
 command! Buffers call fzf#run(fzf#wrap({
-      \ 'source': map(range(1, bufnr('$')), 'bufname(v:val)')
+      \ 'source': map(range(1, bufnr('$')), 'bufname(v:val)'),
       \ }))
 command! MRU call fzf#run(fzf#wrap({
-      \ 'source': v:oldfiles
+      \ 'source': v:oldfiles,
       \ }))
 
 if executable('ack')
@@ -393,15 +393,15 @@ set splitright
 map <leader>rr :source ~/.vimrc<CR>
 
 "" Fugitive bindings
-nnoremap <Leader>gs :Gstatus<CR>
-nnoremap <Leader>gd :Gdiff<CR>
-nnoremap <Leader>gD :Gdiff HEAD<CR>
-nnoremap <Leader>gc :Gcommit<CR>
-nnoremap <Leader>gl :Git log<CR>
-nnoremap <Leader>gp :Git push<CR>
-nnoremap <Leader>gw :Gwrite<CR>
-nnoremap <Leader>gr :Gremove<CR>
-nnoremap <Leader>gg :Ggrep<Space>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gD :Gdiff HEAD<CR>
+nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>gl :Git log<CR>
+nnoremap <leader>gp :Git push<CR>
+nnoremap <leader>gw :Gwrite<CR>
+nnoremap <leader>gr :Gremove<CR>
+nnoremap <leader>gg :Ggrep<Space>
 
 "" Fzf keybindings
 nmap <leader>b :Buffers<CR>

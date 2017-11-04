@@ -44,7 +44,7 @@ Plug 'romainl/vim-qf'
 " Pipe ilist and dlist into quickfix
 Plug 'romainl/vim-qlist'
 " Auto brackets
-Plug 'raimondi/delimitmate'
+Plug 'raimondi/delimitMate'
 " Indent character
 Plug 'yggdroot/indentline'
 
@@ -183,7 +183,6 @@ let g:indentLine_char='┊'
 let g:delimitMate_autoclose = 1
 let g:delimitMate_expand_space = 1
 let g:delimitMate_expand_cr = 1
-let g:delimitMate_expand_inside_quotes = 1
 let g:delimitMate_matchpairs = "(:),[:],{:}"
 
 "" Config for lightline
@@ -420,7 +419,7 @@ cmap w!! %!sudo tee > /dev/null %
 
 "" Neocompleter bindings
 inoremap <expr><Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
+inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 
 """ Highlighting config

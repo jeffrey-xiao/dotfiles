@@ -78,6 +78,7 @@ other:
   dependencies:
     - "redshift"
     - "youtube-dl"
+    - "p7zip"
 
 polybar:
   link: "~/.config/polybar"

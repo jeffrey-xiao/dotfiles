@@ -7,7 +7,7 @@ set $explorer urxvt -e ranger
 set $music    urxvt -e ncmpcpp
 set $torrent  urxvt -e rtorrent
 set $terminal urxvt
-set $network nm
+set $network  nm
 
 # Configuration for gaps
 gaps inner 20
@@ -138,6 +138,8 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 # Shortcuts for moving workspaces
 bindsym $mod+Ctrl+h move workspace to output right
 bindsym $mod+Ctrl+l move workspace to output left
+bindsym $mod+Ctrl+Right move workspace to output right
+bindsym $mod+Ctrl+Left move workspace to output left
 
 # Options for logging out, restarting, and shutting down
 bindsym $mod+Shift+e exec power
@@ -166,9 +168,9 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -D pulse set Master 1%+; pkill -RTMIN+10 i3blocks"
-bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D pulse set Master 1%-; pkill -RTMIN+10 i3blocks"
-bindsym XF86AudioMute exec --no-startup-id "amixer -D pulse set Master 0+ toggle ; pkill -RTMIN+10 i3blocks"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -D pulse set Master 1%+"
+bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D pulse set Master 1%-"
+bindsym XF86AudioMute exec --no-startup-id "amixer -D pulse set Master 0+ toggle "
 
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec "sudo brightness +50"
@@ -182,11 +184,12 @@ bindsym XF86AudioPlay exec mpc play
 bindsym XF86AudioPause exec mpc pause
 bindsym XF86AudioNext exec mpc next
 bindsym XF86AudioPrev exec mpc prev
+bindsym XF86AudioStop exec mpc pausE
 
 # MPD controls
-bindsym $mod+p exec "mpc toggle"
-bindsym $mod+bracketleft exec "mpc prev"
-bindsym $mod+bracketright exec "mpc next"
+bindsym $mod+p exec mpc toggle
+bindsym $mod+bracketleft exec mpc prev
+bindsym $mod+bracketright exec mpc next
 
 # Color definitions
 set $base03    #002b36
@@ -220,7 +223,6 @@ client.urgent           $base03    $base03       $red      #00ff00
 
 hide_edge_borders both
 for_window [class="^.*"]    border pixel 3
-for_window [class="Power"]  border pixel 0
 
 new_float none
 

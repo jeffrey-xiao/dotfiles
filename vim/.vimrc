@@ -4,13 +4,13 @@ endif
 
 
 """ Functions
-function! AdjustHeight(minHeight, maxHeight)
+function! AdjustHeight(minHeight, maxHeight) abort
   exe max([min([line("$"), a:maxHeight]), a:minHeight])."wincmd _"
 endfunction
 
 let g:CXX="g++"
 let g:CXX_FLAGS="-std=c++14 -g -Wall -Wextra -fsanitize=undefined,address"
-function! CompileCpp ()
+function! CompileCpp () abort
   let l:fileName = expand('%')
   let l:baseName = expand('%:r')
   cex! system(g:CXX.' '.g:CXX_FLAGS.' '.l:fileName.' -o '.l:baseName)
@@ -18,7 +18,7 @@ function! CompileCpp ()
   cw
 endfunction
 
-function! RunCpp ()
+function! RunCpp () abort
   let l:filePath = expand('%:p:r')
   execute '!'.l:filePath
 endfunction
@@ -139,12 +139,12 @@ let g:neocomplete#sources#omni#input_patterns.tex =
         \ . ')'
 
 augroup neocomplete_group
-  au!
-  au FileType python setlocal omnifunc=jedi#completions
-  au FileType javascript setlocal omnifunc=tern#Complete
-  au FileType css setlocal omnifunc=csscomplete#CompleteCSS
-  au FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-  au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+  autocmd!
+  autocmd FileType python setlocal omnifunc=jedi#completions
+  autocmd FileType javascript setlocal omnifunc=tern#Complete
+  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 augroup END
 
 "" Config for Ale
@@ -166,8 +166,8 @@ let g:tmpl_auto_initialize=0
 "" Config for Dirvish
 let g:dirvish_mode = ':sort ,^.*[\/],'
 augroup dirvish_group
-  au!
-  au FileType dirvish nnoremap <buffer> zh :g@\v/\.[^\/]+/?$@d<CR>
+  autocmd!
+  autocmd FileType dirvish nnoremap <buffer> zh :g@\v/\.[^\/]+/?$@d<CR>
 augroup END
 
 "" Config for Gutentags
@@ -228,7 +228,7 @@ let g:lightline = {
       \ },
       \ }
 
-function! LightLineGitInfo()
+function! LightLineGitInfo() abort
   if fugitive#head() != ""
     let info = GitGutterGetHunkSummary()
     return "+".info[0]." ~".info[1]." -".info[2]
@@ -238,7 +238,7 @@ function! LightLineGitInfo()
 endfunction
 
 autocmd cursorhold,bufwritepost * unlet! b:warning_flags
-function! LightLineWarnings()
+function! LightLineWarnings() abort
   if !exists("b:warning_flags")
     let tabs = search('^\t', 'nw') != 0
     let spaces = search('^ ', 'nw') != 0
@@ -269,7 +269,7 @@ let g:vimtex_view_method = "zathura"
 let g:tex_conceal = ""
 
 "" Config for fzf
-function! s:tags_sink(lines)
+function! s:tags_sink(lines) abort
   if empty(a:lines)
     return
   endif
@@ -389,7 +389,7 @@ set splitbelow
 set splitright
 
 "" Reload .vimrc
-map <leader>rr :source ~/.vimrc<CR>
+noremap <leader>rr :source ~/.vimrc<CR>
 
 "" Fugitive bindings
 nnoremap <leader>gs :Gstatus<CR>
@@ -403,19 +403,19 @@ nnoremap <leader>gr :Gremove<CR>
 nnoremap <leader>gg :Ggrep<Space>
 
 "" Fzf keybindings
-nmap <leader>b :Buffers<CR>
-nmap <leader>p :FZF<CR>
-nmap <leader>m :MRU<CR>
-nmap <leader>t :Tags<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>p :FZF<CR>
+nnoremap <leader>m :MRU<CR>
+nnoremap <leader>t :Tags<CR>
 
 "" Grep for word under cursor
 nnoremap K :execute 'grep!"\b"'.expand('<cword>').'"\b"'<CR>:cw<CR>
 
 "" Consistent behavior
-nmap Y y$
+nnoremap Y y$
 
 "" Sudoedit a file
-cmap w!! %!sudo tee > /dev/null %
+cnoremap w!! %!sudo tee > /dev/null %
 
 "" Neocompleter bindings
 inoremap <expr><Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -425,81 +425,99 @@ inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 """ Highlighting config
 "" Underline current line
 set cursorline
-hi clear CursorLine
-hi CursorLine cterm=underline
 
-"" Highlighting for transparent background
-hi Normal ctermbg=none
-hi NonText ctermbg=none
-hi LineNr ctermbg=none
-hi VertSplit ctermbg=none
+function! Highlight() abort
+  "" Highlighting for cursorline
+  highlight clear CursorLine
+  highlight CursorLine cterm=underline
 
-"" Highlighting for GitGutter symbols
-hi clear SignColumn
+  "" Highlighting for transparent background
+  highlight Normal ctermbg=none
+  highlight NonText ctermbg=none
+  highlight LineNr ctermbg=none
+  highlight VertSplit ctermbg=none
+
+  "" Highlighting for GitGutter symbols
+  highlight GitGutterAdd ctermbg=none ctermfg=64
+  highlight GitGutterChange ctermbg=none ctermfg=136
+  highlight GitGutterDelete ctermbg=none ctermfg=160
+  highlight GitGutterChangeDelete ctermbg=none ctermfg=136
+
+  "" Highlighting for ALE symbols
+  highlight ALEErrorSign ctermbg=none ctermfg=160
+  highlight ALEWarningSign ctermbg=none ctermfg=136
+
+  "" Highlighting for latex
+  highlight texMathMatcher ctermbg=none
+  highlight texMathZoneX ctermbg=none
+  highlight texRefLabel ctermbg=none
+  highlight texStatement ctermbg=none
+
+  "" Highlighting for markdown
+  highlight def link markdownItalic NONE
+  highlight def link markdownItalicDelimiter NONE
+  highlight def link markdownBold NONE
+  highlight def link markdownBoldDelimiter NONE
+  highlight def link markdownBoldItalic NONE
+  highlight def link markdownBoldItalicDelimiter NONE
+endfunction
 
 
 """ Autocommands
 "" Quick fix related autocommands
 augroup quick_fix_group
-  au!
+  autocmd!
   "" Always have quickfix take entire bot
-  au Filetype qf wincmd J
+  autocmd Filetype qf wincmd J
 
   "" Adjust quickfix window height to be 10 lines
-  au Filetype qf call AdjustHeight(3, 10)
+  autocmd Filetype qf call AdjustHeight(3, 10)
 
   "" Convenient quickfix macros
   " Open in new tab
-  au Filetype qf nnoremap <buffer> t <C-W><CR><C-W>T
+  autocmd Filetype qf nnoremap <buffer> t <C-W><CR><C-W>T
   " Open in new tab and focus on results
-  au Filetype qf nnoremap <buffer> <Leader>t <C-W><CR><C-W>TgT<C-W>p
+  autocmd Filetype qf nnoremap <buffer> <Leader>t <C-W><CR><C-W>TgT<C-W>p
   " Open
-  au Filetype qf nnoremap <buffer> o <CR>
+  autocmd Filetype qf nnoremap <buffer> o <CR>
   " Open and focus on results
-  au Filetype qf nnoremap <buffer> <Leader>o <CR><C-W>b
+  autocmd Filetype qf nnoremap <buffer> <Leader>o <CR><C-W>b
   " Open in vertical split
-  au Filetype qf nnoremap <buffer> v <C-W><CR><C-W>H<C-W>b<C-W>J:call AdjustHeight(3, 10)<CR><C-W>t
+  autocmd Filetype qf nnoremap <buffer> v <C-W><CR><C-W>H<C-W>b<C-W>J:call AdjustHeight(3, 10)<CR><C-W>t
   " Open in vertical split and focus on results
-  au Filetype qf nnoremap <buffer> <Leader>v <C-W><CR><C-W>H<C-W>b<C-W>J:call AdjustHeight(3, 10)<CR>
+  autocmd Filetype qf nnoremap <buffer> <Leader>v <C-W><CR><C-W>H<C-W>b<C-W>J:call AdjustHeight(3, 10)<CR>
   " Open in horizontal split
-  au Filetype qf nnoremap <buffer> h <C-W><CR><C-W>K
+  autocmd Filetype qf nnoremap <buffer> h <C-W><CR><C-W>K
   " Open in horizontal split and focus on results
-  au Filetype qf nnoremap <buffer> <Leader>h <C-W><CR><C-W>K<C-W>b
+  autocmd Filetype qf nnoremap <buffer> <Leader>h <C-W><CR><C-W>K<C-W>b
   " Quit
-  au Filetype qf nnoremap <buffer> q :ccl<CR>
+  autocmd Filetype qf nnoremap <buffer> q :ccl<CR>
 augroup END
 
 "" cpp related autocommands
 augroup cpp_group
-  au!
-  au Filetype cpp nnoremap <buffer> <F4> :call CompileCpp()<CR>
-  au Filetype cpp nnoremap <buffer> <F5> :call RunCpp()<CR>
+  autocmd!
+  autocmd Filetype cpp nnoremap <buffer> <F4> :call CompileCpp()<CR>
+  autocmd Filetype cpp nnoremap <buffer> <F5> :call RunCpp()<CR>
 augroup END
 
 "" latex related autocommands
 augroup latex_group
-  au!
-  au Filetype tex nmap <buffer> <F3> <plug>(vimtex-compile)
-  au Filetype tex nmap <buffer> <F4> <plug>(vimtex-errors)
-  au Filetype tex nmap <buffer> <F5> <plug>(vimtex-view)
-  au Filetype tex hi texMathMatcher ctermbg=none
-  au Filetype tex hi texMathZoneX ctermbg=none
-  au Filetype tex hi texRefLabel ctermbg=none
-  au Filetype tex hi texStatement ctermbg=none
+  autocmd!
+  autocmd Filetype tex nmap <buffer> <F3> <plug>(vimtex-compile)
+  autocmd Filetype tex nmap <buffer> <F4> <plug>(vimtex-errors)
+  autocmd Filetype tex nmap <buffer> <F5> <plug>(vimtex-view)
 augroup END
 
-augroup markdown_group
-  au!
-  au Filetype markdown hi def link markdownItalic NONE
-  au Filetype markdown hi def link markdownItalicDelimiter NONE
-  au Filetype markdown hi def link markdownBold NONE
-  au Filetype markdown hi def link markdownBoldDelimiter NONE
-  au Filetype markdown hi def link markdownBoldItalic NONE
-  au Filetype markdown hi def link markdownBoldItalicDelimiter NONE
-augroup END
-
+"" java related autocommands
 augroup java_group
-  au!
-  au Filetype java nnoremap <buffer> <F4> :!javac %<CR>
-  au Filetype java nnoremap <buffer> <F5> :!java %:r<CR>
+  autocmd!
+  autocmd Filetype java nnoremap <buffer> <F4> :!javac %<CR>
+  autocmd Filetype java nnoremap <buffer> <F5> :!java %:r<CR>
 augroup END
+
+"" highlighting autocommands
+augroup highlighting_group
+  autocmd!
+  autocmd ColorScheme * call Highlight()
+augroup end

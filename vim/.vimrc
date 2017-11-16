@@ -517,6 +517,7 @@ augroup java_group
 augroup END
 
 "" highlighting autocommands
+call Highlight()
 augroup highlighting_group
   autocmd!
   autocmd ColorScheme * call Highlight()

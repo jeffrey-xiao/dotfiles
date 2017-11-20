@@ -157,7 +157,8 @@ let g:ale_linters = {
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_set_quickfix = 1
+let g:ale_set_quickfix = 0
+let g:ale_sign_column_always = 1
 
 "" Config for VimTemplates
 let g:tmpl_search_paths=['~/.templates']
@@ -318,7 +319,7 @@ set smarttab
 set cindent
 set nowrap
 
-"" Line/column numberS
+"" Line/column numbers
 set number
 set relativenumber
 set laststatus=2
@@ -341,7 +342,7 @@ set t_Co=256
 set background=dark
 silent! colorscheme flattened_dark
 
-"" Other config
+"" Wildmenu config
 set wildmenu
 set wildmode=full
 set wildignore+=.hg,.git,.svn                    " Version control
@@ -350,6 +351,10 @@ set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
 set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
 set wildignore+=*.sw?                            " Vim swap files
 set wildignore+=*.DS_Store                       " OSX garbage
+set wildignore+=*.pdf,*.zip,*.so                 " Binaries
+set wildignore+=*.pyc,*.pyo                      " Python byte code
+
+"" Other config
 set conceallevel=0
 set backspace=2
 set autoread
@@ -358,10 +363,34 @@ set shortmess+=c
 set encoding=utf-8
 set lazyredraw
 set showtabline=2
+set showmode
+set showcmd
+set cmdheight=2
+set mouse=a
+set nomousehide
+
+"" Vim info config
+set viminfo='500 " remember marks for last 500 files
+set viminfo+=<1000 " remember up to 1000 lines in each register
+set viminfo+=s1000 " remember up to 1MB in each register
+set viminfo+=/1000 " remember last 1000 search patterns
+set viminfo+=:1000 " remember last 1000 commands
+set viminfo+=n$HOME/.vim/viminfo
+
+"" Setting undo, backup, and swp directories
 set undofile
 set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
+
+" Create necessary directories
+if exists("*mkdir")
+  for dir in [".backup", ".swp", ".undo"]
+    if !isdirectory($HOME . "/.vim/" . dir)
+      call mkdir($HOME . "/.vim/" . dir, "p")
+    endif
+  endfor
+endif
 
 
 """ Key bindings

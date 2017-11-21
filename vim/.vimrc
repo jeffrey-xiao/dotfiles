@@ -74,9 +74,8 @@ Plug 'justinmk/vim-dirvish'
 "" Tags
 Plug 'ludovicchabant/vim-gutentags'
 
-"" Status line
-Plug 'itchyny/lightline.vim'
-Plug 'mgee/lightline-bufferline'
+"" Buffer line in tabline
+Plug 'ap/vim-buftabline'
 
 "" Languages
 Plug 'moll/vim-node'
@@ -186,60 +185,51 @@ let g:delimitMate_expand_space = 1
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_matchpairs = "(:),[:],{:}"
 
-"" Config for lightline
-let g:lightline = {
-      \ 'colorscheme': 'flattened_dark',
-      \ 'active': {
-      \   'left': [
-      \     [ 'mode', 'paste' ],
-      \     [ 'readonly', 'filename' ],
-      \     [ 'gitbranch', 'gitinfo' ],
-      \   ],
-      \   'right': [
-      \     [ 'warnings' ],
-      \     [ 'lineinfo' ],
-      \     [ 'fileformat', 'fileencoding', 'filetype' ],
-      \   ],
-      \ },
-      \ 'tabline': {
-      \   'left': [ [ 'tabs', 'buffers' ] ],
-      \   'right': [ [ 'close' ] ],
-      \ },
-      \ 'tab': {
-      \   'active': [ 'tabnum' ],
-      \   'inactive': [ 'tabnum' ],
-      \ },
-      \ 'enable': {
-      \   'statusline': 1,
-      \   'tabline': 1,
-      \ },
-      \ 'component_expand': {
-      \   'buffers': 'lightline#bufferline#buffers',
-      \ },
-      \ 'component_type': {
-      \   'buffers': 'tabsel',
-      \ },
-      \ 'component': {
-      \   'lineinfo': '%l/%L:%3v',
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'fugitive#head',
-      \   'gitinfo': 'LightLineGitInfo',
-      \   'warnings': 'LightLineWarnings',
-      \ },
-      \ }
+"" Config for statusline
+function! RefreshStatusLine()
+  for nr in range(1, winnr('$'))
+    call setwinvar(nr, '&statusline', '%!StatusLine('.nr.')')
+  endfor
+endfunction
 
-function! LightLineGitInfo() abort
+function! StatusLine(winnum) abort
+  let active = a:winnum == winnr()
+  let status = ""
+  if active
+    let status .= "%#statusLineLight#"
+    let status .= "\ %f%r%h%w%m"
+    let status .= "\ %#statusLineDark#"
+    let status .= "%{StatusLineGitInfo()}"
+    let status .= "%="
+    let status .= "%y"
+    let status .= "\ %{&fileencoding?&fileencoding:&encoding}"
+    let status .= "\[%{&fileformat}\]"
+    let status .= "\ %#statusLineLight#"
+    let status .= "\ %l/%L:\ %3c"
+    let status .= "\ %#statusLineAccent#"
+    let status .= "%{StatusLineWarnings()}"
+  else
+    let status .= "%#statusLineDark#"
+    let status .= "\ %f"
+    let status .= "%="
+    let status .= "%p%%"
+    let status .= "\ %#statusLineLight#"
+    let status .= "\ %l/%L:\ %3c\ "
+  endif
+  return status
+endfunction
+
+function! StatusLineGitInfo() abort
   if fugitive#head() != ""
     let info = GitGutterGetHunkSummary()
-    return "+".info[0]." ~".info[1]." -".info[2]
+    return " ".fugitive#head()." +".info[0]." ~".info[1]." -".info[2]." "
   else
     return ""
   endif
 endfunction
 
 autocmd cursorhold,bufwritepost * unlet! b:warning_flags
-function! LightLineWarnings() abort
+function! StatusLineWarnings() abort
   if !exists("b:warning_flags")
     let tabs = search('^\t', 'nw') != 0
     let spaces = search('^ ', 'nw') != 0
@@ -257,6 +247,23 @@ function! LightLineWarnings() abort
     " Trailing spaces
     if search('\s\+$', 'nw') != 0
       let b:warning_flags .= 'T'
+    endif
+
+    if strlen(b:warning_flags) > 0
+      let b:warning_flags = "[".b:warning_flags."]"
+    endif
+
+    " ALE output
+    let ale_output = ale#statusline#Count(bufnr('%'))
+    let errors = ale_output['error'] + ale_output['style_error']
+    let warnings = ale_output['warning'] + ale_output['style_warning']
+
+    if errors > 0
+      let b:warning_flags .= "[!".errors."]"
+    endif
+
+    if warnings > 0
+      let b:warning_flags .= "[?".warnings."]"
     endif
   endif
 
@@ -489,6 +496,17 @@ function! Highlight() abort
   highlight def link markdownBoldDelimiter NONE
   highlight def link markdownBoldItalic NONE
   highlight def link markdownBoldItalicDelimiter NONE
+
+  "" Highlighting for BufTabLine
+  highlight BufTabLineCurrent cterm=none ctermfg=8 ctermbg=12
+  highlight BufTabLineActive cterm=none ctermfg=8 ctermbg=10
+  highlight BufTabLineHidden cterm=none ctermfg=8 ctermbg=10
+  highlight BufTabLineFill ctermfg=0 ctermbg=0
+
+  "" Highlighting for statusline
+  highlight statusLineDark ctermfg=12 ctermbg=0
+  highlight statusLineLight ctermfg=15 ctermbg=10
+  highlight statusLineAccent ctermfg=15 ctermbg=160
 endfunction
 
 
@@ -550,4 +568,10 @@ call Highlight()
 augroup highlighting_group
   autocmd!
   autocmd ColorScheme * call Highlight()
+augroup end
+
+"" statusline autocommands
+augroup status
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * call RefreshStatusLine()
 augroup end

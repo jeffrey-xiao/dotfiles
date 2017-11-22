@@ -197,7 +197,7 @@ function! StatusLine(winnum) abort
   let status = ""
   if active
     let status .= "%#statusLineLight#"
-    let status .= "\ %f%r%h%w%m"
+    let status .= "\ %t%r%h%w%m"
     let status .= "\ %#statusLineDark#"
     let status .= "%{StatusLineGitInfo()}"
     let status .= "%="

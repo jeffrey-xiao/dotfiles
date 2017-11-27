@@ -8,12 +8,13 @@ function! AdjustHeight(minHeight, maxHeight) abort
   exe max([min([line("$"), a:maxHeight]), a:minHeight])."wincmd _"
 endfunction
 
-let g:CXX="g++"
-let g:CXX_FLAGS="-std=c++14 -g -Wall -Wextra -fsanitize=undefined,address"
 function! CompileCpp () abort
   let l:fileName = expand('%')
   let l:baseName = expand('%:r')
-  cex! system(g:CXX.' '.g:CXX_FLAGS.' '.l:fileName.' -o '.l:baseName)
+  if !filereadable("./Makefile")
+    setlocal makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ -fsanitize=undefined,address\ %\ -o\ %:r
+  endif
+  make!
   echo 'Finished compiling!'
   cw
 endfunction
@@ -23,6 +24,21 @@ function! RunCpp () abort
   execute '!'.l:filePath
 endfunction
 
+function! CompileJava () abort
+  let l:fileName = expand('%')
+  setlocal errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
+  if !filereadable("./Makefile")
+    setlocal makeprg=javac\ %
+  endif
+  make!
+  echo "Finished compiling"
+  cw
+endfunction
+
+function! RunJava () abort
+  let l:baseName = expand('%:r')
+  execute 'java '.l:baseName
+endfunction
 
 """ Plugins
 call plug#begin('~/.vim/plugged')
@@ -47,9 +63,8 @@ Plug 'romainl/vim-qlist'
 Plug 'raimondi/delimitMate'
 " Indent character
 Plug 'yggdroot/indentline'
-
-"" Templates
-Plug 'tibabit/vim-templates'
+" Snippets
+Plug 'joereynolds/vim-minisnip'
 
 "" Auto completion, linting, and better highlighting
 Plug 'Shougo/neocomplete.vim'
@@ -78,19 +93,19 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'ap/vim-buftabline'
 
 "" Languages
-Plug 'moll/vim-node'
-Plug 'pangloss/vim-javascript'
-Plug 'jelera/vim-javascript-syntax'
-Plug 'mxw/vim-jsx'
-Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'hkmix/vim-george'
-" Plug 'jaawerth/nrun.vim'
-" Plug 'fatih/vim-go'
 " Plug 'mattn/emmet-vim'
+" Plug 'moll/vim-node'
+" Plug 'jaawerth/nrun.vim'
+" Plug 'pangloss/vim-javascript'
+" Plug 'jelera/vim-javascript-syntax'
+" Plug 'mxw/vim-jsx'
 " Plug 'maksimr/vim-jsbeautify'
+" Plug 'digitaltoad/vim-jade'
+" Plug 'octol/vim-cpp-enhanced-highlight'
+" Plug 'fatih/vim-go'
 " Plug 'wlangstroth/vim-racket'
 " Plug 'guns/vim-clojure-static'
-" Plug 'digitaltoad/vim-jade'
 
 call plug#end()
 
@@ -130,12 +145,6 @@ let g:neocomplete#sources#omni#input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s
 let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
 let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
 let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
-let g:neocomplete#sources#omni#input_patterns.tex =
-        \ '\v\\%('
-        \ . '\a*%(ref|cite)\a*%(\s*\[[^]]*\])?\s*\{[^{}]*'
-        \ . '|includegraphics%(\s*\[[^]]*\])?\s*\{[^{}]*'
-        \ . '|%(include|input)\s*\{[^{}]*'
-        \ . ')'
 
 augroup neocomplete_group
   autocmd!
@@ -156,7 +165,8 @@ let g:ale_linters = {
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_set_quickfix = 0
+let g:ale_set_quickfix = 1
+let g:ale_lint_on_text_changed = 'never'
 let g:ale_sign_column_always = 1
 
 "" Config for VimTemplates
@@ -447,16 +457,26 @@ nnoremap <leader>t :Tags<CR>
 "" Grep for word under cursor
 nnoremap K :execute 'grep!"\b"'.expand('<cword>').'"\b"'<CR>:cw<CR>
 
+"" Indentation in visual mode should stay in visual mode
+xnoremap > >gv
+xnoremap < <gv
+
 "" Consistent behavior
 nnoremap Y y$
 
 "" Sudoedit a file
 cnoremap w!! %!sudo tee > /dev/null %
 
-"" Neocompleter bindings
-inoremap <expr><Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+"" Neocomplete bindings
+inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+"" Sharing snippets
+command! -range=% SP  <line1>,<line2>w !curl -F 'sprunge=<-' http://sprunge.us | tr -d '\n' | xclip -i -selection clipboard
+command! -range=% CL  <line1>,<line2>w !curl -F 'clbin=<-' https://clbin.com | tr -d '\n' | xclip -i -selection clipboard
+command! -range=% VP  <line1>,<line2>w !curl -F 'text=<-' http://vpaste.net | tr -d '\n' | xclip -i -selection clipboard
+command! -range=% IX  <line1>,<line2>w !curl -F 'f:1=<-' ix.io | tr -d '\n' | xclip -i -selection clipboard
+command! -range=% TB  <line1>,<line2>w !nc termbin 9999 | tr -d '\n' | xclip -i -selection clipboard
 
 """ Highlighting config
 "" Underline current line
@@ -559,8 +579,8 @@ augroup END
 "" java related autocommands
 augroup java_group
   autocmd!
-  autocmd Filetype java nnoremap <buffer> <F4> :!javac %<CR>
-  autocmd Filetype java nnoremap <buffer> <F5> :!java %:r<CR>
+  autocmd Filetype java nnoremap <buffer> <F4> :call CompileJava()<CR>
+  autocmd Filetype java nnoremap <buffer> <F5> :call RunJava()<CR>
 augroup END
 
 "" highlighting autocommands

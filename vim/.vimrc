@@ -8,7 +8,7 @@ function! AdjustHeight(minHeight, maxHeight) abort
   exe max([min([line("$"), a:maxHeight]), a:minHeight])."wincmd _"
 endfunction
 
-function! CompileCpp () abort
+function! CompileCpp() abort
   let l:fileName = expand('%')
   let l:baseName = expand('%:r')
   if !filereadable("./Makefile")
@@ -19,12 +19,12 @@ function! CompileCpp () abort
   cw
 endfunction
 
-function! RunCpp () abort
+function! RunCpp() abort
   let l:filePath = expand('%:p:r')
   execute '!'.l:filePath
 endfunction
 
-function! CompileJava () abort
+function! CompileJava() abort
   let l:fileName = expand('%')
   setlocal errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
   if !filereadable("./Makefile")
@@ -35,7 +35,7 @@ function! CompileJava () abort
   cw
 endfunction
 
-function! RunJava () abort
+function! RunJava() abort
   let l:baseName = expand('%:r')
   execute 'java '.l:baseName
 endfunction
@@ -218,6 +218,7 @@ function! StatusLine(winnum) abort
     let status .= "\ %l/%L:\ %3c"
     let status .= "\ %#statusLineAccent#"
     let status .= "%{StatusLineWarnings()}"
+    let status .= "%{StatusLineAle()}"
   else
     let status .= "%#statusLineDark#"
     let status .= "\ %f"
@@ -262,23 +263,29 @@ function! StatusLineWarnings() abort
     if strlen(b:warning_flags) > 0
       let b:warning_flags = "[".b:warning_flags."]"
     endif
-
-    " ALE output
-    let ale_output = ale#statusline#Count(bufnr('%'))
-    let errors = ale_output['error'] + ale_output['style_error']
-    let warnings = ale_output['warning'] + ale_output['style_warning']
-
-    if errors > 0
-      let b:warning_flags .= "[!".errors."]"
-    endif
-
-    if warnings > 0
-      let b:warning_flags .= "[?".warnings."]"
-    endif
   endif
 
   return b:warning_flags
 endfunction
+
+function! StatusLineAle() abort
+  " ALE output
+  let ale_dict = ale#statusline#Count(bufnr('%'))
+  let errors = ale_dict['error'] + ale_dict['style_error']
+  let warnings = ale_dict['warning'] + ale_dict['style_warning']
+  let ale_output = ""
+
+  if errors > 0
+    let ale_output .= "[!".errors."]"
+  endif
+
+  if warnings > 0
+    let ale_output .= "[?".warnings."]"
+  endif
+
+  return ale_output
+endfunction
+
 
 "" Config for vimtex
 let g:vimtex_compiler_latexmk = {'callback' : 0}
@@ -433,6 +440,12 @@ nnoremap <C-h> <C-w>h
 
 set splitbelow
 set splitright
+
+"" Resize viewports with arrow keys
+nnoremap <Right> :vertical resize +2<CR>
+nnoremap <Left> :vertical resize -2<CR>
+nnoremap <Up> :resize +2<CR>
+nnoremap <Down> :resize -2<CR>
 
 "" Reload .vimrc
 noremap <leader>rr :source ~/.vimrc<CR>

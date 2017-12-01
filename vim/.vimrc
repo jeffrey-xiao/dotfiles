@@ -207,7 +207,7 @@ function! StatusLine(winnum) abort
   let status = ""
   if active
     let status .= "%#statusLineLight#"
-    let status .= "\ %t%r%h%w%m"
+    let status .= "\ %t%{StatusLinePasteMode()}%r%h%w%m"
     let status .= "\ %#statusLineDark#"
     let status .= "%{StatusLineGitInfo()}"
     let status .= "%="
@@ -228,6 +228,14 @@ function! StatusLine(winnum) abort
     let status .= "\ %l/%L:\ %3c\ "
   endif
   return status
+endfunction
+
+function! StatusLinePasteMode() abort
+  let l:paste_status = &paste
+  if l:paste_status == 1
+    return '[P]'
+  endif
+  return ''
 endfunction
 
 function! StatusLineGitInfo() abort
@@ -369,7 +377,7 @@ silent! colorscheme flattened_dark
 "" Wildmenu config
 set wildmenu
 set wildmode=full
-set wildignore+=.hg,.git,.svn                    " Version control
+set wildignore=.hg,.git,.svn                    " Version control
 set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
 set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
@@ -385,6 +393,7 @@ set autoread
 set autowrite
 set shortmess+=c
 set encoding=utf-8
+set fileencoding=utf-8
 set lazyredraw
 set showtabline=2
 set showmode
@@ -404,6 +413,7 @@ set viminfo+=n$HOME/.vim/viminfo
 "" Setting undo, backup, and swp directories
 set undofile
 set undodir=~/.vim/.undo//
+set backup
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
 

@@ -75,7 +75,7 @@ Plug 'yggdroot/indentline'
 " Snippets
 Plug 'joereynolds/vim-minisnip'
 
-"" Auto completion, linting, and better highlighting
+"" Auto completion and linting
 Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neoinclude.vim'
 
@@ -85,7 +85,6 @@ Plug 'Rip-Rip/clang_complete'
 Plug 'lervag/vimtex'
 
 Plug 'w0rp/ale'
-Plug 'sheerun/vim-polyglot'
 
 "" Git integration
 Plug 'airblade/vim-gitgutter'
@@ -103,6 +102,7 @@ Plug 'ap/vim-buftabline'
 
 "" Languages
 Plug 'hkmix/vim-george'
+" Plug 'sheerun/vim-polyglot'
 " Plug 'mattn/emmet-vim'
 " Plug 'moll/vim-node'
 " Plug 'jaawerth/nrun.vim'
@@ -130,12 +130,12 @@ let g:clang_user_options = '-std=c++11'
 let g:clang_close_preview = 1
 set completeopt-=preview
 
-" Config for jedi
+" Config for Jedi
 let g:jedi#completions_enabled = 0
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#smart_auto_mappings = 0
 
-" Config for neocomplete
+" Config for Neocomplete
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#auto_complete_delay = 0
 let g:neocomplete#enable_smart_case = 1
@@ -178,9 +178,8 @@ let g:ale_set_quickfix = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_sign_column_always = 1
 
-"" Config for VimTemplates
-let g:tmpl_search_paths=['~/.templates']
-let g:tmpl_auto_initialize=0
+"" Config for Polyglot
+let g:polyglot_disabled = ['latex']
 
 "" Config for Dirvish
 let g:dirvish_mode = ':sort ,^.*[\/],'
@@ -197,14 +196,14 @@ let g:gutentags_generate_on_empty_buffer=1
 let g:indentLine_color_term = 239
 let g:indentLine_char='┊'
 
-"" Config for delimitMate
+"" Config for DelimitMate
 " Adds a new line before the autocompleted bracket
 let g:delimitMate_autoclose = 1
 let g:delimitMate_expand_space = 1
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_matchpairs = "(:),[:],{:}"
 
-"" Config for statusline
+"" Config for Statusline
 function! RefreshStatusLine()
   for nr in range(1, winnr('$'))
     call setwinvar(nr, '&statusline', '%!StatusLine('.nr.')')
@@ -304,13 +303,13 @@ function! StatusLineAle() abort
 endfunction
 
 
-"" Config for vimtex
+"" Config for Vimtex
 let g:vimtex_compiler_latexmk = {'callback' : 0}
 let g:latex_view_general_viewer = "zathura"
 let g:vimtex_view_method = "zathura"
 let g:tex_conceal = ""
 
-"" Config for fzf
+"" Config for Fzf
 function! s:tags_sink(lines) abort
   if empty(a:lines)
     return

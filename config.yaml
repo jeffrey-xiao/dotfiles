@@ -122,10 +122,6 @@ vim:
     - "*": "~"
     - ".*": "~"
   postlink:
-    - "rm -rf ~/.vim"
-    - "curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-    - "vim -c PlugInstall -c q! -c q!"
-    - "mkdir -p ~/.vim/.undo ~/.vim/.backup ~/.vim/.swp ~/.tags"
     - "sudo pip install jedi flake8 autopep8"
     - "sudo npm install -g eslint tern"
     - "cd ~/.vim/plugged/tern_for_vim && npm install"

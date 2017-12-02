@@ -41,6 +41,15 @@ function! RunJava() abort
 endfunction
 
 """ Plugins
+"" Download vim-plug if it does not exist
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  augroup vimplug_group
+    autocmd!
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  augroup END
+endif
 call plug#begin('~/.vim/plugged')
 
 "" Color Scheme
@@ -419,9 +428,9 @@ set directory=~/.vim/.swp//
 
 " Create necessary directories
 if exists("*mkdir")
-  for dir in [".backup", ".swp", ".undo"]
-    if !isdirectory($HOME . "/.vim/" . dir)
-      call mkdir($HOME . "/.vim/" . dir, "p")
+  for dir in ["/.vim/.backup", "/.vim/.swp", "/.vim/.undo", "/.tags"]
+    if !isdirectory($HOME . dir)
+      call mkdir($HOME . dir, "p")
     endif
   endfor
 endif
@@ -614,7 +623,7 @@ augroup highlighting_group
 augroup end
 
 "" statusline autocommands
-augroup status
+augroup statusline_group
   autocmd!
   autocmd VimEnter,WinEnter,BufWinEnter * call RefreshStatusLine()
 augroup end

@@ -16,7 +16,6 @@ function! CompileCpp() abort
   endif
   make!
   echo 'Finished compiling!'
-  cw
 endfunction
 
 function! RunCpp() abort
@@ -32,12 +31,11 @@ function! CompileJava() abort
   endif
   make!
   echo "Finished compiling"
-  cw
 endfunction
 
 function! RunJava() abort
   let l:baseName = expand('%:r')
-  execute 'java '.l:baseName
+  execute '!java '.l:baseName
 endfunction
 
 """ Plugins
@@ -174,7 +172,7 @@ let g:ale_linters = {
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_set_quickfix = 1
+let g:ale_set_quickfix = 0
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_sign_column_always = 1
 
@@ -202,6 +200,10 @@ let g:delimitMate_autoclose = 1
 let g:delimitMate_expand_space = 1
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_matchpairs = "(:),[:],{:}"
+
+"" Config for vim-qf
+let g:qf_window_bottom = 1
+let g:qf_loclist_window_bottom = 0
 
 "" Config for Statusline
 function! RefreshStatusLine()
@@ -332,10 +334,11 @@ command! Tags call fzf#run(fzf#wrap({
         \ 'source':  'cat '.join(map(tagfiles(), 'fnamemodify(v:val, ":S")')).
         \            '| grep -v -a ^!',
         \ 'options': '+m -d "\t" --with-nth 1,4.. -n 1 --tiebreak=index --expect=ctrl-x,ctrl-v',
+        \ 'down': '10',
         \ 'sink*':    function('s:tags_sink'),
         \ }))
 command! Buffers call fzf#run(fzf#wrap({
-      \ 'source': map(range(1, bufnr('$')), 'bufname(v:val)'),
+      \ 'source': filter(map(range(1, bufnr('$')), 'bufname(v:val)'), 'len(v:val)'),
       \ }))
 command! MRU call fzf#run(fzf#wrap({
       \ 'source': v:oldfiles,
@@ -409,6 +412,7 @@ set showcmd
 set cmdheight=2
 set mouse=a
 set nomousehide
+set infercase
 
 "" Vim info config
 set viminfo='500 " remember marks for last 500 files
@@ -565,31 +569,23 @@ endfunction
 "" Quick fix related autocommands
 augroup quick_fix_group
   autocmd!
-  "" Always have quickfix take entire bot
-  autocmd Filetype qf wincmd J
-
-  "" Adjust quickfix window height to be 10 lines
-  autocmd Filetype qf call AdjustHeight(3, 10)
-
   "" Convenient quickfix macros
   " Open in new tab
-  autocmd Filetype qf nnoremap <buffer> t <C-W><CR><C-W>T
+  autocmd Filetype qf nnoremap <buffer> t <C-w><CR><C-w>T
   " Open in new tab and focus on results
-  autocmd Filetype qf nnoremap <buffer> <Leader>t <C-W><CR><C-W>TgT<C-W>p
+  autocmd Filetype qf nnoremap <buffer> <C-t> <C-w><CR><C-w>TgT<C-w>p
   " Open
   autocmd Filetype qf nnoremap <buffer> o <CR>
   " Open and focus on results
-  autocmd Filetype qf nnoremap <buffer> <Leader>o <CR><C-W>b
+  autocmd Filetype qf nnoremap <buffer> <C-o> <CR><C-w>b
   " Open in vertical split
-  autocmd Filetype qf nnoremap <buffer> v <C-W><CR><C-W>H<C-W>b<C-W>J:call AdjustHeight(3, 10)<CR><C-W>t
+  autocmd Filetype qf nnoremap <buffer> v <C-w><CR><C-w>H<C-w>b<C-w>J:call AdjustHeight(3, 10)<CR><C-w>t
   " Open in vertical split and focus on results
-  autocmd Filetype qf nnoremap <buffer> <Leader>v <C-W><CR><C-W>H<C-W>b<C-W>J:call AdjustHeight(3, 10)<CR>
+  autocmd Filetype qf nnoremap <buffer> <C-v> <C-w><CR><C-w>H<C-w>b<C-w>J:call AdjustHeight(3, 10)<CR>
   " Open in horizontal split
-  autocmd Filetype qf nnoremap <buffer> h <C-W><CR><C-W>K
+  autocmd Filetype qf nnoremap <buffer> x <C-w><CR><C-w>K
   " Open in horizontal split and focus on results
-  autocmd Filetype qf nnoremap <buffer> <Leader>h <C-W><CR><C-W>K<C-W>b
-  " Quit
-  autocmd Filetype qf nnoremap <buffer> q :ccl<CR>
+  autocmd Filetype qf nnoremap <buffer> <C-x> <C-w><CR><C-w>K<C-w>b
 augroup END
 
 "" cpp related autocommands

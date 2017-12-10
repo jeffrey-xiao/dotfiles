@@ -133,6 +133,7 @@ vim:
     - "pip"
     - "llvm-clang"
     - "nodejs"
+    - "pandoc"
 
 weechat:
   link: "~/.weechat"

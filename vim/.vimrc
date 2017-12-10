@@ -1,8 +1,3 @@
-if !exists("g:syntax_on")
-  syntax enable
-endif
-
-
 """ Functions
 function! AdjustHeight(minHeight, maxHeight) abort
   exe max([min([line("$"), a:maxHeight]), a:minHeight])."wincmd _"
@@ -388,7 +383,7 @@ silent! colorscheme flattened_dark
 "" Wildmenu config
 set wildmenu
 set wildmode=full
-set wildignore=.hg,.git,.svn                    " Version control
+set wildignore=.hg,.git,.svn                     " Version control
 set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
 set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
@@ -402,7 +397,7 @@ set conceallevel=0
 set backspace=2
 set autoread
 set autowrite
-set shortmess+=c
+set shortmess=aIT
 set encoding=utf-8
 set fileencoding=utf-8
 set lazyredraw
@@ -413,6 +408,7 @@ set cmdheight=2
 set mouse=a
 set nomousehide
 set infercase
+set nojoinspaces
 
 "" Vim info config
 set viminfo='500 " remember marks for last 500 files
@@ -513,6 +509,12 @@ command! -range=% VP  <line1>,<line2>w !curl -F 'text=<-' http://vpaste.net | tr
 command! -range=% IX  <line1>,<line2>w !curl -F 'f:1=<-' ix.io | tr -d '\n' | xclip -i -selection clipboard
 command! -range=% TB  <line1>,<line2>w !nc termbin 9999 | tr -d '\n' | xclip -i -selection clipboard
 
+"" Make single quote act like backtick
+nnoremap ' `
+
+"" Backspace to switch to alternate file
+nnoremap <BS> <C-^>
+
 """ Highlighting config
 "" Underline current line
 set cursorline
@@ -610,6 +612,12 @@ augroup java_group
   autocmd Filetype java nnoremap <buffer> <F5> :call RunJava()<CR>
 augroup END
 
+"" markdown related autocommands
+augroup markdown_group
+  autocmd!
+  autocmd Filetype markdown setlocal makeprg=pandoc\ -s\ -o\ %:r.pdf\ %
+augroup END
+
 "" highlighting autocommands
 call Highlight()
 augroup highlighting_group
@@ -622,3 +630,10 @@ augroup statusline_group
   autocmd!
   autocmd VimEnter,WinEnter,BufWinEnter * call RefreshStatusLine()
 augroup end
+
+"" cursorline autocommands
+augroup cursorline_group
+  autocmd!
+  autocmd WinLeave * set nocursorline
+  autocmd WinEnter * set cursorline
+augroup END

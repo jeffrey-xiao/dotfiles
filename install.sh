@@ -24,7 +24,7 @@ declare -a programs=(
   rtorrent
   rxvt-unicode xrdb
   tmux
-  vim curl ack ctags pip llvm-clang nodejs
+  vim curl ack ctags pip llvm-clang nodejs pandoc
   weechat
   xdotool poppler-devel texlive-devel girara-devel texlive-all
 )

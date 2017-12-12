@@ -199,6 +199,7 @@ let g:delimitMate_matchpairs = "(:),[:],{:}"
 "" Config for vim-qf
 let g:qf_window_bottom = 1
 let g:qf_loclist_window_bottom = 0
+let g:qf_auto_open_quickfix = 0
 
 "" Config for Statusline
 function! RefreshStatusLine()

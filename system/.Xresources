@@ -23,7 +23,7 @@ URxvt*termName:           xterm-256color
 
 !! Font
 URxvt.font:               -misc-tamzenforpowerline-medium-r-normal--16-116-100-100-c-80-iso8859-1
-URxvt.boldFont:           -misc-tamzenforpowerline-medium-r-normal--16-116-100-100-c-80-iso8859-1
+URxvt.boldFont:           -misc-tamzenforpowerline-bold-r-normal--16-116-100-100-c-80-iso8859-1
 URxvt.letterSpace:        0.0
 
 !! Real transparency
@@ -60,6 +60,7 @@ rofi.padding: 300
 rofi.bw: 0
 rofi.yoffset: 0
 rofi.font: TamzenForPowerline 16
+rofi.fullscreen: true
 
 rofi.color-enabled: true
 rofi.color-window: argb:f2002b36, argb:f2002b36, argb:f2002b36

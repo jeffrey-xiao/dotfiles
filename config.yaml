@@ -11,10 +11,10 @@ dunst:
   dependencies:
     - "dunst"
 
+# copy fonts and fonts.dir into ~/.fonts
 fonts:
   link:
     - fonts.conf: "~/.config/fontconfig"
-    - "*": "~/.fonts"
   postlink:
     - "git clone https://github.com/powerline/fonts ~/fonts/powerline-fonts"
     - ". ~/fonts/install.sh"
@@ -23,6 +23,8 @@ fonts:
     - "fc-cache -fv"
   dependencies:
     - "xset"
+    - "mkfontdir"
+    - "mkfontscale"
 
 git:
   link: "~"
@@ -93,6 +95,7 @@ ranger:
     - "imagemagick"
     - "w3m"
     - "feh"
+    - "atool"
 
 rtorrent:
   link: "~"
@@ -116,6 +119,7 @@ tmux:
     - "tmux"
 
 # Install `system.devel` component
+# sudo eopkg install -c system.devel
 vim:
   link:
     - minisnip: "~/.vim"
@@ -140,7 +144,6 @@ weechat:
   dependencies:
     - "weechat"
 
-# Install `zathura` and `zathura-pdf-poppler` from source
 zathura:
   link: "~/.config/zathura"
   dependencies:

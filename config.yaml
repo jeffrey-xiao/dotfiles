@@ -113,9 +113,6 @@ system:
     - "rxvt-unicode"
     - "xrdb"
 
-templates:
-  link: "~/.templates"
-
 tmux:
   link: "~"
   dependencies:

@@ -35,7 +35,10 @@ htop:
     - "htop"
 
 i3:
-  link: "~/.config/i3"
+  link:
+    - config.ini: "~/.config/networkmanager-dmenu"
+    - "*": "~/.config/i3"
+    - ".*": "~/.config/i3"
   dependencies:
     - "i3"
     - "scrot"
@@ -126,7 +129,7 @@ vim:
     - "*": "~"
     - ".*": "~"
   postlink:
-    - "sudo pip install jedi flake8 autopep8"
+    - "sudo pip install jedi flake8 autopep8 pylint"
     - "sudo npm install -g eslint tern"
     - "cd ~/.vim/plugged/tern_for_vim && npm install"
   dependencies:
@@ -138,6 +141,7 @@ vim:
     - "llvm-clang"
     - "nodejs"
     - "pandoc"
+    - "cppcheck"
 
 weechat:
   link: "~/.weechat"

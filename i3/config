@@ -141,9 +141,6 @@ bindsym $mod+Ctrl+l move workspace to output left
 bindsym $mod+Ctrl+Right move workspace to output right
 bindsym $mod+Ctrl+Left move workspace to output left
 
-# Options for logging out, restarting, and shutting down
-bindsym $mod+Shift+e exec power
-
 # Shortcut for i3lock
 bindsym $mod+Shift+x exec lock
 

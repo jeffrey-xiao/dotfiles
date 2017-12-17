@@ -159,9 +159,10 @@ augroup END
 
 "" Config for Ale
 let g:ale_linters = {
+      \ 'cpp': [ 'gcc', 'clang', 'cppcheck' ],
+      \ 'java': [ 'javac' ],
       \ 'javascript': [ 'eslint' ],
       \ 'python': [ 'autopep', 'flake8', 'pylint' ],
-      \ 'cpp': [ 'gcc', 'clang' ],
       \}
 
 let g:ale_echo_msg_error_str = 'E'

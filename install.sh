@@ -12,19 +12,19 @@ echo -n "" > $log_file
 declare -a programs=(
   compton
   dunst
-  xset
+  xset mkfontdir mkfontscale
   htop
   i3 scrot imagemagick i3lock rofi acpi sysstat feh jq blueman xbacklight gnome-settings-daemon network-manager xclip
   mpd mpc
   mpv
   ncmpcpp
-  redshift youtube-dl
+  redshift youtube-dl p7zip cabextract
   polybar font-awesome-ttf
-  ranger imagemagick w3m feh
+  ranger imagemagick w3m feh atool
   rtorrent
   rxvt-unicode xrdb
   tmux
-  vim curl ack ctags pip llvm-clang nodejs pandoc
+  vim curl ack ctags pip llvm-clang nodejs pandoc cppcheck
   weechat
   xdotool poppler-devel texlive-devel girara-devel texlive-all
 )
@@ -65,7 +65,9 @@ fc-cache -fv
 mkdir -pv ~/Documents/source
 git clone https://github.com/pwmt/zathura ~/Documents/source/zathura
 git clone https://github.com/pwmt/zathura-pdf-poppler ~/Documents/source/zathura-pdf-poppler
+git clone https://github.com/pwmt/zathura-ps ~/Documents/source/zathura-ps
 cd ~/Documents/source/zathura && sudo make install
 cd ~/Documents/source/zathura-pdf-poppler && sudo make install
+cd ~/Documents/source/zathura-ps && sudo make install
 
 xrdb ~/.Xresources

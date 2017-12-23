@@ -230,7 +230,7 @@ exec --no-startup-id xset fp rehash
 ## Configure startup applications
 # Appearance and notifications
 exec --no-startup-id redshift
-exec --no-startup-id gnome-settings-daemon
+exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 exec --no-startup-id dunst -c ~/.config/dunst/dunstrc
 exec --no-startup-id compton -f
 

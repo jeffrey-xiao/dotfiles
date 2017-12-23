@@ -12,6 +12,7 @@ echo -n "" > $log_file
 declare -a programs=(
   compton
   dunst
+  feh
   xset mkfontdir mkfontscale
   htop
   i3 scrot imagemagick i3lock rofi acpi sysstat feh jq blueman xbacklight gnome-settings-daemon network-manager xclip
@@ -20,7 +21,7 @@ declare -a programs=(
   ncmpcpp
   redshift youtube-dl p7zip cabextract
   polybar font-awesome-ttf
-  ranger imagemagick w3m feh atool
+  ranger imagemagick w3m atool
   rtorrent
   rxvt-unicode xrdb
   tmux

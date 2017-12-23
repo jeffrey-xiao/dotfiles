@@ -11,6 +11,11 @@ dunst:
   dependencies:
     - "dunst"
 
+feh:
+  link: "~/.config/feh"
+  dependencies:
+    - "feh"
+
 # copy fonts and fonts.dir into ~/.fonts
 fonts:
   link:
@@ -47,7 +52,6 @@ i3:
     - "rofi"
     - "acpi"
     - "sysstat"
-    - "feh"
     - "jq"
     - "blueman"
     - "xbacklight"

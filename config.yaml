@@ -139,7 +139,7 @@ vim:
   dependencies:
     - "vim"
     - "curl"
-    - "ack"
+    - "ag"
     - "ctags"
     - "pip"
     - "llvm-clang"

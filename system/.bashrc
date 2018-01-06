@@ -84,3 +84,6 @@ export PAGER=less
 
 # Source fzf if directory exists
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Setting ag as the default source for fzf
+export FZF_DEFAULT_COMMAND='ag -g ""'

@@ -57,6 +57,8 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
 " Keybindings for easily commenting out text
 Plug 'tpope/vim-commentary'
+" Repeating plugin maps
+Plug 'tpope/vim-repeat'
 " Improves quickfix
 Plug 'romainl/vim-qf'
 " Pipe ilist and dlist into quickfix
@@ -189,7 +191,7 @@ let g:gutentags_generate_on_empty_buffer=1
 "" Config for IndentLine
 let g:indentLine_color_term = 239
 let g:indentLine_char='┊'
-let g:indentLine_fileTypeExclude = ['markdown']
+let g:indentLine_fileTypeExclude = ['markdown', 'json']
 
 "" Config for DelimitMate
 " Adds a new line before the autocompleted bracket
@@ -373,15 +375,13 @@ set t_vb=
 set tm=500
 
 "" Searching config
-set nohlsearch
 set incsearch
 set ignorecase
 set smartcase
 
 "" Color scheme config
-set t_Co=256
 set background=dark
-silent! colorscheme flattened_dark
+colorscheme flattened_dark
 
 "" Wildmenu config
 set wildmenu
@@ -640,4 +640,11 @@ augroup cursorline_group
   autocmd!
   autocmd WinLeave * set nocursorline
   autocmd WinEnter * set cursorline
+augroup END
+
+"" searching highlighting
+augroup search_group
+  autocmd!
+  autocmd CmdlineEnter [/\?] :set hlsearch
+  autocmd CmdlineLeave [/\?] :set nohlsearch
 augroup END

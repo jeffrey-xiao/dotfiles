@@ -645,6 +645,7 @@ augroup END
 "" searching highlighting
 augroup search_group
   autocmd!
+  set nohlsearch
   autocmd CmdlineEnter [/\?] :set hlsearch
   autocmd CmdlineLeave [/\?] :set nohlsearch
 augroup END

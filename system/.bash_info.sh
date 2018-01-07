@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
-trim () {
+trim() {
   awk '{$1=$1};1'
+}
+
+__path_info() {
+  printf "\w"
 }
 
 __git_info() {
@@ -37,4 +41,10 @@ __git_info() {
   [ -n "$behind" ] && marks+=" $GIT_NEED_PULL_SYMBOL$behind"
 
   printf "$branch$marks"
+}
+
+__venv_info() {
+  # venv not found
+  [ -z ${VIRTUAL_ENV+x} ] && return
+  printf "${VIRTUAL_ENV##*/}"
 }

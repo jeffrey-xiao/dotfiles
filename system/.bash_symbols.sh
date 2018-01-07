@@ -1,0 +1,37 @@
+__initialize_symbols() {
+  [[ -n $SYMBOLS_INITIALIZED ]] && return
+  readonly SYMBOLS_INITIALIZED=1
+
+  # Unicode symbols
+  readonly PS_SYMBOL_DARWIN=''
+  readonly PS_SYMBOL_LINUX='$'
+  readonly PS_SYMBOL_OTHER='%'
+  if [[ -z "$PS_SYMBOL" ]]; then
+    case "$(uname)" in
+      Darwin)
+        readonly PS_SYMBOL=$PS_SYMBOL_DARWIN
+        ;;
+      Linux)
+        readonly PS_SYMBOL=$PS_SYMBOL_LINUX
+        ;;
+      *)
+        readonly PS_SYMBOL=$PS_SYMBOL_OTHER
+    esac
+  fi
+
+  # Powerline symbols
+  readonly RIGHT_ARROW=''
+  readonly LEFT_ARROW=''
+  readonly RIGHT_SEP=''
+  readonly LEFT_SEP=''
+
+  # Git symbols
+  readonly GIT_UNCOMMITED_SYMBOL="+"
+  readonly GIT_UNSTAGED_SYMBOL="*"
+  readonly GIT_UNTRACKED_SYMBOL="?"
+  readonly GIT_NEED_PUSH_SYMBOL='⇡'
+  readonly GIT_NEED_PULL_SYMBOL='⇣'
+}
+
+__initialize_symbols
+unset __initialize_symbols

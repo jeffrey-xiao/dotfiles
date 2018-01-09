@@ -331,12 +331,12 @@ function! s:tags_sink(lines) abort
 endfunction
 
 command! Tags call fzf#run(fzf#wrap({
-        \ 'source':  'cat '.join(map(tagfiles(), 'fnamemodify(v:val, ":S")')).
-        \            '| grep -v -a ^!',
-        \ 'options': '+m -d "\t" --with-nth 1,4.. -n 1 --tiebreak=index --expect=ctrl-x,ctrl-v',
-        \ 'down': '10',
-        \ 'sink*':    function('s:tags_sink'),
-        \ }))
+      \ 'source':  'cat '.join(map(tagfiles(), 'fnamemodify(v:val, ":S")')).
+      \            '| grep -v -a ^!',
+      \ 'options': '+m -d "\t" --with-nth 1,4.. -n 1 --tiebreak=index --expect=ctrl-x,ctrl-v',
+      \ 'down': '10',
+      \ 'sink*':    function('s:tags_sink'),
+      \ }))
 command! Buffers call fzf#run(fzf#wrap({
       \ 'source': filter(map(range(1, bufnr('$')), 'bufname(v:val)'), 'len(v:val)'),
       \ }))
@@ -415,7 +415,7 @@ set nojoinspaces
 set t_md=
 
 "" Vim info config
-set viminfo='500 " remember marks for last 500 files
+set viminfo='500   " remember marks for last 500 files
 set viminfo+=<1000 " remember up to 1000 lines in each register
 set viminfo+=s1000 " remember up to 1MB in each register
 set viminfo+=/1000 " remember last 1000 search patterns
@@ -646,6 +646,6 @@ augroup END
 augroup search_group
   autocmd!
   set nohlsearch
-  autocmd CmdlineEnter [/\?] :set hlsearch
-  autocmd CmdlineLeave [/\?] :set nohlsearch
+  autocmd CmdlineEnter [/\?] set hlsearch
+  autocmd CmdlineLeave [/\?] set nohlsearch
 augroup END

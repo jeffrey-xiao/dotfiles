@@ -130,6 +130,7 @@ tmux:
 vim:
   link:
     - minisnip: "~/.vim"
+    - after: "~/.vim"
     - "*": "~"
     - ".*": "~"
   postlink:

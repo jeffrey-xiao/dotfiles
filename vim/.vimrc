@@ -1,12 +1,12 @@
 """ Functions
 function! AdjustHeight(minHeight, maxHeight) abort
-  exe max([min([line("$"), a:maxHeight]), a:minHeight])."wincmd _"
+  exe max([min([line('$'), a:maxHeight]), a:minHeight]).'wincmd _'
 endfunction
 
 function! CompileCpp() abort
   let l:fileName = expand('%')
   let l:baseName = expand('%:r')
-  if !filereadable("./Makefile")
+  if !filereadable('./Makefile')
     setlocal makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ -fsanitize=undefined,address\ %\ -o\ %:r
   endif
   make!
@@ -21,11 +21,11 @@ endfunction
 function! CompileJava() abort
   let l:fileName = expand('%')
   setlocal errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
-  if !filereadable("./Makefile")
+  if !filereadable('./Makefile')
     setlocal makeprg=javac\ %
   endif
   make!
-  echo "Finished compiling"
+  echo 'Finished compiling'
 endfunction
 
 function! RunJava() abort
@@ -198,7 +198,7 @@ let g:indentLine_fileTypeExclude = ['markdown', 'json']
 let g:delimitMate_autoclose = 1
 let g:delimitMate_expand_space = 1
 let g:delimitMate_expand_cr = 1
-let g:delimitMate_matchpairs = "(:),[:],{:}"
+let g:delimitMate_matchpairs = '(:),[:],{:}'
 
 "" Config for vim-qf
 let g:qf_window_bottom = 1
@@ -207,37 +207,37 @@ let g:qf_auto_open_quickfix = 0
 
 "" Config for Statusline
 function! RefreshStatusLine()
-  for nr in range(1, winnr('$'))
-    call setwinvar(nr, '&statusline', '%!StatusLine('.nr.')')
+  for l:nr in range(1, winnr('$'))
+    call setwinvar(l:nr, '&statusline', '%!StatusLine('.l:nr.')')
   endfor
 endfunction
 
 function! StatusLine(winnum) abort
-  let active = a:winnum == winnr()
-  let status = ""
-  if active
-    let status .= "%#statusLineLight#"
-    let status .= "\ %t%{StatusLinePasteMode()}%r%h%w%m"
-    let status .= "\ %#statusLineDark#"
-    let status .= "%{StatusLineGitInfo()}"
-    let status .= "%="
-    let status .= "%y"
-    let status .= "\ %{&fileencoding?&fileencoding:&encoding}"
-    let status .= "\[%{&fileformat}\]"
-    let status .= "\ %#statusLineLight#"
-    let status .= "\ %l/%L:\ %3c"
-    let status .= "\ %#statusLineAccent#"
-    let status .= "%{StatusLineWarnings()}"
-    let status .= "%{StatusLineAle()}"
+  let l:active = a:winnum == winnr()
+  let l:status = ''
+  if l:active
+    let l:status .= '%#statusLineLight#'
+    let l:status .= ' %t%{StatusLinePasteMode()}%r%h%w%m'
+    let l:status .= ' %#statusLineDark#'
+    let l:status .= '%{StatusLineGitInfo()}'
+    let l:status .= '%='
+    let l:status .= '%y'
+    let l:status .= ' %{&fileencoding?&fileencoding:&encoding}'
+    let l:status .= '[%{&fileformat}]'
+    let l:status .= ' %#statusLineLight#'
+    let l:status .= ' %l/%L: %3c'
+    let l:status .= ' %#statusLineAccent#'
+    let l:status .= '%{StatusLineWarnings()}'
+    let l:status .= '%{StatusLineAle()}'
   else
-    let status .= "%#statusLineDark#"
-    let status .= "\ %f"
-    let status .= "%="
-    let status .= "%p%%"
-    let status .= "\ %#statusLineLight#"
-    let status .= "\ %l/%L:\ %3c\ "
+    let l:status .= '%#statusLineDark#'
+    let l:status .= ' %f'
+    let l:status .= '%='
+    let l:status .= '%p%%'
+    let l:status .= ' %#statusLineLight#'
+    let l:status .= ' %l/%L: %3c '
   endif
-  return status
+  return l:status
 endfunction
 
 function! StatusLinePasteMode() abort
@@ -249,27 +249,27 @@ function! StatusLinePasteMode() abort
 endfunction
 
 function! StatusLineGitInfo() abort
-  if fugitive#head() != ""
-    let info = GitGutterGetHunkSummary()
-    return " ".fugitive#head()." +".info[0]." ~".info[1]." -".info[2]." "
+  if fugitive#head() !=? ''
+    let l:info = GitGutterGetHunkSummary()
+    return ' '.fugitive#head().' +'.l:info[0].' ~'.l:info[1].' -'.l:info[2].' '
   else
-    return ""
+    return ''
   endif
 endfunction
 
 autocmd cursorhold,bufwritepost * unlet! b:warning_flags
 function! StatusLineWarnings() abort
-  if !exists("b:warning_flags")
-    let tabs = search('^\t', 'nw') != 0
-    let spaces = search('^ ', 'nw') != 0
-    let b:warning_flags = ""
+  if !exists('b:warning_flags')
+    let l:tabs = search('^\t', 'nw') != 0
+    let l:spaces = search('^ ', 'nw') != 0
+    let b:warning_flags = ''
 
     " Mixed indenting
-    if tabs && spaces
+    if l:tabs && l:spaces
       let b:warning_flags .= 'M'
 
     " Inconsistent indenting
-    elseif (spaces && !&et) || (tabs && &et)
+    elseif (l:spaces && !&expandtab) || (l:tabs && &expandtab)
       let b:warning_flags .= 'I'
     endif
 
@@ -279,7 +279,7 @@ function! StatusLineWarnings() abort
     endif
 
     if strlen(b:warning_flags) > 0
-      let b:warning_flags = "[".b:warning_flags."]"
+      let b:warning_flags = '['.b:warning_flags.']'
     endif
   endif
 
@@ -288,46 +288,46 @@ endfunction
 
 function! StatusLineAle() abort
   " ALE output
-  let ale_dict = ale#statusline#Count(bufnr('%'))
-  let errors = ale_dict['error'] + ale_dict['style_error']
-  let warnings = ale_dict['warning'] + ale_dict['style_warning']
-  let ale_output = ""
+  let l:ale_dict = ale#statusline#Count(bufnr('%'))
+  let l:errors = l:ale_dict['error'] + l:ale_dict['style_error']
+  let l:warnings = l:ale_dict['warning'] + l:ale_dict['style_warning']
+  let l:ale_output = ''
 
-  if errors > 0
-    let ale_output .= "[!".errors."]"
+  if l:errors > 0
+    let l:ale_output .= '[!'.l:errors.']'
   endif
 
-  if warnings > 0
-    let ale_output .= "[?".warnings."]"
+  if l:warnings > 0
+    let l:ale_output .= '[?'.l:warnings.']'
   endif
 
-  return ale_output
+  return l:ale_output
 endfunction
 
 
 "" Config for Vimtex
 let g:vimtex_compiler_latexmk = {'callback' : 0}
-let g:latex_view_general_viewer = "zathura"
-let g:vimtex_view_method = "zathura"
-let g:tex_conceal = ""
+let g:latex_view_general_viewer = 'zathura'
+let g:vimtex_view_method = 'zathura'
+let g:tex_conceal = ''
 
 "" Config for Fzf
 function! s:tags_sink(lines) abort
   if empty(a:lines)
     return
   endif
-  let cmd = get({
+  let l:cmd = get({
         \ 'ctrl-t': 'tabedit',
         \ 'ctrl-x': 'split',
         \ 'ctrl-v': 'vsplit',
         \ }, remove(a:lines, 0), 'e')
-  let query = a:lines[0]
-  let parts = split(query, '\t\zs')
-  let excmd = matchstr(parts[2:], '^.*\ze;"\t')
-  execute 'silent ' cmd parts[1][:-2]
-  let [magic, &magic] = [&magic, 0]
-  execute excmd
-  let &magic = magic
+  let l:query = a:lines[0]
+  let l:parts = split(l:query, '\t\zs')
+  let l:excmd = matchstr(l:parts[2:], '^.*\ze;"\t')
+  execute 'silent ' l:cmd l:parts[1][:-2]
+  let [l:magic, &magic] = [&magic, 0]
+  execute l:excmd
+  let &magic = l:magic
 endfunction
 
 command! Tags call fzf#run(fzf#wrap({
@@ -372,7 +372,7 @@ set noerrorbells
 set novisualbell
 set belloff=all
 set t_vb=
-set tm=500
+set timeoutlen=500
 
 "" Searching config
 set incsearch
@@ -402,6 +402,7 @@ set autoread
 set autowrite
 set shortmess=aIT
 set encoding=utf-8
+scriptencoding utf-8
 set fileencoding=utf-8
 set lazyredraw
 set showtabline=2
@@ -430,10 +431,10 @@ set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
 
 " Create necessary directories
-if exists("*mkdir")
-  for dir in ["/.vim/.backup", "/.vim/.swp", "/.vim/.undo", "/.tags"]
-    if !isdirectory($HOME . dir)
-      call mkdir($HOME . dir, "p")
+if exists('*mkdir')
+  for s:dir in ['/.vim/.backup', '/.vim/.swp', '/.vim/.undo', '/.tags']
+    if !isdirectory($HOME . s:dir)
+      call mkdir($HOME . s:dir, 'p')
     endif
   endfor
 endif

@@ -82,7 +82,7 @@ Plug 'lervag/vimtex'
 Plug 'w0rp/ale'
 
 "" Git integration
-Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
 
 "" File explorer
@@ -250,7 +250,7 @@ endfunction
 
 function! StatusLineGitInfo() abort
   if fugitive#head() !=? ''
-    let l:info = GitGutterGetHunkSummary()
+    let l:info = sy#repo#get_stats()
     return ' '.fugitive#head().' +'.l:info[0].' ~'.l:info[1].' -'.l:info[2].' '
   else
     return ''
@@ -304,12 +304,18 @@ function! StatusLineAle() abort
   return l:ale_output
 endfunction
 
-
 "" Config for Vimtex
 let g:vimtex_compiler_latexmk = {'callback' : 0}
 let g:latex_view_general_viewer = 'zathura'
 let g:vimtex_view_method = 'zathura'
 let g:tex_conceal = ''
+
+"" Config for signify
+let g:signify_vcs_list = ['git']
+let g:signify_sign_delete_first_line = '_'
+let g:signify_sign_change = '~'
+let g:signify_sign_changedelete = '~_'
+let g:signify_sign_show_count = 0
 
 "" Config for Fzf
 function! s:tags_sink(lines) abort
@@ -536,10 +542,9 @@ function! Highlight() abort
   highlight VertSplit ctermbg=none
 
   "" Highlighting for GitGutter symbols
-  highlight GitGutterAdd ctermbg=none ctermfg=64
-  highlight GitGutterChange ctermbg=none ctermfg=136
-  highlight GitGutterDelete ctermbg=none ctermfg=160
-  highlight GitGutterChangeDelete ctermbg=none ctermfg=136
+  highlight SignifySignAdd ctermbg=none ctermfg=64
+  highlight SignifySignChange ctermbg=none ctermfg=136
+  highlight SignifySignDelete ctermbg=none ctermfg=160
 
   "" Highlighting for ALE symbols
   highlight ALEErrorSign ctermbg=none ctermfg=160

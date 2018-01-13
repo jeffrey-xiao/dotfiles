@@ -33,13 +33,15 @@ line-size = 3
 padding = 0
 
 ; Default font
-font-0 = TamzenForPowerline:size=18;2
+font-0 = "TamzenForPowerline:size=18;2"
 
 ; Japanese characters
-font-1 = M+ 2c:style=regular:size=13;2
+font-1 = "M+ 2c:style=regular:size=13;2"
 
 ; Icons
-font-2 = FontAwesome:size=10;2
+font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=10;2"
+font-3 = "Font Awesome 5 Free:style=Solid:pixelsize=10;2"
+font-4 = "Font Awesome 5 Brands:pixelsize=10;2"
 
 tray-position = right
 

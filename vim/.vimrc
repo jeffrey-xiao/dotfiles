@@ -402,7 +402,6 @@ set wildignore+=*.pdf,*.zip,*.so                 " Binaries
 set wildignore+=*.pyc,*.pyo                      " Python byte code
 
 "" Other config
-set conceallevel=0
 set backspace=2
 set autoread
 set autowrite
@@ -439,8 +438,8 @@ set directory=~/.vim/.swp//
 " Create necessary directories
 if exists('*mkdir')
   for s:dir in ['/.vim/.backup', '/.vim/.swp', '/.vim/.undo', '/.tags']
-    if !isdirectory($HOME . s:dir)
-      call mkdir($HOME . s:dir, 'p')
+    if !isdirectory($HOME.s:dir)
+      call mkdir($HOME.s:dir, 'p')
     endif
   endfor
 endif
@@ -452,8 +451,8 @@ let g:mapleader="\<Space>"
 
 "" Regular j, k moves across visual lines
 "" Numbered j, k moves across physical lines
-nnoremap <expr> j v:count ? 'j' : 'gj'
-nnoremap <expr> k v:count ? 'k' : 'gk'
+nnoremap <expr> j v:count ? 'm'''.v:count.'j' : 'gj'
+nnoremap <expr> k v:count ? 'm'''.v:count.'k' : 'gk'
 
 "" Delete trailing whitespace
 nnoremap <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
@@ -519,9 +518,6 @@ command! -range=% CL  <line1>,<line2>w !curl -F 'clbin=<-' https://clbin.com | t
 command! -range=% VP  <line1>,<line2>w !curl -F 'text=<-' http://vpaste.net | tr -d '\n' | xclip -i -selection clipboard
 command! -range=% IX  <line1>,<line2>w !curl -F 'f:1=<-' ix.io | tr -d '\n' | xclip -i -selection clipboard
 command! -range=% TB  <line1>,<line2>w !nc termbin 9999 | tr -d '\n' | xclip -i -selection clipboard
-
-"" Make single quote act like backtick
-nnoremap ' `
 
 "" Backspace to switch to alternate file
 nnoremap <BS> <C-^>

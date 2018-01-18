@@ -44,6 +44,9 @@ endfunction
 function! StatusLineGitInfo() abort
   if fugitive#head() !=? ''
     let l:info = sy#repo#get_stats()
+    if l:info[0] < 0
+      return ''
+    endif
     return ' '.fugitive#head().' +'.l:info[0].' ~'.l:info[1].' -'.l:info[2].' '
   else
     return ''

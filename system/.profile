@@ -10,4 +10,4 @@ fi
 PATH="$HOME/bin:$HOME/.local/bin:$HOME/.bin:$PATH"
 
 # Environment variables for location
-export CITY="Toronto"
+export CITY="San Francisco"

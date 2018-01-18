@@ -3,35 +3,6 @@ function! AdjustHeight(minHeight, maxHeight) abort
   exe max([min([line('$'), a:maxHeight]), a:minHeight]).'wincmd _'
 endfunction
 
-function! CompileCpp() abort
-  let l:fileName = expand('%')
-  let l:baseName = expand('%:r')
-  if !filereadable('./Makefile')
-    setlocal makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ -fsanitize=undefined,address\ %\ -o\ %:r
-  endif
-  make!
-  echo 'Finished compiling!'
-endfunction
-
-function! RunCpp() abort
-  let l:filePath = expand('%:p:r')
-  execute '!'.l:filePath
-endfunction
-
-function! CompileJava() abort
-  let l:fileName = expand('%')
-  setlocal errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
-  if !filereadable('./Makefile')
-    setlocal makeprg=javac\ %
-  endif
-  make!
-  echo 'Finished compiling'
-endfunction
-
-function! RunJava() abort
-  let l:baseName = expand('%:r')
-  execute '!java '.l:baseName
-endfunction
 
 """ Plugins
 "" Download vim-plug if it does not exist
@@ -150,15 +121,6 @@ let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)\
 let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
 let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
 
-augroup neocomplete_group
-  autocmd!
-  autocmd FileType python setlocal omnifunc=jedi#completions
-  autocmd FileType javascript setlocal omnifunc=tern#Complete
-  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-augroup END
-
 "" Config for Ale
 let g:ale_linters = {
       \ 'cpp': [ 'gcc', 'clang', 'cppcheck' ],
@@ -181,7 +143,7 @@ let g:polyglot_disabled = ['latex']
 let g:dirvish_mode = ':sort ,^.*[\/],'
 augroup dirvish_group
   autocmd!
-  autocmd FileType dirvish nnoremap <buffer> zh :g@\v/\.[^\/]+/?$@d<CR>
+  autocmd Filetype dirvish nnoremap <buffer> zh :g@\v/\.[^\/]+/?$@d<CR>
 augroup END
 
 "" Config for Gutentags
@@ -205,104 +167,8 @@ let g:qf_window_bottom = 1
 let g:qf_loclist_window_bottom = 0
 let g:qf_auto_open_quickfix = 0
 
-"" Config for Statusline
-function! RefreshStatusLine()
-  for l:nr in range(1, winnr('$'))
-    call setwinvar(l:nr, '&statusline', '%!StatusLine('.l:nr.')')
-  endfor
-endfunction
-
-function! StatusLine(winnum) abort
-  let l:active = a:winnum == winnr()
-  let l:status = ''
-  if l:active
-    let l:status .= '%#statusLineLight#'
-    let l:status .= ' %t%{StatusLinePasteMode()}%r%h%w%m'
-    let l:status .= ' %#statusLineDark#'
-    let l:status .= '%{StatusLineGitInfo()}'
-    let l:status .= '%='
-    let l:status .= '%y'
-    let l:status .= ' %{&fileencoding?&fileencoding:&encoding}'
-    let l:status .= '[%{&fileformat}]'
-    let l:status .= ' %#statusLineLight#'
-    let l:status .= ' %l/%L: %3c'
-    let l:status .= ' %#statusLineAccent#'
-    let l:status .= '%{StatusLineWarnings()}'
-    let l:status .= '%{StatusLineAle()}'
-  else
-    let l:status .= '%#statusLineDark#'
-    let l:status .= ' %f'
-    let l:status .= '%='
-    let l:status .= '%p%%'
-    let l:status .= ' %#statusLineLight#'
-    let l:status .= ' %l/%L: %3c '
-  endif
-  return l:status
-endfunction
-
-function! StatusLinePasteMode() abort
-  let l:paste_status = &paste
-  if l:paste_status == 1
-    return '[P]'
-  endif
-  return ''
-endfunction
-
-function! StatusLineGitInfo() abort
-  if fugitive#head() !=? ''
-    let l:info = sy#repo#get_stats()
-    return ' '.fugitive#head().' +'.l:info[0].' ~'.l:info[1].' -'.l:info[2].' '
-  else
-    return ''
-  endif
-endfunction
-
-autocmd cursorhold,bufwritepost * unlet! b:warning_flags
-function! StatusLineWarnings() abort
-  if !exists('b:warning_flags')
-    let l:tabs = search('^\t', 'nw') != 0
-    let l:spaces = search('^ ', 'nw') != 0
-    let b:warning_flags = ''
-
-    " Mixed indenting
-    if l:tabs && l:spaces
-      let b:warning_flags .= 'M'
-
-    " Inconsistent indenting
-    elseif (l:spaces && !&expandtab) || (l:tabs && &expandtab)
-      let b:warning_flags .= 'I'
-    endif
-
-    " Trailing spaces
-    if search('\s\+$', 'nw') != 0
-      let b:warning_flags .= 'T'
-    endif
-
-    if strlen(b:warning_flags) > 0
-      let b:warning_flags = '['.b:warning_flags.']'
-    endif
-  endif
-
-  return b:warning_flags
-endfunction
-
-function! StatusLineAle() abort
-  " ALE output
-  let l:ale_dict = ale#statusline#Count(bufnr('%'))
-  let l:errors = l:ale_dict['error'] + l:ale_dict['style_error']
-  let l:warnings = l:ale_dict['warning'] + l:ale_dict['style_warning']
-  let l:ale_output = ''
-
-  if l:errors > 0
-    let l:ale_output .= '[!'.l:errors.']'
-  endif
-
-  if l:warnings > 0
-    let l:ale_output .= '[?'.l:warnings.']'
-  endif
-
-  return l:ale_output
-endfunction
+"" Config for BufTabLine
+let g:buftabline_numbers = 1
 
 "" Config for Vimtex
 let g:vimtex_compiler_latexmk = {'callback' : 0}
@@ -382,6 +248,7 @@ set timeoutlen=500
 
 "" Searching config
 set incsearch
+set nohlsearch
 set ignorecase
 set smartcase
 
@@ -452,8 +319,8 @@ let g:mapleader="\<Space>"
 
 "" Regular j, k moves across visual lines
 "" Numbered j, k moves across physical lines
-nnoremap <expr> j v:count ? 'j' : 'gj'
-nnoremap <expr> k v:count ? 'k' : 'gk'
+nnoremap <expr> j v:count ? 'm''' . v:count . 'j' : 'gj'
+nnoremap <expr> k v:count ? 'm''' . v:count . 'k' : 'gk'
 
 "" Delete trailing whitespace
 nnoremap <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
@@ -520,9 +387,6 @@ command! -range=% VP  <line1>,<line2>w !curl -F 'text=<-' http://vpaste.net | tr
 command! -range=% IX  <line1>,<line2>w !curl -F 'f:1=<-' ix.io | tr -d '\n' | xclip -i -selection clipboard
 command! -range=% TB  <line1>,<line2>w !nc termbin 9999 | tr -d '\n' | xclip -i -selection clipboard
 
-"" Make single quote act like backtick
-nnoremap ' `
-
 "" Backspace to switch to alternate file
 nnoremap <BS> <C-^>
 
@@ -578,8 +442,8 @@ endfunction
 
 
 """ Autocommands
-"" Quick fix related autocommands
-augroup quick_fix_group
+"" Quickfix related autocommands
+augroup quickfix_group
   autocmd!
   "" Convenient quickfix macros
   " Open in new tab
@@ -600,58 +464,23 @@ augroup quick_fix_group
   autocmd Filetype qf nnoremap <buffer> <C-x> <C-w><CR><C-w>K<C-w>b
 augroup END
 
-"" cpp related autocommands
-augroup cpp_group
-  autocmd!
-  autocmd Filetype cpp nnoremap <buffer> <F4> :call CompileCpp()<CR>
-  autocmd Filetype cpp nnoremap <buffer> <F5> :call RunCpp()<CR>
-augroup END
-
-"" latex related autocommands
-augroup latex_group
-  autocmd!
-  autocmd Filetype tex nmap <buffer> <F3> <plug>(vimtex-compile)
-  autocmd Filetype tex nmap <buffer> <F4> <plug>(vimtex-errors)
-  autocmd Filetype tex nmap <buffer> <F5> <plug>(vimtex-view)
-augroup END
-
-"" java related autocommands
-augroup java_group
-  autocmd!
-  autocmd Filetype java nnoremap <buffer> <F4> :call CompileJava()<CR>
-  autocmd Filetype java nnoremap <buffer> <F5> :call RunJava()<CR>
-augroup END
-
-"" markdown related autocommands
-augroup markdown_group
-  autocmd!
-  autocmd Filetype markdown setlocal makeprg=pandoc\ -s\ -o\ %:r.pdf\ %
-augroup END
-
-"" highlighting autocommands
+"" Highlighting autocommands
 call Highlight()
 augroup highlighting_group
   autocmd!
   autocmd ColorScheme * call Highlight()
 augroup end
 
-"" statusline autocommands
-augroup statusline_group
-  autocmd!
-  autocmd VimEnter,WinEnter,BufWinEnter * call RefreshStatusLine()
-augroup end
-
-"" cursorline autocommands
+"" Cursorline autocommands
 augroup cursorline_group
   autocmd!
   autocmd WinLeave * set nocursorline
   autocmd WinEnter * set cursorline
 augroup END
 
-"" searching highlighting
+"" Searching highlighting
 augroup search_group
   autocmd!
-  set nohlsearch
   autocmd CmdlineEnter [/\?] set hlsearch
   autocmd CmdlineLeave [/\?] set nohlsearch
 augroup END

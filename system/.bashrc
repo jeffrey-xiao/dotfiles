@@ -87,3 +87,6 @@ export PAGER=less
 
 # Setting ag as the default source for fzf
 export FZF_DEFAULT_COMMAND='ag -g ""'
+
+# Setting rust src path
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"

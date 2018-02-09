@@ -49,6 +49,7 @@ Plug 'ternjs/tern_for_vim'
 Plug 'davidhalter/jedi-vim'
 Plug 'Rip-Rip/clang_complete'
 Plug 'lervag/vimtex'
+Plug 'racer-rust/vim-racer'
 
 Plug 'w0rp/ale'
 
@@ -67,17 +68,17 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'ap/vim-buftabline'
 
 "" Languages
-Plug 'hkmix/vim-george'
+Plug 'pangloss/vim-javascript'
+Plug 'octol/vim-cpp-enhanced-highlight'
+" Plug 'hkmix/vim-george'
 " Plug 'sheerun/vim-polyglot'
 " Plug 'mattn/emmet-vim'
 " Plug 'moll/vim-node'
 " Plug 'jaawerth/nrun.vim'
-" Plug 'pangloss/vim-javascript'
 " Plug 'jelera/vim-javascript-syntax'
 " Plug 'mxw/vim-jsx'
 " Plug 'maksimr/vim-jsbeautify'
 " Plug 'digitaltoad/vim-jade'
-" Plug 'octol/vim-cpp-enhanced-highlight'
 " Plug 'fatih/vim-go'
 " Plug 'wlangstroth/vim-racket'
 " Plug 'guns/vim-clojure-static'
@@ -101,6 +102,10 @@ let g:jedi#completions_enabled = 0
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#smart_auto_mappings = 0
 
+"" Config for racer
+let g:racer_cmd = '/home/jeffreyxiao/.cargo/bin/racer'
+let g:racer_experimental_completer = 1
+
 " Config for Neocomplete
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#auto_complete_delay = 0
@@ -119,6 +124,8 @@ endif
 let g:neocomplete#sources#omni#input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
 let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
 let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+let g:neocomplete#sources#omni#input_patterns.rust = '[^.[:digit:] *\t]\%(\.\|\::\)\%(\h\w*\)\?'
+let g:neocomplete#sources#omni#input_patterns.tex = '\v\\%(\a*%(ref|cite)\a*%(\s*\[[^]]*\])?\s*\{[^{}]*|includegraphics%(\s*\[[^]]*\])?\s*\{[^{}]*|%(include|input)\s*\{[^{}]*)'
 let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
 
 "" Config for Ale
@@ -135,6 +142,7 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_set_quickfix = 0
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_sign_column_always = 1
+let g:ale_rust_cargo_include_features = 'clippy'
 
 "" Config for Polyglot
 let g:polyglot_disabled = ['latex']
@@ -147,12 +155,12 @@ augroup dirvish_group
 augroup END
 
 "" Config for Gutentags
-let g:gutentags_cache_dir='~/.tags'
-let g:gutentags_generate_on_empty_buffer=1
+let g:gutentags_cache_dir = '~/.tags'
+let g:gutentags_generate_on_empty_buffer = 1
 
 "" Config for IndentLine
 let g:indentLine_color_term = 239
-let g:indentLine_char='┊'
+let g:indentLine_char = '┊'
 let g:indentLine_fileTypeExclude = ['markdown', 'json']
 
 "" Config for DelimitMate
@@ -286,6 +294,7 @@ set nomousehide
 set infercase
 set nojoinspaces
 set t_md=
+set hidden
 
 "" Vim info config
 set viminfo='500   " remember marks for last 500 files

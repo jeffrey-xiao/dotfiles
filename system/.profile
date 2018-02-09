@@ -9,5 +9,8 @@ fi
 # set PATH so it includes user's private bin directories
 PATH="$HOME/bin:$HOME/.local/bin:$HOME/.bin:$PATH"
 
+# set PATH to include cargo binaries
+PATH="$HOME/.cargo/bin:$PATH"
+
 # Environment variables for location
 export CITY="San Francisco"

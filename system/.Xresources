@@ -27,13 +27,16 @@ URxvt.boldFont:           -misc-tamzenforpowerline-bold-r-normal--16-116-100-100
 URxvt.letterSpace:        0.0
 
 !! Real transparency
-!urxvt*depth:       32
-!urxvt*background:  [90]#002b36
+urxvt*depth:       32
+urxvt*background:  [90]#001115
 
 !! Fake transparency
-urxvt*transparent:  true
-urxvt*shading:      108
-urxvt*tintColor:    #002b36
+!urxvt*transparent:  true
+!urxvt*shading:      108
+!urxvt*tintColor:    #002b36
+
+!! Blur
+!urxvt*blurRadius: 10
 
 *color0:  #073642
 *color8:  #002b36

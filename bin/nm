@@ -41,7 +41,7 @@ CONNS = CLIENT.get_connections()
 if sys.version_info.major < 3:
     str = unicode
 
-def dmenu_cmd(num_lines, prompt="Networks:", active_lines=None):  # pylint: disable=too-many-branches
+def dmenu_cmd(num_lines, prompt="Networks", active_lines=None):  # pylint: disable=too-many-branches
     """Parse config.ini if it exists and add options to the dmenu command
 
     Args: args - num_lines: number of lines to display
@@ -438,7 +438,7 @@ def get_passphrase():
                 pin = res.split("D ")[1]
         return pin
     else:
-        return Popen(dmenu_cmd(0, "Passphrase: "),
+        return Popen(dmenu_cmd(0, "Passphrase"),
                      stdin=PIPE, stdout=PIPE).communicate()[0].decode(ENC)
 
 

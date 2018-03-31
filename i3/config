@@ -27,8 +27,8 @@ bindsym $mod+m exec $music
 bindsym $mod+n exec nm
 bindsym $mod+t exec $torrent
 bindsym $mod+y exec $explorer
-bindsym Print exec scrot ~/.tmp/tmp.png && xclip ~/.tmp/tmp.png -selection clipboard -t image/png && rm ~/.tmp/tmp.png -f && notify-send -u "low" "Took screenshot (window)"
-bindsym --release Shift+Print exec scrot -s ~/.tmp/tmp.png && xclip ~/.tmp/tmp.png -selection clipboard -t image/png && rm ~/.tmp/tmp.png -f && notify-send -u "low" "Took screenshot (area)"
+bindsym Print exec rm ~/.tmp/tmp.png -f && scrot ~/.tmp/tmp.png && xclip ~/.tmp/tmp.png -selection clipboard -t image/png && notify-send -u "low" "Took screenshot (window)"
+bindsym --release Shift+Print exec rm ~/.tmp/tmp.png -f && scrot -s ~/.tmp/tmp.png && xclip ~/.tmp/tmp.png -selection clipboard -t image/png && notify-send -u "low" "Took screenshot (area)"
 
 # Kill focused window
 bindsym $mod+Shift+q kill

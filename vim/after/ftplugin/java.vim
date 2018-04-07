@@ -1,17 +1,17 @@
 "" Functions
-function! CompileCpp() abort
+function! CompileJava() abort
   let l:fileName = expand('%')
-  let l:baseName = expand('%:r')
+  setlocal errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
   if !filereadable('./Makefile')
-    setlocal makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ -fsanitize=undefined,address\ %\ -o\ %:r
+    setlocal makeprg=javac\ %
   endif
   make!
-  echo 'Finished compiling!'
+  echo 'Finished compiling'
 endfunction
 
-function! RunCpp() abort
-  let l:filePath = expand('%:p:r')
-  execute '!'.l:filePath
+function! RunJava() abort
+  let l:baseName = expand('%:r')
+  execute '!java '.l:baseName
 endfunction
 
 

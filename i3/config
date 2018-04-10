@@ -1,5 +1,5 @@
 # Mod key
-set $mod Mod1
+set $mod Mod4
 
 # Application variables
 set $browser  firefox

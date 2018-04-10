@@ -97,7 +97,7 @@ icon-pause = 
 [module/date]
 type = internal/date
 
-date = %a, %b %e
+date = %a, %b %d
 time = %H:%M
 
 label = %date% - %time%

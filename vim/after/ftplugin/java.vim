@@ -11,7 +11,7 @@ endfunction
 
 function! RunJava() abort
   let l:baseName = expand('%:r')
-  execute '!java '.l:baseName
+  execute '!java -ea '.l:baseName
 endfunction
 
 

@@ -11,7 +11,7 @@ alias cp='cp -iv'
 
 # Extensions for ls
 alias ll='ls -lhF --color=auto'
-alias lla='ls -alF --color=auto'
+alias lla='ls -alhF --color=auto'
 alias la='ls -aF --color=auto'
 alias ls='ls -F --color=auto'
 

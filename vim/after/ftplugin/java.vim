@@ -10,8 +10,9 @@ function! CompileJava() abort
 endfunction
 
 function! RunJava() abort
-  let l:baseName = expand('%:r')
-  execute '!java -ea '.l:baseName
+  let l:folderPath = expand('%:p:h')
+  let l:baseName = expand('%:t:r')
+  execute '!java -ea -cp '.l:folderPath.' '.l:baseName
 endfunction
 
 

@@ -143,6 +143,7 @@ vim:
     - "rustup component add rust-src"
     - "cargo +nightly install clippy"
     - "cargo +nightly build --features \"clippy\""
+    - "cargo +nightly install racer"
   dependencies:
     - "vim"
     - "curl"

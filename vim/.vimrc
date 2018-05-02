@@ -70,6 +70,7 @@ Plug 'ap/vim-buftabline'
 "" Languages
 Plug 'pangloss/vim-javascript'
 Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'rust-lang/rust.vim'
 " Plug 'hkmix/vim-george'
 " Plug 'sheerun/vim-polyglot'
 " Plug 'mattn/emmet-vim'
@@ -142,7 +143,6 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_set_quickfix = 0
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_sign_column_always = 1
-let g:ale_rust_cargo_include_features = 'clippy'
 
 "" Config for Polyglot
 let g:polyglot_disabled = ['latex']

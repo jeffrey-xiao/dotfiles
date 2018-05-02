@@ -46,14 +46,21 @@ do
   fi
 done
 
-## Reinstalling all vim packages via Plug and building YouCompleteMe
+## Installing development related programs and tools
 rm -rf ~/.vim
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim -c PlugInstall -c q! -c q!
 mkdir -p ~/.vim/.undo ~/.vim/.backup ~/.vim/.swp ~/.tags
-sudo pip install jedi flake8 autopep8
+sudo pip install jedi flake8 autopep8 pylint
 sudo npm install -g eslint tern
 cd ~/.vim/plugged/tern_for_vim && npm install
+curl https://sh.rustup.rs -sSf | sh
+rustup install nightly
+rustup default nightly
+rustup component add rust-src
+rustup component add rustfmt-preview
+cargo install clippy
+cargo install racer
 
 ## Installing powerline fonts
 git clone https://github.com/powerline/fonts ~/fonts/powerline-fonts
@@ -64,11 +71,9 @@ fc-cache -fv
 
 ## Install zathura from source
 mkdir -pv ~/Documents/source
-git clone https://github.com/pwmt/zathura ~/Documents/source/zathura
-git clone https://github.com/pwmt/zathura-pdf-poppler ~/Documents/source/zathura-pdf-poppler
-git clone https://github.com/pwmt/zathura-ps ~/Documents/source/zathura-ps
-cd ~/Documents/source/zathura && sudo make install
+git clone --branch 0.3.7 https://github.com/pwmt/zathura ~/Documents/source/zathura
+git clone --branch 0.2.7 https://github.com/pwmt/zathura-pdf-poppler ~/Documents/source/zathura-pdf-poppler
+git clone --branch 0.2.4 https://github.com/pwmt/zathura-ps ~/Documents/source/zathura-ps
+cd ~/Documents/source/zathura && sudo make WITH_SYNCTEX=1 install
 cd ~/Documents/source/zathura-pdf-poppler && sudo make install
 cd ~/Documents/source/zathura-ps && sudo make install
-
-xrdb ~/.Xresources

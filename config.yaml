@@ -173,6 +173,6 @@ zathura:
     - "git clone --branch 0.3.7 https://github.com/pwmt/zathura ~/Documents/source/zathura"
     - "git clone --branch 0.2.7 https://github.com/pwmt/zathura-pdf-poppler ~/Documents/source/zathura-pdf-poppler"
     - "git clone --branch 0.2.4 https://github.com/pwmt/zathura-ps ~/Documents/source/zathura-ps"
-    - "cd ~/Documents/source/zathura && sudo make install"
+    - "cd ~/Documents/source/zathura && sudo make WITH_SYNCTEX=1 install"
     - "cd ~/Documents/source/zathura-pdf-poppler && sudo make install"
     - "cd ~/Documents/source/zathura-ps && sudo make install"

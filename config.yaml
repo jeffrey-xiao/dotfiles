@@ -134,6 +134,10 @@ vim:
     - "*": "~"
     - ".*": "~"
   postlink:
+    - "curl -sL https://raw.githubusercontent.com/creationix/nvm/master/install.sh -o install_nvm.sh"
+    - "chmod 775 install_nvm.sh"
+    - "./install_nvm.sh"
+    - "rm install_nvm.sh"
     - "sudo pip install jedi flake8 autopep8 pylint"
     - "sudo npm install -g eslint tern"
     - "cd ~/.vim/plugged/tern_for_vim && npm install"

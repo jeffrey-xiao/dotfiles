@@ -6,8 +6,8 @@ esac
 
 # History config
 HISTCONTROL=ignoreboth
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=20000
 shopt -s histappend
 
 # Check window size and update LINES and COLUMNS
@@ -90,3 +90,8 @@ export FZF_DEFAULT_COMMAND='ag -g ""'
 
 # Setting rust src path
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+

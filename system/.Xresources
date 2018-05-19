@@ -55,6 +55,10 @@ urxvt*background:  [90]#001115
 *color7:  #eee8e5
 *color15: #fdf6e3
 
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+
 !! Rofi config
 rofi.lines: 10
 rofi.eh: 2

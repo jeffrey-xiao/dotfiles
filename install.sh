@@ -75,8 +75,11 @@ git clone https://github.com/powerline/fonts ~/fonts/powerline-fonts
 . ~/fonts/install.sh
 sudo rm /usr/share/fonts/conf.d/70-no-bitmaps.conf
 sudo ln -sv /usr/share/fontconfig/conf.avail/70-yes-bitmaps.conf /usr/share/fonts/conf.d
+mkdir ~/.fonts
+cp ~/dotfiles/fonts/* ~/.fonts
+cd ~/.fonts && mkfontdir
+cd ~/.fonts && mkfontscale
 fc-cache -fv
-
 
 ## Install zathura from source
 mkdir -pv ~/Documents/source

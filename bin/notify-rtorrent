@@ -1,2 +1,3 @@
 #!/bin/sh
+
 notify-send -u "critical" "RTorrent: Download Finished" "$1"

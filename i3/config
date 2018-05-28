@@ -21,14 +21,14 @@ font pango: TamzenForPowerline 10
 floating_modifier $mod
 
 # Application shortcuts
-bindsym $mod+Return exec $terminal
+bindsym $mod+Return exec --no-startup-id $terminal
 bindsym $mod+b exec $browser
-bindsym $mod+m exec $music
+bindsym $mod+m exec --no-startup-id $music
 bindsym $mod+n exec nm
-bindsym $mod+t exec $torrent
-bindsym $mod+y exec $explorer
-bindsym Print exec rm ~/.tmp/tmp.png -f && scrot ~/.tmp/tmp.png && xclip ~/.tmp/tmp.png -selection clipboard -t image/png && notify-send -u "low" "Took screenshot (window)"
-bindsym --release Shift+Print exec rm ~/.tmp/tmp.png -f && scrot -s ~/.tmp/tmp.png && xclip ~/.tmp/tmp.png -selection clipboard -t image/png && notify-send -u "low" "Took screenshot (area)"
+bindsym $mod+t exec --no-startup-id $torrent
+bindsym $mod+y exec --no-startup-id $explorer
+bindsym Print exec --no-startup-id rm ~/.tmp/tmp.png -f && scrot ~/.tmp/tmp.png && xclip ~/.tmp/tmp.png -selection clipboard -t image/png && notify-send -u "low" "Took screenshot (window)"
+bindsym --release Shift+Print exec --no-startup-id rm ~/.tmp/tmp.png -f && scrot -s ~/.tmp/tmp.png && xclip ~/.tmp/tmp.png -selection clipboard -t image/png && notify-send -u "low" "Took screenshot (area)"
 
 # Kill focused window
 bindsym $mod+Shift+q kill
@@ -142,7 +142,7 @@ bindsym $mod+Ctrl+Right move workspace to output right
 bindsym $mod+Ctrl+Left move workspace to output left
 
 # Shortcut for i3lock
-bindsym $mod+Shift+x exec lock
+bindsym $mod+Shift+x exec --no-startup-id lock
 
 # Resize window (can also use mouse)
 mode "resize" {
@@ -170,23 +170,23 @@ bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D pulse set Master 1%
 bindsym XF86AudioMute exec --no-startup-id "amixer -D pulse set Master 0+ toggle "
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec "sudo brightness +50"
-bindsym XF86MonBrightnessDown exec "sudo brightness -50"
+bindsym XF86MonBrightnessUp exec --no-startup-id "sudo brightness +50"
+bindsym XF86MonBrightnessDown exec --no-startup-id "sudo brightness -50"
 
 # Touchpad controls
 bindsym XF86TouchpadToggle exec toggle-touchpad
 
 # Media player controls
-bindsym XF86AudioPlay exec mpc play
-bindsym XF86AudioPause exec mpc pause
-bindsym XF86AudioNext exec mpc next
-bindsym XF86AudioPrev exec mpc prev
-bindsym XF86AudioStop exec mpc pausE
+bindsym XF86AudioPlay exec --no-startup-id mpc play
+bindsym XF86AudioPause exec --no-startup-id mpc pause
+bindsym XF86AudioNext exec --no-startup-id mpc next
+bindsym XF86AudioPrev exec --no-startup-id mpc prev
+bindsym XF86AudioStop exec --no-startup-id mpc pausE
 
 # MPD controls
-bindsym $mod+p exec mpc toggle
-bindsym $mod+bracketleft exec mpc prev
-bindsym $mod+bracketright exec mpc next
+bindsym $mod+p exec --no-startup-id mpc toggle
+bindsym $mod+bracketleft exec --no-startup-id mpc prev
+bindsym $mod+bracketright exec --no-startup-id mpc next
 
 # Color definitions
 set $base03    #002b36
@@ -239,7 +239,7 @@ exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
 
 # Music player
-exec --no-startup-id i3-msg "exec ps -e | grep --quiet mpd || mpd"
+exec --no-startup-id i3-msg "exec --no-startup-id ps -e | grep --quiet mpd || mpd"
 
 # Configure displays
 exec_always --no-startup-id setup-displays

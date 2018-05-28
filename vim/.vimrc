@@ -134,7 +134,7 @@ let g:ale_linters = {
       \ 'cpp': [ 'gcc', 'clang', 'cppcheck' ],
       \ 'java': [ 'javac' ],
       \ 'javascript': [ 'eslint' ],
-      \ 'python': [ 'autopep', 'flake8' ],
+      \ 'python': [ 'autopep', 'flake8', 'pylint' ],
       \}
 
 let g:ale_echo_msg_error_str = 'E'

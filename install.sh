@@ -23,7 +23,7 @@ declare -a programs=(
   ncmpcpp
   redshift youtube-dl p7zip cabextract
   polybar font-awesome-ttf
-  ranger imagemagick w3m atool
+  ranger imagemagick w3m atool highlight
   rtorrent
   rxvt-unicode xrdb
   tmux
@@ -52,9 +52,9 @@ done
 
 
 ## Installing development related programs and tools
-rm -rf ~/.vim
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim -c PlugInstall -c q! -c q!
+curl -sL https://raw.githubusercontent.com/creationix/nvm/master/install.sh -o install_nvm.sh
 chmod 775 install_nvm.sh
 ./install_nvm.sh
 rm install_nvm.sh

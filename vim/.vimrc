@@ -381,9 +381,6 @@ xnoremap < <gv
 "" Consistent behavior
 nnoremap Y y$
 
-"" Sudoedit a file
-cnoremap w!! %!sudo tee > /dev/null %
-
 "" Neocomplete bindings
 inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -400,12 +397,13 @@ nnoremap <BS> <C-^>
 
 """ Highlighting config
 "" Underline current line
-set cursorline
+set nocursorline
 
 function! Highlight() abort
   "" Highlighting for cursorline
   highlight clear CursorLine
   highlight CursorLine cterm=underline
+  highlight CursorLineNR ctermfg=15
 
   "" Highlighting for transparent background
   highlight Normal ctermbg=none

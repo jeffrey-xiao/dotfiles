@@ -5,8 +5,8 @@ function! CompileJava() abort
   if !filereadable('./Makefile')
     setlocal makeprg=javac\ %
   endif
-  make!
-  echo 'Finished compiling'
+  silent make! | redraw!
+  echo "Finished Compiling"
 endfunction
 
 function! RunJava() abort

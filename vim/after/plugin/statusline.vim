@@ -10,7 +10,7 @@ function! StatusLine(winnum) abort
   let l:status = ''
   if l:active
     let l:status .= '%#statusLineLight#'
-    let l:status .= ' %t%{StatusLinePasteMode()}%r%h%w%m'
+    let l:status .= ' %f%{StatusLinePasteMode()}%r%h%w%m'
     let l:status .= ' %#statusLineDark#'
     let l:status .= '%{StatusLineGitInfo()}'
     let l:status .= '%='

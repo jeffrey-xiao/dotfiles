@@ -83,6 +83,7 @@ Plug 'rust-lang/rust.vim'
 " Plug 'fatih/vim-go'
 " Plug 'wlangstroth/vim-racket'
 " Plug 'guns/vim-clojure-static'
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 
@@ -337,10 +338,10 @@ nnoremap <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 vnoremap <C-c> "+y
 
 "" Easy split navigation
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-nnoremap <C-h> <C-w>h
+" nnoremap <C-j> <C-w>j
+" nnoremap <C-k> <C-w>k
+" nnoremap <C-l> <C-w>l
+" nnoremap <C-h> <C-w>h
 
 set splitbelow
 set splitright

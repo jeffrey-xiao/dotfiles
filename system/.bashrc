@@ -73,3 +73,10 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# Source fzf if directory exists
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Source nvm if directory exists
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"

@@ -23,9 +23,6 @@ export MPD_PORT=6600
 export EDITOR=vim
 export PAGER=less
 
-# Source fzf if directory exists
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
 # Setting ag as the default source for fzf
 export FZF_DEFAULT_COMMAND='ag -g ""'
 
@@ -34,5 +31,3 @@ export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
 # Setting nvm dir
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"

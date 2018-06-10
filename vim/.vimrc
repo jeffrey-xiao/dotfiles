@@ -436,14 +436,14 @@ function! Highlight() abort
   highlight def link markdownBoldItalicDelimiter NONE
 
   "" Highlighting for BufTabLine
-  highlight BufTabLineCurrent cterm=none ctermfg=8 ctermbg=12
+  highlight BufTabLineCurrent cterm=none ctermfg=8 ctermbg=14
   highlight BufTabLineActive cterm=none ctermfg=8 ctermbg=10
   highlight BufTabLineHidden cterm=none ctermfg=8 ctermbg=10
   highlight BufTabLineFill ctermfg=0 ctermbg=0
 
   "" Highlighting for statusline
   highlight statusLineDark ctermfg=12 ctermbg=0
-  highlight statusLineLight ctermfg=15 ctermbg=10
+  highlight statusLineLight ctermfg=0 ctermbg=14
   highlight statusLineAccent ctermfg=15 ctermbg=160
 endfunction
 
@@ -482,7 +482,7 @@ augroup end
 augroup cursorline_group
   autocmd!
   autocmd WinLeave * set nocursorline
-  autocmd WinEnter * set cursorline
+  autocmd WinEnter * set nocursorline
 augroup END
 
 "" Searching highlighting

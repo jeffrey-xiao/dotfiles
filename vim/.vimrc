@@ -215,7 +215,7 @@ command! Tags call fzf#run(fzf#wrap({
       \ 'source':  'cat '.join(map(tagfiles(), 'fnamemodify(v:val, ":S")')).
       \            '| grep -v -a ^!',
       \ 'options': '+m -d "\t" --with-nth 1,4.. -n 1 --tiebreak=index --expect=ctrl-x,ctrl-v',
-      \ 'down': '10',
+      \ 'down': '40%',
       \ 'sink*':    function('s:tags_sink'),
       \ }))
 command! Buffers call fzf#run(fzf#wrap({

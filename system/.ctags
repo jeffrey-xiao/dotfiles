@@ -6,6 +6,7 @@
 --exclude=.tox
 --exclude=.git
 --exclude=node_modules
+--exclude=Makefile
 
 --langdef=scala
 --langmap=scala:.scala

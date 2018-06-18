@@ -5,6 +5,9 @@
 [github]
   user = jeffrey-xiao
 
+[gitlab]
+  user = jeffrey-xiao
+
 [core]
   excludesfile = ~/.gitignore_global
   editor = vim
@@ -111,4 +114,7 @@
   followTags = true
 
 [credential "https://github.com"]
+  username = jeffrey-xiao
+
+[credential "https://gitlab.com"]
   username = jeffrey-xiao

@@ -146,7 +146,7 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_sign_column_always = 1
 
 "" Config for Polyglot
-let g:polyglot_disabled = ['latex']
+let g:polyglot_disabled = [ 'latex' ]
 
 "" Config for Dirvish
 let g:dirvish_mode = ':sort ,^.*[\/],'
@@ -162,7 +162,7 @@ let g:gutentags_generate_on_empty_buffer = 1
 "" Config for IndentLine
 let g:indentLine_color_term = 239
 let g:indentLine_char = '┊'
-let g:indentLine_fileTypeExclude = ['markdown', 'json']
+let g:indentLine_fileTypeExclude = [ 'markdown', 'json' ]
 
 "" Config for DelimitMate
 " Adds a new line before the autocompleted bracket
@@ -180,13 +180,13 @@ let g:qf_auto_open_quickfix = 0
 let g:buftabline_numbers = 1
 
 "" Config for Vimtex
-let g:vimtex_compiler_latexmk = {'callback' : 0}
+let g:vimtex_compiler_latexmk = { 'callback' : 0 }
 let g:latex_view_general_viewer = 'zathura'
 let g:vimtex_view_method = 'zathura'
 let g:tex_conceal = ''
 
 "" Config for signify
-let g:signify_vcs_list = ['git']
+let g:signify_vcs_list = [ 'git' ]
 let g:signify_sign_delete_first_line = '_'
 let g:signify_sign_change = '~'
 let g:signify_sign_changedelete = '~_'
@@ -314,7 +314,7 @@ set directory=~/.vim/.swp//
 
 " Create necessary directories
 if exists('*mkdir')
-  for s:dir in ['/.vim/.backup', '/.vim/.swp', '/.vim/.undo', '/.tags']
+  for s:dir in [ '/.vim/.backup', '/.vim/.swp', '/.vim/.undo', '/.tags' ]
     if !isdirectory($HOME.s:dir)
       call mkdir($HOME.s:dir, 'p')
     endif

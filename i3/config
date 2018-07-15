@@ -219,7 +219,7 @@ client.focused_inactive $base03    $base03       $base2    #00ff00
 client.urgent           $base03    $base03       $red      #00ff00
 
 hide_edge_borders both
-for_window [class="^.*"]    border pixel 3
+for_window [class="^.*"] border pixel 3
 
 new_float none
 

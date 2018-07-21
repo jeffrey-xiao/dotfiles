@@ -10,9 +10,9 @@ set $terminal urxvt
 set $network  nm
 
 # Configuration for gaps
-gaps inner 20
-gaps outer -10
-smart_gaps on
+# gaps inner 20
+# gaps outer -10
+# smart_gaps on
 
 # Font for window titles
 font pango: TamzenForPowerline 10
@@ -218,8 +218,8 @@ client.unfocused        $base03    $base03       $base2    #00ff00
 client.focused_inactive $base03    $base03       $base2    #00ff00
 client.urgent           $base03    $base03       $red      #00ff00
 
-hide_edge_borders both
-for_window [class="^.*"] border pixel 3
+hide_edge_borders smart
+for_window [class="^.*"] border pixel 5
 
 new_float none
 

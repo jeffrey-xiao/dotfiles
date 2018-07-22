@@ -3,19 +3,20 @@ This repository contains all the dot files I use for my Solus machine.
 
 ## Software I Use
 ```
-audio         → ncmpcpp/mpd/mpc
-de/wm         → i3-gaps
-editor        → vim
-fm            → ranger
-irc           → weechat
-monitor       → polybar/htop
-multiplexer   → tmux
-notifications → dunst
-pdf viewer    → zathura
-shell         → bash
-terminal      → rxvt-unicode
-torrent       → rtorrent
-video         → mpv
+audio           → ncmpcpp/mpd/mpc
+de/wm           → i3-gaps
+document viewer → zathura
+compositor      → compton
+editor          → vim
+fm              → ranger
+irc             → weechat
+monitor         → polybar/htop
+multiplexer     → tmux
+notifications   → dunst
+shell           → bash
+terminal        → rxvt-unicode
+torrent         → rtorrent
+video           → mpv
 ```
 
 ## Dependencies

@@ -12,7 +12,7 @@ set incremental-search true
 map <C-i> zoom in
 map <C-o> zoom out
 
-# background color
+# colors
 set default-bg                  "#002b36"
 set default-fg                  "#073642"
 

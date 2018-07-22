@@ -13,4 +13,14 @@ map <C-i> zoom in
 map <C-o> zoom out
 
 # background color
-set default-bg "#002b36"
+set default-bg                  "#002b36"
+set default-fg                  "#073642"
+
+set highlight-color             "#b58900"
+set highlight-active-color      "#268bd2"
+
+set recolor-lightcolor          "#002b36"
+set recolor-darkcolor           "#eee8d5"
+
+set recolor                     "false"
+set recolor-keephue             "false"

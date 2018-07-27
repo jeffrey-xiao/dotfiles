@@ -434,6 +434,12 @@ function! Highlight() abort
   highlight def link markdownBoldDelimiter NONE
   highlight def link markdownBoldItalic NONE
   highlight def link markdownBoldItalicDelimiter NONE
+  highlight markdownItalic ctermfg=4
+  highlight markdownItalicDelimiter ctermfg=4
+  highlight markdownBold ctermfg=4
+  highlight markdownBoldDelimiter ctermfg=4
+  highlight markdownBoldItalic ctermfg=4
+  highlight markdownBoldItalicDelimiter ctermfg=4
 
   "" Highlighting for BufTabLine
   highlight BufTabLineCurrent cterm=none ctermfg=8 ctermbg=14

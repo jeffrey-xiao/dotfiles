@@ -1,7 +1,10 @@
 "" General config
 setlocal conceallevel=0
-setlocal makeprg=pandoc\ -s\ -o\ %:r.pdf\ %
+setlocal makeprg=pandoc\ --pdf-engine=pdflatex\ --standalone\ --output=%:r.pdf\ %
 setlocal omnifunc=htmlcomplete#CompleteTags
+setlocal nocindent
+setlocal formatoptions+=t
+setlocal formatoptions-=l
 
 
 "" Keybindings

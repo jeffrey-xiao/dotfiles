@@ -17,7 +17,7 @@ declare -a programs=(
   feh
   xset mkfontdir mkfontscale
   htop
-  i3 scrot imagemagick i3lock rofi acpi sysstat feh jq blueman xbacklight gnome-settings-daemon network-manager xclip
+  i3 scrot imagemagick i3lock rofi acpi sysstat jq blueman xbacklight gnome-settings-daemon numix-gtk-theme papirus-icon-theme network-manager xclip
   mpd mpc
   mpv
   ncmpcpp
@@ -29,7 +29,7 @@ declare -a programs=(
   tmux
   vim curl ack ctags pip llvm-clang nodejs pandoc cppcheck
   weechat
-  xdotool poppler-devel texlive-devel girara-devel texlive-all
+  xdotool zathura texlive-all
 )
 programs_string=$(join " " "${programs[@]}")
 installed_program_list=$(eopkg li -i)
@@ -51,6 +51,18 @@ do
 done
 
 
+## Installing powerline fonts
+git clone https://github.com/powerline/fonts ~/fonts/powerline-fonts
+. ~/fonts/install.sh
+sudo rm /usr/share/fonts/conf.d/70-no-bitmaps.conf
+sudo ln -sv /usr/share/fontconfig/conf.avail/70-yes-bitmaps.conf /usr/share/fonts/conf.d
+mkdir ~/.fonts
+cp ~/dotfiles/fonts/* ~/.fonts
+cd ~/.fonts && mkfontdir
+cd ~/.fonts && mkfontscale
+fc-cache -fv
+
+
 ## Installing development related programs and tools
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim -c PlugInstall -c q! -c q!
@@ -68,24 +80,3 @@ rustup component add rust-src
 rustup component add rustfmt-preview
 cargo install clippy
 cargo install racer
-
-
-## Installing powerline fonts
-git clone https://github.com/powerline/fonts ~/fonts/powerline-fonts
-. ~/fonts/install.sh
-sudo rm /usr/share/fonts/conf.d/70-no-bitmaps.conf
-sudo ln -sv /usr/share/fontconfig/conf.avail/70-yes-bitmaps.conf /usr/share/fonts/conf.d
-mkdir ~/.fonts
-cp ~/dotfiles/fonts/* ~/.fonts
-cd ~/.fonts && mkfontdir
-cd ~/.fonts && mkfontscale
-fc-cache -fv
-
-## Install zathura from source
-mkdir -pv ~/Documents/source
-git clone --branch 0.3.7 https://github.com/pwmt/zathura ~/Documents/source/zathura
-git clone --branch 0.2.7 https://github.com/pwmt/zathura-pdf-poppler ~/Documents/source/zathura-pdf-poppler
-git clone --branch 0.2.4 https://github.com/pwmt/zathura-ps ~/Documents/source/zathura-ps
-cd ~/Documents/source/zathura && sudo make WITH_SYNCTEX=1 install
-cd ~/Documents/source/zathura-pdf-poppler && sudo make install
-cd ~/Documents/source/zathura-ps && sudo make install

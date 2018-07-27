@@ -54,10 +54,8 @@ ln -sfv "$DOTFILES_DIR/fonts/fonts.conf" ~/.config/fontconf
 mkdir ~/.config/networkmanager-dmenu
 ln -sfv "$DOTFILES_DIR/i3/config.ini" ~/.config/networkmanager-dmenu
 
-mkdir -pv ~/.fonts
-for f in $DOTFILES_DIR/fonts/*.ttf; do
-  \cp -v "$f" ~/.fonts
-done
+## Create tmp folder for i3
+mkdir -pv ~/.tmp
 
 
 ## Create a playlist folder and database file for mpd
@@ -65,12 +63,12 @@ mkdir -pv ~/.config/mpd/playlists
 touch ~/.config/mpd/database
 
 
-## Create complete, incomplete, and session folders for rtorrent
-mkdir -pv ~/.tmp ~/.bin ~/Downloads/complete ~/Downloads/incomplete ~/.rtorrent.sessions
-
-
 ## Create screenshot folder for mpv
 mkdir -pv ~/Pictures/screenshots
+
+
+## Create complete, incomplete, and session folders for rtorrent
+~/Downloads/complete ~/Downloads/incomplete ~/.rtorrent.sessions
 
 
 ## Apply ~/.xresources

@@ -16,7 +16,6 @@ feh:
   dependencies:
     - "feh"
 
-# copy fonts and fonts.conf into ~/.fonts and run mkfontdir and mkfontscale
 fonts:
   link:
     - fonts.conf: "~/.config/fontconfig"
@@ -177,5 +176,3 @@ zathura:
     - "xdotool"
     - "zathura"
     - "texlive-all"
-  postlink:
-    - "mkdir -p ~/Documents/source"

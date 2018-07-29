@@ -450,7 +450,7 @@ function! Highlight() abort
   "" Highlighting for statusline
   highlight statusLineDark ctermfg=12 ctermbg=0
   highlight statusLineLight ctermfg=0 ctermbg=14
-  highlight statusLineAccent ctermfg=15 ctermbg=160
+  highlight statusLineAccent ctermfg=15 ctermbg=1
 endfunction
 
 

@@ -27,7 +27,7 @@ set index-fg                    "#93a1a1" # base1
 set index-active-bg             "#93a1a1" # base01
 set index-active-fg             "#002b36" # base2
 
-(dset completion-group-bg         "#002b36" # base03
+set completion-group-bg         "#002b36" # base03
 set completion-group-fg         "#839496" # base0
 set completion-bg               "#073642" # base02
 set completion-fg               "#93a1a1" # base1

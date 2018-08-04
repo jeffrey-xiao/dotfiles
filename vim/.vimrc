@@ -71,6 +71,7 @@ Plug 'ap/vim-buftabline'
 Plug 'pangloss/vim-javascript'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'rust-lang/rust.vim'
+Plug 'christoomey/vim-tmux-navigator'
 " Plug 'hkmix/vim-george'
 " Plug 'sheerun/vim-polyglot'
 " Plug 'mattn/emmet-vim'
@@ -83,7 +84,6 @@ Plug 'rust-lang/rust.vim'
 " Plug 'fatih/vim-go'
 " Plug 'wlangstroth/vim-racket'
 " Plug 'guns/vim-clojure-static'
-Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 

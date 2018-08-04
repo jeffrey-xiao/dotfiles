@@ -1,9 +1,10 @@
 #!/bin/sh
 
-api="http://api.openweathermap.org/data/2.5/weather?q="$(curl -s ifconfig.co/city | sed 's/ /%20/g')"&APPID=fc3cf768e2ea4f683adac8f074a036c6&units=metric"
-ret=$(curl -s $api)
-weather=$(echo $ret | jq -r '.weather[0].main')
-temp=$(echo $ret | jq -r '.main.temp')
+IFS=',' read -r -a location <<< `curl -s ipinfo.io/loc`
+api_endpoint="http://api.openweathermap.org/data/2.5/weather?lat=${location[0]}&lon=${location[1]}&APPID=fc3cf768e2ea4f683adac8f074a036c6&units=metric"
+resp=$(curl -s $api_endpoint)
+weather=$(echo $resp | jq -r '.weather[0].main')
+temp=$(echo $resp | jq -r '.main.temp')
 
 if [[ -z "${param// }" && -z "${temp// }" ]]; then
   echo "N/A"

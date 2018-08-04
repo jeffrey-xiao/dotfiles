@@ -21,13 +21,13 @@ font pango: TamzenForPowerline 10
 floating_modifier $mod
 
 # Application shortcuts
-bindsym $mod+Return exec --no-startup-id $terminal
-bindsym $mod+b exec $browser
-bindsym $mod+m exec --no-startup-id $music
-bindsym $mod+n exec nm
-bindsym $mod+t exec --no-startup-id $torrent
-bindsym $mod+y exec --no-startup-id $explorer
-bindsym Print exec --no-startup-id rm ~/.tmp/tmp.png -f && scrot ~/.tmp/tmp.png && xclip ~/.tmp/tmp.png -selection clipboard -t image/png && notify-send -u "low" "Took screenshot (window)"
+bindsym $mod+Return           exec --no-startup-id $terminal
+bindsym $mod+b                exec $browser
+bindsym $mod+m                exec --no-startup-id $music
+bindsym $mod+n                exec $network
+bindsym $mod+t                exec --no-startup-id $torrent
+bindsym $mod+y                exec --no-startup-id $explorer
+bindsym Print                 exec --no-startup-id rm ~/.tmp/tmp.png -f && scrot ~/.tmp/tmp.png && xclip ~/.tmp/tmp.png -selection clipboard -t image/png && notify-send -u "low" "Took screenshot (window)"
 bindsym --release Shift+Print exec --no-startup-id rm ~/.tmp/tmp.png -f && scrot -s ~/.tmp/tmp.png && xclip ~/.tmp/tmp.png -selection clipboard -t image/png && notify-send -u "low" "Took screenshot (area)"
 
 # Kill focused window
@@ -43,9 +43,9 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # Change focus: cursor keys
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
 bindsym $mod+Right focus right
 
 # Move focused window: vim bindings
@@ -55,9 +55,9 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
 # Move focused window: cursor keys
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
 bindsym $mod+Shift+Right move right
 
 # Split in horizontal orientation
@@ -96,20 +96,20 @@ bindsym $mod+Ctrl+r reload
 bindsym $mod+Shift+r restart
 
 # Workspace configuration
-set $ws1 "1:1"
-set $ws2 "2:2"
-set $ws3 "3:3"
-set $ws4 "4:4"
-set $ws5 "5:5"
-set $ws6 "6:6"
-set $ws7 "7:7"
-set $ws8 "8:8"
-set $ws9 "9:9"
+set $ws1  "1:1"
+set $ws2  "2:2"
+set $ws3  "3:3"
+set $ws4  "4:4"
+set $ws5  "5:5"
+set $ws6  "6:6"
+set $ws7  "7:7"
+set $ws8  "8:8"
+set $ws9  "9:9"
 set $ws10 "10:0"
 
 # Default workspaces for applications
-assign [class="Firefox"]          $ws1
-assign [class="mpv"]              $ws9
+assign [class="Firefox"]  $ws1
+assign [class="mpv"]      $ws9
 
 # Navigating to workspaces
 bindsym $mod+1 workspace $ws1
@@ -136,10 +136,10 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 # Shortcuts for moving workspaces
-bindsym $mod+Ctrl+h move workspace to output right
-bindsym $mod+Ctrl+l move workspace to output left
+bindsym $mod+Ctrl+h     move workspace to output right
+bindsym $mod+Ctrl+l     move workspace to output left
 bindsym $mod+Ctrl+Right move workspace to output right
-bindsym $mod+Ctrl+Left move workspace to output left
+bindsym $mod+Ctrl+Left  move workspace to output left
 
 # Shortcut for i3lock
 bindsym $mod+Shift+x exec --no-startup-id lock
@@ -167,25 +167,25 @@ bindsym $mod+r mode "resize"
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -D pulse set Master 1%+"
 bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D pulse set Master 1%-"
-bindsym XF86AudioMute exec --no-startup-id "amixer -D pulse set Master 0+ toggle "
+bindsym XF86AudioMute        exec --no-startup-id "amixer -D pulse set Master 0+ toggle "
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id "sudo brightness +50"
+bindsym XF86MonBrightnessUp   exec --no-startup-id "sudo brightness +50"
 bindsym XF86MonBrightnessDown exec --no-startup-id "sudo brightness -50"
 
 # Touchpad controls
 bindsym XF86TouchpadToggle exec toggle-touchpad
 
 # Media player controls
-bindsym XF86AudioPlay exec --no-startup-id mpc play
+bindsym XF86AudioPlay  exec --no-startup-id mpc play
 bindsym XF86AudioPause exec --no-startup-id mpc pause
-bindsym XF86AudioNext exec --no-startup-id mpc next
-bindsym XF86AudioPrev exec --no-startup-id mpc prev
-bindsym XF86AudioStop exec --no-startup-id mpc pausE
+bindsym XF86AudioNext  exec --no-startup-id mpc next
+bindsym XF86AudioPrev  exec --no-startup-id mpc prev
+bindsym XF86AudioStop  exec --no-startup-id mpc pause
 
 # MPD controls
-bindsym $mod+p exec --no-startup-id mpc toggle
-bindsym $mod+bracketleft exec --no-startup-id mpc prev
+bindsym $mod+p            exec --no-startup-id mpc toggle
+bindsym $mod+bracketleft  exec --no-startup-id mpc prev
 bindsym $mod+bracketright exec --no-startup-id mpc next
 
 # Color definitions
@@ -206,21 +206,20 @@ set $blue      #268bd2
 set $cyan      #2aa198
 set $green     #859900
 
-set $active-bar-bg-color     #fdf6e3
-set $inactive-bar-bg-color   #93a1a1
-set $active-bar-text-color   #002b36
-set $inactive-bar-text-color #002b36
+set $active-bar-bg-color     $base3
+set $inactive-bar-bg-color   $base1
+set $active-bar-text-color   $base03
+set $inactive-bar-text-color $base03
 
 # Window colors
 #                       border     background    text      indicator
-client.focused          $base03    $yellow       $base2    #00ff00
-client.unfocused        $base03    $base03       $base2    #00ff00
-client.focused_inactive $base03    $base03       $base2    #00ff00
-client.urgent           $base03    $base03       $red      #00ff00
+client.focused          $base03    $yellow       $base2    $yellow
+client.unfocused        $base03    $base03       $base2    $base03
+client.focused_inactive $base03    $base03       $base2    $base03
+client.urgent           $base03    $base03       $red      $base03
 
 hide_edge_borders smart
 for_window [class="^.*"] border pixel 5
-
 new_float none
 
 # Configure fonts
@@ -229,12 +228,12 @@ exec --no-startup-id xset fp rehash
 
 ## Configure startup applications
 # Appearance and notifications
-exec --no-startup-id redshift
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 exec --no-startup-id dunst -c ~/.config/dunst/dunstrc
 exec --no-startup-id compton -f
 
 # Tray applets
+exec --no-startup-id redshift-gtk
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
 

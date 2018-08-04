@@ -1,18 +1,18 @@
-menu_parent H Left
-menu_child  L Right
-menu_down   J Down
-menu_up     K Up
-menu_select space Return
+menu_parent  h Left
+menu_child   l Right
+menu_down    j Down
+menu_up      k Up
+menu_select  space Return
 
-next_img H Right space
-prev_img L Left BackSpace
+next_img     H Right
+prev_img     L Left
 
 scroll_up    k C-Up
 scroll_down  j C-Down
 scroll_left  h C-Left
 scroll_right l C-Right
 
-zoom_in  C-i f
-zoom_out C-o a
+zoom_in      C-i
+zoom_out     C-o
 zoom_default d
 zoom_fit     s

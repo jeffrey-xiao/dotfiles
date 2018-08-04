@@ -103,3 +103,4 @@ clock_display_seconds = no
 mouse_support = no
 mouse_list_scroll_whole_page = no
 ignore_leading_the = yes
+allow_for_physical_item_deletion = yes

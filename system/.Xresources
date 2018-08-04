@@ -13,12 +13,13 @@ Xft.hintstyle:            hintslight
 *pointerColorBackground:  #586e75
 *pointerColorForeground:  #93a1a1
 
-!! scrollbar
+!! Scrollbar
 URxvt.scrollstyle:        plain
 URxvt*scrollColor:        #777777
 URxvt*scrollBar_right:    true
 URxvt.thickness:          2
 URxvt.internalBorder:     5
+
 URxvt*termName:           xterm-256color
 
 !! Font
@@ -27,54 +28,60 @@ URxvt.boldFont:           -misc-tamzenforpowerline-bold-r-normal--16-116-100-100
 URxvt.letterSpace:        0.0
 
 !! Real transparency
-urxvt*depth:       32
-urxvt*background:  [90]#001115
+urxvt*depth:              32
+urxvt*background:         [90]#001115
 
 !! Fake transparency
-!urxvt*transparent:  true
-!urxvt*shading:      108
-!urxvt*tintColor:    #002b36
+!urxvt*transparent:       true
+!urxvt*shading:           108
+!urxvt*tintColor:         #002b36
 
 !! Blur
-!urxvt*blurRadius: 10
+!urxvt*blurRadius:        10
 
-*color0:  #073642
-*color8:  #002b36
-*color1:  #dc322f
-*color9:  #cb4b16
-*color2:  #859900
-*color10: #586e75
-*color3:  #b58900
-*color11: #657b83
-*color4:  #268bd2
-*color12: #829496
-*color5:  #d33682
-*color13: #6c71c4
-*color6:  #2aa198
-*color14: #93a1a1
-*color7:  #eee8e5
-*color15: #fdf6e3
+!! Colors
+*color0:                  #073642
+*color8:                  #002b36
+*color1:                  #dc322f
+*color9:                  #cb4b16
+*color2:                  #859900
+*color10:                 #586e75
+*color3:                  #b58900
+*color11:                 #657b83
+*color4:                  #268bd2
+*color12:                 #829496
+*color5:                  #d33682
+*color13:                 #6c71c4
+*color6:                  #2aa198
+*color14:                 #93a1a1
+*color7:                  #eee8e5
+*color15:                 #fdf6e3
 
-URxvt.perl-ext-common: default,matcher
-URxvt.url-launcher: /usr/bin/xdg-open
-URxvt.matcher.button: 1
+!! Extensions
+URxvt.perl-ext-common:    default,matcher
+URxvt.url-launcher:       /usr/bin/xdg-open
+URxvt.matcher.button:     1
+
+!! Other Settings
+URxvt*termName:           xterm-256color
+URxvt.saveLines:          1000000
 
 !! Rofi config
-rofi.lines: 10
-rofi.eh: 2
-rofi.width: 100
-rofi.padding: 300
-rofi.bw: 0
-rofi.yoffset: 0
-rofi.font: TamzenForPowerline 16
-rofi.fullscreen: true
+rofi.lines:               10
+rofi.eh:                  2
+rofi.width:               100
+rofi.padding:             300
+rofi.bw:                  0
+rofi.yoffset:             0
+rofi.font:                TamzenForPowerline 16
+rofi.fullscreen:          true
 
-rofi.color-enabled: true
-rofi.color-window: argb:f2002b36, argb:f2002b36, argb:f2002b36
-rofi.color-normal: argb:00002b36, argb:f2b58900, argb:00002b36, argb:f2b58900, argb:f2002b36
-rofi.color-urgent: argb:00002b36, argb:f2b58900, argb:00002b36, argb:f2b58900, argb:f2002b36
-rofi.color-active: argb:00002b36, argb:f2b58900, argb:00002b36, argb:f2b58900, argb:f2002b36
+rofi.color-enabled:       true
+rofi.color-window:        argb:f2002b36, argb:f2002b36, argb:f2002b36
+rofi.color-normal:        argb:00002b36, argb:f2b58900, argb:00002b36, argb:f2b58900, argb:f2002b36
+rofi.color-urgent:        argb:00002b36, argb:f2b58900, argb:00002b36, argb:f2b58900, argb:f2002b36
+rofi.color-active:        argb:00002b36, argb:f2b58900, argb:00002b36, argb:f2b58900, argb:f2002b36
 
-rofi.terminal: urxvt
-rofi.ssh-client: ssh
-rofi.ssh-command: {terminal} -e {ssh-client} {host}
+rofi.terminal:            urxvt
+rofi.ssh-client:          ssh
+rofi.ssh-command:         {terminal} -e {ssh-client} {host}

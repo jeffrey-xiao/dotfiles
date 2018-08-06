@@ -47,7 +47,7 @@ tray-position = right
 
 modules-left = i3 mpd
 modules-center = date separator weather
-modules-right = memory cpu wired-network network volume battery
+modules-right = memory cpu wired-network network pulseaudio battery
 
 [module/i3]
 type = internal/i3
@@ -83,7 +83,7 @@ type = internal/mpd
 host = 127.0.0.1
 port = 6600
 
-format-online = <toggle> <label-song>
+format-online = <icon-prev> <toggle> <icon-next> <label-song>
 format-online-padding = 2
 
 format-offline = <label-offline>
@@ -93,6 +93,8 @@ label-song = %artist% - %title%
 label-offline = MPD is offline
 icon-play = 
 icon-pause = 
+icon-prev = 
+icon-next = 
 
 [module/date]
 type = internal/date
@@ -110,6 +112,8 @@ content = " | "
 type = custom/script
 exec = weather
 interval = 300
+
+click-left = echo ""
 
 [module/memory]
 type = internal/memory
@@ -155,8 +159,8 @@ label-disconnected-foreground = ${colors.base03}
 label-disconnected-background = ${colors.white2}
 label-disconnected-padding = 1
 
-[module/volume]
-type = internal/volume
+[module/pulseaudio]
+type = internal/pulseaudio
 
 format-volume = <ramp-volume> <label-volume>
 format-volume-foreground = ${colors.base03}

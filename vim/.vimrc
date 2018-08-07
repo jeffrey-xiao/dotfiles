@@ -382,6 +382,9 @@ xnoremap < <gv
 "" Consistent behavior
 nnoremap Y y$
 
+"" Digraph bindings
+inoremap <C-n> <C-k>
+
 "" Neocomplete bindings
 inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -496,4 +499,11 @@ augroup search_group
   autocmd!
   autocmd CmdlineEnter [/\?] set hlsearch
   autocmd CmdlineLeave [/\?] set nohlsearch
+augroup END
+
+"" Numbering autocommands
+augroup numbering_group
+  autocmd!
+  autocmd WinLeave * set norelativenumber
+  autocmd WinEnter * set relativenumber
 augroup END

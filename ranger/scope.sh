@@ -77,7 +77,8 @@ case "$extension" in
         try 7z -p l "$path" && { dump | trim; exit 0; } || exit 1;;
     # PDF documents:
     pdf)
-        try convert -quality 80 -density 300 -interlace none "$path[0]" "${cached}" && exit 6;;
+        # try convert -quality 80 -density 300 -interlace none "$path[0]" "${cached}" && exit 6;;
+        try pdftoppm -jpeg -singlefile "$path" "${cached//.jpg}" && exit 6 || exit 1;;
     # BitTorrent Files
     torrent)
         try transmission-show "$path" && { dump | trim; exit 5; } || exit 1;;

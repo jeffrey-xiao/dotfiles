@@ -23,3 +23,10 @@ export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
 # Setting nvm dir
 export NVM_DIR="$HOME/.nvm"
+
+# Source fzf if directory exists
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Source nvm if directory exists
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"

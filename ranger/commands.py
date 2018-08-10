@@ -1,8 +1,6 @@
-from ranger.api.commands import *
-import os
-
-import os
+from ranger.api.commands import Command
 from ranger.core.loader import CommandLoader
+import os
 
 class extract(Command):
     def execute(self):
@@ -29,8 +27,10 @@ class extract(Command):
             descr = "extracting: " + os.path.basename(one_file.path)
         else:
             descr = "extracting files from: " + os.path.basename(one_file.dirname)
-        obj = CommandLoader(args=['aunpack'] + au_flags \
-                + [f.path for f in copied_files], descr=descr)
+        obj = CommandLoader(
+            args=['aunpack'] + au_flags + [f.path for f in copied_files],
+            descr=descr,
+        )
 
         obj.signal_bind('after', refresh)
         self.fm.loader.add(obj)
@@ -53,7 +53,10 @@ class compress(Command):
         au_flags = parts[1:]
 
         descr = "compressing files in: " + os.path.basename(parts[1])
-        obj = CommandLoader(args=['apack'] + au_flags + [os.path.relpath(f.path, cwd.path) for f in marked_files], descr=descr)
+        obj = CommandLoader(
+            args=['apack'] + au_flags + [os.path.relpath(f.path, cwd.path) for f in marked_files],
+            descr=descr,
+        )
 
         obj.signal_bind('after', refresh)
         self.fm.loader.add(obj)
@@ -62,3 +65,32 @@ class compress(Command):
         """ Complete with current folder name """
         extension = ['.zip', '.tar.gz', '.rar', '.7z']
         return ['compress ' + os.path.basename(self.fm.thisdir.path) + ext for ext in extension]
+
+class fzf_find(Command):
+    """
+    :fzf_find
+
+    Find a file using fzf.
+
+    With a prefix argument select only directories.
+
+    See: https://github.com/junegunn/fzf
+    """
+    def execute(self):
+        import subprocess
+        if self.quantifier:
+            # match only directories
+            command = "find -L . \( -path '*/\.*' -o -fstype 'dev' -o -fstype 'proc' \) -prune \
+            -o -type d -print 2> /dev/null | sed 1d | cut -b3- | fzf +m"
+        else:
+            # match files and directories
+            command = "find -L . \( -path '*/\.*' -o -fstype 'dev' -o -fstype 'proc' \) -prune \
+            -o -print 2> /dev/null | sed 1d | cut -b3- | fzf +m"
+        fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
+        stdout, _ = fzf.communicate()
+        if fzf.returncode == 0:
+            fzf_file = os.path.abspath(stdout.decode('utf-8').rstrip('\n'))
+            if os.path.isdir(fzf_file):
+                self.fm.cd(fzf_file)
+            else:
+                self.fm.select_file(fzf_file)

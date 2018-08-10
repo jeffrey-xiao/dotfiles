@@ -278,7 +278,7 @@ set wildignore+=*.pdf,*.zip,*.so                 " Binaries
 set wildignore+=*.pyc,*.pyo                      " Python byte code
 
 "" Other config
-set backspace=2
+set backspace=indent,eol,start
 set autoread
 set autowrite
 set shortmess=aIT
@@ -407,7 +407,7 @@ function! Highlight() abort
   "" Highlighting for cursorline
   highlight clear CursorLine
   highlight CursorLine cterm=underline
-  highlight CursorLineNR ctermfg=15
+  highlight CursorLineNR ctermfg=15 ctermbg=none
 
   "" Highlighting for transparent background
   highlight Normal ctermbg=none

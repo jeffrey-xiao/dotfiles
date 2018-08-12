@@ -1,4 +1,4 @@
-#ifndef {{++}}
+#ifndef {{+`~(toupper(substitute(expand('%:r'), '\(\u\l\\+\|\l\+\)\(\u\)', '\1_\2', 'g')).'_H')+}}
 #define {{+~\~1+}}
 
 {{++}}

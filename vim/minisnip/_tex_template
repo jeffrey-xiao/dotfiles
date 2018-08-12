@@ -1,0 +1,41 @@
+\documentclass{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{geometry}
+\usepackage{minted}
+\usepackage{tikz}
+
+\geometry{%
+  left=2cm,
+  right=2cm,
+  top=3cm,
+  bottom=3cm,
+}
+\pagestyle{fancy}
+
+\setlist[enumerate]{topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex}
+\setlist[itemize]{topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex}
+
+\newcommand{\courseName}{{{++}}}
+
+\title{\courseName}
+\author{Jeffrey Xiao}
+\date{}
+
+\lhead{\courseName}
+\chead{}
+\rhead{Jeffrey Xiao}
+
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\end{document}

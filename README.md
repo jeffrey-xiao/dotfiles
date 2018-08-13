@@ -1,29 +1,34 @@
 ## Dotfiles
-This repository contains all the dot files I use for my Solus machine.
+This repository contains all the dotfiles I use for my Solus machine.
+
 
 ## Software I Use
 ```
-audio           → ncmpcpp/mpd/mpc
-de/wm           → i3-gaps
-document viewer → zathura
-compositor      → compton
-editor          → vim
-fm              → ranger
-irc             → weechat
-monitor         → polybar/htop
-multiplexer     → tmux
-notifications   → dunst
-shell           → bash
-terminal        → rxvt-unicode
-torrent         → rtorrent
-video           → mpv
+audio                → ncmpcpp/mpd/mpc
+compositor           → compton
+document viewer      → zathura
+file manager         → ranger
+irc client           → weechat
+media player         → mpv
+notification daemon  → dunst
+shell                → bash
+status bar           → polybar
+system monitor       → htop
+terminal emulator    → rxvt-unicode
+terminal multiplexer → tmux
+text editor          → vim
+torrent client       → rtorrent
+window manager       → i3-gaps
 ```
 
+
 ## Dependencies
-A full list of dependencies and installed software will appear in `./install.log` when using bash script.
-Alternatively, you can check `./config.yaml` to see the dependencies by package.
+A full list of dependencies and installed software will appear in `./install.log` when using bash
+script. Alternatively, you can check `./config.yaml` to see the dependencies by package.
+
 
 ## Installation
+
 ### With included bash scripts
 ~~~
 git clone https://github.com/jeffrey-xiao/dotfiles.git

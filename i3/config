@@ -4,10 +4,11 @@ set $mod Mod4
 # Application variables
 set $browser  firefox
 set $explorer urxvt -e ranger
+set $network  nm
 set $music    urxvt -e ncmpcpp
 set $torrent  urxvt -e rtorrent
 set $terminal urxvt
-set $network  nm
+set $viewer   zathura
 
 # Configuration for gaps
 # gaps inner 20
@@ -27,6 +28,7 @@ bindsym $mod+m                exec --no-startup-id $music
 bindsym $mod+n                exec $network
 bindsym $mod+t                exec --no-startup-id $torrent
 bindsym $mod+y                exec --no-startup-id $explorer
+bindsym $mod+u                exec $viewer
 bindsym Print                 exec --no-startup-id rm ~/.tmp/tmp.png -f && scrot ~/.tmp/tmp.png && xclip ~/.tmp/tmp.png -selection clipboard -t image/png && notify-send -u "low" "Took screenshot (window)"
 bindsym --release Shift+Print exec --no-startup-id rm ~/.tmp/tmp.png -f && scrot -s ~/.tmp/tmp.png && xclip ~/.tmp/tmp.png -selection clipboard -t image/png && notify-send -u "low" "Took screenshot (area)"
 
@@ -110,6 +112,10 @@ set $ws10 "10:0"
 # Default workspaces for applications
 assign [class="Firefox"]  $ws1
 assign [class="mpv"]      $ws9
+
+# Handle floating dialogs
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
 
 # Navigating to workspaces
 bindsym $mod+1 workspace $ws1

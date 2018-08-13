@@ -8,6 +8,9 @@ set selection-clipboard clipboard
 # enable incremental search
 set incremental-search true
 
+# replace $HOME with ~
+set statusbar-home-tilde true
+
 # zoom
 map <C-i> zoom in
 map <C-o> zoom out
@@ -43,7 +46,7 @@ set notification-bg             "#b58900" # yellow
 
 set highlight-color             "#b58900" # yellow
 set highlight-active-color      "#268bd2" # blue
-set highlight-transparency      0.25
+set highlight-transparency      0.05
 
 set recolor-lightcolor          "#073642" # base02
 set recolor-darkcolor           "#93a1a1" # base1

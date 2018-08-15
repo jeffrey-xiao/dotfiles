@@ -1,5 +1,5 @@
 \begin{figure}[H]
-\begin{minted}[frame=lines, linenos]{{{++}}}
+\begin{minted}{{{++}}}
 {{++}}
 \end{minted}
 \caption{{{++}}}

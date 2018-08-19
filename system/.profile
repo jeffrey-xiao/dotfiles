@@ -4,9 +4,6 @@ export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.bin:$PATH"
 # set PATH to include cargo binaries
 export PATH="$HOME/.cargo/bin:$PATH"
 
-# set PATH to include other binaries
-export PATH="$HOME/Documents/source/arcanist/bin:$HOME/Documents/workspace/datasources/admin-cli/bin:$PATH"
-
 # Environment variables for MPD
 export MPD_HOST=~/.config/mpd/socket
 export MPD_PORT=6600

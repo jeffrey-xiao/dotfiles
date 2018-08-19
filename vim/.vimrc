@@ -184,6 +184,7 @@ let g:vimtex_compiler_latexmk = { 'callback' : 0 }
 let g:latex_view_general_viewer = 'zathura'
 let g:vimtex_view_method = 'zathura'
 let g:tex_conceal = ''
+let g:tex_flavor = "latex"
 
 "" Config for signify
 let g:signify_vcs_list = [ 'git' ]

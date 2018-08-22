@@ -4,8 +4,8 @@
 set -e
 
 cmd="$(tmux display -p '#{pane_current_command}')"
-cmd="$(basename "$cmd" | tr A-Z a-z)"
-pane_count="$(printf %d $(tmux list-panes | wc -l))"
+cmd="$(basename "$cmd" | tr "[:upper:]" "[:lower:]")"
+pane_count="$(printf %d "$(tmux list-panes | wc -l)")"
 
 if [[ "${cmd%m}" = "vi" || ($pane_count = 1) ]]; then
   direction="$(echo "${1#-}" | tr 'lLDUR' '\\hjkl')"

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 MUSIC_DIR=$HOME/Music
 
@@ -17,7 +17,7 @@ update_background() {
   src="$(echo -n "$covers" | head -n1)"
 
   if [[ -n "$src" ]] ; then
-    printf "\e]20;${src};100x100+50+50:op=keep-aspect\a"
+    printf "\e]20;%s;100x100+50+50:op=keep-aspect\a" "$src"
   else
     reset_background
   fi

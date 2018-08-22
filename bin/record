@@ -1,0 +1,5 @@
+#!/bin/bash
+
+slop=$(slop -f "%x %y %w %h") || exit 1
+read -r X Y W H < <(echo "$slop")
+ffmpeg -f x11grab -s "$W"x"$H" -i :0.0+"$X","$Y" -f alsa -i pulse ~/Videos/"$(date +%s)".webm

@@ -46,10 +46,10 @@ i3:
   link:
     - config.ini: "~/.config/networkmanager-dmenu"
     - "*": "~/.config/i3"
-    - ".*": "~/.config/i3"
   dependencies:
     - "i3"
     - "scrot"
+    - "slog"
     - "imagemagick"
     - "i3lock"
     - "rofi"
@@ -63,6 +63,7 @@ i3:
     - "papirus-icon-theme"
     - "network-manager"
     - "xclip"
+    - "xinput"
   postlink:
     - "mkdir -p ~/.tmp"
 

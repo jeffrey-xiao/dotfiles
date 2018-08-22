@@ -1,15 +1,15 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 
 ## Join array with delimiter
-function join { local IFS="$1"; shift; echo "$*"; }
+join() { local IFS="$1"; shift; echo "$*"; }
 
 
 ## Get current directory
 DOTFILES_DIR=$(pwd)
 
 log_file=$DOTFILES_DIR/install.log
-echo -n "" > $log_file
+echo -n "" > "$log_file"
 
 declare -a programs=(
   compton
@@ -17,7 +17,7 @@ declare -a programs=(
   feh
   xset mkfontdir mkfontscale
   htop
-  i3 scrot imagemagick i3lock rofi acpi sysstat jq blueman xbacklight gnome-settings-daemon numix-gtk-theme papirus-icon-theme network-manager xclip
+  i3 scrot slog imagemagick i3lock rofi acpi sysstat jq blueman xbacklight gnome-settings-daemon numix-gtk-theme papirus-icon-theme network-manager xclip
   mpd mpc
   mpv
   ncmpcpp
@@ -36,24 +36,24 @@ installed_program_list=$(eopkg li -i)
 
 
 ## Installing necessary applications (need to install component system.devel separately)
-sudo eopkg it -y $programs_string
+sudo eopkg it -y "$programs_string"
 sudo eopkg it -yc system.devel
 
 
 ## Checking if applications are installed
-for f in ${programs[@]}
+for f in "${programs[@]}"
 do
-  if [ $(echo $installed_program_list | grep -c "$f ") -eq 1 ]; then
-    echo "$f successfully installed." >> $log_file
+  if [ "$(echo "$installed_program_list" | grep -c "$f ")" -eq 1 ]; then
+    echo "$f successfully installed." >> "$log_file"
   else
-    echo "$f failed to install." >> $log_file
+    echo "$f failed to install." >> "$log_file"
   fi
 done
 
 
 ## Installing powerline fonts
 git clone https://github.com/powerline/fonts ~/fonts/powerline-fonts
-. ~/fonts/install.sh
+source ~/fonts/install.sh
 sudo rm /usr/share/fonts/conf.d/70-no-bitmaps.conf
 sudo ln -sv /usr/share/fontconfig/conf.avail/70-yes-bitmaps.conf /usr/share/fonts/conf.d
 mkdir ~/.fonts

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 ## Get current directory
 export DOTFILES_DIR
@@ -10,7 +10,7 @@ shopt -s dotglob
 
 ## Link to ~
 for folder in compton git rtorrent system tmux; do
-  for f in $DOTFILES_DIR/$folder/*; do
+  for f in "$DOTFILES_DIR"/"$folder"/*; do
     ln -sfv "$f" ~
   done
 done
@@ -20,7 +20,7 @@ done
 for folder in bin ncmpcpp templates weechat; do
   # rm -rf ~/.$folder
   mkdir -pv ~/.$folder
-  for f in $DOTFILES_DIR/$folder/*; do
+  for f in "$DOTFILES_DIR"/"$folder"/*; do
     ln -sfv "$f" ~/.$folder
   done
 done
@@ -30,7 +30,7 @@ done
 for folder in dunst fontconfig htop i3 mpd mpv polybar ranger zathura; do
   # rm -rf ~/.config/$folder
   mkdir -pv ~/.config/$folder
-  for f in $DOTFILES_DIR/$folder/*; do
+  for f in "$DOTFILES_DIR"/"$folder"/*; do
     ln -sfv "$f" ~/.config/$folder
   done
 done
@@ -68,7 +68,7 @@ mkdir -pv ~/Pictures/screenshots
 
 
 ## Create complete, incomplete, and session folders for rtorrent
-~/Downloads/complete ~/Downloads/incomplete ~/.rtorrent.sessions
+mkdir -pv ~/Downloads/complete ~/Downloads/incomplete ~/.rtorrent.sessions
 
 
 ## Apply ~/.xresources

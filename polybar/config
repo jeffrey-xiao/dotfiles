@@ -110,10 +110,8 @@ content = " | "
 
 [module/weather]
 type = custom/script
-exec = weather
+exec = get-weather
 interval = 300
-
-click-left = echo ""
 
 [module/memory]
 type = internal/memory

@@ -4,7 +4,7 @@ brightness_file="/sys/class/backlight/intel_backlight/brightness"
 max_brightness_file="/sys/class/backlight/intel_backlight/max_brightness"
 
 curr_brightness=`cat $brightness_file`
-min_brightness=0
+min_brightness=1
 max_brightness=`cat $max_brightness_file`
 
 if [ "$(($curr_brightness + $1))" -gt "$max_brightness" ]; then
@@ -16,4 +16,3 @@ else
 fi
 
 echo "echo $curr_brightness > $brightness_file" | sudo bash
-

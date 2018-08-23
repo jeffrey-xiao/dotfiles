@@ -5,8 +5,8 @@ set $mod Mod4
 set $browser  firefox
 set $explorer urxvt -e ranger
 set $network  nm
-set $music    urxvt -e ncmpcpp
-set $torrent  urxvt -e rtorrent
+set $music    urxvt -name music -e ncmpcpp
+set $torrent  urxvt -name torrent -e rtorrent
 set $terminal urxvt
 set $viewer   zathura
 
@@ -107,11 +107,13 @@ set $ws6  "6:6"
 set $ws7  "7:7"
 set $ws8  "8:8"
 set $ws9  "9:9"
-set $ws10 "10:0"
+set $ws0  "10:0"
 
 # Default workspaces for applications
-assign [class="Firefox"]  $ws1
-assign [class="mpv"]      $ws9
+assign [class="Firefox"]                      $ws1
+assign [class="mpv"]                          $ws9
+assign [class="^URxvt$" instance="^torrent$"] $ws8
+assign [class="^URxvt$" instance="^music$"]   $ws0
 
 # Handle floating dialogs
 for_window [window_role="pop-up"] floating enable
@@ -127,7 +129,7 @@ bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
+bindsym $mod+0 workspace $ws0
 
 # Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -139,7 +141,7 @@ bindsym $mod+Shift+6 move container to workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym $mod+Shift+0 move container to workspace $ws0
 
 # Shortcuts for moving workspaces
 bindsym $mod+Ctrl+h     move workspace to output right
@@ -195,22 +197,22 @@ bindsym $mod+bracketleft  exec --no-startup-id mpc prev
 bindsym $mod+bracketright exec --no-startup-id mpc next
 
 # Color definitions
-set $base03    #002b36
-set $base02    #073642
-set $base01    #586e75
-set $base00    #657b83
-set $base0     #839496
-set $base1     #93a1a1
-set $base2     #eee8d5
-set $base3     #fdf6e3
-set $yellow    #b58900
-set $orange    #cb4b16
-set $red       #dc322f
-set $magenta   #d33682
-set $violet    #6c71c4
-set $blue      #268bd2
-set $cyan      #2aa198
-set $green     #859900
+set_from_resource $base03  i3wm.color8
+set_from_resource $base02  i3wm.color0
+set_from_resource $base01  i3wm.color10
+set_from_resource $base00  i3wm.color11
+set_from_resource $base0   i3wm.color12
+set_from_resource $base1   i3wm.color14
+set_from_resource $base2   i3wm.color7
+set_from_resource $base3   i3wm.color15
+set_from_resource $yellow  i3wm.color3
+set_from_resource $orange  i3wm.color9
+set_from_resource $red     i3wm.color1
+set_from_resource $magenta i3wm.color5
+set_from_resource $violet  i3wm.color13
+set_from_resource $blue    i3wm.color4
+set_from_resource $cyan    i3wm.color6
+set_from_resource $green   i3wm.color2
 
 set $active-bar-bg-color     $base3
 set $inactive-bar-bg-color   $base1
@@ -218,11 +220,11 @@ set $active-bar-text-color   $base03
 set $inactive-bar-text-color $base03
 
 # Window colors
-#                       border     background    text      indicator
-client.focused          $base03    $yellow       $base2    $yellow
-client.unfocused        $base03    $base03       $base2    $base03
-client.focused_inactive $base03    $base03       $base2    $base03
-client.urgent           $base03    $base03       $red      $base03
+#                       border   background  text    indicator  child border
+client.focused          $base03  $yellow     $base2  $yellow    $yellow
+client.unfocused        $base03  $base03     $base2  $base03    $base03
+client.focused_inactive $base03  $base03     $base2  $base03    $base03
+client.urgent           $base03  $base03     $red    $base03    $base03
 
 hide_edge_borders smart
 for_window [class="^.*"] border pixel 5

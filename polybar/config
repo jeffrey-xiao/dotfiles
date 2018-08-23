@@ -1,20 +1,20 @@
 [colors]
-base03 = #002b36
-base02 = #073642
-base01 = #586e75
-base00 = #657b83
-base0 = #839496
-base1 = #93a1a1
-base2 = #eee8d5
-base3 = #fdf6e3
-yellow = #b58900
-orange = #cb4b16
-red = #dc322f
-magenta = #d33682
-violet = #6c71c4
-blue = #268bd2
-cyan = #2aa198
-green = #859900
+base03  = ${xrdb:color8}
+base02  = ${xrdb:color0}
+base01  = ${xrdb:color10}
+base00  = ${xrdb:color11}
+base0   = ${xrdb:color12}
+base1   = ${xrdb:color14}
+base2   = ${xrdb:color7}
+base3   = ${xrdb:color15}
+yellow  = ${xrdb:color3}
+orange  = ${xrdb:color9}
+red     = ${xrdb:color1}
+magenta = ${xrdb:color5}
+violet  = ${xrdb:color13}
+blue    = ${xrdb:color4}
+cyan    = ${xrdb:color6}
+green   = ${xrdb:color2}
 
 white0 = #a4b4b9
 white1 = #c3cbcc

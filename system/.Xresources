@@ -38,22 +38,38 @@ URxvt.background:         [90]#001115
 !urxvt.blurRadius:        10
 
 !! Colors
-*color0:                  #073642
+! Base 03
 *color8:                  #002b36
-*color1:                  #dc322f
-*color9:                  #cb4b16
-*color2:                  #859900
+! Base 02
+*color0:                  #073642
+! Base 01
 *color10:                 #586e75
-*color3:                  #b58900
+! Base 00
 *color11:                 #657b83
-*color4:                  #268bd2
-*color12:                 #829496
-*color5:                  #d33682
-*color13:                 #6c71c4
-*color6:                  #2aa198
+! Base 0
+*color12:                 #839496
+! Base 1
 *color14:                 #93a1a1
-*color7:                  #eee8e5
+! Base 2
+*color7:                  #eee8d5
+! Base 3
 *color15:                 #fdf6e3
+! Yellow
+*color3:                  #b58900
+! Orange
+*color9:                  #cb4b16
+! Red
+*color1:                  #dc322f
+! Magenta
+*color5:                  #d33682
+! Violet
+*color13:                 #6c71c4
+! Blue
+*color4:                  #268bd2
+! Cyan
+*color6:                  #2aa198
+! Green
+*color2:                  #859900
 
 !! Extensions
 URxvt.perl-ext-common:    default,matcher

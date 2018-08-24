@@ -1,3 +1,23 @@
+#define BASE_03           002b36
+#define BASE_02           073642
+#define BASE_01           586e75
+#define BASE_00           657b83
+#define BASE_0            839496
+#define BASE_1            93a1a1
+#define BASE_2            eee8d5
+#define BASE_3            fdf6e3
+#define YELLOW            b58900
+#define ORANGE            cb4b16
+#define RED               dc322f
+#define MAGENTA           d33682
+#define VIOLET            6c71c4
+#define BLUE              268bd2
+#define CYAN              2aa198
+#define GREEN             859900
+#define _CAT(A, B)        A ## B
+#define CAT(A, B)         _CAT(A, B)
+#define ARGB(alpha, hex)  argb:CAT(alpha, hex)
+
 !! Xft settings
 Xft.dpi:                  96
 Xft.antialias:            true
@@ -6,16 +26,16 @@ Xft.hinting:              true
 Xft.hintstyle:            hintslight
 
 !! Colors
-*background:              #002b36
-*foreground:              #829496
-*fadeColor:               #002b36
-*cursorColor:             #93a1a1
-*pointerColorBackground:  #586e75
-*pointerColorForeground:  #93a1a1
+*background:              BASE_03
+*foreground:              BASE_0
+*fadeColor:               BASE_03
+*cursorColor:             BASE_1
+*pointerColorBackground:  BASE_01
+*pointerColorForeground:  BASE_1
 
 !! Scrollbar
 URxvt.scrollstyle:        plain
-URxvt.scrollColor:        #777777
+URxvt.scrollColor:        BASE_00
 URxvt.scrollBar_right:    true
 URxvt.thickness:          2
 URxvt.internalBorder:     5
@@ -32,44 +52,28 @@ URxvt.background:         [90]#001115
 !! Fake transparency
 !urxvt.transparent:       true
 !urxvt.shading:           108
-!urxvt.tintColor:         #002b36
+!urxvt.tintColor:         BASE_03
 
 !! Blur
 !urxvt.blurRadius:        10
 
 !! Colors
-! Base 03
-*color8:                  #002b36
-! Base 02
-*color0:                  #073642
-! Base 01
-*color10:                 #586e75
-! Base 00
-*color11:                 #657b83
-! Base 0
-*color12:                 #839496
-! Base 1
-*color14:                 #93a1a1
-! Base 2
-*color7:                  #eee8d5
-! Base 3
-*color15:                 #fdf6e3
-! Yellow
-*color3:                  #b58900
-! Orange
-*color9:                  #cb4b16
-! Red
-*color1:                  #dc322f
-! Magenta
-*color5:                  #d33682
-! Violet
-*color13:                 #6c71c4
-! Blue
-*color4:                  #268bd2
-! Cyan
-*color6:                  #2aa198
-! Green
-*color2:                  #859900
+*color8:                  BASE_03
+*color0:                  BASE_02
+*color10:                 BASE_01
+*color11:                 BASE_00
+*color12:                 BASE_0
+*color14:                 BASE_1
+*color7:                  BASE_2
+*color15:                 BASE_3
+*color3:                  YELLOW
+*color9:                  ORANGE
+*color1:                  RED
+*color5:                  MAGENTA
+*color13:                 VIOLET
+*color4:                  BLUE
+*color6:                  CYAN
+*color2:                  GREEN
 
 !! Extensions
 URxvt.perl-ext-common:    default,matcher
@@ -92,10 +96,10 @@ rofi.font:                TamzenForPowerline 16
 rofi.fullscreen:          true
 
 rofi.color-enabled:       true
-rofi.color-window:        argb:f2002b36, argb:f2002b36, argb:f2002b36
-rofi.color-normal:        argb:00002b36, argb:f2b58900, argb:00002b36, argb:f2b58900, argb:f2002b36
-rofi.color-urgent:        argb:00002b36, argb:f2b58900, argb:00002b36, argb:f2b58900, argb:f2002b36
-rofi.color-active:        argb:00002b36, argb:f2b58900, argb:00002b36, argb:f2b58900, argb:f2002b36
+rofi.color-window:        ARGB(f2, BASE_03), ARGB(f2, BASE_03), ARGB(f2, BASE_03)
+rofi.color-normal:        ARGB(00, BASE_03), ARGB(f2, YELLOW), ARGB(00, BASE_03), ARGB(f2, YELLOW), ARGB(f2, BASE_03)
+rofi.color-urgent:        ARGB(00, BASE_03), ARGB(f2, YELLOW), ARGB(00, BASE_03), ARGB(f2, YELLOW), ARGB(f2, BASE_03)
+rofi.color-active:        ARGB(00, BASE_03), ARGB(f2, YELLOW), ARGB(00, BASE_03), ARGB(f2, YELLOW), ARGB(f2, BASE_03)
 
 rofi.terminal:            urxvt
 rofi.ssh-client:          ssh

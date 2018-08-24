@@ -417,13 +417,13 @@ function! Highlight() abort
   highlight VertSplit ctermbg=none
 
   "" Highlighting for GitGutter symbols
-  highlight SignifySignAdd ctermbg=none ctermfg=64
-  highlight SignifySignChange ctermbg=none ctermfg=136
-  highlight SignifySignDelete ctermbg=none ctermfg=160
+  highlight SignifySignAdd ctermbg=none ctermfg=2
+  highlight SignifySignChange ctermbg=none ctermfg=3
+  highlight SignifySignDelete ctermbg=none ctermfg=1
 
   "" Highlighting for ALE symbols
-  highlight ALEErrorSign ctermbg=none ctermfg=160
-  highlight ALEWarningSign ctermbg=none ctermfg=136
+  highlight ALEErrorSign ctermbg=none ctermfg=1
+  highlight ALEWarningSign ctermbg=none ctermfg=3
 
   "" Highlighting for latex
   highlight texMathMatcher ctermbg=none

@@ -26,16 +26,16 @@ Xft.hinting:              true
 Xft.hintstyle:            hintslight
 
 !! Colors
-*background:              BASE_03
-*foreground:              BASE_0
-*fadeColor:               BASE_03
-*cursorColor:             BASE_1
-*pointerColorBackground:  BASE_01
-*pointerColorForeground:  BASE_1
+*background:              #BASE_03
+*foreground:              #BASE_0
+*fadeColor:               #BASE_03
+*cursorColor:             #BASE_1
+*pointerColorBackground:  #BASE_01
+*pointerColorForeground:  #BASE_1
 
 !! Scrollbar
 URxvt.scrollstyle:        plain
-URxvt.scrollColor:        BASE_00
+URxvt.scrollColor:        #BASE_00
 URxvt.scrollBar_right:    true
 URxvt.thickness:          2
 URxvt.internalBorder:     5
@@ -58,22 +58,22 @@ URxvt.background:         [90]#001115
 !urxvt.blurRadius:        10
 
 !! Colors
-*color8:                  BASE_03
-*color0:                  BASE_02
-*color10:                 BASE_01
-*color11:                 BASE_00
-*color12:                 BASE_0
-*color14:                 BASE_1
-*color7:                  BASE_2
-*color15:                 BASE_3
-*color3:                  YELLOW
-*color9:                  ORANGE
-*color1:                  RED
-*color5:                  MAGENTA
-*color13:                 VIOLET
-*color4:                  BLUE
-*color6:                  CYAN
-*color2:                  GREEN
+*color8:                  #BASE_03
+*color0:                  #BASE_02
+*color10:                 #BASE_01
+*color11:                 #BASE_00
+*color12:                 #BASE_0
+*color14:                 #BASE_1
+*color7:                  #BASE_2
+*color15:                 #BASE_3
+*color3:                  #YELLOW
+*color9:                  #ORANGE
+*color1:                  #RED
+*color5:                  #MAGENTA
+*color13:                 #VIOLET
+*color4:                  #BLUE
+*color6:                  #CYAN
+*color2:                  #GREEN
 
 !! Extensions
 URxvt.perl-ext-common:    default,matcher

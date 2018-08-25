@@ -239,6 +239,7 @@ exec --no-startup-id xset fp rehash
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 exec --no-startup-id dunst -c ~/.config/dunst/dunstrc
 exec --no-startup-id compton -f
+exec --no-startup-id xrdb ~/.Xresources
 
 # Tray applets
 exec --no-startup-id redshift-gtk

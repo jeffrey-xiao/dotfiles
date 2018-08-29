@@ -6,14 +6,6 @@ compton:
   dependencies:
     - "compton"
 
-dunst:
-  prelink:
-    - "./bin/compile-color-template ./dunst/dunstrc.template ./dunst/dunstrc"
-  link:
-    - dunstrc: "~/.config/dunst"
-  dependencies:
-    - "dunst"
-
 feh:
   link: "~/.config/feh"
   dependencies:
@@ -174,6 +166,21 @@ weechat:
   link: "~/.weechat"
   dependencies:
     - "weechat"
+
+dunst:
+  prelink:
+    - "./bin/compile-color-template ./dunst/dunstrc.template ./dunst/dunstrc"
+  link:
+    - dunstrc: "~/.config/dunst"
+  dependencies:
+    - "dunst"
+
+  prelink:
+    - "./bin/compile-color-template ./dunst/dunstrc.template ./dunst/dunstrc"
+  link:
+    - dunstrc: "~/.config/dunst"
+  dependencies:
+    - "dunst"
 
 zathura:
   prelink:

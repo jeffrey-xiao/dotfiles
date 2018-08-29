@@ -3,6 +3,9 @@
 # Copy template to destination
 cp -f "$1" "$2"
 
+# Load ~/.Xresources
+xrdb ~/.Xresources
+
 # Substitute colors
 for i in {0..15}
 do

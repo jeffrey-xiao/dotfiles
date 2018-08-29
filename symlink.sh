@@ -39,13 +39,13 @@ done
 ## Link dunst config
 mkdir -pv ~/.config/dunst
 "$DOTFILES_DIR"/bin/compile-color-template dunst/dunstrc.template dunst/dunstrc
-ln -sfv dunst/dunstrc ~/.config/dunst
+ln -sfv "$DOTFILES_DIR/dunst/dunstrc" ~/.config/dunst
 
 
 ## Link zathura config
 mkdir -pv ~/.config/zathura
 "$DOTFILES_DIR"/bin/compile-color-template zathura/zathurarc.template zathura/zathurarc
-ln -sfv zathura/zathurarc ~/.config/zathura
+ln -sfv "$DOTFILES_DIR/zathura/zathurarc" ~/.config/zathura
 
 
 ## Link vim options

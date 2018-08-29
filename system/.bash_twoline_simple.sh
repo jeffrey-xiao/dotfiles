@@ -14,17 +14,17 @@ __twoline() {
     __twoline_git_info="$(__git_info)"
 
     if [ $(id -u) -eq 0 ]; then
-      __twoline_formatted_path="$FG_BLUE$(__path_info)$RESET"
+      __twoline_formatted_path="$FG_COLOR_4$(__path_info)$RESET"
     else
-      __twoline_formatted_path="$FG_YELLOW$(__path_info)$RESET"
+      __twoline_formatted_path="$FG_COLOR_3$(__path_info)$RESET"
     fi
 
     if [[ ! -z "${__twoline_virtual_env// }" ]]; then
-      __twoline_virtual_env=" with $FG_YELLOW${__twoline_virtual_env}$RESET"
+      __twoline_virtual_env=" with $FG_COLOR_3${__twoline_virtual_env}$RESET"
     fi
 
     if [[ ! -z "${__twoline_git_info// }" ]]; then
-      __twoline_git_info=" on $RESET$FG_YELLOW${__twoline_git_info}$RESET"
+      __twoline_git_info=" on $RESET$FG_COLOR_3${__twoline_git_info}$RESET"
     fi
 
     PS1="\n$__twoline_formatted_path$__twoline_git_info$__twoline_virtual_env\n"

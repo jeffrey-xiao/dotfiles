@@ -1,32 +1,15 @@
 [colors]
-base03  = ${xrdb:color8}
-base02  = ${xrdb:color0}
-base01  = ${xrdb:color10}
-base00  = ${xrdb:color11}
-base0   = ${xrdb:color12}
-base1   = ${xrdb:color14}
-base2   = ${xrdb:color7}
-base3   = ${xrdb:color15}
-yellow  = ${xrdb:color3}
-orange  = ${xrdb:color9}
-red     = ${xrdb:color1}
-magenta = ${xrdb:color5}
-violet  = ${xrdb:color13}
-blue    = ${xrdb:color4}
-cyan    = ${xrdb:color6}
-green   = ${xrdb:color2}
-
-white0 = #a4b4b9
-white1 = #c3cbcc
-white2 = #dce1e1
+shade0 = #a4b4b9
+shade1 = #c3cbcc
+shade2 = #dce1e1
 
 [bar/top]
 monitor = ${env:MONITOR}
 width = 100%
 height = 24
 
-background = ${colors.base03}
-foreground = ${colors.base2}
+background = ${xrdb:color8}
+foreground = ${xrdb:color7}
 
 line-size = 3
 
@@ -58,23 +41,23 @@ index-sort = true
 format = <label-state> <label-mode>
 
 label-focused = %name%
-label-focused-foreground = ${colors.base03}
-label-focused-background = ${colors.base2}
+label-focused-foreground = ${xrdb:color8}
+label-focused-background = ${xrdb:color7}
 label-focused-padding = 1
 
 label-unfocused = %name%
-label-unfocused-foreground = ${colors.base03}
-label-unfocused-background = ${colors.base0}
+label-unfocused-foreground = ${xrdb:color8}
+label-unfocused-background = ${xrdb:color12}
 label-unfocused-padding = 1
 
 label-visible = %name%
-label-visible-foreground = ${colors.base03}
-label-visible-background = ${colors.base0}
+label-visible-foreground = ${xrdb:color8}
+label-visible-background = ${xrdb:color12}
 label-visible-padding = 1
 
 label-urgent = %name%
-label-urgent-foreground = ${colors.base03}
-label-urgent-background = ${colors.red}
+label-urgent-foreground = ${xrdb:color8}
+label-urgent-background = ${xrdb:color1}
 label-urgent-padding = 1
 
 [module/mpd]
@@ -119,8 +102,8 @@ type = internal/memory
 interval = 3
 
 label =  %percentage_used%%
-label-foreground = ${colors.base03}
-label-background = ${colors.white0}
+label-foreground = ${xrdb:color8}
+label-background = ${colors.shade0}
 label-padding = 1
 
 [module/cpu]
@@ -129,8 +112,8 @@ type = internal/cpu
 interval = 3
 
 label =  %percentage%%
-label-foreground = ${colors.base03}
-label-background = ${colors.white1}
+label-foreground = ${xrdb:color8}
+label-background = ${colors.shade1}
 label-padding = 1
 
 [module/wired-network]
@@ -138,8 +121,8 @@ type = internal/network
 interface = enp1s0
 
 label-connected =  %local_ip%
-label-connected-foreground = ${colors.base03}
-label-connected-background = ${colors.white2}
+label-connected-foreground = ${xrdb:color8}
+label-connected-background = ${colors.shade2}
 label-connected-padding-left = 1
 
 [module/network]
@@ -148,26 +131,26 @@ type = internal/network
 interface = wlp2s0
 
 label-connected =  %essid%
-label-connected-foreground = ${colors.base03}
-label-connected-background = ${colors.white2}
+label-connected-foreground = ${xrdb:color8}
+label-connected-background = ${colors.shade2}
 label-connected-padding = 1
 
 label-disconnected =  none
-label-disconnected-foreground = ${colors.base03}
-label-disconnected-background = ${colors.white2}
+label-disconnected-foreground = ${xrdb:color8}
+label-disconnected-background = ${colors.shade2}
 label-disconnected-padding = 1
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
 format-volume = <ramp-volume> <label-volume>
-format-volume-foreground = ${colors.base03}
-format-volume-background = ${colors.white1}
+format-volume-foreground = ${xrdb:color8}
+format-volume-background = ${colors.shade1}
 format-volume-padding = 1
 
 label-muted =  muted
-label-muted-foreground = ${colors.base03}
-label-muted-background = ${colors.white1}
+label-muted-foreground = ${xrdb:color8}
+label-muted-background = ${colors.shade1}
 label-muted-padding = 1
 
 ramp-volume-0 = 
@@ -185,26 +168,26 @@ battery = BAT0
 adapter = ADP0
 
 format-charging = <animation-charging> <label-charging>
-format-charging-foreground = ${colors.base03}
-format-charging-background = ${colors.white0}
+format-charging-foreground = ${xrdb:color8}
+format-charging-background = ${colors.shade0}
 
 format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-foreground = ${colors.base03}
-format-discharging-background = ${colors.white0}
+format-discharging-foreground = ${xrdb:color8}
+format-discharging-background = ${colors.shade0}
 
 label-charging = %percentage%%
-label-charging-foreground = ${colors.base03}
-label-charging-background = ${colors.white0}
+label-charging-foreground = ${xrdb:color8}
+label-charging-background = ${colors.shade0}
 label-charging-padding-right = 1
 
 label-discharging = %percentage%%
-label-discharging-foreground = ${colors.base03}
-label-discharging-background = ${colors.white0}
+label-discharging-foreground = ${xrdb:color8}
+label-discharging-background = ${colors.shade0}
 label-discharging-padding-right = 1
 
 label-full = "  %percentage%%"
-label-full-foreground = ${colors.base03}
-label-full-background = ${colors.white0}
+label-full-foreground = ${xrdb:color8}
+label-full-background = ${colors.shade0}
 label-full-padding-right = 1
 
 animation-charging-0 = " "
@@ -218,30 +201,3 @@ ramp-capacity-1 = " "
 ramp-capacity-2 = " "
 ramp-capacity-3 = " "
 ramp-capacity-4 = " "
-
-[module/powermenu]
-type = custom/menu
-
-format-padding = 1
-
-label-open = 
-label-open-foreground = ${colors.green}
-label-close =  cancel
-label-close-foreground = ${colors.green}
-label-separator = |
-label-separator-foreground = ${colors.green}
-
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = " power off "
-menu-0-1-exec = menu-open-2
-
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = " reboot "
-menu-1-1-exec = systemctl reboot
-
-menu-2-0 = power off
-menu-2-0-exec = systemctl poweroff
-menu-2-1 = " cancel "
-menu-2-1-exec = menu-open-0

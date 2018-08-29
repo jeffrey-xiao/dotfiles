@@ -62,23 +62,23 @@ use_console_editor = yes
 
 ## Colors
 colors_enabled = yes
-empty_tag_color = cyan
-header_window_color = cyan
-volume_color = cyan
-state_line_color = cyan
+empty_tag_color = 7
+header_window_color = 7
+volume_color = 7
+state_line_color = 7
 
 state_flags_color = default
 
-main_window_color = yellow
-current_item_prefix = "$(yellow)$r"
+main_window_color = 4
+current_item_prefix = "$(4)$r"
 current_item_suffix = "$/r$(end)"
 
-color1 = cyan
-color2 = cyan
+color1 = 7
+color2 = 7
 
-statusbar_color = cyan
-active_window_border = red
-window_border_color = red
+statusbar_color = 7
+active_window_border = 2
+window_border_color = 2
 
 ## Tag Options
 empty_tag_marker = ""

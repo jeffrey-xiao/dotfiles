@@ -14,8 +14,7 @@
 #define BLUE              268bd2
 #define CYAN              2aa198
 #define GREEN             859900
-#define _CAT(A, B)        A ## B
-#define CAT(A, B)         _CAT(A, B)
+#define CAT(A, B)         A ## B
 #define ARGB(alpha, hex)  argb:CAT(alpha, hex)
 
 !! Xft settings

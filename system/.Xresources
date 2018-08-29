@@ -50,12 +50,12 @@ URxvt.depth:              32
 URxvt.background:         [90]#001115
 
 !! Fake transparency
-!urxvt.transparent:       true
-!urxvt.shading:           108
-!urxvt.tintColor:         BASE_03
+!URxvt.transparent:       true
+!URxvt.shading:           104
+!URxvt.tintColor:         #BASE_03
 
 !! Blur
-!urxvt.blurRadius:        10
+!URxvt.blurRadius:        10
 
 !! Colors
 *color8:                  #BASE_03

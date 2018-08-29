@@ -47,6 +47,12 @@ dotinstall
 ~~~
 
 
+## Color Scheme
+The color scheme used is `solarized-dark`. Most programs will take the colors in `.Xresources` with
+the exception of the transparent background in `urxvt`, the shades in `polybar`, and the colors in
+`dircolors`, `ranger`, `vim`, and `weechat`.
+
+
 ## Personal Use
  - change the username and email in `git/.gitconfig`
  - change the user in `mpd/mpd.conf`

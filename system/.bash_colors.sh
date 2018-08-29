@@ -1,4 +1,4 @@
-: <<'Solarized colorscheme'
+: <<'solarized color scheme'
 if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
   readonly FG_BASE03="\[$(tput setaf 234)\]"
   readonly FG_BASE02="\[$(tput setaf 235)\]"
@@ -35,7 +35,7 @@ if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
   readonly BG_CYAN="\[$(tput setab 37)\]"
   readonly BG_GREEN="\[$(tput setab 64)\]"
 fi
-Solarized colorscheme
+solarized color scheme
 
 __initialize_colors() {
   [[ -n $COLORS_INITIALIZED ]] && return

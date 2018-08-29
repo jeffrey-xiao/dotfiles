@@ -81,5 +81,5 @@ fi
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Source nvm if directory exists
-[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh" --no-use
 [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"

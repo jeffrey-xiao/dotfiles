@@ -7,7 +7,10 @@ compton:
     - "compton"
 
 dunst:
-  link: "~/.config/dunst"
+  prelink:
+    - "./bin/compile-color-template ./dunst/dunstrc.template ./dunst/dunstrc"
+  link:
+    - dunstrc: "~/.config/dunst"
   dependencies:
     - "dunst"
 
@@ -21,11 +24,11 @@ fonts:
     - fonts.conf: "~/.config/fontconfig"
   postlink:
     - "git clone https://github.com/powerline/fonts ~/fonts/powerline-fonts"
-    - ". ~/fonts/install.sh"
+    - "source ~/fonts/install.sh"
     - "sudo rm /usr/share/fonts/conf.d/70-no-bitmaps.conf"
     - "sudo ln -sv /usr/share/fontconfig/conf.avail/70-yes-bitmaps.conf /usr/share/fonts/conf.d"
     - "mkdir ~/.fonts"
-    - "cp ~/dotfiles/fonts/* ~/.fonts"
+    - "cp ./fonts/* ~/.fonts"
     - "cd ~/.fonts && mkfontdir"
     - "cd ~/.fonts && mkfontscale"
     - "fc-cache -fv"
@@ -78,9 +81,9 @@ mpd:
     - "mpc"
 
 mpv:
-  prelink:
-    - "mkdir -p ~/Pictures/screenshots"
   link: "~/.config/mpv"
+  postlink:
+    - "mkdir -p ~/Pictures/screenshots"
   dependencies:
     - "mpv"
 
@@ -173,7 +176,10 @@ weechat:
     - "weechat"
 
 zathura:
-  link: "~/.config/zathura"
+  prelink:
+    - "./bin/compile-color-template ./zathura/zathurarc.template ./zathura/zathurarc"
+  link:
+    - zathurarc: "~/.config/zathura"
   dependencies:
     - "xdotool"
     - "zathura"

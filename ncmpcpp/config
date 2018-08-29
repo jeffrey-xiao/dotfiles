@@ -17,7 +17,7 @@ visualizer_output_name = "Visualizer feed"
 visualizer_in_stereo = yes
 visualizer_type = spectrum
 visualizer_look = ●▮
-visualizer_color = cyan
+visualizer_color = 7
 
 ## Highlighting always on
 playlist_disable_highlight_delay = 0

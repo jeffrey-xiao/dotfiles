@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Copy template to destination
+cp -f $1 $2
+
+# Substitute colors
+for i in {0..15}
+do
+  color=$(xrdb -query | awk '/.color'"$i":'/ { print $2; }')
+  eval "sed -i 's/{color${i}}/${color}/g' $2";
+done

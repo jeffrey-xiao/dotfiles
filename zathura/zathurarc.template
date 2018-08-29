@@ -1,0 +1,54 @@
+# zoom and scroll step size
+set zoom-step 20
+set scroll-step 80
+
+# copy selection to system clipboard
+set selection-clipboard clipboard
+
+# enable incremental search
+set incremental-search true
+
+# replace $HOME with ~
+set statusbar-home-tilde true
+
+# zoom
+map <C-i> zoom in
+map <C-o> zoom out
+
+# colors
+set default-bg                  "{color0}"
+set default-fg                  "{color14}"
+
+set statusbar-bg                "{color8}"
+set statusbar-fg                "{color12}"
+
+set inputbar-bg                 "{color14}"
+set inputbar-fg                 "{color8}"
+
+set index-bg                    "{color0}"
+set index-fg                    "{color14}"
+set index-active-bg             "{color14}"
+set index-active-fg             "{color8}"
+set completion-group-bg         "{color8}"
+set completion-group-fg         "{color12}"
+set completion-bg               "{color0}"
+set completion-fg               "{color14}"
+set completion-highlight-bg     "{color14}"
+set completion-highlight-fg     "{color8}"
+
+set notification-error-bg       "{color1}"
+set notification-error-fg       "{color15}"
+set notification-warning-bg     "{color1}"
+set notification-warning-fg     "{color15}"
+set notification-bg             "{color8}"
+set notification-bg             "{color3}"
+
+set highlight-color             "{color3}"
+set highlight-active-color      "{color4}"
+set highlight-transparency      0.05
+
+set recolor-lightcolor          "{color0}"
+set recolor-darkcolor           "{color14}"
+
+set recolor                     "false"
+set recolor-keephue             "false"

@@ -27,13 +27,25 @@ done
 
 
 ## Link to .config/$folder
-for folder in dunst fontconfig htop i3 mpd mpv polybar ranger zathura; do
+for folder in fontconfig htop i3 mpd mpv polybar ranger; do
   # rm -rf ~/.config/$folder
   mkdir -pv ~/.config/$folder
   for f in "$DOTFILES_DIR"/"$folder"/*; do
     ln -sfv "$f" ~/.config/$folder
   done
 done
+
+
+## Link dunst config
+mkdir -pv ~/.config/dunst
+"$DOTFILES_DIR"/bin/compile-color-template dunst/dunstrc.template dunst/dunstrc
+ln -sfv dunst/dunstrc ~/.config/dunst
+
+
+## Link zathura config
+mkdir -pv ~/.config/zathura
+"$DOTFILES_DIR"/bin/compile-color-template zathura/zathurarc.template zathura/zathurarc
+ln -sfv zathura/zathurarc ~/.config/zathura
 
 
 ## Link vim options

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+file_path="$HOME/Pictures/screenshots/$(date +%s).png"
+
+if [ "$1" == "-s" ]; then
+  # Screenshot area
+  slop=$(slop -f "%g") || exit 1
+  read -r G < <(echo "$slop")
+  import -window root -crop "$G" "$file_path"
+  notify-send -u "low" "Took screenshot (area)"
+else
+  # Screenshot entire desktop
+  scrot "$file_path"
+  notify-send -u "low" "Took screenshot (desktop)"
+fi
+
+xclip "$file_path" -selection clipboard -t image/png

@@ -1,5 +1,20 @@
 #!/bin/bash
 
-slop=$(slop -f "%x %y %w %h") || exit 1
-read -r X Y W H < <(echo "$slop")
-ffmpeg -f x11grab -s "$W"x"$H" -i :0.0+"$X","$Y" -f alsa -i pulse ~/Videos/"$(date +%s)".webm
+if pgrep ffmpeg; then
+  pkill -INT ffmpeg
+  notify-send -u "low" "Stopped video recording"
+  exit 0
+fi
+
+if [ "$1" == "-s" ]; then
+  # Record area
+  slop=$(slop -f "%x %y %w %h") || exit 1
+  read -r X Y W H < <(echo "$slop")
+  notify-send -u "low" "Started video recording (area)"
+  ffmpeg -f x11grab -s "$W"x"$H" -i :0.0+"$X","$Y" -f alsa -i pulse ~/Videos/"$(date +%s)".mp4
+else
+  # Record entire desktop
+  dimensions=$(xdpyinfo | grep dimensions | awk '{print $2}')
+  notify-send -u "low" "Started video recording (desktop)"
+  ffmpeg -f x11grab -s "$dimensions" -i :0.0 -f alsa -i pulse ~/Videos/"$(date +%s)".mp4
+fi

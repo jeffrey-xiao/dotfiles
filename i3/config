@@ -47,8 +47,10 @@ bindsym $mod+n                exec $network
 bindsym $mod+t                exec --no-startup-id $torrent
 bindsym $mod+y                exec --no-startup-id $explorer
 bindsym $mod+u                exec $viewer
-bindsym Print                 exec --no-startup-id rm ~/.tmp/tmp.png -f && scrot ~/.tmp/tmp.png && xclip ~/.tmp/tmp.png -selection clipboard -t image/png && notify-send -u "low" "Took screenshot (window)"
-bindsym --release Shift+Print exec --no-startup-id rm ~/.tmp/tmp.png -f && scrot -s ~/.tmp/tmp.png && xclip ~/.tmp/tmp.png -selection clipboard -t image/png && notify-send -u "low" "Took screenshot (area)"
+bindsym Print                 exec --no-startup-id screenshot
+bindsym Shift+Print           exec --no-startup-id screenshot -s
+bindsym Mod1+Sys_Req          exec --no-startup-id record
+bindsym Mod1+Shift+Sys_Req    exec --no-startup-id record -s
 
 # Kill focused window
 bindsym $mod+Shift+q kill

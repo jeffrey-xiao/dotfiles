@@ -118,6 +118,9 @@ label-padding = 1
 
 [module/wired-network]
 type = internal/network
+
+; Use following command to get wifi interface
+; $ iwconfig
 interface = enp1s0
 
 label-connected =  %local_ip%
@@ -128,6 +131,8 @@ label-connected-padding-left = 1
 [module/network]
 type = internal/network
 
+; Use following command to get wifi interface
+; $ iwconfig
 interface = wlp2s0
 
 label-connected =  %essid%

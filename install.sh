@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 ## Join array with delimiter
 join() { local IFS="$1"; shift; echo "$*"; }
 

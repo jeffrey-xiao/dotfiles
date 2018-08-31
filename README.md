@@ -4,10 +4,10 @@ This repository contains all the dotfiles I use for my Solus machine.
 
 ## Software I Use
 ```
-audio                → ncmpcpp/mpd/mpc
+audio                → mpc/mpd/ncmpcpp
 compositor           → compton
 document viewer      → zathura
-file manager         → ranger
+file manager         → nautilus/ranger
 irc client           → weechat
 media player         → mpv
 notification daemon  → dunst
@@ -54,10 +54,11 @@ the exception of the transparent background in `urxvt`, the shades in `polybar`,
 
 
 ## Personal Use
- - change the username and email in `git/.gitconfig`
- - change the user in `mpd/mpd.conf`
+ - change the API key in `bin/get-weather`
+ - change the adapter and battery name, and wired and wifi interfaces in `polybar/config`
  - change the location in `other/redshift.conf`
- - change the API key in `bin/weather`
+ - change the user in `mpd/mpd.conf`
+ - change the username and email in `git/.gitconfig`
  - change the username and nicks in `weechat/irc.conf`
 
 Everything else works out of the box.

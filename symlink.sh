@@ -66,6 +66,7 @@ ln -sfv "$DOTFILES_DIR/fonts/fonts.conf" ~/.config/fontconf
 mkdir ~/.config/networkmanager-dmenu
 ln -sfv "$DOTFILES_DIR/i3/config.ini" ~/.config/networkmanager-dmenu
 
+
 ## Create tmp folder for i3
 mkdir -pv ~/.tmp
 
@@ -76,7 +77,7 @@ touch ~/.config/mpd/database
 
 
 ## Create screenshot folder for mpv
-mkdir -pv ~/Pictures/screenshots
+mkdir -pv ~/Pictures/Screenshots
 
 
 ## Create complete, incomplete, and session folders for rtorrent

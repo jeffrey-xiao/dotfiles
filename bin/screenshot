@@ -1,6 +1,6 @@
 #!/bin/bash
 
-file_path="$HOME/Pictures/screenshots/$(date +%s).png"
+file_path="$HOME/Pictures/Screenshots/$(date +%s).png"
 
 if [ "$1" == "-s" ]; then
   # Screenshot area

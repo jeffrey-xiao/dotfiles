@@ -75,7 +75,7 @@ mpd:
 mpv:
   link: "~/.config/mpv"
   postlink:
-    - "mkdir -p ~/Pictures/screenshots"
+    - "mkdir -p ~/Pictures/Screenshots"
   dependencies:
     - "mpv"
 

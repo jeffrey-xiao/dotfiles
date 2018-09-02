@@ -88,7 +88,7 @@ URxvt.buffered:           true
 rofi.lines:               10
 rofi.eh:                  2
 rofi.width:               100
-rofi.padding:             200
+rofi.padding:             300
 rofi.bw:                  0
 rofi.yoffset:             0
 rofi.font:                TamzenForPowerline 16

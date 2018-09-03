@@ -400,6 +400,9 @@ command! -range=% TB  <line1>,<line2>w !nc termbin 9999 | tr -d '\n' | xclip -i 
 "" Backspace to switch to alternate file
 nnoremap <BS> <C-^>
 
+"" Write with sudo
+cmap w!! w !sudo tee > /dev/null %
+
 """ Highlighting config
 "" Underline current line
 set nocursorline

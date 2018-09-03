@@ -5,9 +5,9 @@ __twoline() {
     # Check the exit code of the previous command and display different
     # colors in the prompt accordingly.
     if [ $? -eq 0 ]; then
-      local FG_EXIT="$FG_GREEN"
+      local FG_EXIT="$FG_COLOR_2"
     else
-      local FG_EXIT="$FG_RED"
+      local FG_EXIT="$FG_COLOR_1"
     fi
 
     __twoline_virtual_env="$(__venv_info)"

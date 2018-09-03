@@ -93,6 +93,7 @@ rofi.bw:                  0
 rofi.yoffset:             0
 rofi.font:                TamzenForPowerline 16
 rofi.fullscreen:          true
+rofi.hide-scrollbar:      true
 
 rofi.color-enabled:       true
 rofi.color-window:        ARGB(f2, BASE_03), ARGB(f2, BASE_03), ARGB(f2, BASE_03)

@@ -1,7 +1,10 @@
 [colors]
-shade0 = #a4b4b9
-shade1 = #c3cbcc
-shade2 = #dce1e1
+# BASE_02 at 70% lightness
+shade0 = #ABB7BA
+# BASE_02 at 80% lightness
+shade1 = #C7CFD1
+# BASE_02 at 90% lightness
+shade2 = #E3E7E8
 
 [bar/top]
 monitor = ${env:MONITOR}

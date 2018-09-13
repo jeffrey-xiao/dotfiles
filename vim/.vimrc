@@ -508,6 +508,6 @@ augroup END
 "" Numbering autocommands
 augroup numbering_group
   autocmd!
-  autocmd WinLeave * set norelativenumber
-  autocmd WinEnter * set relativenumber
+  autocmd WinLeave,BufLeave * set norelativenumber
+  autocmd WinEnter,BufEnter * set relativenumber
 augroup END

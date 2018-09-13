@@ -1,8 +1,9 @@
-## Dotfiles
+## dotfiles
+
 This repository contains all the dotfiles I use for my Solus machine.
 
+## List of Software
 
-## Software I Use
 ```
 audio                → mpc/mpd/ncmpcpp
 compositor           → compton
@@ -21,15 +22,15 @@ torrent client       → rtorrent
 window manager       → i3-gaps
 ```
 
-
 ## Dependencies
+
 A full list of dependencies and installed software will appear in `./install.log` when using bash
 script. Alternatively, you can check `./config.yaml` to see the dependencies by package.
-
 
 ## Installation
 
 ### With included bash scripts
+
 ~~~
 git clone https://github.com/jeffrey-xiao/dotfiles.git
 cd dotfiles
@@ -39,6 +40,7 @@ cd dotfiles
 Any errors with the installation will appear in `./install.log`.
 
 ### With [dotinstall](https://github.com/jeffrey-xiao/dotinstall)
+
 ~~~
 git clone https://github.com/jeffrey-xiao/dotfiles.git
 cd dotfiles
@@ -46,14 +48,14 @@ pip3 install dotinstall
 dotinstall
 ~~~
 
-
 ## Color Scheme
+
 The color scheme used is `solarized-dark`. Most programs will take the colors in `.Xresources` with
 the exception of the transparent background in `urxvt`, the shades in `polybar`, and the colors in
 `dircolors`, `ranger`, `vim`, and `weechat`.
 
-
 ## Personal Use
+
  - change the API key in `bin/get-weather`
  - change the adapter and battery name, and wired and wifi interfaces in `polybar/config`
  - change the location in `other/redshift.conf`
@@ -62,3 +64,10 @@ the exception of the transparent background in `urxvt`, the shades in `polybar`,
  - change the username and nicks in `weechat/irc.conf`
 
 Everything else works out of the box.
+
+## License
+
+`dotfiles` is dual-licensed under the terms of either the MIT license or the Apache License
+(Version 2.0).
+
+See [LICENSE-APACHE](LICENSE-APACHE) and [LICENSE-MIT](LICENSE-MIT) for more details.

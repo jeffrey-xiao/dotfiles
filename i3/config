@@ -181,16 +181,56 @@ mode "resize" {
   bindsym l resize grow width 5 px or 5 ppt
 
   # Cursor key bindings
-  bindsym Left resize shrink width 5 px or 5 ppt
-  bindsym Down resize grow height 5 px or 5 ppt
-  bindsym Up resize shrink height 5 px or 5 ppt
+  bindsym Left  resize shrink width 5 px or 5 ppt
+  bindsym Down  resize grow height 5 px or 5 ppt
+  bindsym Up    resize shrink height 5 px or 5 ppt
   bindsym Right resize grow width 5 px or 5 ppt
 
   # Back to normal: Enter or Escape
   bindsym Return mode "default"
   bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"
+bindsym $mod+r mode "[resize]"
+
+# Change gaps
+set $mode_gaps       [gaps] (o)uter, (i)nner
+set $mode_gaps_outer [outer gaps] local: (+|-|0), global: Shift + (+|-|0)
+set $mode_gaps_inner [inner gaps] local: (+|-|0), global: Shift + (+|-|0)
+
+mode "$mode_gaps" {
+  bindsym o      mode "$mode_gaps_outer"
+  bindsym i      mode "$mode_gaps_inner"
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+  bindsym plus        gaps inner current plus 5
+  bindsym minus       gaps inner current minus 5
+  bindsym 0           gaps inner current set 0
+
+  bindsym Shift+plus  gaps inner all plus 5
+  bindsym Shift+minus gaps inner all minus 5
+  bindsym Shift+0     gaps inner all set 0
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_outer" {
+  bindsym plus        gaps outer current plus 5
+  bindsym minus       gaps outer current minus 5
+  bindsym 0           gaps outer current set 0
+
+  bindsym Shift+plus  gaps outer all plus 5
+  bindsym Shift+minus gaps outer all minus 5
+  bindsym Shift+0     gaps outer all set 0
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+bindsym $mod+g mode "$mode_gaps"
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -D pulse set Master 1%+"

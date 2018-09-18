@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MUSIC_DIR=$HOME/Music
+MUSIC_DIR="$HOME/Music"
 
 reset_background() {
   printf "\e]20;;100x100+1000+1000\a"

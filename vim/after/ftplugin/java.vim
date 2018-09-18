@@ -12,7 +12,7 @@ endfunction
 function! RunJava() abort
   let l:folderPath = expand('%:p:h')
   let l:baseName = expand('%:t:r')
-  execute '!java -ea -cp '.l:folderPath.' '.l:baseName
+  execute '!java -Xmx100M -Xss100M -ea -cp '.l:folderPath.' '.l:baseName
 endfunction
 
 

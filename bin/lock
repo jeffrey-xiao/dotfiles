@@ -1,36 +1,36 @@
 #!/bin/sh
 
-RES=$(xdpyinfo | awk '/dimensions/{print $2}')
-IMG=/tmp/screen.png
-ffmpeg -loglevel quiet -f x11grab -video_size "$RES" -i "$DISPLAY" -y -filter_complex "boxblur=10" -vframes 1 $IMG
+img=/tmp/screen.png
+res=$(xdpyinfo | awk '/dimensions/{print $2}')
+ffmpeg -loglevel quiet -f x11grab -video_size "$res" -i "$DISPLAY" -y -filter_complex "boxblur=10" -vframes 1 $img
 
 # placement x/y
-PX=0
-PY=0
+px=0
+py=0
 
 # lockscreen image info
 if [ -L ~/.config/i3/images/lock.png ]; then
-  FILE=$(readlink -f ~/.config/i3/images/lock.png)
+  file=$(readlink -f ~/.config/i3/images/lock.png)
 else
-  FILE=~/.config/i3/images/lock.png
+  file=~/.config/i3/images/lock.png
 fi
 
-R=$(file $FILE | grep -o '[0-9]* x [0-9]*')
-RX=$(echo "$R" | cut -d' ' -f 1)
-RY=$(echo "$R" | cut -d' ' -f 3)
+r=$(file $file | grep -o '[0-9]* x [0-9]*')
+rx=$(echo "$r" | cut -d' ' -f 1)
+ry=$(echo "$r" | cut -d' ' -f 3)
 
-SR=$(xrandr --query | grep ' connected' | sed 's/primary //' | cut -f3 -d' ')
-for RES in $SR
+sr=$(xrandr --query | grep ' connected' | sed 's/primary //' | cut -f3 -d' ')
+for res in $sr
   do
   # monitor position/offset
-  SRX=$(echo "$RES" | cut -d'x' -f 1)                   # x pos
-  SRY=$(echo "$RES" | cut -d'x' -f 2 | cut -d'+' -f 1)  # y pos
-  SROX=$(echo "$RES" | cut -d'x' -f 2 | cut -d'+' -f 2) # x offset
-  SROY=$(echo "$RES" | cut -d'x' -f 2 | cut -d'+' -f 3) # y offset
-  PX=$((SROX + SRX/2 - RX/2))
-  PY=$((SROY + SRY/2 - RY/2))
+  srx=$(echo "$res" | cut -d'x' -f 1)                   # x pos
+  sry=$(echo "$res" | cut -d'x' -f 2 | cut -d'+' -f 1)  # y pos
+  srxo=$(echo "$res" | cut -d'x' -f 2 | cut -d'+' -f 2) # x offset
+  sryo=$(echo "$res" | cut -d'x' -f 2 | cut -d'+' -f 3) # y offset
+  px=$((srxo + srx/2 - rx/2))
+  py=$((sryo + sry/2 - ry/2))
 
-  ffmpeg -loglevel quiet -i $IMG -i $FILE -y -filter_complex "overlay=$PX:$PY" -vframes 1 $IMG
+  ffmpeg -loglevel quiet -i $img -i $file -y -filter_complex "overlay=$px:$py" -vframes 1 $img
 done
 
 i3lock -e -u -i /tmp/screen.png && systemctl suspend

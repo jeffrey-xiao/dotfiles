@@ -1,10 +1,10 @@
 #!/bin/sh
 
-ID=$(xinput list | grep -Eio 'touchpad\s*id\=[0-9]{1,2}' | grep -Eo '[0-9]{1,2}')
-STATE=$(xinput list-props "$ID" | grep 'Device Enabled' | awk '{print $4}')
+id=$(xinput list | grep -Eio 'touchpad\s*id\=[0-9]{1,2}' | grep -Eo '[0-9]{1,2}')
+state=$(xinput list-props "$ID" | grep 'Device Enabled' | awk '{print $4}')
 
-if [ "$STATE" -eq 1 ]; then
-  xinput disable "$ID"
+if [ "$state" -eq 1 ]; then
+  xinput disable "$id"
 else
-  xinput enable "$ID"
+  xinput enable "$id"
 fi

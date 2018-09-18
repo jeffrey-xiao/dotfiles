@@ -226,10 +226,10 @@ command! MRU call fzf#run(fzf#wrap({
       \ 'source': v:oldfiles,
       \ }))
 
-if executable('ack')
-  set grepprg=ack\ -i\ --nocolor\ --nogroup\ ""\ %s
-elseif executable('ag')
+if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
+elseif executable('ack')
+  set grepprg=ack\ -i\ --nocolor\ --nogroup\ ""\ %s
 endif
 
 

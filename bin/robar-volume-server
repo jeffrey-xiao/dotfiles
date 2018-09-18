@@ -1,0 +1,9 @@
+#!/bin/bash
+
+while read line;
+do
+    if [[ $line = *"sink #0"* ]]
+    then
+        robar-volume
+    fi
+done < <(pactl subscribe)

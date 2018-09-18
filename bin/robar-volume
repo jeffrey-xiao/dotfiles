@@ -1,0 +1,11 @@
+#!/bin/bash
+
+left=$(amixer sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }')
+right=$(amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print $2 }')
+
+if $(amixer sget Master | grep -q "\[on\]")
+then
+  robar show default $(echo "((${left:0:-1}+${right:0:-1})/200)" | bc -l)
+else
+  robar show mute $(echo "((${left:0:-1}+${right:0:-1})/200)" | bc -l)
+fi

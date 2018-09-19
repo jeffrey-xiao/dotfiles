@@ -1,9 +1,11 @@
 #!/bin/bash
 
-left=$(amixer sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }')
-right=$(amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print $2 }')
+amixer_info=$(amixer sget Master)
 
-if $(amixer sget Master | grep -q "\[on\]")
+left=$(echo $amixer_info | grep 'Left:' | awk -F'[][]' '{ print $2 }')
+right=$(echo $amixer_info | grep 'Right:' | awk -F'[][]' '{ print $2 }')
+
+if $(echo $amixer_info | grep -q "\[on\]")
 then
   robar show default $(echo "((${left:0:-1}+${right:0:-1})/200)" | bc -l)
 else

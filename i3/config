@@ -234,9 +234,9 @@ mode "$mode_gaps_outer" {
 bindsym $mod+g mode "$mode_gaps"
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -D pulse set Master 1%+"
-bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D pulse set Master 1%-"
-bindsym XF86AudioMute        exec --no-startup-id "amixer -D pulse set Master 0+ toggle "
+bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -D pulse set Master 1%+ && robar-volume"
+bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D pulse set Master 1%- && robar-volume"
+bindsym XF86AudioMute        exec --no-startup-id "amixer -D pulse set Master 0+ toggle && robar-volume"
 
 # Screen brightness controls
 bindsym XF86MonBrightnessUp   exec --no-startup-id "sudo adjust-brightness +50 && robar-brightness"
@@ -276,7 +276,7 @@ exec --no-startup-id xset fp rehash
 # Appearance and notifications
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 exec --no-startup-id dunst -c ~/.config/dunst/dunstrc
-exec --no-startup-id notify-battery
+exec --no-startup-id $HOME/.bin/notify-battery
 exec --no-startup-id robar start
 exec --no-startup-id compton -f
 

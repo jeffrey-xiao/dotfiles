@@ -1,5 +1,8 @@
 ## dotfiles
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 This repository contains all the dotfiles I use for my Solus machine.
 
 ## List of Software
@@ -67,7 +70,7 @@ Everything else works out of the box.
 
 ## License
 
-`dotfiles` is dual-licensed under the terms of either the MIT license or the Apache License
+`dotfiles` is dual-licensed under the terms of either the MIT License or the Apache License
 (Version 2.0).
 
 See [LICENSE-APACHE](LICENSE-APACHE) and [LICENSE-MIT](LICENSE-MIT) for more details.

@@ -1,10 +1,6 @@
 # Ignore vim packages
 vim/.vim/plugged
 
-# Ignore sublime cache
-sublime/User/Package\ Control.cache
-sublime/User/Package\ Control.last-run
-
 # Ignore weechat logs
 weechat/weechat.log
 weechat/logs

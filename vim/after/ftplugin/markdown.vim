@@ -7,6 +7,11 @@ setlocal textwidth=100
 setlocal colorcolumn=100
 setlocal formatoptions+=t
 setlocal formatoptions-=l
+setlocal spell
+
+
+"" Highlight
+highlight SpellBad cterm=underline
 
 
 "" Keybindings

@@ -234,8 +234,8 @@ mode "$mode_gaps_outer" {
 bindsym $mod+g mode "$mode_gaps"
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -D pulse set Master 1%+ && robar-volume"
-bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D pulse set Master 1%- && robar-volume"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -D pulse set Master 5%+ && robar-volume"
+bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D pulse set Master 5%- && robar-volume"
 bindsym XF86AudioMute        exec --no-startup-id "amixer -D pulse set Master 0+ toggle && robar-volume"
 
 # Screen brightness controls

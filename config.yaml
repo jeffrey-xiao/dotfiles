@@ -85,7 +85,8 @@ ncmpcpp:
     - "ncmpcpp"
 
 other:
-  link: "~/.config"
+  link:
+    - redshift.conf: "~/.vim"
   dependencies:
     - "redshift"
     - "youtube-dl"

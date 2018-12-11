@@ -149,8 +149,8 @@ vim:
     - "rustup install nightly"
     - "rustup default nightly"
     - "rustup component add rust-src"
-    - "rustup component add rustfmt-preview"
-    - "cargo install clippy"
+    - "rustup component add rustfmt"
+    - "rustup component add clippy"
     - "cargo install racer"
   dependencies:
     - "vim"

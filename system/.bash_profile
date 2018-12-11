@@ -4,4 +4,3 @@ if [ -f ~/.bashrc ]; then
 fi
 
 source ~/.profile
-

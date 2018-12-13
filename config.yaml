@@ -86,7 +86,7 @@ ncmpcpp:
 
 other:
   link:
-    - redshift.conf: "~/.vim"
+    - redshift.conf: "~/.config"
   dependencies:
     - "redshift"
     - "youtube-dl"
@@ -142,15 +142,13 @@ vim:
     - "chmod 775 install_nvm.sh"
     - "./install_nvm.sh"
     - "rm install_nvm.sh"
-    - "sudo pip install jedi flake8 autopep8 pylint"
-    - "sudo npm install -g eslint tern"
+    - "sudo pip install jedi flake8 autopep8 pylint yapf"
+    - "sudo npm install -g eslint tern prettier"
     - "cd ~/.vim/plugged/tern_for_vim && npm install"
     - "curl https://sh.rustup.rs -sSf | sh"
     - "rustup install nightly"
     - "rustup default nightly"
-    - "rustup component add rust-src"
-    - "rustup component add rustfmt"
-    - "rustup component add clippy"
+    - "rustup component add rust-src rustfmt clippy"
     - "cargo install racer"
   dependencies:
     - "vim"

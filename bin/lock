@@ -20,15 +20,14 @@ rx=$(echo "$r" | cut -d' ' -f 1)
 ry=$(echo "$r" | cut -d' ' -f 3)
 
 sr=$(xrandr --query | grep ' connected' | sed 's/primary //' | cut -f3 -d' ')
-for res in $sr
-  do
+for res in $sr; do
   # monitor position/offset
   srx=$(echo "$res" | cut -d'x' -f 1)                   # x pos
   sry=$(echo "$res" | cut -d'x' -f 2 | cut -d'+' -f 1)  # y pos
   srxo=$(echo "$res" | cut -d'x' -f 2 | cut -d'+' -f 2) # x offset
   sryo=$(echo "$res" | cut -d'x' -f 2 | cut -d'+' -f 3) # y offset
-  px=$((srxo + srx/2 - rx/2))
-  py=$((sryo + sry/2 - ry/2))
+  px=$((srxo + srx / 2 - rx / 2))
+  py=$((sryo + sry / 2 - ry / 2))
 
   ffmpeg -loglevel quiet -i $img -i $file -y -filter_complex "overlay=$px:$py" -vframes 1 $img
 done

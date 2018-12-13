@@ -1,14 +1,17 @@
 #!/bin/bash
 
 ## Join array with delimiter
-join() { local IFS="$1"; shift; echo "$*"; }
-
+join() {
+  local IFS="$1"
+  shift
+  echo "$*"
+}
 
 ## Get current directory
 DOTFILES_DIR=$(pwd)
 
 log_file=$DOTFILES_DIR/install.log
-echo -n "" > "$log_file"
+echo -n "" >"$log_file"
 
 declare -a programs=(
   compton
@@ -33,22 +36,18 @@ declare -a programs=(
 programs_string=$(join " " "${programs[@]}")
 installed_program_list=$(eopkg li -i)
 
-
 ## Installing necessary applications (need to install component system.devel separately)
 sudo eopkg it -y "$programs_string"
 sudo eopkg it -yc system.devel
 
-
 ## Checking if applications are installed
-for f in "${programs[@]}"
-do
+for f in "${programs[@]}"; do
   if [ "$(echo "$installed_program_list" | grep -c "$f ")" -eq 1 ]; then
-    echo "$f successfully installed." >> "$log_file"
+    echo "$f successfully installed." >>"$log_file"
   else
-    echo "$f failed to install." >> "$log_file"
+    echo "$f failed to install." >>"$log_file"
   fi
 done
-
 
 ## Installing powerline fonts
 git clone https://github.com/powerline/fonts ~/fonts/powerline-fonts
@@ -60,7 +59,6 @@ cp $DOTFILES_DIR/fonts/* ~/.fonts
 cd ~/.fonts && mkfontdir
 cd ~/.fonts && mkfontscale
 fc-cache -fv
-
 
 ## Installing development related programs and tools
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

@@ -6,5 +6,5 @@ while pgrep -x polybar >/dev/null; do sleep 1; done
 
 connected_displays=$(polybar -m | awk -F: '{print $1}')
 for display in $connected_displays; do
-    MONITOR=$display polybar top &
+  MONITOR=$display polybar top &
 done

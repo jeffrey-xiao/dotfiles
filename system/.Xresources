@@ -26,7 +26,8 @@ Xft.hinting:              true
 Xft.hintstyle:            hintslight
 
 !! Colors
-*background:              #BASE_03
+! BASE_03 at 5% lightness
+*background:              #00141A
 *foreground:              #BASE_0
 
 *color8:                  #BASE_03
@@ -64,9 +65,9 @@ URxvt.boldFont:           -misc-tamzenforpowerline-bold-r-normal--16-116-100-100
 URxvt.letterSpace:        0.0
 
 !! Real transparency
-URxvt.depth:              32
+!URxvt.depth:              32
 ! BASE_03 at 5% lightness
-URxvt.background:         [90]#00141A
+!URxvt.background:         [90]#00141A
 
 !! Fake transparency
 !URxvt.transparent:       true

@@ -79,12 +79,7 @@ mpv:
   dependencies:
     - "mpv"
 
-ncmpcpp:
-  link: "~/.ncmpcpp"
-  dependencies:
-    - "ncmpcpp"
-
-other:
+misc:
   link:
     - redshift.conf: "~/.config"
   dependencies:
@@ -92,6 +87,11 @@ other:
     - "youtube-dl"
     - "p7zip"
     - "cabextract"
+
+ncmpcpp:
+  link: "~/.ncmpcpp"
+  dependencies:
+    - "ncmpcpp"
 
 polybar:
   link: "~/.config/polybar"

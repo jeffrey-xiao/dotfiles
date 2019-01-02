@@ -52,8 +52,8 @@ ln -sfv "$DOTFILES_DIR/vim/minisnip" ~/.vim
 
 mkdir -p ~/.vim/.undo ~/.vim/.backup ~/.vim/.swp ~/.tags
 
-## Link other options
-ln -sfv "$DOTFILES_DIR/other/redshift.conf" ~/.config
+## Link misc options
+ln -sfv "$DOTFILES_DIR/misc/redshift.conf" ~/.config
 ln -sfv "$DOTFILES_DIR/fonts/fonts.conf" ~/.config/fontconf
 
 mkdir ~/.config/networkmanager-dmenu

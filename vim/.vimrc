@@ -45,11 +45,11 @@ Plug 'joereynolds/vim-minisnip'
 Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neoinclude.vim'
 
-Plug 'ternjs/tern_for_vim'
-Plug 'davidhalter/jedi-vim'
 Plug 'Rip-Rip/clang_complete'
+Plug 'davidhalter/jedi-vim'
 Plug 'lervag/vimtex'
 Plug 'racer-rust/vim-racer'
+Plug 'ternjs/tern_for_vim'
 
 Plug 'w0rp/ale'
 
@@ -68,10 +68,11 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'ap/vim-buftabline'
 
 "" Languages
-Plug 'pangloss/vim-javascript'
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'rust-lang/rust.vim'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'elixir-editors/vim-elixir'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'pangloss/vim-javascript'
+Plug 'rust-lang/rust.vim'
 " Plug 'hkmix/vim-george'
 " Plug 'sheerun/vim-polyglot'
 " Plug 'mattn/emmet-vim'

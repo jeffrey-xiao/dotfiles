@@ -9,10 +9,10 @@ This repository contains all the dotfiles I use for my Solus machine.
 ## List of Software
 
 ```
-audio player         → mpc/mpd/ncmpcpp
+audio player         → mpc, mpd, ncmpcpp
 compositor           → compton
 document viewer      → zathura
-file manager         → nautilus/ranger
+file manager         → nautilus, ranger
 irc client           → weechat
 media player         → mpv
 notification daemon  → dunst
@@ -26,10 +26,25 @@ torrent client       → rtorrent
 window manager       → i3-gaps
 ```
 
+### Code Formatters
+
+```
+clang-format → C++, Java
+gofmt        → Go
+mix-format   → Elixir
+prettier     → HTML, CSS, JavaScript, JSON, YAML
+rustfmt      → Rust
+shfmt        → Bash
+yapf         → Python
+```
+
+Some configuration files for these formatters are found in `misc/`.
+
 ## Dependencies
 
-A full list of dependencies and installed software will appear in `./install.log` when using bash
-script. Alternatively, you can check `./config.yaml` to see the dependencies by package.
+A full list of dependencies and installed software will appear in `install.log` when using the
+included bash scripts. Alternatively, you can check `config.yaml` to see the dependencies by
+package.
 
 ## Installation
 
@@ -41,7 +56,7 @@ cd dotfiles
 . ./install.sh
 . ./symlink.sh
 ```
-Any errors with the installation will appear in `./install.log`.
+Any errors with the installation will appear in `install.log`.
 
 ### With [dotinstall](https://github.com/jeffrey-xiao/dotinstall)
 

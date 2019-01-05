@@ -298,6 +298,7 @@ set infercase
 set nojoinspaces
 set t_md=
 set hidden
+set colorcolumn=100
 
 "" Vim info config
 set viminfo='500   " remember marks for last 500 files

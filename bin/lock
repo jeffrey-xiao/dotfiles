@@ -33,4 +33,4 @@ for res in $sr; do
   ffmpeg -loglevel quiet -i $blurred_img -i $file -y -filter_complex "overlay=$px:$py" -vframes 1 $final_img
 done
 
-i3lock -e -u -i $final_img
+i3lock -e -u -i $final_img && systemctl suspend

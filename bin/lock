@@ -1,8 +1,9 @@
 #!/bin/sh
 
-img=/tmp/screen.png
+blurred_img=~/.tmp/blurred_screen.png
+final_img=~/.tmp/lock_screen.png
 res=$(xdpyinfo | awk '/dimensions/{print $2}')
-ffmpeg -loglevel quiet -f x11grab -video_size "$res" -i "$DISPLAY" -y -filter_complex "boxblur=10" -vframes 1 $img
+ffmpeg -loglevel quiet -f x11grab -video_size "$res" -i "$DISPLAY" -y -filter_complex "boxblur=10" -vframes 1 $blurred_img
 
 # placement x/y
 px=0
@@ -29,7 +30,7 @@ for res in $sr; do
   px=$((srxo + srx / 2 - rx / 2))
   py=$((sryo + sry / 2 - ry / 2))
 
-  ffmpeg -loglevel quiet -i $img -i $file -y -filter_complex "overlay=$px:$py" -vframes 1 $img
+  ffmpeg -loglevel quiet -i $blurred_img -i $file -y -filter_complex "overlay=$px:$py" -vframes 1 $final_img
 done
 
-i3lock -e -u -i /tmp/screen.png && systemctl suspend
+i3lock -e -u -i $final_img

@@ -84,7 +84,7 @@ URxvt.matcher.button:     1
 
 !! Other Settings
 URxvt.termName:           xterm-256color
-URxvt.saveLines:          1000000
+URxvt.saveLines:          100000
 URxvt.buffered:           true
 
 !! Rofi config

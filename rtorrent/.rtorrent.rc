@@ -24,7 +24,7 @@ directory.default.set = ~/Downloads/incomplete
 session = ~/.rtorrent.sessions
 
 # Watch a directory for new torrents
-schedule2 = watch_directory_1,5,5,"load_start=~/Downloads/*.torrent,d.set_custom1=~/Downloads/complete"
+schedule2 = watch_directory_1,5,5,"load.start=~/Downloads/*.torrent,d.custom1=~/Downloads/complete"
 
 # Restart torrents that have been copied back and stop those that have been deleted
 schedule2 = tied_directory,1,30,start_tied=
@@ -43,10 +43,10 @@ group2.seeding.ratio.max.set=200
 group2.seeding.ratio.upload.set=20M
 
 # Move files to ~/Downloads/complete when download completes
-system.method.set_key = event.download.finished,move_complete,"d.set_directory=$d.get_custom1=; execute=mv,-n,$d.get_base_path=,$d.get_custom1="
+method.set_key = event.download.finished,move_complete,"d.directory.set=$d.custom1=; execute=mv,-n,$d.base_path=,$d.custom1="
 
 # Send notification when download is done
-system.method.set_key = event.download.finished,notify_finished,"execute=notify-rtorrent,$d.get_name="
+method.set_key = event.download.finished,notify_finished,"execute2=notify-rtorrent,$d.name="
 
 port_range = 33101-33199
 port_random = yes
@@ -55,25 +55,25 @@ port_random = yes
 encryption = allow_incoming,try_outgoing,enable_retry,prefer_plaintext
 
 # Sort the main view by ratio
-view.sort_current = main,greater=d.get_ratio=
-view.sort_new = main,less=d.get_ratio=
+view.sort_current = main,greater=d.ratio=
+view.sort_new = main,less=d.ratio=
 view.sort = main
 
 # Sort the seeding view by the upload rate and only show torrents with peers
-view.sort_current = seeding,greater=d.get_up_rate=
-view.filter = seeding,"and=d.get_complete=,d.get_peers_connected="
-view.sort_new = seeding,less=d.get_up_rate=
+view.sort_current = seeding,greater=d.up_rate=
+view.filter = seeding,"and=d.complete=,d.peers_connected="
+view.sort_new = seeding,less=d.up_rate=
 view.sort = seeding
 
 # Sort the leeching view by name
-view.sort_current = leeching,greater=d.get_name=
-view.sort_new = leeching,greater=d.get_name=
+view.sort_current = leeching,greater=d.name=
+view.sort_new = leeching,greater=d.name=
 view.sort = leeching
 
 # Filter the active view by connected peers
-view.sort_current = active,less=d.get_name=
-view.sort_new = leeching,less=d.get_name=
-view.filter = active,d.get_peers_connected=
+view.sort_current = active,less=d.name=
+view.sort_new = leeching,less=d.name=
+view.filter = active,d.peers_connected=
 view.sort = active
 
 schedule = sort_main,11,5,view.sort=main
@@ -84,7 +84,7 @@ schedule = sort_active,14,5,view.sort=active
 # DHT Options
 dht = on
 dht_port = 6881
-peer_exchange = yes
+protocol.pex.set = yes
 dht.mode.set = on
 schedule = dht_node,30,0,"dht.add_node=dht.transmissionbt.com"
 

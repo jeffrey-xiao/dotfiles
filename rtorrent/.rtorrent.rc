@@ -24,7 +24,7 @@ directory.default.set = ~/Downloads/incomplete
 session = ~/.rtorrent.sessions
 
 # Watch a directory for new torrents
-schedule2 = watch_directory_1,5,5,"load.start=~/Downloads/*.torrent,d.custom1=~/Downloads/complete"
+schedule2 = watch_directory_1,5,5,"load.start=~/Downloads/*.torrent,d.custom1.set=~/Downloads/complete"
 
 # Restart torrents that have been copied back and stop those that have been deleted
 schedule2 = tied_directory,1,30,start_tied=
@@ -34,7 +34,7 @@ schedule2 = untied_directory,1,30,close_untied=
 schedule = low_diskspace,5,60,close_low_diskspace=2000M
 
 # Periodically save session data
-schedule = session_save,240,300,session_save=
+schedule = session.save,240,300,session.save=
 
 # Ratio config
 group.seeding.ratio.enable=
@@ -60,9 +60,9 @@ view.sort_new = main,less=d.ratio=
 view.sort = main
 
 # Sort the seeding view by the upload rate and only show torrents with peers
-view.sort_current = seeding,greater=d.up_rate=
+view.sort_current = seeding,greater=d.up.rate=
 view.filter = seeding,"and=d.complete=,d.peers_connected="
-view.sort_new = seeding,less=d.up_rate=
+view.sort_new = seeding,less=d.up.rate=
 view.sort = seeding
 
 # Sort the leeching view by name

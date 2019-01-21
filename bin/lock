@@ -1,9 +1,11 @@
 #!/bin/sh
 
-blurred_img=~/.tmp/blurred_screen.png
-final_img=~/.tmp/lock_screen.png
+img_path() {
+  echo ~/.tmp/blurred_screen_$1.png
+}
+
 res=$(xdpyinfo | awk '/dimensions/{print $2}')
-ffmpeg -loglevel quiet -f x11grab -video_size "$res" -i "$DISPLAY" -y -filter_complex "boxblur=10" -vframes 1 $blurred_img
+ffmpeg -loglevel quiet -f x11grab -video_size "$res" -i "$DISPLAY" -y -filter_complex "boxblur=10" -vframes 1 $(img_path 0)
 
 # placement x/y
 px=0
@@ -21,6 +23,7 @@ rx=$(echo "$r" | cut -d' ' -f 1)
 ry=$(echo "$r" | cut -d' ' -f 3)
 
 sr=$(xrandr --query | grep ' connected' | sed 's/primary //' | cut -f3 -d' ')
+index=0
 for res in $sr; do
   # monitor position/offset
   srx=$(echo "$res" | cut -d'x' -f 1)                   # x pos
@@ -30,7 +33,11 @@ for res in $sr; do
   px=$((srxo + srx / 2 - rx / 2))
   py=$((sryo + sry / 2 - ry / 2))
 
-  ffmpeg -loglevel quiet -i $blurred_img -i $file -y -filter_complex "overlay=$px:$py" -vframes 1 $final_img
+
+  echo $(img_path $(($index + 1)))
+  echo $(img_path 0)
+  ffmpeg -loglevel quiet -i $(img_path $index) -i $file -y -filter_complex "overlay=$px:$py" -vframes 1 $(img_path $(($index + 1)))
+  index=$((index + 1))
 done
 
-i3lock -e -u -i $final_img && systemctl suspend
+i3lock -e -u -i $(img_path $index) && systemctl suspend

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+references_template="
+---
+bibliography: $1
+nocite: '@*'
+---
+"
+
+echo "$references_template" | pandoc --bibliography $1 -t markdown_strict

@@ -14,5 +14,5 @@ else
   xrandr --output DP1 --off
 fi
 
-launch-polybar
+setup-polybar
 feh --bg-scale "$HOME/.config/i3/images/wallpaper.png"

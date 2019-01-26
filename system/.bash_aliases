@@ -30,10 +30,6 @@ alias h='history'
 alias j='jobs -l'
 alias mkdir='mkdir -pv'
 
-# Screenshot directly to clipboard
-alias ssclip='scrot ~/.tmp/tmp.png && xclip ~/.tmp/tmp.png -selection clipboard -t image/png && rm ~/.tmp/tmp.png -f'
-alias ssclip-area='scrot -s ~/.tmp/tmp.png && xclip ~/.tmp/tmp.png -selection clipboard -t image/png && rm ~/.tmp/tmp.png -f'
-
 # Vim aliases
 alias vim='vim --servername VIM'
 

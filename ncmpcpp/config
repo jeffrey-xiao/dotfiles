@@ -104,4 +104,4 @@ mouse_support = no
 mouse_list_scroll_whole_page = no
 ignore_leading_the = yes
 allow_for_physical_item_deletion = yes
-execute_on_song_change = "killall -USR1 display-album-art 2>/dev/null"
+execute_on_song_change = "ps -ef | grep 'display-album-art' | grep -v grep | awk '{print $2}' | xargs -r kill -USR1"

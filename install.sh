@@ -1,13 +1,13 @@
 #!/bin/bash
 
-## Join array with delimiter
+## Join array with delimiter.
 join() {
   local IFS="$1"
   shift
   echo "$*"
 }
 
-## Get current directory
+## Get current directory.
 DOTFILES_DIR=$(pwd)
 
 log_file=$DOTFILES_DIR/install.log
@@ -36,11 +36,11 @@ declare -a programs=(
 programs_string=$(join " " "${programs[@]}")
 installed_program_list=$(eopkg li -i)
 
-## Installing necessary applications (need to install component system.devel separately)
-sudo eopkg it -y "$programs_string"
+## Installing necessary applications (need to install component system.devel separately).
 sudo eopkg it -yc system.devel
+sudo eopkg it -y "$programs_string"
 
-## Checking if applications are installed
+## Checking if applications are installed.
 for f in "${programs[@]}"; do
   if [ "$(echo "$installed_program_list" | grep -c "$f ")" -eq 1 ]; then
     echo "$f successfully installed." >>"$log_file"
@@ -49,7 +49,7 @@ for f in "${programs[@]}"; do
   fi
 done
 
-## Installing powerline fonts
+## Installing powerline fonts.
 git clone https://github.com/powerline/fonts ~/fonts/powerline-fonts
 source ~/fonts/install.sh
 sudo rm /usr/share/fonts/conf.d/70-no-bitmaps.conf
@@ -60,7 +60,7 @@ cd ~/.fonts && mkfontdir
 cd ~/.fonts && mkfontscale
 fc-cache -fv
 
-## Installing development related programs and tools
+## Installing development related programs and tools.
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim -c PlugInstall -c q! -c q!
 curl -sL https://raw.githubusercontent.com/creationix/nvm/master/install.sh -o install_nvm.sh

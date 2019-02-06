@@ -116,7 +116,11 @@ rtorrent:
     - "rtorrent"
 
 system:
+  prelink:
+    - "sudo eopkg it -yc system.devel"
   link: "~"
+  postlink:
+    - "source ~/.bash_profile"
   dependencies:
     - "rxvt-unicode"
     - "xrdb"

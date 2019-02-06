@@ -265,7 +265,7 @@ set smartcase
 
 "" Color scheme config
 set background=dark
-colorscheme flattened_dark
+silent! colorscheme flattened_dark
 
 "" Wildmenu config
 set wildmenu

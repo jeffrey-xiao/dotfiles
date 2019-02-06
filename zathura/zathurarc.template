@@ -45,7 +45,7 @@ set notification-bg             "{color3}"
 
 set highlight-color             "{color3}"
 set highlight-active-color      "{color4}"
-set highlight-transparency      0.05
+set highlight-transparency      0.20
 
 set recolor-lightcolor          "{color0}"
 set recolor-darkcolor           "{color14}"

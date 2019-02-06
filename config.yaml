@@ -1,188 +1,193 @@
 bin:
-  link: "~/.bin"
+  link: ~/.bin/
 
 compton:
-  link: "~"
+  link: ~/
   dependencies:
-    - "compton"
+    - compton
 
 feh:
-  link: "~/.config/feh"
+  link: ~/.config/feh/
   dependencies:
-    - "feh"
+    - feh
 
 fonts:
   link:
-    - fonts.conf: "~/.config/fontconfig"
+    - fonts.conf: ~/.config/fontconfig/
   postlink:
-    - "git clone https://github.com/powerline/fonts ~/fonts/powerline-fonts"
-    - "source ~/fonts/install.sh"
-    - "sudo rm /usr/share/fonts/conf.d/70-no-bitmaps.conf"
-    - "sudo ln -sv /usr/share/fontconfig/conf.avail/70-yes-bitmaps.conf /usr/share/fonts/conf.d"
-    - "mkdir ~/.fonts"
-    - "cp ./fonts/* ~/.fonts"
-    - "cd ~/.fonts && mkfontdir"
-    - "cd ~/.fonts && mkfontscale"
-    - "fc-cache -fv"
+    - >
+      git clone https://github.com/powerline/fonts ~/fonts/powerline-fonts &&
+      source ~/fonts/install.sh
+    - >
+      sudo rm /usr/share/fonts/conf.d/70-no-bitmaps.conf &&
+      sudo ln -sv /usr/share/fontconfig/conf.avail/70-yes-bitmaps.conf /usr/share/fonts/conf.d
+    - >
+      mkdir -pv ~/.fonts/ &&
+      cp ./fonts/* ~/.fonts/ &&
+      cd ~/.fonts &&
+      mkfontdir &&
+      mkfontscale
+    - fc-cache -fv
   dependencies:
-    - "xset"
-    - "mkfontdir"
-    - "mkfontscale"
+    - xset
+    - mkfontdir
+    - mkfontscale
 
 git:
-  link: "~"
+  link: ~/
 
 htop:
-  link: "~/.config/htop"
+  link: ~/.config/htop/
   dependencies:
-    - "htop"
+    - htop
 
 i3:
   link:
-    - config.ini: "~/.config/networkmanager-dmenu"
-    - "*": "~/.config/i3"
-    - ".*": "~/.config/i3"
+    - config.ini: ~/.config/networkmanager-dmenu/
+    - "*": ~/.config/i3/
+    - ".*": ~/.config/i3/
   dependencies:
-    - "i3"
-    - "scrot"
-    - "imagemagick"
-    - "i3lock"
-    - "rofi"
-    - "acpi"
-    - "sysstat"
-    - "jq"
-    - "blueman"
-    - "xbacklight"
-    - "gnome-settings-daemon"
-    - "numix-gtk-theme"
-    - "papirus-icon-theme"
-    - "network-manager"
-    - "xclip"
-    - "xinput"
+    - i3
+    - scrot
+    - slop
+    - imagemagick
+    - i3lock
+    - rofi
+    - acpi
+    - sysstat
+    - jq
+    - blueman
+    - xbacklight
+    - gnome-settings-daemon
+    - numix-gtk-theme
+    - papirus-icon-theme
+    - network-manager
+    - xclip
+    - xinput
   postlink:
-    - "mkdir -p ~/.tmp"
+    - mkdir -pv ~/.tmp/
 
 misc:
   link:
-    - redshift.conf: "~/.config"
+    - redshift.conf: ~/.config/
   dependencies:
-    - "redshift"
-    - "youtube-dl"
-    - "p7zip"
-    - "cabextract"
+    - redshift
+    - youtube-dl
+    - p7zip
+    - cabextract
 
 mpd:
-  link: "~/.config/mpd"
+  link: ~/.config/mpd/
   postlink:
-    - "mkdir -pv ~/.config/mpd/playlists"
-    - "touch ~/.config/mpd/database"
+    - mkdir -pv ~/.config/mpd/playlists/
+    - touch ~/.config/mpd/database
   dependencies:
-    - "mpd"
-    - "mpc"
+    - mpd
+    - mpc
 
 mpv:
-  link: "~/.config/mpv"
+  link: ~/.config/mpv/
   postlink:
-    - "mkdir -p ~/Pictures/Screenshots"
+    - mkdir -pv ~/Pictures/Screenshots/
   dependencies:
-    - "mpv"
+    - mpv
 
 ncmpcpp:
-  link: "~/.ncmpcpp"
+  link: ~/.ncmpcpp/
   dependencies:
-    - "ncmpcpp"
+    - ncmpcpp
 
 polybar:
-  link: "~/.config/polybar"
+  link: ~/.config/polybar/
   dependencies:
-    - "polybar"
-    - "font-awesome-ttf"
+    - polybar
+    - font-awesome-ttf
 
 ranger:
-  link: "~/.config/ranger"
+  link: ~/.config/ranger/
   dependencies:
-    - "ranger"
-    - "imagemagick"
-    - "w3m"
-    - "feh"
-    - "atool"
-    - "highlight"
+    - ranger
+    - imagemagick
+    - w3m
+    - feh
+    - atool
+    - highlight
 
 rtorrent:
-  link: "~"
+  link: ~/
   postlink:
-    - "mkdir -pv ~/Downloads/complete ~/Downloads/incomplete ~/.rtorrent.sessions"
+    - mkdir -pv ~/Downloads/complete/ ~/Downloads/incomplete/ ~/.rtorrent.sessions/
   dependencies:
-    - "rtorrent"
+    - rtorrent
 
 system:
   prelink:
-    - "sudo eopkg it -yc system.devel"
-  link: "~"
-  postlink:
-    - "source ~/.bash_profile"
+    - sudo eopkg it -yc system.devel
+  link: ~/
   dependencies:
-    - "rxvt-unicode"
-    - "xrdb"
+    - rxvt-unicode
+    - xrdb
 
 dunst:
   prelink:
-    - "./bin/compile-color-template ./dunst/dunstrc.template ./dunst/dunstrc"
+    - ./bin/compile-color-template ./dunst/dunstrc.template ./dunst/dunstrc
   link:
-    - dunstrc: "~/.config/dunst"
+    - dunstrc: ~/.config/dunst/
   dependencies:
-    - "dunst"
+    - dunst
 
 tmux:
-  link: "~"
+  link: ~/
   dependencies:
-    - "tmux"
+    - tmux
 
-# Install `system.devel` component
-# sudo eopkg install -c system.devel
 vim:
   link:
-    - minisnip: "~/.vim"
-    - after: "~/.vim"
-    - "*": "~"
-    - ".*": "~"
+    - minisnip: ~/.vim/
+    - after: ~/.vim/
+    - "*": ~/
+    - ".*": ~/
   postlink:
-    - "curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-    - "vim -c PlugInstall -c q! -c q!"
-    - "curl -sL https://raw.githubusercontent.com/creationix/nvm/master/install.sh -o install_nvm.sh"
-    - "chmod 775 install_nvm.sh"
-    - "./install_nvm.sh"
-    - "rm install_nvm.sh"
-    - "sudo pip install jedi flake8 autopep8 pylint yapf"
-    - "sudo npm install -g eslint tern prettier"
-    - "cd ~/.vim/plugged/tern_for_vim && npm install"
-    - "curl https://sh.rustup.rs -sSf | sh"
-    - "rustup install nightly"
-    - "rustup default nightly"
-    - "rustup component add rust-src rustfmt clippy"
-    - "cargo install racer"
+    - vim -c PlugInstall -c q! -c q!
+    - >
+      curl -sL https://raw.githubusercontent.com/creationix/nvm/master/install.sh -o install_nvm.sh &&
+      chmod 775 install_nvm.sh &&
+      ./install_nvm.sh &&
+      rm install_nvm.sh
+    - sudo pip install jedi flake8 autopep8 pylint yapf
+    - >
+      sudo npm install -g eslint tern prettier &&
+      cd ~/.vim/plugged/tern_for_vim &&
+      npm install
+    - >
+      curl https://sh.rustup.rs -sSf | sh &&
+      export PATH="$PATH:~/.cargo/bin" &&
+      cargo install racer &&
+      rustup install nightly &&
+      rustup default nightly &&
+      rustup component add rust-src rustfmt clippy &&
   dependencies:
-    - "vim"
-    - "curl"
-    - "silver-searcher"
-    - "ctags"
-    - "pip"
-    - "llvm-clang"
-    - "nodejs"
-    - "pandoc"
-    - "cppcheck"
+    - vim
+    - curl
+    - silver-searcher
+    - ctags
+    - pip
+    - llvm-clang
+    - nodejs
+    - pandoc
+    - cppcheck
 
 weechat:
-  link: "~/.weechat"
+  link: ~/.weechat/
   dependencies:
-    - "weechat"
+    - weechat
 
 zathura:
   prelink:
-    - "./bin/compile-color-template ./zathura/zathurarc.template ./zathura/zathurarc"
+    - ./bin/compile-color-template ./zathura/zathurarc.template ./zathura/zathurarc
   link:
-    - zathurarc: "~/.config/zathura"
+    - zathurarc: ~/.config/zathura/
   dependencies:
-    - "xdotool"
-    - "zathura"
-    - "texlive-all"
+    - xdotool
+    - zathura
+    - texlive-all

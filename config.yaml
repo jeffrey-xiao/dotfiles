@@ -6,6 +6,14 @@ compton:
   dependencies:
     - "compton"
 
+dunst:
+  prelink:
+    - "./bin/compile-color-template ./dunst/dunstrc.template ./dunst/dunstrc"
+  link:
+    - dunstrc: "~/.config/dunst"
+  dependencies:
+    - "dunst"
+
 feh:
   link: "~/.config/feh"
   dependencies:
@@ -63,6 +71,15 @@ i3:
   postlink:
     - "mkdir -p ~/.tmp"
 
+misc:
+  link:
+    - redshift.conf: "~/.config"
+  dependencies:
+    - "redshift"
+    - "youtube-dl"
+    - "p7zip"
+    - "cabextract"
+
 mpd:
   link: "~/.config/mpd"
   postlink:
@@ -78,15 +95,6 @@ mpv:
     - "mkdir -p ~/Pictures/Screenshots"
   dependencies:
     - "mpv"
-
-misc:
-  link:
-    - redshift.conf: "~/.config"
-  dependencies:
-    - "redshift"
-    - "youtube-dl"
-    - "p7zip"
-    - "cabextract"
 
 ncmpcpp:
   link: "~/.ncmpcpp"
@@ -165,21 +173,6 @@ weechat:
   link: "~/.weechat"
   dependencies:
     - "weechat"
-
-dunst:
-  prelink:
-    - "./bin/compile-color-template ./dunst/dunstrc.template ./dunst/dunstrc"
-  link:
-    - dunstrc: "~/.config/dunst"
-  dependencies:
-    - "dunst"
-
-  prelink:
-    - "./bin/compile-color-template ./dunst/dunstrc.template ./dunst/dunstrc"
-  link:
-    - dunstrc: "~/.config/dunst"
-  dependencies:
-    - "dunst"
 
 zathura:
   prelink:

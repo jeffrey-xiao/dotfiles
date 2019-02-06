@@ -19,7 +19,7 @@ declare -a programs=(
   feh
   xset mkfontdir mkfontscale
   htop
-  i3 scrot slog imagemagick i3lock rofi acpi sysstat jq blueman xbacklight gnome-settings-daemon numix-gtk-theme papirus-icon-theme network-manager xclip
+  i3 scrot imagemagick i3lock rofi acpi sysstat jq blueman xbacklight gnome-settings-daemon numix-gtk-theme papirus-icon-theme network-manager xclip
   mpd mpc
   mpv
   ncmpcpp
@@ -29,7 +29,7 @@ declare -a programs=(
   rtorrent
   rxvt-unicode xrdb
   tmux
-  vim curl ack ctags pip llvm-clang nodejs pandoc cppcheck
+  vim curl silver-searcher ctags pip llvm-clang nodejs pandoc cppcheck
   weechat
   xdotool zathura texlive-all
 )

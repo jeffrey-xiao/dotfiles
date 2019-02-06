@@ -6,14 +6,6 @@ compton:
   dependencies:
     - "compton"
 
-dunst:
-  prelink:
-    - "./bin/compile-color-template ./dunst/dunstrc.template ./dunst/dunstrc"
-  link:
-    - dunstrc: "~/.config/dunst"
-  dependencies:
-    - "dunst"
-
 feh:
   link: "~/.config/feh"
   dependencies:
@@ -53,7 +45,6 @@ i3:
   dependencies:
     - "i3"
     - "scrot"
-    - "slog"
     - "imagemagick"
     - "i3lock"
     - "rofi"
@@ -130,6 +121,14 @@ system:
     - "rxvt-unicode"
     - "xrdb"
 
+dunst:
+  prelink:
+    - "./bin/compile-color-template ./dunst/dunstrc.template ./dunst/dunstrc"
+  link:
+    - dunstrc: "~/.config/dunst"
+  dependencies:
+    - "dunst"
+
 tmux:
   link: "~"
   dependencies:
@@ -161,7 +160,7 @@ vim:
   dependencies:
     - "vim"
     - "curl"
-    - "ag"
+    - "silver-searcher"
     - "ctags"
     - "pip"
     - "llvm-clang"

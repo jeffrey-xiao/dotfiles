@@ -1,17 +1,17 @@
-# If not running interactively, don't do anything
+# If not running interactively, don't do anything.
 case $- in
     *i*) ;;
       *) return;;
 esac
 
-# History config
+# History config.
 HISTCONTROL=ignoreboth
 HISTSIZE=10000
 HISTFILESIZE=20000
 shopt -s histappend
 shopt -s cmdhist
 
-# Check window size and update LINES and COLUMNS
+# Check window size and update LINES and COLUMNS.
 shopt -s checkwinsize
 shopt -s dotglob
 
@@ -19,10 +19,10 @@ shopt -s dotglob
 # match all files and zero or more directories and subdirectories.
 shopt -s globstar
 
-# make less more friendly for non-text input files, see lesspipe(1)
+# make less more friendly for non-text input files, see lesspipe(1).
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# Bash prompt
+# Bash prompt.
 case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
 esac
@@ -39,7 +39,7 @@ fi
 . ~/.bash_twoline_simple.sh
 unset color_prompt force_color_prompt
 
-# Set title to user@host:dir
+# Set title to user@host:dir.
 case "$TERM" in
 xterm*|rxvt*)
     PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
@@ -48,28 +48,28 @@ xterm*|rxvt*)
     ;;
 esac
 
-# Enable color support of ls
+# Enable color support of ls.
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 
-# Colored GCC warnings and errors
+# Colored GCC warnings and errors.
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# Alias definitions
+# Alias definitions.
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
 
-# Function definitions
+# Function definitions.
 if [ -f ~/.bash_functions ]; then
   . ~/.bash_functions
 fi
 
-# Enable vi mode
+# Enable vi mode.
 set -o vi
 
-# Enable programmable completion features
+# Enable programmable completion features.
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
@@ -78,9 +78,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Source fzf if directory exists
+# Source fzf if directory exists.
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# Source nvm if directory exists
+# Source nvm if directory exists.
 [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh" --no-use
 [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"

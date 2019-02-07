@@ -77,6 +77,7 @@ the exception of the transparent background in `urxvt`, the shades in `polybar`,
 
  - Change the API key in `bin/get-weather`.
  - Change the adapter and battery name, and wired and WiFi interfaces in `polybar/config`.
+ - Change the desktop setup in `bin/setup-displays`.
  - Change the location in `other/redshift.conf`.
  - Change the user in `mpd/mpd.conf`.
  - Change the username and email in `git/.gitconfig`.

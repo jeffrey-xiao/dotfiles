@@ -1,6 +1,6 @@
-# include .bashrc if it exists
+# Source .bashrc if it exists.
 if [ -f ~/.bashrc ]; then
-	source ~/.bashrc
+  source ~/.bashrc
 fi
 
 source ~/.profile

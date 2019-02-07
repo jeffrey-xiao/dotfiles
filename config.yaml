@@ -17,10 +17,10 @@ fonts:
   postlink:
     - >
       git clone https://github.com/powerline/fonts ~/fonts/powerline-fonts &&
-      source ~/fonts/install.sh
+      source ~/fonts/powerline-fonts/install.sh
     - >
-      sudo rm /usr/share/fonts/conf.d/70-no-bitmaps.conf &&
-      sudo ln -sv /usr/share/fontconfig/conf.avail/70-yes-bitmaps.conf /usr/share/fonts/conf.d
+      sudo rm -f /usr/share/fonts/conf.d/70-no-bitmaps.conf &&
+      sudo ln -svf /usr/share/fontconfig/conf.avail/70-yes-bitmaps.conf /usr/share/fonts/conf.d
     - >
       mkdir -pv ~/.fonts/ &&
       cp ./fonts/* ~/.fonts/ &&
@@ -153,7 +153,7 @@ vim:
       curl -sL https://raw.githubusercontent.com/creationix/nvm/master/install.sh -o install_nvm.sh &&
       chmod 775 install_nvm.sh &&
       ./install_nvm.sh &&
-      rm install_nvm.sh
+      rm -f install_nvm.sh
     - sudo pip install jedi flake8 autopep8 pylint yapf
     - >
       sudo npm install -g eslint tern prettier &&

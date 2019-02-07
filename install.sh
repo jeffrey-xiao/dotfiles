@@ -51,9 +51,9 @@ done
 
 ## Installing powerline fonts.
 git clone https://github.com/powerline/fonts ~/fonts/powerline-fonts && \
-  source ~/fonts/install.sh
-sudo rm /usr/share/fonts/conf.d/70-no-bitmaps.conf && \
-  sudo ln -sv /usr/share/fontconfig/conf.avail/70-yes-bitmaps.conf /usr/share/fonts/conf.d
+  source ~/fonts/powerline-fonts/install.sh
+sudo rm -f /usr/share/fonts/conf.d/70-no-bitmaps.conf && \
+  sudo ln -svf /usr/share/fontconfig/conf.avail/70-yes-bitmaps.conf /usr/share/fonts/conf.d
 mkdir -pv ~/.fonts/ && \
   cp $DOTFILES_DIR/fonts/* ~/.fonts/ && \
   cd ~/.fonts && \
@@ -66,14 +66,14 @@ vim -c PlugInstall -c q! -c q!
 curl -sL https://raw.githubusercontent.com/creationix/nvm/master/install.sh -o install_nvm.sh && \
   chmod 775 install_nvm.sh && \
   ./install_nvm.sh && \
-  rm install_nvm.sh
+  rm -f install_nvm.sh
 sudo pip install jedi flake8 autopep8 pylint
 sudo npm install -g eslint tern && \
   cd ~/.vim/plugged/tern_for_vim && \
   npm install
 curl https://sh.rustup.rs -sSf | sh && \
   export PATH="$PATH:~/.cargo/bin" && \
-  cargo install racer && \
   rustup install nightly && \
   rustup default nightly && \
+  cargo install racer && \
   rustup component add rust-src rustfmt clippy

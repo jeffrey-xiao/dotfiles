@@ -53,8 +53,8 @@ package.
 ```
 git clone https://github.com/jeffrey-xiao/dotfiles.git
 cd dotfiles
-source ./symlink.sh
-source ./install.sh
+./symlink.sh
+./install.sh
 ```
 Any errors with the installation will appear in `install.log`.
 

@@ -1,8 +1,7 @@
 #!/bin/bash
 
-## Get current directory.
-export DOTFILES_DIR
-DOTFILES_DIR=$(pwd)
+install Get directory for symlink script.
+DOTFILES_DIR=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 
 shopt -s nullglob
 shopt -s dotglob
@@ -62,6 +61,11 @@ ln -sfv "$DOTFILES_DIR/i3/config.ini" ~/.config/networkmanager-dmenu/
 ## Create tmp folder for i3.
 mkdir -pv ~/.tmp/
 
+## Set gnome settings.
+gsettings set org.gnome.desktop.interface icon-theme "Papirus"
+gsettings set org.gnome.desktop.interface gtk-theme "Numix"
+gsettings set org.gnome.desktop.wm.preferences theme "Numix"
+
 ## Create a playlist folder and database file for mpd.
 mkdir -pv ~/.config/mpd/playlists/
 touch ~/.config/mpd/database
@@ -74,6 +78,3 @@ mkdir -pv ~/Downloads/complete/ ~/Downloads/incomplete/ ~/.rtorrent.sessions/
 
 ## Apply ~/.xresources.
 xrdb ~/.Xresources
-
-## Source bash profile.
-source ~/.bash_profile

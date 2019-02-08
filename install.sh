@@ -7,10 +7,10 @@ join() {
   echo "$*"
 }
 
-## Get current directory.
-DOTFILES_DIR=$(pwd)
+## Get directory for install script.
+DOTFILES_DIR=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 
-log_file=$DOTFILES_DIR/install.log
+log_file="$DOTFILES_DIR/install.log"
 echo -n "" >"$log_file"
 
 declare -a programs=(
@@ -38,7 +38,7 @@ installed_program_list=$(eopkg li -i)
 
 ## Installing necessary applications (need to install component system.devel separately).
 sudo eopkg it -yc system.devel
-sudo eopkg it -y "$programs_string"
+sudo eopkg it -y $programs_string
 
 ## Checking if applications are installed.
 for f in "${programs[@]}"; do
@@ -56,9 +56,7 @@ sudo rm -f /usr/share/fonts/conf.d/70-no-bitmaps.conf && \
   sudo ln -svf /usr/share/fontconfig/conf.avail/70-yes-bitmaps.conf /usr/share/fonts/conf.d
 mkdir -pv ~/.fonts/ && \
   cp $DOTFILES_DIR/fonts/* ~/.fonts/ && \
-  cd ~/.fonts && \
-  mkfontdir && \
-  mkfontscale
+  (cd ~/.fonts && mkfontdir && mkfontscale)
 fc-cache -fv
 
 ## Installing development related programs and tools.
@@ -69,8 +67,7 @@ curl -sL https://raw.githubusercontent.com/creationix/nvm/master/install.sh -o i
   rm -f install_nvm.sh
 sudo pip install jedi flake8 autopep8 pylint
 sudo npm install -g eslint tern && \
-  cd ~/.vim/plugged/tern_for_vim && \
-  npm install
+  (cd ~/.vim/plugged/tern_for_vim && npm install)
 curl https://sh.rustup.rs -sSf | sh && \
   export PATH="$PATH:~/.cargo/bin" && \
   rustup install nightly && \

@@ -7,3 +7,6 @@ weechat/logs
 
 # Ignore virtualenv
 venv/
+
+# Ignore installation log
+# install.log

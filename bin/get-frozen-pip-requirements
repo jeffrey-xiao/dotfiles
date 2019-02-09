@@ -1,0 +1,12 @@
+#!/bin/sh
+
+if ! [ -x "$(command -v virtualenv)" ]; then
+  echo "Error: virtualenv is not installed."
+  exit 1
+fi
+
+virtualenv -ppython3 tmp 1>/dev/null && \
+  source ./tmp/bin/activate && \
+  pip install -r "$1" 1>/dev/null && \
+  pip freeze && \
+rm -rf tmp

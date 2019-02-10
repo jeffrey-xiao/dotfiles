@@ -76,17 +76,16 @@ the exception of the transparent background in `urxvt`, the shades in `polybar`,
 
 ## Personal Configuration
 
-- [`bin/get-weather`](bin/get-weather): Change the API key
 - [`bin/change-brightness`](bin/change-brightness): Change the path to the system internals
   interface for the backlight device.
 - [`bin/get-cpu-temperature`](bin/get-cpu-temperature): Change the path to the system internals
   interface for the thermal device.
+- [`bin/get-weather`](bin/get-weather): Change the API key
 - [`bin/notify-battery`](bin/notify-battery): Change the path to the system internals interface for
   the power supply device.
 - [`bin/setup-displays`](bin/setup-displays): Change the monitor setup.
 - [`bin/toggle-keyboard`](bin/toggle-keyboard): Change the keyboard device name.
 - [`bin/toggle-touchpad`](bin/toggle-touchpad): Change the touchpad device name.
-- [`polybar/config`]()
 - [`git/.gitconfig`](git/.gitconfig): Change the username and email.
 - [`misc/redshift.conf`](misc/redshift.conf): Change the location.
 - [`mpd/mpd.conf`](mpd/mpd.conf): Change the user.

@@ -9,4 +9,8 @@ weechat/logs
 venv/
 
 # Ignore installation log
-# install.log
+install.log
+
+# Ignore output files from templates
+dunst/dunstrc
+zathura/zathurarc

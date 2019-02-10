@@ -276,7 +276,7 @@ exec --no-startup-id xset fp rehash
 # Appearance and notifications
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 exec --no-startup-id dunst -c ~/.config/dunst/dunstrc
-exec --no-startup-id $HOME/.bin/notify-battery
+exec --no-startup-id notify-battery
 exec --no-startup-id robar start
 exec --no-startup-id compton -f
 

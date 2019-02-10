@@ -11,9 +11,11 @@ set incremental-search true
 # replace $HOME with ~
 set statusbar-home-tilde true
 
-# zoom
-map <C-i> zoom in
-map <C-o> zoom out
+# open document in "best-fit" mode by default
+set adjust-open "best-fit"
+
+# font
+set font "TamzenForPowerline 14"
 
 # colors
 set default-bg                  "#073642"

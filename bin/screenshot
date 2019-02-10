@@ -1,6 +1,7 @@
 #!/bin/bash
 
-file="$HOME/Pictures/Screenshots/$(date +%s).png"
+PICTURES_DIR=${XDG_PICTURES_DIR:-"$HOME/Pictures"}
+file="$PICTURES_DIR/Screenshots/$(date +%s).png"
 
 if [ "$1" == "-s" ]; then
   # Screenshot area

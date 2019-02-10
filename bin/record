@@ -1,5 +1,8 @@
 #!/bin/bash
 
+VIDEOS_DIR=${XDG_VIDEOS_DIR:-"$HOME/Videos"}
+echo $VIDEOS_DIR
+
 if pgrep ffmpeg; then
   pkill -INT ffmpeg
   notify-send -u "low" "Stopped video recording"
@@ -11,10 +14,10 @@ if [ "$1" == "-s" ]; then
   slop=$(slop -f "%x %y %w %h") || exit 1
   read -r X Y W H < <(echo "$slop")
   notify-send -u "low" "Started video recording (area)"
-  ffmpeg -f x11grab -s "$W"x"$H" -i :0.0+"$X","$Y" -f alsa -i pulse ~/Videos/"$(date +%s)".mp4
+  ffmpeg -f x11grab -s "$W"x"$H" -i :0.0+"$X","$Y" -f alsa -i pulse "$VIDEOS_DIR/$(date +%s)".mp4
 else
   # Record entire desktop
   dimensions=$(xdpyinfo | grep dimensions | awk '{print $2}')
   notify-send -u "low" "Started video recording (desktop)"
-  ffmpeg -f x11grab -s "$dimensions" -i :0.0 -f alsa -i pulse ~/Videos/"$(date +%s)".mp4
+  ffmpeg -f x11grab -s "$dimensions" -i :0.0 -f alsa -i pulse "$VIDEOS_DIR/$(date +%s)".mp4
 fi

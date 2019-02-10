@@ -1,6 +1,6 @@
 ## Directories
 ncmpcpp_directory = ~/.ncmpcpp
-lyrics_directory = ~/.lyrics
+lyrics_directory = ~/.ncmpcpp/.lyrics
 
 ## Connection settings
 mpd_host = ~/.config/mpd/socket

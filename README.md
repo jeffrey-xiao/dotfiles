@@ -56,9 +56,10 @@ cd dotfiles
 ./symlink.sh
 ./install.sh
 ```
+
 Any errors with the installation will appear in `install.log`.
 
-### With [dotinstall](https://github.com/jeffrey-xiao/dotinstall)
+### With [`dotinstall`](https://github.com/jeffrey-xiao/dotinstall)
 
 ```
 git clone https://github.com/jeffrey-xiao/dotfiles.git
@@ -73,17 +74,25 @@ The color scheme used is `solarized-dark`. Most programs will take the colors in
 the exception of the transparent background in `urxvt`, the shades in `polybar`, and the colors in
 `dircolors`, `ranger`, `vim`, and `weechat`.
 
-## Personal Use
+## Personal Configuration
 
- - Change the API key in `bin/get-weather`.
- - Change the adapter and battery name, and wired and WiFi interfaces in `polybar/config`.
- - Change the desktop setup in `bin/setup-displays`.
- - Change the location in `other/redshift.conf`.
- - Change the user in `mpd/mpd.conf`.
- - Change the username and email in `git/.gitconfig`.
- - Change the username and nicks in `weechat/irc.conf`.
-
-Everything else works out of the box.
+- [`bin/get-weather`](bin/get-weather): Change the API key
+- [`bin/change-brightness`](bin/change-brightness): Change the path to the system internals
+  interface for the backlight device.
+- [`bin/get-cpu-temperature`](bin/get-cpu-temperature): Change the path to the system internals
+  interface for the thermal device.
+- [`bin/notify-battery`](bin/notify-battery): Change the path to the system internals interface for
+  the power supply device.
+- [`bin/setup-displays`](bin/setup-displays): Change the monitor setup.
+- [`bin/toggle-keyboard`](bin/toggle-keyboard): Change the keyboard device name.
+- [`bin/toggle-touchpad`](bin/toggle-touchpad): Change the touchpad device name.
+- [`polybar/config`]()
+- [`git/.gitconfig`](git/.gitconfig): Change the username and email.
+- [`misc/redshift.conf`](misc/redshift.conf): Change the location.
+- [`mpd/mpd.conf`](mpd/mpd.conf): Change the user.
+- [`polybar/config`](polybar/config): Change the adapter and battery name, and wired and WiFi
+  interfaces.
+- [`weechat/irc.conf`](weechat/irc.conf): Change the username and nicks.
 
 ## License
 

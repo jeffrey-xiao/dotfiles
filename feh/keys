@@ -12,7 +12,7 @@ scroll_down  j C-Down
 scroll_left  h C-Left
 scroll_right l C-Right
 
-zoom_in      C-i
-zoom_out     C-o
-zoom_default d
+zoom_in      plus
+zoom_out     minus
+zoom_default equal
 zoom_fit     s

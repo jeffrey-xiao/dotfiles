@@ -1,5 +1,10 @@
 "" General config
 setlocal textwidth=100
+setlocal spell
+
+
+"" Highlight
+highlight SpellBad cterm=underline
 
 
 "" Keybindings

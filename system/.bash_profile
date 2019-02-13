@@ -1,6 +1,3 @@
-# Source .bashrc if it exists.
-if [ -f ~/.bashrc ]; then
-  source ~/.bashrc
-fi
-
+# Source ~/.bashrc if it exists
+[ -f ~/.bashrc ] && source ~/.bashrc
 source ~/.profile

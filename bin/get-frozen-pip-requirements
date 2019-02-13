@@ -5,8 +5,8 @@ if ! [ -x "$(command -v virtualenv)" ]; then
   exit 1
 fi
 
-virtualenv -ppython3 tmp 1>/dev/null && \
-  source ./tmp/bin/activate && \
-  pip install -r "$1" 1>/dev/null && \
-  pip freeze && \
-rm -rf tmp
+virtualenv -ppython3 tmp 1>/dev/null &&
+  source ./tmp/bin/activate &&
+  pip install -r "$1" 1>/dev/null &&
+  pip freeze &&
+  rm -rf tmp

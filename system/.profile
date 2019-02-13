@@ -16,6 +16,7 @@ export BROWSER=firefox
 export EDITOR=vim
 export PAGER=less
 export SHELL=bash
+export TERM=xterm-256color
 export VISUAL=vim
 
 # Setting ag as the default source for fzf

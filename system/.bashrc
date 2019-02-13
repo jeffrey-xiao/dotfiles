@@ -15,8 +15,8 @@ shopt -s cmdhist
 shopt -s checkwinsize
 shopt -s dotglob
 
-# If set, the pattern "**" used in a pathname expansion context will
-# match all files and zero or more directories and subdirectories.
+# If set, the pattern "**" used in a pathname expansion context will match all
+# files and zero or more directories and subdirectories.
 shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1).
@@ -28,7 +28,6 @@ case "$TERM" in
 esac
 
 force_color_prompt=yes
-TERM=xterm-256color
 if [ -n "$force_color_prompt" ]; then
   if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
     color_prompt=yes
@@ -36,15 +35,16 @@ if [ -n "$force_color_prompt" ]; then
     color_prompt=
   fi
 fi
-. ~/.bash_twoline_simple.sh
 unset color_prompt force_color_prompt
+
+source ~/.bash_twoline_simple.sh
 
 # Set title to user@host:dir.
 case "$TERM" in
-xterm*|rxvt*)
+  xterm*|rxvt*)
     PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
     ;;
-*)
+  *)
     ;;
 esac
 
@@ -57,14 +57,10 @@ fi
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # Alias definitions.
-if [ -f ~/.bash_aliases ]; then
-  . ~/.bash_aliases
-fi
+[ -f ~/.bash_aliases ] && source ~/.bash_aliases
 
 # Function definitions.
-if [ -f ~/.bash_functions ]; then
-  . ~/.bash_functions
-fi
+[ -f ~/.bash_functions ] && source ~/.bash_functions
 
 # Enable vi mode.
 set -o vi

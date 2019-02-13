@@ -33,7 +33,6 @@ for res in $sr; do
   px=$((srxo + srx / 2 - rx / 2))
   py=$((sryo + sry / 2 - ry / 2))
 
-
   echo $(img_path $(($index + 1)))
   echo $(img_path 0)
   ffmpeg -loglevel quiet -i $(img_path $index) -i $file -y -filter_complex "overlay=$px:$py" -vframes 1 $(img_path $(($index + 1)))

@@ -4,8 +4,12 @@ trim() {
   awk '{$1=$1};1'
 }
 
+__title() {
+  echo "\\033]0;\\u@\\h:\\w\\007"
+}
+
 __path_info() {
-  printf "\w"
+  echo "\\w"
 }
 
 __git_info() {
@@ -27,12 +31,11 @@ __git_info() {
 
   local stat="$($git_eng status --porcelain --branch | grep '^##' | grep -o '\[.\+\]$')"
   local all="$(git status --porcelain 2>/dev/null | wc -l | trim)"
-  local unstaged="$(git status --porcelain 2>/dev/null | grep "^ \w" | wc -l | trim)"
-  local uncommited="$(git status --porcelain 2>/dev/null | grep "^\w\(\w\|\s\)" | wc -l | trim)"
-  local untracked="$(($all-$unstaged-$uncommited))"
-  local commit="$(git rev-list HEAD --abbrev-commit --abbrev=0 -n1 2>/dev/null)"
-  local ahead="$(echo $stat | grep -o 'ahead [[:digit:]]\+' | grep -o '[[:digit:]]\+')"
-  local behind="$(echo $stat | grep -o 'behind [[:digit:]]\+' | grep -o '[[:digit:]]\+')"
+  local unstaged="$(git status --porcelain 2>/dev/null | grep -c "^ \\w" | trim)"
+  local uncommited="$(git status --porcelain 2>/dev/null | grep -c "^\\w\\(\\w\\|\\s\\)" | trim)"
+  local untracked="$((all - unstaged - uncommited))"
+  local ahead="$(echo "$stat" | grep -o 'ahead [[:digit:]]\+' | grep -o '[[:digit:]]\+')"
+  local behind="$(echo "$stat" | grep -o 'behind [[:digit:]]\+' | grep -o '[[:digit:]]\+')"
 
   [ "$untracked" -eq "0" ] || marks+=" $GIT_UNTRACKED_SYMBOL$untracked"
   [ "$unstaged" -eq "0" ] || marks+=" $GIT_UNSTAGED_SYMBOL$unstaged"
@@ -40,11 +43,11 @@ __git_info() {
   [ -n "$ahead" ] && marks+=" $GIT_NEED_PUSH_SYMBOL$ahead"
   [ -n "$behind" ] && marks+=" $GIT_NEED_PULL_SYMBOL$behind"
 
-  printf "$branch$marks"
+  echo "$branch$marks"
 }
 
 __venv_info() {
   # venv not found
   [ -z ${VIRTUAL_ENV+x} ] && return
-  printf "${VIRTUAL_ENV##*/}"
+  echo "${VIRTUAL_ENV##*/}"
 }

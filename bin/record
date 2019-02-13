@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 VIDEOS_DIR=${XDG_VIDEOS_DIR:-"$HOME/Videos"}
-echo $VIDEOS_DIR
+echo "$VIDEOS_DIR"
 
 if pgrep ffmpeg; then
   pkill -INT ffmpeg
@@ -9,7 +9,7 @@ if pgrep ffmpeg; then
   exit 0
 fi
 
-if [ "$1" == "-s" ]; then
+if [ "$1" = "-s" ]; then
   # Record area
   slop=$(slop -f "%x %y %w %h") || exit 1
   read -r X Y W H < <(echo "$slop")

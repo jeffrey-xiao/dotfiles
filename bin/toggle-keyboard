@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 id=$(xinput | grep -Eio 'AT Translated Set 2 keyboard\s*id=[0-9]{1,2}' | grep -oP 'id=\K([0-9]{1,2})')
 state=$(xinput list-props "$id" | grep 'Device Enabled' | awk '{print $4}')

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 IFS=',' read -r -a location <<<"$(curl -s ipinfo.io/loc)"
 api_endpoint="http://api.openweathermap.org/data/2.5/weather?lat=${location[0]}&lon=${location[1]}&APPID=fc3cf768e2ea4f683adac8f074a036c6&units=metric"

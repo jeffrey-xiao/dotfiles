@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-while read line; do
+while read -r line; do
   if [[ $line == *"sink #0"* ]]; then
     robar-volume
   fi

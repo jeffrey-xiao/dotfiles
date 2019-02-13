@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 if ! xrandr | grep -q "1600x900-60.00"; then
   xrandr --newmode "1600x900-60.00" 118.25 1600 1696 1856 2112 900 903 908 934 -hsync +vsync
@@ -6,7 +6,7 @@ fi
 
 xrandr --addmode eDP1 "1600x900-60.00"
 
-if xrandr | grep -q "\bDP1 connected\b"; then
+if xrandr | grep -q "\\bDP1 connected\\b"; then
   xrandr --output eDP1 --mode "1600x900-60.00"
   xrandr --output DP1 --mode 1920x1080 --right-of eDP1
 else

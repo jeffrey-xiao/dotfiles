@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 MUSIC_DIR=${XDG_MUSIC_DIR:-"$HOME/Music"}
 
 reset_background() {
-  printf "\e]20;;100x100+1000+1000\a"
+  printf "\\e]20;;100x100+1000+1000\\a"
 }
 
 update_background() {
@@ -13,11 +13,11 @@ update_background() {
   [[ -z "$album_dir" ]] && exit 1
   album_dir="$MUSIC_DIR/$album_dir"
 
-  covers="$(find "$album_dir" -type d -exec find {} -maxdepth 1 -type f -iregex ".*/.*\(${album}\|cover\|folder\|artwork\|front\).*[.]\(jpe?g\|png\|gif\|bmp\)" \;)"
+  covers="$(find "$album_dir" -type d -exec find {} -maxdepth 1 -type f -iregex ".*/.*\\(${album}\\|cover\\|folder\\|artwork\\|front\\).*[.]\\(jpe?g\\|png\\|gif\\|bmp\\)" \;)"
   src="$(echo -n "$covers" | head -n1)"
 
   if [[ -n "$src" ]]; then
-    printf "\e]20;%s;100x100+50+50:op=keep-aspect\a" "$src"
+    printf "\\e]20;%s;100x100+50+50:op=keep-aspect\\a" "$src"
   else
     reset_background
   fi

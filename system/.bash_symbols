@@ -1,3 +1,5 @@
+#!/bin/bash
+
 __initialize_symbols() {
   [[ -n $SYMBOLS_INITIALIZED ]] && return
   readonly SYMBOLS_INITIALIZED=1

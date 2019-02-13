@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Copy template to destination.
 cp -f "$1" "$2"

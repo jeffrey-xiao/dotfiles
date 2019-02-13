@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # If not running interactively, don't do anything.
 case $- in
     *i*) ;;
@@ -23,30 +25,7 @@ shopt -s globstar
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # Bash prompt.
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
-
-force_color_prompt=yes
-if [ -n "$force_color_prompt" ]; then
-  if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-    color_prompt=yes
-  else
-    color_prompt=
-  fi
-fi
-unset color_prompt force_color_prompt
-
-source ~/.bash_twoline_simple.sh
-
-# Set title to user@host:dir.
-case "$TERM" in
-  xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-  *)
-    ;;
-esac
+source ~/.bash_twoline_simple
 
 # Enable color support of ls.
 if [ -x /usr/bin/dircolors ]; then

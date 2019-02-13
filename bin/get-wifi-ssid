@@ -1,3 +1,3 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 iwconfig 2>/dev/null | grep -oE 'ESSID:*.*"' | sed -e 's/ESSID://' -e 's/"//g'

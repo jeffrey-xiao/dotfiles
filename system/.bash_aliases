@@ -1,12 +1,12 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-# Easier navigation
+# Easier navigation.
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
-# Make destructive commands more interactive and verbose
+# Interactive and verbose destructive commands
 alias rm='rm -iv'
 alias mv='mv -iv'
 alias cp='cp -iv'
@@ -31,6 +31,7 @@ alias fgrep='fgrep --color=auto'
 alias h='history'
 alias j='jobs -l'
 alias mkdir='mkdir -pv'
+alias ag='ag --hidden'
 
 # Vim aliases
 alias vim='vim --servername VIM'

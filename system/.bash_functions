@@ -1,13 +1,12 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-# Create directory and cd into
-mcd () {
-  mkdir -p "$1"
-  cd "$1"
+# Create directory and cd into.
+mcd() {
+  mkdir -p "$1" && cd "$1"
 }
 
-# Extract files
-extract () {
+# Extract files.
+extract() {
   if [ -z "$1" ]; then
     echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
   else

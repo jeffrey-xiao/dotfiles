@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ## Join array with delimiter.
 join() {
@@ -8,10 +8,10 @@ join() {
 }
 
 ## Get directory for install script.
-DOTFILES_DIR=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+DOTFILES_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 log_file="$DOTFILES_DIR/install.log"
-echo -n "" >"$log_file"
+printf "" >"$log_file"
 
 declare -a programs=(
   compton
@@ -51,11 +51,11 @@ done
 
 ## Installing powerline fonts.
 git clone https://github.com/powerline/fonts ~/fonts/powerline-fonts &&
-  source ~/fonts/powerline-fonts/install.sh
+  . ~/fonts/powerline-fonts/install.sh
 sudo rm -f /usr/share/fonts/conf.d/70-no-bitmaps.conf &&
   sudo ln -svf /usr/share/fontconfig/conf.avail/70-yes-bitmaps.conf /usr/share/fonts/conf.d
 mkdir -pv ~/.fonts/ &&
-  cp $DOTFILES_DIR/fonts/* ~/.fonts/ &&
+  cp "$DOTFILES_DIR"/fonts/* ~/.fonts/ &&
   (cd ~/.fonts && mkfontdir && mkfontscale)
 fc-cache -fv
 

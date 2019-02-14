@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 : <<'solarized color scheme'
-if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
+if [ "$(tput colors)" -ge 256 ] 2>/dev/null; then
   readonly FG_COLOR_0="\\[$(tput setaf 235)\\]"
   readonly FG_COLOR_1="\\[$(tput setaf 160)\\]"
   readonly FG_COLOR_2="\\[$(tput setaf 64)\\]"
@@ -12,12 +12,12 @@ if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
   readonly FG_COLOR_7="\\[$(tput setaf 254)\\]"
   readonly FG_COLOR_8="\\[$(tput setaf 234)\\]"
   readonly FG_COLOR_9="\\[$(tput setaf 166)\\]"
-  readonly FG_COLOR_10="\[$(tput setaf 240)\\]"
-  readonly FG_COLOR_11="\[$(tput setaf 241)\\]"
-  readonly FG_COLOR_12="\[$(tput setaf 244)\\]"
-  readonly FG_COLOR_13="\[$(tput setaf 61)\\]"
-  readonly FG_COLOR_14="\[$(tput setaf 245)\\]"
-  readonly FG_COLOR_15="\[$(tput setaf 230)\\]"
+  readonly FG_COLOR_10="\\[$(tput setaf 240)\\]"
+  readonly FG_COLOR_11="\\[$(tput setaf 241)\\]"
+  readonly FG_COLOR_12="\\[$(tput setaf 244)\\]"
+  readonly FG_COLOR_13="\\[$(tput setaf 61)\\]"
+  readonly FG_COLOR_14="\\[$(tput setaf 245)\\]"
+  readonly FG_COLOR_15="\\[$(tput setaf 230)\\]"
 
   readonly BG_COLOR_0="\\[$(tput setab 235)\\]"
   readonly BG_COLOR_1="\\[$(tput setab 160)\\]"
@@ -39,7 +39,7 @@ fi
 solarized color scheme
 
 __initialize_colors() {
-  [[ -n $COLORS_INITIALIZED ]] && return
+  [ -n "$COLORS_INITIALIZED" ] && return
   readonly COLORS_INITIALIZED=1
 
   readonly FG_COLOR_0="\\[$(tput setaf 0)\\]"

@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-install Get directory for symlink script.
-DOTFILES_DIR=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+# Get directory for symlink script.
+DOTFILES_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 shopt -s nullglob
 shopt -s dotglob

@@ -22,9 +22,9 @@ __powerline() {
     fi
     PS1+="$BG_EXIT$FG_COLOR_15 $PS_SYMBOL $RESET$FG_EXIT$RIGHT_ARROW$RESET "
   }
-  source ~/.bash_symbols
-  source ~/.bash_colors
-  source ~/.bash_info
+  . ~/.bash_symbols
+  . ~/.bash_colors
+  . ~/.bash_info
   PROMPT_COMMAND=ps1
 }
 

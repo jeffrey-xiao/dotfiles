@@ -17,7 +17,7 @@
 #define CAT(A, B)         A ## B
 #define ARGB(alpha, hex)  argb:CAT(alpha, hex)
 
-!! Xft settings
+!! Xft Settings
 Xft.dpi:                  96
 Xft.antialias:            true
 Xft.autohint:             true
@@ -64,12 +64,12 @@ URxvt.font:               -misc-tamzenforpowerline-medium-r-normal--16-116-100-1
 URxvt.boldFont:           -misc-tamzenforpowerline-bold-r-normal--16-116-100-100-c-80-iso8859-1
 URxvt.letterSpace:        0.0
 
-!! Real transparency
+!! Real Transparency
 !URxvt.depth:              32
 ! BASE_03 at 5% lightness
 !URxvt.background:         [90]#00141A
 
-!! Fake transparency
+!! Fake Transparency
 !URxvt.transparent:       true
 !URxvt.shading:           104
 !URxvt.tintColor:         #BASE_03
@@ -87,7 +87,7 @@ URxvt.termName:           xterm-256color
 URxvt.saveLines:          100000
 URxvt.buffered:           true
 
-!! Rofi config
+!! Rofi Config
 rofi.lines:               10
 rofi.eh:                  2
 rofi.width:               100

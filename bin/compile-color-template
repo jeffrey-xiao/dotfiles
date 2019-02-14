@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 # Copy template to destination.
 cp -f "$1" "$2"
@@ -7,7 +7,7 @@ cp -f "$1" "$2"
 xrdb ~/.Xresources
 
 # Query and substitute colors.
-for i in {0..15}; do
+for i in $(seq 0 15); do
   color=$(xrdb -query -cpp g++ | awk '/.color'"$i":'/ { print $2; }')
   eval "sed -i 's/{color${i}}/${color}/g' $2"
 done

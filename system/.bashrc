@@ -25,7 +25,7 @@ shopt -s globstar
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # Bash prompt.
-source ~/.bash_twoline_simple
+. ~/.bash_twoline_simple
 
 # Enable color support of ls.
 if [ -x /usr/bin/dircolors ]; then
@@ -36,10 +36,10 @@ fi
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # Alias definitions.
-[ -f ~/.bash_aliases ] && source ~/.bash_aliases
+[ -f ~/.bash_aliases ] && . ~/.bash_aliases
 
 # Function definitions.
-[ -f ~/.bash_functions ] && source ~/.bash_functions
+[ -f ~/.bash_functions ] && . ~/.bash_functions
 
 # Enable vi mode.
 set -o vi
@@ -54,8 +54,8 @@ if ! shopt -oq posix; then
 fi
 
 # Source fzf if directory exists.
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.fzf.bash ] && . ~/.fzf.bash
 
 # Source nvm if directory exists.
-[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh" --no-use
-[ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"

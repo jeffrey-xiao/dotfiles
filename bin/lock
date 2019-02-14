@@ -7,17 +7,14 @@ img_path() {
 res=$(xdpyinfo | awk '/dimensions/{print $2}')
 ffmpeg -loglevel quiet -f x11grab -video_size "$res" -i "$DISPLAY" -y -filter_complex "boxblur=10" -vframes 1 "$(img_path 0)"
 
-# placement x/y
-px=0
-py=0
-
-# lockscreen image info
+# Lockscreen image info
 if [ -L ~/.config/i3/images/lock.png ]; then
   file=$(readlink -f ~/.config/i3/images/lock.png)
 else
   file=~/.config/i3/images/lock.png
 fi
 
+# Dimensions of lock image
 r=$(file $file | grep -o '[0-9]* x [0-9]*')
 rx=$(echo "$r" | cut -d' ' -f 1)
 ry=$(echo "$r" | cut -d' ' -f 3)
@@ -25,11 +22,15 @@ ry=$(echo "$r" | cut -d' ' -f 3)
 sr=$(xrandr --query | grep ' connected' | sed 's/primary //' | cut -f3 -d' ')
 index=0
 for res in $sr; do
-  # monitor position/offset
-  srx=$(echo "$res" | cut -d'x' -f 1)                   # x pos
-  sry=$(echo "$res" | cut -d'x' -f 2 | cut -d'+' -f 1)  # y pos
-  srxo=$(echo "$res" | cut -d'x' -f 2 | cut -d'+' -f 2) # x offset
-  sryo=$(echo "$res" | cut -d'x' -f 2 | cut -d'+' -f 3) # y offset
+  # Monitor dimensions
+  srx=$(echo "$res" | cut -d'x' -f 1)
+  sry=$(echo "$res" | cut -d'x' -f 2 | cut -d'+' -f 1)
+
+  # Monitor offsets
+  srxo=$(echo "$res" | cut -d'x' -f 2 | cut -d'+' -f 2)
+  sryo=$(echo "$res" | cut -d'x' -f 2 | cut -d'+' -f 3)
+
+  # Lock image location
   px=$((srxo + srx / 2 - rx / 2))
   py=$((sryo + sry / 2 - ry / 2))
 

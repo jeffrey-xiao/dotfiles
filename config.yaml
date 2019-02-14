@@ -17,7 +17,7 @@ fonts:
   postlink:
     - >
       git clone https://github.com/powerline/fonts ~/fonts/powerline-fonts &&
-      source ~/fonts/powerline-fonts/install.sh
+      . ~/fonts/powerline-fonts/install.sh
     - >
       sudo rm -f /usr/share/fonts/conf.d/70-no-bitmaps.conf &&
       sudo ln -svf /usr/share/fontconfig/conf.avail/70-yes-bitmaps.conf /usr/share/fonts/conf.d

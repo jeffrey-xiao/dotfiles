@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 __twoline() {
   ps1() {
@@ -31,9 +31,9 @@ __twoline() {
     PS1+="$FG_EXIT➤ $RESET"
     PS2="$FG_EXIT➤ $RESET"
   }
-  source ~/.bash_symbols
-  source ~/.bash_colors
-  source ~/.bash_info
+  . ~/.bash_symbols
+  . ~/.bash_colors
+  . ~/.bash_info
   PROMPT_COMMAND=ps1
 }
 

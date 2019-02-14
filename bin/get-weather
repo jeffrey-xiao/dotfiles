@@ -1,12 +1,14 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-IFS=',' read -r -a location <<<"$(curl -s ipinfo.io/loc)"
-api_endpoint="http://api.openweathermap.org/data/2.5/weather?lat=${location[0]}&lon=${location[1]}&APPID=fc3cf768e2ea4f683adac8f074a036c6&units=metric"
+location=$(curl -s ipinfo.io/loc)
+latitude=$(echo "$location" | cut -d',' -f 1)
+longitude=$(echo "$location" | cut -d',' -f 2)
+api_endpoint="http://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&APPID=fc3cf768e2ea4f683adac8f074a036c6&units=metric"
 resp=$(curl -s "$api_endpoint")
 weather=$(echo "$resp" | jq -r '.weather[0].main')
 temp=$(echo "$resp" | jq -r '.main.temp')
 
-if [[ -z "${weather// /}" && -z "${temp// /}" ]]; then
+if [ -z "$weather" ] && [ -z "$temp" ]; then
   echo "N/A"
 else
   echo "$weather $temp°C"

@@ -1,5 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-# Source ~/.bashrc if it exists
-[ -f ~/.bashrc ] && source ~/.bashrc
-source ~/.profile
+[ -f ~/.bashrc ] && . ~/.bashrc
+[ -f ~/.profile ] && . ~/.profile

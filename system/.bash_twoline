@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 __twoline() {
   ps1() {
@@ -30,9 +30,9 @@ __twoline() {
     PS1="$(__title)$FG_EXIT┌─${__twoline_virtual_env}[$RESET$__twoline_formatted_path$FG_EXIT]${__twoline_git_info}\\n"
     PS1+="$FG_EXIT└─╼$RESET "
   }
-  source ~/.bash_symbols
-  source ~/.bash_colors
-  source ~/.bash_info
+  . ~/.bash_symbols
+  . ~/.bash_colors
+  . ~/.bash_info
   PROMPT_COMMAND=ps1
 }
 

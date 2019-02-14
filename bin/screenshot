@@ -1,16 +1,15 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 PICTURES_DIR=${XDG_PICTURES_DIR:-"$HOME/Pictures"}
 file="$PICTURES_DIR/Screenshots/$(date +%s).png"
 
 if [ "$1" = "-s" ]; then
-  # Screenshot area
+  # Screenshot area.
   slop=$(slop -f "%g") || exit 1
-  read -r G < <(echo "$slop")
-  import -window root -crop "$G" "$file"
+  import -window root -crop "$slop" "$file"
   notify-send -u "low" "Took screenshot (area)"
 else
-  # Screenshot entire desktop
+  # Screenshot entire desktop.
   scrot "$file"
   notify-send -u "low" "Took screenshot (desktop)"
 fi

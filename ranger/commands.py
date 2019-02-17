@@ -1,6 +1,7 @@
+import os
 from ranger.api.commands import Command
 from ranger.core.loader import CommandLoader
-import os
+
 
 class extract(Command):
     def execute(self):
@@ -35,6 +36,7 @@ class extract(Command):
         obj.signal_bind('after', refresh)
         self.fm.loader.add(obj)
 
+
 class compress(Command):
     def execute(self):
         """ Compress marked files to current directory """
@@ -65,6 +67,7 @@ class compress(Command):
         """ Complete with current folder name """
         extension = ['.zip', '.tar.gz', '.rar', '.7z']
         return ['compress ' + os.path.basename(self.fm.thisdir.path) + ext for ext in extension]
+
 
 class fzf_find(Command):
     """

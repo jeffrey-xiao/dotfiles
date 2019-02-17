@@ -122,7 +122,7 @@ label-padding = 1
 [module/wired-network]
 type = internal/network
 
-; Use following command to get wifi interface
+; Use following command to get wired interface
 ; $ iwconfig
 interface = enp1s0
 

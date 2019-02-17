@@ -2,6 +2,10 @@ def_key "J"
   page_down
 def_key "K"
   page_up
+def_key "ctrl-d"
+  page_down
+def_key "ctrl-u"
+  page_up
 
 def_key "j"
   scroll_down

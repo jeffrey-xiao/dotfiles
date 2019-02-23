@@ -22,20 +22,22 @@ alias lla='ls -alhF --color=auto'
 alias la='ls -aF --color=auto'
 alias ls='ls -F --color=auto'
 
-# Colored grep output
+# Colored output
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
+alias diff="diff --color=auto"
 
 # Handy shortcuts
 alias h='history'
 alias j='jobs -l'
 alias mkdir='mkdir -pv'
 alias ag='ag --hidden'
+alias wget='wget --continue'
 
 # Vim aliases
 alias vim='vim --servername VIM'
 
 # Add an "alert" alias for long running commands.  Use like so:
 # 	sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal ||     echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*ale    rt$//'\'')"'
+alias alert='notify-send --urgency=low "$(history | tail --lines=1 | sed --expression '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*ale    rt$//'\'')" "$([ $? = 0 ] && echo Success || echo Error)"'

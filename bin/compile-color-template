@@ -9,5 +9,5 @@ xrdb ~/.Xresources
 # Query and substitute colors.
 for i in $(seq 0 15); do
   color=$(xrdb -query -cpp g++ | awk '/.color'"$i":'/ { print $2; }')
-  eval "sed -i 's/{color${i}}/${color}/g' $2"
+  eval "sed --in-place 's/{color${i}}/${color}/g' $2"
 done

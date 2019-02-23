@@ -29,13 +29,13 @@ __git_info() {
 
   local marks
 
-  local stat="$($git_eng status --porcelain --branch | grep '^##' | grep -o '\[.\+\]$')"
-  local all="$($git_eng status --porcelain 2>/dev/null | wc -l | trim)"
-  local unstaged="$($git_eng status --porcelain 2>/dev/null | grep -c "^ \\w" | trim)"
-  local uncommited="$($git_eng status --porcelain 2>/dev/null | grep -c "^\\w\\(\\w\\|\\s\\)" | trim)"
+  local stat="$($git_eng status --porcelain --branch | grep '^##' | grep --only-matching '\[.\+\]$')"
+  local all="$($git_eng status --porcelain 2>/dev/null | wc --lines | trim)"
+  local unstaged="$($git_eng status --porcelain 2>/dev/null | grep --count "^ \\w" | trim)"
+  local uncommited="$($git_eng status --porcelain 2>/dev/null | grep --count "^\\w\\(\\w\\|\\s\\)" | trim)"
   local untracked="$((all - unstaged - uncommited))"
-  local ahead="$(echo "$stat" | grep -o 'ahead [[:digit:]]\+' | grep -o '[[:digit:]]\+')"
-  local behind="$(echo "$stat" | grep -o 'behind [[:digit:]]\+' | grep -o '[[:digit:]]\+')"
+  local ahead="$(echo "$stat" | grep --only-matching 'ahead [[:digit:]]\+' | grep --only-matching '[[:digit:]]\+')"
+  local behind="$(echo "$stat" | grep --only-matching 'behind [[:digit:]]\+' | grep --only-matching '[[:digit:]]\+')"
 
   [ "$untracked" -eq "0" ] || marks+=" $GIT_UNTRACKED_SYMBOL$untracked"
   [ "$unstaged" -eq "0" ] || marks+=" $GIT_UNSTAGED_SYMBOL$unstaged"

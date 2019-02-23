@@ -34,15 +34,15 @@ declare -a programs=(
   xdotool zathura texlive-all
 )
 programs_string=$(join " " "${programs[@]}")
-installed_program_list=$(eopkg li -i)
+installed_program_list=$(eopkg list-installed --install-info)
 
 ## Installing necessary applications (need to install component system.devel separately).
-sudo eopkg it -yc system.devel
-sudo eopkg it -y $programs_string
+sudo eopkg install --yes-all --component system.devel
+sudo eopkg install --yes-all $programs_string
 
 ## Checking if applications are installed.
 for f in "${programs[@]}"; do
-  if [ "$(echo "$installed_program_list" | grep -c "$f ")" -eq 1 ]; then
+  if [ "$(echo "$installed_program_list" | grep --count "$f ")" -eq 1 ]; then
     echo "$f successfully installed." >>"$log_file"
   else
     echo "$f failed to install." >>"$log_file"
@@ -57,18 +57,18 @@ sudo rm -f /usr/share/fonts/conf.d/70-no-bitmaps.conf &&
 mkdir -pv ~/.fonts/ &&
   cp "$DOTFILES_DIR"/fonts/* ~/.fonts/ &&
   (cd ~/.fonts && mkfontdir && mkfontscale)
-fc-cache -fv
+fc-cache --force --verbose
 
 ## Installing development related programs and tools.
-vim -c PlugInstall -c q! -c q!
-curl -sL https://raw.githubusercontent.com/creationix/nvm/master/install.sh -o install_nvm.sh &&
+vim --cmd PlugInstall --cmd q! --cmd q!
+curl --silent --location https://raw.githubusercontent.com/creationix/nvm/master/install.sh --output install_nvm.sh &&
   chmod 775 install_nvm.sh &&
   ./install_nvm.sh &&
   rm -f install_nvm.sh
 sudo pip install jedi flake8 autopep8 pylint
-sudo npm install -g eslint tern &&
+sudo npm install --global eslint tern &&
   (cd ~/.vim/plugged/tern_for_vim && npm install)
-curl https://sh.rustup.rs -sSf | sh &&
+curl --silent --show-error --fail https://sh.rustup.rs | sh &&
   export PATH="$PATH:~/.cargo/bin" &&
   rustup install nightly &&
   rustup default nightly &&

@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-id=$(xinput | grep -Eio 'AT Translated Set 2 keyboard\s*id=[0-9]{1,2}' | grep -oP 'id=\K([0-9]{1,2})')
+id=$(xinput | grep --extended-regexp --ignore-case --only-matching 'AT Translated Set 2 keyboard\s*id=[0-9]{1,2}' | grep --perl-regexp --only-matching 'id=\K([0-9]{1,2})')
 state=$(xinput list-props "$id" | grep 'Device Enabled' | awk '{print $4}')
 
 if [ "$state" -eq 1 ]; then

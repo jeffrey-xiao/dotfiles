@@ -29,7 +29,7 @@ shopt -s globstar
 
 # Enable color support of ls.
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    test -r ~/.dircolors && eval "$(dircolors --bourne-shell ~/.dircolors)" || eval "$(dircolors --bourne-shell)"
 fi
 
 # Colored GCC warnings and errors.

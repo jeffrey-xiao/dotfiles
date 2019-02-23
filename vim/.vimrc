@@ -7,7 +7,7 @@ endfunction
 """ Plugins
 "" Download vim-plug if it does not exist
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+  silent !curl --fail --location --create-dirs --output ~/.vim/autoload/plug.vim
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   augroup vimplug_group
     autocmd!
@@ -215,7 +215,7 @@ endfunction
 
 command! Tags call fzf#run(fzf#wrap({
       \ 'source':  'cat '.join(map(tagfiles(), 'fnamemodify(v:val, ":S")')).
-      \            '| grep -v -a ^!',
+      \            '| grep --invert-match --text ^!',
       \ 'options': '+m -d "\t" --with-nth 1,4.. -n 1 --tiebreak=index --expect=ctrl-x,ctrl-v',
       \ 'down': '40%',
       \ 'sink*':    function('s:tags_sink'),
@@ -230,7 +230,7 @@ command! MRU call fzf#run(fzf#wrap({
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 elseif executable('ack')
-  set grepprg=ack\ -i\ --nocolor\ --nogroup\ ""\ %s
+  set grepprg=ack\ --ignore-case\ --nocolor\ --nogroup\ ""\ %s
 endif
 
 
@@ -393,11 +393,11 @@ inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 "" Sharing snippets
-command! -range=% SP  <line1>,<line2>w !curl -F 'sprunge=<-' http://sprunge.us | tr -d '\n' | xclip -i -selection clipboard
-command! -range=% CL  <line1>,<line2>w !curl -F 'clbin=<-' https://clbin.com | tr -d '\n' | xclip -i -selection clipboard
-command! -range=% VP  <line1>,<line2>w !curl -F 'text=<-' http://vpaste.net | tr -d '\n' | xclip -i -selection clipboard
-command! -range=% IX  <line1>,<line2>w !curl -F 'f:1=<-' ix.io | tr -d '\n' | xclip -i -selection clipboard
-command! -range=% TB  <line1>,<line2>w !nc termbin 9999 | tr -d '\n' | xclip -i -selection clipboard
+command! -range=% SP  <line1>,<line2>w !curl --form 'sprunge=<-' http://sprunge.us | tr --delete '\n' | xclip -in -selection clipboard
+command! -range=% CL  <line1>,<line2>w !curl --form 'clbin=<-' https://clbin.com | tr --delete '\n' | xclip -in -selection clipboard
+command! -range=% VP  <line1>,<line2>w !curl --form 'text=<-' http://vpaste.net | tr --delete '\n' | xclip -in -selection clipboard
+command! -range=% IX  <line1>,<line2>w !curl --form 'f:1=<-' ix.io | tr --delete '\n' | xclip -in -selection clipboard
+command! -range=% TB  <line1>,<line2>w !nc termbin.com 9999 | tr --delete '\n' | xclip -in -selection clipboard
 
 "" Backspace to switch to alternate file
 nnoremap <BS> <C-^>

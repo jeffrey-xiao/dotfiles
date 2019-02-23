@@ -3,4 +3,4 @@
 curr_brightness=$(cat "/sys/class/backlight/intel_backlight/brightness")
 max_brightness=$(cat "/sys/class/backlight/intel_backlight/max_brightness")
 
-robar show default "$(echo "$curr_brightness"/"$max_brightness" | bc -l)"
+robar show default "$(echo "$curr_brightness"/"$max_brightness" | bc --mathlib)"

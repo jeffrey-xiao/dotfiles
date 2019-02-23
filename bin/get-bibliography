@@ -7,4 +7,4 @@ nocite: '@*'
 ---
 "
 
-echo "$references_template" | pandoc --bibliography "$1" -t markdown_strict
+echo "$references_template" | pandoc --bibliography "$1" --to=markdown_strict

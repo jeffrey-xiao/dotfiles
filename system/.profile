@@ -22,7 +22,7 @@ export TERM=xterm-256color
 export VISUAL=vim
 
 # Setting ag as the default source for fzf
-export FZF_DEFAULT_COMMAND='ag --hidden -g ""'
+export FZF_DEFAULT_COMMAND='ag --hidden --filename-pattern ""'
 
 # Setting rust src path
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"

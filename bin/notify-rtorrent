@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
 
-notify-send -u "critical" "RTorrent: Download Finished" "$1"
+notify-send --urgency=critical "RTorrent: Download Finished" "$1"

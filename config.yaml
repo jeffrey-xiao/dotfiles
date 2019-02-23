@@ -2,7 +2,7 @@ bin:
   link: ~/.bin/
 
 compton:
-  link: ~/
+  link: ~/.config/compton
   dependencies:
     - compton
 
@@ -25,7 +25,7 @@ fonts:
       mkdir -pv ~/.fonts/ &&
       cp ./fonts/* ~/.fonts/ &&
       (cd ~/.fonts && mkfontdir && mkfontscale)
-    - fc-cache -fv
+    - fc-cache --force --verbose
   dependencies:
     - xset
     - mkfontdir
@@ -123,7 +123,7 @@ rtorrent:
 
 system:
   prelink:
-    - sudo eopkg it -yc system.devel
+    - sudo eopkg install --yes-all --component system.devel
   link: ~/
   dependencies:
     - rxvt-unicode
@@ -149,18 +149,18 @@ vim:
     - "*": ~/
     - ".*": ~/
   postlink:
-    - vim -c PlugInstall -c q! -c q!
+    - vim --cmd PlugInstall --cmd q! --cmd q!
     - >
-      curl -sL https://raw.githubusercontent.com/creationix/nvm/master/install.sh -o install_nvm.sh &&
+      curl --silent --location https://raw.githubusercontent.com/creationix/nvm/master/install.sh --output install_nvm.sh &&
       chmod 775 install_nvm.sh &&
       ./install_nvm.sh &&
       rm -f install_nvm.sh
     - sudo pip install jedi flake8 autopep8 pylint yapf
     - >
-      sudo npm install -g eslint tern prettier &&
+      sudo npm install --global eslint tern prettier &&
       (cd ~/.vim/plugged/tern_for_vim && npm install)
     - >
-      curl https://sh.rustup.rs -sSf | sh &&
+      curl --silent --show-error --fail https://sh.rustup.rs | sh &&
       export PATH="$PATH:~/.cargo/bin" &&
       rustup install nightly &&
       rustup default nightly &&

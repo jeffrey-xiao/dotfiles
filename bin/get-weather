@@ -1,12 +1,12 @@
 #!/usr/bin/env sh
 
-location=$(curl -s ipinfo.io/loc)
-latitude=$(echo "$location" | cut -d',' -f 1)
-longitude=$(echo "$location" | cut -d',' -f 2)
+location=$(curl --silent ipinfo.io/loc)
+latitude=$(echo "$location" | cut --delimiter=',' --fields=1)
+longitude=$(echo "$location" | cut --delimiter=',' --fields=2)
 api_endpoint="http://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&APPID=fc3cf768e2ea4f683adac8f074a036c6&units=metric"
-resp=$(curl -s "$api_endpoint")
-weather=$(echo "$resp" | jq -r '.weather[0].main')
-temp=$(echo "$resp" | jq -r '.main.temp')
+resp=$(curl --silent "$api_endpoint")
+weather=$(echo "$resp" | jq --raw-output '.weather[0].main')
+temp=$(echo "$resp" | jq --raw-output '.main.temp')
 
 if [ -z "$weather" ] && [ -z "$temp" ]; then
   echo "N/A"

@@ -9,26 +9,26 @@ ffmpeg -loglevel quiet -f x11grab -video_size "$res" -i "$DISPLAY" -y -filter_co
 
 # Lockscreen image info
 if [ -L ~/.config/i3/images/lock.png ]; then
-  file=$(readlink -f ~/.config/i3/images/lock.png)
+  file=$(readlink --canonicalize ~/.config/i3/images/lock.png)
 else
   file=~/.config/i3/images/lock.png
 fi
 
 # Dimensions of lock image
-r=$(file $file | grep -o '[0-9]* x [0-9]*')
-rx=$(echo "$r" | cut -d' ' -f 1)
-ry=$(echo "$r" | cut -d' ' -f 3)
+r=$(file $file | grep --only-matching '[0-9]* x [0-9]*')
+rx=$(echo "$r" | cut --delimiter=' ' --fields=1)
+ry=$(echo "$r" | cut --delimiter=' ' --fields=3)
 
-sr=$(xrandr --query | grep ' connected' | sed 's/primary //' | cut -f3 -d' ')
+sr=$(xrandr --query | grep ' connected' | sed 's/primary //' | cut --fields=3 --delimiter=' ')
 index=0
 for res in $sr; do
   # Monitor dimensions
-  srx=$(echo "$res" | cut -d'x' -f 1)
-  sry=$(echo "$res" | cut -d'x' -f 2 | cut -d'+' -f 1)
+  srx=$(echo "$res" | cut --delimiter='x' --fields=1)
+  sry=$(echo "$res" | cut --delimiter='x' --fields=2 | cut --delimiter='+' --fields=1)
 
   # Monitor offsets
-  srxo=$(echo "$res" | cut -d'x' -f 2 | cut -d'+' -f 2)
-  sryo=$(echo "$res" | cut -d'x' -f 2 | cut -d'+' -f 3)
+  srxo=$(echo "$res" | cut --delimiter='x' --fields=2 | cut --delimiter='+' --fields=2)
+  sryo=$(echo "$res" | cut --delimiter='x' --fields=2 | cut --delimiter='+' --fields=3)
 
   # Lock image location
   px=$((srxo + srx / 2 - rx / 2))

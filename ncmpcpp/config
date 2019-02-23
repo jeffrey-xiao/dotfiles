@@ -104,4 +104,4 @@ mouse_support = no
 mouse_list_scroll_whole_page = no
 ignore_leading_the = yes
 allow_for_physical_item_deletion = yes
-execute_on_song_change = "ps -ef | grep 'display-album-art' | grep -v grep | awk '{print $2}' | xargs -r kill -USR1"
+execute_on_song_change = "ps -ef | grep 'display-album-art' | grep --invert-match grep | awk '{print $2}' | xargs --no-run-if-empty kill -USR1"

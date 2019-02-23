@@ -275,10 +275,10 @@ exec --no-startup-id xset fp rehash
 ## Configure startup applications
 # Appearance and notifications
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
-exec --no-startup-id dunst -c ~/.config/dunst/dunstrc
+exec --no-startup-id dunst --config ~/.config/dunst/dunstrc
 exec --no-startup-id notify-battery
 exec --no-startup-id robar start
-exec --no-startup-id compton -f
+exec --no-startup-id compton --config ~/.config/compton/.compton.conf
 
 # Tray applets
 exec --no-startup-id redshift-gtk

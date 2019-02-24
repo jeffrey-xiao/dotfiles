@@ -1,7 +1,11 @@
 def_key "J"
-  page_down
+  select_item
+  scroll_down
+
 def_key "K"
-  page_up
+  select_item
+  scroll_up
+
 def_key "ctrl-d"
   page_down
 def_key "ctrl-u"
@@ -15,6 +19,15 @@ def_key "h"
   previous_column
 def_key "l"
   next_column
+
+def_key "m"
+  move_sort_order_down
+def_key "m"
+  move_selected_items_down
+def_key ","
+  move_sort_order_up
+def_key ","
+  move_selected_items_up
 
 def_key "."
   show_lyrics

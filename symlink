@@ -7,14 +7,14 @@ shopt -s nullglob
 shopt -s dotglob
 
 ## Link to ~.
-for folder in compton git rtorrent system tmux; do
+for folder in git system; do
   for f in "$DOTFILES_DIR"/"$folder"/*; do
     ln -sfv "$f" ~/
   done
 done
 
 ## Link to ~/.$folder.
-for folder in bin ncmpcpp templates weechat; do
+for folder in bin weechat; do
   # rm -rf ~/.$folder
   mkdir -pv ~/.$folder/
   for f in "$DOTFILES_DIR"/"$folder"/*; do
@@ -23,7 +23,7 @@ for folder in bin ncmpcpp templates weechat; do
 done
 
 ## Link to .config/$folder.
-for folder in fontconfig htop i3 mpd mpv polybar ranger; do
+for folder in compton feh htop i3 mpd mpv ncmpcpp polybar ranger rtorrent tmux; do
   # rm -rf ~/.config/$folder
   mkdir -pv ~/.config/$folder/
   for f in "$DOTFILES_DIR"/"$folder"/*; do
@@ -51,10 +51,14 @@ ln -sfv "$DOTFILES_DIR/vim/minisnip" ~/.vim/
 
 mkdir -pv ~/.vim/.undo/ ~/.vim/.backup/ ~/.vim/.swp/ ~/.tags/
 
-## Link misc options.
-ln -sfv "$DOTFILES_DIR/misc/redshift.conf" ~/.config/
+## Link miscellaneous config.
+mkdir -pv ~/.config/redshift
+ln -sfv "$DOTFILES_DIR/misc/redshift.conf" ~/.config/redshift
+
+## Link font config.
 ln -sfv "$DOTFILES_DIR/fonts/fonts.conf" ~/.config/fontconfig/
 
+## Link networkmanager config.
 mkdir -pv ~/.config/networkmanager-dmenu/
 ln -sfv "$DOTFILES_DIR/i3/config.ini" ~/.config/networkmanager-dmenu/
 
@@ -74,7 +78,7 @@ touch ~/.config/mpd/database
 mkdir -pv ~/Pictures/Screenshots/
 
 ## Create complete, incomplete, and session folders for rtorrent.
-mkdir -pv ~/Downloads/complete/ ~/Downloads/incomplete/ ~/.rtorrent.sessions/
+mkdir -pv ~/Downloads/complete/ ~/Downloads/incomplete/ ~/.config/rtorrent/sessions/
 
 ## Apply ~/.xresources.
 xrdb ~/.Xresources

@@ -70,7 +70,7 @@ i3:
 
 misc:
   link:
-    - redshift.conf: ~/.config/
+    - redshift.conf: ~/.config/redshift
   dependencies:
     - redshift
     - youtube-dl
@@ -94,7 +94,7 @@ mpv:
     - mpv
 
 ncmpcpp:
-  link: ~/.ncmpcpp/
+  link: ~/.config/ncmpcpp/
   dependencies:
     - ncmpcpp
 
@@ -115,9 +115,9 @@ ranger:
     - highlight
 
 rtorrent:
-  link: ~/
+  link: ~/.config/rtorrent
   postlink:
-    - mkdir -pv ~/Downloads/complete/ ~/Downloads/incomplete/ ~/.rtorrent.sessions/
+    - mkdir -pv ~/Downloads/complete/ ~/Downloads/incomplete/ ~/.config/rtorrent/sessions/
   dependencies:
     - rtorrent
 
@@ -138,7 +138,7 @@ dunst:
     - dunst
 
 tmux:
-  link: ~/
+  link: ~/.config/tmux
   dependencies:
     - tmux
 

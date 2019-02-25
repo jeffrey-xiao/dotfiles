@@ -10,7 +10,7 @@ extract() {
   if [ -z "$1" ]; then
     echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
   else
-    if [ -f "$1" ] ; then
+    if [ -f "$1" ]; then
       case $1 in
         *.tar.bz2)   tar xvjf ./"$1"    ;;
         *.tar.gz)    tar xvzf ./"$1"    ;;

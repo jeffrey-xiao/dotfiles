@@ -89,7 +89,7 @@ URxvt.buffered:           true
 
 !! Rofi Config
 rofi.lines:               10
-rofi.eh:                  2
+rofi.eh:                  1
 rofi.width:               100
 rofi.padding:             300
 rofi.bw:                  0

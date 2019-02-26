@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 PICTURES_DIR=${XDG_PICTURES_DIR:-"$HOME/Pictures"}
 file="$PICTURES_DIR/Screenshots/$(date +%s).png"

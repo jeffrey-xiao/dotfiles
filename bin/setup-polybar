@@ -1,10 +1,10 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 killall --quiet polybar
 
 while pgrep --exact polybar >/dev/null; do sleep 1; done
 
-connected_displays=$(polybar --list-monitors | awk --field-separator=: '{print $1}')
+connected_displays=$(polybar --list-monitors | awk --field-separator=':' '{print $1}')
 for display in $connected_displays; do
   MONITOR=$display polybar top &
 done

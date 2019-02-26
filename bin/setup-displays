@@ -1,7 +1,7 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 if xrandr | grep --silent "\\bDP1 connected\\b"; then
-  xrandr --output eDP1 --mode "1600x900-60.00"
+  xrandr --output eDP1 --mode 1600x900
   xrandr --output DP1 --mode 1920x1080 --right-of eDP1
 else
   xrandr --output eDP1 --mode 1920x1080

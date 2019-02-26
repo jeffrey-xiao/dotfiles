@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 amixer_info=$(amixer sget Master)
 

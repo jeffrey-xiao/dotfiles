@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 VIDEOS_DIR=${XDG_VIDEOS_DIR:-"$HOME/Videos"}
 

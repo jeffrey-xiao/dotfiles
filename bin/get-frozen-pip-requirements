@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 if ! [ -x "$(command -v virtualenv)" ]; then
   echo "Error: virtualenv is not installed."

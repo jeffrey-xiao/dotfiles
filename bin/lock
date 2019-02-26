@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 img_path() {
   echo ~/.tmp/blurred_screen_"$1".png

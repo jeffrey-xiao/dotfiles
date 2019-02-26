@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 MUSIC_DIR=${XDG_MUSIC_DIR:-"$HOME/Music"}
 

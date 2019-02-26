@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 location=$(curl --silent ipinfo.io/loc)
 latitude=$(echo "$location" | cut --delimiter=',' --fields=1)

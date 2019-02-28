@@ -169,6 +169,9 @@ bindsym $mod+Ctrl+l     move workspace to output left
 bindsym $mod+Ctrl+Right move workspace to output right
 bindsym $mod+Ctrl+Left  move workspace to output left
 
+# Shortcut for pwer options
+bindsym $mod+Shift+e exec --no-startup-id dmenu-power
+
 # Shortcut for i3lock
 bindsym $mod+Shift+x exec --no-startup-id lock
 
@@ -243,7 +246,7 @@ bindsym XF86MonBrightnessUp   exec --no-startup-id "sudo change-brightness +50 &
 bindsym XF86MonBrightnessDown exec --no-startup-id "sudo change-brightness -50 && robar-brightness"
 
 # Touchpad controls
-bindsym XF86TouchpadToggle exec toggle-touchpad
+bindsym XF86TouchpadToggle exec --no-startup-id toggle-touchpad
 
 # Media player controls
 bindsym XF86AudioPlay  exec --no-startup-id mpc play
@@ -278,7 +281,7 @@ exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 exec --no-startup-id dunst --config ~/.config/dunst/dunstrc
 exec --no-startup-id notify-battery
 exec --no-startup-id robar start
-exec --no-startup-id compton --config ~/.config/compton/.compton.conf
+exec --no-startup-id compton --config ~/.config/compton/compton.conf
 
 # Tray applets
 exec --no-startup-id redshift-gtk

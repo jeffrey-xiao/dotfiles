@@ -88,22 +88,26 @@ URxvt.saveLines:          100000
 URxvt.buffered:           true
 
 !! Rofi Config
-rofi.lines:               10
-rofi.eh:                  1
-rofi.width:               100
-rofi.padding:             300
+!!! Appearance
 rofi.bw:                  0
-rofi.yoffset:             0
 rofi.font:                TamzenForPowerline 16
-rofi.fullscreen:          true
+rofi.eh:                  1
+rofi.color-window:        ARGB(f2, BASE_03), ARGB(f2, BASE_03), ARGB(f2, BASE_01)
+rofi.color-normal:        ARGB(00, BASE_03), ARGB(f2, BASE_1), ARGB(00, BASE_03), ARGB(00, BASE_03), ARGB(f2, YELLOW)
+rofi.color-urgent:        ARGB(00, BASE_03), ARGB(f2, YELLOW), ARGB(00, BASE_03), ARGB(00, BASE_03), ARGB(f2, YELLOW)
+rofi.color-active:        ARGB(00, BASE_03), ARGB(f2, YELLOW), ARGB(00, BASE_03), ARGB(00, BASE_03), ARGB(f2, YELLOW)
+rofi.line-margin:         15
+rofi.separator-style:     solid
 rofi.hide-scrollbar:      true
 
-rofi.color-enabled:       true
-rofi.color-window:        ARGB(f2, BASE_03), ARGB(f2, BASE_03), ARGB(f2, BASE_03)
-rofi.color-normal:        ARGB(00, BASE_03), ARGB(f2, YELLOW), ARGB(00, BASE_03), ARGB(f2, YELLOW), ARGB(f2, BASE_03)
-rofi.color-urgent:        ARGB(00, BASE_03), ARGB(f2, YELLOW), ARGB(00, BASE_03), ARGB(f2, YELLOW), ARGB(f2, BASE_03)
-rofi.color-active:        ARGB(00, BASE_03), ARGB(f2, YELLOW), ARGB(00, BASE_03), ARGB(f2, YELLOW), ARGB(f2, BASE_03)
+!!! Layout
+rofi.lines:               10
+rofi.width:               100
+rofi.padding:             300
+rofi.fullscreen:          true
+rofi.yoffset:             0
 
+!!! Other
 rofi.terminal:            urxvt
 rofi.ssh-client:          ssh
 rofi.ssh-command:         {terminal} -e {ssh-client} {host}

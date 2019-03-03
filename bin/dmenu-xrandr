@@ -1,14 +1,14 @@
 #!/bin/sh
 
+dmenu_cmd() {
+  rofi -i -fuzzy -dmenu -p "$1"
+}
+
 xrandr_output="$(xrandr)"
 connected_monitors=$(printf "%s" "$xrandr_output" | grep "\\bconnected\\b" | awk '{print $1}')
 disconnected_monitors=$(printf "%s" "$xrandr_output" | grep "\\bdisconnected\\b" | awk '{print $1}')
 rotation_options="normal\\ninverted\\nleft\\nright\\n"
 position_options="above\\nbelow\\nsame-as\\nleft-of\\nright-of\\n"
-
-dmenu_cmd() {
-  rofi -i -fuzzy -dmenu -p "$1"
-}
 
 resolution_options() {
   available_resolutions=$(printf "%s" "$xrandr_output" |
@@ -31,10 +31,10 @@ for disconnected_monitor in $disconnected_monitors; do
   xrandr --output "$disconnected_monitor" --off
 done
 
-selected_monitor=$(printf "%s" "$connected_monitors" | dmenu_cmd "Output")
+selected_monitor=$(printf "%s" "$connected_monitors" | dmenu_cmd "output")
 [ -z "$selected_monitor" ] && exit
 
-selected_resolution=$(printf "%s" "$(resolution_options "$selected_monitor")" | dmenu_cmd "Mode")
+selected_resolution=$(printf "%s" "$(resolution_options "$selected_monitor")" | dmenu_cmd "mode")
 [ -z "$selected_resolution" ] && exit
 
 if [ "$selected_resolution" = "off" ]; then
@@ -43,7 +43,7 @@ if [ "$selected_resolution" = "off" ]; then
   exit
 fi
 
-selected_rotation=$(printf "%b" "$rotation_options" | dmenu_cmd "Rotation")
+selected_rotation=$(printf "%b" "$rotation_options" | dmenu_cmd "rotation")
 [ -z "$selected_rotation" ] && exit
 
 anchor_options=$(printf "%s" "$connected_monitors" | grep --invert-match "^$selected_monitor$")
@@ -52,10 +52,10 @@ if [ -z "$anchor_options" ]; then
   post_setup
   exit
 fi
-selected_anchor=$(printf "%s" "$anchor_options" | dmenu_cmd "Anchor")
+selected_anchor=$(printf "%s" "$anchor_options" | dmenu_cmd "anchor")
 [ -z "$selected_anchor" ] && exit
 
-selected_position=$(printf "%b" "$position_options" | dmenu_cmd "Position")
+selected_position=$(printf "%b" "$position_options" | dmenu_cmd "position")
 [ -z "$selected_position" ] && exit
 
 xrandr --output "$selected_monitor" --mode "$selected_resolution" --"$selected_position" "$selected_anchor" --rotate "$selected_rotation"

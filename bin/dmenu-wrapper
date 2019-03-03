@@ -1,0 +1,10 @@
+#!/bin/sh
+
+[ ! -x "$(command -v "$1")" ] && { echo "Error: Argument 1 must be a rofi script."; exit 1; }
+
+script="$1"
+shift
+
+selected_option=$($script | rofi -dmenu "$@")
+[ -z "$selected_option" ] && exit
+$script "$selected_option"

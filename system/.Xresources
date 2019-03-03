@@ -91,23 +91,34 @@ URxvt.buffered:           true
 !!! Appearance
 rofi.bw:                  0
 rofi.font:                TamzenForPowerline 16
-rofi.eh:                  1
+rofi.eh:                  2
 rofi.color-window:        ARGB(f2, BASE_03), ARGB(f2, BASE_03), ARGB(f2, BASE_01)
 rofi.color-normal:        ARGB(00, BASE_03), ARGB(f2, BASE_1), ARGB(00, BASE_03), ARGB(00, BASE_03), ARGB(f2, YELLOW)
 rofi.color-urgent:        ARGB(00, BASE_03), ARGB(f2, YELLOW), ARGB(00, BASE_03), ARGB(00, BASE_03), ARGB(f2, YELLOW)
 rofi.color-active:        ARGB(00, BASE_03), ARGB(f2, YELLOW), ARGB(00, BASE_03), ARGB(00, BASE_03), ARGB(f2, YELLOW)
-rofi.line-margin:         15
+rofi.line-margin:         0
 rofi.separator-style:     solid
 rofi.hide-scrollbar:      true
 
 !!! Layout
-rofi.lines:               10
+rofi.lines:               16
 rofi.width:               100
-rofi.padding:             300
+rofi.padding:             250
 rofi.fullscreen:          true
 rofi.yoffset:             0
+rofi.columns:             2
+
+!!! Keybindings
+rofi.kb-remove-char-back: BackSpace,Shift+BackSpace
+rofi.kb-accept-entry:     Return,KP_Enter
+rofi.kb-row-left:         Control-h
+rofi.kb-row-down:         Control-j
+rofi.kb-row-up:           Control-k
+rofi.kb-row-right:        Control-l
+rofi.kb-remove-to-eol:
 
 !!! Other
+rofi.matching:            fuzzy
 rofi.terminal:            urxvt
 rofi.ssh-client:          ssh
 rofi.ssh-command:         {terminal} -e {ssh-client} {host}

@@ -1,10 +1,13 @@
 #!/bin/sh
 
+[ ! -f "$1" ] && { echo "Error: Argument 1 must be template file."; exit 1; }
+[ -z "$2" ] && { echo "Error: Argument 2 must be the destination location."; exit 1; }
+
 # Copy template to destination.
 cp -f "$1" "$2"
 
 # Load ~/.Xresources.
-xrdb ~/.Xresources
+xrdb "$HOME/.Xresources"
 
 # Query and substitute colors.
 for i in $(seq 0 15); do

@@ -5,7 +5,7 @@ dmenu_cmd() {
 }
 
 power_options="lock\\nlogout\\nsuspend\\nhibernate\\nreboot\\npoweroff"
-selected_power_option=$(printf "%b" "$power_options" | dmenu_cmd "Power Option")
+selected_power_option=$(printf "%b" "$power_options" | dmenu_cmd "power")
 [ -z "$selected_power_option" ] && exit
 
 case "$selected_power_option" in

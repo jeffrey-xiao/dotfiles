@@ -2,13 +2,14 @@
 set $mod Mod4
 
 # Application variables
-set $browser  firefox
-set $explorer urxvt -e ranger
-set $network  nm
-set $music    urxvt -name music -e ncmpcpp
-set $torrent  urxvt -name torrent -e rtorrent
-set $terminal urxvt
-set $viewer   zathura
+set $browser    firefox
+set $explorer   urxvt -name explorer -e ranger
+set $network    nm
+set $music-rofi rofi -modi "song:rofi-mpd-song#playlist:rofi-mpd-playlist#album:rofi-mpd-album" -show song
+set $music      urxvt -name music -e ncmpcpp
+set $torrent    urxvt -name torrent -e rtorrent
+set $terminal   urxvt
+set $viewer     zathura
 
 # Xresources colors
 set_from_resource $color0  i3wm.color0
@@ -42,6 +43,7 @@ floating_modifier $mod
 # Application shortcuts
 bindsym $mod+Return           exec --no-startup-id $terminal
 bindsym $mod+b                exec $browser
+bindsym $mod+Shift+m          exec $music-rofi
 bindsym $mod+m                exec --no-startup-id $music
 bindsym $mod+n                exec $network
 bindsym $mod+t                exec --no-startup-id $torrent
@@ -170,7 +172,7 @@ bindsym $mod+Ctrl+Right move workspace to output right
 bindsym $mod+Ctrl+Left  move workspace to output left
 
 # Shortcut for pwer options
-bindsym $mod+Shift+e exec --no-startup-id dmenu-power
+bindsym $mod+Shift+e exec dmenu-power
 
 # Shortcut for i3lock
 bindsym $mod+Shift+x exec --no-startup-id lock

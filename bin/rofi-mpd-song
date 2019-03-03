@@ -1,0 +1,10 @@
+#!/bin/sh
+
+separator="»"
+songs=$(mpc playlist --format "%artist% $separator %title%")
+
+if [ -z "$1" ]; then
+  mpc playlist --format "%artist% $separator %title%"
+else
+  mpc play "$(echo "$songs" | grep --max-count=1 --line-regexp --line-number "$1" | cut --delimiter=':' --fields 1)" > /dev/null
+fi

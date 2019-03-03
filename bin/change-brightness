@@ -1,5 +1,7 @@
 #!/bin/sh
 
+[ -z "$1" ] && { echo "Error: Argument 1 must be numeric change in brightness."; exit 1; }
+
 brightness_file="/sys/class/backlight/intel_backlight/brightness"
 max_brightness_file="/sys/class/backlight/intel_backlight/max_brightness"
 

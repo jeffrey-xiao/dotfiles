@@ -1,0 +1,14 @@
+#!/bin/sh
+
+separator="»"
+
+if [ -z "$1" ]; then
+  mpc listall --format "%artist% $separator %album%" | sort | uniq | grep ". $separator ."
+else
+  artist=$(echo "$1" | cut --delimiter="$separator" --fields=1 | head --bytes -2)
+  album=$(echo "$1" | cut --delimiter="$separator" --fields=2 | tail --bytes +2)
+  mpc clear > /dev/null
+  mpc random off > /dev/null
+  mpc find artist "$artist" album "$album" | mpc add > /dev/null
+  mpc play > /dev/null
+fi

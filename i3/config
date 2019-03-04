@@ -3,12 +3,12 @@ set $mod Mod4
 
 # Application variables
 set $browser    firefox
-set $explorer   urxvt -name explorer -e ranger
+set $explorer   urxvtc -name explorer -e ranger
 set $network    nm
 set $music-rofi rofi -modi "song:rofi-mpd-song#playlist:rofi-mpd-playlist#album:rofi-mpd-album" -show song
-set $music      urxvt -name music -e ncmpcpp
-set $torrent    urxvt -name torrent -e rtorrent
-set $terminal   urxvt
+set $music      urxvtc -name music -e ncmpcpp
+set $torrent    urxvtc -name torrent -e rtorrent
+set $terminal   urxvtc
 set $viewer     zathura
 
 # Xresources colors
@@ -292,6 +292,9 @@ exec --no-startup-id nm-applet
 
 # Music player
 exec --no-startup-id i3-msg "exec --no-startup-id ps -e | grep --quiet mpd || mpd"
+
+# Urxvt daemon
+exec --no-startup-id urxvtd --quiet --fork --opendisplay
 
 # Configure displays
 exec_always --no-startup-id setup-displays

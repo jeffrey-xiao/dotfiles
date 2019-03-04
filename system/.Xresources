@@ -119,6 +119,6 @@ rofi.kb-remove-to-eol:
 
 !!! Other
 rofi.matching:            fuzzy
-rofi.terminal:            urxvt
+rofi.terminal:            urxvtc
 rofi.ssh-client:          ssh
 rofi.ssh-command:         {terminal} -e {ssh-client} {host}

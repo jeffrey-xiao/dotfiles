@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
+CONFIG_DIR="${XDG_CONFIG_HOME:-"$HOME/.config"}/bash"
+
 # If not running interactively, don't do anything.
 case $- in
-    *i*) ;;
-      *) return;;
+  *i*) ;;
+  *) return;;
 esac
 
 # History config.
@@ -21,11 +23,8 @@ shopt -s dotglob
 # files and zero or more directories and subdirectories.
 shopt -s globstar
 
-# make less more friendly for non-text input files, see lesspipe(1).
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
 # Bash prompt.
-. ~/.bash_twoline_simple
+. $CONFIG_DIR/bash_twoline_simple
 
 # Enable color support of ls.
 if [ -x /usr/bin/dircolors ]; then
@@ -36,10 +35,10 @@ fi
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # Alias definitions.
-[ -f ~/.bash_aliases ] && . ~/.bash_aliases
+[ -f $CONFIG_DIR/bash_aliases ] && . $CONFIG_DIR/bash_aliases
 
 # Function definitions.
-[ -f ~/.bash_functions ] && . ~/.bash_functions
+[ -f $CONFIG_DIR/bash_functions ] && . $CONFIG_DIR/bash_functions
 
 # Enable vi mode.
 set -o vi

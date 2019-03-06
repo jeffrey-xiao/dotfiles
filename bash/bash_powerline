@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+CONFIG_DIR="${XDG_CONFIG_HOME:-"$HOME/.config"}/bash"
+
 __powerline() {
   ps1() {
     # Check the exit code of the previous command and display different
@@ -22,9 +24,9 @@ __powerline() {
     fi
     PS1+="$BG_EXIT$FG_COLOR_15 $PS_SYMBOL $RESET$FG_EXIT$RIGHT_ARROW$RESET "
   }
-  . ~/.bash_symbols
-  . ~/.bash_colors
-  . ~/.bash_info
+  . $CONFIG_DIR/bash_symbols
+  . $CONFIG_DIR/bash_colors
+  . $CONFIG_DIR/bash_info
   PROMPT_COMMAND=ps1
 }
 

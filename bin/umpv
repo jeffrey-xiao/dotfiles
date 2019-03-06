@@ -50,7 +50,7 @@ def make_abs(filename):
     return filename
 files = [make_abs(f) for f in files]
 
-FIFO = os.path.join(os.getenv("HOME"), ".tmp/umpv_fifo")
+FIFO = os.path.join("/tmp/umpv_fifo")
 
 fifo_fd = -1
 try:
@@ -59,7 +59,7 @@ except OSError as e:
     if e.errno == errno.ENXIO:
         pass  # pipe has no writer
     elif e.errno == errno.ENOENT:
-        pass # doesn't exist
+        pass  # doesn't exist
     else:
         raise e
 

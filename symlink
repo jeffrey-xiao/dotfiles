@@ -23,7 +23,7 @@ for folder in bin weechat; do
 done
 
 ## Link to .config/$folder.
-for folder in compton feh htop i3 mpd mpv ncmpcpp polybar ranger rtorrent tmux; do
+for folder in bash compton feh htop i3 mpd mpv ncmpcpp polybar ranger rtorrent tmux; do
   # rm -rf ~/.config/$folder
   mkdir -pv ~/.config/$folder/
   for f in "$DOTFILES_DIR"/"$folder"/*; do
@@ -61,9 +61,6 @@ ln -sfv "$DOTFILES_DIR/fonts/fonts.conf" ~/.config/fontconfig/
 ## Link networkmanager config.
 mkdir -pv ~/.config/networkmanager-dmenu/
 ln -sfv "$DOTFILES_DIR/i3/config.ini" ~/.config/networkmanager-dmenu/
-
-## Create tmp folder for i3.
-mkdir -pv ~/.tmp/
 
 ## Set gnome settings.
 gsettings set org.gnome.desktop.interface icon-theme "Papirus"

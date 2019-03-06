@@ -1,3 +1,6 @@
+bash:
+  link: ~/.config/bash
+
 bin:
   link: ~/.bin/
 
@@ -63,7 +66,6 @@ i3:
     - xclip
     - xinput
   postlink:
-    - mkdir -pv ~/.tmp/
     - gsettings set org.gnome.desktop.interface icon-theme "Papirus"
     - gsettings set org.gnome.desktop.interface gtk-theme "Numix"
     - gsettings set org.gnome.desktop.wm.preferences theme "Numix"

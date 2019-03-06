@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 : <<'solarized color scheme'
 if [ "$(tput colors)" -ge 256 ] 2>/dev/null; then

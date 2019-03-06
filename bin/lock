@@ -1,7 +1,7 @@
 #!/bin/sh
 
 img_path() {
-  echo "$HOME/.tmp/blurred_screen_$1.png"
+  echo "/tmp/blurred_screen_$1.png"
 }
 
 res=$(xdpyinfo | awk '/dimensions/{print $2}')

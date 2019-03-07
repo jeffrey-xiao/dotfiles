@@ -1,7 +1,7 @@
 #!/bin/sh
 
-[ ! -x "$(command -v virtualenv)" ] && { echo "Error: virtualenv is not installed."; exit 1; }
-[ ! -f "$1" ] && { echo "Error: Argument 1 must be requirements file."; exit 1; }
+[ ! -x "$(command -v virtualenv)" ] && { echo "Error: virtualenv is not installed." && exit 1; }
+[ ! -f "$1" ] && { echo "Error: Argument 1 must be requirements file." && exit 1; }
 
 virtualenv --python=python3 tmp 1>/dev/null &&
   . ./tmp/bin/activate &&

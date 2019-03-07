@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CONFIG_DIR="${XDG_CONFIG_HOME:-"$HOME/.config"}/bash"
+CONFIG_DIR=${XDG_CONFIG_HOME:-"$HOME/.config"}/bash
 
 __twoline() {
   ps1() {
@@ -32,9 +32,9 @@ __twoline() {
     PS1="$(__title)$FG_EXIT┌─${__twoline_virtual_env}[$RESET$__twoline_formatted_path$FG_EXIT]${__twoline_git_info}\\n"
     PS1+="$FG_EXIT└─╼$RESET "
   }
-  . $CONFIG_DIR/bash_symbols
-  . $CONFIG_DIR/bash_colors
-  . $CONFIG_DIR/bash_info
+  . "$CONFIG_DIR/bash_symbols"
+  . "$CONFIG_DIR/bash_colors"
+  . "$CONFIG_DIR/bash_info"
   PROMPT_COMMAND=ps1
 }
 

@@ -24,7 +24,7 @@ shopt -s dotglob
 shopt -s globstar
 
 # Bash prompt.
-. $CONFIG_DIR/bash_twoline_simple
+. "$CONFIG_DIR/bash_twoline_simple"
 
 # Enable color support of ls.
 if [ -x /usr/bin/dircolors ]; then
@@ -35,10 +35,13 @@ fi
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # Alias definitions.
-[ -f $CONFIG_DIR/bash_aliases ] && . $CONFIG_DIR/bash_aliases
+[ -f "$CONFIG_DIR/bash_aliases" ] && . "$CONFIG_DIR/bash_aliases"
 
 # Function definitions.
-[ -f $CONFIG_DIR/bash_functions ] && . $CONFIG_DIR/bash_functions
+[ -f "$CONFIG_DIR/bash_functions" ] && . "$CONFIG_DIR/bash_functions"
+
+# Bash bookmarks.
+[ -f "$CONFIG_DIR/bash_bookmarks" ] && . "$CONFIG_DIR/bash_bookmarks"
 
 # Enable vi mode.
 set -o vi

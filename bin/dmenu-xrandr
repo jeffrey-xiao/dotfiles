@@ -37,21 +37,14 @@ selected_monitor=$(printf "%s" "$connected_monitors" | dmenu_cmd "output")
 selected_resolution=$(printf "%s" "$(resolution_options "$selected_monitor")" | dmenu_cmd "mode")
 [ -z "$selected_resolution" ] && exit
 
-if [ "$selected_resolution" = "off" ]; then
-  xrandr --output "$selected_monitor" --off
-  post_setup
-  exit
-fi
+[ "$selected_resolution" = "off" ] && { xrandr --output "$selected_monitor" --off && post_setup && exit; }
 
 selected_rotation=$(printf "%b" "$rotation_options" | dmenu_cmd "rotation")
 [ -z "$selected_rotation" ] && exit
 
 anchor_options=$(printf "%s" "$connected_monitors" | grep --invert-match "^$selected_monitor$")
-if [ -z "$anchor_options" ]; then
-  xrandr --output "$selected_monitor" --mode "$selected_resolution" --rotate "$selected_rotation"
-  post_setup
-  exit
-fi
+[ -z "$anchor_options" ] && { xrandr --output "$selected_monitor" --mode "$selected_resolution" --rotate "$selected_rotation" && post_setup && exit; }
+
 selected_anchor=$(printf "%s" "$anchor_options" | dmenu_cmd "anchor")
 [ -z "$selected_anchor" ] && exit
 

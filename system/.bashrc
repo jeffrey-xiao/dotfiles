@@ -23,8 +23,8 @@ shopt -s dotglob
 # files and zero or more directories and subdirectories.
 shopt -s globstar
 
-# Bash prompt.
-. "$CONFIG_DIR/bash_twoline_simple"
+# Enable vi mode.
+set -o vi
 
 # Enable color support of ls.
 if [ -x /usr/bin/dircolors ]; then
@@ -33,18 +33,6 @@ fi
 
 # Colored GCC warnings and errors.
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# Alias definitions.
-[ -f "$CONFIG_DIR/bash_aliases" ] && . "$CONFIG_DIR/bash_aliases"
-
-# Function definitions.
-[ -f "$CONFIG_DIR/bash_functions" ] && . "$CONFIG_DIR/bash_functions"
-
-# Bash bookmarks.
-[ -f "$CONFIG_DIR/bash_bookmarks" ] && . "$CONFIG_DIR/bash_bookmarks"
-
-# Enable vi mode.
-set -o vi
 
 # Enable programmable completion features.
 if ! shopt -oq posix; then
@@ -55,8 +43,20 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# Bash prompt.
+. "$CONFIG_DIR/bash_twoline_simple"
+
+# Alias definitions.
+[ -f "$CONFIG_DIR/bash_aliases" ] && . "$CONFIG_DIR/bash_aliases"
+
+# Function definitions.
+[ -f "$CONFIG_DIR/bash_functions" ] && . "$CONFIG_DIR/bash_functions"
+
+# Bash bookmarks.
+[ -f "$CONFIG_DIR/bash_bookmarks" ] && . "$CONFIG_DIR/bash_bookmarks"
+
 # Source fzf if directory exists.
-[ -f ~/.fzf.bash ] && . ~/.fzf.bash
+[ -f "$HOME/.fzf.bash" ] && . "$HOME/.fzf.bash"
 
 # Source nvm if directory exists.
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use

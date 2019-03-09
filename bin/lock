@@ -36,4 +36,4 @@ for res in $sr; do
   index=$((index + 1))
 done
 
-i3lock -e -u -i "$(img_path $index)"
+i3lock -e -u -i "$(img_path $index)" && systemctl suspend

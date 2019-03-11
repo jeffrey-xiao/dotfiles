@@ -257,7 +257,7 @@ bindsym XF86AudioNext  exec --no-startup-id mpc next
 bindsym XF86AudioPrev  exec --no-startup-id mpc prev
 bindsym XF86AudioStop  exec --no-startup-id mpc pause
 
-# MPD controls
+# Mpd controls
 bindsym $mod+p            exec --no-startup-id mpc toggle
 bindsym $mod+bracketleft  exec --no-startup-id mpc prev
 bindsym $mod+bracketright exec --no-startup-id mpc next
@@ -280,21 +280,21 @@ exec --no-startup-id xset fp rehash
 ## Configure startup applications
 # Appearance and notifications
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
+exec --no-startup-id compton --config ~/.config/compton/compton.conf
 exec --no-startup-id dunst --config ~/.config/dunst/dunstrc
 exec --no-startup-id notify-battery
 exec --no-startup-id robar start
-exec --no-startup-id compton --config ~/.config/compton/compton.conf
 
 # Tray applets
 exec --no-startup-id redshift-gtk
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
 
-# Music player
-exec --no-startup-id i3-msg "exec --no-startup-id ps -e | grep --quiet mpd || mpd"
+# Initialize mpd
+exec --no-startup-id init-mpd
 
-# Urxvt daemon
-exec --no-startup-id urxvtd --quiet --fork --opendisplay
+# Initialize urxvt daemon
+exec --no-startup-id init-urxvtd
 
-# Configure displays
-exec_always --no-startup-id setup-displays
+# Initialize displays
+exec_always --no-startup-id init-displays

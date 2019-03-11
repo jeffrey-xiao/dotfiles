@@ -1,0 +1,3 @@
+#!/bin/sh
+
+pgrep --exact urxvtd > /dev/null && urxvtd --quiet --fork --opendisplay

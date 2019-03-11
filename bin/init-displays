@@ -8,5 +8,5 @@ else
   xrandr --output DP1 --off
 fi
 
-setup-polybar
-setup-background
+init-polybar
+init-background

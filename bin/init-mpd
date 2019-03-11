@@ -1,0 +1,3 @@
+#!/bin/sh
+
+pgrep --exact mpd > /dev/null && mpd

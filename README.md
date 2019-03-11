@@ -83,7 +83,7 @@ the exception of the transparent background in `urxvt`, the shades in `polybar`,
 - [`bin/get-weather`](bin/get-weather): Change the API key
 - [`bin/notify-battery`](bin/notify-battery): Change the path to the system internals interface for
   the power supply device.
-- [`bin/setup-displays`](bin/setup-displays): Change the monitor setup.
+- [`bin/init-displays`](bin/init-displays): Change the monitor setup.
 - [`bin/toggle-keyboard`](bin/toggle-keyboard): Change the keyboard device name.
 - [`bin/toggle-touchpad`](bin/toggle-touchpad): Change the touchpad device name.
 - [`git/.gitconfig`](git/.gitconfig): Change the username and email.

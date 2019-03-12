@@ -43,8 +43,9 @@ floating_modifier $mod
 # Application shortcuts
 bindsym $mod+Return           exec --no-startup-id $terminal
 bindsym $mod+b                exec $browser
-bindsym $mod+Shift+m          exec $music-rofi
+bindsym $mod+Shift+b          exec $browser --private-window
 bindsym $mod+m                exec --no-startup-id $music
+bindsym $mod+Shift+m          exec $music-rofi
 bindsym $mod+n                exec $network
 bindsym $mod+t                exec --no-startup-id $torrent
 bindsym $mod+y                exec --no-startup-id $explorer

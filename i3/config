@@ -274,10 +274,6 @@ hide_edge_borders smart
 for_window [class="^.*"] border pixel 5
 new_float none
 
-# Configure fonts
-exec --no-startup-id xset +fp ~/.fonts
-exec --no-startup-id xset fp rehash
-
 ## Configure startup applications
 # Appearance and notifications
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
@@ -291,11 +287,14 @@ exec --no-startup-id redshift-gtk
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
 
-# Initialize mpd
-exec --no-startup-id init-mpd
+# Initialize displays
+exec_always --no-startup-id init-displays
 
 # Initialize urxvt daemon
 exec --no-startup-id init-urxvtd
 
-# Initialize displays
-exec_always --no-startup-id init-displays
+# Initialize mpd
+exec --no-startup-id init-mpd
+
+# Configure fonts
+exec --no-startup-id init-fonts

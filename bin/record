@@ -3,8 +3,8 @@
 VIDEOS_DIR=${XDG_VIDEOS_DIR:-"$HOME/Videos"}
 file="$VIDEOS_DIR/$(date +%s).mp4"
 
-if pgrep ffmpeg; then
-  pkill -INT ffmpeg
+if pgrep --exact ffmpeg; then
+  pkill --exact -INT ffmpeg
   notify-send --urgency=low "Stopped video recording"
   exit 0
 fi

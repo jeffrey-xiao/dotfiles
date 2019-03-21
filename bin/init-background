@@ -1,3 +1,4 @@
 #!/bin/sh
 
-feh --bg-scale "$HOME/.config/i3/images/wallpaper.png"
+WALLPAPER_FILE=${XDG_CONFIG_HOME:-"$HOME/.config"}/i3/images/wallpaper.png
+feh --bg-scale "$WALLPAPER_FILE"

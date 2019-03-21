@@ -27,9 +27,8 @@
 \setlength{\parskip}{0.4cm}
 
 % Setting options for minted
-\definecolor{bg}{rgb}{0.85,0.85,0.85}
-\setminted{linenos, bgcolor=bg, numbersep=0.20cm}
-\renewcommand{\theFancyVerbLine}{\sffamily \textcolor[rgb]{0,0,1}{\normalsize \oldstylenums{\arabic{FancyVerbLine}}}}
+\setminted{linenos, numbersep=0.20cm, frame=single}
+\renewcommand{\theFancyVerbLine}{\textcolor[rgb]{0,0,0}{\oldstylenums{\arabic{FancyVerbLine}}}}
 
 % Setting environments for amsthm
 \makeatletter
@@ -40,16 +39,16 @@
 \makeatother
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{cor}{Corollary}[thm]
-\newtheorem{lemma}{Lemma}[thm]
+\newtheorem{lem}{Lemma}[thm]
 \newtheorem{prop}{Proposition}[thm]
 
 \theoremstyle{definition}
-\newtheorem{defn}{Definition}[section]
+\newtheorem{defn}{Definition}
 \theoremstyle{definition}
-\newtheorem{exmp}{Example}[section]
+\newtheorem{ex}{Example}
 
 \theoremstyle{remark}
-\newtheorem*{remark}{Remark}
+\newtheorem*{rmk}{Remark}
 \theoremstyle{remark}
 \newtheorem*{prf}{Proof}
 

@@ -144,7 +144,7 @@ def create_other_actions(client):
             Action("{} Networking".format(networking_action),
                    toggle_networking, not networking_enabled),
             Action("Launch Connection Manager", launch_connection_editor),
-            Action("Delete a Connection", delete_connection)]
+            Action("Delete Connection", delete_connection)]
 
 
 def ssid_to_utf8(nm_ap):
@@ -448,7 +448,7 @@ def delete_connection():
     """
     conn_acts = [Action(i.get_id(), i.delete) for i in CONNS]
     conn_names = "\n".join([str(i) for i in conn_acts]).encode(ENC)
-    sel = Popen(dmenu_cmd(len(conn_acts), "CHOOSE CONNECTION TO DELETE:"),
+    sel = Popen(dmenu_cmd(len(conn_acts), "Delete Connection"),
                 stdin=PIPE,
                 stdout=PIPE,
                 env=ENV).communicate(input=conn_names)[0].decode(ENC)

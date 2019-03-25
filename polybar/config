@@ -25,7 +25,7 @@ tray-position = right
 
 modules-left = i3 mpd
 modules-center = date separator weather
-modules-right = memory cpu wired-network network pulseaudio battery
+modules-right = memory cpu wired-network wireless-network pulseaudio battery
 
 [module/i3]
 type = internal/i3
@@ -123,7 +123,7 @@ label-connected-foreground = ${xrdb:color8}
 label-connected-background = ${xrdb:color7}
 label-connected-padding-left = 1
 
-[module/network]
+[module/wireless-network]
 type = internal/network
 
 ; Use following command to get wifi interface

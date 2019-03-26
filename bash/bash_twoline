@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 CONFIG_DIR=${XDG_CONFIG_HOME:-"$HOME/.config"}/bash
 
@@ -7,30 +7,34 @@ __twoline() {
     # Check the exit code of the previous command and display different
     # colors in the prompt accordingly.
     if [ $? -eq 0 ]; then
-      local FG_EXIT="$FG_COLOR_2"
+      FG_EXIT="$FG_COLOR_2"
     else
-      local FG_EXIT="$FG_COLOR_1"
+      FG_EXIT="$FG_COLOR_1"
     fi
 
-    __twoline_virtual_env="$(__venv_info)"
-    __twoline_git_info="$(__git_info)"
+    PS1="$(__title)$FG_EXIT┌─"
 
+    git_info="$(__git_info)"
+    venv_info="$(__venv_info)"
+    nvm_info="$(__nvm_info)"
+
+    # Path info
     if [ "$(id -u)" -eq 0 ]; then
-      __twoline_formatted_path="$FG_COLOR_4$(__path_info)$RESET"
+      PS1="$PS1[$FG_COLOR_4$(__path_info)$RESET$FG_EXIT]"
     else
-      __twoline_formatted_path="$FG_COLOR_3$(__path_info)$RESET"
+      PS1="$PS1[$FG_COLOR_3$(__path_info)$RESET$FG_EXIT]"
     fi
 
-    if [[ ! -z "${__twoline_virtual_env// }" ]]; then
-      __twoline_virtual_env="[$RESET$FG_COLOR_3${__twoline_virtual_env}$RESET$FG_EXIT]-"
-    fi
+    # Git info
+    [ ! -z "$git_info" ] && PS1="$PS1-[$FG_COLOR_3$git_info$RESET$FG_EXIT]"
 
-    if [[ ! -z "${__twoline_git_info// }" ]]; then
-      __twoline_git_info="-[$RESET$FG_COLOR_3${__twoline_git_info}$RESET$FG_EXIT]$RESET"
-    fi
+    for info in "$venv_info" "$nvm_info"; do
+      [ -z "$info" ] && continue
+      PS1="$PS1-[$FG_COLOR_3$info$RESET$FG_EXIT]"
+    done
 
-    PS1="$(__title)$FG_EXIT┌─${__twoline_virtual_env}[$RESET$__twoline_formatted_path$FG_EXIT]${__twoline_git_info}\\n"
-    PS1+="$FG_EXIT└─╼$RESET "
+    PS1="$PS1\\n$FG_EXIT└─╼$RESET "
+    PS2="$FG_EXIT└─╼$RESET "
   }
   . "$CONFIG_DIR/bash_symbols"
   . "$CONFIG_DIR/bash_colors"

@@ -1,14 +1,14 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 __initialize_symbols() {
-  [[ -n $SYMBOLS_INITIALIZED ]] && return
+  [ -n "$SYMBOLS_INITIALIZED" ] && return
   readonly SYMBOLS_INITIALIZED=1
 
   # Unicode symbols
   readonly PS_SYMBOL_DARWIN=''
   readonly PS_SYMBOL_LINUX='$'
   readonly PS_SYMBOL_OTHER='%'
-  if [[ -z "$PS_SYMBOL" ]]; then
+  if [ -z "$PS_SYMBOL" ]; then
     case "$(uname)" in
       Darwin)
         readonly PS_SYMBOL=$PS_SYMBOL_DARWIN

@@ -47,7 +47,15 @@ __git_info() {
 }
 
 __venv_info() {
-  # Venv not found.
+  # venv not found.
   [ -z ${VIRTUAL_ENV+x} ] && return
-  echo "${VIRTUAL_ENV##*/}"
+  version=$(python --version | cut --delimiter=' ' --fields=2-)
+  echo "${VIRTUAL_ENV##*/} v$version"
+}
+
+__nvm_info() {
+  # nvm using system
+  version=$(nvm current)
+  [ "$version" = "system" ] && return
+  echo "nvm $version"
 }

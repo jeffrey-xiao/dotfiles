@@ -1,7 +1,6 @@
 #!/bin/sh
 
 amixer_info=$(amixer sget Master)
-
 left=$(echo "$amixer_info" | grep 'Left:' | awk --field-separator='[][]' '{ print $2 }')
 right=$(echo "$amixer_info" | grep 'Right:' | awk --field-separator='[][]' '{ print $2 }')
 

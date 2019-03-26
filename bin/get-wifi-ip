@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ifconfig "$(get-wifi-interface)" | grep --extended-regexp --only-matching 'inet addr:([0-9]*\.){3}[0-9]*' | grep --extended-regexp --only-matching '([0-9]*\.){3}[0-9]*' | grep --invert-match '127.0.0.1'

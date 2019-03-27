@@ -14,19 +14,46 @@ __powerline() {
       FG_EXIT="$FG_COLOR_1"
     fi
 
+    previous_color=""
+    color_index=0
+    colors=""
+
+    push_section() {
+      [ ! -z "$previous_color" ] && PS1="$PS1$previous_color$3$RIGHT_ARROW$RESET"
+      PS1="$PS1$FG_COLOR_15$3 $1 $RESET"
+      previous_color=$2
+    }
+
+    get_color() {
+      if [ "$((color_index % 2))" = 0 ]; then
+        colors="$FG_COLOR_3 $BG_COLOR_3"
+      else
+        colors="$FG_COLOR_4 $BG_COLOR_4"
+      fi
+      color_index=$((color_index + 1))
+    }
+
     PS1="$(__title)"
 
     git_info="$(__git_info)"
+    venv_info="$(__venv_info)"
+    nvm_info="$(__nvm_info)"
+
+    # Path info
+    push_section "\\W" "$FG_COLOR_11" "$BG_COLOR_11"
 
     # Git info
-    if [ ! -z "$git_info" ]; then
-      PS1="$PS1$BG_COLOR_11$FG_COLOR_15 \\W $RESET$BG_COLOR_4$FG_COLOR_11$RIGHT_ARROW$RESET"
-      PS1="$PS1$BG_COLOR_4$FG_COLOR_15 $git_info $RESET$BG_EXIT$FG_COLOR_4$RIGHT_ARROW$RESET"
-    else
-      PS1="$PS1$BG_COLOR_11$FG_COLOR_15 \\W $RESET$BG_EXIT$FG_COLOR_11$RIGHT_ARROW$RESET"
-    fi
+    [ ! -z "$git_info" ] && push_section "$git_info" "$FG_COLOR_4" "$BG_COLOR_4"
 
-    PS1="$PS1$BG_EXIT$FG_COLOR_15 $PS_SYMBOL $RESET$FG_EXIT$RIGHT_ARROW$RESET "
+    # Environment info
+    for info in "$venv_info" "$nvm_info"; do
+      [ -z "$info" ] && continue
+      get_color
+      push_section "$info" $colors
+    done
+    push_section "$PS_SYMBOL" "$FG_EXIT" "$BG_EXIT"
+
+    PS1="$PS1$previous_color$RIGHT_ARROW$RESET "
     PS2="$BG_EXIT$FG_COLOR_15 $PS_SYMBOL $RESET$FG_EXIT$RIGHT_ARROW$RESET "
   }
   . "$CONFIG_DIR/bash_symbols"

@@ -50,13 +50,12 @@ for f in "${programs[@]}"; do
 done
 
 ## Installing powerline fonts.
-git clone https://github.com/powerline/fonts ~/fonts/powerline-fonts &&
-  . ~/fonts/powerline-fonts/install.sh
+git clone https://github.com/powerline/fonts ~/Documents/fonts/powerline-fonts &&
+  . ~/Documents/fonts/powerline-fonts/install.sh
 sudo rm -f /usr/share/fonts/conf.d/70-no-bitmaps.conf &&
   sudo ln -svf /usr/share/fontconfig/conf.avail/70-yes-bitmaps.conf /usr/share/fonts/conf.d
-mkdir -pv ~/.fonts/ &&
-  cp "$DOTFILES_DIR"/fonts/* ~/.fonts/ &&
-  (cd ~/.fonts && mkfontdir && mkfontscale)
+cp ./fonts/[!fonts.conf]* ~/.local/share/fonts/ &&
+  (cd ~/.local/share/fonts/ && mkfontdir && mkfontscale)
 fc-cache --force --verbose
 
 ## Installing development related programs and tools.

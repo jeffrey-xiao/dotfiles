@@ -1,13 +1,13 @@
 #!/bin/sh
 
 # set PATH so it includes user's private bin directories
-export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # set PATH to include cargo binaries
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # set PATH to include fzf binaries
-export PATH="$PATH:/home/jeffreyxiao/.fzf/bin"
+export PATH="$PATH:$HOME/.fzf/bin"
 
 # Environment variables for mpd
 export MPD_HOST=~/.config/mpd/socket
@@ -29,3 +29,6 @@ export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
 # Setting nvm dir
 export NVM_DIR="$HOME/.nvm"
+
+# Setting weechat home directory
+export WEECHAT_HOME=${XDG_CONFIG_HOME:-"$HOME/.config"}/weechat

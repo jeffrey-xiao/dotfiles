@@ -157,7 +157,7 @@ augroup dirvish_group
 augroup END
 
 "" Config for Gutentags
-let g:gutentags_cache_dir = '~/.tags'
+let g:gutentags_cache_dir = '~/.vim/tags'
 let g:gutentags_generate_on_empty_buffer = 1
 
 "" Config for IndentLine
@@ -310,14 +310,14 @@ set viminfo+=n$HOME/.vim/viminfo
 
 "" Setting undo, backup, and swp directories
 set undofile
-set undodir=~/.vim/.undo//
+set undodir=~/.vim/undo//
 set backup
-set backupdir=~/.vim/.backup//
-set directory=~/.vim/.swp//
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swp//
 
 " Create necessary directories
 if exists('*mkdir')
-  for s:dir in [ '/.vim/.backup', '/.vim/.swp', '/.vim/.undo', '/.tags' ]
+  for s:dir in [ '/.vim/backup', '/.vim/swp', '/.vim/undo', '/.vim/tags' ]
     if !isdirectory($HOME.s:dir)
       call mkdir($HOME.s:dir, 'p')
     endif

@@ -8,27 +8,23 @@ shopt -s dotglob
 
 ## Link to ~.
 for folder in git system; do
-  for f in "$DOTFILES_DIR"/"$folder"/*; do
+  for f in "$DOTFILES_DIR/$folder"/*; do
     ln -sfv "$f" ~/
   done
 done
 
-## Link to ~/.$folder.
-for folder in bin weechat; do
-  # rm -rf ~/.$folder
-  mkdir -pv ~/.$folder/
-  for f in "$DOTFILES_DIR"/"$folder"/*; do
-    ln -sfv "$f" ~/.$folder/
+## Link to .config/$folder.
+for folder in bash compton feh htop i3 mpd mpv ncmpcpp polybar ranger rtorrent tmux weechat; do
+  mkdir -pv ~/.config/$folder/
+  for f in "$DOTFILES_DIR/$folder"/*; do
+    ln -sfv "$f" ~/.config/$folder/
   done
 done
 
-## Link to .config/$folder.
-for folder in bash compton feh htop i3 mpd mpv ncmpcpp polybar ranger rtorrent tmux; do
-  # rm -rf ~/.config/$folder
-  mkdir -pv ~/.config/$folder/
-  for f in "$DOTFILES_DIR"/"$folder"/*; do
-    ln -sfv "$f" ~/.config/$folder/
-  done
+## Link bin
+mkdir -pv ~/.local/bin/
+for f in "$DOTFILES_DIR/bin"/*; do
+  ln -sfv "$f" ~/.local/bin/
 done
 
 ## Link dunst config.
@@ -48,8 +44,6 @@ ln -sfv "$DOTFILES_DIR/vim/.clang_complete" ~/
 
 ln -sfv "$DOTFILES_DIR/vim/after" ~/.vim/
 ln -sfv "$DOTFILES_DIR/vim/minisnip" ~/.vim/
-
-mkdir -pv ~/.vim/.undo/ ~/.vim/.backup/ ~/.vim/.swp/ ~/.tags/
 
 ## Link miscellaneous config.
 mkdir -pv ~/.config/redshift

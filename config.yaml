@@ -1,11 +1,11 @@
 bash:
-  link: ~/.config/bash
+  link: ~/.config/bash/
 
 bin:
-  link: ~/.bin/
+  link: ~/.local/bin/
 
 compton:
-  link: ~/.config/compton
+  link: ~/.config/compton/
   dependencies:
     - compton
 
@@ -19,15 +19,14 @@ fonts:
     - fonts.conf: ~/.config/fontconfig/
   postlink:
     - >
-      git clone https://github.com/powerline/fonts ~/fonts/powerline-fonts &&
-      . ~/fonts/powerline-fonts/install.sh
+      git clone https://github.com/powerline/fonts ~/Documents/fonts/powerline-fonts &&
+      . ~/Documents/fonts/powerline-fonts/install.sh
     - >
       sudo rm -f /usr/share/fonts/conf.d/70-no-bitmaps.conf &&
       sudo ln -svf /usr/share/fontconfig/conf.avail/70-yes-bitmaps.conf /usr/share/fonts/conf.d
     - >
-      mkdir -pv ~/.fonts/ &&
-      cp ./fonts/* ~/.fonts/ &&
-      (cd ~/.fonts && mkfontdir && mkfontscale)
+      cp ./fonts/[!fonts.conf]* ~/.local/share/fonts/ &&
+      (cd ~/.local/share/fonts/ && mkfontdir && mkfontscale)
     - fc-cache --force --verbose
   dependencies:
     - xset
@@ -72,7 +71,7 @@ i3:
 
 misc:
   link:
-    - redshift.conf: ~/.config/redshift
+    - redshift.conf: ~/.config/redshift/
   dependencies:
     - redshift
     - youtube-dl
@@ -117,7 +116,7 @@ ranger:
     - highlight
 
 rtorrent:
-  link: ~/.config/rtorrent
+  link: ~/.config/rtorrent/
   postlink:
     - mkdir -pv ~/Downloads/complete/ ~/Downloads/incomplete/ ~/.config/rtorrent/sessions/
   dependencies:
@@ -140,7 +139,7 @@ dunst:
     - dunst
 
 tmux:
-  link: ~/.config/tmux
+  link: ~/.config/tmux/
   dependencies:
     - tmux
 
@@ -180,7 +179,7 @@ vim:
     - cppcheck
 
 weechat:
-  link: ~/.weechat/
+  link: ~/.config/weechat/
   dependencies:
     - weechat
 

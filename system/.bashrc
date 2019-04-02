@@ -27,9 +27,9 @@ shopt -s globstar
 set -o vi
 
 # Enable color support of ls.
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors --bourne-shell ~/.dircolors)" || eval "$(dircolors --bourne-shell)"
-fi
+DIRCOLORS=""
+[ -e "$HOME/.dircolors" ] && DIRCOLORS="$HOME/.dircolors"
+[ -x "$(command -v dircolors)" ] && eval "$(dircolors --bourne-shell "$DIRCOLORS")"
 
 # Colored GCC warnings and errors.
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'

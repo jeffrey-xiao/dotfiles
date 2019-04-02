@@ -1,7 +1,7 @@
 [bar/top]
 monitor = ${env:MONITOR}
 width = 100%
-height = 24
+height = 21
 
 background = ${xrdb:color8}
 foreground = ${xrdb:color7}
@@ -14,7 +14,7 @@ padding = 0
 font-0 = "TamzenForPowerline:size=18;2"
 
 ; Japanese characters
-font-1 = "M+ 2c:style=regular:size=13;2"
+font-1 = "M+ 2c:style=regular:size=10;2"
 
 ; Icons
 font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=10;2"
@@ -121,7 +121,7 @@ interface = enp1s0
 label-connected =  %local_ip%
 label-connected-foreground = ${xrdb:color8}
 label-connected-background = ${xrdb:color7}
-label-connected-padding-left = 1
+label-connected-padding = 1
 
 [module/wireless-network]
 type = internal/network

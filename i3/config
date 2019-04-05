@@ -240,13 +240,13 @@ mode "$mode_gaps_outer" {
 bindsym $mod+g mode "$mode_gaps"
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id "set-volume -r +5 && robar-volume"
-bindsym XF86AudioLowerVolume exec --no-startup-id "set-volume -r -5 && robar-volume"
-bindsym XF86AudioMute        exec --no-startup-id "set-volume -t && robar-volume"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "volume -r +5 && robar-volume"
+bindsym XF86AudioLowerVolume exec --no-startup-id "volume -r -5 && robar-volume"
+bindsym XF86AudioMute        exec --no-startup-id "volume -t && robar-volume"
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp   exec --no-startup-id "sudo set-brightness -r +50 && robar-brightness"
-bindsym XF86MonBrightnessDown exec --no-startup-id "sudo set-brightness -r -50 && robar-brightness"
+bindsym XF86MonBrightnessUp   exec --no-startup-id "sudo brightness -r +50 && robar-brightness"
+bindsym XF86MonBrightnessDown exec --no-startup-id "sudo brightness -r -50 && robar-brightness"
 
 # Touchpad controls
 bindsym XF86TouchpadToggle exec --no-startup-id set-touchpad

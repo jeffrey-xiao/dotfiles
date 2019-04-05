@@ -1,0 +1,32 @@
+#!/bin/sh
+
+amixer_info=$(amixer sget Master)
+left=$(echo "$amixer_info" | grep 'Left:' | awk --field-separator='[][]' '{ print $2 }')
+right=$(echo "$amixer_info" | grep 'Right:' | awk --field-separator='[][]' '{ print $2 }')
+
+[ -z "$1" ] && {
+  if echo "$amixer_info" | grep --silent "\\[on\\]"; then
+    echo "$(echo "p = (${left%\%} + ${right%\%}) / 200 * 100; scale = 0; p / 1" | bc --mathlib)%"
+  else
+    echo "muted"
+  fi
+  exit 0
+}
+
+if [ "$1" = "-r" ]; then
+  [ -z "$2" ] && { echo "Error: Argument 2 must be relative change in volume." && exit 1; }
+  if [ "$2" -lt 0 ]; then
+    amixer -D pulse set Master "${2#-}%-" 1> /dev/null
+  else
+    echo "ASD"
+    amixer -D pulse set Master "${2#+}%+" 1> /dev/null
+  fi
+elif [ "$1" = "-a" ]; then
+  [ -z "$2" ] && { echo "Error: Argument 2 must be absolute percentage in volume." && exit 1; }
+  amixer -D pulse set Master "$2%" 1> /dev/null
+elif [ "$1" = "-t" ]; then
+  amixer -D pulse set Master 0+ toggle 1> /dev/null
+else
+  echo "Error: Argument 1 must be '-r', '-a', or '-t'."
+  exit 1
+fi

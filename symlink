@@ -21,7 +21,7 @@ for folder in bash compton feh htop i3 mpd mpv ncmpcpp polybar ranger rtorrent t
   done
 done
 
-## Link bin
+## Link bin.
 mkdir -pv ~/.local/bin/
 for f in "$DOTFILES_DIR/bin"/*; do
   ln -sfv "$f" ~/.local/bin/

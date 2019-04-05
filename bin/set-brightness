@@ -1,0 +1,28 @@
+#!/bin/sh
+
+brightness_file="/sys/class/backlight/intel_backlight/brightness"
+max_brightness_file="/sys/class/backlight/intel_backlight/max_brightness"
+curr_brightness=$(cat $brightness_file)
+min_brightness=1
+max_brightness=$(cat $max_brightness_file)
+
+[ -z "$1" ] && { echo "$(echo "p = $curr_brightness / $max_brightness * 100; scale = 0; p / 1" | bc --mathlib)%"; exit 0; }
+
+if [ "$1" = "-r" ]; then
+  [ -z "$2" ] && { echo "Error: Argument 2 must be relative change in brightness." && exit 1; }
+  curr_brightness=$((curr_brightness + $2))
+elif [ "$1" = "-a" ]; then
+  [ -z "$2" ] && { echo "Error: Argument 2 must be absolute percentage in brightness." && exit 1; }
+  curr_brightness="$(echo "p = $2 / 100.0 * $max_brightness; scale = 0; p / 1" | bc --mathlib)"
+else
+  echo "Error: Argument 1 must be '-r' or '-a'."
+  exit 1
+fi
+
+if [ "$curr_brightness" -gt "$max_brightness" ]; then
+  curr_brightness=$max_brightness
+elif [ "$curr_brightness" -lt "$min_brightness" ]; then
+  curr_brightness=$min_brightness
+fi
+
+echo "echo $curr_brightness > $brightness_file" | sudo bash

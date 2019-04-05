@@ -3,10 +3,31 @@
 id=$(xinput | grep --extended-regexp --ignore-case --only-matching 'AT Translated Set 2 keyboard\s*id=[0-9]{1,2}' | grep --perl-regexp --only-matching 'id=\K([0-9]{1,2})')
 state=$(xinput list-props "$id" | grep 'Device Enabled' | awk '{print $4}')
 
-if [ "$state" -eq 1 ]; then
+disable_keyboard() {
   xinput disable "$id"
   notify-send --urgency=normal "Keyboard: Disabled"
-else
+}
+
+enable_keyboard() {
   xinput enable "$id"
   notify-send --urgency=normal "Keyboard: Enabled"
+}
+
+toggle_keyboard() {
+  if [ "$state" -eq 1 ]; then
+    disable_keyboard
+  else
+    enable_keyboard
+  fi
+}
+
+[ -z "$1" ] && { toggle_keyboard; exit 0; }
+
+if [ "$1" = "-on" ]; then
+  enable_keyboard
+elif [ "$1" = "-off" ]; then
+  disable_keyboard
+else
+  echo "Error: Argument 1 must be '-on' or '-off'."
+  exit 1
 fi

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+count=${1:-10}
+ps aux --sort '%mem' | awk '{print $2, $4, $11}' | tail -n "$count" | tac

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-BOOKMARKS_FILE=${XDG_CONFIG_HOME:-"$HOME/.config"}/bash/bookmarks
+bookmarks_file=${XDG_CONFIG_HOME:-"$HOME/.config"}/bash/bookmarks
 
-[ ! -f "$BOOKMARKS_FILE" ] && touch "$BOOKMARKS_FILE"
+[ ! -f "$bookmarks_file" ] && touch "$bookmarks_file"
 
 __check_bookmark_name() {
   [ -z "$1" ] && { echo "Error: Argument 1 must be bookmark name." && return 1; }
@@ -20,7 +20,7 @@ __delete_line() {
 }
 
 __bookmarks() {
-  awk --field-separator='=' '{ print $1 }' "$BOOKMARKS_FILE"
+  awk --field-separator='=' '{ print $1 }' "$bookmarks_file"
 }
 
 __comp() {
@@ -30,14 +30,14 @@ __comp() {
 
 bs() {
   ! __check_bookmark_name "$1" && return
-  __delete_line "$BOOKMARKS_FILE" "$1="
-  echo "$1=$(pwd)" >> "$BOOKMARKS_FILE"
+  __delete_line "$bookmarks_file" "$1="
+  echo "$1=$(pwd)" >> "$bookmarks_file"
   echo "Saved bookmark '$1' to '$(pwd)'"
 }
 
 bg() {
   ! __check_bookmark_name "$1" && return
-  dir="$(grep "^$1=" < "$BOOKMARKS_FILE" | cut --delimiter='=' --fields=2-)"
+  dir="$(grep "^$1=" < "$bookmarks_file" | cut --delimiter='=' --fields=2-)"
   [ -z "$dir" ] && { echo "Error: Bookmark '$1' does not exist." && return; }
   [ ! -d "$dir" ] && { echo "Error: Directory '$dir' does not exist." && return; }
   cd "$dir" || return
@@ -45,9 +45,9 @@ bg() {
 
 bd() {
   ! __check_bookmark_name "$1" && return
-  dir="$(grep "^$1=" < "$BOOKMARKS_FILE" | cut --delimiter='=' --fields=2-)"
+  dir="$(grep "^$1=" < "$bookmarks_file" | cut --delimiter='=' --fields=2-)"
   [ -z "$dir" ] && { echo "Error: Bookmark '$1' does not exist." && return; }
-  __delete_line "$BOOKMARKS_FILE" "$1="
+  __delete_line "$bookmarks_file" "$1="
   echo "Deleted bookmark '$1' to '$dir'"
 }
 
@@ -55,7 +55,7 @@ bl() {
   awk --field-separator='=' '{
     i = index($0, "=");
     printf("%-20s %s\n", $1, substr($0, i + 1));
-  }' "$BOOKMARKS_FILE"
+  }' "$bookmarks_file"
 }
 
 shopt -s progcomp

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-LOCK_FILE="${XDG_CONFIG_HOME:-"$HOME/.config"}/i3/images/lock.png"
+lock_file="${XDG_CONFIG_HOME:-"$HOME/.config"}/i3/images/lock.png"
 
 img_path() {
   echo "/tmp/blurred_screen_$1.png"
@@ -10,10 +10,10 @@ res=$(xdpyinfo | awk '/dimensions/{print $2}')
 ffmpeg -loglevel quiet -f x11grab -video_size "$res" -i "$DISPLAY" -y -filter_complex "boxblur=10" -vframes 1 "$(img_path 0)"
 
 # Lockscreen image info
-[ ! -L "$LOCK_FILE" ] && LOCK_FILE=$(readlink --canonicalize "$LOCK_FILE")
+[ ! -L "$lock_file" ] && lock_file=$(readlink --canonicalize "$lock_file")
 
 # Dimensions of lock image
-r=$(file "$LOCK_FILE" | grep --only-matching '[0-9]* x [0-9]*')
+r=$(file "$lock_file" | grep --only-matching '[0-9]* x [0-9]*')
 rx=$(echo "$r" | cut --delimiter=' ' --fields=1)
 ry=$(echo "$r" | cut --delimiter=' ' --fields=3)
 
@@ -32,7 +32,7 @@ for res in $sr; do
   px=$((srxo + srx / 2 - rx / 2))
   py=$((sryo + sry / 2 - ry / 2))
 
-  ffmpeg -i "$(img_path $index)" -i "$LOCK_FILE" -y -filter_complex "overlay=$px:$py" -vframes 1 "$(img_path "$((index + 1))")"
+  ffmpeg -i "$(img_path $index)" -i "$lock_file" -y -filter_complex "overlay=$px:$py" -vframes 1 "$(img_path "$((index + 1))")"
   index=$((index + 1))
 done
 

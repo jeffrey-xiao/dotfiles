@@ -1,7 +1,7 @@
 #!/bin/sh
 
-VIDEOS_DIR=${XDG_VIDEOS_DIR:-"$HOME/Videos"}
-file="$VIDEOS_DIR/$(date +%s).mp4"
+videos_dir=${XDG_VIDEOS_DIR:-"$HOME/Videos"}
+file="$videos_dir/$(date +%s).mp4"
 
 if pgrep --exact ffmpeg; then
   pkill --exact -INT ffmpeg

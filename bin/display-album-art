@@ -1,13 +1,13 @@
 #!/bin/sh
 
-MUSIC_DIR=${XDG_MUSIC_DIR:-"$HOME/Music"}
+music_dir=${XDG_MUSIC_DIR:-"$HOME/Music"}
 
 update_background() {
   album="$(mpc --format %album% current)"
   file="$(mpc --format %file% current)"
   album_dir="${file%/*}"
   [ -z "$album_dir" ] && exit 1
-  album_dir="$MUSIC_DIR/$album_dir"
+  album_dir="$music_dir/$album_dir"
 
   covers="$(find "$album_dir" -type d -exec find {} -maxdepth 1 -type f -iregex ".*/.*\\(${album}\\|cover\\|folder\\|artwork\\|front\\).*[.]\\(jpe?g\\|png\\|gif\\|bmp\\)" \;)"
   src="$(printf "%s" "$covers" | head --lines=1)"

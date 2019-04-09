@@ -306,7 +306,7 @@ set viminfo+=<1000 " remember up to 1000 lines in each register
 set viminfo+=s1000 " remember up to 1MB in each register
 set viminfo+=/1000 " remember last 1000 search patterns
 set viminfo+=:1000 " remember last 1000 commands
-set viminfo+=n$HOME/.vim/viminfo
+set viminfo+=n$HOME/.vim/viminfo/info
 
 "" Setting undo, backup, and swp directories
 set undofile
@@ -317,7 +317,7 @@ set directory=~/.vim/swp//
 
 " Create necessary directories
 if exists('*mkdir')
-  for s:dir in [ '/.vim/backup', '/.vim/swp', '/.vim/undo', '/.vim/tags' ]
+  for s:dir in [ '/.vim/backup', '/.vim/swp', '/.vim/undo', '/.vim/tags', '/.vim/viminfo' ]
     if !isdirectory($HOME.s:dir)
       call mkdir($HOME.s:dir, 'p')
     endif

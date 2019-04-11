@@ -19,19 +19,28 @@ __delete_line() {
   trap - EXIT
 }
 
+__add_line() {
+  temp=$(mktemp -t bookmarks.XXXXXXXXXX) || exit 1;
+  trap 'rm -f "$temp"' EXIT
+  cat "$1" <(echo "$2") | sort > "$temp"
+  /bin/mv -f "$temp" "$1"
+  /bin/rm -f "$temp"
+  trap - EXIT
+}
+
 __bookmarks() {
   awk --field-separator='=' '{ print $1 }' "$bookmarks_file"
 }
 
 __comp() {
   curr=${COMP_WORDS[COMP_CWORD]}
-  COMPREPLY=($(compgen -W "$(__bookmarks)" -- "$curr"))
+  mapfile -t COMPREPLY < <(compgen -W "$(__bookmarks)" -- "$curr")
 }
 
 bs() {
   ! __check_bookmark_name "$1" && return
   __delete_line "$bookmarks_file" "$1="
-  echo "$1=$(pwd)" >> "$bookmarks_file"
+  __add_line "$bookmarks_file" "$1=$(pwd)"
   echo "Saved bookmark '$1' to '$(pwd)'"
 }
 

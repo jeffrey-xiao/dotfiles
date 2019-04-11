@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+shopt -s nullglob
+shopt -s dotglob
+shopt -s globstar
+
+ret=0
+for file in $@; do
+  diff --color --unified "$file" <(clang-format "$file") || ret=1
+done
+[ $ret = 0 ] || false

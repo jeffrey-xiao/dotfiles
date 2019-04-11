@@ -17,11 +17,11 @@ shopt -s cmdhist
 
 # Check window size and update LINES and COLUMNS.
 shopt -s checkwinsize
-shopt -s dotglob
 
-# If set, the pattern "**" used in a pathname expansion context will match all
-# files and zero or more directories and subdirectories.
+# Glob config.
+shopt -s dotglob
 shopt -s globstar
+shopt -s nullglob
 
 # Enable vi mode.
 set -o vi

@@ -50,7 +50,7 @@ def dmenu_cmd(num_lines, prompt="network", active_lines=None):  # pylint: disabl
                 dmenu -l <num_lines> -p <prompt> -i ...
 
     """
-    dmenu_command = "dmenu"
+    dmenu_command = "rofi"
     conf = configparser.ConfigParser()
     conf.read(expanduser("~/.config/networkmanager-dmenu/config.ini"))
     try:
@@ -58,7 +58,18 @@ def dmenu_cmd(num_lines, prompt="network", active_lines=None):  # pylint: disabl
     except configparser.NoSectionError:
         conf = False
     if not conf:
-        res = [dmenu_command, "-i", "-l", str(num_lines), "-p", str(prompt)]
+        res = [
+            dmenu_command,
+            "-i",
+            "-fullscreen",
+            "-dmenu",
+            "-lines",
+            str(num_lines),
+            "-p",
+            str(prompt),
+            "-show",
+            "run",
+        ]
     else:
         args_dict = dict(args)
         dmenu_args = []
@@ -390,7 +401,7 @@ def launch_connection_editor():
 
     """
     conf = configparser.ConfigParser()
-    terminal = "xterm"
+    terminal = "urxvt"
     gui_if_available = "True"
     conf.read(expanduser("~/.config/networkmanager-dmenu/config.ini"))
     try:

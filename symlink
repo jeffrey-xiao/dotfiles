@@ -52,10 +52,6 @@ ln -sfv "$DOTFILES_DIR/misc/redshift.conf" ~/.config/redshift
 ## Link font config.
 ln -sfv "$DOTFILES_DIR/fonts/fonts.conf" ~/.config/fontconfig/
 
-## Link networkmanager config.
-mkdir -pv ~/.config/networkmanager-dmenu/
-ln -sfv "$DOTFILES_DIR/i3/config.ini" ~/.config/networkmanager-dmenu/
-
 ## Set gnome settings.
 gsettings set org.gnome.desktop.interface icon-theme "Papirus"
 gsettings set org.gnome.desktop.interface gtk-theme "Numix"

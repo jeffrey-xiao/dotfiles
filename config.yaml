@@ -42,10 +42,7 @@ htop:
     - htop
 
 i3:
-  link:
-    - config.ini: ~/.config/networkmanager-dmenu/
-    - "*": ~/.config/i3/
-    - ".*": ~/.config/i3/
+  link: ~/.config/i3/
   dependencies:
     - i3
     - scrot

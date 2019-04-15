@@ -172,7 +172,7 @@ bindsym $mod+Ctrl+l     move workspace to output left
 bindsym $mod+Ctrl+Right move workspace to output right
 bindsym $mod+Ctrl+Left  move workspace to output left
 
-# Shortcut for pwer options
+# Shortcut for power options
 bindsym $mod+Shift+e exec dmenu-power
 
 # Shortcut for i3lock
@@ -276,25 +276,25 @@ new_float none
 
 ## Configure startup applications
 # Appearance and notifications
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
-exec --no-startup-id compton --config ~/.config/compton/compton.conf
-exec --no-startup-id dunst --config ~/.config/dunst/dunstrc
-exec --no-startup-id notify-battery
-exec --no-startup-id robar start
+exec --no-startup-id init-daemon gsd-xsettings "/usr/lib/gnome-settings-daemon/gsd-xsettings"
+exec --no-startup-id init-daemon compton "compton --config ~/.config/compton/compton.conf"
+exec --no-startup-id init-daemon dunst "dunst --config ~/.config/dunst/dunstrc"
+exec --no-startup-id init-daemon notify-battery
+exec --no-startup-id init-daemon robar "robar start"
 
 # Tray applets
-exec --no-startup-id redshift-gtk
-exec --no-startup-id blueman-applet
-exec --no-startup-id nm-applet
+exec --no-startup-id init-daemon redshift-gtk
+exec --no-startup-id init-daemon blueman-applet
+exec --no-startup-id init-daemon nm-applet
 
 # Initialize displays
 exec_always --no-startup-id init-displays
 
 # Initialize urxvt daemon
-exec --no-startup-id init-urxvtd
+exec --no-startup-id init-daemon urxvtd "urxvtd --quiet --fork --opendisplay"
 
 # Initialize mpd
-exec --no-startup-id init-mpd
+exec --no-startup-id init-daemon mpd
 
 # Configure fonts
 exec --no-startup-id init-fonts

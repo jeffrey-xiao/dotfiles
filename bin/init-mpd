@@ -1,8 +1,0 @@
-#!/bin/sh
-
-if [ "$1" = "-r" ]; then
-  killall --quiet mpd
-  while pgrep --exact mpd > /dev/null; do sleep 1; done
-fi
-
-pgrep --exact mpd > /dev/null || mpd

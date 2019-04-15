@@ -1,8 +1,0 @@
-#!/bin/sh
-
-if [ "$1" = "-r" ]; then
-  killall --quiet urxvtd
-  while pgrep --exact urxvtd > /dev/null; do sleep 1; done
-fi
-
-pgrep --exact urxvtd > /dev/null || urxvtd --quiet --fork --opendisplay

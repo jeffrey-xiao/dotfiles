@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Load ~/.Xresources.
+xrdb "$HOME/.Xresources"
+
+# Query and substitute colors.
+for i in $(seq 0 15); do
+  color=$(xrdb -query -cpp g++ | awk '/.color'"$i":'/ { print $2; }')
+  eval "export COLOR_${i}=\"${color}\""
+done

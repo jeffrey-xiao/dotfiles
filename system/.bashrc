@@ -20,6 +20,7 @@ shopt -s checkwinsize
 
 # Glob config.
 shopt -s dotglob
+shopt -s extglob
 shopt -s globstar
 shopt -s nullglob
 

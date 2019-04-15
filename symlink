@@ -3,41 +3,39 @@
 # Get directory for symlink script.
 DOTFILES_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
-shopt -s nullglob
 shopt -s dotglob
+shopt -s extglob
+shopt -s globstar
+shopt -s nullglob
 
-## Link to ~.
+# Compile templates
+for template_name in "$DOTFILES_DIR"/**/*.template; do
+  compiled_name=${template_name%.*}
+  "$DOTFILES_DIR"/bin/compile-color-template "$template_name" "$compiled_name"
+done
+
+# Link to ~.
 for folder in git system; do
-  for f in "$DOTFILES_DIR/$folder"/*; do
+  for f in "$DOTFILES_DIR/$folder"/!(*.template); do
     ln -sfv "$f" ~/
   done
 done
 
-## Link to .config/$folder.
-for folder in bash compton feh htop i3 mpd mpv ncmpcpp polybar ranger rtorrent tmux weechat; do
+# Link to .config/$folder.
+for folder in bash compton dunst feh htop i3 mpd mpv ncmpcpp polybar ranger rtorrent tmux weechat zathura; do
   mkdir -pv ~/.config/$folder/
-  for f in "$DOTFILES_DIR/$folder"/*; do
+  for f in "$DOTFILES_DIR/$folder"/!(*.template); do
     ln -sfv "$f" ~/.config/$folder/
   done
 done
 
-## Link bin.
+# Link bin.
 mkdir -pv ~/.local/bin/
-for f in "$DOTFILES_DIR/bin"/*; do
+for f in "$DOTFILES_DIR/bin"/!(*.template); do
   ln -sfv "$f" ~/.local/bin/
 done
 
-## Link dunst config.
-mkdir -pv ~/.config/dunst/
-"$DOTFILES_DIR"/bin/compile-color-template dunst/dunstrc.template dunst/dunstrc
-ln -sfv "$DOTFILES_DIR/dunst/dunstrc" ~/.config/dunst/
-
-## Link zathura config.
-mkdir -pv ~/.config/zathura/
-"$DOTFILES_DIR"/bin/compile-color-template zathura/zathurarc.template zathura/zathurarc
-ln -sfv "$DOTFILES_DIR/zathura/zathurarc" ~/.config/zathura/
-
-## Link vim options.
+# Link vim options.
 ln -sfv "$DOTFILES_DIR/vim/.vimrc" ~/
 ln -sfv "$DOTFILES_DIR/vim/.tern-config" ~/
 ln -sfv "$DOTFILES_DIR/vim/.clang_complete" ~/
@@ -45,27 +43,28 @@ ln -sfv "$DOTFILES_DIR/vim/.clang_complete" ~/
 ln -sfv "$DOTFILES_DIR/vim/after" ~/.vim/
 ln -sfv "$DOTFILES_DIR/vim/minisnip" ~/.vim/
 
-## Link miscellaneous config.
+# Link miscellaneous config.
 mkdir -pv ~/.config/redshift
 ln -sfv "$DOTFILES_DIR/misc/redshift.conf" ~/.config/redshift
 
-## Link font config.
+# Link font config.
+mkdir -pv ~/.config/fontconfig
 ln -sfv "$DOTFILES_DIR/fonts/fonts.conf" ~/.config/fontconfig/
 
-## Set gnome settings.
+# Set gnome settings.
 gsettings set org.gnome.desktop.interface icon-theme "Papirus"
 gsettings set org.gnome.desktop.interface gtk-theme "Numix"
 gsettings set org.gnome.desktop.wm.preferences theme "Numix"
 
-## Create a playlist folder and database file for mpd.
+# Create a playlist folder and database file for mpd.
 mkdir -pv ~/.config/mpd/playlists/
 touch ~/.config/mpd/database
 
-## Create screenshot folder for mpv.
+# Create screenshot folder for mpv.
 mkdir -pv ~/Pictures/Screenshots/
 
-## Create complete, incomplete, and session folders for rtorrent.
+# Create complete, incomplete, and session folders for rtorrent.
 mkdir -pv ~/Downloads/complete/ ~/Downloads/incomplete/ ~/.config/rtorrent/sessions/
 
-## Apply ~/.xresources.
+# Apply ~/.xresources.
 xrdb ~/.Xresources

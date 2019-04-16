@@ -8,12 +8,6 @@ shopt -s extglob
 shopt -s globstar
 shopt -s nullglob
 
-# Compile templates
-for template_name in "$DOTFILES_DIR"/**/*.template; do
-  compiled_name=${template_name%.*}
-  "$DOTFILES_DIR"/bin/compile-color-template "$template_name" "$compiled_name"
-done
-
 # Link to ~.
 for folder in git system; do
   for f in "$DOTFILES_DIR/$folder"/!(*.template); do
@@ -21,8 +15,14 @@ for folder in git system; do
   done
 done
 
+# Compile templates
+for template_name in "$DOTFILES_DIR"/**/*.template; do
+  compiled_name=${template_name%.*}
+  "$DOTFILES_DIR"/bin/compile-color-template "$template_name" "$compiled_name"
+done
+
 # Link to .config/$folder.
-for folder in bash compton dunst feh htop i3 mpd mpv ncmpcpp polybar ranger rtorrent tmux weechat zathura; do
+for folder in bash bspwm compton dunst feh htop i3 mpd mpv ncmpcpp polybar ranger rtorrent sxhkd tmux weechat zathura; do
   mkdir -pv ~/.config/$folder/
   for f in "$DOTFILES_DIR/$folder"/!(*.template); do
     ln -sfv "$f" ~/.config/$folder/
@@ -39,7 +39,6 @@ done
 ln -sfv "$DOTFILES_DIR/vim/.vimrc" ~/
 ln -sfv "$DOTFILES_DIR/vim/.tern-config" ~/
 ln -sfv "$DOTFILES_DIR/vim/.clang_complete" ~/
-
 ln -sfv "$DOTFILES_DIR/vim/after" ~/.vim/
 ln -sfv "$DOTFILES_DIR/vim/minisnip" ~/.vim/
 

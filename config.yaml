@@ -4,6 +4,31 @@ bash:
 bin:
   link: ~/.local/bin/
 
+bspwm:
+  link: ~/.config/bspwm/
+  dependencies:
+    - bspwm
+    - scrot
+    - slop
+    - imagemagick
+    - i3lock
+    - rofi
+    - acpi
+    - sysstat
+    - jq
+    - blueman
+    - xbacklight
+    - gnome-settings-daemon
+    - numix-gtk-theme
+    - papirus-icon-theme
+    - network-manager
+    - xclip
+    - xinput
+  postlink:
+    - gsettings set org.gnome.desktop.interface icon-theme "Papirus"
+    - gsettings set org.gnome.desktop.interface gtk-theme "Numix"
+    - gsettings set org.gnome.desktop.wm.preferences theme "Numix"
+
 compton:
   link: ~/.config/compton/
   dependencies:
@@ -118,6 +143,11 @@ rtorrent:
     - mkdir -pv ~/Downloads/complete/ ~/Downloads/incomplete/ ~/.config/rtorrent/sessions/
   dependencies:
     - rtorrent
+
+sxhkd:
+  link: ~/.config/sxhkd
+  dependencies:
+    - sxhkd
 
 system:
   prelink:

@@ -1,0 +1,146 @@
+# Toggle fullscreen, floating, tiled, and pseudo-tiled
+super + {f,shift + f,t,shift + t}
+  bspc node --state "~{fullscreen,floating,tiled,pseudo_tiled}"
+
+super + w
+  bspc node -f @parent
+
+super + e
+  bspc node -R 90
+
+super + q
+  bspc node -C forward
+
+# Focus/swap window by direction
+super + {_,shift +} {h,j,k,l}
+  bspc node --{focus,swap} {west,south,north,east} --follow
+
+# Focus/move window to selected desktop
+super + {_,shift +} {1-9,0}
+  bspc {desktop --focus,node --to-desktop} $(bspc query --desktops --desktop {1-9,0})
+
+# Move desktop to selected monitor
+super + shift + {Left,Right}
+  desktop=$(bspc query --desktops --desktop focused); \
+  monitor=$(bspc query --monitors --monitor {prev,next}); \
+  bspc desktop --to-monitor $monitor; \
+  bspc query --monitor $monitor --tree | jq ".desktops[].name" | sort -n | xargs bspc monitor $monitor --reorder-desktops; \
+  bspc desktop --focus $desktop
+
+# Focus selected monitor
+super + {Left,Right}
+  monitor=$(bspc query --monitors --monitor {prev,next}); \
+  bspc monitor --focus $monitor
+
+# Reload config
+super + shift + r
+  ~/.config/bspwm/bspwmrc; \
+  pkill -USR1 -x sxhkd
+
+# Close focused window
+super + shift + q
+  bspc node --close
+
+# Power options
+super + x
+  dmenu-power
+
+# Lock screen
+super + shift + x
+  lock
+
+# Preselect splitting area for next window
+super + ctrl + {h,j,k,l}
+  bspc node --presel-dir \~{west,south,north,east}
+
+# Preselect the ratio
+super + ctrl + {1-9}
+  bspc node --presel-ratio 0.{1-9}
+
+# Cancel preselect
+super + ctrl + space
+  bspc node --presel-dir cancel
+
+# Application hotkeys
+super + Return
+  urxvtc
+
+super + b
+  firefox
+
+super + shift + b
+  firefox --private-window
+
+super + n
+  nm
+
+super + m
+  urxvtc -name music -e ncmpcpp
+
+super + shift + m
+  rofi -modi "song:rofi-mpd-song#playlist:rofi-mpd-playlist#album:rofi-mpd-album" -show song
+
+super + y
+  urxvtc -name explorer -e ranger
+
+super + u
+  zathura
+
+super + i
+  urxvtc -name torrent -e rtorrent
+
+super + d
+  rofi -show run
+
+# Screenshots and video recording
+Print
+  screenshot
+
+shift + Print
+  screenshot -s
+
+alt + Print
+  record
+
+shift + alt + Print
+  record -s
+
+# Audio controls
+XF86AudioRaiseVolume
+  volume -r +5 && robar-volume
+
+XF86AudioLowerVolume
+  volume -r -5 && robar-volume
+
+XF86AudioMute
+  volume -t && robar-volume
+
+# Screen brightness controls
+XF86MonBrightnessUp
+  sudo brightness -r +50 && robar-brightness"
+XF86MonBrightnessDown
+  sudo brightness -r -50 && robar-brightness"
+
+# Touchpad controls
+XF86TouchpadToggle
+  set-touchpad
+
+# Media player controls
+XF86AudioPlay
+  mpc play
+XF86AudioPause
+  mpc pause
+XF86AudioNext
+  mpc next
+XF86AudioPrev
+  mpc prev
+XF86AudioStop
+  mpc pause
+
+# Mpd controls
+super + p
+  mpc toggle
+super + bracketleft
+  mpc prev
+super + bracketright
+  mpc next

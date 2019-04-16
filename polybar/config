@@ -23,16 +23,15 @@ font-4 = "Font Awesome 5 Brands:pixelsize=10;2"
 
 tray-position = right
 
-modules-left = i3 mpd
+modules-left = bspwm mpd
 modules-center = date separator weather
 modules-right = memory cpu wired-network wireless-network pulseaudio battery
 
-[module/i3]
-type = internal/i3
+[module/bspwm]
+type = internal/bspwm
 pin-workspaces = true
-strip-wsnumbers = true
-index-sort = true
-
+enable-click = true
+enable-scroll = true
 format = <label-state> <label-mode>
 
 label-focused = %name%
@@ -40,15 +39,18 @@ label-focused-foreground = ${xrdb:color8}
 label-focused-background = ${xrdb:color7}
 label-focused-padding = 1
 
-label-unfocused = %name%
-label-unfocused-foreground = ${xrdb:color8}
-label-unfocused-background = ${xrdb:color12}
-label-unfocused-padding = 1
+label-dimmed = %name%
+label-dimmed-foreground = ${xrdb:color8}
+label-dimmed-background = ${xrdb:color12}
+label-dimmed-padding = 1
 
-label-visible = %name%
-label-visible-foreground = ${xrdb:color8}
-label-visible-background = ${xrdb:color12}
-label-visible-padding = 1
+label-occupied = %name%
+label-occupied-foreground = ${xrdb:color8}
+label-occupied-background = ${xrdb:color12}
+label-occupied-padding = 1
+
+label-empty =
+label-empty-padding = 0
 
 label-urgent = %name%
 label-urgent-foreground = ${xrdb:color8}

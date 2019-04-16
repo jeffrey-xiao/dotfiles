@@ -11,9 +11,15 @@ super + e
 super + q
   bspc node -C forward
 
-# Focus/swap window by direction
-super + {_,shift +} {h,j,k,l}
-  bspc node --{focus,swap} {west,south,north,east} --follow
+# Focus node by direction
+super + {h,j,k,l}
+  direction={west,south,north,east}; \
+  bspc node --focus $direction || bspc monitor --focus $direction
+
+# Swap node by direction
+super + shift + {h,j,k,l}
+  direction={west,south,north,east}; \
+  bspc node --swap $direction --follow
 
 # Focus/move window to selected desktop
 super + {_,shift +} {1-9,0}

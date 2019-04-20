@@ -14,6 +14,9 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
   augroup END
 endif
+
+filetype plugin on
+syntax on
 call plug#begin('~/.vim/plugged')
 
 "" Color Scheme
@@ -92,17 +95,17 @@ call plug#end()
 """ Config for plugins
 "" Config for completion plugins
 " Config for clang_complete
-let g:clang_complete_auto = 0
 let g:clang_auto_select = 0
-let g:clang_omnicppcomplete_compliance = 0
-let g:clang_make_default_keymappings = 0
-let g:clang_user_options = '-std=c++11'
 let g:clang_close_preview = 1
+let g:clang_complete_auto = 0
+let g:clang_make_default_keymappings = 0
+let g:clang_omnicppcomplete_compliance = 0
+let g:clang_user_options = '-std=c++11'
 set completeopt-=preview
 
 " Config for Jedi
-let g:jedi#completions_enabled = 0
 let g:jedi#auto_vim_configuration = 0
+let g:jedi#completions_enabled = 0
 let g:jedi#smart_auto_mappings = 0
 
 "" Config for racer
@@ -110,11 +113,11 @@ let g:racer_cmd = '/home/jeffreyxiao/.cargo/bin/racer'
 let g:racer_experimental_completer = 1
 
 " Config for Neocomplete
-let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#auto_complete_delay = 0
+let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#max_list = 10
+let g:neocomplete#sources#syntax#min_keyword_length = 3
 
 if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
@@ -124,12 +127,12 @@ if !exists('g:neocomplete#force_omni_input_patterns')
   let g:neocomplete#force_omni_input_patterns = {}
 endif
 
-let g:neocomplete#sources#omni#input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
 let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
 let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+let g:neocomplete#sources#omni#input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
 let g:neocomplete#sources#omni#input_patterns.rust = '[^.[:digit:] *\t]\%(\.\|\::\)\%(\h\w*\)\?'
 let g:neocomplete#sources#omni#input_patterns.tex = '\v\\%(\a*%(ref|cite)\a*%(\s*\[[^]]*\])?\s*\{[^{}]*|includegraphics%(\s*\[[^]]*\])?\s*\{[^{}]*|%(include|input)\s*\{[^{}]*)'
-let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
 
 "" Config for Ale
 let g:ale_linters = {
@@ -140,10 +143,10 @@ let g:ale_linters = {
       \}
 
 let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_set_quickfix = 0
+let g:ale_echo_msg_warning_str = 'W'
 let g:ale_lint_on_text_changed = 'never'
+let g:ale_set_quickfix = 0
 let g:ale_sign_column_always = 1
 
 "" Config for Polyglot
@@ -161,38 +164,44 @@ let g:gutentags_cache_dir = '~/.vim/tags'
 let g:gutentags_generate_on_empty_buffer = 1
 
 "" Config for IndentLine
-let g:indentLine_color_term = 239
 let g:indentLine_char = '|'
+let g:indentLine_color_term = 239
 let g:indentLine_fileTypeExclude = [ 'markdown', 'json' ]
 
 "" Config for DelimitMate
 " Adds a new line before the autocompleted bracket
 let g:delimitMate_autoclose = 1
-let g:delimitMate_expand_space = 1
 let g:delimitMate_expand_cr = 1
+let g:delimitMate_expand_space = 1
 let g:delimitMate_matchpairs = '(:),[:],{:}'
 
 "" Config for vim-qf
-let g:qf_window_bottom = 1
-let g:qf_loclist_window_bottom = 0
 let g:qf_auto_open_quickfix = 0
+let g:qf_loclist_window_bottom = 0
+let g:qf_window_bottom = 1
 
 "" Config for BufTabLine
 let g:buftabline_numbers = 1
 
 "" Config for Vimtex
-let g:vimtex_compiler_latexmk = { 'callback' : 0 }
 let g:latex_view_general_viewer = 'zathura'
-let g:vimtex_view_method = 'zathura'
 let g:tex_conceal = ''
 let g:tex_flavor = "latex"
+let g:vimtex_compiler_latexmk = { 'callback' : 0 }
+let g:vimtex_syntax_minted = [
+      \ { 'lang' : 'c' },
+      \ { 'lang' : 'cpp' },
+      \ { 'lang' : 'java' }
+      \ { 'lang' : 'python' },
+      \]
+let g:vimtex_view_method = 'zathura'
 
 "" Config for signify
-let g:signify_vcs_list = [ 'git' ]
-let g:signify_sign_delete_first_line = '_'
 let g:signify_sign_change = '~'
 let g:signify_sign_changedelete = '~_'
+let g:signify_sign_delete_first_line = '_'
 let g:signify_sign_show_count = 0
+let g:signify_vcs_list = [ 'git' ]
 
 "" Config for Fzf
 function! s:tags_sink(lines) abort

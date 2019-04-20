@@ -9,7 +9,7 @@
   user = jeffrey-xiao
 
 [core]
-  excludesfile = ~/.gitignore_global
+  excludesfile = ~/.config/git/ignore
   editor = vim
 
 [alias]

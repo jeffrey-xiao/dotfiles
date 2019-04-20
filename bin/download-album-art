@@ -1,0 +1,10 @@
+#!/bin/sh
+
+album="$1"
+artist="$2"
+api_endpoint="https://ws.audioscrobbler.com/2.0/?method=album.search"
+
+resp=$(curl --silent --get "$api_endpoint" --data-urlencode "format=json" --data-urlencode "api_key=$LAST_FM_KEY" --data-urlencode "album=$album")
+image_url=$(echo "$resp"| jq --raw-output ".results.albummatches.album[] | select(.artist == \"$artist\").image[-1][\"#text\"]")
+
+wget --quiet "$image_url" --output-document=Cover.jpg

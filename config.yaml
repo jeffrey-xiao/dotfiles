@@ -59,7 +59,7 @@ fonts:
     - mkfontscale
 
 git:
-  link: ~/
+  link: ~/.config/git/
 
 htop:
   link: ~/.config/htop/

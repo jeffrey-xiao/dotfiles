@@ -14,25 +14,23 @@ log_file="$DOTFILES_DIR/install.log"
 printf "" >"$log_file"
 
 declare -a programs=(
-  bspwm scrot slop imagemagick i3lock rofi acpi sysstat jq blueman xbacklight gnome-settings-daemon numix-gtk-theme papirus-icon-theme network-manager xclip xinput
+  acpi blueman bspwm gnome-settings-daemon i3lock imagemagick jq network-manager numix-gtk-theme papirus-icon-theme rofi scrot slop sysstat xbacklight xclip xinput
   compton
   dunst
   feh
-  xset mkfontdir mkfontscale
+  mkfontdir mkfontscale xset
   htop
-  i3 scrot slop imagemagick i3lock rofi acpi sysstat jq blueman xbacklight gnome-settings-daemon numix-gtk-theme papirus-icon-theme network-manager xclip
-  mpd mpc
+  mpc mpd
   mpv
   ncmpcpp
-  redshift youtube-dl p7zip cabextract
-  polybar font-awesome-ttf
-  ranger imagemagick w3m atool highlight
+  cabextract p7zip redshift youtube-dl
+  font-awesome-ttf polybar
+  atool highlight imagemagick ranger w3m
   rtorrent
-  rxvt-unicode xrdb
-  tmux
-  vim curl silver-searcher ctags pip llvm-clang nodejs pandoc cppcheck
+  rxvt-unicode xrdb tmux
+  cppcheck ctags curl llvm-clang nodejs pandoc pip silver-searcher vim
   weechat
-  xdotool zathura texlive-all
+  texlive-all xdotool zathura
 )
 programs_string=$(join " " "${programs[@]}")
 installed_program_list=$(eopkg list-installed --install-info)

@@ -7,21 +7,21 @@ bin:
 bspwm:
   link: ~/.config/bspwm/
   dependencies:
-    - bspwm
-    - scrot
-    - slop
-    - imagemagick
-    - i3lock
-    - rofi
     - acpi
-    - sysstat
-    - jq
     - blueman
-    - xbacklight
+    - bspwm
     - gnome-settings-daemon
+    - i3lock
+    - imagemagick
+    - jq
+    - network-manager
     - numix-gtk-theme
     - papirus-icon-theme
-    - network-manager
+    - rofi
+    - scrot
+    - slop
+    - sysstat
+    - xbacklight
     - xclip
     - xinput
   postlink:
@@ -54,9 +54,9 @@ fonts:
       (cd ~/.local/share/fonts/ && mkfontdir && mkfontscale)
     - fc-cache --force --verbose
   dependencies:
-    - xset
     - mkfontdir
     - mkfontscale
+    - xset
 
 git:
   link: ~/.config/git/
@@ -66,39 +66,14 @@ htop:
   dependencies:
     - htop
 
-i3:
-  link: ~/.config/i3/
-  dependencies:
-    - i3
-    - scrot
-    - slop
-    - imagemagick
-    - i3lock
-    - rofi
-    - acpi
-    - sysstat
-    - jq
-    - blueman
-    - xbacklight
-    - gnome-settings-daemon
-    - numix-gtk-theme
-    - papirus-icon-theme
-    - network-manager
-    - xclip
-    - xinput
-  postlink:
-    - gsettings set org.gnome.desktop.interface icon-theme "Papirus"
-    - gsettings set org.gnome.desktop.interface gtk-theme "Numix"
-    - gsettings set org.gnome.desktop.wm.preferences theme "Numix"
-
 misc:
   link:
     - redshift.conf: ~/.config/redshift/
   dependencies:
+    - cabextract
+    - p7zip
     - redshift
     - youtube-dl
-    - p7zip
-    - cabextract
 
 mpd:
   link: ~/.config/mpd/
@@ -106,8 +81,8 @@ mpd:
     - mkdir -pv ~/.config/mpd/playlists/
     - touch ~/.config/mpd/database
   dependencies:
-    - mpd
     - mpc
+    - mpd
 
 mpv:
   link: ~/.config/mpv/
@@ -124,18 +99,18 @@ ncmpcpp:
 polybar:
   link: ~/.config/polybar/
   dependencies:
-    - polybar
     - font-awesome-ttf
+    - polybar
 
 ranger:
   link: ~/.config/ranger/
   dependencies:
-    - ranger
-    - imagemagick
-    - w3m
-    - feh
     - atool
+    - feh
     - highlight
+    - imagemagick
+    - ranger
+    - w3m
 
 rtorrent:
   link: ~/.config/rtorrent/
@@ -195,15 +170,15 @@ vim:
       rustup component add rust-src rustfmt clippy &&
       cargo install racer
   dependencies:
-    - vim
-    - curl
-    - silver-searcher
+    - cppcheck
     - ctags
-    - pip
+    - curl
     - llvm-clang
     - nodejs
     - pandoc
-    - cppcheck
+    - pip
+    - silver-searcher
+    - vim
 
 weechat:
   link: ~/.config/weechat/
@@ -216,6 +191,6 @@ zathura:
   link:
     - zathurarc: ~/.config/zathura/
   dependencies:
+    - texlive-all
     - xdotool
     - zathura
-    - texlive-all

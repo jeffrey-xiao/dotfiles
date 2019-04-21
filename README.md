@@ -23,7 +23,7 @@ terminal emulator    → rxvt-unicode
 terminal multiplexer → tmux
 text editor          → vim
 torrent client       → rtorrent
-window manager       → i3-gaps
+window manager       → bspwm
 ```
 
 ### Code Formatters

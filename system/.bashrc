@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-CONFIG_DIR="${XDG_CONFIG_HOME:-"$HOME/.config"}/bash"
+config_dir="${XDG_CONFIG_HOME:-"$HOME/.config"}"
+bash_config_dir=$config_dir/bash
 
 # If not running interactively, don't do anything.
 case $- in
@@ -45,19 +46,19 @@ if ! shopt -oq posix; then
 fi
 
 # Bash prompt.
-. "$CONFIG_DIR/bash_twoline_simple"
+. "$bash_config_dir/bash_twoline_simple"
 
 # Alias definitions.
-[ -f "$CONFIG_DIR/bash_aliases" ] && . "$CONFIG_DIR/bash_aliases"
+[ -f "$bash_config_dir/bash_aliases" ] && . "$bash_config_dir/bash_aliases"
 
 # Function definitions.
-[ -f "$CONFIG_DIR/bash_functions" ] && . "$CONFIG_DIR/bash_functions"
+[ -f "$bash_config_dir/bash_functions" ] && . "$bash_config_dir/bash_functions"
 
 # Bash bookmarks.
-[ -f "$CONFIG_DIR/bash_bookmarks" ] && . "$CONFIG_DIR/bash_bookmarks"
+[ -f "$bash_config_dir/bash_bookmarks" ] && . "$bash_config_dir/bash_bookmarks"
 
 # Source fzf if directory exists.
-[ -f "$HOME/.fzf.bash" ] && . "$HOME/.fzf.bash"
+[ -f "$config_dir/fzf/fzf.bash" ] && . "$config_dir/fzf/fzf.bash"
 
 # Source nvm if directory exists.
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use

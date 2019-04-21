@@ -76,17 +76,21 @@ the exception of the transparent background in `urxvt`, and the colors in `dirco
 
 ## Personal Configuration
 
-- [`bin/change-brightness`](bin/change-brightness): Change the path to the system internals
-  interface for the backlight device.
+- [`bin/brightness`](bin/brightness): Change the path to the system internals interface for the
+  backlight device.
+- [`bin/bspwm-distribute-desktops`](bin/bspwm-distribute-desktops): Change number of desktops.
+- [`bin/download-album-art`](bin/download-album-art): Define `LAST_FM_KEY`.
 - [`bin/get-cpu-temperature`](bin/get-cpu-temperature): Change the path to the system internals
   interface for the thermal device.
-- [`bin/get-weather`](bin/get-weather): Change the API key
+- [`bin/get-weather`](bin/get-weather): Define `OPEN_WEATHER_MAP_KEY`.
+- [`bin/init-displays`](bin/init-displays): Change the monitor setup.
 - [`bin/notify-battery`](bin/notify-battery): Change the path to the system internals interface for
   the power supply device.
-- [`bin/init-displays`](bin/init-displays): Change the monitor setup.
-- [`bin/toggle-keyboard`](bin/toggle-keyboard): Change the keyboard device name.
-- [`bin/toggle-touchpad`](bin/toggle-touchpad): Change the touchpad device name.
-- [`git/.gitconfig`](git/.gitconfig): Change the username and email.
+- [`bin/robar-brightness`](bin/robar-brightness): Change the path to the system internals interface
+  for the backlight device.
+- [`bin/set-keyboard`](bin/toggle-keyboard): Change the keyboard device name.
+- [`bin/set-touchpad`](bin/toggle-touchpad): Change the touchpad device name.
+- [`git/config`](git/.gitconfig): Change the username and email.
 - [`misc/redshift.conf`](misc/redshift.conf): Change the location.
 - [`mpd/mpd.conf`](mpd/mpd.conf): Change the user.
 - [`polybar/config`](polybar/config): Change the adapter and battery name, and wired and WiFi

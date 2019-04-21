@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CONFIG_DIR=${XDG_CONFIG_HOME:-"$HOME/.config"}/bash
+bash_config_dir=${XDG_CONFIG_HOME:-"$HOME/.config"}/bash
 
 __powerline() {
   ps1() {
@@ -56,9 +56,9 @@ __powerline() {
     PS1="$PS1$previous_color$RIGHT_ARROW$RESET "
     PS2="$BG_EXIT$FG_COLOR_15 $PS_SYMBOL $RESET$FG_EXIT$RIGHT_ARROW$RESET "
   }
-  . "$CONFIG_DIR/bash_symbols"
-  . "$CONFIG_DIR/bash_colors"
-  . "$CONFIG_DIR/bash_info"
+  . "$bash_config_dir/bash_symbols"
+  . "$bash_config_dir/bash_colors"
+  . "$bash_config_dir/bash_info"
   PROMPT_COMMAND=ps1
 }
 

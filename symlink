@@ -63,5 +63,5 @@ mkdir -pv ~/Pictures/Screenshots/
 # Create complete, incomplete, and session folders for rtorrent.
 mkdir -pv ~/Downloads/complete/ ~/Downloads/incomplete/ ~/.config/rtorrent/sessions/
 
-# Apply ~/.xresources.
+# Apply ~/.Xresources.
 xrdb ~/.Xresources

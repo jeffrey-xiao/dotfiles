@@ -1,6 +1,7 @@
 #!/bin/sh
 
-CONFIG_DIR="${XDG_CONFIG_HOME:-"$HOME/.config"}/bash"
+config_dir="${XDG_CONFIG_HOME:-"$HOME/.config"}"
+bash_config_dir=$config_dir/bash
 
 # Set PATH so it includes user's private bin directories
 export PATH="$PATH:$HOME/.local/bin"
@@ -33,7 +34,7 @@ export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 export NVM_DIR="$HOME/.nvm"
 
 # Setting weechat home directory.
-export WEECHAT_HOME=$CONFIG_DIR/weechat
+export WEECHAT_HOME=$config_dir/weechat
 
 # Bash secrets.
-[ -f "$CONFIG_DIR/bash_secrets" ] && . "$CONFIG_DIR/bash_secrets"
+[ -f "$bash_config_dir/bash_secrets" ] && . "$bash_config_dir/bash_secrets"

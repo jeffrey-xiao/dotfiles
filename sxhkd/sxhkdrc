@@ -1,15 +1,21 @@
 # Toggle fullscreen, floating, tiled, and pseudo-tiled
-super + {f,shift + f,t,shift + t}
+super + {_,shift +} + {f,t}
   bspc node --state "~{fullscreen,floating,tiled,pseudo_tiled}"
 
-super + w
-  bspc node -f @parent
+super + {q,w,a,s}
+  bspc node --focus @{first,second,parent,brother}
 
-super + e
-  bspc node -R 90
+super + r
+  bspc node --rotate 90
 
-super + q
-  bspc node -C forward
+super + c
+  bspc node --circulate forward
+
+super + {_,shift +} e
+  bspc node --{equalize,balance}
+
+super + z
+  bspc node -n last.!automatic.local
 
 # Focus node by direction
 super + {h,j,k,l}
@@ -21,7 +27,7 @@ super + shift + {h,j,k,l}
   direction={west,south,north,east}; \
   bspc node --swap $direction --follow
 
-# Focus/move window to selected desktop
+# Focus/move node to selected desktop
 super + {_,shift +} {1-9,0}
   bspc {desktop --focus,node --to-desktop} $(bspc query --desktops --desktop {1-9,0})
 
@@ -55,17 +61,27 @@ super + x
 super + shift + x
   lock
 
-# Preselect splitting area for next window
+# Preselection hotkeys
+## Preselect splitting area for next window
 super + ctrl + {h,j,k,l}
   bspc node --presel-dir \~{west,south,north,east}
 
-# Preselect the ratio
+## Preselect the ratio
 super + ctrl + {1-9}
   bspc node --presel-ratio 0.{1-9}
 
-# Cancel preselect
+## Cancel preselect
 super + ctrl + space
   bspc node --presel-dir cancel
+
+# Resizing hotkeys
+## Expand a window by moving one of its sides outward
+super + alt + {h,j,k,l}
+  bspc node --resize {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+## Contract a window by moving one of its sides inwards
+super + shift + alt + {h,j,k,l}
+  bspc node --resize {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
 # Application hotkeys
 super + Return
@@ -98,7 +114,7 @@ super + i
 super + d
   rofi -show run
 
-# Screenshots and video recording
+# Screenshots and video recording hotkeys
 Print
   screenshot
 
@@ -111,7 +127,7 @@ alt + Print
 shift + alt + Print
   record -s
 
-# Audio controls
+# Audio hotkeys
 XF86AudioRaiseVolume
   volume -r +5 && robar-volume
 
@@ -121,9 +137,10 @@ XF86AudioLowerVolume
 XF86AudioMute
   volume -t && robar-volume
 
-# Screen brightness controls
+# Screen brightness hotkeys
 XF86MonBrightnessUp
   sudo brightness -r +50 && robar-brightness"
+
 XF86MonBrightnessDown
   sudo brightness -r -50 && robar-brightness"
 
@@ -131,22 +148,28 @@ XF86MonBrightnessDown
 XF86TouchpadToggle
   set-touchpad
 
-# Media player controls
+# Media player hotkeys
 XF86AudioPlay
   mpc play
+
 XF86AudioPause
   mpc pause
+
 XF86AudioNext
   mpc next
+
 XF86AudioPrev
   mpc prev
+
 XF86AudioStop
   mpc pause
 
-# Mpd controls
+# Mpd hotkeys
 super + p
   mpc toggle
+
 super + bracketleft
   mpc prev
+
 super + bracketright
   mpc next

@@ -191,7 +191,7 @@ let g:vimtex_compiler_latexmk = { 'callback' : 0 }
 let g:vimtex_syntax_minted = [
       \ { 'lang' : 'c' },
       \ { 'lang' : 'cpp' },
-      \ { 'lang' : 'java' }
+      \ { 'lang' : 'java' },
       \ { 'lang' : 'python' },
       \]
 let g:vimtex_view_method = 'zathura'

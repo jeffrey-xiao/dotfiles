@@ -47,9 +47,11 @@ bindsym $mod+Shift+b          exec $browser --private-window
 bindsym $mod+m                exec --no-startup-id $music
 bindsym $mod+Shift+m          exec $music-rofi
 bindsym $mod+n                exec $network
-bindsym $mod+t                exec --no-startup-id $torrent
+bindsym $mod+i                exec --no-startup-id $torrent
 bindsym $mod+y                exec --no-startup-id $explorer
 bindsym $mod+u                exec $viewer
+bindsym $mod+x                exec dmenu-power
+bindsym $mod+Shift+x          exec --no-startup-id lock
 bindsym Print                 exec --no-startup-id screenshot
 bindsym Shift+Print           exec --no-startup-id screenshot -s
 bindsym Mod1+Sys_Req          exec --no-startup-id record
@@ -67,23 +69,11 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# Change focus: cursor keys
-bindsym $mod+Left  focus left
-bindsym $mod+Down  focus down
-bindsym $mod+Up    focus up
-bindsym $mod+Right focus right
-
 # Move focused window: vim bindings
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
-
-# Move focused window: cursor keys
-bindsym $mod+Shift+Left  move left
-bindsym $mod+Shift+Down  move down
-bindsym $mod+Shift+Up    move up
-bindsym $mod+Shift+Right move right
 
 # Split in horizontal orientation
 bindsym $mod+Shift+v split h
@@ -94,13 +84,13 @@ bindsym $mod+v split v
 # Enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
+# Toggle tiling / floating
+bindsym $mod+Shift+f floating toggle
+
 # Change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-
-# Toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+s layout tabbed
+bindsym $mod+t layout toggle split
 
 # Change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -109,10 +99,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # Focus the child container
-bindsym $mod+Shift+a focus child
-
-# Killing applications
-bindsym $mod+Shift+d focus parent,kill
+bindsym $mod+q focus child
 
 # Reload the configuration file
 bindsym $mod+Ctrl+r reload
@@ -167,16 +154,8 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws0
 
 # Shortcuts for moving workspaces
-bindsym $mod+Ctrl+h     move workspace to output right
-bindsym $mod+Ctrl+l     move workspace to output left
-bindsym $mod+Ctrl+Right move workspace to output right
-bindsym $mod+Ctrl+Left  move workspace to output left
-
-# Shortcut for power options
-bindsym $mod+Shift+e exec dmenu-power
-
-# Shortcut for i3lock
-bindsym $mod+Shift+x exec --no-startup-id lock
+bindsym $mod+Shift+Right move workspace to output right
+bindsym $mod+Shift+Left  move workspace to output left
 
 # Resize window (can also use mouse)
 set $mode_resize [resize]

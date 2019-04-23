@@ -88,6 +88,8 @@ the exception of the transparent background in `urxvt`, and the colors in `dirco
   the power supply device.
 - [`bin/robar-brightness`](bin/robar-brightness): Change the path to the system internals interface
   for the backlight device.
+- [`bin/robar-brightness-server`](bin/robar-brightness-server): Change the path to the system
+  internals interface for the backlight device.
 - [`bin/set-keyboard`](bin/toggle-keyboard): Change the keyboard device name.
 - [`bin/set-touchpad`](bin/toggle-touchpad): Change the touchpad device name.
 - [`git/config`](git/.gitconfig): Change the username and email.

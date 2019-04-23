@@ -1,0 +1,5 @@
+#!/bin/sh
+
+inotifywait --quiet --monitor --event close_write /sys/class/backlight/intel_backlight/brightness | while read -r; do
+  robar-brightness
+done

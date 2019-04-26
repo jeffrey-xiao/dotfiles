@@ -1,28 +1,21 @@
 [global]
-    font = "TamzenForPowerline 10"
-    markup = yes
-    format = "<b>%s</b>\n%b"
-    sort = yes
-    indicate_hidden = yes
-    alignment = center
-    bounce_freq = 0
-    show_age_threshold = 60
-    word_wrap = yes
-    ignore_newline = no
-    geometry = "300x5-10+150"
-    transparency = 0
-    idle_threshold = 120
-    monitor = 0
     follow = mouse
-    sticky_history = yes
-    line_height = 0
+    geometry = "300x5-10+150"
     separator_height = 2
     padding = 8
     horizontal_padding = 8
+    sort = yes
+    idle_threshold = 120
+    font = "TamzenForPowerline 10"
+    markup = yes
+    format = "<b>%s</b>\n%b"
+    alignment = center
+    show_age_threshold = 60
+    word_wrap = yes
+    icon_position = left
+    max_icon_size = 64
     separator_color = "{color3}"
-    startup_notification = false
     color = "{color8}"
-    width = 1
 
 [shortcuts]
     close = ctrl+space

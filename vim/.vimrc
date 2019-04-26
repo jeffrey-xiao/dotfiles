@@ -419,25 +419,25 @@ cmap w!! w !sudo tee > /dev/null %
 set nocursorline
 
 function! Highlight() abort
+  highlight Normal ctermbg=8
+  highlight NonText ctermbg=8
+  highlight LineNr ctermbg=0
+  highlight VertSplit ctermbg=8
+  highlight SignColumn ctermbg=0
+
   "" Highlighting for cursorline
   highlight clear CursorLine
   highlight CursorLine cterm=underline
-  highlight CursorLineNR ctermfg=15 ctermbg=none
-
-  "" Highlighting for transparent background
-  highlight Normal ctermbg=none
-  highlight NonText ctermbg=none
-  highlight LineNr ctermbg=none
-  highlight VertSplit ctermbg=none
+  highlight CursorLineNR ctermfg=14 ctermbg=0
 
   "" Highlighting for GitGutter symbols
-  highlight SignifySignAdd ctermbg=none ctermfg=2
-  highlight SignifySignChange ctermbg=none ctermfg=3
-  highlight SignifySignDelete ctermbg=none ctermfg=1
+  highlight SignifySignAdd ctermfg=2 ctermbg=0
+  highlight SignifySignChange ctermfg=3 ctermbg=0
+  highlight SignifySignDelete ctermfg=1 ctermbg=0
 
   "" Highlighting for ALE symbols
-  highlight ALEErrorSign ctermbg=none ctermfg=1
-  highlight ALEWarningSign ctermbg=none ctermfg=3
+  highlight ALEErrorSign ctermfg=1 ctermbg=0
+  highlight ALEWarningSign ctermfg=3 ctermbg=0
 
   "" Highlighting for latex
   highlight texMathMatcher ctermbg=none

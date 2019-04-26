@@ -1,4 +1,4 @@
 #!/bin/sh
 
 wallpaper_file=${XDG_CONFIG_HOME:-"$HOME/.config"}/bspwm/images/wallpaper.png
-feh --bg-scale "$wallpaper_file"
+feh --bg-scale "$wallpaper_file" --no-fehbg

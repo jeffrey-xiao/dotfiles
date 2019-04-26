@@ -1,6 +1,6 @@
 # Toggle fullscreen, floating, tiled, and pseudo-tiled
 super + {_,shift +} + {f,t}
-  bspc node --state "~{fullscreen,floating,tiled,pseudo_tiled}"
+  bspc node --state ~{fullscreen,floating,tiled,pseudo_tiled}
 
 super + {q,w,a,s}
   bspc node --focus @{first,second,parent,brother}
@@ -20,29 +20,29 @@ super + z
 # Focus node by direction
 super + {h,j,k,l}
   direction={west,south,north,east}; \
-  bspc node --focus $direction || bspc monitor --focus $direction
+  bspc node --focus "$direction" || bspc monitor --focus "$direction"
 
 # Swap node by direction
 super + shift + {h,j,k,l}
   direction={west,south,north,east}; \
-  bspc node --swap $direction --follow
+  bspc node --swap "$direction" --follow
 
 # Focus/move node to selected desktop
 super + {_,shift +} {1-9,0}
-  bspc {desktop --focus,node --to-desktop} $(bspc query --desktops --desktop {1-9,0})
+  bspc {desktop --focus,node --to-desktop} "$(bspc query --desktops --desktop {1-9,0})"
 
 # Move desktop to selected monitor
 super + shift + {Left,Right}
   desktop=$(bspc query --desktops --desktop focused); \
   monitor=$(bspc query --monitors --monitor {prev,next}); \
-  bspc desktop --to-monitor $monitor; \
-  bspc query --monitor $monitor --tree | jq ".desktops[].name" | sort -n | xargs bspc monitor $monitor --reorder-desktops; \
-  bspc desktop --focus $desktop
+  bspc desktop --to-monitor "$monitor"; \
+  bspc query --monitor "$monitor" --tree | jq ".desktops[].name" | sort -n | xargs bspc monitor "$monitor" --reorder-desktops; \
+  bspc desktop --focus "$desktop"
 
 # Focus selected monitor
 super + {Left,Right}
   monitor=$(bspc query --monitors --monitor {prev,next}); \
-  bspc monitor --focus $monitor
+  bspc monitor --focus "$monitor"
 
 # Reload config
 super + shift + r

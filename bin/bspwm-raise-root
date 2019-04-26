@@ -1,7 +1,0 @@
-#!/bin/sh
-
-for bspwm_window in $(xdo id -N Bspwm -n root); do
-  for polybar_window in $(xdo id -n tray) $(xdo id -n polybar); do
-    xdo above -t "$bspwm_window" "$polybar_window"
-  done
-done

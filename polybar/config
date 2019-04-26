@@ -1,10 +1,12 @@
 [bar/top]
+override-redirect = true
+wm-restack = bspwm
 monitor = ${env:MONITOR}
 width = 100%
 height = 21
 
 background = ${xrdb:color8}
-foreground = ${xrdb:color7}
+foreground = ${xrdb:color14}
 
 line-size = 3
 
@@ -24,7 +26,7 @@ font-4 = "Font Awesome 5 Brands:pixelsize=10;2"
 tray-position = right
 
 modules-left = bspwm mpd
-modules-center = date separator weather
+modules-center = left date separator weather right
 modules-right = memory cpu wired-network wireless-network pulseaudio battery
 
 [module/bspwm]
@@ -34,28 +36,23 @@ enable-click = true
 enable-scroll = true
 format = <label-state> <label-mode>
 
-label-focused = %name%
-label-focused-foreground = ${xrdb:color8}
-label-focused-background = ${xrdb:color7}
-label-focused-padding = 1
+label-focused = [%name%]
+label-focused-foreground = ${xrdb:color3}
+label-focused-background = ${xrdb:color8}
 
-label-dimmed = %name%
-label-dimmed-foreground = ${xrdb:color8}
-label-dimmed-background = ${xrdb:color12}
-label-dimmed-padding = 1
+label-occupied = " %name% "
+label-occupied-foreground = ${xrdb:color12}
+label-occupied-background = ${xrdb:color8}
 
-label-occupied = %name%
-label-occupied-foreground = ${xrdb:color8}
-label-occupied-background = ${xrdb:color12}
-label-occupied-padding = 1
+label-dimmed = " %name% "
+label-dimmed-foreground = ${xrdb:color12}
+label-dimmed-background = ${xrdb:color8}
+
+label-urgent = " %name% "
+label-urgent-foreground = ${xrdb:color12}
+label-urgent-background = ${xrdb:color8}
 
 label-empty =
-label-empty-padding = 0
-
-label-urgent = %name%
-label-urgent-foreground = ${xrdb:color8}
-label-urgent-background = ${xrdb:color1}
-label-urgent-padding = 1
 
 [module/mpd]
 type = internal/mpd
@@ -64,10 +61,10 @@ host = 127.0.0.1
 port = 6600
 
 format-online = <icon-prev> <toggle> <icon-next> <label-song>
-format-online-padding = 2
+format-online-padding = 1
 
 format-offline = <label-offline>
-format-offline-padding = 2
+format-offline-padding = 1
 
 label-song = %artist% - %title%
 label-offline = MPD is offline
@@ -88,6 +85,14 @@ label = %date% - %time%
 type = custom/text
 content = " | "
 
+[module/left]
+type = custom/text
+content = "["
+
+[module/right]
+type = custom/text
+content = "]"
+
 [module/weather]
 type = custom/script
 exec = get-weather
@@ -99,8 +104,8 @@ type = internal/memory
 interval = 3
 
 label =  %percentage_used%%
-label-foreground = ${xrdb:color8}
-label-background = ${xrdb:color7}
+label-foreground = ${xrdb:color10}
+label-background = ${xrdb:color15}
 label-padding = 1
 
 [module/cpu]
@@ -109,8 +114,8 @@ type = internal/cpu
 interval = 3
 
 label =  %percentage%%
-label-foreground = ${xrdb:color8}
-label-background = ${xrdb:color7}
+label-foreground = ${xrdb:color10}
+label-background = ${xrdb:color15}
 label-padding = 1
 
 [module/wired-network]
@@ -121,8 +126,8 @@ type = internal/network
 interface = enp1s0
 
 label-connected =  %local_ip%
-label-connected-foreground = ${xrdb:color8}
-label-connected-background = ${xrdb:color7}
+label-connected-foreground = ${xrdb:color10}
+label-connected-background = ${xrdb:color15}
 label-connected-padding = 1
 
 [module/wireless-network]
@@ -133,26 +138,26 @@ type = internal/network
 interface = wlp2s0
 
 label-connected =  %essid%
-label-connected-foreground = ${xrdb:color8}
-label-connected-background = ${xrdb:color7}
+label-connected-foreground = ${xrdb:color10}
+label-connected-background = ${xrdb:color15}
 label-connected-padding = 1
 
 label-disconnected =  none
-label-disconnected-foreground = ${xrdb:color8}
-label-disconnected-background = ${xrdb:color7}
+label-disconnected-foreground = ${xrdb:color10}
+label-disconnected-background = ${xrdb:color15}
 label-disconnected-padding = 1
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
 format-volume = <ramp-volume> <label-volume>
-format-volume-foreground = ${xrdb:color8}
-format-volume-background = ${xrdb:color7}
+format-volume-foreground = ${xrdb:color10}
+format-volume-background = ${xrdb:color15}
 format-volume-padding = 1
 
 label-muted =  muted
-label-muted-foreground = ${xrdb:color8}
-label-muted-background = ${xrdb:color7}
+label-muted-foreground = ${xrdb:color10}
+label-muted-background = ${xrdb:color15}
 label-muted-padding = 1
 
 ramp-volume-0 = 
@@ -170,26 +175,26 @@ battery = BAT0
 adapter = ADP0
 
 format-charging = <animation-charging> <label-charging>
-format-charging-foreground = ${xrdb:color8}
-format-charging-background = ${xrdb:color7}
+format-charging-foreground = ${xrdb:color10}
+format-charging-background = ${xrdb:color15}
 
 format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-foreground = ${xrdb:color8}
-format-discharging-background = ${xrdb:color7}
+format-discharging-foreground = ${xrdb:color10}
+format-discharging-background = ${xrdb:color15}
 
 label-charging = %percentage%%
-label-charging-foreground = ${xrdb:color8}
-label-charging-background = ${xrdb:color7}
+label-charging-foreground = ${xrdb:color10}
+label-charging-background = ${xrdb:color15}
 label-charging-padding-right = 1
 
 label-discharging = %percentage%%
-label-discharging-foreground = ${xrdb:color8}
-label-discharging-background = ${xrdb:color7}
+label-discharging-foreground = ${xrdb:color10}
+label-discharging-background = ${xrdb:color15}
 label-discharging-padding-right = 1
 
 label-full = "  %percentage%%"
-label-full-foreground = ${xrdb:color8}
-label-full-background = ${xrdb:color7}
+label-full-foreground = ${xrdb:color10}
+label-full-background = ${xrdb:color15}
 label-full-padding-right = 1
 
 animation-charging-0 = " "

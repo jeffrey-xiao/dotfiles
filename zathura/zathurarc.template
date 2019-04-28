@@ -43,7 +43,7 @@ set notification-error-fg       "{color15}"
 set notification-warning-bg     "{color1}"
 set notification-warning-fg     "{color15}"
 set notification-bg             "{color8}"
-set notification-bg             "{color3}"
+set notification-fg             "{color3}"
 
 set highlight-color             "{color3}"
 set highlight-active-color      "{color4}"

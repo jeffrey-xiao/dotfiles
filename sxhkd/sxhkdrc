@@ -94,7 +94,7 @@ super + shift + b
   firefox --private-window
 
 super + n
-  nm
+  rofi-network-manager
 
 super + m
   urxvtc -name music -e ncmpcpp

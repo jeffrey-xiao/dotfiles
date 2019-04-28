@@ -87,11 +87,11 @@ content = " | "
 
 [module/left]
 type = custom/text
-content = "["
+content = "[ "
 
 [module/right]
 type = custom/text
-content = "]"
+content = " ]"
 
 [module/weather]
 type = custom/script
@@ -103,20 +103,29 @@ type = internal/memory
 
 interval = 3
 
-label =  %percentage_used%%
 label-foreground = ${xrdb:color10}
 label-background = ${xrdb:color15}
-label-padding = 1
+label-padding-right = 1
+
+format-prefix = " "
+format-prefix-padding-left = 1
+format-prefix-foreground = ${xrdb:color4}
+format-prefix-background = ${xrdb:color15}
 
 [module/cpu]
 type = internal/cpu
 
 interval = 3
 
-label =  %percentage%%
+label = %percentage%%
 label-foreground = ${xrdb:color10}
 label-background = ${xrdb:color15}
-label-padding = 1
+label-padding-right = 1
+
+format-prefix = " "
+format-prefix-padding-left = 1
+format-prefix-foreground = ${xrdb:color4}
+format-prefix-background = ${xrdb:color15}
 
 [module/wired-network]
 type = internal/network
@@ -137,15 +146,25 @@ type = internal/network
 ; $ iwconfig
 interface = wlp2s0
 
-label-connected =  %essid%
+label-connected = %essid%
+label-connected-padding-right = 1
 label-connected-foreground = ${xrdb:color10}
 label-connected-background = ${xrdb:color15}
-label-connected-padding = 1
 
-label-disconnected =  none
+label-disconnected = none
+label-disconnected-padding-right = 1
 label-disconnected-foreground = ${xrdb:color10}
 label-disconnected-background = ${xrdb:color15}
-label-disconnected-padding = 1
+
+format-connected-prefix = " "
+format-connected-prefix-padding-left = 1
+format-connected-prefix-foreground = ${xrdb:color4}
+format-connected-prefix-background = ${xrdb:color15}
+
+format-disconnected-prefix = " "
+format-disconnected-prefix-padding-left = 1
+format-disconnected-prefix-foreground = ${xrdb:color4}
+format-disconnected-prefix-background = ${xrdb:color15}
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -163,6 +182,7 @@ label-muted-padding = 1
 ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
+ramp-volume-foreground = ${xrdb:color4}
 
 [module/battery]
 type = internal/battery
@@ -183,18 +203,12 @@ format-discharging-foreground = ${xrdb:color10}
 format-discharging-background = ${xrdb:color15}
 
 label-charging = %percentage%%
-label-charging-foreground = ${xrdb:color10}
-label-charging-background = ${xrdb:color15}
 label-charging-padding-right = 1
 
 label-discharging = %percentage%%
-label-discharging-foreground = ${xrdb:color10}
-label-discharging-background = ${xrdb:color15}
 label-discharging-padding-right = 1
 
 label-full = "  %percentage%%"
-label-full-foreground = ${xrdb:color10}
-label-full-background = ${xrdb:color15}
 label-full-padding-right = 1
 
 animation-charging-0 = " "
@@ -202,9 +216,11 @@ animation-charging-1 = " "
 animation-charging-2 = " "
 animation-charging-3 = " "
 animation-charging-4 = " "
+animation-charging-foreground = ${xrdb:color4}
 
 ramp-capacity-0 = " "
 ramp-capacity-1 = " "
 ramp-capacity-2 = " "
 ramp-capacity-3 = " "
 ramp-capacity-4 = " "
+ramp-capacity-foreground = ${xrdb:color4}

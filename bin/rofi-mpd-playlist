@@ -5,6 +5,9 @@ if [ -z "$1" ]; then
 else
   mpc clear > /dev/null
   mpc load "$1" > /dev/null
+  mpc repeat on > /dev/null
   mpc random on > /dev/null
+  mpc single off > /dev/null
+  mpc consume off > /dev/null
   mpc play > /dev/null
 fi

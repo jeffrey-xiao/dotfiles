@@ -170,19 +170,22 @@ format-disconnected-prefix-background = ${xrdb:color15}
 type = internal/pulseaudio
 
 format-volume = <ramp-volume> <label-volume>
-format-volume-foreground = ${xrdb:color10}
 format-volume-background = ${xrdb:color15}
 format-volume-padding = 1
+label-volume-foreground = ${xrdb:color10}
 
-label-muted =  muted
+format-muted-background = ${xrdb:color15}
+label-muted = muted
 label-muted-foreground = ${xrdb:color10}
-label-muted-background = ${xrdb:color15}
-label-muted-padding = 1
 
 ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
 ramp-volume-foreground = ${xrdb:color4}
+
+format-muted-prefix = " "
+format-muted-prefix-foreground = ${xrdb:color4}
+format-muted-prefix-padding-left = 1
 
 [module/battery]
 type = internal/battery
@@ -195,11 +198,11 @@ battery = BAT0
 adapter = ADP0
 
 format-charging = <animation-charging> <label-charging>
-format-charging-foreground = ${xrdb:color10}
+label-charging-foreground = ${xrdb:color10}
 format-charging-background = ${xrdb:color15}
 
 format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-foreground = ${xrdb:color10}
+label-discharging-foreground = ${xrdb:color10}
 format-discharging-background = ${xrdb:color15}
 
 label-charging = %percentage%%

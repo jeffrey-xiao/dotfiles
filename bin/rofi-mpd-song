@@ -7,7 +7,6 @@ if [ -z "$1" ]; then
   mpc playlist --format "%artist% $separator %title%"
 else
   mpc repeat on > /dev/null
-  mpc random on > /dev/null
   mpc single off > /dev/null
   mpc consume off > /dev/null
   mpc play "$(echo "$songs" | grep --max-count=1 --line-regexp --line-number "$1" | cut --delimiter=':' --fields 1)" > /dev/null

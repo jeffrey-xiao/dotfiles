@@ -391,6 +391,15 @@ nnoremap K :execute 'grep!"\b"'.expand('<cword>').'"\b"'<CR>:cw<CR>
 xnoremap > >gv
 xnoremap < <gv
 
+"" Switching case in visual mode should stay in visual mode
+xnoremap u ugv
+xnoremap U Ugv
+xnoremap ~ ~gv
+
+"" Incrementing/decrementing numbers in visual mode should stay in visual mode
+xnoremap <C-a> <C-a>gv
+xnoremap <C-x> <C-x>gv
+
 "" Consistent behavior
 nnoremap Y y$
 

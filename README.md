@@ -71,8 +71,8 @@ dotinstall
 ## Color Scheme
 
 The color scheme used is `solarized-dark`. Most programs will take the colors in `.Xresources` with
-the exception of the transparent background in `urxvt`, and the colors in `dircolors`, `ranger`,
-`vim`, and `weechat`.
+the exception of the transparent background in `urxvt`, and the colors in `dircolors`, `ranger`, and
+`weechat`.
 
 ## Personal Configuration
 
@@ -90,9 +90,9 @@ the exception of the transparent background in `urxvt`, and the colors in `dirco
   for the backlight device.
 - [`bin/robar-brightness-server`](bin/robar-brightness-server): Change the path to the system
   internals interface for the backlight device.
-- [`bin/set-keyboard`](bin/toggle-keyboard): Change the keyboard device name.
-- [`bin/set-touchpad`](bin/toggle-touchpad): Change the touchpad device name.
-- [`git/config`](git/.gitconfig): Change the username and email.
+- [`bin/set-keyboard`](bin/set-keyboard): Change the keyboard device name.
+- [`bin/set-touchpad`](bin/set-touchpad): Change the touchpad device name.
+- [`git/config`](git/config): Change the username and email.
 - [`misc/redshift.conf`](misc/redshift.conf): Change the location.
 - [`mpd/mpd.conf`](mpd/mpd.conf): Change the user.
 - [`polybar/config`](polybar/config): Change the adapter and battery name, and wired and WiFi

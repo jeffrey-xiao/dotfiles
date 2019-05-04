@@ -3,11 +3,11 @@
 if [ -z "$1" ]; then
   mpc lsplaylists
 else
-  mpc clear > /dev/null
+  mpc --quiet clear
   mpc load "$1" > /dev/null
-  mpc repeat on > /dev/null
-  mpc random on > /dev/null
-  mpc single off > /dev/null
-  mpc consume off > /dev/null
-  mpc play > /dev/null
+  mpc --quiet repeat on
+  mpc --quiet random on
+  mpc --quiet single off
+  mpc --quiet consume off
+  mpc --quiet play
 fi

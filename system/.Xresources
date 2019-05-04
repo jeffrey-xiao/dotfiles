@@ -26,7 +26,6 @@ Xft.hinting:              true
 Xft.hintstyle:            hintslight
 
 !! Colors
-! BASE_03 at 5% lightness
 *background:              #BASE_03
 *foreground:              #BASE_0
 

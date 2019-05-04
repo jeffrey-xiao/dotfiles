@@ -7,11 +7,11 @@ if [ -z "$1" ]; then
 else
   artist=$(echo "$1" | cut --delimiter="$separator" --fields=1 | head --bytes -2)
   album=$(echo "$1" | cut --delimiter="$separator" --fields=2 | tail --bytes +2)
-  mpc clear > /dev/null
-  mpc repeat on > /dev/null
-  mpc random off > /dev/null
-  mpc single off > /dev/null
-  mpc consume off > /dev/null
+  mpc --quiet clear
+  mpc --quiet repeat on
+  mpc --quiet random off
+  mpc --quiet single off
+  mpc --quiet consume off
   mpc find artist "$artist" album "$album" | mpc add > /dev/null
-  mpc play > /dev/null
+  mpc --quiet play
 fi

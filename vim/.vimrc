@@ -164,8 +164,8 @@ let g:gutentags_cache_dir = '~/.vim/tags'
 let g:gutentags_generate_on_empty_buffer = 1
 
 "" Config for IndentLine
-let g:indentLine_char = '|'
-let g:indentLine_color_term = 239
+let g:indentLine_char = '┊'
+let g:indentLine_color_term = 10
 let g:indentLine_fileTypeExclude = [ 'markdown', 'json' ]
 
 "" Config for DelimitMate

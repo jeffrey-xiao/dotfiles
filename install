@@ -53,12 +53,12 @@ git clone https://github.com/powerline/fonts ~/Documents/fonts/powerline-fonts &
   . ~/Documents/fonts/powerline-fonts/install.sh
 sudo rm -f /usr/share/fonts/conf.d/70-no-bitmaps.conf &&
   sudo ln -svf /usr/share/fontconfig/conf.avail/70-yes-bitmaps.conf /usr/share/fonts/conf.d
-cp ./fonts/!(fonts.conf) ~/.local/share/fonts/ &&
+cp ./fonts/*.{ttf,bdf} ~/.local/share/fonts/ &&
   (cd ~/.local/share/fonts/ && mkfontdir && mkfontscale)
 fc-cache --force --verbose
 
 ## Installing development related programs and tools.
-vim --cmd PlugInstall --cmd q! --cmd q!
+vim -c PlugInstall -c q! -c q!
 curl --silent --location https://raw.githubusercontent.com/creationix/nvm/master/install.sh --output install_nvm.sh &&
   chmod 775 install_nvm.sh &&
   ./install_nvm.sh &&

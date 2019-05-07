@@ -14,7 +14,7 @@ __path_info() {
 
 __git_info() {
   # Git not found.
-  [ -x "$(which git)" ] || return
+  [ -x "$(command -v git)" ] || return
 
   # Force git output in English to make our work easier.
   local git_eng="env LANG=C git"
@@ -28,12 +28,13 @@ __git_info() {
   $git_eng status &>/dev/null || return
 
   local marks
+  local status=$($git_eng status --porcelain 2>/dev/null)
 
-  local stat="$($git_eng status --porcelain --branch | grep '^##' | grep --only-matching '\[.\+\]$')"
-  local all="$($git_eng status --porcelain 2>/dev/null | wc --lines | trim)"
-  local unstaged="$($git_eng status --porcelain 2>/dev/null | grep --count "^ \\w" | trim)"
-  local uncommited="$($git_eng status --porcelain 2>/dev/null | grep --count "^\\w\\(\\w\\|\\s\\)" | trim)"
+  local all="$(echo "$status" | wc --lines | trim)"
+  local unstaged="$(echo "$status" | grep --count "^ \\w" | trim)"
+  local uncommited="$(echo "$status" | grep --count "^\\w\\(\\w\\|\\s\\)" | trim)"
   local untracked="$((all - unstaged - uncommited))"
+  local stat="$($git_eng status --porcelain --branch | grep '^##' | grep --only-matching '\[.\+\]$')"
   local ahead="$(echo "$stat" | grep --only-matching 'ahead [[:digit:]]\+' | grep --only-matching '[[:digit:]]\+')"
   local behind="$(echo "$stat" | grep --only-matching 'behind [[:digit:]]\+' | grep --only-matching '[[:digit:]]\+')"
 
@@ -47,6 +48,9 @@ __git_info() {
 }
 
 __venv_info() {
+  # virtualenv not installed
+  [ -x "$(command -v virtualenv)" ] || return
+
   # venv not found.
   [ -z ${VIRTUAL_ENV+x} ] && return
   version=$(python --version | cut --delimiter=' ' --fields=2-)
@@ -54,8 +58,11 @@ __venv_info() {
 }
 
 __nvm_info() {
-  # nvm using system
+  # nvm not installed
+  [ -x "$(command -v nvm)" ] || return
+
   version=$(nvm current)
+  # nvm using system
   [ "$version" = "system" ] && return
   echo "nvm $version"
 }

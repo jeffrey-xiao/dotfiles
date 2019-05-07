@@ -28,7 +28,7 @@ export VISUAL=vim
 export FZF_DEFAULT_COMMAND='ag --hidden --filename-pattern ""'
 
 # Setting rust src path.
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+[ -x "$(command -v rustc)" ] && export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
 # Setting nvm dir.
 export NVM_DIR="$HOME/.nvm"

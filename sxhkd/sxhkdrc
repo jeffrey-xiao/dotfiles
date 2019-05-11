@@ -100,7 +100,7 @@ super + m
   urxvtc -name music -e ncmpcpp
 
 super + shift + m
-  rofi -modi "song:rofi-mpd-song#playlist:rofi-mpd-playlist#album:rofi-mpd-album" -show song
+  rofi-mpd
 
 super + y
   urxvtc -name explorer -e ranger

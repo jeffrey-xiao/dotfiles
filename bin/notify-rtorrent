@@ -1,4 +1,4 @@
 #!/bin/sh
 
 [ -z "$1" ] && { echo "Error: Argument 1 must be torrent name." && exit 1; }
-notify-send --urgency=critical "RTorrent: Download Finished" "$1"
+notify-send --urgency=critical "rTorrent: Download Finished" "$1"

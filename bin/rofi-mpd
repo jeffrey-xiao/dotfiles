@@ -1,0 +1,3 @@
+#!/bin/sh
+
+rofi -modi "song:rofi-mpd-song#playlist:rofi-mpd-playlist#album:rofi-mpd-album" -show song

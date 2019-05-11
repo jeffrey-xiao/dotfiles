@@ -16,7 +16,7 @@ done
 # Compile templates
 for template_name in "$DOTFILES_DIR"/**/*.template; do
   compiled_name=${template_name%.*}
-  "$DOTFILES_DIR"/bin/compile-color-template "$template_name" "$compiled_name"
+  "$DOTFILES_DIR"/bin/xrdb-compile-colors "$template_name" "$compiled_name"
 done
 
 # Link to .config/$folder.

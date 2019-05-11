@@ -2,11 +2,12 @@
 
 [ ! -f "$1" ] && { echo "Error: Argument 1 must be bibliography file." && exit 1; }
 
+bibliography_file="$1"
 references_template="
 ---
-bibliography: $1
+bibliography: $bibliography_file
 nocite: '@*'
 ---
 "
 
-echo "$references_template" | pandoc --bibliography "$1" --to=markdown_strict
+echo "$references_template" | pandoc --bibliography "$bibliography_file" --to=markdown_strict

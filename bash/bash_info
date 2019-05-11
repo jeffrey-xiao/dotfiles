@@ -30,7 +30,7 @@ __git_info() {
   local marks
   local status=$($git_eng status --porcelain 2>/dev/null)
 
-  local all="$(echo "$status" | wc --lines | trim)"
+  local all="$(printf "%s" "$status" | grep --count "^.*$"| trim)"
   local unstaged="$(printf "%s" "$status" | grep --count "^ \\w" | trim)"
   local uncommited="$(printf "%s" "$status" | grep --count "^\\w\\(\\w\\|\\s\\)" | trim)"
   local untracked="$((all - unstaged - uncommited))"

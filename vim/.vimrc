@@ -47,13 +47,6 @@ Plug 'joereynolds/vim-minisnip'
 "" Auto completion and linting
 Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neoinclude.vim'
-
-Plug 'Rip-Rip/clang_complete'
-Plug 'davidhalter/jedi-vim'
-Plug 'lervag/vimtex'
-Plug 'racer-rust/vim-racer'
-Plug 'ternjs/tern_for_vim'
-
 Plug 'w0rp/ale'
 
 "" Git integration
@@ -70,24 +63,35 @@ Plug 'ludovicchabant/vim-gutentags'
 "" Buffer line in tabline
 Plug 'ap/vim-buftabline'
 
-"" Languages
+"" Pane navigation with tmux
 Plug 'christoomey/vim-tmux-navigator'
+
+"" Languages
+" Latex
+Plug 'lervag/vimtex'
+
+" Elixir
 Plug 'elixir-editors/vim-elixir'
+Plug 'slashmili/alchemist.vim'
+
+" C++
+Plug 'Rip-Rip/clang_complete'
 Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'pangloss/vim-javascript'
+
+" Rust
+Plug 'racer-rust/vim-racer'
 Plug 'rust-lang/rust.vim'
-" Plug 'hkmix/vim-george'
-" Plug 'sheerun/vim-polyglot'
-" Plug 'mattn/emmet-vim'
-" Plug 'moll/vim-node'
-" Plug 'jaawerth/nrun.vim'
-" Plug 'mxw/vim-jsx'
-" Plug 'jelera/vim-javascript-syntax'
-" Plug 'maksimr/vim-jsbeautify'
-" Plug 'digitaltoad/vim-jade'
+
+" Python
+Plug 'davidhalter/jedi-vim'
+
+" JavaScript
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'ternjs/tern_for_vim'
+
+" Go
 " Plug 'fatih/vim-go'
-" Plug 'wlangstroth/vim-racket'
-" Plug 'guns/vim-clojure-static'
 
 call plug#end()
 
@@ -127,12 +131,13 @@ if !exists('g:neocomplete#force_omni_input_patterns')
   let g:neocomplete#force_omni_input_patterns = {}
 endif
 
-let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
+let g:neocomplete#sources#omni#input_patterns.javascript = '[^. \t]\.\w*'
 let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
 let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
 let g:neocomplete#sources#omni#input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
 let g:neocomplete#sources#omni#input_patterns.rust = '[^.[:digit:] *\t]\%(\.\|\::\)\%(\h\w*\)\?'
 let g:neocomplete#sources#omni#input_patterns.tex = '\v\\%(\a*%(ref|cite)\a*%(\s*\[[^]]*\])?\s*\{[^{}]*|includegraphics%(\s*\[[^]]*\])?\s*\{[^{}]*|%(include|input)\s*\{[^{}]*)'
+let g:neocomplete#sources#omni#input_patterns.elixir = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
 
 "" Config for Ale
 let g:ale_linters = {

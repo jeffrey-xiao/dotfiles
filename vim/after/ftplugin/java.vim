@@ -1,4 +1,4 @@
-"" Functions
+" Functions
 function! CompileJava() abort
   let l:fileName = expand('%')
   setlocal errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
@@ -15,7 +15,6 @@ function! RunJava() abort
   execute '!java -Xmx100M -Xss100M -ea -cp '.l:folderPath.' '.l:baseName
 endfunction
 
-
-"" Keybindings
+" Keybindings
 nnoremap <buffer> <F4> :call CompileJava()<CR>
 nnoremap <buffer> <F5> :call RunJava()<CR>

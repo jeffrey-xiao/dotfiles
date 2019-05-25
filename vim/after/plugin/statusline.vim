@@ -1,4 +1,4 @@
-"" Functions
+" Functions
 function! RefreshStatusLine() abort
   for l:nr in range(1, winnr('$'))
     call setwinvar(l:nr, '&statusline', '%!StatusLine('.l:nr.')')
@@ -99,8 +99,7 @@ function! StatusLineAle() abort
   return l:ale_output
 endfunction
 
-
-"" Autocommands
+" Autocommands
 augroup statusline_group
   autocmd!
   autocmd cursorhold,bufwritepost * unlet! b:warning_flags

@@ -430,7 +430,7 @@ cmap w!! w !sudo tee > /dev/null %
 
 """ Highlighting config
 "" Underline current line
-set nocursorline
+set cursorline
 
 function! Highlight() abort
   highlight Normal ctermbg=8
@@ -438,10 +438,11 @@ function! Highlight() abort
   highlight LineNr ctermbg=0
   highlight VertSplit ctermbg=8
   highlight SignColumn ctermbg=0
+  highlight SpellBad cterm=underline
 
   "" Highlighting for cursorline
   highlight clear CursorLine
-  highlight CursorLine cterm=underline
+  highlight CursorLine ctermbg=0
   highlight CursorLineNR ctermfg=14 ctermbg=0
 
   "" Highlighting for GitGutter symbols
@@ -520,7 +521,7 @@ augroup end
 augroup cursorline_group
   autocmd!
   autocmd WinLeave * set nocursorline
-  autocmd WinEnter * set nocursorline
+  autocmd WinEnter * set cursorline
 augroup END
 
 "" Searching highlighting
@@ -533,6 +534,6 @@ augroup END
 "" Numbering autocommands
 augroup numbering_group
   autocmd!
-  autocmd WinLeave,BufLeave * set norelativenumber
-  autocmd WinEnter,BufEnter * set relativenumber
+  autocmd WinLeave * set norelativenumber
+  autocmd WinEnter * set relativenumber
 augroup END

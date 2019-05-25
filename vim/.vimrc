@@ -169,7 +169,7 @@ let g:gutentags_cache_dir = '~/.vim/tags'
 let g:gutentags_generate_on_empty_buffer = 1
 
 "" Config for IndentLine
-let g:indentLine_char = '┊'
+let g:indentLine_char = '|'
 let g:indentLine_color_term = 10
 let g:indentLine_fileTypeExclude = [ 'markdown', 'json' ]
 
@@ -313,6 +313,8 @@ set nojoinspaces
 set t_md=
 set hidden
 set colorcolumn=100
+set list
+set listchars=tab:»·,nbsp:•,trail:·,extends:→,precedes:←
 
 "" Vim info config
 set viminfo='500   " remember marks for last 500 files
@@ -430,11 +432,12 @@ cmap w!! w !sudo tee > /dev/null %
 
 """ Highlighting config
 "" Underline current line
-set cursorline
+set nocursorline
 
 function! Highlight() abort
   highlight Normal ctermbg=8
   highlight NonText ctermbg=8
+  highlight SpecialKey ctermbg=8
   highlight LineNr ctermbg=0
   highlight VertSplit ctermbg=8
   highlight SignColumn ctermbg=0
@@ -521,7 +524,7 @@ augroup end
 augroup cursorline_group
   autocmd!
   autocmd WinLeave * set nocursorline
-  autocmd WinEnter * set cursorline
+  autocmd WinEnter * set nocursorline
 augroup END
 
 "" Searching highlighting

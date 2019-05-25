@@ -249,7 +249,7 @@ endif
 
 
 """ General config
-"" Indentation
+"" Indentation and wrapping
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
@@ -259,10 +259,10 @@ set smarttab
 set cindent
 set nowrap
 
-"" Line/column numbers
+"" Line numbers and column config
 set number
 set relativenumber
-set laststatus=2
+set colorcolumn=100
 
 "" No beeping or error sounds
 set noerrorbells
@@ -293,28 +293,37 @@ set wildignore+=*.DS_Store                       " OSX garbage
 set wildignore+=*.pdf,*.zip,*.so                 " Binaries
 set wildignore+=*.pyc,*.pyo                      " Python byte code
 
+"" List chars config
+set list
+set listchars=tab:»·,nbsp:•,trail:·,extends:→,precedes:←
+
+"" Encoding config
+set encoding=utf-8
+scriptencoding utf-8
+set fileencoding=utf-8
+
+"" Mouse config
+set mouse=a
+set nomousehide
+
+"" UI config
+set showtabline=2
+set showmode
+set showmatch
+set showcmd
+set cmdheight=2
+set laststatus=2
+set shortmess=aIT
+
 "" Other config
 set backspace=indent,eol,start
 set autoread
 set autowrite
-set shortmess=aIT
-set encoding=utf-8
-scriptencoding utf-8
-set fileencoding=utf-8
 set lazyredraw
-set showtabline=2
-set showmode
-set showcmd
-set cmdheight=2
-set mouse=a
-set nomousehide
 set infercase
 set nojoinspaces
 set t_md=
 set hidden
-set colorcolumn=100
-set list
-set listchars=tab:»·,nbsp:•,trail:·,extends:→,precedes:←
 
 "" Vim info config
 set viminfo='500   " remember marks for last 500 files

@@ -105,6 +105,9 @@
   # Automatically correct and execute mistyped commands
   autocorrect = 1
 
+[commit]
+  verbose = true
+
 [merge]
   # Includes summaries of merged commits in newly created merge commit messages
   log = true

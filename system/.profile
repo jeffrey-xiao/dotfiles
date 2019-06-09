@@ -3,7 +3,7 @@
 config_dir="${XDG_CONFIG_HOME:-"$HOME/.config"}"
 bash_config_dir=$config_dir/bash
 
-# Set PATH so it includes user's private bin directories
+# Set PATH so it includes user's bin directories.
 export PATH="$PATH:$HOME/.local/bin"
 
 # Set PATH to include cargo binaries.
@@ -11,6 +11,9 @@ export PATH="$PATH:$HOME/.cargo/bin"
 
 # Set PATH to include fzf binaries.
 export PATH="$PATH:$HOME/.fzf/bin"
+
+# Set PATH to include mix scripts.
+export PATH="$PATH:$HOME/.mix/escripts"
 
 # Environment variables for mpd.
 export MPD_HOST=~/.config/mpd/socket

@@ -170,6 +170,7 @@ let g:gutentags_generate_on_empty_buffer = 1
 
 "" Config for IndentLine
 let g:indentLine_char = '|'
+let g:indentLine_concealcursor = 0
 let g:indentLine_color_term = 10
 let g:indentLine_fileTypeExclude = [ 'markdown', 'json' ]
 
@@ -441,7 +442,7 @@ cmap w!! w !sudo tee > /dev/null %
 
 """ Highlighting config
 "" Underline current line
-set nocursorline
+set cursorline
 
 function! Highlight() abort
   highlight Normal ctermbg=8
@@ -533,7 +534,7 @@ augroup end
 augroup cursorline_group
   autocmd!
   autocmd WinLeave * set nocursorline
-  autocmd WinEnter * set nocursorline
+  autocmd WinEnter * set cursorline
 augroup END
 
 "" Searching highlighting

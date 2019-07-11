@@ -491,7 +491,14 @@ function! Highlight() abort
   highlight BufTabLineCurrent cterm=none ctermfg=8 ctermbg=14
   highlight BufTabLineActive cterm=none ctermfg=8 ctermbg=10
   highlight BufTabLineHidden cterm=none ctermfg=8 ctermbg=10
-  highlight BufTabLineFill ctermfg=0 ctermbg=0
+  highlight BufTabLineFill cterm=none ctermfg=0 ctermbg=0
+
+  "" Highlighting for TabLine
+  highlight TabLine cterm=none ctermfg=8 ctermbg=10
+  highlight TabLineSel cterm=none ctermfg=8 ctermbg=14
+  highlight TabLineFill cterm=none ctermfg=0 ctermbg=0
+  highlight TabNum cterm=none ctermfg=8 ctermbg=10
+  highlight TabNumSel cterm=none ctermfg=8 ctermbg=14
 
   "" Highlighting for statusline
   highlight statusLineDark ctermfg=12 ctermbg=0

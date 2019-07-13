@@ -112,7 +112,7 @@ let g:jedi#auto_vim_configuration = 0
 let g:jedi#completions_enabled = 0
 let g:jedi#smart_auto_mappings = 0
 
-"" Config for racer
+" Config for racer
 let g:racer_cmd = '/home/jeffreyxiao/.cargo/bin/racer'
 let g:racer_experimental_completer = 1
 
@@ -175,7 +175,6 @@ let g:indentLine_color_term = 10
 let g:indentLine_fileTypeExclude = [ 'markdown', 'json' ]
 
 "" Config for DelimitMate
-" Adds a new line before the autocompleted bracket
 let g:delimitMate_autoclose = 1
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_space = 1
@@ -453,27 +452,27 @@ function! Highlight() abort
   highlight SignColumn ctermbg=0
   highlight SpellBad cterm=underline
 
-  "" Highlighting for cursorline
+  " Highlighting for cursorline
   highlight clear CursorLine
   highlight CursorLine ctermbg=0
   highlight CursorLineNR ctermfg=14 ctermbg=0
 
-  "" Highlighting for GitGutter symbols
+  " Highlighting for GitGutter symbols
   highlight SignifySignAdd ctermfg=2 ctermbg=0
   highlight SignifySignChange ctermfg=3 ctermbg=0
   highlight SignifySignDelete ctermfg=1 ctermbg=0
 
-  "" Highlighting for ALE symbols
+  " Highlighting for ALE symbols
   highlight ALEErrorSign ctermfg=1 ctermbg=0
   highlight ALEWarningSign ctermfg=3 ctermbg=0
 
-  "" Highlighting for latex
+  " Highlighting for latex
   highlight texMathMatcher ctermbg=none
   highlight texMathZoneX ctermbg=none
   highlight texRefLabel ctermbg=none
   highlight texStatement ctermbg=none
 
-  "" Highlighting for markdown
+  " Highlighting for markdown
   highlight def link markdownItalic NONE
   highlight def link markdownItalicDelimiter NONE
   highlight def link markdownBold NONE
@@ -487,20 +486,20 @@ function! Highlight() abort
   highlight markdownBoldItalic ctermfg=4
   highlight markdownBoldItalicDelimiter ctermfg=4
 
-  "" Highlighting for BufTabLine
+  " Highlighting for BufTabLine
   highlight BufTabLineCurrent cterm=none ctermfg=8 ctermbg=14
   highlight BufTabLineActive cterm=none ctermfg=8 ctermbg=10
   highlight BufTabLineHidden cterm=none ctermfg=8 ctermbg=10
   highlight BufTabLineFill cterm=none ctermfg=0 ctermbg=0
 
-  "" Highlighting for TabLine
+  " Highlighting for TabLine
   highlight TabLine cterm=none ctermfg=8 ctermbg=10
   highlight TabLineSel cterm=none ctermfg=8 ctermbg=14
   highlight TabLineFill cterm=none ctermfg=0 ctermbg=0
   highlight TabNum cterm=none ctermfg=8 ctermbg=10
   highlight TabNumSel cterm=none ctermfg=8 ctermbg=14
 
-  "" Highlighting for statusline
+  " Highlighting for statusline
   highlight statusLineDark ctermfg=12 ctermbg=0
   highlight statusLineLight ctermfg=0 ctermbg=14
   highlight statusLineAccent ctermfg=15 ctermbg=1
@@ -511,7 +510,6 @@ endfunction
 "" Quickfix related autocommands
 augroup quickfix_group
   autocmd!
-  "" Convenient quickfix macros
   " Open in new tab
   autocmd Filetype qf nnoremap <buffer> t <C-w><CR><C-w>T
   " Open in new tab and focus on results
@@ -540,8 +538,8 @@ augroup end
 "" Cursorline autocommands
 augroup cursorline_group
   autocmd!
-  autocmd WinLeave * set nocursorline
-  autocmd WinEnter * set cursorline
+  autocmd WinLeave,BufLeave * set nocursorline
+  autocmd WinEnter,BufEnter * set cursorline
 augroup END
 
 "" Searching highlighting
@@ -554,6 +552,6 @@ augroup END
 "" Numbering autocommands
 augroup numbering_group
   autocmd!
-  autocmd WinLeave * set norelativenumber
-  autocmd WinEnter * set relativenumber
+  autocmd WinLeave,BufLeave * set norelativenumber
+  autocmd WinEnter,BufEnter * set relativenumber
 augroup END

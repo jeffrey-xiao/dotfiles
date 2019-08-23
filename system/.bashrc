@@ -23,7 +23,6 @@ shopt -s checkwinsize
 shopt -s dotglob
 shopt -s extglob
 shopt -s globstar
-shopt -s nullglob
 
 # Enable vi mode.
 set -o vi

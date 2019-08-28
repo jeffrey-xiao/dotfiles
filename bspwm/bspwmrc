@@ -18,8 +18,8 @@ init-daemon nm-applet &
 init-daemon sxhkd &
 
 ## Initialize displays
-bspwm-distribute-desktops
 init-displays
+bspwm-distribute-desktops
 
 ## Initialize urxvt daemon
 init-daemon urxvtd "urxvtd --quiet --fork --opendisplay"
@@ -46,6 +46,10 @@ bspc config gapless_monocle true
 ## Pointer configuration
 bspc config focus_follows_pointer true
 bspc config click_to_focus true
+
+## Monitor configuration
+bspc config remove_disabled_monitors true
+bspc config remove_unplugged_monitors true
 
 ## Color configuration
 . ~/.local/bin/xrdb-export-colors

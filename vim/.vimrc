@@ -91,7 +91,7 @@ Plug 'mxw/vim-jsx'
 Plug 'ternjs/tern_for_vim'
 
 " Go
-" Plug 'fatih/vim-go'
+Plug 'fatih/vim-go'
 
 call plug#end()
 
@@ -295,7 +295,7 @@ set wildignore+=*.pyc,*.pyo                      " Python byte code
 
 "" List chars config
 set list
-set listchars=tab:»·,nbsp:•,trail:·,extends:→,precedes:←
+set listchars=tab:¦\ ,nbsp:•,trail:·,extends:→,precedes:←
 
 "" Encoding config
 set encoding=utf-8

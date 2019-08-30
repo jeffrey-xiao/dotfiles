@@ -1,23 +1,23 @@
-# zoom and scroll step size
+# Zoom and scroll step size
 set zoom-step 20
 set scroll-step 80
 
-# copy selection to system clipboard
+# Copy selection to system clipboard
 set selection-clipboard clipboard
 
-# enable incremental search
+# Enable incremental search
 set incremental-search true
 
-# replace $HOME with ~
+# Replace $HOME with ~
 set statusbar-home-tilde true
 
-# open document in "best-fit" mode by default
+# Open document in "best-fit" mode by default
 set adjust-open "best-fit"
 
-# font
+# Font config
 set font "TamzenForPowerline 14"
 
-# colors
+# Color config
 set default-bg                  "{color0}"
 set default-fg                  "{color14}"
 

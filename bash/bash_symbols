@@ -4,7 +4,7 @@ __initialize_symbols() {
   [ -n "$SYMBOLS_INITIALIZED" ] && return
   readonly SYMBOLS_INITIALIZED=1
 
-  # Unicode symbols
+  # Unicode symbols.
   readonly PS_SYMBOL_DARWIN=''
   readonly PS_SYMBOL_LINUX='$'
   readonly PS_SYMBOL_OTHER='%'
@@ -21,13 +21,13 @@ __initialize_symbols() {
     esac
   fi
 
-  # Powerline symbols
+  # Powerline symbols.
   readonly RIGHT_ARROW=''
   readonly LEFT_ARROW=''
   readonly RIGHT_SEP=''
   readonly LEFT_SEP=''
 
-  # Git symbols
+  # Git symbols.
   readonly GIT_UNCOMMITED_SYMBOL="+"
   readonly GIT_UNSTAGED_SYMBOL="*"
   readonly GIT_UNTRACKED_SYMBOL="?"

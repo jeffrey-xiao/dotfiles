@@ -452,7 +452,7 @@ function! Highlight() abort
   highlight SignColumn ctermbg=0
   highlight SpellBad cterm=underline
 
-  " Highlighting for cursorline
+  " Highlighting for CursorLine
   highlight clear CursorLine
   highlight CursorLine ctermbg=0
   highlight CursorLineNR ctermfg=14 ctermbg=0
@@ -466,13 +466,13 @@ function! Highlight() abort
   highlight ALEErrorSign ctermfg=1 ctermbg=0
   highlight ALEWarningSign ctermfg=3 ctermbg=0
 
-  " Highlighting for latex
+  " Highlighting for LaTeX
   highlight texMathMatcher ctermbg=none
   highlight texMathZoneX ctermbg=none
   highlight texRefLabel ctermbg=none
   highlight texStatement ctermbg=none
 
-  " Highlighting for markdown
+  " Highlighting for Markdown
   highlight def link markdownItalic NONE
   highlight def link markdownItalicDelimiter NONE
   highlight def link markdownBold NONE

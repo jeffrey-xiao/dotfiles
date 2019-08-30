@@ -48,7 +48,7 @@ __git_info() {
 }
 
 __venv_info() {
-  # virtualenv not installed
+  # virtualenv not installed.
   [ -x "$(command -v virtualenv)" ] || return
 
   # venv not found.
@@ -58,11 +58,11 @@ __venv_info() {
 }
 
 __nvm_info() {
-  # nvm not installed
+  # nvm not installed.
   [ -x "$(command -v nvm)" ] || return
 
   version=$(nvm current)
-  # nvm using system
+  # nvm using system.
   [ "$version" = "system" ] && return
   echo "nvm $version"
 }

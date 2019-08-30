@@ -39,13 +39,13 @@ __powerline() {
     venv_info="$(__venv_info)"
     nvm_info="$(__nvm_info)"
 
-    # Path info
+    # Path info.
     push_section "\\W" "$FG_COLOR_11" "$BG_COLOR_11"
 
-    # Git info
+    # Git info.
     [ ! -z "$git_info" ] && push_section "$git_info" "$FG_COLOR_4" "$BG_COLOR_4"
 
-    # Environment info
+    # Environment info.
     for info in "$venv_info" "$nvm_info"; do
       [ -z "$info" ] && continue
       get_color

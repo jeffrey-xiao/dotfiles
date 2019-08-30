@@ -18,17 +18,17 @@ __twoline_simple() {
     venv_info="$(__venv_info)"
     nvm_info="$(__nvm_info)"
 
-    # Path info
+    # Path info.
     if [ "$(id -u)" -eq 0 ]; then
       PS1="$PS1$FG_COLOR_4$(__path_info)$RESET"
     else
       PS1="$PS1$FG_COLOR_3$(__path_info)$RESET"
     fi
 
-    # Git info
+    # Git info.
     [ ! -z "$git_info" ] && PS1="$PS1 on $RESET$FG_COLOR_3$git_info$RESET"
 
-    # Environment info
+    # Environment info.
     existing_info=false
     { [ ! -z "$venv_info" ] || [ ! -z "$nvm_info" ]; } && PS1="$PS1 with"
     for info in "$venv_info" "$nvm_info"; do

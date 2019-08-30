@@ -6,10 +6,10 @@ max_peers = 100
 min_peers_seed = 1
 max_peers_seed = 50
 
-# Maximum number of uploads single torrent may use
+# Maximum number of uploads single torrent may use.
 max_uploads = 10
 
-# Maximum number of simultaneous downloads and uploads
+# Maximum number of simultaneous downloads and uploads.
 max_downloads_global = 50
 max_uploads_global = 30
 
@@ -23,54 +23,54 @@ directory.default.set = ~/Downloads/incomplete
 # Default session directory.
 session = ~/.config/rtorrent/sessions
 
-# Watch a directory for new torrents
+# Watch a directory for new torrents.
 schedule2 = watch_directory_1,5,5,"load.start=~/Downloads/*.torrent,d.custom1.set=~/Downloads/complete"
 
-# Restart torrents that have been copied back and stop those that have been deleted
+# Restart torrents that have been copied back and stop those that have been deleted.
 schedule2 = tied_directory,1,30,start_tied=
 schedule2 = untied_directory,1,30,close_untied=
 
 # Close torrents when diskspace is low.
 schedule = low_diskspace,5,60,close_low_diskspace=2000M
 
-# Periodically save session data
+# Periodically save session data.
 schedule = session.save,240,300,session.save=
 
-# Ratio config
+# Ratio config.
 group.seeding.ratio.enable=
 group2.seeding.ratio.min.set=100
 group2.seeding.ratio.max.set=200
 group2.seeding.ratio.upload.set=20M
 
-# Move files to ~/Downloads/complete when download completes
+# Move files to ~/Downloads/complete when download completes.
 method.set_key = event.download.finished,move_complete,"d.directory.set=$d.custom1=; execute=mv,-n,$d.base_path=,$d.custom1="
 
-# Send notification when download is done
+# Send notification when download is done.
 method.set_key = event.download.finished,notify_finished,"execute2=notify-rtorrent,$d.name="
 
 port_range = 33101-33199
 port_random = yes
 
-# Encryption options
+# Encryption options.
 encryption = allow_incoming,try_outgoing,enable_retry,prefer_plaintext
 
-# Sort the main view by ratio
+# Sort the main view by ratio.
 view.sort_current = main,greater=d.ratio=
 view.sort_new = main,less=d.ratio=
 view.sort = main
 
-# Sort the seeding view by the upload rate and only show torrents with peers
+# Sort the seeding view by the upload rate and only show torrents with peers.
 view.sort_current = seeding,greater=d.up.rate=
 view.filter = seeding,"and=d.complete=,d.peers_connected="
 view.sort_new = seeding,less=d.up.rate=
 view.sort = seeding
 
-# Sort the leeching view by name
+# Sort the leeching view by name.
 view.sort_current = leeching,greater=d.name=
 view.sort_new = leeching,greater=d.name=
 view.sort = leeching
 
-# Filter the active view by connected peers
+# Filter the active view by connected peers.
 view.sort_current = active,less=d.name=
 view.sort_new = leeching,less=d.name=
 view.filter = active,d.peers_connected=
@@ -81,17 +81,17 @@ schedule = sort_seeding,12,5,view.sort=seeding
 schedule = sort_leeching,13,5,view.sort=leeching
 schedule = sort_active,14,5,view.sort=active
 
-# DHT Options
+# DHT options.
 dht = on
 dht_port = 6881
 protocol.pex.set = yes
 dht.mode.set = on
 schedule = dht_node,30,0,"dht.add_node=dht.transmissionbt.com"
 
-# Logging
+# Logging options.
 #log.open_file = "log", (cat,"~/Downloads/logs/rtorrent-",(system.time),".log")
 #log.add_output = "info", "log"
 #log.add_output = "debug", "log"
 
-# Limit max open files
+# Limit max open files.
 network.max_open_files.set = 1024

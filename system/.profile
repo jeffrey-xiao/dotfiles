@@ -19,7 +19,7 @@ export PATH="$PATH:$HOME/.mix/escripts"
 export MPD_HOST=~/.config/mpd/socket
 export MPD_PORT=6600
 
-# Envinroment variables for default programs.
+# Environment variables for default programs.
 export BROWSER=firefox
 export EDITOR=vim
 export PAGER=less

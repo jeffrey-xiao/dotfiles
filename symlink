@@ -13,7 +13,7 @@ for f in "$DOTFILES_DIR/system"/!(*.template); do
   ln -sfv "$f" ~/
 done
 
-# Compile templates
+# Compile templates.
 for template_name in "$DOTFILES_DIR"/**/*.template; do
   compiled_name=${template_name%.*}
   "$DOTFILES_DIR"/bin/xrdb-compile-colors "$template_name" "$compiled_name"

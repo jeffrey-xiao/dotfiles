@@ -1,14 +1,14 @@
 #!/bin/sh
 
-dmenu_cmd() {
-  rofi -i -fuzzy -dmenu -p "$1"
-}
-
 xrandr_output="$(xrandr)"
 connected_monitors=$(printf "%s" "$xrandr_output" | grep "\\bconnected\\b" | awk '{print $1}')
 disconnected_monitors=$(printf "%s" "$xrandr_output" | grep "\\bdisconnected\\b" | awk '{print $1}')
 rotation_options="normal\\ninverted\\nleft\\nright\\n"
 position_options="above\\nbelow\\nsame-as\\nleft-of\\nright-of\\n"
+
+dmenu_cmd() {
+  rofi -i -fuzzy -dmenu -p "$1"
+}
 
 resolution_options() {
   available_resolutions=$(printf "%s" "$xrandr_output" |

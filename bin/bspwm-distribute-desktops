@@ -6,7 +6,7 @@ desktop_count=10
 count=$((desktop_count / monitor_count))
 remaining=$((desktop_count % monitor_count))
 
-# Initialize desktops
+# Initialize desktops.
 if [ "$(bspc query --desktops | wc -l)" != $desktop_count ]; then
   total=0
   for curr_monitor in $monitors; do
@@ -25,7 +25,7 @@ remaining=$((desktop_count % monitor_count))
 curr=0
 index=0
 for i in $(seq 0 $((desktop_count - 1))); do
-  # Handle next monitor
+  # Handle next monitor.
   if [ $curr = 0 ]; then
     curr=$count
     index=$((index + 1))
@@ -35,7 +35,7 @@ for i in $(seq 0 $((desktop_count - 1))); do
     fi
   fi
 
-  # Move desktops
+  # Move desktops.
   curr_monitor_name=$(echo "$monitors" | sed -n "$index p")
   curr_monitor=$(bspc query --monitors --monitor "$curr_monitor_name")
   curr_desktop=$(bspc query --desktops --desktop "$i")
@@ -43,7 +43,7 @@ for i in $(seq 0 $((desktop_count - 1))); do
   bspc desktop "$curr_desktop" --to-monitor "$curr_monitor"
   curr=$((curr - 1))
 
-  # Sort desktops
+  # Sort desktops.
   if [ $curr = 0 ]; then
     bspc query --monitor "$curr_monitor" --tree | jq ".desktops[].name" | sort -n | xargs bspc monitor "$curr_monitor" --reorder-desktops
   fi

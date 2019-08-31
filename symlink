@@ -33,7 +33,7 @@ for f in "$DOTFILES_DIR/bin"/!(*.template); do
   ln -sfv "$f" ~/.local/bin/
 done
 
-# Link vim options.
+# Link vim config.
 ln -sfv "$DOTFILES_DIR/vim/.vimrc" ~/
 ln -sfv "$DOTFILES_DIR/vim/.tern-config" ~/
 ln -sfv "$DOTFILES_DIR/vim/.clang_complete" ~/

@@ -12,13 +12,13 @@ line-size = 3
 
 padding = 0
 
-; Default font
+; Default font.
 font-0 = "TamzenForPowerline:size=18;2"
 
-; Japanese characters
+; Japanese characters.
 font-1 = "M+ 2c:style=regular:size=10;2"
 
-; Icons
+; Icons.
 font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=10;2"
 font-3 = "Font Awesome 5 Free:style=Solid:pixelsize=10;2"
 font-4 = "Font Awesome 5 Brands:pixelsize=10;2"
@@ -130,7 +130,7 @@ format-prefix-background = ${xrdb:color15}
 [module/wired-network]
 type = internal/network
 
-; Use following command to get wired interface
+; Use following command to get wired interface.
 ; $ iwconfig
 interface = enp1s0
 
@@ -142,7 +142,7 @@ label-connected-padding = 1
 [module/wireless-network]
 type = internal/network
 
-; Use following command to get wifi interface
+; Use following command to get wifi interface.
 ; $ iwconfig
 interface = wlp2s0
 
@@ -192,7 +192,7 @@ type = internal/battery
 
 full-at = 99
 
-; Use following command to get battery and adapter
+; Use following command to get battery and adapter.
 ; $ ls -1 /sys/class/power_supply/
 battery = BAT0
 adapter = ADP0

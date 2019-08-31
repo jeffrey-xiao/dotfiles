@@ -1,36 +1,36 @@
 #!/bin/sh
 
-# Startup applications
-## Appearance and notifications
+# Startup applications.
+## Appearance and notifications.
 xsetroot -cursor_name left_ptr
+init-daemon -r dunst "dunst --config ~/.config/dunst/dunstrc" &
 init-daemon compton "compton --config ~/.config/compton/compton.conf" &
-init-daemon dunst -r "dunst --config ~/.config/dunst/dunstrc" &
 init-daemon gsd-xsettings "/usr/lib/gnome-settings-daemon/gsd-xsettings" &
 init-daemon notify-battery &
 init-daemon robar "robar start" &
 
-## Tray applets
+## Tray applets.
 init-daemon blueman-applet &
 init-daemon nm-applet &
 init-daemon redshift-gtk &
 
-## Start hotkey daemon
+## Start hotkey daemon.
 init-daemon sxhkd &
 
-## Initialize displays
+## Initialize displays.
 init-displays
 bspwm-distribute-desktops
 
-## Initialize urxvt daemon
+## Initialize urxvt daemon.
 init-daemon urxvtd "urxvtd --quiet --fork --opendisplay"
 
-## Initialize mpd
+## Initialize mpd.
 init-daemon mpd
 
-## Initialize fonts
+## Initialize fonts.
 init-fonts
 
-# Bspwm configuration
+# Bspwm configuration.
 bspc config border_width 4
 bspc config window_gap 0
 bspc config top_padding 21
@@ -38,27 +38,27 @@ bspc config bottom_padding 0
 bspc config right_padding 0
 bspc config left_padding 0
 
-## Monocle configuration
+## Monocle configuration.
 bspc config borderless_monocle true
 bspc config gapless_monocle true
 bspc config single_monocle true
 
-## Pointer configuration
+## Pointer configuration.
 bspc config click_to_focus true
 bspc config focus_follows_pointer true
 
-## Monitor configuration
+## Monitor configuration.
 bspc config remove_disabled_monitors true
 bspc config remove_unplugged_monitors true
 
-## Color configuration
+## Color configuration.
 . ~/.local/bin/xrdb-export-colors
 bspc config active_border_color "$COLOR_0"
 bspc config focused_border_color "$COLOR_3"
 bspc config normal_border_color "$COLOR_0"
 bspc config presel_feedback_color "$COLOR_3"
 
-## Rules
+## Rules.
 bspc rule --add Firefox desktop=1
 bspc rule --add URxvt:music desktop=0
 bspc rule --add URxvt:torrent desktop=8

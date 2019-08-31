@@ -1,11 +1,11 @@
-# Compiled source
+# Compiled source.
 *.class
 *.dll
 *.exe
 *.o
 *.so
 
-# Packages
+# Packages.
 *.7z
 *.jar
 *.rar
@@ -15,11 +15,11 @@
 *.xz
 *.lzma
 
-# Packing-Only Formats
+# Packing-only formats.
 *.iso
 *.tar
 
-# Package Management Formats
+# Package management formats.
 *.dmg
 *.xpi
 *.gem
@@ -27,24 +27,24 @@
 *.deb
 *.rpm
 
-# Logs and Databases
+# Logs and databases.
 *.log
 *.sqlite
 
-# OS Generated Files
+# OS generated files.
 .DS_Store
 
-# Thumbnails
+# Thumbnails.
 ._*
 
-# Files that might appear on external disk
+# Files that might appear on external disk.
 .Spotlight-V100
 .Trashes
 
-# Windows Image File Caches
+# Windows image file caches.
 Thumbs.db
 
-# Folder Config File
+# Folder config file
 Desktop.ini
 
 # Vim
@@ -52,12 +52,3 @@ Desktop.ini
 .swo
 .*.swp
 .*.swo
-
-# Javascript
-node_modules
-bower_components
-npm-debug.log
-
-# Ack and Ag ignore
-.ackrc
-.ignore

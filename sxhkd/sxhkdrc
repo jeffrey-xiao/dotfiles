@@ -1,4 +1,4 @@
-# Toggle fullscreen, floating, tiled, and pseudo-tiled
+# Toggle fullscreen, floating, tiled, and pseudo-tiled.
 super + {_,shift +} + {f,t}
   bspc node --state ~{fullscreen,floating,tiled,pseudo_tiled}
 
@@ -17,21 +17,21 @@ super + {_,shift +} e
 super + z
   bspc node -n last.!automatic.local
 
-# Focus node by direction
+# Focus node by direction.
 super + {h,j,k,l}
   direction={west,south,north,east}; \
   bspc node --focus "$direction" || bspc monitor --focus "$direction"
 
-# Swap node by direction
+# Swap node by direction.
 super + shift + {h,j,k,l}
   direction={west,south,north,east}; \
   bspc node --swap "$direction" --follow || bspc node --to-monitor "$direction" --follow
 
-# Focus/move node to selected desktop
+# Focus/move node to selected desktop.
 super + {_,shift +} {1-9,0}
   bspc {desktop --focus,node --to-desktop} "$(bspc query --desktops --desktop {1-9,0})"
 
-# Move desktop to selected monitor
+# Move desktop to selected monitor.
 super + shift + {Left,Down,Up,Right}
   desktop=$(bspc query --desktops --desktop focused); \
   monitor=$(bspc query --monitors --monitor {west,south,north,east}); \
@@ -39,51 +39,51 @@ super + shift + {Left,Down,Up,Right}
   bspc query --monitor "$monitor" --tree | jq ".desktops[].name" | sort -n | xargs bspc monitor "$monitor" --reorder-desktops; \
   bspc desktop --focus "$desktop"
 
-# Focus selected monitor
+# Focus selected monitor.
 super + {Left,Down,Up,Right}
   direction={west,south,north,east}; \
   bspc monitor --focus "$direction"
 
-# Reload config
+# Reload config.
 super + shift + r
   ~/.config/bspwm/bspwmrc; \
   pkill -USR1 -x sxhkd
 
-# Close focused window
+# Close focused window.
 super + shift + q
   bspc node --close
 
-# Power options
+# Power options.
 super + x
   dmenu-power
 
-# Lock screen
+# Lock screen.
 super + shift + x
   lock
 
-# Preselection hotkeys
-## Preselect splitting area for next window
+# Preselection hotkeys.
+## Preselect splitting area for next window.
 super + ctrl + {h,j,k,l}
   bspc node --presel-dir \~{west,south,north,east}
 
-## Preselect the ratio
+## Preselect the ratio.
 super + ctrl + {1-9}
   bspc node --presel-ratio 0.{1-9}
 
-## Cancel preselect
+## Cancel preselect.
 super + ctrl + space
   bspc node --presel-dir cancel
 
-# Resizing hotkeys
-## Expand a window by moving one of its sides outward
+# Resizing hotkeys.
+## Expand a window by moving one of its sides outward.
 super + alt + {h,j,k,l}
   bspc node --resize {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
-## Contract a window by moving one of its sides inwards
+## Contract a window by moving one of its sides inwards.
 super + shift + alt + {h,j,k,l}
   bspc node --resize {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
-# Application hotkeys
+# Application hotkeys.
 super + Return
   urxvtc
 
@@ -114,7 +114,7 @@ super + i
 super + d
   rofi -show run
 
-# Screenshots and video recording hotkeys
+# Screenshots and video recording hotkeys.
 Print
   screenshot
 
@@ -127,7 +127,7 @@ alt + Print
 shift + alt + Print
   record -s
 
-# Audio hotkeys
+# Audio hotkeys.
 XF86AudioRaiseVolume
   volume -r +5 && robar-volume
 
@@ -137,18 +137,18 @@ XF86AudioLowerVolume
 XF86AudioMute
   volume -t && robar-volume
 
-# Screen brightness hotkeys
+# Screen brightness hotkeys.
 XF86MonBrightnessUp
   sudo brightness -r +50 && robar-brightness"
 
 XF86MonBrightnessDown
   sudo brightness -r -50 && robar-brightness"
 
-# Touchpad controls
+# Touchpad controls.
 XF86TouchpadToggle
   set-touchpad
 
-# Media player hotkeys
+# Media player hotkeys.
 XF86AudioPlay
   mpc play
 
@@ -164,7 +164,7 @@ XF86AudioPrev
 XF86AudioStop
   mpc pause
 
-# Mpd hotkeys
+# Mpd hotkeys.
 super + p
   mpc toggle
 

@@ -51,7 +51,7 @@ method.set_key = event.download.finished,notify_finished,"execute2=notify-rtorre
 port_range = 33101-33199
 port_random = yes
 
-# Encryption options.
+# Encryption settings.
 encryption = allow_incoming,try_outgoing,enable_retry,prefer_plaintext
 
 # Sort the main view by ratio.
@@ -81,14 +81,14 @@ schedule = sort_seeding,12,5,view.sort=seeding
 schedule = sort_leeching,13,5,view.sort=leeching
 schedule = sort_active,14,5,view.sort=active
 
-# DHT options.
+# DHT settings.
 dht = on
 dht_port = 6881
 protocol.pex.set = yes
 dht.mode.set = on
 schedule = dht_node,30,0,"dht.add_node=dht.transmissionbt.com"
 
-# Logging options.
+# Logging settings.
 #log.open_file = "log", (cat,"~/Downloads/logs/rtorrent-",(system.time),".log")
 #log.add_output = "info", "log"
 #log.add_output = "debug", "log"

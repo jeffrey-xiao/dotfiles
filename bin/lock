@@ -9,10 +9,10 @@ img_path() {
 res=$(xdpyinfo | awk '/dimensions/{print $2}')
 ffmpeg -loglevel quiet -f x11grab -video_size "$res" -i "$DISPLAY" -y -filter_complex "boxblur=10" -vframes 1 "$(img_path 0)"
 
-# Lockscreen image info
+# Lockscreen image info.
 [ ! -L "$lock_file" ] && lock_file=$(readlink --canonicalize "$lock_file")
 
-# Dimensions of lock image
+# Dimensions of lock image.
 r=$(file "$lock_file" | grep --only-matching '[0-9]* x [0-9]*')
 rx=$(echo "$r" | cut --delimiter=' ' --fields=1)
 ry=$(echo "$r" | cut --delimiter=' ' --fields=3)
@@ -20,15 +20,15 @@ ry=$(echo "$r" | cut --delimiter=' ' --fields=3)
 sr=$(xrandr --query | grep ' connected' | sed 's/primary //' | cut --fields=3 --delimiter=' ')
 index=0
 for res in $sr; do
-  # Monitor dimensions
+  # Monitor dimensions.
   srx=$(echo "$res" | cut --delimiter='x' --fields=1)
   sry=$(echo "$res" | cut --delimiter='x' --fields=2 | cut --delimiter='+' --fields=1)
 
-  # Monitor offsets
+  # Monitor offsets.
   srxo=$(echo "$res" | cut --delimiter='x' --fields=2 | cut --delimiter='+' --fields=2)
   sryo=$(echo "$res" | cut --delimiter='x' --fields=2 | cut --delimiter='+' --fields=3)
 
-  # Lock image location
+  # Lock image location.
   px=$((srxo + srx / 2 - rx / 2))
   py=$((sryo + sry / 2 - ry / 2))
 

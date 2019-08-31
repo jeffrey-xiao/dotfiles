@@ -1,17 +1,17 @@
-## Directories
+# Directories.
 ncmpcpp_directory = ~/.config/ncmpcpp
 lyrics_directory = ~/.config/ncmpcpp/lyrics
 
-## Connection settings
+# Connection settings.
 mpd_host = ~/.config/mpd/socket
 mpd_port = 6600
 mpd_connection_timeout = 5
 
-## Needed for tag editor and file operations to work
+# Needed for tag editor and file operations to work.
 mpd_music_dir = ~/Music
 mpd_crossfade_time = 5
 
-## Music Visualizer options
+# Music visualizer options.
 visualizer_fifo_path = "/tmp/mpd.fifo"
 visualizer_output_name = "Visualizer feed"
 visualizer_in_stereo = yes
@@ -19,10 +19,10 @@ visualizer_type = spectrum
 visualizer_look = ●▮
 visualizer_color = 7
 
-## Highlighting always on
+# Highlighting always on.
 playlist_disable_highlight_delay = 0
 
-## Formatting
+# Formatting settings.
 song_list_format = "$8 {%l}$8 |$7 {%a} $8»$6 {{%t}|{%f}} $R $4{%b}"
 song_status_format = {%a - }{%b - }{{%t}|{%f}}
 song_library_format = {%t}|{%f}
@@ -37,17 +37,17 @@ modified_item_prefix = $3> $9
 song_window_title_format = {%a - }{{%t}|{%f}}
 song_columns_list_format = "(5f)[8]{l} (30)[7]{a} (50)[6]{t|f:Title} (10)[4]{b}"
 
-## Display modes for various panes
+# Display modes for various panes.
 playlist_display_mode = classic
 browser_display_mode = columns
 search_engine_display_mode = classic
 playlist_editor_display_mode = classic
 user_interface = classic
 
-## Progress bar appearance
+# Progress bar appearance.
 progressbar_look = "─╼ "
 
-## Startup Settings
+# Startup settings.
 startup_screen = visualizer
 startup_slave_screen = playlist
 startup_slave_screen_focus = no
@@ -55,12 +55,12 @@ locked_screen_width_part = 40
 ask_for_locked_screen_width_part = yes
 jump_to_now_playing_song_at_start = yes
 
-## External settings
+# External settings.
 search_engine_default_search_mode = 1
 external_editor = vim
 use_console_editor = yes
 
-## Colors
+# Color settings.
 colors_enabled = yes
 empty_tag_color = 7
 header_window_color = 7
@@ -80,14 +80,14 @@ statusbar_color = 7
 active_window_border = 2
 window_border_color = 2
 
-## Tag Options
+# Tag settings.
 empty_tag_marker = ""
 tags_separator = " | "
 tag_editor_extended_numeration = no
 default_tag_editor_pattern = %n - %t
 media_library_primary_tag = artist
 
-## UI Settings
+# UI settings.
 discard_colors_if_item_is_selected = yes
 enable_window_title = yes
 header_visibility = yes
@@ -99,7 +99,7 @@ display_bitrate = no
 display_remaining_time = no
 clock_display_seconds = no
 
-## Other settings
+# Other settings.
 mouse_support = no
 mouse_list_scroll_whole_page = no
 ignore_leading_the = yes

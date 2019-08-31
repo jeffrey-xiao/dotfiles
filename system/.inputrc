@@ -31,6 +31,6 @@ set keyseq-timeout 0
 # Flip through autocompletion matches with Shift-Tab.
 "\e[Z": menu-complete
 
-# Filtered history search
+# Filtered history search.
 "\e[A": history-search-backward
 "\e[B": history-search-forward

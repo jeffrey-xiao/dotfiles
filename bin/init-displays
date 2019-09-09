@@ -9,17 +9,18 @@ check_connected() {
 }
 
 if check_connected "DP1"; then
-  xrandr --output eDP1 --mode 1600x900
   xrandr --output DP1 --mode 1920x1080 --right-of eDP1
-elif check_connected "HDMI1"; then
   xrandr --output eDP1 --mode 1600x900
+elif check_connected "HDMI1"; then
   xrandr --output HDMI1 --mode 1920x1080 --right-of eDP1
+  xrandr --output eDP1 --mode 1600x900
 else
   xrandr --output eDP1 --mode 1920x1080
-  for disconnected_monitor in $disconnected_monitors; do
-    xrandr --output "$disconnected_monitor" --off
-  done
 fi
+
+for disconnected_monitor in $disconnected_monitors; do
+  xrandr --output "$disconnected_monitor" --off
+done
 
 init-polybar
 init-background

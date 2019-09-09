@@ -134,10 +134,20 @@ type = internal/network
 ; $ iwconfig
 interface = enp1s0
 
-label-connected =  %local_ip%
+label-connected = %local_ip%
+label-connected-padding-right = 1
 label-connected-foreground = ${xrdb:color10}
 label-connected-background = ${xrdb:color15}
-label-connected-padding = 1
+
+format-connected-prefix = " "
+format-connected-prefix-padding-left = 1
+format-connected-prefix-foreground = ${xrdb:color4}
+format-connected-prefix-background = ${xrdb:color15}
+
+format-disconnected-prefix = ""
+format-disconnected-prefix-padding-left = 1
+format-disconnected-prefix-foreground = ${xrdb:color4}
+format-disconnected-prefix-background = ${xrdb:color15}
 
 [module/wireless-network]
 type = internal/network

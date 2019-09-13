@@ -1,25 +1,21 @@
 \documentclass{article}
 
+\usepackage[parfill]{parskip}
 \usepackage{amsmath, amsthm, amssymb, amsfonts}
 \usepackage{booktabs}
 \usepackage{enumitem}
 \usepackage{fancyhdr}
 \usepackage{float}
-\usepackage[parfill]{parskip}
 \usepackage{geometry}
 \usepackage{hyperref}
 \usepackage{minted}
 \usepackage{tikz}
 \usepackage{titlesec}
+\usepackage{titling}
 \usepackage{xcolor}
 
-\geometry{%
-  left=2cm,
-  right=2cm,
-  top=3cm,
-  bottom=3cm,
-}
-\pagestyle{fancy}
+\geometry{left=2cm, right=2cm, top=3cm, bottom=3cm}
+\setlength{\droptitle}{-3cm}
 \setlist[enumerate]{topsep=-0.15cm,itemsep=-0.15cm,partopsep=-0.15cm,parsep=0.15cm,leftmargin=0.5cm,after=\vspace{\medskipamount}}
 \setlist[itemize]{topsep=-0.15cm,itemsep=-0.15cm,partopsep=-0.15cm,parsep=0.15cm,leftmargin=0.5cm,after=\vspace{\medskipamount}}
 
@@ -63,24 +59,23 @@
 \titleformat*{\subparagraph}{\Large\scshape}
 
 \newcommand{\courseName}{{{++}}}
-\newcommand{\termDate}{Spring 2018}
+\newcommand{\termDate}{{{++}}}
 
-\lhead{\courseName}
-\chead{}
-\rhead{Jeffrey Xiao}
+\title{{{++}}}
+\author{%
+Jeffrey Xiao \\
+\normalsize \href{mailto:j39xiao@edu.uwaterloo.ca}{j39xiao@edu.uwaterloo.ca}
+}
+\date{\termDate}
 
-\lfoot{}
-\cfoot{\thepage}
-\rfoot{}
+\pagestyle{fancy}
+\fancyhead[L]{\courseName}
+\fancyhead[C]{\termDate}
+\fancyhead[R]{Jeffrey Xiao}
+\fancyfoot[C]{\thepage}
 
 \begin{document}
-
-\begingroup
-  \centering
-  \LARGE \courseName\\[0.25cm]
-  \large \termDate\par
-\endgroup
+\maketitle
 \tableofcontents
-\thispagestyle{fancy}
 
 \end{document}

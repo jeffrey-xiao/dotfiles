@@ -2,49 +2,34 @@
 
 monitors=$(printf "%s" "$(xrandr)" | grep "\\bconnected\\b" | awk '{print $1}')
 monitor_count=$(echo "$monitors" | wc -l)
+focused_desktop=$(bspc query --desktops --desktop .focused)
+initial_desktop_count="$(bspc query --desktops | wc -l)"
 desktop_count=10
-count=$((desktop_count / monitor_count))
-remaining=$((desktop_count % monitor_count))
+q=$((desktop_count / monitor_count))
+r=$((desktop_count % monitor_count))
 
-# Initialize desktops.
-if [ "$(bspc query --desktops | wc -l)" != $desktop_count ]; then
-  total=0
-  for curr_monitor in $monitors; do
-    curr=$count;
-    if [ $remaining -gt 0 ]; then
-      curr=$((curr + 1))
-      remaining=$((remaining - 1))
-    fi
-
-    bspc monitor "$curr_monitor" --reset-desktops $(seq $total $((total + curr - 1)))
-    total=$((total + count))
-  done
-fi
-
-remaining=$((desktop_count % monitor_count))
-curr=0
-index=0
-for i in $(seq 0 $((desktop_count - 1))); do
-  # Handle next monitor.
-  if [ $curr = 0 ]; then
-    curr=$count
-    index=$((index + 1))
-    if [ $remaining -gt 0 ]; then
-      curr=$((curr + 1))
-      remaining=$((remaining - 1))
-    fi
+total=0
+for curr_monitor in $monitors; do
+  curr=$q
+  if [ $r -gt 0 ]; then
+    curr=$((curr + 1))
+    r=$((r - 1))
   fi
 
-  # Move desktops.
-  curr_monitor_name=$(echo "$monitors" | sed -n "$index p")
-  curr_monitor=$(bspc query --monitors --monitor "$curr_monitor_name")
-  curr_desktop=$(bspc query --desktops --desktop "$i")
-  bspc desktop --focus "$curr_desktop"
-  bspc desktop "$curr_desktop" --to-monitor "$curr_monitor"
-  curr=$((curr - 1))
-
-  # Sort desktops.
-  if [ $curr = 0 ]; then
+  if [ "$initial_desktop_count" -lt $desktop_count ]; then
+    # Initialize desktops.
+    bspc monitor "$curr_monitor" --reset-desktops $(seq $total $((total + curr - 1)))
+  else
+    # Move desktops.
+    for i in $(seq $total $((total + curr - 1))); do
+      curr_desktop=$(bspc query --desktops --desktop "$i")
+      bspc desktop --focus "$curr_desktop"
+      bspc desktop "$curr_desktop" --to-monitor "$curr_monitor"
+    done
+    # Sort desktops.
     bspc query --monitor "$curr_monitor" --tree | jq ".desktops[].name" | sort -n | xargs bspc monitor "$curr_monitor" --reorder-desktops
   fi
+  total=$((total + curr))
 done
+
+bspc desktop --focus "$focused_desktop"

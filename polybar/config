@@ -173,7 +173,7 @@ format-connected-prefix-background = ${xrdb:color15}
 
 format-disconnected-prefix = " "
 format-disconnected-prefix-padding-left = 1
-format-disconnected-prefix-foreground = ${xrdb:color4}
+format-disconnected-prefix-foreground = ${xrdb:color1}
 format-disconnected-prefix-background = ${xrdb:color15}
 
 [module/pulseaudio]

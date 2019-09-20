@@ -15,7 +15,7 @@ super + {_,shift +} e
   bspc node --{equalize,balance}
 
 super + z
-  bspc node -n last.!automatic.local
+  bspc node -n last.!automatic
 
 # Focus node by direction.
 super + {h,j,k,l}

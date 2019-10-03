@@ -11,20 +11,20 @@ __check_bookmark_name() {
 }
 
 __delete_line() {
-  temp=$(mktemp -t bookmarks.XXXXXXXXXX) || exit 1;
-  trap 'rm -f "$temp"' EXIT
-  sed "/$2/d" "$1" > "$temp"
-  /bin/mv -f "$temp" "$1"
-  /bin/rm -f "$temp"
+  tmp=$(mktemp -t bookmarks.XXXXXXXXXX) || exit 1;
+  trap 'rm -f "$tmp"' EXIT
+  sed "/$2/d" "$1" > "$tmp"
+  /bin/mv -f "$tmp" "$1"
+  /bin/rm -f "$tmp"
   trap - EXIT
 }
 
 __add_line() {
-  temp=$(mktemp -t bookmarks.XXXXXXXXXX) || exit 1;
-  trap 'rm -f "$temp"' EXIT
-  cat "$1" <(echo "$2") | sort > "$temp"
-  /bin/mv -f "$temp" "$1"
-  /bin/rm -f "$temp"
+  tmp=$(mktemp -t bookmarks.XXXXXXXXXX) || exit 1;
+  trap 'rm -f "$tmp"' EXIT
+  cat "$1" <(echo "$2") | sort > "$tmp"
+  /bin/mv -f "$tmp" "$1"
+  /bin/rm -f "$tmp"
   trap - EXIT
 }
 

@@ -3,8 +3,12 @@
 [ ! -x "$(command -v virtualenv)" ] && { echo "Error: virtualenv is not installed." && exit 1; }
 [ ! -f "$1" ] && { echo "Error: Argument 1 must be requirements file." && exit 1; }
 
-virtualenv --python=python3 tmp 1> /dev/null &&
-  . ./tmp/bin/activate &&
+tmp=$(mktemp --directory -t venv.XXXXXXXXXX) || exit 1;
+trap 'rm -rf "$tmp"' EXIT
+
+virtualenv --python=python3 "$tmp" 1> /dev/null &&
+  . "$tmp"/bin/activate &&
   pip install --requirement="$1" 1> /dev/null &&
   pip freeze &&
-  rm -rf tmp
+  rm -rf "$tmp" &&
+  trap - EXIT

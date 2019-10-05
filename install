@@ -11,7 +11,7 @@ join() {
 DOTFILES_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 log_file="$DOTFILES_DIR/install.log"
-printf "" >"$log_file"
+printf '' > "$log_file"
 
 declare -a programs=(
   acpi blueman bspwm gnome-settings-daemon i3lock imagemagick jq network-manager numix-gtk-theme papirus-icon-theme rofi scrot slop sysstat xbacklight xclip xinput

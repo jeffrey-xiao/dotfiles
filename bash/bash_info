@@ -5,11 +5,11 @@ trim() {
 }
 
 __title() {
-  echo "\\033]0;\\u@\\h:\\w\\007"
+  echo '\033]0;\u@\h:\w\007'
 }
 
 __path_info() {
-  echo "\\w"
+  echo '\w'
 }
 
 __git_info() {
@@ -17,7 +17,7 @@ __git_info() {
   [ -x "$(command -v git)" ] || return
 
   # Force git output in English to make our work easier.
-  local git_eng="env LANG=C git"
+  local git_eng='env LANG=C git'
 
   # Get current branch name or short SHA1 hash for detached head.
   local branch="$($git_eng symbolic-ref --short HEAD 2>/dev/null || $git_eng describe --tags --always 2>/dev/null)"

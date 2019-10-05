@@ -14,9 +14,9 @@ __powerline() {
       FG_EXIT="$FG_COLOR_1"
     fi
 
-    previous_color=""
+    previous_color=''
     color_index=0
-    colors=""
+    colors=''
 
     push_section() {
       [ ! -z "$previous_color" ] && PS1="$PS1$previous_color$3$RIGHT_ARROW$RESET"

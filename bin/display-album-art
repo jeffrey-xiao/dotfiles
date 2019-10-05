@@ -10,14 +10,14 @@ update_background() {
   album_dir="$music_dir/$album_dir"
 
   covers="$(find "$album_dir" -type d -exec find {} -maxdepth 1 -type f -iregex ".*/.*\\(${album}\\|cover\\|folder\\|artwork\\|front\\).*[.]\\(jpe?g\\|png\\|gif\\|bmp\\)" \;)"
-  src="$(printf "%s" "$covers" | head --lines=1)"
+  src="$(printf '%s' "$covers" | head --lines=1)"
 
   if [ -n "$src" ]; then
     # Print cover art if it exists.
-    printf "\\e]20;%s;100x100+50+50:op=keep-aspect\\a" "$src"
+    printf '\e]20;%s;100x100+50+50:op=keep-aspect\a' "$src"
   else
     # Reset background if no cover art exists.
-    printf "\\e]20;;100x100+1000+1000\\a"
+    printf '\e]20;;100x100+1000+1000\a'
   fi
 }
 

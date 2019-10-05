@@ -1,6 +1,6 @@
 #!/bin/sh
 
-separator="»"
+separator='»'
 
 if [ -z "$1" ]; then
   mpc listall --format "%artist% $separator %album%" | sort | uniq | grep ". $separator ."

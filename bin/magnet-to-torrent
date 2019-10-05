@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-[[ ! "$1" =~ xt=urn:btih:([^&/]+) ]] && { echo "Error: Argument 1 must be a valid magnet link." && exit 1; }
+[[ ! "$1" =~ xt=urn:btih:([^&/]+) ]] && { echo 'Error: Argument 1 must be a valid magnet link.' && exit 1; }
 download_dir=${XDG_DOWNLOAD_DIR:-"$HOME/Downloads"}
 echo "d10:magnet-uri${#1}:${1}e" > "$download_dir/meta-${BASH_REMATCH[1]}.torrent"

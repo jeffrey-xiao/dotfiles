@@ -3,13 +3,13 @@
 location=$(curl --silent ipinfo.io/loc)
 latitude=$(echo "$location" | cut --delimiter=',' --fields=1)
 longitude=$(echo "$location" | cut --delimiter=',' --fields=2)
-api_endpoint="http://api.openweathermap.org/data/2.5/weather"
-resp=$(curl --silent --get "$api_endpoint" --data-urlencode "lat=$latitude" --data-urlencode "lon=$longitude" --data-urlencode "APPID=$OPEN_WEATHER_MAP_KEY" --data-urlencode "units=metric")
+api_endpoint='http://api.openweathermap.org/data/2.5/weather'
+resp=$(curl --silent --get "$api_endpoint" --data-urlencode "lat=$latitude" --data-urlencode "lon=$longitude" --data-urlencode "APPID=$OPEN_WEATHER_MAP_KEY" --data-urlencode 'units=metric')
 weather=$(echo "$resp" | jq --raw-output '.weather[0].main')
 temp=$(echo "$resp" | jq --raw-output '.main.temp')
 
 if [ -z "$weather" ] && [ -z "$temp" ]; then
-  echo "N/A"
+  echo 'N/A'
 else
   echo "$weather $temp°C"
 fi

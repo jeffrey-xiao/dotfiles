@@ -1,11 +1,11 @@
 #!/bin/sh
 
-if [ "$1" = "-r" ]; then
+if [ "$1" = '-r' ]; then
   restart=true
   shift
 fi
 
-[ -z "$1" ] && { echo "Error: Argument 1 must be a process name." && exit 1; }
+[ -z "$1" ] && { echo 'Error: Argument 1 must be a process name.' && exit 1; }
 
 process=$1
 script=${2:-$1}

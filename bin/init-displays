@@ -1,21 +1,19 @@
 #!/bin/sh
 
 xrandr_output="$(xrandr)"
-connected_monitors=$(printf "%s" "$xrandr_output" | grep "\\bconnected\\b" | awk '{print $1}')
-disconnected_monitors=$(printf "%s" "$xrandr_output" | grep "\\bdisconnected\\b" | awk '{print $1}')
+connected_monitors=$(printf '%s' "$xrandr_output" | grep '\bconnected\b' | awk '{print $1}')
+disconnected_monitors=$(printf '%s' "$xrandr_output" | grep '\bdisconnected\b' | awk '{print $1}')
 
 check_connected() {
   echo "$connected_monitors" | grep --silent "\\b$1\\b"
 }
 
-if check_connected "DP1"; then
-  xrandr --output DP1 --off
-  xrandr --output eDP1 --mode 1600x900
+if check_connected 'DP1'; then
   xrandr --output DP1 --mode 1920x1080 --right-of eDP1
-elif check_connected "HDMI1"; then
-  xrandr --output HDMI1 --off
   xrandr --output eDP1 --mode 1600x900
+elif check_connected 'HDMI1'; then
   xrandr --output HDMI1 --mode 1920x1080 --right-of eDP1
+  xrandr --output eDP1 --mode 1600x900
 else
   xrandr --output eDP1 --mode 1920x1080
 fi

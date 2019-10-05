@@ -1,12 +1,12 @@
 #!/bin/sh
 
-battery="BAT0"
+battery='BAT0'
 
 while true; do
   capacity=$(cat /sys/class/power_supply/$battery/capacity)
   status=$(cat /sys/class/power_supply/$battery/status)
-  if [ "$capacity" -lt "20" ] && [ "$status" = "Discharging" ]; then
-    notify-send --urgency=critical "Low battery"
+  if [ "$capacity" -lt '20' ] && [ "$status" = 'Discharging' ]; then
+    notify-send --urgency=critical 'Low battery'
   fi
-  sleep "5m"
+  sleep '5m'
 done

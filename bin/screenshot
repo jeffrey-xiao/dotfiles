@@ -3,15 +3,15 @@
 pictures_dir=${XDG_PICTURES_DIR:-"$HOME/Pictures"}
 file="$pictures_dir/Screenshots/$(date +%s).png"
 
-if [ "$1" = "-s" ]; then
+if [ "$1" = '-s' ]; then
   # Screenshot area.
-  slop=$(slop --format "%g") || exit 1
+  slop=$(slop --format '%g') || exit 1
   import -window root -crop "$slop" "$file"
-  notify-send --urgency=low "Took screenshot (area)"
+  notify-send --urgency=low 'Took screenshot (area)'
 else
   # Screenshot entire desktop.
   scrot "$file"
-  notify-send --urgency=low "Took screenshot (desktop)"
+  notify-send --urgency=low 'Took screenshot (desktop)'
 fi
 
 xclip "$file" -selection clipboard -target image/png

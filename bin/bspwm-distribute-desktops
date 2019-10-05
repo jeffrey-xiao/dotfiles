@@ -1,6 +1,12 @@
 #!/bin/sh
-
-monitors=$(printf "%s" "$(xrandr)" | grep "\\bconnected\\b" | awk '{print $1}')
+monitors=$(xrandr |
+  grep '\bconnected\b' |
+  sed 's/primary //' |
+  cut --fields=1,3 --delimiter=' ' |
+  uniq --skip-fields 1 |
+  cut --fields=1 --delimiter=' '
+)
+monitors=$(polybar --list-monitors | awk '{print $1}' | sed 's/.$//')
 monitor_count=$(echo "$monitors" | wc -l)
 focused_desktop=$(bspc query --desktops --desktop .focused)
 initial_desktop_count="$(bspc query --desktops | wc -l)"
@@ -27,7 +33,7 @@ for curr_monitor in $monitors; do
       bspc desktop "$curr_desktop" --to-monitor "$curr_monitor"
     done
     # Sort desktops.
-    bspc query --monitor "$curr_monitor" --tree | jq ".desktops[].name" | sort -n | xargs bspc monitor "$curr_monitor" --reorder-desktops
+    bspc query --monitor "$curr_monitor" --tree | jq '.desktops[].name' | sort -n | xargs bspc monitor "$curr_monitor" --reorder-desktops
   fi
   total=$((total + curr))
 done

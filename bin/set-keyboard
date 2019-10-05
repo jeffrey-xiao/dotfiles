@@ -5,12 +5,12 @@ state=$(xinput list-props "$id" | grep 'Device Enabled' | awk '{print $4}')
 
 disable_keyboard() {
   xinput disable "$id"
-  notify-send --urgency=normal "Keyboard: Disabled"
+  notify-send --urgency=normal 'Keyboard: Disabled'
 }
 
 enable_keyboard() {
   xinput enable "$id"
-  notify-send --urgency=normal "Keyboard: Enabled"
+  notify-send --urgency=normal 'Keyboard: Enabled'
 }
 
 toggle_keyboard() {
@@ -28,6 +28,6 @@ if [ "$1" = "-on" ]; then
 elif [ "$1" = "-off" ]; then
   disable_keyboard
 else
-  echo "Error: Argument 1 must be '-on' or '-off'."
+  echo 'Error: Argument 1 must be '-on' or '-off'.'
   exit 1
 fi

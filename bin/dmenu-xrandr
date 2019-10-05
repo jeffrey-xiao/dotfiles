@@ -1,29 +1,31 @@
 #!/bin/sh
 
 xrandr_output="$(xrandr)"
-connected_monitors=$(printf "%s" "$xrandr_output" | grep "\\bconnected\\b" | awk '{print $1}')
-disconnected_monitors=$(printf "%s" "$xrandr_output" | grep "\\bdisconnected\\b" | awk '{print $1}')
-rotation_options="normal\\ninverted\\nleft\\nright\\n"
-position_options="above\\nbelow\\nsame-as\\nleft-of\\nright-of\\n"
+connected_monitors=$(printf '%s' "$xrandr_output" | grep '\bconnected\b' | awk '{print $1}')
+disconnected_monitors=$(printf '%s' "$xrandr_output" | grep '\bdisconnected\b' | awk '{print $1}')
+rotation_options='normal\ninverted\nleft\nright\n'
+position_options='above\nbelow\nsame-as\nleft-of\nright-of\n'
 
 dmenu_cmd() {
   rofi -i -fuzzy -dmenu -p "$1"
 }
 
 resolution_options() {
-  available_resolutions=$(printf "%s" "$xrandr_output" |
+  available_resolutions=$(printf '%s' "$xrandr_output" |
     awk -v monitor="^$1" '
       /connected/ {p = 0}
       $0 ~ monitor {p = 1}
       {if (p == 1) print $1}
     ' |
-    tail --lines +2)
-  printf "%s\\noff" "$available_resolutions"
+    tail --lines +2
+  )
+  printf '%s\noff' "$available_resolutions"
 }
 
 post_init() {
   init-polybar
   init-background
+  bspwm-distribute-desktops
 }
 
 # Turn disconnected monitors off.
@@ -31,24 +33,24 @@ for disconnected_monitor in $disconnected_monitors; do
   xrandr --output "$disconnected_monitor" --off
 done
 
-selected_monitor=$(printf "%s" "$connected_monitors" | dmenu_cmd "output")
+selected_monitor=$(printf '%s' "$connected_monitors" | dmenu_cmd 'output')
 [ -z "$selected_monitor" ] && exit
 
-selected_resolution=$(printf "%s" "$(resolution_options "$selected_monitor")" | dmenu_cmd "mode")
+selected_resolution=$(printf '%s' "$(resolution_options "$selected_monitor")" | dmenu_cmd 'mode')
 [ -z "$selected_resolution" ] && exit
 
-[ "$selected_resolution" = "off" ] && { xrandr --output "$selected_monitor" --off && post_init && exit; }
+[ "$selected_resolution" = 'off' ] && { xrandr --output "$selected_monitor" --off && post_init && exit; }
 
-selected_rotation=$(printf "%b" "$rotation_options" | dmenu_cmd "rotation")
+selected_rotation=$(printf '%b' "$rotation_options" | dmenu_cmd 'rotation')
 [ -z "$selected_rotation" ] && exit
 
-anchor_options=$(printf "%s" "$connected_monitors" | grep --invert-match "^$selected_monitor$")
+anchor_options=$(printf '%s' "$connected_monitors" | grep --invert-match "^$selected_monitor$")
 [ -z "$anchor_options" ] && { xrandr --output "$selected_monitor" --mode "$selected_resolution" --rotate "$selected_rotation" && post_init && exit; }
 
-selected_anchor=$(printf "%s" "$anchor_options" | dmenu_cmd "anchor")
+selected_anchor=$(printf '%s' "$anchor_options" | dmenu_cmd 'anchor')
 [ -z "$selected_anchor" ] && exit
 
-selected_position=$(printf "%b" "$position_options" | dmenu_cmd "position")
+selected_position=$(printf '%b' "$position_options" | dmenu_cmd 'position')
 [ -z "$selected_position" ] && exit
 
 xrandr --output "$selected_monitor" --mode "$selected_resolution" --"$selected_position" "$selected_anchor" --rotate "$selected_rotation"

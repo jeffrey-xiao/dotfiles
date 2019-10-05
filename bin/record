@@ -5,20 +5,20 @@ file="$videos_dir/$(date +%s).mp4"
 
 if pgrep --exact ffmpeg; then
   pkill --exact -INT ffmpeg
-  notify-send --urgency=low "Stopped video recording"
+  notify-send --urgency=low 'Stopped video recording'
   exit 0
 fi
 
-if [ "$1" = "-s" ]; then
+if [ "$1" = '-s' ]; then
   # Record area.
-  slop=$(slop --format "%wx%h %x,%y") || exit 1
+  slop=$(slop --format '%wx%h %x,%y') || exit 1
   dimensions=$(echo "$slop" | cut --delimiter=' ' --fields=1)
   offset=$(echo "$slop" | cut --delimiter=' ' --fields=2)
-  notify-send --urgency=low "Started video recording (area)"
+  notify-send --urgency=low 'Started video recording (area)'
   ffmpeg -f x11grab -s "$dimensions" -i :0.0+"$offset" -f alsa -i pulse "$file"
 else
   # Record entire desktop.
   dimensions=$(xdpyinfo | grep dimensions | awk '{print $2}')
-  notify-send --urgency=low "Started video recording (desktop)"
+  notify-send --urgency=low 'Started video recording (desktop)'
   ffmpeg -f x11grab -s "$dimensions" -i :0.0 -f alsa -i pulse "$file"
 fi

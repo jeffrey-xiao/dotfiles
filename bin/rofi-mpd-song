@@ -1,6 +1,6 @@
 #!/bin/sh
 
-separator="»"
+separator='»'
 songs=$(mpc playlist --format "%artist% $separator %title%")
 
 if [ -z "$1" ]; then

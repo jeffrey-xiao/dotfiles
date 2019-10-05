@@ -1,6 +1,6 @@
 #!/bin/sh
 
-[ ! -f "$1" ] && { echo "Error: Argument 1 must be bibliography file." && exit 1; }
+[ ! -f "$1" ] && { echo 'Error: Argument 1 must be bibliography file.' && exit 1; }
 
 bibliography_file="$1"
 references_template="

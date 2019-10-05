@@ -5,12 +5,12 @@ state=$(xinput list-props "$id" | grep 'Device Enabled' | awk '{print $4}')
 
 disable_touchpad() {
   xinput disable "$id"
-  notify-send --urgency=normal "Touchpad: Disabled"
+  notify-send --urgency=normal 'Touchpad: Disabled'
 }
 
 enable_touchpad() {
   xinput enable "$id"
-  notify-send --urgency=normal "Touchpad: Enabled"
+  notify-send --urgency=normal 'Touchpad: Enabled'
 }
 
 toggle_touchpad() {
@@ -23,11 +23,11 @@ toggle_touchpad() {
 
 [ -z "$1" ] && { toggle_touchpad; exit 0; }
 
-if [ "$1" = "-on" ]; then
+if [ "$1" = '-on' ]; then
   enable_touchpad
-elif [ "$1" = "-off" ]; then
+elif [ "$1" = '-off' ]; then
   disable_touchpad
 else
-  echo "Error: Argument 1 must be '-on' or '-off'."
+  echo 'Error: Argument 1 must be '-on' or '-off'.'
   exit 1
 fi

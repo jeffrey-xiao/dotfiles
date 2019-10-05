@@ -3,13 +3,7 @@
 killall --quiet polybar
 while pgrep --exact polybar > /dev/null; do sleep 1; done
 
-monitors=$(xrandr |
-  grep '\bconnected\b' |
-  sed 's/primary //' |
-  cut --fields=1,3 --delimiter=' ' |
-  uniq --skip-fields 1 |
-  cut --fields=1 --delimite=' '
-)
+monitors=$(polybar --list-monitors | awk --field-separator=':' '{print $1}')
 for display in $monitors; do
   MONITOR=$display polybar top &
 done

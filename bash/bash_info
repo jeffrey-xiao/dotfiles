@@ -9,19 +9,11 @@ __title() {
 }
 
 __path_info() {
-  if __is_ssh; then
-    echo "$USER@$(uname -n):\\w"
-  else
-    echo '\w'
-  fi
+  echo '\w'
 }
 
 __short_path_info() {
-  if __is_ssh; then
-    echo "$USER@$(uname -n):\\W"
-  else
-    echo '\W'
-  fi
+  echo '\W'
 }
 
 __git_info() {

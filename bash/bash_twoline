@@ -20,10 +20,18 @@ __twoline() {
 
     # Path info.
     if [ "$(id -u)" -eq 0 ]; then
-      PS1="$PS1[$FG_COLOR_4$(__path_info)$RESET$FG_EXIT]"
+      path_color="$FG_COLOR_4"
     else
-      PS1="$PS1[$FG_COLOR_3$(__path_info)$RESET$FG_EXIT]"
+      path_color="$FG_COLOR_3"
     fi
+
+    if __is_ssh; then
+      path_info="$USER$RESET@$path_color$(uname -n)$RESET:$path_color$(__path_info)"
+    else
+      path_info="$(__path_info)"
+    fi
+
+    PS1="$PS1[$path_color$path_info$RESET$FG_EXIT]"
 
     # Git info.
     [ ! -z "$git_info" ] && PS1="$PS1─[$FG_COLOR_3$git_info$RESET$FG_EXIT]"

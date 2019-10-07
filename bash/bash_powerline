@@ -39,7 +39,12 @@ __powerline() {
     nvm_info="$(__nvm_info)"
 
     # Path info.
-    push_section "$(__short_path_info)" "$FG_COLOR_11" "$BG_COLOR_11"
+    if __is_ssh; then
+      path_info="$USER@$(uname -n):$(__short_path_info)"
+    else
+      path_info="$(__short_path_info)"
+    fi
+    push_section "$path_info" "$FG_COLOR_11" "$BG_COLOR_11"
 
     # Git info.
     [ ! -z "$git_info" ] && push_section "$git_info" "$FG_COLOR_4" "$BG_COLOR_4"

@@ -53,7 +53,7 @@ git clone https://github.com/powerline/fonts ~/Documents/fonts/powerline-fonts &
   . ~/Documents/fonts/powerline-fonts/install.sh
 sudo rm -f /usr/share/fonts/conf.d/70-no-bitmaps.conf &&
   sudo ln -svf /usr/share/fontconfig/conf.avail/70-yes-bitmaps.conf /usr/share/fonts/conf.d
-cp ./fonts/*.{ttf,bdf} ~/.local/share/fonts/ &&
+cp -u ./fonts/*.{ttf,bdf} ~/.local/share/fonts/ &&
   (cd ~/.local/share/fonts/ && mkfontdir && mkfontscale)
 fc-cache --force --verbose
 

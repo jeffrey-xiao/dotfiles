@@ -1,2 +1,2 @@
-" General config
+" General config.
 setlocal conceallevel=0

@@ -1,4 +1,5 @@
 #!/bin/sh
+
 monitors=$(xrandr |
   grep '\bconnected\b' |
   sed 's/primary //' |

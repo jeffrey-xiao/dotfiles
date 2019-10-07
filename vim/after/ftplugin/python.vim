@@ -1,10 +1,10 @@
-" General config
+" General config.
 setlocal omnifunc=jedi#completions
 
-" Functions
+" Functions.
 function! RunPython() abort
   execute '!python %'
 endfunction
 
-" Keybindings
+" Keybindings.
 nnoremap <buffer> <F5> :call RunPython()<CR>

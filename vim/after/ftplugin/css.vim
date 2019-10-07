@@ -1,2 +1,2 @@
-" General config
+" General config.
 setlocal omnifunc=csscomplete#CompleteCSS

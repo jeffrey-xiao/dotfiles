@@ -1,4 +1,4 @@
-" Functions
+" Functions.
 function! CompileCpp() abort
   let l:fileName = expand('%')
   let l:baseName = expand('%:r')
@@ -14,6 +14,6 @@ function! RunCpp() abort
   execute '!'.l:filePath
 endfunction
 
-" Keybindings
+" Keybindings.
 nnoremap <buffer> <F4> :call CompileCpp()<CR>
 nnoremap <buffer> <F5> :call RunCpp()<CR>

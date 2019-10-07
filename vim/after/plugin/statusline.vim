@@ -1,4 +1,4 @@
-" Functions
+" Functions.
 function! RefreshStatusLine() abort
   for l:nr in range(1, winnr('$'))
     call setwinvar(l:nr, '&statusline', '%!StatusLine('.l:nr.')')
@@ -82,7 +82,7 @@ function! StatusLineWarnings() abort
 endfunction
 
 function! StatusLineAle() abort
-  " ALE output
+  " ALE output.
   let l:ale_dict = ale#statusline#Count(bufnr('%'))
   let l:errors = l:ale_dict['error'] + l:ale_dict['style_error']
   let l:warnings = l:ale_dict['warning'] + l:ale_dict['style_warning']
@@ -99,7 +99,7 @@ function! StatusLineAle() abort
   return l:ale_output
 endfunction
 
-" Autocommands
+" Autocommands.
 augroup statusline_group
   autocmd!
   autocmd cursorhold,bufwritepost * unlet! b:warning_flags

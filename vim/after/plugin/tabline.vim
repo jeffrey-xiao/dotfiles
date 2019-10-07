@@ -1,4 +1,4 @@
-" Functions
+" Functions.
 function! TabLine() abort
   let s = ''
   let t = tabpagenr()
@@ -60,6 +60,7 @@ function! UpdateTabLine() abort
   endif
 endfunction
 
+" Autocommands.
 augroup tabline_group
   autocmd!
   autocmd VimEnter,TabEnter,BufAdd,BufDelete * call UpdateTabLine()

@@ -1,7 +1,7 @@
-" Functions
+" Functions.
 function! RunElixir() abort
   execute '!elixir %'
 endfunction
 
-" Keybindings
+" Keybindings.
 nnoremap <buffer> <F5> :call RunElixir()<CR>

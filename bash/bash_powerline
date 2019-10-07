@@ -16,7 +16,6 @@ __powerline() {
 
     previous_color=''
     color_index=0
-    colors=''
 
     push_section() {
       [ ! -z "$previous_color" ] && PS1="$PS1$previous_color$3$RIGHT_ARROW$RESET"
@@ -40,7 +39,7 @@ __powerline() {
     nvm_info="$(__nvm_info)"
 
     # Path info.
-    push_section "\\W" "$FG_COLOR_11" "$BG_COLOR_11"
+    push_section "$(__short_path_info)" "$FG_COLOR_11" "$BG_COLOR_11"
 
     # Git info.
     [ ! -z "$git_info" ] && push_section "$git_info" "$FG_COLOR_4" "$BG_COLOR_4"

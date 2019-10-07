@@ -9,7 +9,19 @@ __title() {
 }
 
 __path_info() {
-  echo '\w'
+  if __is_ssh; then
+    echo "$USER@$(uname -n):\\w"
+  else
+    echo '\w'
+  fi
+}
+
+__short_path_info() {
+  if __is_ssh; then
+    echo "$USER@$(uname -n):\\W"
+  else
+    echo '\W'
+  fi
 }
 
 __git_info() {
@@ -65,4 +77,8 @@ __nvm_info() {
   # nvm using system.
   [ "$version" = "system" ] && return
   echo "nvm $version"
+}
+
+__is_ssh() {
+  [ -n "$SSH_CONNECTION" ] || [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]
 }

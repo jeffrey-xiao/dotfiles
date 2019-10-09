@@ -1,35 +1,5 @@
 #!/bin/sh
 
-# Startup applications.
-## Appearance and notifications.
-xsetroot -cursor_name left_ptr
-init-daemon compton "compton --config ~/.config/compton/compton.conf" &
-init-daemon -r dunst "dunst --config ~/.config/dunst/dunstrc" &
-init-daemon gsd-xsettings "/usr/lib/gnome-settings-daemon/gsd-xsettings" &
-init-daemon notify-battery &
-init-daemon robar "robar start" &
-
-## Tray applets.
-init-daemon blueman-applet &
-init-daemon nm-applet &
-init-daemon redshift-gtk &
-
-## Start hotkey daemon.
-init-daemon sxhkd &
-
-## Initialize displays.
-init-displays
-bspwm-distribute-desktops
-
-## Initialize urxvt daemon.
-init-daemon urxvtd "urxvtd --quiet --fork --opendisplay"
-
-## Initialize mpd.
-init-daemon mpd
-
-## Initialize fonts.
-init-fonts
-
 # Bspwm configuration.
 bspc config border_width 4
 bspc config window_gap 0
@@ -64,3 +34,33 @@ bspc rule --add URxvt:music desktop=0
 bspc rule --add URxvt:torrent desktop=8
 bspc rule --add Zathura state=tiled
 bspc rule --add mpv desktop=9
+
+# Startup applications.
+## Appearance and notifications.
+xsetroot -cursor_name left_ptr
+init-daemon compton "compton --config ~/.config/compton/compton.conf" &
+init-daemon -r dunst "dunst --config ~/.config/dunst/dunstrc" &
+init-daemon gsd-xsettings "/usr/lib/gnome-settings-daemon/gsd-xsettings" &
+init-daemon notify-battery &
+init-daemon robar "robar start" &
+
+## Tray applets.
+init-daemon blueman-applet &
+init-daemon nm-applet &
+init-daemon redshift-gtk &
+
+## Start hotkey daemon.
+init-daemon sxhkd &
+
+## Initialize urxvt daemon.
+init-daemon urxvtd "urxvtd --quiet --fork --opendisplay"
+
+## Initialize mpd.
+init-daemon mpd
+
+## Initialize fonts.
+init-fonts
+
+## Initialize displays.
+init-displays
+bspwm-distribute-desktops

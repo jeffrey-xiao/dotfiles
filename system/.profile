@@ -28,16 +28,19 @@ export TERM=xterm-256color
 export VISUAL=vim
 
 # Setting ag as the default source for fzf.
-export FZF_DEFAULT_COMMAND='ag --hidden --filename-pattern ""'
+[ -x "$(command -v ag)" ] && export FZF_DEFAULT_COMMAND='ag --hidden --filename-pattern ""'
 
 # Setting rust src path.
-[ -x "$(command -v rustc)" ] && export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+[ -x "$(command -v rustc)" ] && sysroot=$(rustc --print sysroot) && export RUST_SRC_PATH="$sysroot/lib/rustlib/src/rust/src"
 
 # Setting nvm dir.
 export NVM_DIR="$HOME/.nvm"
 
 # Setting weechat home directory.
-export WEECHAT_HOME=$config_dir/weechat
+export WEECHAT_HOME="$config_dir/weechat"
+
+# Setting urxvtd socket.
+hostname=$(uname -n) && export RXVT_SOCKET=/tmp/urxvtd-$hostname
 
 # Bash secrets.
 [ -f "$bash_config_dir/bash_secrets" ] && . "$bash_config_dir/bash_secrets"

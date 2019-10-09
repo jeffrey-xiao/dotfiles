@@ -54,7 +54,7 @@ Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
 
 "" File explorer
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --xdg' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --xdg --no-bash' }
 Plug 'justinmk/vim-dirvish'
 
 "" Tags

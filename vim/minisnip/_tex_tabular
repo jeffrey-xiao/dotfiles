@@ -1,5 +1,7 @@
-\begin{center}
+\begin{table}[H]
+  \caption{{{++}}}
+  \centering
   \begin{tabular}{{{++}}}
     {{--}}
   \end{tabular}
-\end{center}
+\end{table}

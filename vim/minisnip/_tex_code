@@ -1,6 +1,6 @@
 \begin{figure}[H]
-\begin{minted}{{{++}}}
-{{--}}
-\end{minted}
-\caption{{{++}}}
+  \begin{minted}{{{++}}}
+    {{--}}
+  \end{minted}
+  \caption{{{++}}}
 \end{figure}

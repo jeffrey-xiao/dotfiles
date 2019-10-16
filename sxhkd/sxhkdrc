@@ -61,25 +61,23 @@ super + x
 super + shift + x
   lock
 
-# Preselection hotkeys.
-## Preselect splitting area for next window.
+# Preselect splitting area for next window.
 super + ctrl + {h,j,k,l}
   bspc node --presel-dir \~{west,south,north,east}
 
-## Preselect the ratio.
+# Preselect the ratio.
 super + ctrl + {1-9}
   bspc node --presel-ratio 0.{1-9}
 
-## Cancel preselect.
+# Cancel preselect.
 super + ctrl + space
   bspc node --presel-dir cancel
 
-# Resizing hotkeys.
-## Expand a window by moving one of its sides outward.
+# Expand a window by moving one of its sides outward.
 super + alt + {h,j,k,l}
   bspc node --resize {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
-## Contract a window by moving one of its sides inwards.
+# Contract a window by moving one of its sides inwards.
 super + shift + alt + {h,j,k,l}
   bspc node --resize {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 

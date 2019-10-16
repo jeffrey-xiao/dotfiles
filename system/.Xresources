@@ -17,7 +17,7 @@
 #define CAT(A, B)         A ## B
 #define ARGB(alpha, hex)  argb:CAT(alpha, hex)
 
-!! Xft Settings
+! Xft Settings.
 Xft.dpi:                  96
 Xft.antialias:            true
 Xft.autohint:             true
@@ -25,7 +25,7 @@ Xft.rgba:                 rgb
 Xft.hinting:              true
 Xft.hintstyle:            hintslight
 
-!! Colors
+! Colors.
 *background:              #BASE_03
 *foreground:              #BASE_0
 
@@ -51,43 +51,42 @@ Xft.hintstyle:            hintslight
 *pointerColorBackground:  #BASE_01
 *pointerColorForeground:  #BASE_1
 
-!! Scrollbar
+! Urxvt scrollbar.
 URxvt.scrollstyle:        plain
 URxvt.scrollColor:        #BASE_00
 URxvt.scrollBar_right:    true
 URxvt.thickness:          2
 URxvt.internalBorder:     5
 
-!! Font
+! Urxvt font.
 URxvt.font:               -misc-tamzenforpowerline-medium-r-normal--16-116-100-100-c-80-iso8859-1
 URxvt.boldFont:           -misc-tamzenforpowerline-bold-r-normal--16-116-100-100-c-80-iso8859-1
 URxvt.letterSpace:        0.0
 
-!! Real Transparency
-!URxvt.depth:              32
-! BASE_03 at 5% lightness
-!URxvt.background:         [90]#00141A
+! Real Transparency.
+! URxvt.depth:              32
+! BASE_03 at 5% lightness.
+! URxvt.background:         [90]#00141A
 
-!! Fake Transparency
-!URxvt.transparent:       true
-!URxvt.shading:           104
-!URxvt.tintColor:         #BASE_03
+! Fake Transparency.
+! URxvt.transparent:       true
+! URxvt.shading:           104
+! URxvt.tintColor:         #BASE_03
 
-!! Blur
-!URxvt.blurRadius:        10
+! Blur.
+! URxvt.blurRadius:        10
 
-!! Extensions
+! Urxvt extensions.
 URxvt.perl-ext-common:    default,matcher
 URxvt.url-launcher:       /usr/bin/xdg-open
 URxvt.matcher.button:     1
 
-!! Other Settings
+! Urxvt other configuration.
 URxvt.termName:           xterm-256color
 URxvt.saveLines:          100000
 URxvt.buffered:           true
 
-!! Rofi Config
-!!! Appearance
+! Rofi appearance.
 rofi.bw:                  0
 rofi.font:                TamzenForPowerline 16
 rofi.eh:                  2
@@ -99,7 +98,7 @@ rofi.line-margin:         0
 rofi.separator-style:     solid
 rofi.hide-scrollbar:      true
 
-!!! Layout
+! Rofi layout.
 rofi.lines:               16
 rofi.width:               100
 rofi.padding:             250
@@ -107,7 +106,7 @@ rofi.fullscreen:          true
 rofi.yoffset:             0
 rofi.columns:             2
 
-!!! Keybindings
+! Rofi keybindings.
 rofi.kb-remove-char-back: BackSpace,Shift+BackSpace
 rofi.kb-accept-entry:     Return,KP_Enter
 rofi.kb-row-left:         Control-h
@@ -116,7 +115,7 @@ rofi.kb-row-up:           Control-k
 rofi.kb-row-right:        Control-l
 rofi.kb-remove-to-eol:
 
-!!! Other
+! Rofi other configuration.
 rofi.matching:            fuzzy
 rofi.terminal:            urxvtc
 rofi.ssh-client:          ssh

@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-## Join array with delimiter.
+# Join array with delimiter.
 join() {
   local IFS="$1"
   shift
   echo "$*"
 }
 
-## Get directory for install script.
+# Get directory for install script.
 DOTFILES_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 log_file="$DOTFILES_DIR/install.log"
@@ -35,11 +35,11 @@ declare -a programs=(
 programs_string=$(join " " "${programs[@]}")
 installed_program_list=$(eopkg list-installed --install-info)
 
-## Installing necessary applications (need to install component system.devel separately).
+# Installing necessary applications (need to install component system.devel separately).
 sudo eopkg install --yes-all --component system.devel
 sudo eopkg install --yes-all $programs_string
 
-## Checking if applications are installed.
+# Checking if applications are installed.
 for f in "${programs[@]}"; do
   if [ "$(echo "$installed_program_list" | grep --count "$f ")" -eq 1 ]; then
     echo "$f successfully installed." >>"$log_file"
@@ -48,7 +48,7 @@ for f in "${programs[@]}"; do
   fi
 done
 
-## Installing powerline fonts.
+# Installing powerline fonts.
 git clone https://github.com/powerline/fonts ~/Documents/fonts/powerline-fonts &&
   . ~/Documents/fonts/powerline-fonts/install.sh
 sudo rm -f /usr/share/fonts/conf.d/70-no-bitmaps.conf &&
@@ -57,7 +57,7 @@ cp -u ./fonts/*.{ttf,bdf} ~/.local/share/fonts/ &&
   (cd ~/.local/share/fonts/ && mkfontdir && mkfontscale)
 fc-cache --force --verbose
 
-## Installing development related programs and tools.
+# Installing development related programs and tools.
 vim -c PlugInstall -c q! -c q!
 curl --silent --location https://raw.githubusercontent.com/creationix/nvm/master/install.sh --output install_nvm.sh &&
   chmod 775 install_nvm.sh &&

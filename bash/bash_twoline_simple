@@ -46,8 +46,8 @@ __twoline_simple() {
       existing_info=true
     done
 
-    PS1="$PS1\\n$FG_EXIT➤ $RESET"
-    PS2="$FG_EXIT➤ $RESET"
+    PS1="$PS1\\n$FG_EXIT» $RESET"
+    PS2="$FG_EXIT» $RESET"
   }
   . "$bash_config_dir/bash_symbols"
   . "$bash_config_dir/bash_colors"

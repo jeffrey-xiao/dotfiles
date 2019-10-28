@@ -20,3 +20,12 @@
 --regex-scala=/^[ \t]*((abstract|final|sealed|implicit|lazy)[ \t]*)*val[ \t]+([a-zA-Z0-9_]+)/\3/l,constants/
 --regex-scala=/^[ \t]*((abstract|final|sealed|implicit|lazy)[ \t]*)*var[ \t]+([a-zA-Z0-9_]+)/\3/l,variables/
 --regex-scala=/^[ \t]*package[ \t]+([a-zA-Z0-9_.]+)/\1/p,packages/
+
+--langdef=Rust
+--langmap=Rust:.rs
+--regex-Rust=/fn +([a-zA-Z0-9_]+) *[(<{]/\1/f,functions,function definitions/
+--regex-Rust=/(type|enum|struct|trait)[ \t]+([a-zA-Z0-9_]+) *[<{(;]/\2/T,types,type definitions/
+--regex-Rust=/mod[ \t]+([a-zA-Z0-9_]+) *[<{(;]/\1/M,modules,module definitions/
+--regex-Rust=/(static|const) +([a-zA-Z0-9_]+) *[:=]/\2/c,consts,static constants/
+--regex-Rust=/macro_rules! +([a-zA-Z0-9_]+) *{/\1/d,macros,macro definitions/
+--regex-Rust=/impl([ \t\n]*<[^>]*>)?[ \t]+(([a-zA-Z0-9_:]+)[ \t]*(<[^>]*>)?[ \t]+(for)[ \t]+)?([a-zA-Z0-9_]+)/\6/i,impls,trait implementations/

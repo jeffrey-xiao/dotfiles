@@ -15,7 +15,7 @@ set statusbar-home-tilde true
 set adjust-open "best-fit"
 
 # Font config.
-set font "TamzenForPowerline 14"
+set font "Iosevka SS04 11"
 
 # Color config.
 set default-bg                  "{color0}"

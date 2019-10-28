@@ -13,7 +13,7 @@ line-size = 3
 padding = 0
 
 ; Default font.
-font-0 = "TamzenForPowerline:size=18;2"
+font-0 = "Iosevka SS04:size=11;3"
 
 ; Japanese characters.
 font-1 = "M+ 2c:style=regular:size=10;2"

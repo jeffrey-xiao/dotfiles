@@ -6,7 +6,7 @@
     horizontal_padding = 8
     sort = yes
     idle_threshold = 120
-    font = "TamzenForPowerline 10"
+    font = "Iosevka SS04 11"
     markup = yes
     format = "<b>%s</b>\n%b"
     alignment = center

@@ -59,9 +59,12 @@ URxvt.thickness:          2
 URxvt.internalBorder:     5
 
 ! Urxvt font.
-URxvt.font:               -misc-tamzenforpowerline-medium-r-normal--16-116-100-100-c-80-iso8859-1
-URxvt.boldFont:           -misc-tamzenforpowerline-bold-r-normal--16-116-100-100-c-80-iso8859-1
-URxvt.letterSpace:        0.0
+URxvt.font:               xft:Iosevka SS04:size=10
+URxvt.boldFont:           xft:Iosevka SS04:style=bold:size=10
+URxvt.letterSpace:        -1
+URxvt.lineSpace:          0
+! URxvt.font:               -misc-tamzenforpowerline-medium-r-normal--16-116-100-100-c-80-iso8859-1
+! URxvt.boldFont:           -misc-tamzenforpowerline-bold-r-normal--16-116-100-100-c-80-iso8859-1
 
 ! Real Transparency.
 ! URxvt.depth:              32
@@ -88,7 +91,7 @@ URxvt.buffered:           true
 
 ! Rofi appearance.
 rofi.bw:                  0
-rofi.font:                TamzenForPowerline 16
+rofi.font:                Iosevka SS04 12
 rofi.eh:                  2
 rofi.color-window:        ARGB(f2, BASE_03), ARGB(f2, BASE_03), ARGB(f2, BASE_01)
 rofi.color-normal:        ARGB(00, BASE_03), ARGB(f2, BASE_1), ARGB(00, BASE_03), ARGB(00, BASE_03), ARGB(f2, YELLOW)

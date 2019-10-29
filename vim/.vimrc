@@ -1,11 +1,11 @@
-""" Functions
+" Adjusts the height of the current window to have a minimum of minHeight
+" lines and a maximum of maxHeight lines.
 function! AdjustHeight(minHeight, maxHeight) abort
   exe max([min([line('$'), a:maxHeight]), a:minHeight]).'wincmd _'
 endfunction
 
 
-""" Plugins
-"" Download vim-plug if it does not exist
+" Download vim-plug if it does not exist.
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl --fail --location --create-dirs --output ~/.vim/autoload/plug.vim
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -19,86 +19,76 @@ filetype plugin on
 syntax on
 call plug#begin('~/.vim/plugged')
 
-"" Color Scheme
+" Color Scheme.
 Plug 'romainl/flattened'
 
-"" Useful plugs
 " Handy bracket mappings
 Plug 'tpope/vim-unimpaired'
-" UNIX shell commands
+" UNIX shell commands.
 Plug 'tpope/vim-eunuch'
-" Surrounding text
+" Surrounding text.
 Plug 'tpope/vim-surround'
-" Keybindings for easily commenting out text
+" Keybindings for easily commenting out text.
 Plug 'tpope/vim-commentary'
-" Repeating plugin maps
+" Repeating plugin maps.
 Plug 'tpope/vim-repeat'
-" Improves quickfix
+" Improves quickfix.
 Plug 'romainl/vim-qf'
-" Pipe ilist and dlist into quickfix
+" Pipe ilist and dlist into quickfix.
 Plug 'romainl/vim-qlist'
-" Auto brackets
+" Auto brackets.
 Plug 'raimondi/delimitMate'
-" Indent character
+" Indent character.
 Plug 'yggdroot/indentline'
-" Snippets
+" Snippets.
 Plug 'joereynolds/vim-minisnip'
 
-"" Auto completion and linting
+" Auto completion and linting.
 Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neoinclude.vim'
 Plug 'w0rp/ale'
 
-"" Git integration
+" Git and VCS integration.
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
 
-"" File explorer
+" Fuzzy Searcher.
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --xdg --no-bash' }
+" File explorer.
 Plug 'justinmk/vim-dirvish'
 
-"" Tags
+" Tags.
 Plug 'ludovicchabant/vim-gutentags'
 
-"" Buffer line in tabline
+" Buffer line in tabline.
 Plug 'ap/vim-buftabline'
 
-"" Pane navigation with tmux
+" Pane navigation with tmux.
 Plug 'christoomey/vim-tmux-navigator'
 
-"" Languages
-" Latex
+" Latex.
 Plug 'lervag/vimtex'
-
-" Elixir
+" Elixir.
 Plug 'elixir-editors/vim-elixir'
 Plug 'slashmili/alchemist.vim'
-
-" C++
+" C++.
 Plug 'Rip-Rip/clang_complete'
 Plug 'octol/vim-cpp-enhanced-highlight'
-
-" Rust
+" Rust.
 Plug 'racer-rust/vim-racer'
 Plug 'rust-lang/rust.vim'
-
-" Python
+" Python.
 Plug 'davidhalter/jedi-vim'
-
-" JavaScript
+" JavaScript.
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'ternjs/tern_for_vim'
-
-" Go
+" Go.
 Plug 'fatih/vim-go'
 
 call plug#end()
 
-
-""" Config for plugins
-"" Config for completion plugins
-" Config for clang_complete
+" Config for clang_complete.
 let g:clang_auto_select = 0
 let g:clang_close_preview = 1
 let g:clang_complete_auto = 0
@@ -107,16 +97,16 @@ let g:clang_omnicppcomplete_compliance = 0
 let g:clang_user_options = '-std=c++11'
 set completeopt-=preview
 
-" Config for Jedi
+" Config for jedi.
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#completions_enabled = 0
 let g:jedi#smart_auto_mappings = 0
 
-" Config for racer
+" Config for racer.
 let g:racer_cmd = '/home/jeffreyxiao/.cargo/bin/racer'
 let g:racer_experimental_completer = 1
 
-" Config for Neocomplete
+" Config for neocomplete.
 let g:neocomplete#auto_complete_delay = 0
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
@@ -139,14 +129,13 @@ let g:neocomplete#sources#omni#input_patterns.rust = '[^.[:digit:] *\t]\%(\.\|\:
 let g:neocomplete#sources#omni#input_patterns.tex = '\v\\%(\a*%(ref|cite)\a*%(\s*\[[^]]*\])?\s*\{[^{}]*|includegraphics%(\s*\[[^]]*\])?\s*\{[^{}]*|%(include|input)\s*\{[^{}]*)'
 let g:neocomplete#sources#omni#input_patterns.elixir = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
 
-"" Config for Ale
+" Config for ALE.
 let g:ale_linters = {
       \ 'cpp': [ 'gcc', 'clang', 'cppcheck' ],
       \ 'java': [ 'javac' ],
       \ 'javascript': [ 'eslint' ],
       \ 'python': [ 'autopep', 'flake8', 'pylint' ],
       \}
-
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_echo_msg_warning_str = 'W'
@@ -154,41 +143,38 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_set_quickfix = 0
 let g:ale_sign_column_always = 1
 
-"" Config for Polyglot
-let g:polyglot_disabled = [ 'latex' ]
-
-"" Config for Dirvish
+" Config for dirvish.
 let g:dirvish_mode = ':sort ,^.*[\/],'
 augroup dirvish_group
   autocmd!
   autocmd Filetype dirvish nnoremap <buffer> zh :g@\v/\.[^\/]+/?$@d<CR>
 augroup END
 
-"" Config for Gutentags
+" Config for Gutentags.
 let g:gutentags_cache_dir = '~/.vim/tags'
 let g:gutentags_generate_on_empty_buffer = 1
 
-"" Config for IndentLine
+" Config for IndentLine.
 let g:indentLine_char = '|'
 let g:indentLine_concealcursor = 0
 let g:indentLine_color_term = 10
 let g:indentLine_fileTypeExclude = [ 'markdown', 'json' ]
 
-"" Config for DelimitMate
+" Config for DelimitMate.
 let g:delimitMate_autoclose = 1
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_space = 1
 let g:delimitMate_matchpairs = '(:),[:],{:}'
 
-"" Config for vim-qf
+" Config for vim-qf.
 let g:qf_auto_open_quickfix = 0
 let g:qf_loclist_window_bottom = 0
 let g:qf_window_bottom = 1
 
-"" Config for BufTabLine
+" Config for BufTabLine.
 let g:buftabline_numbers = 1
 
-"" Config for Vimtex
+" Config for vimtex.
 let g:latex_view_general_viewer = 'zathura'
 let g:tex_conceal = ''
 let g:tex_flavor = "latex"
@@ -201,14 +187,14 @@ let g:vimtex_syntax_minted = [
       \]
 let g:vimtex_view_method = 'zathura'
 
-"" Config for signify
+" Config for signify.
 let g:signify_sign_change = '~'
 let g:signify_sign_changedelete = '~_'
 let g:signify_sign_delete_first_line = '_'
 let g:signify_sign_show_count = 0
 let g:signify_vcs_list = [ 'git' ]
 
-"" Config for Fzf
+"" Config for fzf.
 function! s:tags_sink(lines) abort
   if empty(a:lines)
     return
@@ -241,6 +227,7 @@ command! MRU call fzf#run(fzf#wrap({
       \ 'source': v:oldfiles,
       \ }))
 
+" Setting grepprg.
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 elseif executable('ack')
@@ -248,8 +235,7 @@ elseif executable('ack')
 endif
 
 
-""" General config
-"" Indentation and wrapping
+" Indentation and wrapping.
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
@@ -259,29 +245,29 @@ set smarttab
 set cindent
 set nowrap
 
-"" Line numbers and column config
+" Line numbers and column config.
 set number
 set relativenumber
 set colorcolumn=100
 
-"" No beeping or error sounds
+" No beeping or error sounds.
 set noerrorbells
 set novisualbell
 set belloff=all
 set t_vb=
 set timeoutlen=500
 
-"" Searching config
+" Searching config.
 set incsearch
 set nohlsearch
 set ignorecase
 set smartcase
 
-"" Color scheme config
+" Color scheme config.
 set background=dark
 silent! colorscheme flattened_dark
 
-"" Wildmenu config
+" Wildmenu config.
 set wildmenu
 set wildmode=full
 set wildignore=.hg,.git,.svn                     " Version control
@@ -293,20 +279,20 @@ set wildignore+=*.DS_Store                       " OSX garbage
 set wildignore+=*.pdf,*.zip,*.so                 " Binaries
 set wildignore+=*.pyc,*.pyo                      " Python byte code
 
-"" List chars config
+" List chars config.
 set list
 set listchars=tab:¦\ ,nbsp:•,trail:·,extends:→,precedes:←
 
-"" Encoding config
+" Encoding config.
 set encoding=utf-8
 scriptencoding utf-8
 set fileencoding=utf-8
 
-"" Mouse config
+" Mouse config.
 set mouse=a
 set nomousehide
 
-"" UI config
+" UI config.
 set showtabline=2
 set showmode
 set showmatch
@@ -315,7 +301,7 @@ set cmdheight=2
 set laststatus=2
 set shortmess=aIT
 
-"" Other config
+" Other config.
 set backspace=indent,eol,start
 set autoread
 set autowrite
@@ -325,7 +311,7 @@ set nojoinspaces
 set t_md=
 set hidden
 
-"" Vim info config
+" Vim info config.
 set viminfo='500   " remember marks for last 500 files
 set viminfo+=<1000 " remember up to 1000 lines in each register
 set viminfo+=s1000 " remember up to 1MB in each register
@@ -333,14 +319,14 @@ set viminfo+=/1000 " remember last 1000 search patterns
 set viminfo+=:1000 " remember last 1000 commands
 set viminfo+=n$HOME/.vim/viminfo/info
 
-"" Setting undo, backup, and swp directories
+" Setting undo, backup, and swp directories.
 set undofile
 set undodir=~/.vim/undo//
 set backup
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swp//
 
-" Create necessary directories
+" Create necessary directories if they are missing.
 if exists('*mkdir')
   for s:dir in [ '/.vim/backup', '/.vim/swp', '/.vim/undo', '/.vim/tags', '/.vim/viminfo' ]
     if !isdirectory($HOME.s:dir)
@@ -349,23 +335,26 @@ if exists('*mkdir')
   endfor
 endif
 
+" Use histogram and indent-heuristic for diffs..
+if has("patch-8.1.360")
+  set diffopt=filler,internal,algorithm:histogram,indent-heuristic
+endif
 
-""" Key bindings
-"" Remap leader
+" Remap leader.
 let g:mapleader="\<Space>"
 
-"" Regular j, k moves across visual lines
-"" Numbered j, k moves across physical lines
+" Regular j, k moves across visual lines.
+" Numbered j, k moves across physical lines.
 nnoremap <expr> j v:count ? 'm'''.v:count.'j' : 'gj'
 nnoremap <expr> k v:count ? 'm'''.v:count.'k' : 'gk'
 
-"" Delete trailing whitespace
+" Delete trailing whitespace.
 nnoremap <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
-"" Copy into clipboard
+" Copy into clipboard.
 vnoremap <C-c> "+y
 
-"" Easy split navigation
+" Easy split navigation.
 " nnoremap <C-j> <C-w>j
 " nnoremap <C-k> <C-w>k
 " nnoremap <C-l> <C-w>l
@@ -374,16 +363,16 @@ vnoremap <C-c> "+y
 set splitbelow
 set splitright
 
-"" Resize viewports with arrow keys
+" Resize viewports with arrow keys.
 nnoremap <Right> :vertical resize +2<CR>
 nnoremap <Left> :vertical resize -2<CR>
 nnoremap <Up> :resize +2<CR>
 nnoremap <Down> :resize -2<CR>
 
-"" Reload .vimrc
+" Reload .vimrc.
 noremap <leader>rr :source ~/.vimrc<CR>
 
-"" Fugitive bindings
+" Fugitive bindings.
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>gD :Gdiff HEAD<CR>
@@ -394,56 +383,56 @@ nnoremap <leader>gw :Gwrite<CR>
 nnoremap <leader>gr :Gremove<CR>
 nnoremap <leader>gg :Ggrep<Space>
 
-"" Fzf keybindings
+" fzf keybindings.
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>p :FZF<CR>
 nnoremap <leader>m :MRU<CR>
 nnoremap <leader>t :Tags<CR>
 
-"" Grep for word under cursor
+" Grep for word under cursor.
 nnoremap K :execute 'grep!"\b"'.expand('<cword>').'"\b"'<CR>:cw<CR>
 
-"" Indentation in visual mode should stay in visual mode
+" Indentation in visual mode should stay in visual mode.
 xnoremap > >gv
 xnoremap < <gv
 
-"" Switching case in visual mode should stay in visual mode
+" Switching case in visual mode should stay in visual mode.
 xnoremap u ugv
 xnoremap U Ugv
 xnoremap ~ ~gv
 
-"" Incrementing/decrementing numbers in visual mode should stay in visual mode
+" Incrementing/decrementing numbers in visual mode should stay in visual mode.
 xnoremap <C-a> <C-a>gv
 xnoremap <C-x> <C-x>gv
 
-"" Consistent behavior
+" Consistent behavior.
 nnoremap Y y$
 
-"" Digraph bindings
+" Digraph bindings.
 inoremap <C-n> <C-k>
 
-"" Neocomplete bindings
+" Neocomplete bindings.
 inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-"" Sharing snippets
+" Sharing snippets.
 command! -range=% SP  <line1>,<line2>w !curl --form 'sprunge=<-' http://sprunge.us | tr --delete '\n' | xclip -in -selection clipboard
 command! -range=% CL  <line1>,<line2>w !curl --form 'clbin=<-' https://clbin.com | tr --delete '\n' | xclip -in -selection clipboard
 command! -range=% VP  <line1>,<line2>w !curl --form 'text=<-' http://vpaste.net | tr --delete '\n' | xclip -in -selection clipboard
 command! -range=% IX  <line1>,<line2>w !curl --form 'f:1=<-' ix.io | tr --delete '\n' | xclip -in -selection clipboard
 command! -range=% TB  <line1>,<line2>w !nc termbin.com 9999 | tr --delete '\n' | xclip -in -selection clipboard
 
-"" Backspace to switch to alternate file
+" Backspace to switch to alternate file.
 nnoremap <BS> <C-^>
 
-"" Write with sudo
+" Write with sudo.
 cmap w!! w !sudo tee > /dev/null %
 
-""" Highlighting config
-"" Underline current line
+" Underline current line.
 set cursorline
 
 function! Highlight() abort
+  " General highlighting.
   highlight Normal ctermbg=8
   highlight NonText ctermbg=8
   highlight SpecialKey ctermbg=8
@@ -452,12 +441,12 @@ function! Highlight() abort
   highlight SignColumn ctermbg=0
   highlight SpellBad cterm=underline
 
-  " Highlighting for CursorLine
+  " Highlighting for CursorLine.
   highlight clear CursorLine
   highlight CursorLine ctermbg=0
   highlight CursorLineNR ctermfg=14 ctermbg=0
 
-  " Highlighting for GitGutter symbols
+  " Highlighting for Signify symbols.
   highlight SignifySignAdd ctermfg=2 ctermbg=0
   highlight SignifySignChange ctermfg=3 ctermbg=0
   highlight SignifySignDelete ctermfg=1 ctermbg=0
@@ -466,13 +455,13 @@ function! Highlight() abort
   highlight ALEErrorSign ctermfg=1 ctermbg=0
   highlight ALEWarningSign ctermfg=3 ctermbg=0
 
-  " Highlighting for LaTeX
+  " Highlighting for LaTeX.
   highlight texMathMatcher ctermbg=none
   highlight texMathZoneX ctermbg=none
   highlight texRefLabel ctermbg=none
   highlight texStatement ctermbg=none
 
-  " Highlighting for Markdown
+  " Highlighting for Markdown.
   highlight def link markdownItalic NONE
   highlight def link markdownItalicDelimiter NONE
   highlight def link markdownBold NONE
@@ -486,72 +475,71 @@ function! Highlight() abort
   highlight markdownBoldItalic ctermfg=4
   highlight markdownBoldItalicDelimiter ctermfg=4
 
-  " Highlighting for BufTabLine
+  " Highlighting for BufTabLine.
   highlight BufTabLineCurrent cterm=none ctermfg=8 ctermbg=14
   highlight BufTabLineActive cterm=none ctermfg=8 ctermbg=10
   highlight BufTabLineHidden cterm=none ctermfg=8 ctermbg=10
   highlight BufTabLineFill cterm=none ctermfg=0 ctermbg=0
 
-  " Highlighting for TabLine
+  " Highlighting for TabLine.
   highlight TabLine cterm=none ctermfg=8 ctermbg=10
   highlight TabLineSel cterm=none ctermfg=8 ctermbg=14
   highlight TabLineFill cterm=none ctermfg=0 ctermbg=0
   highlight TabNum cterm=none ctermfg=8 ctermbg=10
   highlight TabNumSel cterm=none ctermfg=8 ctermbg=14
 
-  " Highlighting for statusline
+  " Highlighting for statusline.
   highlight statusLineDark ctermfg=12 ctermbg=0
   highlight statusLineLight ctermfg=0 ctermbg=14
   highlight statusLineAccent ctermfg=15 ctermbg=1
 endfunction
 
 
-""" Autocommands
-"" Quickfix related autocommands
+" Quickfix related autocommands.
 augroup quickfix_group
   autocmd!
-  " Open in new tab
+  " Open in new tab.
   autocmd Filetype qf nnoremap <buffer> t <C-w><CR><C-w>T
-  " Open in new tab and focus on results
+  " Open in new tab and focus on results.
   autocmd Filetype qf nnoremap <buffer> <C-t> <C-w><CR><C-w>TgT<C-w>p
-  " Open
+  " Open.
   autocmd Filetype qf nnoremap <buffer> o <CR>
-  " Open and focus on results
+  " Open and focus on results.
   autocmd Filetype qf nnoremap <buffer> <C-o> <CR><C-w>b
-  " Open in vertical split
+  " Open in vertical split.
   autocmd Filetype qf nnoremap <buffer> v <C-w><CR><C-w>H<C-w>b<C-w>J:call AdjustHeight(3, 10)<CR><C-w>t
-  " Open in vertical split and focus on results
+  " Open in vertical split and focus on results.
   autocmd Filetype qf nnoremap <buffer> <C-v> <C-w><CR><C-w>H<C-w>b<C-w>J:call AdjustHeight(3, 10)<CR>
-  " Open in horizontal split
+  " Open in horizontal split.
   autocmd Filetype qf nnoremap <buffer> x <C-w><CR><C-w>K
-  " Open in horizontal split and focus on results
+  " Open in horizontal split and focus on results.
   autocmd Filetype qf nnoremap <buffer> <C-x> <C-w><CR><C-w>K<C-w>b
 augroup END
 
-"" Highlighting autocommands
+" Highlighting autocommands.
 call Highlight()
 augroup highlighting_group
   autocmd!
   autocmd ColorScheme * call Highlight()
 augroup end
 
-"" Cursorline autocommands
+" Cursorline autocommands.
 augroup cursorline_group
   autocmd!
   autocmd WinLeave,BufLeave * set nocursorline
   autocmd WinEnter,BufEnter * set cursorline
 augroup END
 
-"" Searching highlighting
-augroup search_group
-  autocmd!
-  autocmd CmdlineEnter [/\?] set hlsearch
-  autocmd CmdlineLeave [/\?] set nohlsearch
-augroup END
-
-"" Numbering autocommands
+" Numbering autocommands.
 augroup numbering_group
   autocmd!
   autocmd WinLeave,BufLeave * set norelativenumber
   autocmd WinEnter,BufEnter * set relativenumber
+augroup END
+
+" Searching highlighting.
+augroup search_group
+  autocmd!
+  autocmd CmdlineEnter [/\?] set hlsearch
+  autocmd CmdlineLeave [/\?] set nohlsearch
 augroup END

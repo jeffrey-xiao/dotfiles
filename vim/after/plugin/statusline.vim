@@ -59,16 +59,16 @@ function! StatusLineWarnings() abort
     let l:spaces = search('^ ', 'nw') != 0
     let b:warning_flags = ''
 
-    " Mixed indenting
+    " Mixed indenting.
     if l:tabs && l:spaces
       let b:warning_flags .= 'M'
 
-    " Inconsistent indenting
+    " Inconsistent indenting.
     elseif (l:spaces && !&expandtab) || (l:tabs && &expandtab)
       let b:warning_flags .= 'I'
     endif
 
-    " Trailing spaces
+    " Trailing spaces.
     if search('\s\+$', 'nw') != 0
       let b:warning_flags .= 'T'
     endif

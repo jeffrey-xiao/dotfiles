@@ -81,7 +81,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'davidhalter/jedi-vim'
 " JavaScript.
 Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
+Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'ternjs/tern_for_vim'
 " Go.
 Plug 'fatih/vim-go'

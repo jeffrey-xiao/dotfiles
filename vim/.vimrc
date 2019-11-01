@@ -179,6 +179,7 @@ let g:latex_view_general_viewer = 'zathura'
 let g:tex_conceal = ''
 let g:tex_flavor = "latex"
 let g:vimtex_compiler_latexmk = { 'callback' : 0 }
+let g:vimtex_compiler_latexmk_options = 'pdflatex --shell-escape -synctex=1 %O %S'
 let g:vimtex_syntax_minted = [
       \ { 'lang' : 'c' },
       \ { 'lang' : 'cpp' },
@@ -234,6 +235,10 @@ elseif executable('ack')
   set grepprg=ack\ --ignore-case\ --nocolor\ --nogroup\ ""\ %s
 endif
 
+" Editing config.
+set backspace=indent,eol,start
+set infercase
+set nojoinspaces
 
 " Indentation and wrapping.
 set tabstop=2
@@ -279,6 +284,11 @@ set wildignore+=*.DS_Store                       " OSX garbage
 set wildignore+=*.pdf,*.zip,*.so                 " Binaries
 set wildignore+=*.pyc,*.pyo                      " Python byte code
 
+" Displaying text.
+set lazyredraw
+set scrolloff=1
+set t_md=
+
 " List chars config.
 set list
 set listchars=tab:¦\ ,nbsp:•,trail:·,extends:→,precedes:←
@@ -294,22 +304,17 @@ set nomousehide
 
 " UI config.
 set showtabline=2
+set laststatus=2
 set showmode
 set showmatch
 set showcmd
 set cmdheight=2
-set laststatus=2
 set shortmess=aIT
+set hidden
 
-" Other config.
-set backspace=indent,eol,start
+" Reading and writing files.
 set autoread
 set autowrite
-set lazyredraw
-set infercase
-set nojoinspaces
-set t_md=
-set hidden
 
 " Vim info config.
 set viminfo='500   " remember marks for last 500 files

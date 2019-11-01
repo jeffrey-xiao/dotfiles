@@ -7,4 +7,4 @@ function! RunPython() abort
 endfunction
 
 " Keybindings.
-nnoremap <buffer> <F5> :call RunPython()<CR>
+nnoremap <buffer> <leader>e :call RunPython()<CR>

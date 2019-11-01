@@ -4,4 +4,4 @@ function! RunElixir() abort
 endfunction
 
 " Keybindings.
-nnoremap <buffer> <F5> :call RunElixir()<CR>
+nnoremap <buffer> <leader>e :call RunElixir()<CR>

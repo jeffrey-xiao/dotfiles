@@ -9,5 +9,5 @@ setlocal formatoptions-=l
 setlocal spell
 
 " Keybindings.
-nnoremap <buffer> <F4> :make<CR>
-nnoremap <buffer> <F5> :!zathura %:p:r.pdf &<CR><CR>
+nnoremap <buffer> <leader>c :make<CR>
+nnoremap <buffer> <leader>e :!zathura %:p:r.pdf &<CR><CR>

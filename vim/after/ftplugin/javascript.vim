@@ -8,4 +8,4 @@ endfunction
 
 " Keybindings.
 nmap gd :TernDef<CR>
-nnoremap <buffer> <F5> :call RunJavaScript()<CR>
+nnoremap <buffer> <leader>e :call RunJavaScript()<CR>

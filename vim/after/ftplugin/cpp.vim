@@ -15,5 +15,5 @@ function! RunCpp() abort
 endfunction
 
 " Keybindings.
-nnoremap <buffer> <F4> :call CompileCpp()<CR>
-nnoremap <buffer> <F5> :call RunCpp()<CR>
+nnoremap <buffer> <leader>c :call CompileCpp()<CR>
+nnoremap <buffer> <leader>e :call RunCpp()<CR>

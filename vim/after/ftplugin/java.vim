@@ -16,5 +16,5 @@ function! RunJava() abort
 endfunction
 
 " Keybindings.
-nnoremap <buffer> <F4> :call CompileJava()<CR>
-nnoremap <buffer> <F5> :call RunJava()<CR>
+nnoremap <buffer> <leader>c :call CompileJava()<CR>
+nnoremap <buffer> <leader>e :call RunJava()<CR>

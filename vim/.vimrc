@@ -349,7 +349,7 @@ nnoremap <expr> j v:count ? 'm'''.v:count.'j' : 'gj'
 nnoremap <expr> k v:count ? 'm'''.v:count.'k' : 'gk'
 
 " Delete trailing whitespace.
-nnoremap <F6> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+nnoremap <leader>s :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 " Copy into clipboard.
 vnoremap <C-c> "+y
@@ -370,7 +370,7 @@ nnoremap <Up> :resize +2<CR>
 nnoremap <Down> :resize -2<CR>
 
 " Reload .vimrc.
-noremap <leader>rr :source ~/.vimrc<CR>
+noremap <leader>r :source ~/.vimrc<CR>
 
 " Fugitive bindings.
 nnoremap <leader>gs :Gstatus<CR>

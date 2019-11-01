@@ -7,6 +7,9 @@ setlocal textwidth=100
 setlocal formatoptions+=t
 setlocal formatoptions-=l
 setlocal spell
+if executable('prettier')
+  setlocal formatprg=prettier\ --write\ --parser=markdown
+endif
 
 " Keybindings.
 nnoremap <buffer> <leader>c :make<CR>

@@ -9,9 +9,9 @@ check_connected() {
 }
 
 if check_connected 'DP1'; then
-  xrandr --output eDP1 --mode 1600x900 --output DP1 --auto --right-of eDP1
+  xrandr --output eDP1 --mode 1600x900 --output DP1 --auto --left-of eDP1
 elif check_connected 'HDMI1'; then
-  xrandr --output eDP1 --mode 1600x900 --output HDMI1 --auto --right-of eDP1
+  xrandr --output eDP1 --mode 1600x900 --output HDMI1 --auto --left-of eDP1
 else
   xrandr --output eDP1 --mode 1920x1080
 fi

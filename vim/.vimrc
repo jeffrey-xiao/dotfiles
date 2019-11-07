@@ -4,7 +4,6 @@ function! AdjustHeight(minHeight, maxHeight) abort
   exe max([min([line('$'), a:maxHeight]), a:minHeight]).'wincmd _'
 endfunction
 
-
 " Download vim-plug if it does not exist.
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl --fail --location --create-dirs --output ~/.vim/autoload/plug.vim
@@ -131,11 +130,11 @@ let g:neocomplete#sources#omni#input_patterns.elixir = '[^.[:digit:] *\t]\%(\.\|
 
 " Config for ALE.
 let g:ale_linters = {
-      \ 'cpp': [ 'gcc', 'clang', 'cppcheck' ],
-      \ 'java': [ 'javac' ],
-      \ 'javascript': [ 'eslint' ],
-      \ 'python': [ 'autopep', 'flake8', 'pylint' ],
-      \}
+      \ 'cpp': ['gcc', 'clang', 'cppcheck'],
+      \ 'java': ['javac'],
+      \ 'javascript': ['eslint'],
+      \ 'python': ['autopep', 'flake8', 'pylint'],
+      \ }
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_echo_msg_warning_str = 'W'
@@ -178,14 +177,21 @@ let g:buftabline_numbers = 1
 let g:latex_view_general_viewer = 'zathura'
 let g:tex_conceal = ''
 let g:tex_flavor = "latex"
-let g:vimtex_compiler_latexmk = { 'callback' : 0 }
-let g:vimtex_compiler_latexmk_options = 'pdflatex --shell-escape -synctex=1 %O %S'
+let g:vimtex_compiler_latexmk = {
+      \ 'callback' : 0,
+      \ 'options': [
+      \   '-file-line-error',
+      \   '-interaction=nonstopmode',
+      \   '-shell-escape',
+      \   '-synctex=1',
+      \   '-verbose',
+      \ ]}
 let g:vimtex_syntax_minted = [
-      \ { 'lang' : 'c' },
-      \ { 'lang' : 'cpp' },
-      \ { 'lang' : 'java' },
-      \ { 'lang' : 'python' },
-      \]
+      \ {'lang': 'c'},
+      \ {'lang': 'cpp'},
+      \ {'lang': 'java'},
+      \ {'lang': 'python'},
+      \ ]
 let g:vimtex_view_method = 'zathura'
 
 " Config for signify.
@@ -215,11 +221,11 @@ function! s:tags_sink(lines) abort
 endfunction
 
 command! Tags call fzf#run(fzf#wrap({
-      \ 'source':  'cat '.join(map(tagfiles(), 'fnamemodify(v:val, ":S")')).
-      \            '| grep --invert-match --text ^!',
+      \ 'source': 'cat '.join(map(tagfiles(), 'fnamemodify(v:val, ":S")')).
+      \           '| grep --invert-match --text ^!',
       \ 'options': '+m -d "\t" --with-nth 1,4.. -n 1 --tiebreak=index --expect=ctrl-x,ctrl-v',
       \ 'down': '40%',
-      \ 'sink*':    function('s:tags_sink'),
+      \ 'sink*': function('s:tags_sink'),
       \ }))
 command! Buffers call fzf#run(fzf#wrap({
       \ 'source': filter(map(range(1, bufnr('$')), 'bufname(v:val)'), 'len(v:val)'),
@@ -287,6 +293,7 @@ set wildignore+=*.pyc,*.pyo                      " Python byte code
 " Displaying text.
 set lazyredraw
 set scrolloff=1
+set sidescrolloff=5
 set t_md=
 
 " List chars config.
@@ -498,7 +505,6 @@ function! Highlight() abort
   highlight statusLineLight ctermfg=0 ctermbg=14
   highlight statusLineAccent ctermfg=15 ctermbg=1
 endfunction
-
 
 " Quickfix related autocommands.
 augroup quickfix_group

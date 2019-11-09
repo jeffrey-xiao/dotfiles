@@ -1,4 +1,0 @@
--std=c++14
--isystem /usr/include/c++/9/
--isystem /usr/include/c++/9/x86_64-solus-linux/
--isystem /usr/include/c++/9/backward/

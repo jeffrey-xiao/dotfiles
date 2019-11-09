@@ -93,8 +93,11 @@ let g:clang_close_preview = 1
 let g:clang_complete_auto = 0
 let g:clang_make_default_keymappings = 0
 let g:clang_omnicppcomplete_compliance = 0
-let g:clang_user_options = '-std=c++11'
-set completeopt-=preview
+let g:clang_user_options = '-std=c++14'
+if exists('+completeopt')
+  set completeopt-=preview
+  set completeopt+=longest
+endif
 
 " Config for jedi.
 let g:jedi#auto_vim_configuration = 0
@@ -150,7 +153,7 @@ augroup dirvish_group
 augroup END
 
 " Config for Gutentags.
-let g:gutentags_cache_dir = '~/.vim/tags'
+let g:gutentags_cache_dir = '~/.vim/cache/tags/'
 let g:gutentags_generate_on_empty_buffer = 1
 
 " Config for IndentLine.
@@ -292,6 +295,7 @@ set wildignore+=*.pyc,*.pyo                      " Python byte code
 
 " Displaying text.
 set lazyredraw
+set linebreak
 set scrolloff=1
 set sidescrolloff=5
 set t_md=
@@ -329,18 +333,18 @@ set viminfo+=<1000 " remember up to 1000 lines in each register
 set viminfo+=s1000 " remember up to 1MB in each register
 set viminfo+=/1000 " remember last 1000 search patterns
 set viminfo+=:1000 " remember last 1000 commands
-set viminfo+=n$HOME/.vim/viminfo/info
+set viminfo+=n$HOME/.vim/cache/viminfo/info
 
 " Setting undo, backup, and swp directories.
 set undofile
-set undodir=~/.vim/undo//
+set undodir=~/.vim/cache/undo//
 set backup
-set backupdir=~/.vim/backup//
-set directory=~/.vim/swp//
+set backupdir=~/.vim/cache/backup//
+set directory=~/.vim/cache/swp//
 
 " Create necessary directories if they are missing.
 if exists('*mkdir')
-  for s:dir in [ '/.vim/backup', '/.vim/swp', '/.vim/undo', '/.vim/tags', '/.vim/viminfo' ]
+  for s:dir in ['/.vim/cache/backup/', '/.vim/cache/swp/', '/.vim/cache/undo/', '/.vim/cache/tags/', '/.vim/cache/viminfo/']
     if !isdirectory($HOME.s:dir)
       call mkdir($HOME.s:dir, 'p')
     endif
@@ -382,7 +386,7 @@ nnoremap <Up> :resize +2<CR>
 nnoremap <Down> :resize -2<CR>
 
 " Reload .vimrc.
-noremap <leader>r :source ~/.vimrc<CR>
+noremap <leader>r :source ~/.vim/vimrc<CR>
 
 " Fugitive bindings.
 nnoremap <leader>gs :Gstatus<CR>
@@ -424,8 +428,8 @@ nnoremap Y y$
 inoremap <C-n> <C-k>
 
 " Neocomplete bindings.
-inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 " Sharing snippets.
 command! -range=% SP  <line1>,<line2>w !curl --form 'sprunge=<-' http://sprunge.us | tr --delete '\n' | xclip -in -selection clipboard

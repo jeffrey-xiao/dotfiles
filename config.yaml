@@ -147,10 +147,9 @@ tmux:
 
 vim:
   link:
-    - minisnip: ~/.vim/
-    - after: ~/.vim/
-    - "*": ~/
-    - ".*": ~/
+    - .tern-config: ~/
+    - "*": ~/.vim/
+    - ".*": ~/.vim/
   postlink:
     - vim -c PlugInstall -c q! -c q!
     - >

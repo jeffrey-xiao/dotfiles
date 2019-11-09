@@ -1,7 +1,9 @@
+" General config.
+setlocal errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
+
 " Functions.
 function! CompileJava() abort
   let l:fileName = expand('%')
-  setlocal errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
   if !filereadable('./Makefile')
     setlocal makeprg=javac\ %
   endif

@@ -137,10 +137,10 @@ XF86AudioMute
 
 # Screen brightness hotkeys.
 XF86MonBrightnessUp
-  sudo brightness -r +50 && robar-brightness"
+  sudo brightness -r +50 && robar-brightness
 
 XF86MonBrightnessDown
-  sudo brightness -r -50 && robar-brightness"
+  sudo brightness -r -50 && robar-brightness
 
 # Touchpad controls.
 XF86TouchpadToggle

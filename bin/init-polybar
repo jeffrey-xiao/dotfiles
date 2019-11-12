@@ -3,7 +3,7 @@
 killall --quiet polybar
 while pgrep --exact polybar > /dev/null; do sleep 1; done
 
-monitors=$(polybar --list-monitors | awk --field-separator=':' '{print $1}')
+monitors=$(polybar --list-monitors | cut --delimiter=':' --fields=1)
 for display in $monitors; do
   MONITOR=$display polybar top &
 done

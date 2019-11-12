@@ -1,8 +1,8 @@
 #!/bin/sh
 
 xrandr_output="$(xrandr)"
-connected_monitors=$(printf '%s' "$xrandr_output" | grep '\bconnected\b' | awk '{print $1}')
-disconnected_monitors=$(printf '%s' "$xrandr_output" | grep '\bdisconnected\b' | awk '{print $1}')
+connected_monitors=$(echo "$xrandr_output" | grep '\bconnected\b' | cut --delimiter=' ' --fields=1)
+disconnected_monitors=$(echo "$xrandr_output" | grep '\bdisconnected\b' | cut --delimiter=' ' --fields=1)
 rotation_options='normal\ninverted\nleft\nright\n'
 position_options='above\nbelow\nsame-as\nleft-of\nright-of\n'
 

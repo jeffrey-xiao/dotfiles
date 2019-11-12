@@ -1,8 +1,8 @@
 #!/bin/sh
 
 xrandr_output="$(xrandr)"
-connected_monitors=$(printf '%s' "$xrandr_output" | grep '\bconnected\b' | awk '{print $1}')
-disconnected_monitors=$(printf '%s' "$xrandr_output" | grep '\bdisconnected\b' | awk '{print $1}')
+connected_monitors=$(echo "$xrandr_output" | grep '\bconnected\b' | cut --delimiter=' ' --fields=1)
+disconnected_monitors=$(echo "$xrandr_output" | grep '\bdisconnected\b' | cut --delimiter=' ' --fields=1)
 
 check_connected() {
   echo "$connected_monitors" | grep --silent "\\b$1\\b"

@@ -7,7 +7,7 @@ monitors=$(xrandr |
   uniq --skip-fields 1 |
   cut --fields=1 --delimiter=' '
 )
-monitors=$(polybar --list-monitors | awk '{print $1}' | sed 's/.$//')
+monitors=$(polybar --list-monitors | cut --delimiter=':' --fields=1)
 monitor_count=$(echo "$monitors" | wc -l)
 focused_desktop=$(bspc query --desktops --desktop .focused)
 initial_desktop_count="$(bspc query --desktops | wc -l)"

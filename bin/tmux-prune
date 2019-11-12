@@ -1,5 +1,5 @@
 #!/bin/sh
 
-tmux ls -F '#{session_name}:#{session_attached}' |
+tmux list-sessions -F '#{session_name}:#{session_attached}' |
   awk --field-separator=':' '$2==0 {print $1}' |
   xargs -I '{}' tmux kill-session -t {}

@@ -6,8 +6,8 @@ img_path() {
   echo "/tmp/blurred_screen_$1.png"
 }
 
-res=$(xdpyinfo | awk '/dimensions/{print $2}')
-ffmpeg -loglevel quiet -f x11grab -video_size "$res" -i "$DISPLAY" -y -filter_complex 'boxblur=10' -vframes 1 "$(img_path 0)"
+dimensions=$(xdpyinfo | awk '/dimensions/{print $2}')
+ffmpeg -loglevel quiet -f x11grab -video_size "$dimensions" -i "$DISPLAY" -y -filter_complex 'boxblur=10' -vframes 1 "$(img_path 0)"
 
 # Lockscreen image info.
 [ ! -L "$lock_file" ] && lock_file=$(readlink --canonicalize "$lock_file")
@@ -19,7 +19,7 @@ ry=$(echo "$r" | cut --delimiter=' ' --fields=3)
 
 sr=$(xrandr | grep '\bconnected\b' | sed 's/primary //' | cut --fields=3 --delimiter=' ')
 index=0
-for res in $sr; do
+for dimensions in $sr; do
   # Monitor dimensions.
   srx=$(echo "$res" | cut --delimiter='x' --fields=1)
   sry=$(echo "$res" | cut --delimiter='x' --fields=2 | cut --delimiter='+' --fields=1)

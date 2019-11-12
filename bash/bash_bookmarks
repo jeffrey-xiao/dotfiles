@@ -29,7 +29,7 @@ __add_line() {
 }
 
 __bookmarks() {
-  awk --field-separator='=' '{ print $1 }' "$bookmarks_file"
+  cut --delimiter='=' --fields=1 < "$bookmarks_file"
 }
 
 __comp() {

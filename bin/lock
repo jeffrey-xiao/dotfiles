@@ -21,12 +21,12 @@ sr=$(xrandr | grep '\bconnected\b' | sed 's/primary //' | cut --fields=3 --delim
 index=0
 for dimensions in $sr; do
   # Monitor dimensions.
-  srx=$(echo "$res" | cut --delimiter='x' --fields=1)
-  sry=$(echo "$res" | cut --delimiter='x' --fields=2 | cut --delimiter='+' --fields=1)
+  srx=$(echo "$dimensions" | cut --delimiter='x' --fields=1)
+  sry=$(echo "$dimensions" | cut --delimiter='x' --fields=2 | cut --delimiter='+' --fields=1)
 
   # Monitor offsets.
-  srxo=$(echo "$res" | cut --delimiter='x' --fields=2 | cut --delimiter='+' --fields=2)
-  sryo=$(echo "$res" | cut --delimiter='x' --fields=2 | cut --delimiter='+' --fields=3)
+  srxo=$(echo "$dimensions" | cut --delimiter='x' --fields=2 | cut --delimiter='+' --fields=2)
+  sryo=$(echo "$dimensions" | cut --delimiter='x' --fields=2 | cut --delimiter='+' --fields=3)
 
   # Lock image location.
   px=$((srxo + srx / 2 - rx / 2))

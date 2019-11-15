@@ -1,7 +1,7 @@
 " Adjusts the height of the current window to have a minimum of minHeight
 " lines and a maximum of maxHeight lines.
 function! AdjustHeight(minHeight, maxHeight) abort
-  exe max([min([line('$'), a:maxHeight]), a:minHeight]).'wincmd _'
+  execute max([min([line('$'), a:maxHeight]), a:minHeight]).'wincmd _'
 endfunction
 
 " Download vim-plug if it does not exist.
@@ -52,7 +52,7 @@ Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
 
 " Fuzzy Searcher.
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --xdg --no-bash' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --xdg --no-update-rc' }
 " File explorer.
 Plug 'justinmk/vim-dirvish'
 
@@ -380,10 +380,10 @@ set splitbelow
 set splitright
 
 " Resize viewports with arrow keys.
-nnoremap <Right> :vertical resize +2<CR>
-nnoremap <Left> :vertical resize -2<CR>
-nnoremap <Up> :resize +2<CR>
-nnoremap <Down> :resize -2<CR>
+nnoremap <silent> <Right> :vertical resize +2<CR>
+nnoremap <silent> <Left> :vertical resize -2<CR>
+nnoremap <silent> <Up> :resize +2<CR>
+nnoremap <silent> <Down> :resize -2<CR>
 
 " Reload .vimrc.
 noremap <leader>r :source ~/.vim/vimrc<CR>
@@ -513,6 +513,8 @@ endfunction
 " Quickfix related autocommands.
 augroup quickfix_group
   autocmd!
+  " Fit height.
+  autocmd Filetype qf call AdjustHeight(3, 10)
   " Open in new tab.
   autocmd Filetype qf nnoremap <buffer> t <C-w><CR><C-w>T
   " Open in new tab and focus on results.

@@ -23,19 +23,17 @@ for curr_monitor in $monitors; do
     r=$((r - 1))
   fi
 
-  if [ "$initial_desktop_count" -lt $desktop_count ]; then
-    # Initialize desktops.
-    bspc monitor "$curr_monitor" --reset-desktops $(seq $total $((total + curr - 1)))
-  else
+  if [ "$initial_desktop_count" -ge $desktop_count ]; then
     # Move desktops.
     for i in $(seq $total $((total + curr - 1))); do
       curr_desktop=$(bspc query --desktops --desktop "$i")
       bspc desktop --focus "$curr_desktop"
       bspc desktop "$curr_desktop" --to-monitor "$curr_monitor"
     done
-    # Sort desktops.
     bspc query --monitor "$curr_monitor" --tree | jq '.desktops[].name' | sort -n | xargs bspc monitor "$curr_monitor" --reorder-desktops
   fi
+  # Initialize desktops.
+  bspc monitor "$curr_monitor" --reset-desktops $(seq $total $((total + curr - 1)))
   total=$((total + curr))
 done
 

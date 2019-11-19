@@ -34,11 +34,11 @@ for f in "$DOTFILES_DIR/bin"/!(*.template); do
 done
 
 # Link vim config.
-ln -sfv "$DOTFILES_DIR/vim/.vimrc" ~/
 ln -sfv "$DOTFILES_DIR/vim/.tern-config" ~/
-ln -sfv "$DOTFILES_DIR/vim/.clang_complete" ~/
 ln -sfv "$DOTFILES_DIR/vim/after" ~/.vim/
+ln -sfv "$DOTFILES_DIR/vim/ftdetect" ~/.vim/
 ln -sfv "$DOTFILES_DIR/vim/minisnip" ~/.vim/
+ln -sfv "$DOTFILES_DIR/vim/vimrc" ~/.vim/
 
 # Link miscellaneous config.
 mkdir -pv ~/.config/redshift

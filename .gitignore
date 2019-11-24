@@ -1,16 +1,16 @@
-# Ignore vim packages
-vim/.vim/plugged
+# Ignore vim-plug.
+vim/autoload/plug.vim
 
-# Ignore weechat logs
+# Ignore weechat logs.
 weechat/weechat.log
 weechat/logs
 
-# Ignore virtualenv
+# Ignore virtualenv.
 venv/
 
-# Ignore installation log
+# Ignore installation log.
 install.log
 
-# Ignore output files from templates
+# Ignore output files from templates.
 dunst/dunstrc
 zathura/zathurarc

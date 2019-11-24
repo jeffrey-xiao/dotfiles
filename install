@@ -48,6 +48,11 @@ for f in "${programs[@]}"; do
   fi
 done
 
+# Set gnome settings.
+gsettings set org.gnome.desktop.interface icon-theme "Papirus"
+gsettings set org.gnome.desktop.interface gtk-theme "Numix"
+gsettings set org.gnome.desktop.wm.preferences theme "Numix"
+
 # Installing powerline fonts.
 git clone https://github.com/powerline/fonts ~/Documents/fonts/powerline-fonts &&
   . ~/Documents/fonts/powerline-fonts/install.sh
@@ -56,6 +61,9 @@ sudo rm -f /usr/share/fonts/conf.d/70-no-bitmaps.conf &&
 cp -u ./fonts/*.{ttf,bdf} ~/.local/share/fonts/ &&
   (cd ~/.local/share/fonts/ && mkfontdir && mkfontscale)
 fc-cache --force --verbose
+
+# Apply ~/.Xresources.
+xrdb ~/.Xresources
 
 # Installing development related programs and tools.
 vim -c PlugInstall -c q! -c q!

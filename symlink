@@ -36,6 +36,7 @@ done
 # Link vim config.
 ln -sfv "$DOTFILES_DIR/vim/.tern-config" ~/
 ln -sfv "$DOTFILES_DIR/vim/after" ~/.vim/
+ln -sfv "$DOTFILES_DIR/vim/autoload" ~/.vim/
 ln -sfv "$DOTFILES_DIR/vim/ftdetect" ~/.vim/
 ln -sfv "$DOTFILES_DIR/vim/minisnip" ~/.vim/
 ln -sfv "$DOTFILES_DIR/vim/vimrc" ~/.vim/
@@ -48,11 +49,6 @@ ln -sfv "$DOTFILES_DIR/misc/redshift.conf" ~/.config/redshift
 mkdir -pv ~/.config/fontconfig
 ln -sfv "$DOTFILES_DIR/fonts/fonts.conf" ~/.config/fontconfig/
 
-# Set gnome settings.
-gsettings set org.gnome.desktop.interface icon-theme "Papirus"
-gsettings set org.gnome.desktop.interface gtk-theme "Numix"
-gsettings set org.gnome.desktop.wm.preferences theme "Numix"
-
 # Create a playlist folder and database file for mpd.
 mkdir -pv ~/.config/mpd/playlists/
 touch ~/.config/mpd/database
@@ -62,6 +58,3 @@ mkdir -pv ~/Pictures/Screenshots/
 
 # Create complete, incomplete, and session folders for rtorrent.
 mkdir -pv ~/Downloads/complete/ ~/Downloads/incomplete/ ~/.config/rtorrent/sessions/
-
-# Apply ~/.Xresources.
-xrdb ~/.Xresources

@@ -427,15 +427,17 @@ nnoremap Y y$
 inoremap <C-n> <C-k>
 
 " Neocomplete bindings.
-inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 " Sharing snippets.
-command! -range=% SP  <line1>,<line2>w !curl --form 'sprunge=<-' http://sprunge.us | tr --delete '\n' | xclip -in -selection clipboard
-command! -range=% CL  <line1>,<line2>w !curl --form 'clbin=<-' https://clbin.com | tr --delete '\n' | xclip -in -selection clipboard
-command! -range=% VP  <line1>,<line2>w !curl --form 'text=<-' http://vpaste.net | tr --delete '\n' | xclip -in -selection clipboard
-command! -range=% IX  <line1>,<line2>w !curl --form 'f:1=<-' ix.io | tr --delete '\n' | xclip -in -selection clipboard
-command! -range=% TB  <line1>,<line2>w !nc termbin.com 9999 | tr --delete '\n' | xclip -in -selection clipboard
+command! -range=% SP <line1>,<line2>w !curl --form 'sprunge=<-' http://sprunge.us | tr --delete '\n' | xclip -in -selection clipboard
+command! -range=% CL <line1>,<line2>w !curl --form 'clbin=<-' https://clbin.com | tr --delete '\n' | xclip -in -selection clipboard
+command! -range=% VP <line1>,<line2>w !curl --form 'text=<-' http://vpaste.net | tr --delete '\n' | xclip -in -selection clipboard
+command! -range=% IX <line1>,<line2>w !curl --form 'f:1=<-' ix.io | tr --delete '\n' | xclip -in -selection clipboard
+command! -range=% TB <line1>,<line2>w !nc termbin.com 9999 | tr --delete '\n' | xclip -in -selection clipboard
+
+command! -range=% SW <line1>,<line2>s/\s\+$//e
 
 " Backspace to switch to alternate file.
 nnoremap <BS> <C-^>

@@ -1,3 +1,6 @@
+" General config.
+setlocal commentstring=//\ %s
+
 " Functions.
 function! CompileCpp() abort
   let l:fileName = expand('%')

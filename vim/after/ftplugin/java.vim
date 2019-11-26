@@ -1,5 +1,6 @@
 " General config.
 setlocal errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
+setlocal commentstring=//\ %s
 
 " Functions.
 function! CompileJava() abort

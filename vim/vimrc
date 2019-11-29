@@ -173,7 +173,7 @@ let g:buftabline_numbers = 1
 " Config for vimtex.
 let g:latex_view_general_viewer = 'zathura'
 let g:tex_conceal = ''
-let g:tex_flavor = "latex"
+let g:tex_flavor = 'latex'
 let g:vimtex_compiler_latexmk = {
       \ 'callback' : 0,
       \ 'options': [
@@ -199,15 +199,16 @@ let g:signify_sign_show_count = 0
 let g:signify_vcs_list = [ 'git' ]
 
 "" Config for fzf.
+let g:fzf_action = {
+        \ 'ctrl-t': 'tab split',
+        \ 'ctrl-v': 'vsplit',
+        \ 'ctrl-x': 'split',
+        \ }
 function! s:tags_sink(lines) abort
   if empty(a:lines)
     return
   endif
-  let l:cmd = get({
-        \ 'ctrl-t': 'tabedit',
-        \ 'ctrl-x': 'split',
-        \ 'ctrl-v': 'vsplit',
-        \ }, remove(a:lines, 0), 'e')
+  let l:cmd = get(g:fzf_action, remove(a:lines, 0), 'e')
   let l:query = a:lines[0]
   let l:parts = split(l:query, '\t\zs')
   let l:excmd = matchstr(l:parts[2:], '^.*\ze;"\t')
@@ -218,10 +219,8 @@ function! s:tags_sink(lines) abort
 endfunction
 
 command! Tags call fzf#run(fzf#wrap({
-      \ 'source': 'cat '.join(map(tagfiles(), 'fnamemodify(v:val, ":S")')).
-      \           '| grep --invert-match --text ^!',
-      \ 'options': '+m -d "\t" --with-nth 1,4.. -n 1 --tiebreak=index --expect=ctrl-x,ctrl-v',
-      \ 'down': '40%',
+      \ 'source': 'get-relative-tags '.join(map(tagfiles(), 'fnamemodify(v:val, ":S")')),
+      \ 'options': '+m -d "\t" --with-nth 1,2,4 -n 1,2 --tiebreak=index --expect=ctrl-t,ctrl-v,ctrl-x',
       \ 'sink*': function('s:tags_sink'),
       \ }))
 command! Buffers call fzf#run(fzf#wrap({
@@ -241,6 +240,7 @@ endif
 " Editing config.
 set backspace=indent,eol,start
 set infercase
+set formatoptions=tcqj
 set nojoinspaces
 
 " Indentation and wrapping.
@@ -363,11 +363,22 @@ let g:mapleader="\<Space>"
 nnoremap <expr> j v:count ? 'm'''.v:count.'j' : 'gj'
 nnoremap <expr> k v:count ? 'm'''.v:count.'k' : 'gk'
 
-" Delete trailing whitespace.
-nnoremap <leader>s :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+" Strip trailing whitespace.
+function! StripWhitespace() abort
+  let l:saved_search = @/
+  let l:saved_view = winsaveview()
+  %s/\s\+$//e
+  call winrestview(l:saved_view)
+  let @/ = l:saved_search
+endfunction
+command! StripWhitespace :call StripWhitespace()
+nnoremap <leader>s :StripWhitespace<CR>
 
-" Copy into clipboard.
-vnoremap <C-c> "+y
+" Clipboard keybindings.
+nnoremap <leader>y "+y
+xnoremap <leader>y "+y
+nnoremap <leader>p "+p
+xnoremap <leader>p "+p
 
 " Easy split navigation.
 " nnoremap <C-j> <C-w>j
@@ -400,12 +411,9 @@ nnoremap <leader>gg :Ggrep<Space>
 
 " fzf keybindings.
 nnoremap <leader>b :Buffers<CR>
-nnoremap <leader>p :FZF<CR>
+nnoremap <leader>f :FZF<CR>
 nnoremap <leader>m :MRU<CR>
 nnoremap <leader>t :Tags<CR>
-
-" Grep for word under cursor.
-nnoremap K :execute 'grep!"\b"'.expand('<cword>').'"\b"'<CR>:cw<CR>
 
 " Indentation in visual mode should stay in visual mode.
 xnoremap > >gv
@@ -436,8 +444,6 @@ command! -range=% CL <line1>,<line2>w !curl --form 'clbin=<-' https://clbin.com 
 command! -range=% VP <line1>,<line2>w !curl --form 'text=<-' http://vpaste.net | tr --delete '\n' | xclip -in -selection clipboard
 command! -range=% IX <line1>,<line2>w !curl --form 'f:1=<-' ix.io | tr --delete '\n' | xclip -in -selection clipboard
 command! -range=% TB <line1>,<line2>w !nc termbin.com 9999 | tr --delete '\n' | xclip -in -selection clipboard
-
-command! -range=% SW <line1>,<line2>s/\s\+$//e
 
 " Backspace to switch to alternate file.
 nnoremap <BS> <C-^>

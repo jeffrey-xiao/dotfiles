@@ -9,7 +9,7 @@ shopt -s globstar
 shopt -s nullglob
 
 # Link to ~.
-for f in "$DOTFILES_DIR/system"/!(*.template); do
+for f in "$DOTFILES_DIR"/system/!(*.template); do
   ln -sfv "$f" ~/
 done
 
@@ -22,28 +22,26 @@ done
 # Link to .config/$folder.
 for folder in bash bspwm compton dunst feh git htop mpd mpv ncmpcpp polybar ranger rtorrent sxhkd tmux weechat zathura; do
   mkdir -pv ~/.config/$folder/
-  for f in "$DOTFILES_DIR/$folder"/!(*.template); do
+  for f in "$DOTFILES_DIR"/$folder/!(*.template); do
     ln -sfv "$f" ~/.config/$folder/
   done
 done
 
 # Link bin.
 mkdir -pv ~/.local/bin/
-for f in "$DOTFILES_DIR/bin"/!(*.template); do
+for f in "$DOTFILES_DIR"/bin/!(*.template); do
   ln -sfv "$f" ~/.local/bin/
 done
 
 # Link vim config.
+for f in "$DOTFILES_DIR/vim"/!(.*); do
+  ln -sfv "$f" ~/.vim/
+done
 ln -sfv "$DOTFILES_DIR/vim/.tern-config" ~/
-ln -sfv "$DOTFILES_DIR/vim/after" ~/.vim/
-ln -sfv "$DOTFILES_DIR/vim/autoload" ~/.vim/
-ln -sfv "$DOTFILES_DIR/vim/ftdetect" ~/.vim/
-ln -sfv "$DOTFILES_DIR/vim/minisnip" ~/.vim/
-ln -sfv "$DOTFILES_DIR/vim/vimrc" ~/.vim/
 
 # Link miscellaneous config.
 mkdir -pv ~/.config/redshift
-ln -sfv "$DOTFILES_DIR/misc/redshift.conf" ~/.config/redshift
+ln -sfv "$DOTFILES_DIR/misc/redshift.conf" ~/.config/redshift/
 
 # Link font config.
 mkdir -pv ~/.config/fontconfig

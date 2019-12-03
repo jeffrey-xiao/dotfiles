@@ -199,16 +199,25 @@ let g:signify_sign_show_count = 0
 let g:signify_vcs_list = [ 'git' ]
 
 "" Config for fzf.
-let g:fzf_action = {
+let s:fzf_action = {
         \ 'ctrl-t': 'tab split',
         \ 'ctrl-v': 'vsplit',
         \ 'ctrl-x': 'split',
         \ }
-function! s:tags_sink(lines) abort
+let s:fzf_tags_options = [
+      \ '--no-multi',
+      \ '--delimiter=\t',
+      \ '--with-nth=1,2,-1',
+      \ '--nth=1,2',
+      \ '--tabstop=30',
+      \ '--tiebreak=index',
+      \ '--expect=ctrl-t,ctrl-v,ctrl-x'
+      \ ]
+function! s:fzf_tags_sink(lines) abort
   if empty(a:lines)
     return
   endif
-  let l:cmd = get(g:fzf_action, remove(a:lines, 0), 'e')
+  let l:cmd = get(s:fzf_action, remove(a:lines, 0), 'e')
   let l:query = a:lines[0]
   let l:parts = split(l:query, '\t\zs')
   let l:excmd = matchstr(l:parts[2:], '^.*\ze;"\t')
@@ -220,8 +229,8 @@ endfunction
 
 command! Tags call fzf#run(fzf#wrap({
       \ 'source': 'get-relative-tags '.join(map(tagfiles(), 'fnamemodify(v:val, ":S")')),
-      \ 'options': '+m -d "\t" --with-nth 1,2,4 -n 1,2 --tiebreak=index --expect=ctrl-t,ctrl-v,ctrl-x',
-      \ 'sink*': function('s:tags_sink'),
+      \ 'options': s:fzf_tags_options,
+      \ 'sink*': function('s:fzf_tags_sink'),
       \ }))
 command! Buffers call fzf#run(fzf#wrap({
       \ 'source': filter(map(range(1, bufnr('$')), 'bufname(v:val)'), 'len(v:val)'),
@@ -234,8 +243,16 @@ command! MRU call fzf#run(fzf#wrap({
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 elseif executable('ack')
-  set grepprg=ack\ --ignore-case\ --nocolor\ --nogroup\ ""\ %s
+  set grepprg=ack\ --nocolor\ --nogroup
+else
+  set grepprg=grep\ --recursive\ --line-number
 endif
+
+function! Grep(args) abort
+	return system(&grepprg.' '.a:args)
+endfunction
+command! -nargs=+ -complete=file_in_path -bar Grep cgetexpr Grep('<args>') | cwindow
+command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr Grep('<args>') | lwindow
 
 " Editing config.
 set backspace=indent,eol,start
@@ -430,13 +447,6 @@ xnoremap <C-x> <C-x>gv
 
 " Consistent behavior.
 nnoremap Y y$
-
-" Digraph bindings.
-inoremap <C-n> <C-k>
-
-" Neocomplete bindings.
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 " Sharing snippets.
 command! -range=% SP <line1>,<line2>w !curl --form 'sprunge=<-' http://sprunge.us | tr --delete '\n' | xclip -in -selection clipboard

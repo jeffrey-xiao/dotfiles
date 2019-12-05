@@ -251,8 +251,8 @@ endif
 function! Grep(args) abort
 	return system(&grepprg.' '.a:args)
 endfunction
-command! -nargs=+ -complete=file_in_path -bar Grep cgetexpr Grep('<args>') | cwindow
-command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr Grep('<args>') | lwindow
+command! -nargs=+ -complete=file_in_path -bar Grep cgetexpr Grep("<args>") | cwindow | echom "Finished grep"
+command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr Grep("<args>") | lwindow | echom "Finished lgrep"
 
 " Editing config.
 set backspace=indent,eol,start
@@ -310,6 +310,10 @@ set linebreak
 set scrolloff=1
 set sidescrolloff=5
 set t_md=
+
+" Folding.
+set foldmethod=indent
+set foldlevel=99
 
 " List and fill chars config.
 set list
@@ -413,7 +417,7 @@ command! Zoom call window#zoom()
 nnoremap <silent> <leader>z :Zoom<CR>
 
 " Reload .vimrc.
-nnoremap <silent> <leader>r :source ~/.vim/vimrc<CR>
+nnoremap <silent> <leader>r :source $MYVIMRC<CR>
 
 " Fugitive bindings.
 nnoremap <leader>gs :Gstatus<CR>

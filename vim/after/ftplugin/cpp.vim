@@ -8,8 +8,9 @@ function! CompileCpp() abort
   if !filereadable('./Makefile')
     setlocal makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ -fsanitize=undefined,address\ %\ -o\ %:r
   endif
-  silent make! | redraw!
-  echo "Finished Compiling"
+  silent make!
+  redraw!
+  echo "Finished compiling"
 endfunction
 
 function! RunCpp() abort

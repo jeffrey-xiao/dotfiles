@@ -12,5 +12,5 @@ if executable('prettier')
 endif
 
 " Keybindings.
-nnoremap <buffer> <leader>c :make<CR>
+nnoremap <buffer> <leader>c :make!<CR>
 nnoremap <buffer> <leader>e :!zathura %:p:r.pdf &<CR><CR>

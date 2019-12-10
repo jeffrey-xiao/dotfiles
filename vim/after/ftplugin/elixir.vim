@@ -1,3 +1,8 @@
+" General config.
+if executable('mix')
+  setlocal formatprg=mix\ format\ -
+endif
+
 " Functions.
 function! RunElixir() abort
   execute '!elixir %'

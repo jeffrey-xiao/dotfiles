@@ -10,5 +10,5 @@ function! RunJavaScript() abort
 endfunction
 
 " Keybindings.
-nmap gd :TernDef<CR>
+nnoremap gd :TernDef<CR>
 nnoremap <buffer> <leader>e :call RunJavaScript()<CR>

@@ -3,17 +3,8 @@
 config_dir="${XDG_CONFIG_HOME:-"$HOME/.config"}"
 bash_config_dir=$config_dir/bash
 
-# Set PATH so it includes user's bin directories.
-export PATH="$PATH:$HOME/.local/bin"
-
-# Set PATH to include cargo binaries.
-export PATH="$PATH:$HOME/.cargo/bin"
-
-# Set PATH to include fzf binaries.
-export PATH="$PATH:$HOME/.fzf/bin"
-
-# Set PATH to include mix scripts.
-export PATH="$PATH:$HOME/.mix/escripts"
+# Set PATH to include user's bin directories, cargo binaries, fzf binaries, and mix scripts.
+export PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.fzf/bin:$HOME/.mix/escripts"
 
 # Environment variables for mpd.
 export MPD_HOST=~/.config/mpd/socket
@@ -42,5 +33,8 @@ export WEECHAT_HOME="$config_dir/weechat"
 # Setting urxvtd socket.
 hostname=$(uname -n) && export RXVT_SOCKET=/tmp/urxvtd-$hostname
 
-# Bash secrets.
+# Setting bash secrets.
 [ -f "$bash_config_dir/bash_secrets" ] && . "$bash_config_dir/bash_secrets"
+
+# Starting ssh agent.
+eval "$(ssh-agent)"

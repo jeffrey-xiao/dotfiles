@@ -62,3 +62,6 @@ fi
 # Source nvm if directory exists.
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use
 [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+
+# Add ssh keys.
+ssh-add -l > /dev/null || ssh-add

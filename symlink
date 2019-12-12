@@ -33,6 +33,11 @@ for f in "$DOTFILES_DIR"/bin/!(*.template); do
   ln -sfv "$f" ~/.local/bin/
 done
 
+# Link gtk.
+mkdir -pv ~/.config/gtk-3.0/
+ln -sfv "$DOTFILES_DIR/gtk/.gtkrc-2.0" ~/
+ln -sfv "$DOTFILES_DIR/gtk/settings.ini" ~/.config/gtk-3.0/
+
 # Link vim config.
 for f in "$DOTFILES_DIR/vim"/!(.*); do
   ln -sfv "$f" ~/.vim/
@@ -40,11 +45,11 @@ done
 ln -sfv "$DOTFILES_DIR/vim/.tern-config" ~/
 
 # Link miscellaneous config.
-mkdir -pv ~/.config/redshift
+mkdir -pv ~/.config/redshift/
 ln -sfv "$DOTFILES_DIR/misc/redshift.conf" ~/.config/redshift/
 
 # Link font config.
-mkdir -pv ~/.config/fontconfig
+mkdir -pv ~/.config/fontconfig/
 ln -sfv "$DOTFILES_DIR/fonts/fonts.conf" ~/.config/fontconfig/
 
 # Create a playlist folder and database file for mpd.

@@ -10,7 +10,6 @@ bspwm:
     - acpi
     - blueman
     - bspwm
-    - gnome-settings-daemon
     - i3lock
     - imagemagick
     - jq
@@ -24,10 +23,6 @@ bspwm:
     - xbacklight
     - xclip
     - xinput
-  postlink:
-    - gsettings set org.gnome.desktop.interface icon-theme "Papirus"
-    - gsettings set org.gnome.desktop.interface gtk-theme "Numix"
-    - gsettings set org.gnome.desktop.wm.preferences theme "Numix"
 
 compton:
   link: ~/.config/compton/
@@ -60,6 +55,11 @@ fonts:
 
 git:
   link: ~/.config/git/
+
+gtk:
+  link:
+    - .gtkrc-2.0: ~/
+    - settings.ini: ~/.config/gtk-3.0/
 
 htop:
   link: ~/.config/htop/

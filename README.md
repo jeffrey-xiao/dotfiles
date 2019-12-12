@@ -12,7 +12,7 @@ This repository contains all the dotfiles I use for my Solus machine.
 audio player         → mpc, mpd, ncmpcpp
 compositor           → compton
 document viewer      → zathura
-file manager         → nautilus, ranger
+file manager         → ranger
 irc client           → weechat
 media player         → mpv
 notification daemon  → dunst

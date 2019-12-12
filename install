@@ -14,7 +14,7 @@ log_file="$DOTFILES_DIR/install.log"
 printf '' > "$log_file"
 
 declare -a programs=(
-  acpi blueman bspwm gnome-settings-daemon i3lock imagemagick jq network-manager numix-gtk-theme papirus-icon-theme rofi scrot slop sysstat xbacklight xclip xinput
+  acpi blueman bspwm i3lock imagemagick jq network-manager numix-gtk-theme papirus-icon-theme rofi scrot slop sysstat xbacklight xclip xinput
   compton
   dunst
   feh
@@ -47,11 +47,6 @@ for f in "${programs[@]}"; do
     echo "$f failed to install." >>"$log_file"
   fi
 done
-
-# Set gnome settings.
-gsettings set org.gnome.desktop.interface icon-theme "Papirus"
-gsettings set org.gnome.desktop.interface gtk-theme "Numix"
-gsettings set org.gnome.desktop.wm.preferences theme "Numix"
 
 # Installing powerline fonts.
 git clone https://github.com/powerline/fonts ~/Documents/fonts/powerline-fonts &&

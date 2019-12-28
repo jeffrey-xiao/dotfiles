@@ -36,5 +36,12 @@ hostname=$(uname -n) && export RXVT_SOCKET=/tmp/urxvtd-$hostname
 # Setting bash secrets.
 [ -f "$bash_config_dir/bash_secrets" ] && . "$bash_config_dir/bash_secrets"
 
-# Starting ssh agent.
-eval "$(ssh-agent)"
+# Starting ssh agent if it hasn't been started and symlink SSH_AUTH_SOCK for
+# tmux sessions.
+if [ ! -e ~/.ssh/ssh_auth_sock ]; then
+  if [ -z "$SSH_AUTH_SOCK" ]; then
+    eval "$(ssh-agent)"
+  fi
+  ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+  export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+fi

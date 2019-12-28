@@ -2,7 +2,7 @@
 setlocal errorformat+=%-G%.%#
 setlocal commentstring=//\ %s
 if executable('clang-format')
-  setlocal formatexpr=FormatJava(v:lnum,v:lnum+v:count-1)
+  setlocal formatexpr=FormatCpp(v:lnum,v:lnum+v:count-1)
 endif
 if !filereadable('./Makefile')
   setlocal makeprg=g++\ -std=c++14\ -g\ -Wall\ -Wextra\ -fsanitize=undefined,address\ %\ -o\ %:r

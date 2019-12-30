@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-config_dir="${XDG_CONFIG_HOME:-"$HOME/.config"}"
+config_dir=${XDG_CONFIG_HOME:-"$HOME/.config"}
 bash_config_dir=$config_dir/bash
 
 # If not running interactively, don't do anything.

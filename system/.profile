@@ -1,6 +1,6 @@
 #!/bin/sh
 
-config_dir="${XDG_CONFIG_HOME:-"$HOME/.config"}"
+config_dir=${XDG_CONFIG_HOME:-"$HOME/.config"}
 bash_config_dir=$config_dir/bash
 
 # Set PATH to include user's bin directories, cargo binaries, fzf binaries, and mix scripts.
@@ -31,7 +31,7 @@ export NVM_DIR="$HOME/.nvm"
 export WEECHAT_HOME="$config_dir/weechat"
 
 # Setting urxvtd socket.
-hostname=$(uname -n) && export RXVT_SOCKET=/tmp/urxvtd-$hostname
+hostname=$(uname -n) && export RXVT_SOCKET="/tmp/urxvtd-$hostname"
 
 # Setting bash secrets.
 [ -f "$bash_config_dir/bash_secrets" ] && . "$bash_config_dir/bash_secrets"

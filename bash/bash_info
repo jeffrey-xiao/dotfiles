@@ -34,17 +34,17 @@ __git_info() {
   local marks
   local status=$($git_eng status --porcelain 2>/dev/null)
 
-  local all="$(printf "%s" "$status" | grep --count "^.*$"| trim)"
-  local unstaged="$(printf "%s" "$status" | grep --count "^ \\w" | trim)"
-  local uncommited="$(printf "%s" "$status" | grep --count "^\\w\\(\\w\\|\\s\\)" | trim)"
+  local all="$(printf '%s' "$status" | grep --count "^.*$"| trim)"
+  local unstaged="$(printf '%s' "$status" | grep --count "^ \\w" | trim)"
+  local uncommited="$(printf '%s' "$status" | grep --count "^\\w\\(\\w\\|\\s\\)" | trim)"
   local untracked="$((all - unstaged - uncommited))"
   local stat="$($git_eng status --porcelain --branch | grep '^##' | grep --only-matching '\[.\+\]$')"
   local ahead="$(echo "$stat" | grep --only-matching 'ahead [[:digit:]]\+' | grep --only-matching '[[:digit:]]\+')"
   local behind="$(echo "$stat" | grep --only-matching 'behind [[:digit:]]\+' | grep --only-matching '[[:digit:]]\+')"
 
-  [ "$untracked" -eq "0" ] || marks+=" $GIT_UNTRACKED_SYMBOL$untracked"
-  [ "$unstaged" -eq "0" ] || marks+=" $GIT_UNSTAGED_SYMBOL$unstaged"
-  [ "$uncommited" -eq "0" ] || marks+=" $GIT_UNCOMMITED_SYMBOL$uncommited"
+  [ "$untracked" -eq '0' ] || marks+=" $GIT_UNTRACKED_SYMBOL$untracked"
+  [ "$unstaged" -eq '0' ] || marks+=" $GIT_UNSTAGED_SYMBOL$unstaged"
+  [ "$uncommited" -eq '0' ] || marks+=" $GIT_UNCOMMITED_SYMBOL$uncommited"
   [ -n "$ahead" ] && marks+=" $GIT_NEED_PUSH_SYMBOL$ahead"
   [ -n "$behind" ] && marks+=" $GIT_NEED_PULL_SYMBOL$behind"
 
@@ -63,11 +63,11 @@ __venv_info() {
 
 __nvm_info() {
   # nvm not installed.
-  [ -x "$(command -v nvm)" ] || return
+  type -t nvm > /dev/null || return
 
   version=$(nvm current)
   # nvm using system.
-  [ "$version" = "system" ] && return
+  [ "$version" = 'system' ] && return
   echo "nvm $version"
 }
 

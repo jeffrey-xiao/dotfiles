@@ -5,8 +5,8 @@ bookmarks_file=${XDG_CONFIG_HOME:-"$HOME/.config"}/bash/bookmarks
 [ ! -f "$bookmarks_file" ] && touch "$bookmarks_file"
 
 __check_bookmark_name() {
-  [ -z "$1" ] && { echo "Error: Argument 1 must be bookmark name." && return 1; }
-  { ! echo "$1" | grep --silent "^[-_0-9a-zA-Z]*$"; } && { echo "Error: Argument 1 must be a valid bookmark name." && return 1; }
+  [ -z "$1" ] && { echo 'Error: Argument 1 must be bookmark name.' && return 1; }
+  { ! echo "$1" | grep --silent "^[-_0-9a-zA-Z]*$"; } && { echo 'Error: Argument 1 must be a valid bookmark name.' && return 1; }
   return 0
 }
 

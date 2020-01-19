@@ -198,7 +198,7 @@ let g:signify_sign_delete_first_line = '_'
 let g:signify_sign_show_count = 0
 let g:signify_vcs_list = [ 'git' ]
 
-"" Config for fzf.
+" Config for fzf.
 let s:fzf_action = {
         \ 'ctrl-t': 'tab split',
         \ 'ctrl-v': 'vsplit',
@@ -249,7 +249,7 @@ else
 endif
 
 function! Grep(args) abort
-	return system(&grepprg.' '.a:args)
+  return system(&grepprg.' '.a:args)
 endfunction
 command! -nargs=+ -complete=file_in_path -bar Grep cgetexpr Grep("<args>") | cwindow | echom "Finished grep"
 command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr Grep("<args>") | lwindow | echom "Finished lgrep"
@@ -423,11 +423,14 @@ nnoremap <silent> <leader>r :source $MYVIMRC<CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>gD :Gdiff HEAD<CR>
-nnoremap <leader>gc :Gcommit<CR>
-nnoremap <leader>gl :Git log<CR>
-nnoremap <leader>gp :Git push<CR>
 nnoremap <leader>gw :Gwrite<CR>
 nnoremap <leader>gr :Gremove<CR>
+nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>gps :Gpush<CR>
+nnoremap <leader>gpl :Gpull<CR>
+nnoremap <leader>gl :Glog<CR>
+nnoremap <leader>gL :Glog %<CR>
+nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gg :Ggrep<Space>
 
 " fzf keybindings.

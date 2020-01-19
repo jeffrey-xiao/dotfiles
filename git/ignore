@@ -44,10 +44,10 @@
 # Windows image file caches.
 Thumbs.db
 
-# Folder config file
+# Folder config file.
 Desktop.ini
 
-# Vim
+# Vim.
 .swp
 .swo
 .*.swp

@@ -38,13 +38,13 @@ shfmt        → Bash
 yapf         → Python
 ```
 
-Some configuration files for these formatters are found in `misc/`.
+Some configuration files for these formatters are found in [`misc/`](misc/).
 
 ## Dependencies
 
 A full list of dependencies and installed software will appear in `install.log` when using the
-included bash scripts. Alternatively, you can check `config.yaml` to see the dependencies by
-package.
+included bash scripts. Alternatively, you can check [`config.yaml`](config.yaml) to see the
+dependencies by package.
 
 ## Installation
 
@@ -71,8 +71,7 @@ dotinstall
 ## Color Scheme
 
 The color scheme used is `solarized-dark`. Most programs will take the colors in `.Xresources` with
-the exception of the transparent background in `urxvt`, and the colors in `dircolors`, `ranger`, and
-`weechat`.
+the exception of the colors in `dircolors`, `ranger`, and `weechat`.
 
 ## Personal Configuration
 

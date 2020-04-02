@@ -31,7 +31,10 @@ export NVM_DIR="$HOME/.nvm"
 export WEECHAT_HOME="$config_dir/weechat"
 
 # Setting urxvtd socket.
-hostname=$(uname -n) && export RXVT_SOCKET="/tmp/urxvtd-$hostname"
+export RXVT_SOCKET="/tmp/urxvtd"
+
+# Setting bspwm socket.
+export BSPWM_SOCKET="/tmp/bspwm"
 
 # Setting bash secrets.
 [ -f "$bash_config_dir/bash_secrets" ] && . "$bash_config_dir/bash_secrets"

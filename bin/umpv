@@ -16,7 +16,7 @@ will typically just fill ~/.xsession-errors with garbage.
 mpv will terminate if there are no more files to play, and running the umpv
 script after that will start a new mpv instance.
 Note that you can control the mpv instance by writing to the command fifo:
-    echo "cycle fullscreen" > ~/.umpv_fifo
+    echo "cycle fullscreen" > /tmp/umpv
 Note: you can supply custom mpv path and options with the MPV environment
       variable. The environment variable will be split on whitespace, and the
       first item is used as path to mpv binary and the rest is passed as options
@@ -50,7 +50,7 @@ def make_abs(filename):
     return filename
 files = [make_abs(f) for f in files]
 
-FIFO = os.path.join("/tmp/umpv_fifo")
+FIFO = os.path.join("/tmp/umpv")
 
 fifo_fd = -1
 try:

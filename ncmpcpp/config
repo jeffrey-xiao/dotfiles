@@ -12,7 +12,7 @@ mpd_music_dir = ~/Music
 mpd_crossfade_time = 5
 
 # Music visualizer options.
-visualizer_fifo_path = "/tmp/mpd.fifo"
+visualizer_fifo_path = "/tmp/mpd"
 visualizer_output_name = "Visualizer feed"
 visualizer_in_stereo = yes
 visualizer_type = spectrum

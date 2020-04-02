@@ -4,7 +4,7 @@ amixer_info=$(amixer sget Master)
 left=$(echo "$amixer_info" | grep 'Left:' | awk --field-separator='[][]' '{ print $2 }')
 right=$(echo "$amixer_info" | grep 'Right:' | awk --field-separator='[][]' '{ print $2 }')
 
-if echo "$amixer_info" | grep --silent '[on]'; then
+if echo "$amixer_info" | grep --fixed-strings --silent '[on]'; then
   robar show default "$(echo "(${left%\%} + ${right%\%}) / 200" | bc --mathlib)"
 else
   robar show mute "$(echo "(${left%\%} + ${right%\%}) / 200" | bc --mathlib)"

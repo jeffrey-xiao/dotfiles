@@ -85,8 +85,7 @@ else:
     os.mkfifo(FIFO, 0o600)
 
     opts = (os.getenv("MPV") or "mpv").split()
-    opts.extend(["--no-terminal", "--profile=pseudo-gui", "--input-file=" + FIFO,
-                 "--screenshot-directory=~/Pictures/Screenshots"])
+    opts.extend(["--no-terminal", "--input-file=" + FIFO])
     opts.extend(files)
 
     subprocess.check_call(opts)

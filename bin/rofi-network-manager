@@ -401,7 +401,7 @@ def launch_connection_editor():
 
     """
     conf = configparser.ConfigParser()
-    terminal = "urxvt"
+    terminal = "urxvtc"
     gui_if_available = "True"
     conf.read(expanduser("~/.config/networkmanager-dmenu/config.ini"))
     try:

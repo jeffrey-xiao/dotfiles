@@ -240,8 +240,11 @@ command! MRU call fzf#run(fzf#wrap({
       \ }))
 
 " Setting grepprg.
-if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor
+set grepformat^=%f:%l:%c:%m
+if executable('rg')
+  set grepprg=rg\ --vimgrep
+elseif executable('ag')
+  set grepprg=ag\ --vimgrep
 elseif executable('ack')
   set grepprg=ack\ --nocolor\ --nogroup
 else
@@ -251,8 +254,8 @@ endif
 function! Grep(args) abort
   return system(&grepprg.' '.a:args)
 endfunction
-command! -nargs=+ -complete=file_in_path -bar Grep cgetexpr Grep("<args>") | cwindow | echom "Finished grep"
-command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr Grep("<args>") | lwindow | echom "Finished lgrep"
+command! -nargs=+ -complete=file_in_path -bar Grep cgetexpr Grep(<q-args>) | cwindow | echom "Finished grep"
+command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr Grep(<q-args>) | lwindow | echom "Finished lgrep"
 
 " Editing config.
 set backspace=indent,eol,start

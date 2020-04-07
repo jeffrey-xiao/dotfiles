@@ -131,7 +131,7 @@ format-prefix-background = ${xrdb:color15}
 type = internal/network
 
 ; Use following command to get wired interface.
-; $ iwconfig
+; $ ip addr
 interface = enp1s0
 
 label-connected = %local_ip%
@@ -153,7 +153,7 @@ format-disconnected-prefix-background = ${xrdb:color15}
 type = internal/network
 
 ; Use following command to get wifi interface.
-; $ iwconfig
+; $ ip addr
 interface = wlp2s0
 
 label-connected = %essid%

@@ -56,10 +56,10 @@ fi
 # Bash bookmarks.
 [ -f "$bash_config_dir/bash_bookmarks" ] && . "$bash_config_dir/bash_bookmarks"
 
-# Source fzf if directory exists.
+# Fzf with bash completion.
 [ -f "$config_dir/fzf/fzf.bash" ] && . "$config_dir/fzf/fzf.bash"
 
-# Source nvm if directory exists.
+# Nvm with bash completion.
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use
 [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
 

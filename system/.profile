@@ -7,7 +7,7 @@ bash_config_dir=$config_dir/bash
 export PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.fzf/bin:$HOME/.mix/escripts"
 
 # Environment variables for mpd.
-export MPD_HOST=~/.config/mpd/socket
+export MPD_HOST=/tmp/mpd
 export MPD_PORT=6600
 
 # Environment variables for default programs.

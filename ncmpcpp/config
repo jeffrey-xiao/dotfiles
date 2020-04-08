@@ -3,7 +3,7 @@ ncmpcpp_directory = ~/.config/ncmpcpp
 lyrics_directory = ~/.config/ncmpcpp/lyrics
 
 # Connection settings.
-mpd_host = ~/.config/mpd/socket
+mpd_host = /tmp/mpd
 mpd_port = 6600
 mpd_connection_timeout = 5
 
@@ -12,7 +12,7 @@ mpd_music_dir = ~/Music
 mpd_crossfade_time = 5
 
 # Music visualizer options.
-visualizer_fifo_path = "/tmp/mpd"
+visualizer_fifo_path = /tmp/mpd-visualizer
 visualizer_output_name = "Visualizer feed"
 visualizer_in_stereo = yes
 visualizer_type = spectrum

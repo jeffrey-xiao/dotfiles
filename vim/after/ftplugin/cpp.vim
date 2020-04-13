@@ -13,13 +13,13 @@ function! FormatCpp(start, end) abort
   let l:saved_view = winsaveview()
   silent execute('%!clang-format --assume-filename=% --lines='.a:start.':'.a:end)
   call winrestview(l:saved_view)
-  echo "Finished formatting"
+  echo "Finished formatting."
 endfunction
 
 function! CompileCpp() abort
   silent make!
   redraw!
-  echo "Finished compiling"
+  echo "Finished compiling."
 endfunction
 
 function! RunCpp() abort

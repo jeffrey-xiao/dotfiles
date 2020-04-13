@@ -13,13 +13,13 @@ function! FormatJava(start, end) abort
   let l:saved_view = winsaveview()
   silent execute('%!clang-format --assume-filename=% --lines='.a:start.':'.a:end)
   call winrestview(l:saved_view)
-  echo "Finished formatting"
+  echo "Finished formatting."
 endfunction
 
 function! CompileJava() abort
   silent make!
   redraw!
-  echo "Finished compiling"
+  echo "Finished compiling."
 endfunction
 
 function! RunJava() abort

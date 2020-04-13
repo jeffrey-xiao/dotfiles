@@ -9,7 +9,7 @@ function! FormatPython(start, end) abort
   let l:saved_view = winsaveview()
   silent execute('%!yapf --lines='.a:start.'-'.a:end)
   call winrestview(l:saved_view)
-  echo "Finished formatting"
+  echo "Finished formatting."
 endfunction
 
 function! RunPython() abort

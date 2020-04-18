@@ -1,5 +1,4 @@
 " General config.
-setlocal omnifunc=jedi#completions
 if executable('yapf')
   setlocal formatexpr=FormatPython(v:lnum,v:lnum+v:count-1)
 endif

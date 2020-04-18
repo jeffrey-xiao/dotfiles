@@ -26,19 +26,20 @@ torrent client       → rtorrent
 window manager       → bspwm
 ```
 
-### Code Formatters
+### Code Formatters, Linters, and Language Servers
 
 ```
-clang-format → C++, Java
-gofmt        → Go
-mix-format   → Elixir
-prettier     → HTML, CSS, JavaScript, JSON, YAML
-rustfmt      → Rust
-shfmt        → Bash
-yapf         → Python
+Bash         → shfmt
+C++          → clangd, clang-format, cppcheck
+Elixir       → elixir-ls, mix-format
+Go           → gofmt
+Java         → clang-format
+JavaScript   → javascript-typescript-langserver, eslint, prettier
+Python       → autopep, flake8, pylint, python-language-server, yapf
+Rust         → clippy, rls, rustfmt
 ```
 
-Some configuration files for these formatters are found in [`misc/`](misc/).
+Configuration files are found in [`misc/`](misc/).
 
 ## Dependencies
 

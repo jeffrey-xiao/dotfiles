@@ -157,17 +157,14 @@ vim:
       chmod 775 install_nvm.sh &&
       ./install_nvm.sh &&
       rm -f install_nvm.sh
-    - sudo pip install jedi flake8 autopep8 pylint yapf
-    - >
-      sudo npm install --global eslint tern prettier &&
-      (cd ~/.vim/plugged/tern_for_vim && npm install)
+    - python3 -m pip install autopep8 flake8 pylint python-language-server yapf
+    - sudo npm install --global eslint javascript-typescript-langserver prettier
     - >
       curl --silent --show-error --fail https://sh.rustup.rs | sh &&
       export PATH="$PATH:~/.cargo/bin" &&
       rustup install nightly &&
       rustup default nightly &&
-      rustup component add rust-src rustfmt clippy &&
-      cargo install racer
+      rustup component add clippy rls rustfmt rust-analysis rust-src
   dependencies:
     - cppcheck
     - ctags
@@ -176,7 +173,7 @@ vim:
     - nodejs
     - pandoc
     - pip
-    - silver-searcher
+    - ripgrep
     - vim
 
 weechat:

@@ -12,9 +12,5 @@ function! FormatPython(start, end) abort
   echo "Finished formatting."
 endfunction
 
-function! RunPython() abort
-  execute '!python %'
-endfunction
-
 " Keybindings.
-nnoremap <buffer> <leader>e :call RunPython()<CR>
+nnoremap <buffer> <leader>e :!python %<CR>

@@ -16,16 +16,16 @@ function! FormatJava(start, end) abort
   echo "Finished formatting."
 endfunction
 
-function! CompileJava() abort
+function! s:compile_java() abort
   silent make!
   redraw!
   echo "Finished compiling."
-endfunction
-
-function! RunJava() abort
-  execute '!java -Xmx100M -Xss100M -ea -cp %:p:h %:t:r'
+  cwindow
+  if !empty(getqflist())
+    cfirst
+  endif
 endfunction
 
 " Keybindings.
-nnoremap <buffer> <leader>c :call CompileJava()<CR>
-nnoremap <buffer> <leader>e :call RunJava()<CR>
+nnoremap <buffer> <leader>c :call <SID>compile_java()<CR>
+nnoremap <buffer> <leader>e :!java -Xmx100M -Xss100M -ea -cp %:p:h %:t:r<CR>

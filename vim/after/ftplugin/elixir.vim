@@ -1,12 +1,7 @@
 " General config.
-if executable('mix')
+if filereadable('mix.exs')
   setlocal formatprg=mix\ format\ -
 endif
 
-" Functions.
-function! RunElixir() abort
-  execute '!elixir %'
-endfunction
-
 " Keybindings.
-nnoremap <buffer> <leader>e :call RunElixir()<CR>
+nnoremap <buffer> <leader>e :!elixir %<CR>

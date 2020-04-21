@@ -147,7 +147,6 @@ tmux:
 
 vim:
   link:
-    - .tern-config: ~/
     - "*": ~/.vim/
     - ".*": ~/.vim/
   postlink:

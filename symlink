@@ -42,7 +42,6 @@ ln -sfv "$DOTFILES_DIR/gtk/settings.ini" ~/.config/gtk-3.0/
 for f in "$DOTFILES_DIR/vim"/!(.*); do
   ln -sfv "$f" ~/.vim/
 done
-ln -sfv "$DOTFILES_DIR/vim/.tern-config" ~/
 
 # Link miscellaneous config.
 mkdir -pv ~/.config/redshift/

@@ -2,83 +2,9 @@
   email = jeffrey.xiao1998@gmail.com
   name = Jeffrey Xiao
 
-[github]
-  user = jeffrey-xiao
-
-[gitlab]
-  user = jeffrey-xiao
-
 [core]
   excludesfile = ~/.config/git/ignore
   editor = vim
-
-[alias]
-  # Updates and rebases current changes.
-  up = !git pull --rebase --prune $@ && git submodule update --init --recursive
-
-  # Adds all files and commits.
-  cm = !git add -A && git commit -m
-
-  # View abbreviated SHA, description, and history graph of the latest 20 commits.
-  l = log --pretty=oneline -n 20 --graph --abbrev-commit
-
-  # View the current working tree status using the short format.
-  s = status -s
-
-  # Show the diff between the latest commit and the current state.
-  d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
-
-  # `git di $number` shows the diff between the state `$number` revisions ago and the current state.
-  di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
-
-  # Pull in remote changes for the current repository and all its submodules.
-  p = !"git pull; git submodule foreach git pull origin master"
-
-  # Clone a repository including all submodules.
-  c = clone --recursive
-
-  # Switch to a branch, creating it if necessary.
-  co = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
-
-  # Show verbose output about tags, branches or remotes.
-  tags = tag -l
-  branches = branch -a
-  remotes = remote -v
-
-  # Amend the currently staged files to the latest commit.
-  amend = commit --amend --reuse-message=HEAD
-
-  # Credit an author on the latest commit.
-  credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
-
-  # Interactive rebase with the given number of latest commits.
-  reb = "!r() { git rebase -i HEAD~$1; }; r"
-
-  # Remove the old tag with this name and tag the latest commit with it.
-  retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
-
-  # Find branches containing commit.
-  fb = "!f() { git branch -a --contains $1; }; f"
-
-  # Find tags containing commit.
-  ft = "!f() { git describe --always --contains $1; }; f"
-
-  # Find commits by source code.
-  fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
-
-  # Find commits by commit message.
-  fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
-
-  # Remove branches that have already been merged with master.
-  # a.k.a. ‘delete merged’
-  dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
-
-  # List contributors with number of commits.
-  contributors = shortlog --summary --numbered
-
-[apply]
-  # Detect whitespace errors when applying a patch.
-  whitespace = fix
 
 [color]
   # Use colors in Git commands that are capable of colored output when
@@ -109,20 +35,134 @@
   # Automatically correct and execute mistyped commands.
   autocorrect = 1
 
+[apply]
+  # Detect whitespace errors when applying a patch.
+  whitespace = fix
+
+[log]
+  abbrevCommit = true
+  follow = true
+
 [commit]
   verbose = true
-
-[merge]
-  # Includes summaries of merged commits in newly created merge commit messages.
-  log = true
 
 [push]
   default = simple
   followTags = true
 
+[merge]
+  # Includes summaries of merged commits in newly created merge commit messages.
+  log = true
+
+[rebase]
+  autoSquash = true
+
+[alias]
+  # Log.
+  l = log --graph
+  ls = log --pretty=oneline
+  lp = log --graph --patch
+
+  # Diff.
+  d = diff
+  dc = diff --cached
+  di = !"f() { git diff HEAD~$1; }; f"
+  ds = diff --stat
+
+  # Status.
+  s = status
+  si = status --ignored
+  ss = status --short
+
+  # Index.
+  a = add
+  aa = add --all
+  au = add --update
+  ap = add --patch
+  ai = add --interactive
+
+  # Commit.
+  c = commit --verbose
+  cf = commit --verbose --fixup
+  cs = commit --verbose --squash
+  ca = commit --verbose --amend
+  can = commit --verbose --amend --no-edit
+
+  # Checkout.
+  co = checkout
+  cob = checkout -b
+
+  # Branch.
+  b = branch
+  bc = branch --contains
+  bd = branch --delete --force
+  bv = branch --verbose
+  ba = branch --verbose --all
+
+  # Tag.
+  t = tag
+  tc = tag --contains
+  td = tag --delete
+  ta = tag --list
+
+  # Network (in).
+  cl = clone --recursive
+  pl = pull
+  f = fetch
+
+  # Network (out).
+  ps = push
+  psf = push --force
+
+  # Submodule.
+  sub = submodule
+  subu = submodule update --init --recursive --force
+
+  # Merge.
+  m = merge
+  ma = merge --abort
+  mc = merge --continue
+  mff = merge --ff-only
+
+  # Rebase.
+  r = rebase
+  ra = rebase --abort
+  rc = rebase --continue
+  rq = rebase --quit
+  rs = rebase --skip
+
+  # Interactive rebase.
+  ri = rebase --interactive
+  rii = "!f() { git rebase --interactive HEAD~$1; }; f"
+
+  # Cherry-pick.
+  cp = cherry-pick
+  cpa = cherry-pick --abort
+  cpc = cherry-pick --continue
+  cpq = cherry-pick --quit
+
+  # Revert.
+  rv = revert
+  rva = revert --abort
+  rvs = revert --continue
+  rvq = revert --quit
+
+  # Reset.
+  re = git reset
+  res = git reset --soft
+  reh = git reset --hard
+
+  # w-commands.
+  which-branch = branch --all --contains
+  which-tag = describe --always --contains
+
+[github]
+  user = jeffrey-xiao
 [credential "https://github.com"]
   username = jeffrey-xiao
 
+[gitlab]
+  user = jeffrey-xiao
 [credential "https://gitlab.com"]
   username = jeffrey-xiao
 

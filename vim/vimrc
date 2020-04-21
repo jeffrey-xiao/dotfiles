@@ -445,8 +445,10 @@ nnoremap <silent> <leader>r :source $MYVIMRC<CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>gD :Gdiff HEAD<CR>
-nnoremap <leader>gw :Gwrite<CR>
-nnoremap <leader>gr :Gremove<CR>
+nnoremap <leader>gw :diffput<CR>
+xnoremap <leader>gw :diffput<CR>
+nnoremap <leader>gr :diffget<CR>
+xnoremap <leader>gr :diffget<CR>
 nnoremap <leader>gc :Gcommit<CR>
 nnoremap <leader>gps :Gpush<CR>
 nnoremap <leader>gpl :Gpull<CR>

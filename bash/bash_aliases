@@ -32,7 +32,6 @@ alias diff='diff --color=auto'
 alias h='history'
 alias j='jobs -l'
 alias mkdir='mkdir -pv'
-alias ag='ag --hidden'
 alias wget='wget --continue'
 
 # Vim aliases.

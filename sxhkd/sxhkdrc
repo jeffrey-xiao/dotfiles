@@ -2,9 +2,11 @@
 super + {_,shift +} + {f,t}
   bspc node --state ~{fullscreen,floating,tiled,pseudo_tiled}
 
+# Node tree selection.
 super + {q,w,a,s}
   bspc node --focus @{first,second,parent,brother}
 
+# Advanced node manipulation.
 super + r
   bspc node --rotate 90
 

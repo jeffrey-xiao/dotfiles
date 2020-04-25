@@ -11,13 +11,14 @@ dmenu_cmd() {
 }
 
 resolution_options() {
-  available_resolutions=$(printf '%s' "$xrandr_output" |
-    awk -v monitor="^$1" '
-      /connected/ {p = 0}
-      $0 ~ monitor {p = 1}
-      {if (p == 1) print $1}
+  available_resolutions=$(
+    printf '%s' "$xrandr_output" |
+      awk -v monitor="^$1" '
+      /connected/ { p = 0 }
+      $0 ~ monitor { p = 1 }
+      { if (p == 1) print $1 }
     ' |
-    tail --lines +2
+      tail --lines +2
   )
   printf '%s\noff' "$available_resolutions"
 }

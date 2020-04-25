@@ -18,6 +18,7 @@ __initialize_symbols() {
         ;;
       *)
         readonly PS_SYMBOL=$PS_SYMBOL_OTHER
+        ;;
     esac
   fi
 

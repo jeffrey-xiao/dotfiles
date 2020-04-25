@@ -1,11 +1,12 @@
 #!/bin/sh
 
-monitors=$(xrandr |
-  grep '\bconnected\b' |
-  sed 's/primary //' |
-  cut --fields=1,3 --delimiter=' ' |
-  uniq --skip-fields 1 |
-  cut --fields=1 --delimiter=' '
+monitors=$(
+  xrandr |
+    grep '\bconnected\b' |
+    sed 's/primary //' |
+    cut --fields=1,3 --delimiter=' ' |
+    uniq --skip-fields 1 |
+    cut --fields=1 --delimiter=' '
 )
 monitors=$(polybar --list-monitors | cut --delimiter=':' --fields=1)
 monitor_count=$(echo "$monitors" | wc -l)

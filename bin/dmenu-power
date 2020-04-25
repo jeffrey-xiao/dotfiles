@@ -13,8 +13,8 @@ case "$selected_power_option" in
     lock
     ;;
   'logout')
-    pgrep --exact i3 > /dev/null && i3-msg exit
-    pgrep --exact bspwm > /dev/null && bspc quit
+    pgrep --exact i3 >/dev/null && i3-msg exit
+    pgrep --exact bspwm >/dev/null && bspc quit
     ;;
   'suspend')
     systemctl suspend

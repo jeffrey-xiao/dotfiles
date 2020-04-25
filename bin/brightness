@@ -6,7 +6,10 @@ curr_brightness=$(cat $brightness_file)
 min_brightness=1
 max_brightness=$(cat $max_brightness_file)
 
-[ -z "$1" ] && { echo "$(echo "p = $curr_brightness / $max_brightness * 100; scale = 0; p / 1" | bc --mathlib)%"; exit 0; }
+[ -z "$1" ] && {
+  echo "$(echo "p = $curr_brightness / $max_brightness * 100; scale = 0; p / 1" | bc --mathlib)%"
+  exit 0
+}
 
 if [ "$1" = '-r' ]; then
   [ -z "$2" ] && { echo 'Error: Argument 2 must be relative change in brightness.' && exit 1; }

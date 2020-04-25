@@ -11,25 +11,25 @@ __check_bookmark_name() {
 }
 
 __delete_line() {
-  tmp=$(mktemp -t bookmarks.XXXXXXXXXX) || exit 1;
+  tmp=$(mktemp -t bookmarks.XXXXXXXXXX) || exit 1
   trap 'rm -f "$tmp"' EXIT
-  sed "/$2/d" "$1" > "$tmp"
+  sed "/$2/d" "$1" >"$tmp"
   /bin/mv -f "$tmp" "$1"
   /bin/rm -f "$tmp"
   trap - EXIT
 }
 
 __add_line() {
-  tmp=$(mktemp -t bookmarks.XXXXXXXXXX) || exit 1;
+  tmp=$(mktemp -t bookmarks.XXXXXXXXXX) || exit 1
   trap 'rm -f "$tmp"' EXIT
-  cat "$1" <(echo "$2") | sort > "$tmp"
+  cat "$1" <(echo "$2") | sort >"$tmp"
   /bin/mv -f "$tmp" "$1"
   /bin/rm -f "$tmp"
   trap - EXIT
 }
 
 __bookmarks() {
-  cut --delimiter='=' --fields=1 < "$bookmarks_file"
+  cut --delimiter='=' --fields=1 <"$bookmarks_file"
 }
 
 __comp() {
@@ -46,7 +46,7 @@ bs() {
 
 bg() {
   ! __check_bookmark_name "$1" && return
-  dir="$(grep "^$1=" < "$bookmarks_file" | cut --delimiter='=' --fields=2-)"
+  dir="$(grep "^$1=" <"$bookmarks_file" | cut --delimiter='=' --fields=2-)"
   [ -z "$dir" ] && { echo "Error: Bookmark '$1' does not exist." && return; }
   [ ! -d "$dir" ] && { echo "Error: Directory '$dir' does not exist." && return; }
   cd "$dir" || return
@@ -54,7 +54,7 @@ bg() {
 
 bd() {
   ! __check_bookmark_name "$1" && return
-  dir="$(grep "^$1=" < "$bookmarks_file" | cut --delimiter='=' --fields=2-)"
+  dir="$(grep "^$1=" <"$bookmarks_file" | cut --delimiter='=' --fields=2-)"
   [ -z "$dir" ] && { echo "Error: Bookmark '$1' does not exist." && return; }
   __delete_line "$bookmarks_file" "$1="
   echo "Deleted bookmark '$1' to '$dir'"

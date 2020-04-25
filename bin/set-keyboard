@@ -21,7 +21,10 @@ toggle_keyboard() {
   fi
 }
 
-[ -z "$1" ] && { toggle_keyboard; exit 0; }
+[ -z "$1" ] && {
+  toggle_keyboard
+  exit 0
+}
 
 if [ "$1" = "-on" ]; then
   enable_keyboard

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 killall --quiet polybar
-while pgrep --exact polybar > /dev/null; do sleep 1; done
+while pgrep --exact polybar >/dev/null; do sleep 1; done
 
 monitors=$(polybar --list-monitors | cut --delimiter=':' --fields=1)
 for display in $monitors; do

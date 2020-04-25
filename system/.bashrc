@@ -6,7 +6,7 @@ bash_config_dir=$config_dir/bash
 # If not running interactively, don't do anything.
 case $- in
   *i*) ;;
-  *) return;;
+  *) return ;;
 esac
 
 # History config.
@@ -64,4 +64,4 @@ fi
 [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
 
 # Add ssh keys.
-ssh-add -l > /dev/null || ssh-add
+ssh-add -l >/dev/null || ssh-add

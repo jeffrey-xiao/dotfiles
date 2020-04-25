@@ -4,7 +4,7 @@ if [ -z "$1" ]; then
   mpc lsplaylists
 else
   mpc --quiet clear
-  mpc load "$1" > /dev/null
+  mpc load "$1" >/dev/null
   mpc --quiet repeat on
   mpc --quiet random on
   mpc --quiet single off

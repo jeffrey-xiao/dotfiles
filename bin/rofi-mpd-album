@@ -12,6 +12,6 @@ else
   mpc --quiet random off
   mpc --quiet single off
   mpc --quiet consume off
-  mpc find artist "$artist" album "$album" | mpc add > /dev/null
+  mpc find artist "$artist" album "$album" | mpc add >/dev/null
   mpc --quiet play
 fi

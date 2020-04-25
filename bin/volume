@@ -16,15 +16,15 @@ right=$(echo "$amixer_info" | grep 'Right:' | awk --field-separator='[][]' '{ pr
 if [ "$1" = '-r' ]; then
   [ -z "$2" ] && { echo 'Error: Argument 2 must be relative change in volume.' && exit 1; }
   if [ "$2" -lt 0 ]; then
-    amixer -D pulse set Master "${2#-}%-" 1> /dev/null
+    amixer -D pulse set Master "${2#-}%-" 1>/dev/null
   else
-    amixer -D pulse set Master "${2#+}%+" 1> /dev/null
+    amixer -D pulse set Master "${2#+}%+" 1>/dev/null
   fi
 elif [ "$1" = '-a' ]; then
   [ -z "$2" ] && { echo 'Error: Argument 2 must be absolute percentage in volume.' && exit 1; }
-  amixer -D pulse set Master "$2%" 1> /dev/null
+  amixer -D pulse set Master "$2%" 1>/dev/null
 elif [ "$1" = '-t' ]; then
-  amixer -D pulse set Master 0+ toggle 1> /dev/null
+  amixer -D pulse set Master 0+ toggle 1>/dev/null
 else
   echo 'Error: Argument 1 must be '-r', '-a', or '-t'.'
   exit 1

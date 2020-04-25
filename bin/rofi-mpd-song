@@ -9,5 +9,5 @@ else
   mpc --quiet repeat on
   mpc --quiet single off
   mpc --quiet consume off
-  mpc play "$(echo "$songs" | grep --max-count=1 --line-regexp --line-number "$1" | cut --delimiter=':' --fields 1)" > /dev/null
+  mpc play "$(echo "$songs" | grep --max-count=1 --line-regexp --line-number "$1" | cut --delimiter=':' --fields 1)" >/dev/null
 fi

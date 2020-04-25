@@ -1,7 +1,15 @@
 #!/bin/sh
 
+SEPARATOR=$(printf '\u00a0')
 for tags_file in "$@"; do
   tags_path_length=$(basename "$tags_file" | wc --chars)
-  awk --field-separator="\\t" "{OFS=\"\\t\"; \$2 = substr(\$2, $tags_path_length - 3); print}" "$tags_file" | grep --invert-match --text ^!
+  awk --assign FS='\t' --assign OFS="$SEPARATOR" "
+    {
+      \$2 = substr(\$2, $tags_path_length - 3);
+      temp = \$3;
+      \$3 = \$4;
+      \$4 = temp;
+      print
+    }
+  " "$tags_file" | grep --invert-match --text ^! | column --table --separator="$SEPARATOR" --output-separator="$SEPARATOR"
 done
-

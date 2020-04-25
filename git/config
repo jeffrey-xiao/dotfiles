@@ -133,7 +133,7 @@
 
   # Interactive rebase.
   ri = rebase --interactive
-  rii = "!f() { git rebase --interactive HEAD~$1; }; f"
+  rii = !"f() { git rebase --interactive HEAD~$1; }; f"
 
   # Cherry-pick.
   cp = cherry-pick
@@ -155,6 +155,9 @@
   # w-commands.
   which-branch = branch --all --contains
   which-tag = describe --always --contains
+
+  mr = !"f() { git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2; }; f"
+  pr = !"f() { git fetch $1 pull/$2/head:pr-$1-$2 && git checkout pr-$1-$2; }; f"
 
 [github]
   user = jeffrey-xiao

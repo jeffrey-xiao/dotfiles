@@ -125,15 +125,15 @@
   mff = merge --ff-only
 
   # Rebase.
-  r = rebase
-  ra = rebase --abort
-  rc = rebase --continue
-  rq = rebase --quit
-  rs = rebase --skip
+  rb = rebase
+  rba = rebase --abort
+  rbc = rebase --continue
+  rbq = rebase --quit
+  rbs = rebase --skip
 
   # Interactive rebase.
-  ri = rebase --interactive
-  rii = !"f() { git rebase --interactive HEAD~$1; }; f"
+  rbi = rebase --interactive
+  rbii = !"f() { git rebase --interactive HEAD~$1; }; f"
 
   # Cherry-pick.
   cp = cherry-pick
@@ -148,9 +148,9 @@
   rvq = revert --quit
 
   # Reset.
-  re = git reset
-  res = git reset --soft
-  reh = git reset --hard
+  rs = git reset
+  rss = git reset --soft
+  rsh = git reset --hard
 
   # w-commands.
   which-branch = branch --all --contains

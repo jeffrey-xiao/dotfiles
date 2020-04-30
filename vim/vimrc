@@ -19,16 +19,12 @@ Plug 'romainl/flattened'
 Plug 'tpope/vim-unimpaired'
 " UNIX shell commands.
 Plug 'tpope/vim-eunuch'
-" Surrounding text.
-Plug 'tpope/vim-surround'
-" Keybindings for easily commenting out text.
+" Commenting out text.
 Plug 'tpope/vim-commentary'
-" Repeating plugin maps.
-Plug 'tpope/vim-repeat'
+" Surrounding text.
+Plug 'machakann/vim-sandwich'
 " Improves quickfix.
 Plug 'romainl/vim-qf'
-" Pipe ilist and dlist into quickfix.
-Plug 'romainl/vim-qlist'
 " Auto brackets.
 Plug 'raimondi/delimitMate'
 " Indent character.
@@ -74,6 +70,46 @@ Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'fatih/vim-go'
 call plug#end()
 
+" Config for vim-sandwich.
+let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
+let g:sandwich#recipes += [
+      \ {'buns': ["( ", " )"], 'nesting': 1, 'match_syntax': 1, 'input': ['(']},
+      \ {'buns': ["[ ", " ]"], 'nesting': 1, 'match_syntax': 1, 'input': ['[']},
+      \ {'buns': ["{ ", " }"], 'nesting': 1, 'match_syntax': 1, 'input': ['{']},
+      \ ]
+
+" Config for vim-qf.
+let g:qf_auto_open_quickfix = 0
+let g:qf_loclist_window_bottom = 0
+let g:qf_window_bottom = 1
+
+" Config for DelimitMate.
+let g:delimitMate_autoclose = 1
+let g:delimitMate_expand_cr = 1
+let g:delimitMate_expand_space = 1
+let g:delimitMate_matchpairs = '(:),[:],{:}'
+
+" Config for indentLine.
+let g:indentLine_char = '|'
+let g:indentLine_concealcursor = 0
+let g:indentLine_color_term = 10
+let g:indentLine_fileTypeExclude = [ 'markdown', 'json' ]
+
+" Config for ALE.
+let g:ale_linters = {
+      \ 'cpp': ['clang', 'cppcheck'],
+      \ 'java': ['javac'],
+      \ 'javascript': ['eslint'],
+      \ 'python': ['autopep', 'flake8', 'pylint'],
+      \ }
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_set_quickfix = 0
+let g:ale_sign_column_always = 1
+
+" Config for vim-lsp.
 let g:lsp_diagnostics_enabled = 0
 let g:lsp_signs_enabled = 1
 
@@ -150,49 +186,25 @@ augroup lsp_setup
   autocmd User lsp_setup call <SID>setup_lsp()
 augroup END
 
-" Config for ALE.
-let g:ale_linters = {
-      \ 'cpp': ['clang', 'cppcheck'],
-      \ 'java': ['javac'],
-      \ 'javascript': ['eslint'],
-      \ 'python': ['autopep', 'flake8', 'pylint'],
-      \ }
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_set_quickfix = 0
-let g:ale_sign_column_always = 1
+" Config for signify.
+let g:signify_sign_change = '~'
+let g:signify_sign_changedelete = '~_'
+let g:signify_sign_delete_first_line = '_'
+let g:signify_sign_show_count = 0
+let g:signify_vcs_list = [ 'git' ]
 
-" Config for dirvish.
+" Config for vim-dirvish.
 let g:dirvish_mode = ':sort ,^.*[\/],'
 augroup dirvish_group
   autocmd!
   autocmd Filetype dirvish nnoremap <buffer> zh :g@\v/\.[^\/]+/?$@d<CR>
 augroup END
 
-" Config for Gutentags.
+" Config for vim-gutentags.
 let g:gutentags_cache_dir = '~/.vim/cache/tags/'
 let g:gutentags_generate_on_empty_buffer = 1
 
-" Config for IndentLine.
-let g:indentLine_char = '|'
-let g:indentLine_concealcursor = 0
-let g:indentLine_color_term = 10
-let g:indentLine_fileTypeExclude = [ 'markdown', 'json' ]
-
-" Config for DelimitMate.
-let g:delimitMate_autoclose = 1
-let g:delimitMate_expand_cr = 1
-let g:delimitMate_expand_space = 1
-let g:delimitMate_matchpairs = '(:),[:],{:}'
-
-" Config for vim-qf.
-let g:qf_auto_open_quickfix = 0
-let g:qf_loclist_window_bottom = 0
-let g:qf_window_bottom = 1
-
-" Config for BufTabLine.
+" Config for vim-buftabline.
 let g:buftabline_numbers = 1
 
 " Config for vimtex.
@@ -216,19 +228,7 @@ let g:vimtex_syntax_minted = [
       \ ]
 let g:vimtex_view_method = 'zathura'
 
-" Config for signify.
-let g:signify_sign_change = '~'
-let g:signify_sign_changedelete = '~_'
-let g:signify_sign_delete_first_line = '_'
-let g:signify_sign_show_count = 0
-let g:signify_vcs_list = [ 'git' ]
-
 " Config for fzf.
-let s:fzf_action = {
-      \ 'ctrl-t': 'tab split',
-      \ 'ctrl-v': 'vsplit',
-      \ 'ctrl-x': 'split',
-      \ }
 let s:fzf_tags_options = [
       \ '--no-multi',
       \ '--delimiter= ',
@@ -237,11 +237,17 @@ let s:fzf_tags_options = [
       \ '--tiebreak=index',
       \ '--expect=ctrl-t,ctrl-v,ctrl-x',
       \ ]
+let g:fzf_action = {
+      \ 'ctrl-t': 'tab split',
+      \ 'ctrl-v': 'vsplit',
+      \ 'ctrl-x': 'split',
+      \ }
 function! s:fzf_tags_sink(lines) abort
   if empty(a:lines)
     return
   endif
-  let l:cmd = get(s:fzf_action, remove(a:lines, 0), 'e')
+  echom a:lines
+  let l:cmd = get(g:fzf_action, remove(a:lines, 0), 'e')
   let l:query = a:lines[0]
   let l:parts = split(l:query, '\%u00a0')
   let l:excmd = matchstr(l:parts[3], '^.*\ze;"')
@@ -326,14 +332,14 @@ silent! colorscheme flattened_dark
 " Wildmenu config.
 set wildmenu
 set wildmode=full
-set wildignore=.hg,.git,.svn                     " Version control
-set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
-set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
-set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
-set wildignore+=*.sw?                            " Vim swap files
-set wildignore+=*.DS_Store                       " OSX garbage
-set wildignore+=*.pdf,*.zip,*.so                 " Binaries
-set wildignore+=*.pyc,*.pyo                      " Python byte code
+set wildignore=.hg,.git,.svn                     " Version control.
+set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files.
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images.
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " Compiled object files.
+set wildignore+=*.sw?                            " Vim swap files.
+set wildignore+=*.DS_Store                       " OSX garbage.
+set wildignore+=*.pdf,*.zip,*.so                 " Binaries.
+set wildignore+=*.pyc,*.pyo                      " Python byte code.
 
 " Displaying text.
 set lazyredraw
@@ -379,11 +385,11 @@ set autoread
 set autowrite
 
 " Vim info config.
-set viminfo='500   " remember marks for last 500 files
-set viminfo+=<1000 " remember up to 1000 lines in each register
-set viminfo+=s1000 " remember up to 1MB in each register
-set viminfo+=/1000 " remember last 1000 search patterns
-set viminfo+=:1000 " remember last 1000 commands
+set viminfo='500   " Remember marks for last 500 files.
+set viminfo+=<1000 " Remember up to 1000 lines in each register.
+set viminfo+=s1000 " Remember up to 1MB in each register.
+set viminfo+=/1000 " Remember last 1000 search patterns.
+set viminfo+=:1000 " Remember last 1000 commands.
 set viminfo+=n$HOME/.vim/cache/viminfo/info
 
 " Setting undo, backup, and swp directories.

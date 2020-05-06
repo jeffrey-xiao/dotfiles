@@ -96,8 +96,8 @@
   b = branch
   bc = branch --contains
   bd = branch --delete --force
-  bv = branch --verbose
-  ba = branch --verbose --all
+  bv = branch --verbose --verbose
+  ba = branch --verbose --verbose --all
 
   # Tag.
   t = tag
@@ -122,6 +122,7 @@
   m = merge
   ma = merge --abort
   mc = merge --continue
+  mq = merge --quit
   mff = merge --ff-only
 
   # Rebase.
@@ -140,17 +141,19 @@
   cpa = cherry-pick --abort
   cpc = cherry-pick --continue
   cpq = cherry-pick --quit
+  cps = cherry-pick --skip
 
   # Revert.
   rv = revert
   rva = revert --abort
-  rvs = revert --continue
+  rvc = revert --continue
   rvq = revert --quit
+  rvs = revert --skip
 
   # Reset.
-  rs = git reset
-  rss = git reset --soft
-  rsh = git reset --hard
+  rs = reset
+  rss = reset --soft
+  rsh = reset --hard
 
   # w-commands.
   which-branch = branch --all --contains

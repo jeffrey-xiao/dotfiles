@@ -195,10 +195,6 @@ let g:signify_vcs_list = [ 'git' ]
 
 " Config for vim-dirvish.
 let g:dirvish_mode = ':sort ,^.*[\/],'
-augroup dirvish_group
-  autocmd!
-  autocmd Filetype dirvish nnoremap <buffer> zh :g@\v/\.[^\/]+/?$@d<CR>
-augroup END
 
 " Config for vim-gutentags.
 let g:gutentags_cache_dir = '~/.vim/cache/tags/'
@@ -284,8 +280,8 @@ endif
 function! s:grep(args) abort
   return system(&grepprg.' '.a:args)
 endfunction
-command! -nargs=+ -complete=file_in_path -bar Grep cgetexpr <SID>grep(<q-args>) | cwindow | echom "Finished grep."
-command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr <SID>grep(<q-args>) | lwindow | echom "Finished lgrep."
+command! -nargs=+ -complete=file_in_path -bar Grep cgetexpr <SID>grep(<q-args>) | echom "Finished grep."
+command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr <SID>grep(<q-args>) | echom "Finished lgrep."
 
 " Editing config.
 set backspace=indent,eol,start
@@ -421,6 +417,10 @@ let g:mapleader="\<Space>"
 nnoremap <expr> j v:count ? 'm'''.v:count.'j' : 'gj'
 nnoremap <expr> k v:count ? 'm'''.v:count.'k' : 'gk'
 
+" Tab navigation.
+nnoremap ]w gt
+nnoremap [w gT
+
 " Strip trailing whitespace.
 function! s:strip_whitespace() abort
   let l:saved_search = @/
@@ -437,12 +437,6 @@ nnoremap <leader>y "+y
 xnoremap <leader>y "+y
 nnoremap <leader>p "+p
 xnoremap <leader>p "+p
-
-" Easy split navigation.
-" nnoremap <C-j> <C-w>j
-" nnoremap <C-k> <C-w>k
-" nnoremap <C-l> <C-w>l
-" nnoremap <C-h> <C-w>h
 
 " Resize viewports with arrow keys.
 nnoremap <silent> <Right> :vertical resize +2<CR>
@@ -490,6 +484,9 @@ xnoremap ~ ~gv
 " Incrementing/decrementing numbers in visual mode should stay in visual mode.
 xnoremap <C-a> <C-a>gv
 xnoremap <C-x> <C-x>gv
+
+" Visually select pasted or yanked text.
+nnoremap gV `[v`]
 
 " Consistent behavior.
 nnoremap Y y$
@@ -573,35 +570,18 @@ function! s:highlight() abort
   highlight StatusLineAccent ctermfg=15 ctermbg=1
 endfunction
 
-" Quickfix related autocommands.
-augroup quickfix_group
-  autocmd!
-  " Fit height.
-  autocmd Filetype qf call window#fitHeight(3, 10)
-  " Open in new tab.
-  autocmd Filetype qf nnoremap <buffer> t <C-w><CR><C-w>T
-  " Open in new tab and focus on results.
-  autocmd Filetype qf nnoremap <buffer> <C-t> <C-w><CR><C-w>TgT<C-w>p
-  " Open.
-  autocmd Filetype qf nnoremap <buffer> o <CR>
-  " Open and focus on results.
-  autocmd Filetype qf nnoremap <buffer> <C-o> <CR><C-w>b
-  " Open in vertical split.
-  autocmd Filetype qf nnoremap <buffer> v <C-w><CR><C-w>H<C-w>b<C-w>J:call window#fitHeight(3, 10)<CR><C-w>t
-  " Open in vertical split and focus on results.
-  autocmd Filetype qf nnoremap <buffer> <C-v> <C-w><CR><C-w>H<C-w>b<C-w>J:call window#fitHeight(3, 10)<CR>
-  " Open in horizontal split.
-  autocmd Filetype qf nnoremap <buffer> x <C-w><CR><C-w>K
-  " Open in horizontal split and focus on results.
-  autocmd Filetype qf nnoremap <buffer> <C-x> <C-w><CR><C-w>K<C-w>b
-augroup END
-
 " Highlighting autocommands.
 call <SID>highlight()
 augroup highlighting_group
   autocmd!
   autocmd ColorScheme * call <SID>highlight()
 augroup end
+
+" Quickfix relative autocommands.
+augroup quickfix_group
+  autocmd!
+  autocmd QuickFixCmdPost [^l]* nested cwindow
+augroup END
 
 " Cursorline autocommands.
 augroup cursorline_group

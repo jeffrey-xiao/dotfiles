@@ -1,8 +1,9 @@
-" Updates the status line for all windows.
+" Updates the status line for the current window and the last window.
 function! statusline#update() abort
-  for l:nr in range(1, winnr('$'))
-    call setwinvar(l:nr, '&statusline', '%!statusline#statusline('.l:nr.')')
-  endfor
+  call setwinvar(winnr(), '&statusline', '%!statusline#statusline('.winnr().')')
+  if winnr('#') != 0
+    call setwinvar(winnr('#'), '&statusline', '%!statusline#statusline('.winnr('#').')')
+  endif
 endfunction
 
 " Returns the status line for a specific window.

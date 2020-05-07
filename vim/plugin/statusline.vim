@@ -7,5 +7,5 @@ let g:loaded_statusline = 1
 augroup statusline_group
   autocmd!
   autocmd cursorhold,bufwritepost * unlet! b:warning_flags
-  autocmd VimEnter,WinEnter,BufWinEnter * call statusline#update()
+  autocmd VimEnter,WinEnter,BufEnter * call statusline#update()
 augroup end

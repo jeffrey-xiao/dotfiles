@@ -23,10 +23,6 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-commentary'
 " Surrounding text.
 Plug 'machakann/vim-sandwich'
-" Improves quickfix.
-Plug 'romainl/vim-qf'
-" Auto brackets.
-Plug 'raimondi/delimitMate'
 " Indent character.
 Plug 'yggdroot/indentline'
 " Snippets.
@@ -49,9 +45,6 @@ Plug 'justinmk/vim-dirvish'
 " Tags.
 Plug 'ludovicchabant/vim-gutentags'
 
-" Buffer line in tabline.
-Plug 'ap/vim-buftabline'
-
 " Pane navigation with tmux.
 Plug 'christoomey/vim-tmux-navigator'
 
@@ -66,6 +59,8 @@ Plug 'rust-lang/rust.vim'
 " JavaScript.
 Plug 'pangloss/vim-javascript'
 Plug 'MaxMEllon/vim-jsx-pretty'
+" Python.
+Plug 'Vimjas/vim-python-pep8-indent'
 " Go.
 Plug 'fatih/vim-go'
 call plug#end()
@@ -77,17 +72,6 @@ let g:sandwich#recipes += [
       \ {'buns': ["[ ", " ]"], 'nesting': 1, 'match_syntax': 1, 'input': ['[']},
       \ {'buns': ["{ ", " }"], 'nesting': 1, 'match_syntax': 1, 'input': ['{']},
       \ ]
-
-" Config for vim-qf.
-let g:qf_auto_open_quickfix = 0
-let g:qf_loclist_window_bottom = 0
-let g:qf_window_bottom = 1
-
-" Config for DelimitMate.
-let g:delimitMate_autoclose = 1
-let g:delimitMate_expand_cr = 1
-let g:delimitMate_expand_space = 1
-let g:delimitMate_matchpairs = '(:),[:],{:}'
 
 " Config for indentLine.
 let g:indentLine_char = '|'
@@ -199,9 +183,6 @@ let g:dirvish_mode = ':sort ,^.*[\/],'
 " Config for vim-gutentags.
 let g:gutentags_cache_dir = '~/.vim/cache/tags/'
 let g:gutentags_generate_on_empty_buffer = 1
-
-" Config for vim-buftabline.
-let g:buftabline_numbers = 1
 
 " Config for vimtex.
 let g:latex_view_general_viewer = 'zathura'
@@ -363,7 +344,7 @@ set mouse=a
 set nomousehide
 
 " UI config.
-set showtabline=2
+set showtabline=1
 set laststatus=2
 set showmode
 set showmatch
@@ -504,6 +485,14 @@ nnoremap <BS> <C-^>
 " Write with sudo.
 cmap w!! w !sudo tee > /dev/null %
 
+" Bracket expansion.
+inoremap {<CR> {<CR>}<C-o>O
+inoremap {;    {<CR>};<C-o>O
+inoremap (<CR> (<CR>)<C-o>O
+inoremap (;    (<CR>);<C-o>O
+inoremap [<CR> [<CR>]<C-o>O
+inoremap [;    [<CR>];<C-o>O
+
 " Highlight current line.
 set cursorline
 
@@ -551,12 +540,6 @@ function! s:highlight() abort
   highlight markdownBoldItalic ctermfg=4
   highlight markdownBoldItalicDelimiter ctermfg=4
 
-  " Highlighting for BufTabLine.
-  highlight BufTabLineCurrent cterm=none ctermfg=8 ctermbg=14
-  highlight BufTabLineActive cterm=none ctermfg=8 ctermbg=10
-  highlight BufTabLineHidden cterm=none ctermfg=8 ctermbg=10
-  highlight BufTabLineFill cterm=none ctermfg=0 ctermbg=0
-
   " Highlighting for TabLine.
   highlight TabLine cterm=none ctermfg=8 ctermbg=10
   highlight TabLineSel cterm=none ctermfg=8 ctermbg=14
@@ -571,30 +554,30 @@ function! s:highlight() abort
 endfunction
 
 " Highlighting autocommands.
-call <SID>highlight()
 augroup highlighting_group
   autocmd!
-  autocmd ColorScheme * call <SID>highlight()
+  autocmd VimEnter,ColorScheme * call <SID>highlight()
 augroup end
 
 " Quickfix relative autocommands.
 augroup quickfix_group
   autocmd!
   autocmd QuickFixCmdPost [^l]* nested cwindow
+  autocmd BufHidden,QuitPre * nested if &filetype != 'qf' | silent! lclose | endif
 augroup END
 
 " Cursorline autocommands.
 augroup cursorline_group
   autocmd!
-  autocmd WinLeave,BufLeave * set nocursorline
+  autocmd WinLeave * set nocursorline
   autocmd WinEnter,BufEnter * set cursorline
 augroup END
 
 " Numbering autocommands.
 augroup numbering_group
   autocmd!
-  autocmd WinLeave,BufLeave * set norelativenumber
-  autocmd WinEnter,BufEnter * set relativenumber
+  autocmd WinLeave * set norelativenumber
+  autocmd WinEnter,BufEnter * if &filetype != 'qf' && &filetype != 'help' | set relativenumber | endif
 augroup END
 
 " Searching highlighting autocommands.

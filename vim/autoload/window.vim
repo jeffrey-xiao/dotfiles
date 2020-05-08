@@ -1,11 +1,11 @@
 " Adjusts the height of the current window to have a minimum of minHeight
 " lines and a maximum of maxHeight lines.
-function! window#fitHeight(minHeight, maxHeight) abort
+function! window#FitHeight(minHeight, maxHeight) abort
   execute max([min([line('$'), a:maxHeight]), a:minHeight]).'wincmd _'
 endfunction
 
 " Tmux-like zooming.
-function! window#zoom() abort
+function! window#Zoom() abort
   if exists('t:zoom_winrestcmd')
     if winnr('$') > 1
       execute t:zoom_winrestcmd

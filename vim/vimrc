@@ -223,7 +223,6 @@ function! s:fzf_tags_sink(lines) abort
   if empty(a:lines)
     return
   endif
-  echom a:lines
   let l:cmd = get(g:fzf_action, remove(a:lines, 0), 'e')
   let l:query = a:lines[0]
   let l:parts = split(l:query, '\%u00a0')
@@ -323,7 +322,7 @@ set lazyredraw
 set linebreak
 set scrolloff=1
 set sidescrolloff=5
-set t_md=
+set t_ZH=
 
 " Folding.
 set foldmethod=indent
@@ -425,7 +424,7 @@ nnoremap <silent> <Left> :vertical resize -2<CR>
 nnoremap <silent> <Up> :resize +2<CR>
 nnoremap <silent> <Down> :resize -2<CR>
 
-command! Zoom call window#zoom()
+command! Zoom call window#Zoom()
 nnoremap <silent> <leader>z :Zoom<CR>
 
 " Reload .vimrc.
@@ -498,47 +497,18 @@ set cursorline
 
 function! s:highlight() abort
   " General highlighting.
-  highlight Normal ctermbg=8
-  highlight NonText ctermbg=8
   highlight SpecialKey ctermbg=8
-  highlight LineNr ctermbg=0
   highlight VertSplit ctermbg=8
-  highlight SignColumn ctermbg=0
   highlight SpellBad cterm=underline
-
-  " Highlighting for CursorLine.
-  highlight clear CursorLine
-  highlight CursorLine ctermbg=0
   highlight CursorLineNR ctermfg=14 ctermbg=0
 
-  " Highlighting for Signify symbols.
+  " Highlighting for sign column symbols.
+  highlight SignColumn ctermbg=0
   highlight SignifySignAdd ctermfg=2 ctermbg=0
   highlight SignifySignChange ctermfg=3 ctermbg=0
   highlight SignifySignDelete ctermfg=1 ctermbg=0
-
-  " Highlighting for ALE symbols
   highlight ALEErrorSign ctermfg=1 ctermbg=0
   highlight ALEWarningSign ctermfg=3 ctermbg=0
-
-  " Highlighting for LaTeX.
-  highlight texMathMatcher ctermbg=none
-  highlight texMathZoneX ctermbg=none
-  highlight texRefLabel ctermbg=none
-  highlight texStatement ctermbg=none
-
-  " Highlighting for Markdown.
-  highlight def link markdownItalic NONE
-  highlight def link markdownItalicDelimiter NONE
-  highlight def link markdownBold NONE
-  highlight def link markdownBoldDelimiter NONE
-  highlight def link markdownBoldItalic NONE
-  highlight def link markdownBoldItalicDelimiter NONE
-  highlight markdownItalic ctermfg=4
-  highlight markdownItalicDelimiter ctermfg=4
-  highlight markdownBold ctermfg=4
-  highlight markdownBoldDelimiter ctermfg=4
-  highlight markdownBoldItalic ctermfg=4
-  highlight markdownBoldItalicDelimiter ctermfg=4
 
   " Highlighting for TabLine.
   highlight TabLine cterm=none ctermfg=8 ctermbg=10

@@ -2,19 +2,19 @@
 setlocal number
 setlocal norelativenumber
 setlocal nobuflisted
-call statusline#update()
-call window#fitHeight(3, 10)
+call statusline#Update()
+call window#FitHeight(3, 10)
 
 let b:is_qf = empty(getloclist(0))
 if b:is_qf
   wincmd J
   " Open in vertical split.
-  nnoremap <buffer> v <C-w><CR><C-w>H<C-w>b<C-w>J:call window#fitHeight(3, 10)<CR><C-w>t
+  nnoremap <buffer> v <C-w><CR><C-w>H<C-w>b<C-w>J:call window#FitHeight(3, 10)<CR><C-w>t
   " Open in vertical split and focus on results.
-  nnoremap <buffer> <C-v> <C-w><CR><C-w>H<C-w>b<C-w>J:call window#fitHeight(3, 10)<CR>
+  nnoremap <buffer> <C-v> <C-w><CR><C-w>H<C-w>b<C-w>J:call window#FitHeight(3, 10)<CR>
 else
   " Open in vertical split.
-  nnoremap <buffer> v <C-w><CR><C-w>H<C-w>b:call window#fitHeight(3, 10)<CR><C-w>t
+  nnoremap <buffer> v <C-w><CR><C-w>H<C-w>b:call window#FitHeight(3, 10)<CR><C-w>t
   " Open in vertical split and focus on results.
   nnoremap <buffer> <C-v> <C-w><CR><C-w>H<C-w>b:call window#fitHeight(3, 10)<CR>
 endif

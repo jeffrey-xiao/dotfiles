@@ -1,5 +1,5 @@
 " General config.
-setlocal errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#,%-G%.%#
+setlocal errorformat+=%-G%.%#
 setlocal commentstring=//\ %s
 if executable('clang-format')
   setlocal formatexpr=FormatJava(v:lnum,v:lnum+v:count-1)

@@ -6,5 +6,5 @@ let g:loaded_tabline = 1
 " Autocommands.
 augroup tabline_group
   autocmd!
-  autocmd VimEnter,TabEnter,BufAdd,BufDelete * call tabline#update()
+  autocmd VimEnter,TabEnter,BufAdd,BufDelete * call tabline#Update()
 augroup end

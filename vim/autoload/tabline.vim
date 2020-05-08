@@ -1,12 +1,12 @@
 " Updates the tab line if there are more than one tab.
-function! tabline#update() abort
+function! tabline#Update() abort
   if tabpagenr('$') >= 2
-    set tabline=%!tabline#tabline()
+    set tabline=%!tabline#Tabline()
   endif
 endfunction
 
 " Returns the tab line.
-function! tabline#tabline() abort
+function! tabline#Tabline() abort
   let s = ''
   let t = tabpagenr()
   let i = 1
@@ -28,19 +28,16 @@ function! tabline#tabline() abort
       let file = 'help:'.fnamemodify(file, ':t:r')
     elseif buftype == 'quickfix'
       let file = 'quickfix'
-    elseif buftype == 'nofile'
-      if file =~ '\/.'
-        let file = substitute(file, '.*\/\ze.', '', '')
-      endif
+    elseif buftype == 'nofile' && file =~ '\/.'
+      let file = substitute(file, '.*\/\ze.', '', '')
+    elseif file == ''
+      let file = '[No Name]'
     else
       let file = pathshorten(fnamemodify(file, ':p:~:.'))
-      if getbufvar(bufnr, '&modified')
-        let file = file.'[+]'
-      endif
     endif
 
-    if file == ''
-      let file = '[No Name]'
+    if getbufvar(bufnr, '&modified')
+      let file = file.'[+]'
     endif
 
     let s .= ' '.file

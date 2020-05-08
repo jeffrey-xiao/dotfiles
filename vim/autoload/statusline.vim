@@ -1,20 +1,17 @@
 " Updates the status line for the current window and the last window.
-function! statusline#update() abort
-  call setwinvar(winnr(), '&statusline', '%!statusline#statusline('.winnr().')')
+function! statusline#Update() abort
+  call setwinvar(winnr(), '&statusline', '%!statusline#Statusline('.winnr().')')
   if winnr('#') != 0
-    call setwinvar(winnr('#'), '&statusline', '%!statusline#statusline('.winnr('#').')')
+    call setwinvar(winnr('#'), '&statusline', '%!statusline#Statusline('.winnr('#').')')
   endif
 endfunction
 
 " Returns the status line for a specific window.
-function! statusline#statusline(winnum) abort
-  let l:active = a:winnum == winnr()
+function! statusline#Statusline(winnum) abort
   let l:status = ''
-  if l:active
+  if a:winnum == winnr()
     let l:status .= '%#StatusLineLight#'
-    let l:status .= ' %f%r%h%w%{statusline#pasteMode()}%{statusline#zoomMode()}%m'
-    let l:status .= ' %#StatusLineDark#'
-    let l:status .= '%{statusline#gitInfo()}'
+    let l:status .= ' %f%{statusline#Flags()} %#StatusLineDark# %{statusline#GitInfo()}'
     let l:status .= '%='
     let l:status .= '%{strlen(&filetype)?&filetype:"no ft"}'
     let l:status .= ' | %{strlen(&fileencoding)?&fileencoding:&encoding}'
@@ -22,8 +19,8 @@ function! statusline#statusline(winnum) abort
     let l:status .= ' %#StatusLineLight#'
     let l:status .= ' %l/%L: %3c'
     let l:status .= ' %#StatusLineAccent#'
-    let l:status .= '%{statusline#warningFlags()}'
-    let l:status .= '%{statusline#ale()}'
+    let l:status .= '%{statusline#WarningFlags()}'
+    let l:status .= '%{statusline#AleFlags()}'
   else
     let l:status .= '%#StatusLineDark#'
     let l:status .= ' %f'
@@ -35,21 +32,49 @@ function! statusline#statusline(winnum) abort
   return l:status
 endfunction
 
-function! statusline#pasteMode() abort
+function! statusline#Flags() abort
+  let l:modes = ''
+  let l:modes .= statusline#PasteFlag()
+  let l:modes .= statusline#ZoomFlag()
+  let l:modes .= statusline#ModifiedFlag()
+  let l:modes .= statusline#ReadOnlyFlag()
+  if l:modes != ''
+    let l:modes = '['.l:modes.']'
+  endif
+  return l:modes
+endfunction
+
+function! statusline#ModifiedFlag() abort
+  if &modified == 1
+    return '+'
+  elseif &modifiable == 0
+    return '-'
+  endif
+  return ''
+endfunction
+
+function! statusline#PasteFlag() abort
   if &paste == 1
-    return '[P]'
+    return 'P'
   endif
   return ''
 endfunction
 
-function! statusline#zoomMode() abort
+function! statusline#ZoomFlag() abort
   if exists('t:zoom_winrestcmd')
-    return '[Z]'
+    return 'Z'
   endif
   return ''
 endfunction
 
-function! statusline#gitInfo() abort
+function! statusline#ReadOnlyFlag() abort
+  if &readonly == 1
+    return '‼'
+  endif
+  return ''
+endfunction
+
+function! statusline#GitInfo() abort
   if fugitive#head() !=? ''
     let l:info = sy#repo#get_stats()
     if l:info[0] < 0
@@ -61,7 +86,7 @@ function! statusline#gitInfo() abort
   endif
 endfunction
 
-function! statusline#warningFlags() abort
+function! statusline#WarningFlags() abort
   if !exists('b:warning_flags')
     let l:tabs = search('^\t', 'nw') != 0
     let l:spaces = search('^ ', 'nw') != 0
@@ -89,7 +114,7 @@ function! statusline#warningFlags() abort
   return b:warning_flags
 endfunction
 
-function! statusline#ale() abort
+function! statusline#AleFlags() abort
   " ALE output.
   let l:ale_dict = ale#statusline#Count(bufnr('%'))
   let l:errors = l:ale_dict['error'] + l:ale_dict['style_error']

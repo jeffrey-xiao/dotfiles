@@ -27,25 +27,18 @@ shopt -s globstar
 # Enable vi mode.
 set -o vi
 
-# Enable color support of ls.
+# Enable color output.
 DIRCOLORS=""
 [ -e "$HOME/.dircolors" ] && DIRCOLORS="$HOME/.dircolors"
 [ -x "$(command -v dircolors)" ] && eval "$(dircolors --bourne-shell "$DIRCOLORS")"
 
-# Colored GCC warnings and errors.
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
 # Enable programmable completion features.
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
+[ -f /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
+[ -f "$config_dir/fzf/fzf.bash" ] && . "$config_dir/fzf/fzf.bash"
+[ -f "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
 
 # Bash prompt.
-. "$bash_config_dir/bash_twoline_simple"
+[ -f "$bash_config_dir/bash_twoline_simple" ] && . "$bash_config_dir/bash_twoline_simple"
 
 # Alias definitions.
 [ -f "$bash_config_dir/bash_aliases" ] && . "$bash_config_dir/bash_aliases"
@@ -56,12 +49,8 @@ fi
 # Bash bookmarks.
 [ -f "$bash_config_dir/bash_bookmarks" ] && . "$bash_config_dir/bash_bookmarks"
 
-# Fzf with bash completion.
-[ -f "$config_dir/fzf/fzf.bash" ] && . "$config_dir/fzf/fzf.bash"
-
-# Nvm with bash completion.
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use
-[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+# Nvm.
+[ -f "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use
 
 # Add ssh keys.
 ssh-add -l >/dev/null || ssh-add

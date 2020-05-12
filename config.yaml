@@ -146,11 +146,9 @@ tmux:
     - tmux
 
 vim:
-  link:
-    - "*": ~/.vim/
-    - ".*": ~/.vim/
+  link: ~/.vim/
   postlink:
-    - vim -c PlugInstall -c q! -c q!
+    - ~/.vim/pack/plugins/start/fzf/install --all --xdg --no-update-rc
     - >
       curl --silent --location https://raw.githubusercontent.com/creationix/nvm/master/install.sh --output install_nvm.sh &&
       chmod 775 install_nvm.sh &&

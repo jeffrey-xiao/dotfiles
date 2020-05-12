@@ -52,7 +52,7 @@ dependencies by package.
 ### With included bash scripts
 
 ```
-git clone https://github.com/jeffrey-xiao/dotfiles.git
+git clone --recursive https://github.com/jeffrey-xiao/dotfiles.git
 cd dotfiles
 ./symlink
 ./install

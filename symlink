@@ -35,21 +35,21 @@ done
 
 # Link gtk.
 mkdir -pv ~/.config/gtk-3.0/
-ln -sfv "$DOTFILES_DIR/gtk/.gtkrc-2.0" ~/
-ln -sfv "$DOTFILES_DIR/gtk/settings.ini" ~/.config/gtk-3.0/
+ln -sfv "$DOTFILES_DIR"/gtk/.gtkrc-2.0 ~/
+ln -sfv "$DOTFILES_DIR"/gtk/settings.ini ~/.config/gtk-3.0/
 
 # Link vim config.
-for f in "$DOTFILES_DIR/vim"/!(.*); do
+for f in "$DOTFILES_DIR"/vim/!(*.template); do
   ln -sfv "$f" ~/.vim/
 done
 
 # Link miscellaneous config.
 mkdir -pv ~/.config/redshift/
-ln -sfv "$DOTFILES_DIR/misc/redshift.conf" ~/.config/redshift/
+ln -sfv "$DOTFILES_DIR"/misc/redshift.conf ~/.config/redshift/
 
 # Link font config.
 mkdir -pv ~/.config/fontconfig/
-ln -sfv "$DOTFILES_DIR/fonts/fonts.conf" ~/.config/fontconfig/
+ln -sfv "$DOTFILES_DIR"t/fonts/fonts.conf ~/.config/fontconfig/
 
 # Create a playlist folder and database file for mpd.
 mkdir -pv ~/.config/mpd/playlists/

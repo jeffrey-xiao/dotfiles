@@ -52,8 +52,9 @@ dependencies by package.
 ### With included bash scripts
 
 ```
-git clone --recursive https://github.com/jeffrey-xiao/dotfiles.git
+git clone --depth=1 https://github.com/jeffrey-xiao/dotfiles.git
 cd dotfiles
+git submodule update --init --depth=1
 ./symlink
 ./install
 ```
@@ -63,8 +64,9 @@ Any errors with the installation will appear in `install.log`.
 ### With [`dotinstall`](https://github.com/jeffrey-xiao/dotinstall)
 
 ```
-git clone https://github.com/jeffrey-xiao/dotfiles.git
+git clone --depth=1 https://github.com/jeffrey-xiao/dotfiles.git
 cd dotfiles
+git submodule update --init --depth=1
 pip3 install dotinstall
 dotinstall
 ```

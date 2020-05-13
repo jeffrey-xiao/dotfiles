@@ -1,4 +1,4 @@
-filetype plugin on
+filetype plugin indent on
 syntax on
 
 " Config for indentLine.
@@ -325,9 +325,19 @@ let g:mapleader="\<Space>"
 nnoremap <expr> j v:count ? 'm'''.v:count.'j' : 'gj'
 nnoremap <expr> k v:count ? 'm'''.v:count.'k' : 'gk'
 
-" Tab navigation.
-nnoremap ]w gt
-nnoremap [w gT
+" vim-unimpaired bindings.
+function! s:map_unimpaired(map, cmd_prefix) abort
+  let l:cmd_prefix = " ':<C-u>'.(v:count ? v:count : '').'".a:cmd_prefix
+  execute "nnoremap <silent> <expr> [".a:map.l:cmd_prefix."previous<CR>'"
+  execute "nnoremap <silent> <expr> ]".a:map.l:cmd_prefix."next<CR>'"
+  execute "nnoremap <silent> <expr> [".toupper(a:map).l:cmd_prefix."first<CR>'"
+  execute "nnoremap <silent> <expr> ]".toupper(a:map).l:cmd_prefix."last<CR>'"
+endfunction
+call s:map_unimpaired('a', '')
+call s:map_unimpaired('b', 'b')
+call s:map_unimpaired('q', 'c')
+call s:map_unimpaired('l', 'l')
+call s:map_unimpaired('t', 't')
 
 " Strip trailing whitespace.
 function! s:strip_whitespace() abort
@@ -380,19 +390,6 @@ nnoremap <leader>f :FZF<CR>
 nnoremap <leader>m :MRU<CR>
 nnoremap <leader>t :Tags<CR>
 
-" Indentation in visual mode should stay in visual mode.
-xnoremap > >gv
-xnoremap < <gv
-
-" Switching case in visual mode should stay in visual mode.
-xnoremap u ugv
-xnoremap U Ugv
-xnoremap ~ ~gv
-
-" Incrementing/decrementing numbers in visual mode should stay in visual mode.
-xnoremap <C-a> <C-a>gv
-xnoremap <C-x> <C-x>gv
-
 " Visually select pasted or yanked text.
 nnoremap gV `[v`]
 
@@ -410,7 +407,7 @@ command! -range=% TB <line1>,<line2>w !nc termbin.com 9999 | tr --delete '\n' | 
 nnoremap <BS> <C-^>
 
 " Write with sudo.
-cmap w!! w !sudo tee > /dev/null %
+cmap w!! w !sudo tee >/dev/null %
 
 " Bracket expansion.
 inoremap {<CR> {<CR>}<C-o>O

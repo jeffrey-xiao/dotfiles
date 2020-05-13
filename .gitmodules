@@ -1,9 +1,6 @@
 [submodule "vim/pack/plugins/start/flattened"]
 	path = vim/pack/plugins/start/flattened
 	url = https://github.com/romainl/flattened
-[submodule "vim/pack/plugins/start/vim-unimpaired"]
-	path = vim/pack/plugins/start/vim-unimpaired
-	url = https://github.com/tpope/vim-unimpaired
 [submodule "vim/pack/plugins/start/vim-eunuch"]
 	path = vim/pack/plugins/start/vim-eunuch
 	url = https://github.com/tpope/vim-eunuch

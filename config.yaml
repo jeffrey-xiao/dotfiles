@@ -148,6 +148,7 @@ tmux:
 vim:
   link: ~/.vim/
   postlink:
+    - vim -c helptags ALL -c q!
     - ~/.vim/pack/plugins/start/fzf/install --all --xdg --no-update-rc
     - >
       curl --silent --location https://raw.githubusercontent.com/creationix/nvm/master/install.sh --output install_nvm.sh &&

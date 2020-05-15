@@ -457,7 +457,7 @@ augroup end
 " Quickfix relative autocommands.
 augroup quickfix_group
   autocmd!
-  autocmd QuickFixCmdPost [^l]* nested cwindow
+  autocmd QuickFixCmdPost [^l]* nested if &filetype != 'tex' | cwindow | endif
   autocmd BufHidden,QuitPre * nested if &filetype != 'qf' | silent! lclose | endif
 augroup END
 

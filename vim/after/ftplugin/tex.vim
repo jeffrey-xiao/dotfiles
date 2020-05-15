@@ -3,6 +3,6 @@ setlocal textwidth=100
 setlocal spell
 
 " Keybindings.
-nmap <buffer> <leader>c <plug>(vimtex-compile)
-nmap <buffer> <leader>cw <plug>(vimtex-errors)
-nmap <buffer> <leader>e <plug>(vimtex-view)
+nmap <silent> <buffer> <leader>c <plug>(vimtex-compile)
+nmap <silent> <buffer> <leader>cw <plug>(vimtex-errors)
+nmap <silent> <buffer> <leader>e <plug>(vimtex-view)

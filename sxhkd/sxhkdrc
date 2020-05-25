@@ -128,48 +128,24 @@ shift + alt + Print
   record -s
 
 # Audio hotkeys.
-XF86AudioRaiseVolume
-  volume -r +5 && robar-volume
-
-XF86AudioLowerVolume
-  volume -r -5 && robar-volume
+XF86Audio{Raise,Lower}Volume
+  volume {-r +5,-r -5} && robar-volume
 
 XF86AudioMute
   volume -t && robar-volume
 
 # Screen brightness hotkeys.
-XF86MonBrightnessUp
-  sudo brightness -r +50 && robar-brightness
-
-XF86MonBrightnessDown
-  sudo brightness -r -50 && robar-brightness
+XF86MonBrightness{Up,Down}
+  sudo brightness -r {+50,-50} && robar-brightness
 
 # Touchpad controls.
 XF86TouchpadToggle
   set-touchpad
 
 # Media player hotkeys.
-XF86AudioPlay
-  mpc play
-
-XF86AudioPause
-  mpc pause
-
-XF86AudioNext
-  mpc next
-
-XF86AudioPrev
-  mpc prev
-
-XF86AudioStop
-  mpc pause
+XF86Audio{Play,Pause,Next,Prev,Stop}
+  mpc {play,pause,next,prev,pause}
 
 # Mpd hotkeys.
-super + p
-  mpc toggle
-
-super + bracketleft
-  mpc prev
-
-super + bracketright
-  mpc next
+super + {p,bracketleft,bracketright}
+  mpc {toggle,prev,next}

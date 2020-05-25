@@ -63,21 +63,6 @@ URxvt.font:               xft:Iosevka SS04:size=10
 URxvt.boldFont:           xft:Iosevka SS04:style=bold:size=10
 URxvt.letterSpace:        -1
 URxvt.lineSpace:          0
-! URxvt.font:               -misc-tamzenforpowerline-medium-r-normal--16-116-100-100-c-80-iso8859-1
-! URxvt.boldFont:           -misc-tamzenforpowerline-bold-r-normal--16-116-100-100-c-80-iso8859-1
-
-! Real Transparency.
-! URxvt.depth:              32
-! BASE_03 at 5% lightness.
-! URxvt.background:         [90]#00141A
-
-! Fake Transparency.
-! URxvt.transparent:       true
-! URxvt.shading:           104
-! URxvt.tintColor:         #BASE_03
-
-! Blur.
-! URxvt.blurRadius:        10
 
 ! Urxvt extensions.
 URxvt.perl-ext-common:    default,matcher

@@ -47,10 +47,6 @@ done
 mkdir -pv ~/.config/redshift/
 ln -sfv "$DOTFILES_DIR"/misc/redshift.conf ~/.config/redshift/
 
-# Link font config.
-mkdir -pv ~/.config/fontconfig/
-ln -sfv "$DOTFILES_DIR"t/fonts/fonts.conf ~/.config/fontconfig/
-
 # Create a playlist folder and database file for mpd.
 mkdir -pv ~/.config/mpd/playlists/
 touch ~/.config/mpd/database

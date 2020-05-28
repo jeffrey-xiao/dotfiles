@@ -80,7 +80,7 @@ function! statusline#GitInfo() abort
     if l:info[0] < 0
       return ''
     endif
-    return ' '.fugitive#head().' +'.l:info[0].' ~'.l:info[1].' -'.l:info[2].' '
+    return ' '.fugitive#head().' +'.l:info[0].' !'.l:info[1].' -'.l:info[2].' '
   else
     return ''
   endif

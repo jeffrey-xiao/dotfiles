@@ -15,7 +15,7 @@ let g:ale_linters = {
       \ 'python': ['autopep', 'flake8', 'pylint'],
       \ }
 let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_echo_msg_format = '[%linter%] %s'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_set_quickfix = 0
@@ -23,7 +23,6 @@ let g:ale_sign_column_always = 1
 
 " Config for vim-lsp.
 let g:lsp_diagnostics_enabled = 0
-let g:lsp_signs_enabled = 1
 
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
@@ -99,9 +98,6 @@ augroup lsp_setup
 augroup END
 
 " Config for signify.
-let g:signify_sign_change = '~'
-let g:signify_sign_changedelete = '~_'
-let g:signify_sign_delete_first_line = '_'
 let g:signify_sign_show_count = 0
 let g:signify_vcs_list = [ 'git' ]
 
@@ -194,7 +190,7 @@ command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr <SID>grep(<q-args>)
 " Editing config.
 set backspace=indent,eol,start
 set infercase
-set formatoptions=tcqj
+set formatoptions+=jn
 set nojoinspaces
 set pumheight=10
 if exists('+completeopt')
@@ -216,12 +212,9 @@ set number
 set relativenumber
 set colorcolumn=100
 
-" No beeping or error sounds.
-set noerrorbells
-set novisualbell
-set belloff=all
+" Disable bells.
+set visualbell
 set t_vb=
-set timeoutlen=500
 
 " Searching config.
 set incsearch
@@ -230,15 +223,15 @@ set ignorecase
 set smartcase
 
 " Color scheme config.
+set t_Co=16
 set background=dark
-silent! colorscheme flattened_dark
+colorscheme flattened_dark
 
 " Wildmenu config.
 set wildmenu
-set wildmode=full
 set wildignore=.hg,.git,.svn                     " Version control.
 set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files.
-set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images.
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " Binary images.
 set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " Compiled object files.
 set wildignore+=*.sw?                            " Vim swap files.
 set wildignore+=*.DS_Store                       " OSX garbage.
@@ -271,9 +264,7 @@ set mouse=a
 set nomousehide
 
 " UI config.
-set showtabline=1
 set laststatus=2
-set showmode
 set showmatch
 set showcmd
 set cmdheight=2
@@ -296,11 +287,10 @@ set viminfo+=/1000 " Remember last 1000 search patterns.
 set viminfo+=:1000 " Remember last 1000 commands.
 set viminfo+=n$HOME/.vim/cache/viminfo/info
 
-" Setting undo, backup, and swp directories.
+" Setting undo and swp directories. Remove backup files.
+set nobackup
 set undofile
 set undodir=~/.vim/cache/undo//
-set backup
-set backupdir=~/.vim/cache/backup//
 set directory=~/.vim/cache/swp//
 
 " Use histogram and indent-heuristic for diffs.
@@ -310,7 +300,7 @@ endif
 
 " Create necessary directories if they are missing.
 if exists('*mkdir')
-  for s:dir in ['/.vim/cache/backup/', '/.vim/cache/swp/', '/.vim/cache/undo/', '/.vim/cache/tags/', '/.vim/cache/viminfo/']
+  for s:dir in ['/.vim/cache/swp/', '/.vim/cache/undo/', '/.vim/cache/tags/', '/.vim/cache/viminfo/']
     if !isdirectory($HOME.s:dir)
       call mkdir($HOME.s:dir, 'p')
     endif

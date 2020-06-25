@@ -39,6 +39,7 @@ ln -sfv "$DOTFILES_DIR"/gtk/.gtkrc-2.0 ~/
 ln -sfv "$DOTFILES_DIR"/gtk/settings.ini ~/.config/gtk-3.0/
 
 # Link vim config.
+mkdir -pv ~/.vim/
 for f in "$DOTFILES_DIR"/vim/!(*.template); do
   ln -sfv "$f" ~/.vim/
 done

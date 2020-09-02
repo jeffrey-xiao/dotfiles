@@ -4,6 +4,7 @@ dmenu_cmd() {
   rofi -i -fuzzy -dmenu -p "$1"
 }
 
+lpass status || lpass login "$LPASS_EMAIL"
 selected_account=$(lpass ls --format '%aN' | dmenu_cmd 'lpass')
 [ -z "$selected_account" ] && exit
 lpass show --clip --password "$selected_account"

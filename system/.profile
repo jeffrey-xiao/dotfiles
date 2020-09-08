@@ -54,3 +54,5 @@ if [ ! -e ~/.ssh/ssh_auth_sock ]; then
   ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
   export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
 fi
+
+export LPASS_AGENT_TIMEOUT=0

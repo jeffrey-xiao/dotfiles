@@ -8,12 +8,12 @@ check_connected() {
   echo "$connected_monitors" | grep --silent "\\b$1\\b"
 }
 
-if check_connected 'DP1'; then
-  xrandr --output eDP1 --mode 1600x900 --output DP1 --auto --left-of eDP1
-elif check_connected 'HDMI1'; then
-  xrandr --output eDP1 --mode 1600x900 --output HDMI1 --auto --left-of eDP1
+if check_connected 'DP-1'; then
+  xrandr --output eDP-1 --mode 1600x900 --output DP-1 --auto --left-of eDP-1
+elif check_connected 'HDMI-1'; then
+  xrandr --output eDP-1 --mode 1600x900 --output HDMI-1 --auto --left-of eDP-1
 else
-  xrandr --output eDP1 --mode 1920x1080
+  xrandr --output eDP-1 --mode 1920x1080
 fi
 
 for disconnected_monitor in $disconnected_monitors; do

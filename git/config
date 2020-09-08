@@ -46,12 +46,16 @@
   default = simple
   followTags = true
 
+[pull]
+  rebase = true
+
 [merge]
   # Includes summaries of merged commits in newly created merge commit messages.
   log = true
 
 [rebase]
   autoSquash = true
+  autoStash = true
 
 [alias]
   # Log.

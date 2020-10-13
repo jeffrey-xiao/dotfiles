@@ -51,12 +51,14 @@ Xft.hintstyle:            hintslight
 *pointerColorBackground:  #BASE_01
 *pointerColorForeground:  #BASE_1
 
-! Urxvt scrollbar.
+! Urxvt scrolling.
 URxvt.scrollstyle:        plain
 URxvt.scrollColor:        #BASE_00
 URxvt.scrollBar_right:    true
 URxvt.thickness:          2
-URxvt.internalBorder:     5
+URxvt*scrollTtyOutput:    false
+URxvt*scrollWithBuffer:   true
+URxvt*scrollTtyKeypress:  true
 
 ! Urxvt font.
 URxvt.font:               xft:Iosevka SS04:size=10
@@ -70,6 +72,7 @@ URxvt.url-launcher:       /usr/bin/xdg-open
 URxvt.matcher.button:     1
 
 ! Urxvt other configuration.
+URxvt.internalBorder:     4
 URxvt.termName:           xterm-256color
 URxvt.saveLines:          100000
 URxvt.buffered:           true

@@ -60,7 +60,6 @@
 --exclude=deps
 --exclude=doc
 
-
 --langdef=typescript
 --langmap=typescript:.ts.tsx
 --regex-typescript=/^[ \t]*(export[ \t]+([a-z]+[ \t]+)?)?class[ \t]+([a-zA-Z0-9_$]+)/\3/c,classes/

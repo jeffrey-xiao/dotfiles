@@ -1,16 +1,53 @@
 #!/bin/sh
 
-if [ "$1" = '-r' ]; then
-  restart=true
+__help="Usage: ${0##*/} [-h|--help] [-p|-process] [-s|--script] [-r|--restart]
+
+Start a daemon.
+
+    -h, --help               display this help and exit
+    -p, --process PROCESS    name of the daemon process
+    -s, --script SCRIPT      script to start the process
+                             (default: PROCESS)
+    -r, --restart            kill existing processes before starting"
+
+unset process
+unset script
+unset restart
+
+check_argument() { [ -z "$2" ] && { echo "Error: flag $1 requires an argument." && exit 1; } }
+
+while [ ! $# -eq 0 ]; do
+  case "$1" in
+    -h | --help)
+      echo "$__help"
+      exit 0
+      ;;
+    -p | --process)
+      check_argument "$@"
+      process=$2
+      shift
+      ;;
+    -s | --script)
+      check_argument "$@"
+      script=$2
+      shift
+      ;;
+    -r | --restart)
+      restart=1
+      ;;
+    *)
+      break;
+      ;;
+  esac
   shift
-fi
+done
 
-[ -z "$1" ] && { echo 'Error: Argument 1 must be a process name.' && exit 1; }
+[ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
+[ -z "$process" ] && { echo 'Error: must specific PROCESS.' && exit 1; }
 
-process=$1
-script=${2:-$1}
+script=${script:-$process}
 
-if [ $restart ]; then
+if [ ! -z $restart ]; then
   killall --quiet "$process"
   while pgrep --exact "$process" >/dev/null; do sleep 1; done
 fi

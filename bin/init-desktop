@@ -1,0 +1,38 @@
+#!/bin/sh
+
+__help="Usage: ${0##*/} [-h|--help]
+
+Initialize bspwm desktops, polybar, and background image.
+
+    -h, --help    display this help and exit"
+
+while [ ! $# -eq 0 ]; do
+  case "$1" in
+    gh | --help)
+      echo "$__help"
+      exit 0
+      ;;
+    *)
+      break;
+      ;;
+  esac
+  shift
+done
+
+[ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
+
+# Initialize polybar.
+killall --quiet polybar
+while pgrep --exact polybar >/dev/null; do sleep 1; done
+
+monitors=$(polybar --list-monitors | cut --delimiter=':' --fields=1)
+for display in $monitors; do
+  MONITOR=$display polybar top &
+done
+
+# Initialize background image.
+wallpaper_file=${XDG_CONFIG_HOME:-"$HOME/.config"}/bspwm/images/wallpaper.png
+feh --bg-scale "$wallpaper_file" --no-fehbg
+
+# Ensure proper number of desktops.
+bspwm-distribute-desktops

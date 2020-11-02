@@ -1,6 +1,26 @@
 #!/bin/sh
 
-curr_brightness=$(cat '/sys/class/backlight/intel_backlight/brightness')
-max_brightness=$(cat '/sys/class/backlight/intel_backlight/max_brightness')
+__help="Usage: ${0##*/} [-h|--help]
 
-robar show default "$(echo "$curr_brightness"/"$max_brightness" | bc --mathlib)"
+Display the current screen brightness using robar.
+
+    -h, --help    display this help and exit"
+
+while [ ! $# -eq 0 ]; do
+  case "$1" in
+    -h | --help)
+      echo "$__help"
+      exit 0
+      ;;
+    *)
+      break;
+      ;;
+  esac
+  shift
+done
+
+[ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
+
+brightness=$(brightness)
+value=$(echo "${brightness%\%}" | awk '{printf "%.2f\n", $1 / 100}')
+robar show default "$value"

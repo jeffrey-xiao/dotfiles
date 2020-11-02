@@ -1,5 +1,26 @@
 #!/bin/sh
 
+__help="Usage: ${0##*/} [-h|--help]
+
+Display a dmenu for monitor configuration using xrandr.
+
+    -h, --help    display this help and exit"
+
+while [ ! $# -eq 0 ]; do
+  case "$1" in
+    -h | --help)
+      echo "$__help"
+      exit 0
+      ;;
+    *)
+      break;
+      ;;
+  esac
+  shift
+done
+
+[ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
+
 xrandr_output="$(xrandr)"
 connected_monitors=$(echo "$xrandr_output" | grep '\bconnected\b' | cut --delimiter=' ' --fields=1)
 disconnected_monitors=$(echo "$xrandr_output" | grep '\bdisconnected\b' | cut --delimiter=' ' --fields=1)
@@ -23,12 +44,6 @@ resolution_options() {
   printf '%s\noff' "$available_resolutions"
 }
 
-post_init() {
-  init-polybar
-  init-background
-  bspwm-distribute-desktops
-}
-
 # Turn disconnected monitors off.
 for disconnected_monitor in $disconnected_monitors; do
   xrandr --output "$disconnected_monitor" --off
@@ -40,13 +55,13 @@ selected_monitor=$(printf '%s' "$connected_monitors" | dmenu_cmd 'output')
 selected_resolution=$(printf '%s' "$(resolution_options "$selected_monitor")" | dmenu_cmd 'mode')
 [ -z "$selected_resolution" ] && exit
 
-[ "$selected_resolution" = 'off' ] && { xrandr --output "$selected_monitor" --off && post_init && exit; }
+[ "$selected_resolution" = 'off' ] && { xrandr --output "$selected_monitor" --off && init-desktop && exit; }
 
 selected_rotation=$(printf '%b' "$rotation_options" | dmenu_cmd 'rotation')
 [ -z "$selected_rotation" ] && exit
 
 anchor_options=$(printf '%s' "$connected_monitors" | grep --invert-match "^$selected_monitor$")
-[ -z "$anchor_options" ] && { xrandr --output "$selected_monitor" --mode "$selected_resolution" --rotate "$selected_rotation" && post_init && exit; }
+[ -z "$anchor_options" ] && { xrandr --output "$selected_monitor" --mode "$selected_resolution" --rotate "$selected_rotation" && init-desktop && exit; }
 
 selected_anchor=$(printf '%s' "$anchor_options" | dmenu_cmd 'anchor')
 [ -z "$selected_anchor" ] && exit
@@ -55,4 +70,4 @@ selected_position=$(printf '%b' "$position_options" | dmenu_cmd 'position')
 [ -z "$selected_position" ] && exit
 
 xrandr --output "$selected_monitor" --mode "$selected_resolution" --"$selected_position" "$selected_anchor" --rotate "$selected_rotation"
-post_init
+init-desktop

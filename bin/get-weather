@@ -1,10 +1,43 @@
 #!/bin/sh
 
+__help="Usage: ${0##*/} [-h|--help]
+
+Display the temperature and weather conditions using OpenWeatherMap.
+
+    -h, --help           display this help and exit
+    --api-key API_KEY    OpenWeatherMap API key
+                         (default: \$OPEN_WEATHER_MAP_KEY)"
+
+unset api_key
+
+check_argument() { [ -z "$2" ] && { echo "Error: flag $1 requires an argument." && exit 1; } }
+
+while [ ! $# -eq 0 ]; do
+  case "$1" in
+    -h | --help)
+      echo "$__help"
+      exit 0
+      ;;
+    --api-key)
+      check_argument "$@"
+      api_key=$2
+      shift
+      ;;
+    *)
+      break;
+      ;;
+  esac
+  shift
+done
+
+[ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
+
 location=$(curl --silent ipinfo.io/loc)
 latitude=$(echo "$location" | cut --delimiter=',' --fields=1)
 longitude=$(echo "$location" | cut --delimiter=',' --fields=2)
 api_endpoint='http://api.openweathermap.org/data/2.5/weather'
-resp=$(curl --silent --get "$api_endpoint" --data-urlencode "lat=$latitude" --data-urlencode "lon=$longitude" --data-urlencode "APPID=$OPEN_WEATHER_MAP_KEY" --data-urlencode 'units=metric')
+api_key=${api_key:-${OPEN_WEATHER_MAP_KEY}}
+resp=$(curl --silent --get "$api_endpoint" --data-urlencode "lat=$latitude" --data-urlencode "lon=$longitude" --data-urlencode "APPID=$api_key" --data-urlencode 'units=metric')
 weather=$(echo "$resp" | jq --raw-output '.weather[0].main')
 temp=$(echo "$resp" | jq --raw-output '.main.temp')
 

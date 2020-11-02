@@ -1,5 +1,32 @@
 #!/usr/bin/env bash
 
-[[ ! "$1" =~ xt=urn:btih:([^&/]+) ]] && { echo 'Error: Argument 1 must be a valid magnet link.' && exit 1; }
+__help="Usage: ${0##*/} [-h|--help] LINKS
+
+Converts a list of magnet links to torrent files.
+
+    -h, --help            display this help and exit
+    --download-dir DIR    download directory to write torrent files
+                          (default: \$XDG_DOWNLOAD_DIR)
+    LINKS                 a list of magnet links to convert"
+
+while [ ! $# -eq 0 ]; do
+  case "$1" in
+    -h | --help)
+      echo "$__help"
+      exit 0
+      ;;
+    *)
+      break
+      ;;
+  esac
+  shift
+done
+
 download_dir=${XDG_DOWNLOAD_DIR:-"$HOME/Downloads"}
-echo "d10:magnet-uri${#1}:${1}e" > "$download_dir/meta-${BASH_REMATCH[1]}.torrent"
+for magnet_link in "$@"; do
+  if [[ "$magnet_link" =~ xt=urn:btih:([^&/]+) ]]; then
+    echo "d10:magnet-uri${#magnet_link}:${magnet_link}e" > "$download_dir/meta-${BASH_REMATCH[1]}.torrent"
+  else
+    echo "Error: $magnet_link is not a valid magnet link."
+  fi
+done

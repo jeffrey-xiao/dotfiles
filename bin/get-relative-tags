@@ -1,5 +1,26 @@
 #!/bin/sh
 
+__help="Usage: ${0##*/} [-h|--help] FILES
+
+Converts the paths in a list of tag files from absolute paths to relative
+paths.
+
+    -h, --help    display this help and exit
+    FILES         a list of files to convert"
+
+while [ ! $# -eq 0 ]; do
+  case "$1" in
+    -h | --help)
+      echo "$__help"
+      exit 0
+      ;;
+    *)
+      break
+      ;;
+  esac
+  shift
+done
+
 SEPARATOR=$(printf '\u00a0')
 for tags_file in "$@"; do
   tags_path_length=$(basename "$tags_file" | wc --chars)

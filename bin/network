@@ -1,0 +1,65 @@
+#!/bin/sh
+
+__help="Usage: ${0##*/} [-h|--help] [eth [interface|ip]|wifi [interface|ip|ssid]]
+
+Print network information.
+
+    -h, --help        display this help and exit
+    eth interface     print Ethernet interface
+    eth ip            print Ethernet ip address
+    wifi interface    print WiFi interface
+    wifi ip           print WiFi ip address
+    wifi ssid         print WiFi SSID"
+
+
+
+sub_eth() {
+  ssub_interface() {
+    ip link | grep --only-matching 'enp\w*'
+  }
+
+  ssub_ip() {
+    ip -family inet addr show "$(ssub_interface)" |
+      grep --extended-regexp --only-matching 'inet ([0-9]*\.){3}[0-9]*' |
+      grep --extended-regexp --only-matching '([0-9]*\.){3}[0-9]*'
+  }
+
+  sub="$1"
+  [ "$sub" = '-h' ] || [ "$sub" = '--help' ] && { echo "$__help" && exit 0; }
+  [ -z "$sub" ] && { printf "Error: missing subcommand.\\n\\n%s\\n" "$__help" && exit 0; }
+  [ "$(command -v "ssub_$sub")" ] || { printf "Error: unknown subcommand: %s.\\n\\n%s\\n" "$sub" "$__help" && exit 1; }
+  shift
+  [ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
+  "ssub_$sub"
+}
+
+sub_wifi() {
+  ssub_interface() {
+    ip link | grep --only-matching 'wlp\w*'
+  }
+
+  ssub_ip() {
+    ip -family inet addr show "$(ssub_interface)" |
+      grep --extended-regexp --only-matching 'inet ([0-9]*\.){3}[0-9]*' |
+      grep --extended-regexp --only-matching '([0-9]*\.){3}[0-9]*'
+  }
+
+  ssub_ssid() {
+    iwgetid -r
+  }
+
+  sub="$1"
+  [ "$sub" = '-h' ] || [ "$sub" = '--help' ] && { echo "$__help" && exit 0; }
+  [ -z "$sub" ] && { printf "Error: missing subcommand.\\n\\n%s\\n" "$__help" && exit 0; }
+  [ "$(command -v "ssub_$sub")" ] || { printf "Error: unknown subcommand: %s.\\n\\n%s\\n" "$sub" "$__help" && exit 1; }
+  shift
+  [ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
+  "ssub_$sub"
+}
+
+sub="$1"
+[ "$sub" = '-h' ] || [ "$sub" = '--help' ] && { echo "$__help" && exit 0; }
+[ -z "$sub" ] && { printf "Error: missing subcommand.\\n\\n%s\\n" "$__help" && exit 0; }
+[ "$(command -v "sub_$sub")" ] || { printf "Error: unknown subcommand: %s.\\n\\n%s\\n" "$sub" "$__help" && exit 1; }
+shift
+"sub_$sub" "$@"

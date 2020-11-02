@@ -1,11 +1,37 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-shopt -s nullglob
-shopt -s dotglob
-shopt -s globstar
+__help="Usage: ${0##*/} [-h|--help] [-l|--list-different] FILES
+
+clang-format wrapper that returns a non-zero exit code if any of the provided
+files are not formatted properly. This script supports globs.
+
+    -h, --help              display this help and exit
+    -l, --list-different    print the names of the files that are not formatted"
+
+unset list_different
+
+while [ ! $# -eq 0 ]; do
+  case "$1" in
+    -h | --help)
+      echo "$__help"
+      exit 0
+      ;;
+    -l | --list-different)
+      list_different=1
+      ;;
+    *)
+      break
+      ;;
+  esac
+  shift
+done
 
 ret=0
-for file in $@; do
-  diff --color --unified "$file" <(clang-format "$file") || ret=1
+for file in "$@"; do
+  if [ -z $list_different ]; then
+    clang-format "$file" | diff --color --unified "$file" - || ret=1
+  else
+    clang-format "$file" | diff --color --unified "$file" - >/dev/null || { echo "$file" && ret=1; }
+  fi
 done
 [ $ret = 0 ] || false

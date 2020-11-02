@@ -130,7 +130,7 @@ system:
 
 dunst:
   prelink:
-    - ./bin/xrdb-compile-colors ./dunst/dunstrc.template ./dunst/dunstrc
+    - ./bin/xrdb-compile-colors --template ./dunst/dunstrc.template --destination ./dunst/dunstrc
   link:
     - dunstrc: ~/.config/dunst/
   dependencies:
@@ -177,7 +177,7 @@ weechat:
 
 zathura:
   prelink:
-    - ./bin/xrdb-compile-colors ./zathura/zathurarc.template ./zathura/zathurarc
+    - ./bin/xrdb-compile-colors --template ./zathura/zathurarc.template --destination ./zathura/zathurarc
   link:
     - zathurarc: ~/.config/zathura/
   dependencies:

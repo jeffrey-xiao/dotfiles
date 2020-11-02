@@ -1,3 +1,24 @@
 #!/bin/sh
 
+__help="Usage: ${0##*/} [-h|--help]
+
+Set the timezone based on your public IP using WorldTimeAPI.
+
+    -h, --help    display this help and exit"
+
+while [ ! $# -eq 0 ]; do
+  case "$1" in
+    -h | --help)
+      echo "$__help"
+      exit 0
+      ;;
+    *)
+      break;
+      ;;
+  esac
+  shift
+done
+
+[ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
+
 sudo timedatectl set-timezone "$(curl -s worldtimeapi.org/api/ip.txt | sed -n 's/^timezone: //p')"

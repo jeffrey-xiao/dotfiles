@@ -1,5 +1,39 @@
 #!/bin/sh
 
+__help="Usage: ${0##*/} [-h|--help] [-d|--desktops COUNT]
+
+Evenly distribute a specified number of bwpsm desktops across all active
+monitors. If there are more active desktops than specified, than trim the extra
+ones. If there are fewer active desktops than specified, than add new ones.
+
+    -h, --help              display this help and exit
+    -d, --desktops COUNT    the number of desktops to distribute
+                            (default: 10)"
+
+desktop_count=10
+
+check_argument() { [ -z "$2" ] && { echo "Error: flag $1 requires an argument." && exit 1; } }
+
+while [ ! $# -eq 0 ]; do
+  case "$1" in
+    -h | --help)
+      echo "$__help"
+      exit 0
+      ;;
+    -d | --desktops)
+      check_argument "$@"
+      desktop_count=$2
+      shift
+      ;;
+    *)
+      break;
+      ;;
+  esac
+  shift
+done
+
+[ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
+
 monitors=$(
   xrandr |
     grep '\bconnected\b' |
@@ -12,11 +46,10 @@ monitors=$(polybar --list-monitors | cut --delimiter=':' --fields=1)
 monitor_count=$(echo "$monitors" | wc -l)
 focused_desktop=$(bspc query --desktops --desktop .focused)
 initial_desktop_count="$(bspc query --desktops | wc -l)"
-desktop_count=10
 q=$((desktop_count / monitor_count))
 r=$((desktop_count % monitor_count))
-
 total=0
+
 for curr_monitor in $monitors; do
   curr=$q
   if [ $r -gt 0 ]; then
@@ -24,7 +57,7 @@ for curr_monitor in $monitors; do
     r=$((r - 1))
   fi
 
-  if [ "$initial_desktop_count" -ge $desktop_count ]; then
+  if [ "$initial_desktop_count" -ge "$desktop_count" ]; then
     # Move desktops.
     for i in $(seq $total $((total + curr - 1))); do
       curr_desktop=$(bspc query --desktops --desktop "$i")

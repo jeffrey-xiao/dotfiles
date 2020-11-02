@@ -1,7 +1,47 @@
 #!/bin/sh
 
-videos_dir=${XDG_VIDEOS_DIR:-"$HOME/Videos"}
-file="$videos_dir/$(date +%s).mp4"
+__help="Usage: ${0##*/} [-h|--help] [-s|--select] [-v|--voice] [-o|--output FILE]
+
+Take a screencast.
+
+    -h, --help           display this help and exit
+    -o, --output FILE    the name of the output file
+    -s, --select         select an area of the screen to take a screencast of
+    -v, --voice          record "
+
+unset output
+unset select
+unset voice
+
+check_argument() { [ -z "$2" ] && { echo "Error: flag $1 requires an argument." && exit 1; } }
+
+while [ ! $# -eq 0 ]; do
+  case "$1" in
+    -h | --help)
+      echo "$__help"
+      exit 0
+      ;;
+    -s | --select)
+      select=1
+      ;;
+    -v | --voice)
+      voice=1
+      ;;
+    -o | --output)
+      check_argument "$@"
+      output=$2
+      shift
+      ;;
+    *)
+      break;
+      ;;
+  esac
+  shift
+done
+
+[ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
+
+output=${output:-${XDG_VIDEOS_DIR:-"$HOME/Videos"}/$(date +%s).mp4}
 
 if pgrep --exact ffmpeg; then
   pkill --exact -INT ffmpeg
@@ -9,16 +49,17 @@ if pgrep --exact ffmpeg; then
   exit 0
 fi
 
-if [ "$1" = '-s' ]; then
+if [ -z $select ]; then
+  # Record entire desktop.
+  dimensions=$(xdpyinfo | awk '/dimensions/{print $2}')
+  offset="0,0"
+  notify-send --urgency=low 'Started video recording (desktop)'
+else
   # Record area.
   slop=$(slop --format '%wx%h %x,%y') || exit 1
   dimensions=$(echo "$slop" | cut --delimiter=' ' --fields=1)
   offset=$(echo "$slop" | cut --delimiter=' ' --fields=2)
   notify-send --urgency=low 'Started video recording (area)'
-  ffmpeg -f x11grab -s "$dimensions" -i :0.0+"$offset" -f alsa -i pulse "$file"
-else
-  # Record entire desktop.
-  dimensions=$(xdpyinfo | awk '/dimensions/{print $2}')
-  notify-send --urgency=low 'Started video recording (desktop)'
-  ffmpeg -f x11grab -s "$dimensions" -i :0.0 -f alsa -i pulse "$file"
 fi
+
+ffmpeg -f x11grab -s "$dimensions" -i :0.0+"$offset" -f pulse -i 2 "$output"

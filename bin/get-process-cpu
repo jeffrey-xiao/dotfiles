@@ -1,4 +1,0 @@
-#!/bin/sh
-
-count=${1:-10}
-ps aux --sort '%cpu' | awk '{print $2, $3, $11}' | tail -n "$count" | tac

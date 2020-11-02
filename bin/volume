@@ -1,31 +1,70 @@
 #!/bin/sh
 
+__help="Usage: ${0##*/} [-h|--help] [inc PERCENT|dec PERCENT|set PERCENT|status]
+
+Increase, decrease, toggle, or set the volume. If no subcommand is supplied,
+then status is run by default.
+
+    -h, --help     display this help and exit
+    inc PERCENT    increase the volume by a percent
+    dec PERCENT    decrease the volume by a percent
+    set PERCENT    set the volume to a percent
+    toggle         toggle the volume mute state
+    status         print the current brightness"
+
+check_no_positionals() { [ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; } }
+
 amixer_info=$(amixer sget Master)
 left=$(echo "$amixer_info" | grep 'Left:' | awk --field-separator='[][]' '{ print $2 }')
+left=${left%\%}
 right=$(echo "$amixer_info" | grep 'Right:' | awk --field-separator='[][]' '{ print $2 }')
+right=${right%\%}
 
-[ -z "$1" ] && {
-  if echo "$amixer_info" | grep --silent '[on]'; then
-    echo "$(echo "p = (${left%\%} + ${right%\%}) / 200 * 100; scale = 0; p / 1" | bc --mathlib)%"
+sub_status() {
+  check_no_positionals "$@"
+  volume=$(((left + right) * 100 / 200))
+  if echo "$amixer_info" | grep --silent '\[on\]'; then
+    echo "$volume%"
   else
-    echo 'muted'
+    echo "$volume% muted"
   fi
-  exit 0
 }
 
-if [ "$1" = '-r' ]; then
-  [ -z "$2" ] && { echo 'Error: Argument 2 must be relative change in volume.' && exit 1; }
-  if [ "$2" -lt 0 ]; then
-    amixer -D pulse set Master "${2#-}%-" 1>/dev/null
-  else
-    amixer -D pulse set Master "${2#+}%+" 1>/dev/null
-  fi
-elif [ "$1" = '-a' ]; then
-  [ -z "$2" ] && { echo 'Error: Argument 2 must be absolute percentage in volume.' && exit 1; }
-  amixer -D pulse set Master "$2%" 1>/dev/null
-elif [ "$1" = '-t' ]; then
+sub_inc() {
+  [ -z "$1" ] && { echo "Error: subcommand inc requires PERCENT." && exit 1; }
+  delta="$1"
+  shift
+  check_no_positionals "$@"
+
+  amixer -D pulse set Master "${delta#+}%+" 1>/dev/null
+}
+
+sub_dec() {
+  [ -z "$1" ] && { echo "Error: subcommand inc requires PERCENT." && exit 1; }
+  delta="$1"
+  shift
+  check_no_positionals "$@"
+
+  amixer -D pulse set Master "${delta#-}%-" 1>/dev/null
+}
+
+sub_set() {
+  [ -z "$1" ] && { echo "Error: subcommand set requires PERCENT." && exit 1; }
+  percent="$1"
+  shift
+  check_no_positionals "$@"
+
+  amixer -D pulse set Master "$percent%" 1>/dev/null
+}
+
+sub_toggle() {
+  check_no_positionals "$@"
   amixer -D pulse set Master 0+ toggle 1>/dev/null
-else
-  echo 'Error: Argument 1 must be '-r', '-a', or '-t'.'
-  exit 1
-fi
+}
+
+sub="$1"
+[ "$sub" = '-h' ] || [ "$sub" = '--help' ] && { echo "$__help" && exit 0; }
+[ -z "$sub" ] && { sub_status "$@" && exit 0; }
+[ "$(command -v "sub_$sub")" ] || { printf "Error: unknown subcommand: %s.\\n\\n%s\\n" "$sub" "$__help" && exit 1; }
+shift
+"sub_$sub" "$@"

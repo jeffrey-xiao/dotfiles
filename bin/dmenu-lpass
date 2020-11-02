@@ -1,10 +1,45 @@
 #!/bin/sh
 
+__help="Usage: ${0##*/} [-h|--help] [-a|--account ACCOUNT]
+
+Display a dmenu for accounts stored in LastPass. The account is specified by
+the LPASS_EMAIL environment variable or the [-a|--account] flag in increasing
+order of priority.
+
+    -h, --help               display this help and exit
+    -a, --account ACCOUNT    the lpass account"
+
+unset lpass_email
+
+check_argument() { [ -z "$2" ] && { echo "Error: flag $1 requires an argument." && exit 1; } }
+
+while [ ! $# -eq 0 ]; do
+  case "$1" in
+    -h | --help)
+      echo "$__help"
+      exit 0
+      ;;
+    -a | --account)
+      check_argument "$@"
+      lpass_email=$2
+      shift
+      ;;
+    *)
+      break;
+      ;;
+  esac
+  shift
+done
+
+[ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
+
+lpass_email=${lpass_email:-${LPASS_EMAIL}}
+
 dmenu_cmd() {
   rofi -i -fuzzy -dmenu -p "$1"
 }
 
-lpass status || lpass login "$LPASS_EMAIL"
+lpass status || lpass login "$lpass_email"
 selected_account=$(lpass ls --format '%aN' | dmenu_cmd 'lpass')
 [ -z "$selected_account" ] && exit
 lpass show --clip --password "$selected_account"

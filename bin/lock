@@ -1,5 +1,32 @@
 #!/bin/sh
 
+__help="Usage: ${0##*/} [-h|--help] [-s|--suspend]
+
+Lock the screen using i3lock.
+
+    -h, --help       display this help and exit
+    -s, --suspend    suspend after locking the screen"
+
+unset suspend
+
+while [ ! $# -eq 0 ]; do
+  case "$1" in
+    -h | --help)
+      echo "$__help"
+      exit 0
+      ;;
+    -s | --suspend)
+      suspend=1
+      ;;
+    *)
+      break
+      ;;
+  esac
+  shift
+done
+
+[ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
+
 lock_file="${XDG_CONFIG_HOME:-"$HOME/.config"}/bspwm/images/lock.png"
 
 img_path() {
@@ -40,6 +67,9 @@ for dimensions in $sr; do
 done
 
 trap 'rm -f "$(img_path $index)"' EXIT
-i3lock -e -u -i "$(img_path $index)" && systemctl suspend
+i3lock -e -u -i "$(img_path $index)"
+if [ ! -z $suspend ]; then
+  systemctl suspend
+fi
 /bin/rm -f "$(img_path $index)"
 trap - EXIT

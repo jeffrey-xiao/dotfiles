@@ -1,3 +1,0 @@
-#!/bin/sh
-
-ip -family inet addr show "$(get-wired-interface)" | grep --extended-regexp --only-matching 'inet ([0-9]*\.){3}[0-9]*' | grep --extended-regexp --only-matching '([0-9]*\.){3}[0-9]*'

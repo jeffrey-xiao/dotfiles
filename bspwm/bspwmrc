@@ -22,7 +22,7 @@ bspc config remove_disabled_monitors true
 bspc config remove_unplugged_monitors true
 
 # Color configuration.
-. ~/.local/bin/xrdb-export-colors
+eval "$(xrdb-export-colors)"
 bspc config active_border_color "$COLOR_0"
 bspc config focused_border_color "$COLOR_3"
 bspc config normal_border_color "$COLOR_0"
@@ -37,28 +37,27 @@ bspc rule --add mpv desktop=9
 
 # Appearance and notifications startup applications.
 xsetroot -cursor_name left_ptr
-init-daemon compton "compton --config ~/.config/compton/compton.conf" &
-init-daemon -r dunst "dunst --config ~/.config/dunst/dunstrc" &
-init-daemon notify-battery &
-init-daemon robar "robar start" &
+init-daemon --process compton --script "compton --config ~/.config/compton/compton.conf" &
+init-daemon --process dunst --script "dunst --config ~/.config/dunst/dunstrc" --restart &
+init-daemon --process notify-battery &
+init-daemon --process robar --script "robar start" &
 
 # Tray applets.
-init-daemon blueman-applet &
-init-daemon nm-applet &
-init-daemon redshift-gtk &
+init-daemon --process blueman-applet &
+init-daemon --process nm-applet &
+init-daemon --process redshift-gtk &
 
 # Hotkey daemon.
-init-daemon sxhkd &
+init-daemon --process sxhkd &
 
 # Urxvtd daemon.
-init-daemon urxvtd "urxvtd --quiet --fork --opendisplay"
+init-daemon --process urxvtd --script "urxvtd --quiet --fork --opendisplay"
 
 # Mpd.
-init-daemon mpd
+init-daemon --process mpd
 
 # Initialize fonts.
-init-fonts
+xset +fp "$HOME/.local/share/fonts" && xset fp rehash
 
-# Initialize displays.
-init-displays
-bspwm-distribute-desktops
+# Initialize monitors.
+init-monitors

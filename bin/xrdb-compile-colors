@@ -1,16 +1,59 @@
 #!/bin/sh
 
-[ ! -f "$1" ] && { echo 'Error: Argument 1 must be template file.' && exit 1; }
-[ -z "$2" ] && { echo 'Error: Argument 2 must be the destination location.' && exit 1; }
+__help="Usage: ${0##*/} [-h|--help] [-t|--template FILE] [-d|--destination FILE] [-x|--xresources FILE]
 
-# Copy template to destination.
-cp -f "$1" "$2"
+Read the colors from Xresources to compile a template file. Each variable
+specified by {colorX} where X is an integer between 0 and 15, inclusive,
+will be replaced with the corresponding color in Xresources.
 
-# Load ~/.Xresources.
-xrdb "$HOME/.Xresources"
+    -h, --help                display this help and exit
+    -t, --template FILE       the template file to compile
+    -d, --destination FILE    the destination of the compiled file
+    -x, --xresources FILE     the Xresources file to read from
+                              (default: \$HOME/.Xresources)"
 
-# Query and substitute colors.
+unset template
+unset destination
+unset xresources
+
+check_argument() { [ -z "$2" ] && { echo "Error: flag $1 requires an argument." && exit 1; } }
+
+while [ ! $# -eq 0 ]; do
+  case "$1" in
+    -h | --help)
+      echo "$__help"
+      exit 0
+      ;;
+    -t | --template)
+      check_argument "$@"
+      template=$2
+      shift
+      ;;
+    -d | --destination)
+      check_argument "$@"
+      destination=$2
+      shift
+      ;;
+    -x | --xresources)
+      check_argument "$@"
+      xresources=$2
+      shift
+      ;;
+    *)
+      break
+      ;;
+  esac
+  shift
+done
+
+[ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
+[ ! -f "$template" ] && { echo 'TEMPLATE must be a file.' && exit 1; }
+
+xresources=${xresources:-${HOME}/.Xresources}
+
+cp -f "$template" "$destination"
+xrdb "$xresources"
 for i in $(seq 0 15); do
   color=$(xrdb -query -cpp g++ | awk '/.color'"$i":'/ { print $2; }')
-  sed --in-place "s/{color${i}}/${color}/g" "$2"
+  sed --in-place "s/{color${i}}/${color}/g" "$destination"
 done

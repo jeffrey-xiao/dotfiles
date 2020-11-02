@@ -46,7 +46,7 @@ group2.seeding.ratio.upload.set=20M
 method.set_key = event.download.finished,move_complete,"d.directory.set=$d.custom1=; execute=mv,-n,$d.base_path=,$d.custom1="
 
 # Send notification when download is done.
-method.set_key = event.download.finished,notify_finished,"execute2=notify-rtorrent,$d.name="
+method.set_key = event.download.finished,notify_finished,"execute2=notify-send,--urgency=critical,rTorrent:\\ Download\\ Finished,$d.name="
 
 port_range = 33101-33199
 port_random = yes

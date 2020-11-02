@@ -1,5 +1,26 @@
 #!/bin/sh
 
+__help="Usage: ${0##*/} [-h|--help]
+
+Send a notification via notify-send when the battery level is too low.
+
+    -h, --help    display this help and exit"
+
+while [ ! $# -eq 0 ]; do
+  case "$1" in
+    -h | --help)
+      echo "$__help"
+      exit 0
+      ;;
+    *)
+      break;
+      ;;
+  esac
+  shift
+done
+
+[ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
+
 battery='BAT0'
 
 while true; do

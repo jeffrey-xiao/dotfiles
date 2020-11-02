@@ -61,7 +61,7 @@ super + x
 
 # Lock screen.
 super + shift + x
-  lock
+  lock --suspend
 
 # Preselect splitting area for next window.
 super + ctrl + {h,j,k,l}
@@ -129,14 +129,14 @@ shift + alt + Print
 
 # Audio hotkeys.
 XF86Audio{Raise,Lower}Volume
-  volume {-r +5,-r -5} && robar-volume
+  volume {inc 5,dec 5} && robar-volume
 
 XF86AudioMute
-  volume -t && robar-volume
+  volume toggle && robar-volume
 
 # Screen brightness hotkeys.
 XF86MonBrightness{Up,Down}
-  sudo brightness -r {+50,-50} && robar-brightness
+  sudo brightness {inc 5,dec 5} && robar-brightness
 
 # Touchpad controls.
 XF86TouchpadToggle

@@ -1,6 +1,39 @@
 #!/bin/sh
 
-music_dir=${XDG_MUSIC_DIR:-"$HOME/Music"}
+__help="Usage: ${0##*/} [-h|--help]
+
+Print the album cover of the current song being played by mpd. The cover art
+must be in the folder that the song file is located in.
+
+    -h, --help         display this help and exit
+    --music-dir DIR    mpd music directory
+                       (default: \$XDG_MUSIC_DIR)"
+
+unset music_dir
+
+check_argument() { [ -z "$2" ] && { echo "Error: flag $1 requires an argument." && exit 1; } }
+
+while [ ! $# -eq 0 ]; do
+  case "$1" in
+    -h | --help)
+      echo "$__help"
+      exit 0
+      ;;
+    --music-dir)
+      check_argument "$@"
+      music_dir="$2"
+      shift
+      ;;
+    *)
+      break;
+      ;;
+  esac
+  shift
+done
+
+[ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
+
+music_dir=${music_dir:-${XDG_MUSIC_DIR:-"$HOME/Music"}}
 
 update_background() {
   album="$(mpc --format %album% current)"
@@ -21,7 +54,15 @@ update_background() {
   fi
 }
 
+cleanly_exit() {
+  printf '\e]20;;100x100+1000+1000\a'
+  tput cnorm
+  stty echo
+  exit 0
+}
+
 trap 'update_background' USR1
+trap 'cleanly_exit' INT
 update_background
 clear
 tput civis

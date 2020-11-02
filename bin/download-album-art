@@ -1,14 +1,66 @@
 #!/bin/sh
 
-[ -z "$1" ] && { echo 'Error: Argument 1 must be an album name.' && exit 1; }
-album="$1"
-[ -z "$2" ] && { echo 'Error: Argument 2 must be an artist name.' && exit 1; }
-artist="$2"
-output_file="${3:-Cover.jpg}"
-api_endpoint='https://ws.audioscrobbler.com/2.0/?method=album.search'
+__help="Usage: ${0##*/} [-h|--help] [-o|--output FILE] [--artist ARTIST] [--album ALBUM]
 
-resp=$(curl --silent --get "$api_endpoint" --data-urlencode 'format=json' --data-urlencode "api_key=$LAST_FM_KEY" --data-urlencode "album=$album")
+Download an album cover using Last.fm's Audioscrobbler.
+
+    -h, --help           display this help and exit
+    -o, --output FILE    the name of the output file
+                         (default: Cover.jpg)
+    --artist ARTIST      the name of the album artist
+    --album ALBUM        the name of the album
+    --api-key API_KEY    Last.fm API key
+                         (default: \$LAST_FM_KEY)"
+
+unset output
+unset artist
+unset album
+unset api_key
+
+check_argument() { [ -z "$2" ] && { echo "Error: flag $1 requires an argument." && exit 1; } }
+
+while [ ! $# -eq 0 ]; do
+  case "$1" in
+    -h | --help)
+      echo "$__help"
+      exit 0
+      ;;
+    -o | --output)
+      check_argument "$@"
+      output=$2
+      shift
+      ;;
+    --artist)
+      check_argument "$@"
+      artist=$2
+      shift
+      ;;
+    --album)
+      check_argument "$@"
+      album=$2
+      shift
+      ;;
+    --api-key)
+      check_argument "$@"
+      api_key=$2
+      shift
+      ;;
+    *)
+      break;
+      ;;
+  esac
+  shift
+done
+
+[ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
+[ -z "$artist" ] || [ -z "$album" ] && { echo "Error: must specify both ARTIST and ALBUM." && exit 1; }
+
+output="${output:-Cover.jpg}"
+api_endpoint='https://ws.audioscrobbler.com/2.0/?method=album.search'
+api_key=${api_key:-$LAST_FM_KEY}
+
+resp=$(curl --silent --get "$api_endpoint" --data-urlencode 'format=json' --data-urlencode "api_key=$api_key" --data-urlencode "album=$album")
 image_url=$(echo "$resp" | jq --raw-output ".results.albummatches.album[] | select(.artist == \"$artist\").image[-1][\"#text\"]")
 
-[ -z "$image_url" ] && { echo 'Error: Failed to find image.' && exit 1; }
-wget --quiet "$image_url" --output-document="$output_file"
+[ -z "$image_url" ] && { echo 'Error: failed to find image.' && exit 1; }
+wget --quiet "$image_url" --output-document="$output"

@@ -1,11 +1,31 @@
 #!/bin/sh
 
-amixer_info=$(amixer sget Master)
-left=$(echo "$amixer_info" | grep 'Left:' | awk --field-separator='[][]' '{ print $2 }')
-right=$(echo "$amixer_info" | grep 'Right:' | awk --field-separator='[][]' '{ print $2 }')
+__help="Usage: ${0##*/} [-h|--help]
 
-if echo "$amixer_info" | grep --fixed-strings --silent '[on]'; then
-  robar show default "$(echo "(${left%\%} + ${right%\%}) / 200" | bc --mathlib)"
+Display the current volume from amixer using robar.
+
+    -h, --help    display this help and exit"
+
+while [ ! $# -eq 0 ]; do
+  case "$1" in
+    -h | --help)
+      echo "$__help"
+      exit 0
+      ;;
+    *)
+      break;
+      ;;
+  esac
+  shift
+done
+
+[ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
+
+volume=$(volume)
+if echo "$volume" | grep --fixed-strings --silent 'muted'; then
+  value=$(echo "${volume%\%}" | awk '{printf "%.2f\n", $1 / 100}')
+  robar show mute "$value"
 else
-  robar show mute "$(echo "(${left%\%} + ${right%\%}) / 200" | bc --mathlib)"
+  value=$(echo "${volume%\% muted}" | awk '{printf "%.2f\n", $1 / 100}')
+  robar show default "$value"
 fi

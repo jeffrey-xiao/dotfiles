@@ -1,5 +1,26 @@
 #!/bin/sh
 
+__help="Usage: ${0##*/} [-h|--help]
+
+Initialize monitors.
+
+    -h, --help    display this help and exit"
+
+while [ ! $# -eq 0 ]; do
+  case "$1" in
+    -h | --help)
+      echo "$__help"
+      exit 0
+      ;;
+    *)
+      break;
+      ;;
+  esac
+  shift
+done
+
+[ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
+
 xrandr_output="$(xrandr)"
 connected_monitors=$(echo "$xrandr_output" | grep '\bconnected\b' | cut --delimiter=' ' --fields=1)
 disconnected_monitors=$(echo "$xrandr_output" | grep '\bdisconnected\b' | cut --delimiter=' ' --fields=1)
@@ -11,7 +32,7 @@ check_connected() {
 if check_connected 'DP-1'; then
   xrandr --output eDP-1 --mode 1600x900 --output DP-1 --auto --left-of eDP-1
 elif check_connected 'HDMI-1'; then
-  xrandr --output eDP-1 --mode 1600x900 --output HDMI-1 --auto --left-of eDP-1
+  xrandr --output eDP-1 --mode 1600x900 --output HDMI-1 --mode 1920x1080 --auto --left-of eDP-1
 else
   xrandr --output eDP-1 --mode 1920x1080
 fi
@@ -20,5 +41,4 @@ for disconnected_monitor in $disconnected_monitors; do
   xrandr --output "$disconnected_monitor" --off
 done
 
-init-polybar
-init-background
+init-desktop

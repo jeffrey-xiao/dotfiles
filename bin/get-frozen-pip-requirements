@@ -1,7 +1,37 @@
 #!/bin/sh
 
+__help="Usage: ${0##*/} [-h|--help] [-r|--requirements FILE]
+
+Prints the frozen pip requirements of a requirements file.
+
+    -h, --help                 display this help and exit
+    -r, --requirements FILE    the requirements file for pip"
+
+unset requirements_file
+
+check_argument() { [ -z "$2" ] && { echo "Error: flag $1 requires an argument." && exit 1; } }
+
+while [ ! $# -eq 0 ]; do
+  case "$1" in
+    -h | --help)
+      echo "$__help"
+      exit 0
+      ;;
+    -r | --requirements)
+      check_argument "$@"
+      requirements_file=$2
+      shift
+      ;;
+    *)
+      break
+      ;;
+  esac
+  shift
+done
+
+[ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
 [ ! -x "$(command -v virtualenv)" ] && { echo 'Error: virtualenv is not installed.' && exit 1; }
-[ ! -f "$1" ] && { echo 'Error: Argument 1 must be requirements file.' && exit 1; }
+[ ! -f "$requirements_file" ] && { echo 'Error: FILE must be requirements file.' && exit 1; }
 
 tmp=$(mktemp --directory -t venv.XXXXXXXXXX) || exit 1
 trap 'rm -rf "$tmp"' EXIT

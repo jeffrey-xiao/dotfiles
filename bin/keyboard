@@ -1,0 +1,40 @@
+#!/bin/sh
+
+__help="Usage: ${0##*/} [-h|--help] [on|off|toggle]
+
+Manipulate the built-in keyboard.
+
+    -h, --help    display this help and exit
+    on            enable the built-in keyboard
+    off           disable the built-in keyboard
+    toggle        toggle the built-in keyboard"
+
+
+id=$(xinput | grep --extended-regexp --ignore-case --only-matching 'AT Translated Set 2 keyboard\s*id=[0-9]{1,2}' | grep --perl-regexp --only-matching 'id=\K([0-9]{1,2})')
+state=$(xinput list-props "$id" | grep 'Device Enabled' | awk '{print $4}')
+
+sub_on() {
+  xinput enable "$id"
+  notify-send --urgency=normal 'Keyboard: Enabled'
+}
+
+sub_off() {
+  xinput disable "$id"
+  notify-send --urgency=normal 'Keyboard: Disabled'
+}
+
+sub_toggle() {
+  if [ "$state" -eq 1 ]; then
+    sub_off
+  else
+    sub_on
+  fi
+}
+
+sub="$1"
+[ "$sub" = '-h' ] || [ "$sub" = '--help' ] && { echo "$__help" && exit 0; }
+[ -z "$sub" ] && { printf "Error: missing subcommand.\\n\\n%s\\n" "$__help" && exit 0; }
+[ "$(command -v "sub_$sub")" ] || { printf "Error: unknown subcommand: %s.\\n\\n%s\\n" "$sub" "$__help" && exit 1; }
+shift
+[ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
+"sub_$sub"

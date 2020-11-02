@@ -88,15 +88,11 @@ the exception of the colors in `dircolors`, `ranger`, and `weechat`.
 - [`bin/init-displays`](bin/init-displays): Change the monitor setup.
 - [`bin/notify-battery`](bin/notify-battery): Change the path to the system internals interface for
   the power supply device.
-- [`bin/robar-brightness`](bin/robar-brightness): Change the path to the system internals interface
-  for the backlight device.
 - [`bin/robar-brightness-server`](bin/robar-brightness-server): Change the path to the system
   internals interface for the backlight device.
 - [`bin/set-keyboard`](bin/set-keyboard): Change the keyboard device name.
 - [`bin/set-touchpad`](bin/set-touchpad): Change the touchpad device name.
 - [`git/config`](git/config): Change the username and email.
-- [`misc/redshift.conf`](misc/redshift.conf): Change the location.
-- [`mpd/mpd.conf`](mpd/mpd.conf): Change the user.
 - [`polybar/config`](polybar/config): Change the adapter and battery name, and wired and WiFi
   interfaces.
 - [`weechat/irc.conf`](weechat/irc.conf): Change the username and nicks.

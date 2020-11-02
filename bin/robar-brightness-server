@@ -1,5 +1,27 @@
 #!/bin/sh
 
+__help="Usage: ${0##*/} [-h|--help]
+
+Display the screen brightness using robar when the ACPI sysfs directory for
+screen brightness changes.
+
+    -h, --help    display this help and exit"
+
+while [ ! $# -eq 0 ]; do
+  case "$1" in
+    -h | --help)
+      echo "$__help"
+      exit 0
+      ;;
+    *)
+      break;
+      ;;
+  esac
+  shift
+done
+
+[ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
+
 inotifywait --quiet --monitor --event close_write /sys/class/backlight/intel_backlight/brightness | while read -r; do
   robar-brightness
 done

@@ -1,3 +1,0 @@
-#!/bin/sh
-
-ip link | grep --only-matching 'wlp\w*'

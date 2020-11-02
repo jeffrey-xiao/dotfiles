@@ -1,11 +1,45 @@
 #!/bin/sh
 
+__help="Usage: ${0##*/} [-h|--help] [-x|--xresources FILE]
+
+Output commands to set COLOR_X environment variables where X is an integer
+between 0 and 15, inclusive, using the corresponding color in Xresources.
+
+    -h, --help                display this help and exit
+    -x, --xresources FILE     the Xresources file to read from
+                              (default: \$HOME/.Xresources)"
+
+unset xresources
+
+check_argument() { [ -z "$2" ] && { echo "Error: flag $1 requires an argument." && exit 1; } }
+
+while [ ! $# -eq 0 ]; do
+  case "$1" in
+    -h | --help)
+      echo "$__help"
+      exit 0
+      ;;
+    -x | --xresources)
+      check_argument "$@"
+      xresources=$2
+      shift
+      ;;
+    *)
+      break
+      ;;
+  esac
+  shift
+done
+
+[ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
+
+xresources=${xresources:-${HOME}/.Xresources}
+
 # Load ~/.Xresources.
 xrdb "$HOME/.Xresources"
 
 # Query and substitute colors.
 for i in $(seq 0 15); do
   color=$(xrdb -query -cpp g++ | awk '/.color'"$i":'/ { print $2; }')
-  export COLOR_"${i}"="${color}"
-  unset color
+  echo "export COLOR_$i=$color"
 done

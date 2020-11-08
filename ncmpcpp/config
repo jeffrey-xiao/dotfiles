@@ -5,18 +5,16 @@ lyrics_directory = ~/.config/ncmpcpp/lyrics
 # Connection settings.
 mpd_host = /tmp/mpd
 mpd_port = 6600
-mpd_connection_timeout = 5
-
-# Needed for tag editor and file operations to work.
 mpd_music_dir = ~/Music
+mpd_connection_timeout = 5
 mpd_crossfade_time = 5
 
 # Music visualizer options.
 visualizer_fifo_path = /tmp/mpd-visualizer
-visualizer_output_name = "Visualizer feed"
+visualizer_output_name = "mpd-visualizer"
 visualizer_in_stereo = yes
 visualizer_type = spectrum
-visualizer_look = ●▮
+visualizer_look = ●│
 visualizer_color = 7
 
 # Highlighting always on.
@@ -60,6 +58,13 @@ search_engine_default_search_mode = 1
 external_editor = vim
 use_console_editor = yes
 
+# Tag settings.
+empty_tag_marker = ""
+tags_separator = " | "
+tag_editor_extended_numeration = no
+default_tag_editor_pattern = %n - %t
+media_library_primary_tag = artist
+
 # Color settings.
 colors_enabled = yes
 empty_tag_color = 7
@@ -79,13 +84,6 @@ color2 = 7
 statusbar_color = 7
 active_window_border = 2
 window_border_color = 2
-
-# Tag settings.
-empty_tag_marker = ""
-tags_separator = " | "
-tag_editor_extended_numeration = no
-default_tag_editor_pattern = %n - %t
-media_library_primary_tag = artist
 
 # UI settings.
 discard_colors_if_item_is_selected = yes

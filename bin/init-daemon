@@ -1,14 +1,15 @@
 #!/bin/sh
 
-__help="Usage: ${0##*/} [-h|--help] [-p|-process] [-s|--script] [-r|--restart]
+__help="Usage: ${0##*/} [OPTIONS]
 
 Start a daemon.
 
-    -h, --help               display this help and exit
-    -p, --process PROCESS    name of the daemon process
-    -s, --script SCRIPT      script to start the process
-                             (default: PROCESS)
-    -r, --restart            kill existing processes before starting"
+Options:
+  -h, --help               display this help and exit
+  -p, --process PROCESS    name of the daemon process
+  -s, --script SCRIPT      script to start the process
+                           (default: PROCESS)
+  -r, --restart            kill existing processes before starting"
 
 unset process
 unset script

@@ -1,16 +1,19 @@
 #!/bin/sh
 
-__help="Usage: ${0##*/} [-h|--help] [-o|--output FILE] [--artist ARTIST] [--album ALBUM]
+__help="Usage: ${0##*/} [OPTIONS]
 
-Download an album cover using Last.fm's Audioscrobbler.
+Download an album cover using Last.fm's Audioscrobbler. The default output file
+is Cover.jpg and the default Last.fm API key to use is specified the
+LAST_FM_KEY environment variable.
 
-    -h, --help           display this help and exit
-    -o, --output FILE    the name of the output file
-                         (default: Cover.jpg)
-    --artist ARTIST      the name of the album artist
-    --album ALBUM        the name of the album
-    --api-key API_KEY    Last.fm API key
-                         (default: \$LAST_FM_KEY)"
+Options:
+  -h, --help           display this help and exit
+  -o, --output FILE    the name of the output file
+                       (default: Cover.jpg)
+  --artist ARTIST      the name of the album artist
+  --album ALBUM        the name of the album
+  --api-key API_KEY    Last.fm API key
+                       (default: \$LAST_FM_KEY)"
 
 unset output
 unset artist

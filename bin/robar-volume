@@ -1,10 +1,11 @@
 #!/bin/sh
 
-__help="Usage: ${0##*/} [-h|--help]
+__help="Usage: ${0##*/} [OPTIONS]
 
 Display the current volume from amixer using robar.
 
-    -h, --help    display this help and exit"
+Options:
+  -h, --help    display this help and exit"
 
 while [ ! $# -eq 0 ]; do
   case "$1" in

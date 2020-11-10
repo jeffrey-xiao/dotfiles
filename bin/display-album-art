@@ -1,13 +1,15 @@
 #!/bin/sh
 
-__help="Usage: ${0##*/} [-h|--help]
+__help="Usage: ${0##*/} [OPTIONS]
 
 Print the album cover of the current song being played by mpd. The cover art
-must be in the folder that the song file is located in.
+must be in the folder that the song file is located in. The default mpd music
+directory to search in is specified by the XDG_MUSIC_DIR environment variable.
 
-    -h, --help         display this help and exit
-    --music-dir DIR    mpd music directory
-                       (default: \$XDG_MUSIC_DIR)"
+Options:
+  -h, --help         display this help and exit
+  --music-dir DIR    mpd music directory
+                     (default: \$XDG_MUSIC_DIR)"
 
 unset music_dir
 

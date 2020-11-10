@@ -1,15 +1,18 @@
 #!/bin/sh
 
-__help="Usage: ${0##*/} [-h|--help] [inc PERCENT|dec PERCENT|set PERCENT|status]
+__help="Usage: ${0##*/} [OPTIONS] [SUBCOMMAND]
 
 Increase, decrease, or set the screen brightness. If no subcommand is supplied,
 then status is run by default.
 
-    -h, --help     display this help and exit
-    inc PERCENT    increase the brightness by a percent
-    dec PERCENT    decrease the brightness by a percent
-    set PERCENT    set the brightness to a percent
-    status         print the current brightness"
+Options:
+  -h, --help     display this help and exit
+
+Subcommands:
+  inc PERCENT    increase the brightness by a percent
+  dec PERCENT    decrease the brightness by a percent
+  set PERCENT    set the brightness to a percent
+  status         print the current brightness"
 
 check_no_positionals() { [ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; } }
 

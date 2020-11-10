@@ -1,12 +1,15 @@
 #!/bin/sh
 
-__help="Usage: ${0##*/} [-h|--help] FILES
+__help="Usage: ${0##*/} [OPTIONS] FILES
 
 Converts the paths in a list of tag files from absolute paths to relative
 paths.
 
-    -h, --help    display this help and exit
-    FILES         a list of files to convert"
+Options:
+  -h, --help    display this help and exit
+
+Positional arguments:
+  FILES         a list of files to convert"
 
 while [ ! $# -eq 0 ]; do
   case "$1" in

@@ -1,13 +1,18 @@
 #!/usr/bin/env bash
 
-__help="Usage: ${0##*/} [-h|--help] LINKS
+__help="Usage: ${0##*/} [OPTIONS] LINKS
 
-Converts a list of magnet links to torrent files.
+Converts a list of magnet links to torrent files. The default directory to
+output torrent files to is specified by the XDG_DOWNLOAD_DIR environment
+variable.
 
-    -h, --help            display this help and exit
-    --download-dir DIR    download directory to write torrent files
-                          (default: \$XDG_DOWNLOAD_DIR)
-    LINKS                 a list of magnet links to convert"
+Options:
+  -h, --help            display this help and exit
+  --download-dir DIR    download directory to write torrent files
+                        (default: \$XDG_DOWNLOAD_DIR)
+
+Positional Arguments:
+  LINKS                 a list of magnet links to convert"
 
 while [ ! $# -eq 0 ]; do
   case "$1" in

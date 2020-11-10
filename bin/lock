@@ -1,11 +1,12 @@
 #!/bin/sh
 
-__help="Usage: ${0##*/} [-h|--help] [-s|--suspend]
+__help="Usage: ${0##*/} [OPTIONS]
 
 Lock the screen using i3lock.
 
-    -h, --help       display this help and exit
-    -s, --suspend    suspend after locking the screen"
+Options:
+  -h, --help       display this help and exit
+  -s, --suspend    suspend after locking the screen"
 
 unset suspend
 

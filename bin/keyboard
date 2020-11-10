@@ -1,13 +1,16 @@
 #!/bin/sh
 
-__help="Usage: ${0##*/} [-h|--help] [on|off|toggle]
+__help="Usage: ${0##*/} [OPTIONS] SUBCOMMAND
 
 Manipulate the built-in keyboard.
 
-    -h, --help    display this help and exit
-    on            enable the built-in keyboard
-    off           disable the built-in keyboard
-    toggle        toggle the built-in keyboard"
+Options:
+  -h, --help    display this help and exit
+
+Subcommands:
+  on            enable the built-in keyboard
+  off           disable the built-in keyboard
+  toggle        toggle the built-in keyboard"
 
 
 id=$(xinput | grep --extended-regexp --ignore-case --only-matching 'AT Translated Set 2 keyboard\s*id=[0-9]{1,2}' | grep --perl-regexp --only-matching 'id=\K([0-9]{1,2})')

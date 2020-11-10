@@ -1,12 +1,15 @@
 #!/bin/sh
 
-__help="Usage: ${0##*/} [-h|--help] FILES
+__help="Usage: ${0##*/} [OPTIONS] FILES
 
 Prints the BibTeX references in Markdown format. The references of each file
 will be sorted in alphabetical order of the last name of the first author.
 
-    -h, --help    display this help and exit
-    FILES         a list of files to print the references of"
+Options:
+  -h, --help    display this help and exit
+
+Positional Arguments:
+  FILES         a list of files to print the references of"
 
 while [ ! $# -eq 0 ]; do
   case "$1" in

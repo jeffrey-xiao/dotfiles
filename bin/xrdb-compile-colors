@@ -1,16 +1,18 @@
 #!/bin/sh
 
-__help="Usage: ${0##*/} [-h|--help] [-t|--template FILE] [-d|--destination FILE] [-x|--xresources FILE]
+__help="Usage: ${0##*/} [OPTIONS]
 
 Read the colors from Xresources to compile a template file. Each variable
 specified by {colorX} where X is an integer between 0 and 15, inclusive,
-will be replaced with the corresponding color in Xresources.
+will be replaced with the corresponding color in Xresources. The default
+Xresources config to use is \$HOME/.Xresources.
 
-    -h, --help                display this help and exit
-    -t, --template FILE       the template file to compile
-    -d, --destination FILE    the destination of the compiled file
-    -x, --xresources FILE     the Xresources file to read from
-                              (default: \$HOME/.Xresources)"
+Options:
+  -h, --help                display this help and exit
+  -t, --template FILE       the template file to compile
+  -d, --destination FILE    the destination of the compiled file
+  -x, --xresources FILE     the Xresources file to read from
+                            (default: \$HOME/.Xresources)"
 
 unset template
 unset destination

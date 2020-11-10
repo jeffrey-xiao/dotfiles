@@ -1,13 +1,14 @@
 #!/bin/sh
 
-__help="Usage: ${0##*/} [-h|--help] [-a|--account ACCOUNT]
+__help="Usage: ${0##*/} [OPTIONS]
 
-Display a dmenu for accounts stored in LastPass. The account is specified by
-the LPASS_EMAIL environment variable or the [-a|--account] flag in increasing
-order of priority.
+Display a dmenu for accounts stored in LastPass. The default LastPass account
+to use is specified by the LPASS_EMAIL environment variable.
 
-    -h, --help               display this help and exit
-    -a, --account ACCOUNT    the lpass account"
+Options:
+  -h, --help               display this help and exit
+  -a, --account ACCOUNT    the lpass account
+                           (default: \$LPASS_EMAIL)"
 
 unset lpass_email
 

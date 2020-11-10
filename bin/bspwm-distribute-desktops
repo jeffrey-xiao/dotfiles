@@ -1,14 +1,16 @@
 #!/bin/sh
 
-__help="Usage: ${0##*/} [-h|--help] [-d|--desktops COUNT]
+__help="Usage: ${0##*/} [OPTIONS]
 
 Evenly distribute a specified number of bwpsm desktops across all active
 monitors. If there are more active desktops than specified, than trim the extra
-ones. If there are fewer active desktops than specified, than add new ones.
+ones. If there are fewer active desktops than specified, than add new ones. The
+default number of desktops to distribute across is 10.
 
-    -h, --help              display this help and exit
-    -d, --desktops COUNT    the number of desktops to distribute
-                            (default: 10)"
+Options:
+  -h, --help              display this help and exit
+  -d, --desktops COUNT    the number of desktops to distribute
+                          (default: 10)"
 
 desktop_count=10
 

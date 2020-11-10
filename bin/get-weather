@@ -1,12 +1,15 @@
 #!/bin/sh
 
-__help="Usage: ${0##*/} [-h|--help]
+__help="Usage: ${0##*/} [OPTIONS]
 
-Display the temperature and weather conditions using OpenWeatherMap.
+Display the temperature and weather conditions using OpenWeatherMap. The
+default OpenWeatherMap API key to use is specified by the OPEN_WEATHER_MAP_KEY
+environment variable.
 
-    -h, --help           display this help and exit
-    --api-key API_KEY    OpenWeatherMap API key
-                         (default: \$OPEN_WEATHER_MAP_KEY)"
+Options:
+  -h, --help           display this help and exit
+  --api-key API_KEY    OpenWeatherMap API key
+                       (default: \$OPEN_WEATHER_MAP_KEY)"
 
 unset api_key
 

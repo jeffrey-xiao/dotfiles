@@ -1,12 +1,16 @@
 #!/bin/sh
 
-__help="Usage: ${0##*/} [-h|--help] [-l|--list-different] FILES
+__help="Usage: ${0##*/} [OPTIONS] FILES
 
 clang-format wrapper that returns a non-zero exit code if any of the provided
 files are not formatted properly. This script supports globs.
 
-    -h, --help              display this help and exit
-    -l, --list-different    print the names of the files that are not formatted"
+Options:
+  -h, --help              display this help and exit
+  -l, --list-different    print the names of the files that are not formatted
+
+Positional Arguments:
+  FILES                   a list of files to check the formatting of"
 
 unset list_different
 

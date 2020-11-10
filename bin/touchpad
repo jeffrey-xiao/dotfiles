@@ -1,13 +1,16 @@
 #!/bin/sh
 
-__help="Usage: ${0##*/} [-h|--help] SUBCOMMAND
+__help="Usage: ${0##*/} [OPTIONS] SUBCOMMAND
 
 Manipulate the touchpad.
 
-    -h, --help    display this help and exit
-    on            enable the touchpad.
-    off           disable the touchpad.
-    toggle        toggle the touchpad"
+Options:
+  -h, --help    display this help and exit
+
+Subcommands:
+  on            enable the touchpad.
+  off           disable the touchpad.
+  toggle        toggle the touchpad"
 
 
 id=$(xinput | grep --extended-regexp --ignore-case --only-matching 'SynPS/2 Synaptics TouchPad\s*id=[0-9]{1,2}' | grep --perl-regexp --only-matching 'id=\K([0-9]{1,2})')

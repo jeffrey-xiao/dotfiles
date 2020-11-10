@@ -1,12 +1,13 @@
 #!/bin/sh
 
-__help="Usage: ${0##*/} [-h|--help]
+__help="Usage: ${0##*/} [OPTIONS]
 
 Screenshot the entire desktop or an area of the desktop, and save the
 screenshot to the system clipboard.
 
-    -h, --help      display this help and exit
-    -s, --select    select an area to screenshot"
+Options:
+  -h, --help      display this help and exit
+  -s, --select    select an area to screenshot"
 
 unset select
 

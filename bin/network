@@ -1,15 +1,18 @@
 #!/bin/sh
 
-__help="Usage: ${0##*/} [-h|--help] [eth [interface|ip]|wifi [interface|ip|ssid]]
+__help="Usage: ${0##*/} [OPTIONS] SUBCOMMAND
 
 Print network information.
 
-    -h, --help        display this help and exit
-    eth interface     print Ethernet interface
-    eth ip            print Ethernet ip address
-    wifi interface    print WiFi interface
-    wifi ip           print WiFi ip address
-    wifi ssid         print WiFi SSID"
+Options:
+  -h, --help        display this help and exit
+
+Subcommands:
+  eth interface     print Ethernet interface
+  eth ip            print Ethernet ip address
+  wifi interface    print WiFi interface
+  wifi ip           print WiFi ip address
+  wifi ssid         print WiFi SSID"
 
 
 

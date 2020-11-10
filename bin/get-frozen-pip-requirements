@@ -1,11 +1,12 @@
 #!/bin/sh
 
-__help="Usage: ${0##*/} [-h|--help] [-r|--requirements FILE]
+__help="Usage: ${0##*/} [OPTIONS]
 
 Prints the frozen pip requirements of a requirements file.
 
-    -h, --help                 display this help and exit
-    -r, --requirements FILE    the requirements file for pip"
+Options:
+  -h, --help                 display this help and exit
+  -r, --requirements FILE    the requirements file for pip"
 
 unset requirements_file
 

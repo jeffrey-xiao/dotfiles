@@ -1,13 +1,14 @@
 #!/bin/sh
 
-__help="Usage: ${0##*/} [-h|--help] [-s|--select] [-v|--voice] [-o|--output FILE]
+__help="Usage: ${0##*/} [OPTIONS]
 
 Take a screencast.
 
-    -h, --help           display this help and exit
-    -o, --output FILE    the name of the output file
-    -s, --select         select an area of the screen to take a screencast of
-    -v, --voice          record "
+Options:
+  -h, --help           display this help and exit
+  -o, --output FILE    the name of the output file
+  -s, --select         select an area of the screen to take a screencast of
+  -v, --voice          record microphone instead of device audio"
 
 unset output
 unset select
@@ -62,4 +63,10 @@ else
   notify-send --urgency=low 'Started video recording (area)'
 fi
 
-ffmpeg -f x11grab -s "$dimensions" -i :0.0+"$offset" -f pulse -i 2 "$output"
+if [ -z $voice ]; then
+  input=1
+else
+  input=2
+fi
+
+ffmpeg -f x11grab -s "$dimensions" -i :0.0+"$offset" -f pulse -i $input "$output"

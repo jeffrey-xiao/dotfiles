@@ -37,7 +37,7 @@ bspc rule --add mpv desktop=9
 
 # Appearance and notifications startup applications.
 xsetroot -cursor_name left_ptr
-init-daemon --process compton --script "compton --config ~/.config/compton/compton.conf" &
+init-daemon --process picom --script "picom --config ~/.config/picom/picom.conf" &
 init-daemon --process dunst --script "dunst --config ~/.config/dunst/dunstrc" --restart &
 init-daemon --process notify-battery &
 init-daemon --process robar --script "robar start" &

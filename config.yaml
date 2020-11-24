@@ -23,11 +23,7 @@ bspwm:
     - xbacklight
     - xclip
     - xinput
-
-compton:
-  link: ~/.config/compton/
-  dependencies:
-    - compton
+    - xsetroot
 
 feh:
   link: ~/.config/feh/
@@ -41,11 +37,11 @@ fonts:
       sudo rm -f /usr/share/fonts/conf.d/70-no-bitmaps.conf &&
       sudo ln -svf /usr/share/fontconfig/conf.avail/70-yes-bitmaps.conf /usr/share/fonts/conf.d
     - >
+      mkdir ~/.local/share/fonts/ &&
       cp -u ./fonts/*.{ttf,bdf} ~/.local/share/fonts/ &&
       (cd ~/.local/share/fonts/ && mkfontdir && mkfontscale)
     - fc-cache --force --verbose
   dependencies:
-    - mkfontdir
     - mkfontscale
     - xset
 
@@ -63,13 +59,12 @@ htop:
     - htop
 
 misc:
-  link:
-    - redshift.conf: ~/.config/redshift/
+  link: []
+  prelink:
+    - cp -u ./misc/redshift.conf ~/.config/
   dependencies:
-    - cabextract
-    - p7zip
     - redshift
-    - youtube-dl
+    - yt-dlc
 
 mpd:
   link: ~/.config/mpd/
@@ -77,7 +72,7 @@ mpd:
     - mkdir -pv ~/.config/mpd/playlists/
     - touch ~/.config/mpd/database
   dependencies:
-    - mpc
+    - mpc-client
     - mpd
 
 mpv:
@@ -92,6 +87,11 @@ ncmpcpp:
   dependencies:
     - ncmpcpp
 
+picom:
+  link: ~/.config/picom/
+  dependencies:
+    - picom
+
 polybar:
   link: ~/.config/polybar/
   dependencies:
@@ -102,9 +102,10 @@ ranger:
   link: ~/.config/ranger/
   dependencies:
     - atool
-    - feh
+    - cabextract
     - highlight
     - imagemagick
+    - p7zip
     - ranger
     - w3m
 
@@ -151,14 +152,11 @@ vim:
       chmod 775 install_nvm.sh &&
       ./install_nvm.sh &&
       rm -f install_nvm.sh
-    - python3 -m pip install autopep8 flake8 pylint python-language-server yapf
+    - python3 -m pip install --user autopep8 flake8 pylint python-language-server yapf
     - sudo npm install --global eslint javascript-typescript-langserver prettier
     - >
-      curl --silent --show-error --fail https://sh.rustup.rs | sh &&
-      export PATH="$PATH:~/.cargo/bin" &&
-      rustup install nightly &&
-      rustup default nightly &&
-      rustup component add clippy rls rustfmt rust-analysis rust-src
+      curl --silent --show-error --fail https://sh.rustup.rs | sh -s -- -y --no-modify-path --default-toolchain nightly --component clippy rls rustfmt rust-analysis rust-src &&
+      rustup install stable &&
   dependencies:
     - cppcheck
     - ctags
@@ -184,3 +182,4 @@ zathura:
     - texlive-all
     - xdotool
     - zathura
+    - zathura-mupdf

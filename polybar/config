@@ -130,9 +130,7 @@ format-prefix-background = ${xrdb:color15}
 [module/wired-network]
 type = internal/network
 
-; Use following command to get wired interface.
-; $ ip addr
-interface = enp1s0
+interface = ${env:WIRED_INTERFACE}
 
 label-connected = %local_ip%
 label-connected-padding-right = 1
@@ -152,9 +150,7 @@ format-disconnected-prefix-background = ${xrdb:color15}
 [module/wireless-network]
 type = internal/network
 
-; Use following command to get wifi interface.
-; $ ip addr
-interface = wlp2s0
+interface = ${env:WIFI_INTERFACE}
 
 label-connected = %essid%
 label-connected-padding-right = 1

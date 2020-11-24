@@ -280,7 +280,7 @@ set autoread
 set autowrite
 
 " Vim info config.
-st viminfo='1000   " Remember marks for last 1000 files.
+set viminfo='1000  " Remember marks for last 1000 files.
 set viminfo+=<1000 " Remember up to 1000 lines in each register.
 set viminfo+=s1000 " Remember up to 1MB in each register.
 set viminfo+=/1000 " Remember last 1000 search patterns.

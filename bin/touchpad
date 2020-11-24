@@ -12,8 +12,7 @@ Subcommands:
   off           disable the touchpad.
   toggle        toggle the touchpad"
 
-
-id=$(xinput | grep --extended-regexp --ignore-case --only-matching 'SynPS/2 Synaptics TouchPad\s*id=[0-9]{1,2}' | grep --perl-regexp --only-matching 'id=\K([0-9]{1,2})')
+id=$(xinput | grep --extended-regexp --ignore-case --only-matching 'DELL09E2:00 04F3:30CB Touchpad\s*id=[0-9]{1,2}' | grep --perl-regexp --only-matching 'id=\K([0-9]{1,2})')
 state=$(xinput list-props "$id" | grep 'Device Enabled' | awk '{print $4}')
 
 sub_on() {

@@ -14,23 +14,23 @@ log_file="$DOTFILES_DIR/install.log"
 printf '' > "$log_file"
 
 declare -a programs=(
-  acpi blueman bspwm i3lock imagemagick jq network-manager numix-gtk-theme papirus-icon-theme rofi scrot slop sysstat xbacklight xclip xinput
-  compton
+  acpi blueman bspwm i3lock imagemagick jq network-manager numix-gtk-theme papirus-icon-theme rofi scrot slop sysstat xbacklight xclip xinput xsetroot
   dunst
   feh
-  mkfontdir mkfontscale xset
+  mkfontscale xset
   htop
-  mpc mpd
+  mpc-client mpd
   mpv
   ncmpcpp
-  cabextract p7zip redshift youtube-dl
+  picom
+  redshift yt-dlc
   font-awesome-ttf polybar
-  atool highlight imagemagick ranger w3m
+  atool cabextract highlight imagemagick p7zip ranger w3m
   rtorrent
   rxvt-unicode xrdb tmux
   cppcheck ctags curl llvm-clang nodejs pandoc pip ripgrep vim
   weechat
-  texlive-all xdotool zathura
+  texlive-all xdotool zathura zathura-mupdf
 )
 programs_string=$(join " " "${programs[@]}")
 installed_program_list=$(eopkg list-installed --install-info)
@@ -51,7 +51,8 @@ done
 # Installing powerline fonts.
 sudo rm -f /usr/share/fonts/conf.d/70-no-bitmaps.conf &&
   sudo ln -svf /usr/share/fontconfig/conf.avail/70-yes-bitmaps.conf /usr/share/fonts/conf.d
-cp -u ./fonts/*.{ttf,bdf} ~/.local/share/fonts/ &&
+mkdir ~/.local/share/fonts/ &&
+  cp -u ./fonts/*.{ttf,bdf} ~/.local/share/fonts/ &&
   (cd ~/.local/share/fonts/ && mkfontdir && mkfontscale)
 fc-cache --force --verbose
 
@@ -67,8 +68,5 @@ curl --silent --location https://raw.githubusercontent.com/creationix/nvm/master
   rm -f install_nvm.sh
 python3 -m pip install --user autopep8 flake8 pylint python-language-server yapf
 sudo npm install --global eslint javascript-typescript-langserver prettier
-curl --silent --show-error --fail https://sh.rustup.rs | sh &&
-  export PATH="$PATH:~/.cargo/bin" &&
-  rustup install nightly &&
-  rustup default nightly &&
-  rustup component add clippy rls rustfmt rust-analysis rust-src
+curl --silent --show-error --fail https://sh.rustup.rs | sh -s -- -y --no-modify-path --default-toolchain nightly --component clippy rls rustfmt rust-analysis rust-src &&
+  rustup install stable

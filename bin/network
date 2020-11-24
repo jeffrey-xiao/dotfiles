@@ -14,8 +14,6 @@ Subcommands:
   wifi ip           print WiFi ip address
   wifi ssid         print WiFi SSID"
 
-
-
 sub_eth() {
   ssub_interface() {
     ip link | grep --only-matching 'enp\w*'

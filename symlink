@@ -20,7 +20,7 @@ for template_name in "$DOTFILES_DIR"/**/*.template; do
 done
 
 # Link to .config/$folder.
-for folder in bash bspwm compton dunst feh git htop mpd mpv ncmpcpp polybar ranger rtorrent sxhkd tmux weechat zathura; do
+for folder in bash bspwm dunst feh git htop mpd mpv ncmpcpp picom polybar ranger rtorrent sxhkd tmux weechat zathura; do
   mkdir -pv ~/.config/$folder/
   for f in "$DOTFILES_DIR"/$folder/!(*.template); do
     ln -sfv "$f" ~/.config/$folder/
@@ -45,8 +45,7 @@ for f in "$DOTFILES_DIR"/vim/!(*.template); do
 done
 
 # Link miscellaneous config.
-mkdir -pv ~/.config/redshift/
-ln -sfv "$DOTFILES_DIR"/misc/redshift.conf ~/.config/redshift/
+cp -u "$DOTFILES_DIR"/misc/redshift.conf ~/.config/
 
 # Create a playlist folder and database file for mpd.
 mkdir -pv ~/.config/mpd/playlists/

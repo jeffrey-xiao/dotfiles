@@ -28,7 +28,10 @@ while pgrep --exact polybar >/dev/null; do sleep 1; done
 
 monitors=$(polybar --list-monitors | cut --delimiter=':' --fields=1)
 for display in $monitors; do
-  MONITOR=$display polybar top &
+  WIRED_INTERFACE=$(network eth interface) \
+    WIFI_INTERFACE=$(network wifi interface) \
+    MONITOR=$display \
+    polybar top &
 done
 
 # Initialize background image.

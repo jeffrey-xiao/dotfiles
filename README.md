@@ -10,7 +10,7 @@ This repository contains all the dotfiles I use for my Solus machine.
 
 ```
 audio player         → mpc, mpd, ncmpcpp
-compositor           → compton
+compositor           → picom
 document viewer      → zathura
 file manager         → ranger
 irc client           → weechat
@@ -85,16 +85,15 @@ the exception of the colors in `dircolors`, `ranger`, and `weechat`.
 - [`bin/get-cpu-temperature`](bin/get-cpu-temperature): Change the path to the system internals
   interface for the thermal device.
 - [`bin/get-weather`](bin/get-weather): Define `OPEN_WEATHER_MAP_KEY`.
-- [`bin/init-displays`](bin/init-displays): Change the monitor setup.
+- [`bin/init-monitors`](bin/init-monitors): Change the monitor setup.
 - [`bin/notify-battery`](bin/notify-battery): Change the path to the system internals interface for
   the power supply device.
 - [`bin/robar-brightness-server`](bin/robar-brightness-server): Change the path to the system
   internals interface for the backlight device.
-- [`bin/set-keyboard`](bin/set-keyboard): Change the keyboard device name.
-- [`bin/set-touchpad`](bin/set-touchpad): Change the touchpad device name.
+- [`bin/keyboard`](bin/keyboard): Change the keyboard device name.
+- [`bin/touchpad`](bin/touchpad): Change the touchpad device name.
 - [`git/config`](git/config): Change the username and email.
-- [`polybar/config`](polybar/config): Change the adapter and battery name, and wired and WiFi
-  interfaces.
+- [`polybar/config`](polybar/config): Change the adapter and battery name.
 - [`weechat/irc.conf`](weechat/irc.conf): Change the username and nicks.
 
 ## License

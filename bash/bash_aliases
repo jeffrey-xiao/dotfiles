@@ -37,9 +37,6 @@ alias wget='wget --continue'
 # Vim aliases.
 alias vim='vim --servername VIM'
 
-# Tmux aliases.
-alias tmux='tmux -f ${XDG_CONFIG_HOME:-"$HOME/.config"}/tmux/tmux.conf'
-
 # Add an "alert" alias for long running commands. Use like so:
 #   sleep 10; alert
 alias alert='exit_code=$?; notify-send --urgency=low "$(history | tail --lines=1 | sed --expression '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*ale    rt$//'\'')" "$([ $exit_code = 0 ] && echo Success || echo Error)"'

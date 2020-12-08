@@ -57,7 +57,7 @@ label-empty =
 [module/mpd]
 type = internal/mpd
 
-host = 127.0.0.1
+host = /tmp/mpd
 port = 6600
 
 format-online = <icon-prev> <toggle> <icon-next> <label-song>
@@ -204,7 +204,7 @@ full-at = 99
 ; Use following command to get battery and adapter.
 ; $ ls -1 /sys/class/power_supply/
 battery = BAT0
-adapter = ADP0
+adapter = AC
 
 format-charging = <animation-charging><label-charging>
 format-charging-background = ${xrdb:color15}

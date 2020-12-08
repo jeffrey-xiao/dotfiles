@@ -51,7 +51,7 @@ done
 # Installing powerline fonts.
 sudo rm -f /usr/share/fonts/conf.d/70-no-bitmaps.conf &&
   sudo ln -svf /usr/share/fontconfig/conf.avail/70-yes-bitmaps.conf /usr/share/fonts/conf.d
-mkdir ~/.local/share/fonts/ &&
+mkdir -pv ~/.local/share/fonts/ &&
   cp -u ./fonts/*.{ttf,bdf} ~/.local/share/fonts/ &&
   (cd ~/.local/share/fonts/ && mkfontdir && mkfontscale)
 fc-cache --force --verbose
@@ -62,10 +62,9 @@ xrdb ~/.Xresources
 # Installing development related programs and tools.
 vim -c helptags ALL -c q!
 ~/.vim/pack/plugins/start/fzf/install --all --xdg --no-update-rc
-curl --silent --location https://raw.githubusercontent.com/creationix/nvm/master/install.sh --output install_nvm.sh &&
-  chmod 775 install_nvm.sh &&
-  ./install_nvm.sh &&
-  rm -f install_nvm.sh
+NVM_DIR=~/.local/share/nvm/ &&
+  mkdir -pv $NVM_DIR &&
+  curl --silent --show-error --fail https://raw.githubusercontent.com/creationix/nvm/master/install.sh | sh
 python3 -m pip install --user autopep8 flake8 pylint python-language-server yapf
 sudo npm install --global eslint javascript-typescript-langserver prettier
 curl --silent --show-error --fail https://sh.rustup.rs | sh -s -- -y --no-modify-path --default-toolchain nightly --component clippy rls rustfmt rust-analysis rust-src &&

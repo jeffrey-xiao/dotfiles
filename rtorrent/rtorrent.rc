@@ -21,7 +21,7 @@ throttle.global_up.max_rate.set_kb = 300
 directory.default.set = ~/Downloads/incomplete
 
 # Default session directory.
-session = ~/.config/rtorrent/sessions
+session = ~/.local/share/rtorrent/sessions
 
 # Watch a directory for new torrents.
 schedule2 = watch_directory_1,5,5,"load.start=~/Downloads/*.torrent,d.custom1.set=~/Downloads/complete"

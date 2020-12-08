@@ -74,7 +74,7 @@ function! s:setup_lsp() abort
               \ ['tsconfig.json', 'package.json']
             \ )
           \ )},
-          \ 'whitelist': ['javascript'],
+          \ 'whitelist': ['javascript', 'typescriptreact'],
           \ })
   endif
   if executable('elixir-ls')

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 config_dir=${XDG_CONFIG_HOME:-"$HOME/.config"}
-bash_config_dir=$config_dir/bash
+data_dir=${XDG_DATA_HOME:-"$HOME/.local/share"}
 
 # If not running interactively, don't do anything.
 case $- in
@@ -12,6 +12,7 @@ esac
 # History config.
 HISTCONTROL=ignoreboth
 HISTSIZE=10000
+HISTFILE="$data_dir/bash/history"
 HISTFILESIZE=20000
 shopt -s histappend
 shopt -s cmdhist
@@ -27,29 +28,23 @@ shopt -s globstar
 # Enable vi mode.
 set -o vi
 
-# Enable color output.
-DIRCOLORS=""
-[ -e "$HOME/.dircolors" ] && DIRCOLORS="$HOME/.dircolors"
-[ -x "$(command -v dircolors)" ] && eval "$(dircolors --bourne-shell "$DIRCOLORS")"
+# Enable ls color output.
+[ -f "$config_dir/bash/dircolors" ] &&
+  [ -x "$(command -v dircolors)" ] &&
+  eval "$(dircolors --bourne-shell "$config_dir/bash/dircolors")"
 
 # Enable programmable completion features.
 [ -f /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 [ -f "$config_dir/fzf/fzf.bash" ] && . "$config_dir/fzf/fzf.bash"
 [ -f "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
 
-# Bash prompt.
-[ -f "$bash_config_dir/bash_twoline_simple" ] && . "$bash_config_dir/bash_twoline_simple"
+# Bash specific configuration.
+[ -f "$config_dir/bash/bash_twoline_simple" ] && . "$config_dir/bash/bash_twoline_simple"
+[ -f "$config_dir/bash/bash_aliases" ] && . "$config_dir/bash/bash_aliases"
+[ -f "$config_dir/bash/bash_functions" ] && . "$config_dir/bash/bash_functions"
+[ -f "$config_dir/bash/bash_bookmarks" ] && . "$config_dir/bash/bash_bookmarks"
 
-# Alias definitions.
-[ -f "$bash_config_dir/bash_aliases" ] && . "$bash_config_dir/bash_aliases"
-
-# Function definitions.
-[ -f "$bash_config_dir/bash_functions" ] && . "$bash_config_dir/bash_functions"
-
-# Bash bookmarks.
-[ -f "$bash_config_dir/bash_bookmarks" ] && . "$bash_config_dir/bash_bookmarks"
-
-# Nvm.
+# Enabling nvm.
 [ -f "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use
 
 # Add ssh keys.

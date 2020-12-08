@@ -1,14 +1,11 @@
 #!/bin/sh
 
 config_dir=${XDG_CONFIG_HOME:-"$HOME/.config"}
-bash_config_dir=$config_dir/bash
+data_dir=${XDG_DATA_HOME:-"$HOME/.local/share"}
+runtime_dir=${XDG_RUNTIME_DIR:-"/run/user/$UID"}
 
-# Set PATH to include user's bin directories, cargo binaries, fzf binaries, and mix scripts.
-export PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.fzf/bin:$HOME/.mix/escripts"
-
-# Environment variables for mpd.
-export MPD_HOST=/tmp/mpd
-export MPD_PORT=6600
+# Set PATH to include user's bin directories, cargo binaries, and mix scripts.
+export PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.mix/escripts"
 
 # Environment variables for default programs.
 export BROWSER=firefox
@@ -18,7 +15,27 @@ export SHELL=bash
 export TERM=xterm-256color
 export VISUAL=vim
 
-# Setting ag as the default source for fzf.
+# Environment variables for mpd.
+export MPD_HOST=/tmp/mpd
+export MPD_PORT=6600
+
+# Environment variables for XDG Base Directory Specification.
+export GTK2_RC_FILES="$config_dir/gtk-2.0/gtkrc"
+export INPUTRC="$config_dir/bash/inputrc"
+export LESSHISTFILE="$runtime_dir/less/history"
+export NVM_DIR="$data_dir/nvm"
+export PYLINTHOME="$data_dir/pylint"
+export WEECHAT_HOME="$config_dir/weechat"
+export BSPWM_SOCKET="$runtime_dir/bspwm.socket"
+export RXVT_SOCKET="$runtime_dir/urxvtd.socket"
+
+# Setting rust src path.
+[ -x "$(command -v rustc)" ] && sysroot=$(rustc --print sysroot) && export RUST_SRC_PATH="$sysroot/lib/rustlib/src/rust/src"
+
+# Setting bash secrets.
+[ -f "$config_dir/bash/bash_secrets" ] && . "$config_dir/bash/bash_secrets"
+
+# Setting rg as the default source for fzf, falling back to ag and ack.
 if [ -x "$(command -v rg)" ]; then
   export FZF_DEFAULT_COMMAND='rg --hidden --files'
 elif [ -x "$(command -v ag)" ]; then
@@ -27,32 +44,7 @@ elif [ -x "$(command -v ack)" ]; then
   export FZF_DEFAULT_COMMAND='ack -g ""'
 fi
 
-# Setting rust src path.
-[ -x "$(command -v rustc)" ] && sysroot=$(rustc --print sysroot) && export RUST_SRC_PATH="$sysroot/lib/rustlib/src/rust/src"
-
-# Setting nvm dir.
-export NVM_DIR="$HOME/.nvm"
-
-# Setting weechat home directory.
-export WEECHAT_HOME="$config_dir/weechat"
-
-# Setting urxvtd socket.
-export RXVT_SOCKET="/tmp/urxvtd"
-
-# Setting bspwm socket.
-export BSPWM_SOCKET="/tmp/bspwm"
-
-# Setting bash secrets.
-[ -f "$bash_config_dir/bash_secrets" ] && . "$bash_config_dir/bash_secrets"
-
-# Starting ssh agent if it hasn't been started and symlink SSH_AUTH_SOCK for
-# tmux sessions.
-if [ ! -e ~/.ssh/ssh_auth_sock ]; then
-  if [ -z "$SSH_AUTH_SOCK" ]; then
-    eval "$(ssh-agent)"
-  fi
-  ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
-  export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-fi
+# Check if we've already started an existing ssh agent to handle tmux sessions.
+[ ! -e "$runtime_dir/ssh-agent.socket" ] && eval "$(ssh-agent -a "$runtime_dir/ssh-agent.socket")"
 
 export LPASS_AGENT_TIMEOUT=0

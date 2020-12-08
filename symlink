@@ -16,7 +16,7 @@ done
 # Compile templates.
 for template_name in "$DOTFILES_DIR"/**/*.template; do
   compiled_name=${template_name%.*}
-  "$DOTFILES_DIR"/bin/xrdb-compile-colors "$template_name" "$compiled_name"
+  "$DOTFILES_DIR"/bin/xrdb-compile-colors --template "$template_name" --destination "$compiled_name"
 done
 
 # Link to .config/$folder.
@@ -34,8 +34,8 @@ for f in "$DOTFILES_DIR"/bin/!(*.template); do
 done
 
 # Link gtk.
-mkdir -pv ~/.config/gtk-3.0/
-ln -sfv "$DOTFILES_DIR"/gtk/.gtkrc-2.0 ~/
+mkdir -pv ~/.config/{gtk-2.0,gtk-3.0}
+ln -sfv "$DOTFILES_DIR"/gtk/gtkrc-2.0 ~/.config/gtk-2.0/gtkrc
 ln -sfv "$DOTFILES_DIR"/gtk/settings.ini ~/.config/gtk-3.0/
 
 # Link vim config.
@@ -47,12 +47,14 @@ done
 # Link miscellaneous config.
 cp -u "$DOTFILES_DIR"/misc/redshift.conf ~/.config/
 
-# Create a playlist folder and database file for mpd.
-mkdir -pv ~/.config/mpd/playlists/
-touch ~/.config/mpd/database
+# Create data directories.
+mkdir -pv ~/.local/share/{bash,less,mpd/playlists,ncmpcpp,rtorrent/sessions}/
+
+# Initialize database file for mpd.
+touch ~/.local/share/mpd/database
 
 # Create screenshot folder for mpv.
 mkdir -pv ~/Pictures/Screenshots/
 
-# Create complete, incomplete, and session folders for rtorrent.
-mkdir -pv ~/Downloads/complete/ ~/Downloads/incomplete/ ~/.config/rtorrent/sessions/
+# Create complete, and incomplete downloads for rtorrent.
+mkdir -pv ~/Downloads/{complete,incomplete}/

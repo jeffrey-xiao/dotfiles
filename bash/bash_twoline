@@ -1,6 +1,6 @@
 #!/bin/sh
 
-bash_config_dir=${XDG_CONFIG_HOME:-"$HOME/.config"}/bash
+config_dir=${XDG_CONFIG_HOME:-"$HOME/.config"}
 
 __twoline() {
   ps1() {
@@ -45,9 +45,9 @@ __twoline() {
     PS1="$PS1\\n$FG_EXIT└─╼$RESET "
     PS2="$FG_EXIT└─╼$RESET "
   }
-  . "$bash_config_dir/bash_symbols"
-  . "$bash_config_dir/bash_colors"
-  . "$bash_config_dir/bash_info"
+  . "$config_dir/bash/bash_symbols"
+  . "$config_dir/bash/bash_colors"
+  . "$config_dir/bash/bash_info"
   PROMPT_COMMAND=ps1
 }
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-bookmarks_file=${XDG_CONFIG_HOME:-"$HOME/.config"}/bash/bookmarks
+bookmarks_file=${XDG_DATA_DIR:-"$HOME/.local/share"}/bash/bookmarks
 
 [ ! -f "$bookmarks_file" ] && touch "$bookmarks_file"
 

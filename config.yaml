@@ -1,5 +1,7 @@
 bash:
   link: ~/.config/bash/
+  postlink:
+    - mkdir -pv ~/.local/share/{bash,less}/
 
 bin:
   link: ~/.local/bin/
@@ -37,7 +39,7 @@ fonts:
       sudo rm -f /usr/share/fonts/conf.d/70-no-bitmaps.conf &&
       sudo ln -svf /usr/share/fontconfig/conf.avail/70-yes-bitmaps.conf /usr/share/fonts/conf.d
     - >
-      mkdir ~/.local/share/fonts/ &&
+      mkdir -pv ~/.local/share/fonts/ &&
       cp -u ./fonts/*.{ttf,bdf} ~/.local/share/fonts/ &&
       (cd ~/.local/share/fonts/ && mkfontdir && mkfontscale)
     - fc-cache --force --verbose
@@ -50,7 +52,7 @@ git:
 
 gtk:
   link:
-    - .gtkrc-2.0: ~/
+    - gtkrc-2.0: ~/.config/gtk-2.0/gtkrc
     - settings.ini: ~/.config/gtk-3.0/
 
 htop:
@@ -69,8 +71,8 @@ misc:
 mpd:
   link: ~/.config/mpd/
   postlink:
-    - mkdir -pv ~/.config/mpd/playlists/
-    - touch ~/.config/mpd/database
+    - mkdir -pv ~/.local/share/mpd/playlists/
+    - touch ~/.local/share/mpd/database
   dependencies:
     - mpc-client
     - mpd
@@ -84,6 +86,8 @@ mpv:
 
 ncmpcpp:
   link: ~/.config/ncmpcpp/
+  postlink:
+    - mkdir -pv ~/.local/share/bash/
   dependencies:
     - ncmpcpp
 
@@ -112,7 +116,7 @@ ranger:
 rtorrent:
   link: ~/.config/rtorrent/
   postlink:
-    - mkdir -pv ~/Downloads/complete/ ~/Downloads/incomplete/ ~/.config/rtorrent/sessions/
+    - mkdir -pv ~/Downloads/{incomplete,complete}/ ~/.local/share/rtorrent/sessions/
   dependencies:
     - rtorrent
 
@@ -148,15 +152,14 @@ vim:
     - vim -c helptags ALL -c q!
     - ~/.vim/pack/plugins/start/fzf/install --all --xdg --no-update-rc
     - >
-      curl --silent --location https://raw.githubusercontent.com/creationix/nvm/master/install.sh --output install_nvm.sh &&
-      chmod 775 install_nvm.sh &&
-      ./install_nvm.sh &&
-      rm -f install_nvm.sh
+      NVM_DIR=~/.local/share/nvm/ &&
+      mkdir -pv $NVM_DIR &&
+      curl --silent --show-error --fail https://raw.githubusercontent.com/creationix/nvm/master/install.sh | sh
     - python3 -m pip install --user autopep8 flake8 pylint python-language-server yapf
     - sudo npm install --global eslint javascript-typescript-langserver prettier
     - >
       curl --silent --show-error --fail https://sh.rustup.rs | sh -s -- -y --no-modify-path --default-toolchain nightly --component clippy rls rustfmt rust-analysis rust-src &&
-      rustup install stable &&
+      rustup install stable
   dependencies:
     - cppcheck
     - ctags

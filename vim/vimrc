@@ -53,8 +53,8 @@ function! s:setup_lsp() abort
   endif
   if executable('rls')
     call lsp#register_server({
-          \ 'name': 'rls',
-          \ 'cmd': {server_info->['rls']},
+          \ 'name': 'rust-analyzer',
+          \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rust-analyzer']},
           \ 'root_uri': {server_info->lsp#utils#path_to_uri(
             \ lsp#utils#find_nearest_parent_file_directory(
               \ lsp#utils#get_buffer_path(),
@@ -352,6 +352,8 @@ nnoremap <silent> <Left> :vertical resize -2<CR>
 nnoremap <silent> <Up> :resize +2<CR>
 nnoremap <silent> <Down> :resize -2<CR>
 
+set winminwidth=0
+set winminheight=0
 command! Zoom call window#Zoom()
 nnoremap <silent> <leader>z :Zoom<CR>
 

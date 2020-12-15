@@ -29,9 +29,6 @@ export WEECHAT_HOME="$config_dir/weechat"
 export BSPWM_SOCKET="$runtime_dir/bspwm.socket"
 export RXVT_SOCKET="$runtime_dir/urxvtd.socket"
 
-# Setting rust src path.
-[ -x "$(command -v rustc)" ] && sysroot=$(rustc --print sysroot) && export RUST_SRC_PATH="$sysroot/lib/rustlib/src/rust/src"
-
 # Setting bash secrets.
 [ -f "$config_dir/bash/bash_secrets" ] && . "$config_dir/bash/bash_secrets"
 

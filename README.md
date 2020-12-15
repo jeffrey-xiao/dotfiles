@@ -36,7 +36,7 @@ Go           → gofmt
 Java         → clang-format
 JavaScript   → javascript-typescript-langserver, eslint, prettier
 Python       → autopep, flake8, pylint, python-language-server, yapf
-Rust         → clippy, rls, rustfmt
+Rust         → clippy, rust-analyzer, rustfmt
 ```
 
 Configuration files are found in [`misc/`](misc/).

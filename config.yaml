@@ -158,7 +158,7 @@ vim:
     - python3 -m pip install --user autopep8 flake8 pylint python-language-server yapf
     - sudo npm install --global eslint javascript-typescript-langserver prettier
     - >
-      curl --silent --show-error --fail https://sh.rustup.rs | sh -s -- -y --no-modify-path --default-toolchain nightly --component clippy rls rustfmt rust-analysis rust-src &&
+      curl --silent --show-error --fail https://sh.rustup.rs | sh -s -- -y --no-modify-path --default-toolchain nightly --component clippy rustfmt rust-analyzer-preview rust-src &&
       rustup install stable
   dependencies:
     - cppcheck

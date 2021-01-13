@@ -24,18 +24,6 @@ let g:ale_sign_column_always = 1
 " Config for vim-lsp.
 let g:lsp_diagnostics_enabled = 0
 
-function! s:on_lsp_buffer_enabled() abort
-    setlocal omnifunc=lsp#complete
-    setlocal keywordprg=:LspHover
-    nmap <buffer> gd <plug>(lsp-definition)
-    nmap <buffer> gr <plug>(lsp-references)
-endfunction
-
-augroup lsp_buffer
-  autocmd!
-  autocmd User lsp_buffer_enabled call <SID>on_lsp_buffer_enabled()
-augroup END
-
 function! s:setup_lsp() abort
   if executable('pyls')
     call lsp#register_server({
@@ -92,9 +80,17 @@ function! s:setup_lsp() abort
   endif
 endfunction
 
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal keywordprg=:LspHover
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gr <plug>(lsp-references)
+endfunction
+
 augroup lsp_setup
   autocmd!
   autocmd User lsp_setup call <SID>setup_lsp()
+  autocmd User lsp_buffer_enabled call <SID>on_lsp_buffer_enabled()
 augroup END
 
 " Config for signify.

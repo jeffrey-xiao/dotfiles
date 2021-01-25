@@ -25,7 +25,6 @@ max_brightness=$(cat $max_brightness_file)
 sub_status() {
   check_no_positionals "$@"
   echo "$((curr_brightness * 100 / max_brightness))%"
-  exit 0
 }
 
 sub_set() {

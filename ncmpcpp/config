@@ -10,12 +10,12 @@ mpd_connection_timeout = 5
 mpd_crossfade_time = 5
 
 # Music visualizer options.
-visualizer_fifo_path = /tmp/mpd-visualizer
+visualizer_data_source = /tmp/mpd-visualizer
 visualizer_output_name = "mpd-visualizer"
 visualizer_in_stereo = yes
 visualizer_type = spectrum
-visualizer_look = ●│
 visualizer_color = 7
+visualizer_fps = 30
 
 # Highlighting always on.
 playlist_disable_highlight_delay = 0

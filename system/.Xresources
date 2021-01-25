@@ -107,7 +107,7 @@ rofi.kb-row-right:        Control-l
 rofi.kb-remove-to-eol:
 
 ! Rofi other configuration.
-rofi.monitor:             -1
+rofi.monitor:             -4
 rofi.matching:            fuzzy
 rofi.terminal:            urxvtc
 rofi.ssh-client:          ssh

@@ -31,7 +31,7 @@ check_connected() {
 }
 
 if check_connected 'HDMI-0'; then
-  xrandr --output eDP-1-1 --mode 1600x900 --output HDMI-0 --mode 1920x1080 --auto --left-of eDP-1-1
+  xrandr --output eDP-1-1 --mode 1920x1080 --output HDMI-0 --mode 1920x1080 --auto --right-of eDP-1-1
 else
   xrandr --output eDP-1-1 --mode 1920x1080
 fi

@@ -87,7 +87,7 @@ mpv:
 ncmpcpp:
   link: ~/.config/ncmpcpp/
   postlink:
-    - mkdir -pv ~/.local/share/bash/
+    - mkdir -pv ~/.local/share/ncmpcpp/
   dependencies:
     - ncmpcpp
 

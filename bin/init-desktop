@@ -9,7 +9,7 @@ Options:
 
 while [ ! $# -eq 0 ]; do
   case "$1" in
-    gh | --help)
+    -h | --help)
       echo "$__help"
       exit 0
       ;;

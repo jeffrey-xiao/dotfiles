@@ -29,8 +29,6 @@ __git_info() {
   # Git branch not found.
   [ -n "$branch" ] || return
 
-  $git_eng status &>/dev/null || return
-
   local marks
   local status=$($git_eng status --porcelain 2>/dev/null)
 

@@ -41,7 +41,8 @@ elif [ -x "$(command -v ack)" ]; then
   export FZF_DEFAULT_COMMAND='ack -g ""'
 fi
 
-# Check if we've already started an existing ssh agent to handle tmux sessions.
-[ ! -e "$runtime_dir/ssh-agent.socket" ] && eval "$(ssh-agent -a "$runtime_dir/ssh-agent.socket")"
+[ -z "$SSH_AUTH_SOCK" ] &&
+  [ -z "$SSH_AGENT" ] &&
+  eval "$(ssh-agent)"
 
 export LPASS_AGENT_TIMEOUT=0

@@ -5,7 +5,7 @@ syntax on
 let g:indentLine_char = '|'
 let g:indentLine_concealcursor = 0
 let g:indentLine_color_term = 10
-let g:indentLine_fileTypeExclude = [ 'markdown', 'json' ]
+let g:indentLine_fileTypeExclude = [ 'markdown', 'json', 'tex' ]
 
 " Config for ALE.
 let g:ale_linters = {
@@ -412,7 +412,8 @@ function! s:highlight() abort
   " General highlighting.
   highlight SpecialKey ctermbg=8
   highlight VertSplit ctermbg=8
-  highlight SpellBad cterm=underline
+  highlight SpellBad cterm=underline ctermfg=None
+  highlight SpellCap cterm=underline ctermfg=None
   highlight Error cterm=None ctermfg=1 ctermbg=8
 
   " Highlighting for sign column symbols.

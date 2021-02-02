@@ -98,6 +98,7 @@ let g:signify_sign_show_count = 0
 let g:signify_vcs_list = [ 'git' ]
 
 " Config for vim-dirvish.
+let g:loaded_netrwPlugin = 1
 let g:dirvish_mode = ':sort ,^.*[\/],'
 
 " Config for vim-gutentags.
@@ -263,7 +264,6 @@ set nomousehide
 set laststatus=2
 set showmatch
 set showcmd
-set cmdheight=2
 set shortmess=aIT
 set hidden
 

@@ -1,6 +1,6 @@
 " General config.
 setlocal conceallevel=0
-setlocal makeprg=pandoc\ --pdf-engine=pdflatex\ --standalone\ --output=%:r.pdf\ %
+setlocal makeprg=pandoc\ --filter=pandoc-citeproc\ --pdf-engine=pdflatex\ --standalone\ --output=%:r.pdf\ %
 setlocal omnifunc=htmlcomplete#CompleteTags
 setlocal nocindent
 setlocal textwidth=100

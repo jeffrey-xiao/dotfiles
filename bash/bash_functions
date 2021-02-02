@@ -9,12 +9,12 @@ mcd() {
 # the most cpu.
 process_cpu() {
   count=${1:-10}
-  ps aux --sort '%cpu' | awk '{print $2, $3, $11}' | tail -n "$count" | tac
+  ps axo pid,cmd,%cpu,%mem --sort=-%cpu | head -n "$count"
 }
 
 # Print pid, memory usage percentage, and process name of the processes consuming
 # the most memory.
 process_mem() {
   count=${1:-10}
-  ps aux --sort '%mem' | awk '{print $2, $4, $11}' | tail -n "$count" | tac
+  ps axo pid,cmd,%cpu,%mem --sort=-%mem | head -n "$count"
 }

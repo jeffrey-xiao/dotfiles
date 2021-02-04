@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -euo pipefail
+
 __help="Usage: ${0##*/} [OPTIONS]
 
 Download an album cover using Last.fm's Audioscrobbler. The default output file
@@ -20,7 +22,7 @@ unset artist
 unset album
 unset api_key
 
-check_argument() { [ -z "$2" ] && { echo "Error: flag $1 requires an argument." && exit 1; } }
+check_argument() { [ $# -lt 2 ] && { echo "Error: flag $1 requires an argument." && exit 1; } }
 
 while [ ! $# -eq 0 ]; do
   case "$1" in

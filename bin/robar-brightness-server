@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -euo pipefail
+
 __help="Usage: ${0##*/} [OPTIONS]
 
 Display the screen brightness using robar when the ACPI sysfs directory for

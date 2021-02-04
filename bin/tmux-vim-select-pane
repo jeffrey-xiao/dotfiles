@@ -1,9 +1,9 @@
 #!/bin/sh
 
+set -euo pipefail
+
 # Like `tmux select-pane`, but sends a `<C-h/j/k/l>` keystroke if Vim is
 # running in the current pane, or only one pane exists.
-set -e
-
 cmd="$(tmux display -p '#{pane_current_command}')"
 cmd="$(basename "$cmd" | tr '[:upper:]' '[:lower:]')"
 pane_count="$(tmux list-panes | wc --lines)"

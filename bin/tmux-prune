@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -euo pipefail
+
 __help="Usage: ${0##*/} [OPTIONS]
 
 Kill all tmux sessions that are not currently attached.

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -euo pipefail
+
 separator='»'
 songs=$(mpc playlist --format "%artist% $separator %title%")
 

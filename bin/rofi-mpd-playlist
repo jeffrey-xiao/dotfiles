@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -euo pipefail
+
 if [ -z "$1" ]; then
   mpc lsplaylists
 else

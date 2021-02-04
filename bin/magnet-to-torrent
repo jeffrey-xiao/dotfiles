@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 __help="Usage: ${0##*/} [OPTIONS] LINKS
 
 Converts a list of magnet links to torrent files. The default directory to

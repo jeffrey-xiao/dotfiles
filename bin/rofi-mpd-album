@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -euo pipefail
+
 separator='»'
 
 if [ -z "$1" ]; then

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -euo pipefail
+
 __help="Usage: ${0##*/} [OPTIONS]
 
 Read the colors from Xresources to compile a template file. Each variable
@@ -18,7 +20,7 @@ unset template
 unset destination
 unset xresources
 
-check_argument() { [ -z "$2" ] && { echo "Error: flag $1 requires an argument." && exit 1; } }
+check_argument() { [ $# -lt 2 ] && { echo "Error: flag $1 requires an argument." && exit 1; } }
 
 while [ ! $# -eq 0 ]; do
   case "$1" in

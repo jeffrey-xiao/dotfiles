@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -euo pipefail
+
 __help="Usage: ${0##*/} [OPTIONS]
 
 Display the volume using robar when a change has been detected by pactl.

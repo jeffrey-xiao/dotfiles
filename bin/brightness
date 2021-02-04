@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -euo pipefail
+
 __help="Usage: ${0##*/} [OPTIONS] [SUBCOMMAND]
 
 Increase, decrease, or set the screen brightness. If no subcommand is supplied,

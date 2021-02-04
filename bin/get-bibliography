@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -euo pipefail
+
 __help="Usage: ${0##*/} [OPTIONS] FILES
 
 Prints the BibTeX references in Markdown format. The references of each file

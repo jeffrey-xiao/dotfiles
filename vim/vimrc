@@ -348,6 +348,7 @@ nnoremap <silent> <Left> :vertical resize -2<CR>
 nnoremap <silent> <Up> :resize +2<CR>
 nnoremap <silent> <Down> :resize -2<CR>
 
+" Tmux-like window zooming.
 set winminwidth=0
 set winminheight=0
 command! Zoom call window#Zoom()
@@ -355,28 +356,6 @@ nnoremap <silent> <leader>z :Zoom<CR>
 
 " Reload .vimrc.
 nnoremap <silent> <leader>r :source $MYVIMRC<CR>
-
-" Fugitive bindings.
-nnoremap <leader>gs :Git<CR>
-nnoremap <leader>gd :Gvdiffsplit<CR>
-nnoremap <leader>gD :Gvdiffsplit HEAD<CR>
-nnoremap <leader>gw :diffput<CR>
-xnoremap <leader>gw :diffput<CR>
-nnoremap <leader>gr :diffget<CR>
-xnoremap <leader>gr :diffget<CR>
-nnoremap <leader>gc :Git commit<CR>
-nnoremap <leader>gps :Git push<CR>
-nnoremap <leader>gpl :Git pull<CR>
-nnoremap <leader>gl :Gclog<CR>
-nnoremap <leader>gL :Gclog %<CR>
-nnoremap <leader>gb :Git blame<CR>
-nnoremap <leader>gg :Ggrep<Space>
-
-" fzf keybindings.
-nnoremap <leader>b :Buffers<CR>
-nnoremap <leader>f :FZF<CR>
-nnoremap <leader>m :MRU<CR>
-nnoremap <leader>t :Tags<CR>
 
 " Visually select pasted or yanked text.
 nnoremap gV `[v`]
@@ -404,6 +383,29 @@ inoremap (<CR> (<CR>)<C-o>O
 inoremap (;    (<CR>);<C-o>O
 inoremap [<CR> [<CR>]<C-o>O
 inoremap [;    [<CR>];<C-o>O
+
+" Fugitive bindings.
+nnoremap <leader>gs :Git<CR>
+nnoremap <leader>gd :Gvdiffsplit<CR>
+nnoremap <leader>gD :Gvdiffsplit HEAD<CR>
+nnoremap <leader>gw :diffput<CR>
+xnoremap <leader>gw :diffput<CR>
+nnoremap <leader>gr :diffget<CR>
+xnoremap <leader>gr :diffget<CR>
+nnoremap <leader>gc :Git commit<CR>
+nnoremap <leader>gps :Git push<CR>
+nnoremap <leader>gpl :Git pull<CR>
+nnoremap <leader>gl :Gclog<CR>
+nnoremap <leader>gL :Gclog %<CR>
+nnoremap <leader>gb :Git blame<CR>
+nnoremap <leader>gg :Ggrep<Space>
+
+
+" Fzf keybindings.
+nnoremap <leader>f :FZF<CR>
+nnoremap <leader>t :Tags<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>m :MRU<CR>
 
 " Highlight current line.
 set cursorline

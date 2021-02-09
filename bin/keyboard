@@ -35,9 +35,9 @@ sub_toggle() {
   fi
 }
 
+[ $# -ge 1 ] || { printf "Error: missing subcommand.\\n\\n%s\\n" "$__help" && exit 0; }
 sub="$1"
 [ "$sub" = '-h' ] || [ "$sub" = '--help' ] && { echo "$__help" && exit 0; }
-[ -z "$sub" ] && { printf "Error: missing subcommand.\\n\\n%s\\n" "$__help" && exit 0; }
 [ "$(command -v "sub_$sub")" ] || { printf "Error: unknown subcommand: %s.\\n\\n%s\\n" "$sub" "$__help" && exit 1; }
 shift
 [ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }

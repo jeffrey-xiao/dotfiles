@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -euo pipefail
+set -uo pipefail
 
 __help="Usage: ${0##*/} [OPTIONS]
 
@@ -15,7 +15,7 @@ Options:
 
 unset music_dir
 
-check_argument() { [ $# -lt 2 ] && { echo "Error: flag $1 requires an argument." && exit 1; } }
+check_argument() { [ $# -ge 2 ] || { echo "Error: flag $1 requires an argument." && exit 1; } }
 
 while [ ! $# -eq 0 ]; do
   case "$1" in
@@ -43,13 +43,13 @@ update_background() {
   album="$(mpc --format %album% current)"
   file="$(mpc --format %file% current)"
   album_dir="${file%/*}"
-  [ -z "$album_dir" ] && exit 1
+  [ ! -z "$album_dir" ] || return
   album_dir="$music_dir/$album_dir"
 
-  covers="$(find "$album_dir" -type d -exec find {} -maxdepth 1 -type f -iregex ".*/.*\\(${album}\\|cover\\|folder\\|artwork\\|front\\).*[.]\\(jpe?g\\|png\\|gif\\|bmp\\)" \;)"
+  covers="$(find "$album_dir" -type d -exec find {} -maxdepth 1 -type f -iregex ".*/.*\\($album\\|cover\\|folder\\|artwork\\|front\\).*[.]\\(jpe?g\\|png\\|gif\\|bmp\\)" \;)"
   src="$(printf '%s' "$covers" | head --lines=1)"
 
-  if [ -n "$src" ]; then
+  if [ ! -z "$src" ]; then
     # Print cover art if it exists.
     printf '\e]20;%s;100x100+50+50:op=keep-aspect\a' "$src"
   else

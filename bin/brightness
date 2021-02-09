@@ -30,7 +30,7 @@ sub_status() {
 }
 
 sub_set() {
-  [ -z "$1" ] && { echo "Error: subcommand set requires PERCENT." && exit 1; }
+  [ $# -ge 1 ] || { echo "Error: subcommand set requires PERCENT." && exit 1; }
   percent="$1"
   shift
   check_no_positionals "$@"
@@ -45,7 +45,7 @@ sub_set() {
 }
 
 sub_inc() {
-  [ -z "$1" ] && { echo "Error: subcommand inc requires PERCENT." && exit 1; }
+  [ $# -ge 1 ] || { echo "Error: subcommand inc requires PERCENT." && exit 1; }
   delta="$1"
   shift
   check_no_positionals "$@"
@@ -55,7 +55,7 @@ sub_inc() {
 
 
 sub_dec() {
-  [ -z "$1" ] && { echo "Error: subcommand dec requires PERCENT." && exit 1; }
+  [ $# -ge 1 ] || { echo "Error: subcommand dec requires PERCENT." && exit 1; }
   delta="$1"
   shift
   check_no_positionals "$@"
@@ -63,9 +63,8 @@ sub_dec() {
   sub_set $((curr_brightness * 100 / max_brightness - delta))
 }
 
-sub="$1"
+sub="${1:-status}"
 [ "$sub" = '-h' ] || [ "$sub" = '--help' ] && { echo "$__help" && exit 0; }
-[ -z "$sub" ] && { sub_status "$@" && exit 0; }
 [ "$(command -v "sub_$sub")" ] || { printf "Error: unknown subcommand: %s.\\n\\n%s\\n" "$sub" "$__help" && exit 1; }
-shift
+[ $# -ge 1 ] && shift
 "sub_$sub" "$@"

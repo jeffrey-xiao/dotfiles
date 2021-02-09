@@ -16,7 +16,7 @@ unset output
 unset select
 unset voice
 
-check_argument() { [ $# -lt 2 ] && { echo "Error: flag $1 requires an argument." && exit 1; } }
+check_argument() { [ $# -ge 2 ] || { echo "Error: flag $1 requires an argument." && exit 1; } }
 
 while [ ! $# -eq 0 ]; do
   case "$1" in
@@ -52,7 +52,7 @@ if pgrep --exact ffmpeg; then
   exit 0
 fi
 
-if [ -z $select ]; then
+if [ -z ${select:-} ]; then
   # Record entire desktop.
   dimensions=$(xdpyinfo | awk '/dimensions/{print $2}')
   offset="0,0"
@@ -65,7 +65,7 @@ else
   notify-send --urgency=low 'Started video recording (area)'
 fi
 
-if [ -z $voice ]; then
+if [ -z ${voice:-} ]; then
   input=1
 else
   input=2

@@ -34,7 +34,7 @@ done
 
 ret=0
 for file in "$@"; do
-  if [ -z $list_different ]; then
+  if [ -z ${list_different:-} ]; then
     clang-format "$file" | diff --color --unified "$file" - || ret=1
   else
     clang-format "$file" | diff --color --unified "$file" - >/dev/null || { echo "$file" && ret=1; }

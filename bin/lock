@@ -69,7 +69,7 @@ done
 
 trap 'rm -f "$(img_path $index)"' EXIT
 i3lock -e -u -i "$(img_path $index)"
-if [ ! -z $suspend ]; then
+if [ ! -z ${suspend:-} ]; then
   systemctl suspend
 fi
 /bin/rm -f "$(img_path $index)"

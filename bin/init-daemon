@@ -17,7 +17,7 @@ unset process
 unset script
 unset restart
 
-check_argument() { [ $# -lt 2 ] && { echo "Error: flag $1 requires an argument." && exit 1; } }
+check_argument() { [ $# -ge 2 ] || { echo "Error: flag $1 requires an argument." && exit 1; } }
 
 while [ ! $# -eq 0 ]; do
   case "$1" in
@@ -46,11 +46,11 @@ while [ ! $# -eq 0 ]; do
 done
 
 [ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
-[ -z "$process" ] && { echo 'Error: must specific PROCESS.' && exit 1; }
+[ ! -z "${process:-}" ] || { echo 'Error: must specific PROCESS.' && exit 1; }
 
 script=${script:-$process}
 
-if [ ! -z $restart ]; then
+if [ ! -z ${restart:-} ]; then
   killall --quiet "$process"
   while pgrep --exact "$process" >/dev/null; do sleep 1; done
 fi

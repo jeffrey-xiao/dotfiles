@@ -27,9 +27,9 @@ sub_eth() {
       grep --extended-regexp --only-matching '([0-9]*\.){3}[0-9]*'
   }
 
+  [ $# -ge 1 ] || { printf "Error: missing subcommand.\\n\\n%s\\n" "$__help" && exit 0; }
   sub="$1"
   [ "$sub" = '-h' ] || [ "$sub" = '--help' ] && { echo "$__help" && exit 0; }
-  [ -z "$sub" ] && { printf "Error: missing subcommand.\\n\\n%s\\n" "$__help" && exit 0; }
   [ "$(command -v "ssub_$sub")" ] || { printf "Error: unknown subcommand: %s.\\n\\n%s\\n" "$sub" "$__help" && exit 1; }
   shift
   [ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
@@ -51,18 +51,18 @@ sub_wifi() {
     iwgetid -r
   }
 
+  [ $# -ge 1 ] || { printf "Error: missing subcommand.\\n\\n%s\\n" "$__help" && exit 0; }
   sub="$1"
   [ "$sub" = '-h' ] || [ "$sub" = '--help' ] && { echo "$__help" && exit 0; }
-  [ -z "$sub" ] && { printf "Error: missing subcommand.\\n\\n%s\\n" "$__help" && exit 0; }
   [ "$(command -v "ssub_$sub")" ] || { printf "Error: unknown subcommand: %s.\\n\\n%s\\n" "$sub" "$__help" && exit 1; }
   shift
   [ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
   "ssub_$sub"
 }
 
+[ $# -ge 1 ] || { printf "Error: missing subcommand.\\n\\n%s\\n" "$__help" && exit 0; }
 sub="$1"
 [ "$sub" = '-h' ] || [ "$sub" = '--help' ] && { echo "$__help" && exit 0; }
-[ -z "$sub" ] && { printf "Error: missing subcommand.\\n\\n%s\\n" "$__help" && exit 0; }
 [ "$(command -v "sub_$sub")" ] || { printf "Error: unknown subcommand: %s.\\n\\n%s\\n" "$sub" "$__help" && exit 1; }
 shift
 "sub_$sub" "$@"

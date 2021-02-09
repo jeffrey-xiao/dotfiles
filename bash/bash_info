@@ -54,7 +54,7 @@ __venv_info() {
   [ -x "$(command -v virtualenv)" ] || return
 
   # venv not found.
-  [ -z ${VIRTUAL_ENV+x} ] && return
+  [ -z $VIRTUAL_ENV ] && return
   version=$(python --version | cut --delimiter=' ' --fields=2-)
   echo "${VIRTUAL_ENV##*/} v$version"
 }

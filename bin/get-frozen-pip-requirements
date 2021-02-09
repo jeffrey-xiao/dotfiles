@@ -12,7 +12,7 @@ Options:
 
 unset requirements_file
 
-check_argument() { [ $# -lt 2 ] && { echo "Error: flag $1 requires an argument." && exit 1; } }
+check_argument() { [ $# -ge 2 ] || { echo "Error: flag $1 requires an argument." && exit 1; } }
 
 while [ ! $# -eq 0 ]; do
   case "$1" in
@@ -33,8 +33,8 @@ while [ ! $# -eq 0 ]; do
 done
 
 [ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
-[ ! -x "$(command -v virtualenv)" ] && { echo 'Error: virtualenv is not installed.' && exit 1; }
-[ ! -f "$requirements_file" ] && { echo 'Error: FILE must be requirements file.' && exit 1; }
+[ -x "$(command -v virtualenv)" ] || { echo 'Error: virtualenv is not installed.' && exit 1; }
+[ -f "$requirements_file" ] || { echo 'Error: FILE must be requirements file.' && exit 1; }
 
 tmp=$(mktemp --directory -t venv.XXXXXXXXXX) || exit 1
 trap 'rm -rf "$tmp"' EXIT

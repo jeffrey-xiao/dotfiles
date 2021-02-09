@@ -14,7 +14,7 @@ Options:
 
 unset lpass_email
 
-check_argument() { [ $# -lt 2 ] && { echo "Error: flag $1 requires an argument." && exit 1; } }
+check_argument() { [ $# -ge 2 ] || { echo "Error: flag $1 requires an argument." && exit 1; } }
 
 while [ ! $# -eq 0 ]; do
   case "$1" in
@@ -36,7 +36,7 @@ done
 
 [ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
 
-lpass_email=${lpass_email:-${LPASS_EMAIL}}
+lpass_email=${lpass_email:-$LPASS_EMAIL}
 
 dmenu_cmd() {
   rofi -i -fuzzy -dmenu -p "$1"

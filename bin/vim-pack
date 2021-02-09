@@ -19,7 +19,7 @@ Subcommands:
 check_no_positionals() { [ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; } }
 
 sub_add() {
-  [ -z "$1" ] && { echo "Error: subcommand set requires GIT_URL." && exit 1; }
+  [ $# -ge 1 ] || { echo "Error: subcommand set requires GIT_URL." && exit 1; }
   git_url="$1"
   shift
   check_no_positionals "$@"
@@ -28,7 +28,7 @@ sub_add() {
 }
 
 sub_remove() {
-  [ -z "$1" ] && { echo "Error: subcommand set requires GIT_URL." && exit 1; }
+  [ $# -ge 1 ] || { echo "Error: subcommand set requires GIT_URL." && exit 1; }
   package="$1"
   shift
   check_no_positionals "$@"
@@ -42,7 +42,7 @@ sub_remove() {
 }
 
 sub_update() {
-  [ -z "$1" ] && { echo "Error: subcommand set requires PACKAGE." && exit 1; }
+  [ $# -ge 1 ] || { echo "Error: subcommand set requires PACKAGE." && exit 1; }
   package="$1"
   shift
   check_no_positionals "$@"
@@ -56,16 +56,14 @@ sub_update_all() {
 }
 
 dir="$HOME/.vim/pack/plugins/start/"
-sub="$1"
-[ "$sub" = '-h' ] || [ "$sub" = '--help' ] && { echo "$__help" && exit 0; }
-if [ "$sub" = 'opt' ]; then
+if [ $# -ge 1 ] && [ "$1" = 'opt' ]; then
   shift
   dir="$HOME/.vim/pack/plugins/opt/"
-  sub="$1"
-else 
-  cd 
 fi
-[ -z "$sub" ] && { printf "Error: missing subcommand.\\n\\n%s\\n" "$__help" && exit 0; }
+
+[ $# -ge 1 ] || { printf "Error: missing subcommand.\\n\\n%s\\n" "$__help" && exit 0; }
+sub="$1"
+[ "$sub" = '-h' ] || [ "$sub" = '--help' ] && { echo "$__help" && exit 0; }
 [ "$(command -v "sub_$sub")" ] || { printf "Error: unknown subcommand: %s.\\n\\n%s\\n" "$sub" "$__help" && exit 1; }
 shift
 mkdir -p $dir

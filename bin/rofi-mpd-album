@@ -4,7 +4,7 @@ set -euo pipefail
 
 separator='»'
 
-if [ -z "$1" ]; then
+if [ $# -eq 0 ]; then
   mpc listall --format "%artist% $separator %album%" | sort | uniq | grep ". $separator ."
 else
   artist=$(echo "$1" | cut --delimiter="$separator" --fields=1 | head --bytes -2)

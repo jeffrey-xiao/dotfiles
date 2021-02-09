@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-if [ -z "$1" ]; then
+if [ $# -eq 0 ]; then
   mpc lsplaylists
 else
   mpc --quiet clear

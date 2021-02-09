@@ -15,7 +15,7 @@ Options:
 
 unset api_key
 
-check_argument() { [ $# -lt 2 ] && { echo "Error: flag $1 requires an argument." && exit 1; } }
+check_argument() { [ $# -ge 2 ] || { echo "Error: flag $1 requires an argument." && exit 1; } }
 
 while [ ! $# -eq 0 ]; do
   case "$1" in
@@ -41,7 +41,7 @@ location=$(curl --silent ipinfo.io/loc)
 latitude=$(echo "$location" | cut --delimiter=',' --fields=1)
 longitude=$(echo "$location" | cut --delimiter=',' --fields=2)
 api_endpoint='http://api.openweathermap.org/data/2.5/weather'
-api_key=${api_key:-${OPEN_WEATHER_MAP_KEY}}
+api_key=${api_key:-$OPEN_WEATHER_MAP_KEY}
 resp=$(curl --silent --get "$api_endpoint" --data-urlencode "lat=$latitude" --data-urlencode "lon=$longitude" --data-urlencode "APPID=$api_key" --data-urlencode 'units=metric')
 weather=$(echo "$resp" | jq --raw-output '.weather[0].main')
 temp=$(echo "$resp" | jq --raw-output '.main.temp')

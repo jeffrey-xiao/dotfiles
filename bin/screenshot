@@ -33,7 +33,7 @@ done
 
 file="${XDG_PICTURES_DIR:-"$HOME/Pictures"}/Screenshots/$(date +%s).png"
 
-if [ -z $select ]; then
+if [ -z ${select:-} ]; then
   # Screenshot entire desktop.
   scrot "$file"
   notify-send --urgency=low 'Took screenshot (desktop)'

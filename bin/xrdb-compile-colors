@@ -20,7 +20,7 @@ unset template
 unset destination
 unset xresources
 
-check_argument() { [ $# -lt 2 ] && { echo "Error: flag $1 requires an argument." && exit 1; } }
+check_argument() { [ $# -ge 2 ] || { echo "Error: flag $1 requires an argument." && exit 1; } }
 
 while [ ! $# -eq 0 ]; do
   case "$1" in
@@ -51,13 +51,13 @@ while [ ! $# -eq 0 ]; do
 done
 
 [ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
-[ ! -f "$template" ] && { echo 'TEMPLATE must be a file.' && exit 1; }
+[ -f "$template" ] || { echo 'TEMPLATE must be a file.' && exit 1; }
 
-xresources=${xresources:-${HOME}/.Xresources}
+xresources=${xresources:-$HOME/.Xresources}
 
 cp -f "$template" "$destination"
 xrdb "$xresources"
 for i in $(seq 0 15); do
   color=$(xrdb -query -cpp g++ | awk '/.color'"$i":'/ { print $2; }')
-  sed --in-place "s/{color${i}}/${color}/g" "$destination"
+  sed --in-place "s/{color$i}/$color/g" "$destination"
 done

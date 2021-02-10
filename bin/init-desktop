@@ -25,7 +25,7 @@ done
 [ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
 
 # Initialize polybar.
-killall --quiet polybar
+killall --quiet polybar || true
 while pgrep --exact polybar >/dev/null; do sleep 1; done
 
 monitors=$(polybar --list-monitors | cut --delimiter=':' --fields=1)

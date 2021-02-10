@@ -51,7 +51,7 @@ done
 script=${script:-$process}
 
 if [ ! -z ${restart:-} ]; then
-  killall --quiet "$process"
+  killall --quiet "$process" || true
   while pgrep --exact "$process" >/dev/null; do sleep 1; done
 fi
 

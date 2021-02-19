@@ -16,7 +16,6 @@ __twoline_simple() {
 
     git_info="$(__git_info)"
     venv_info="$(__venv_info)"
-    nvm_info="$(__nvm_info)"
 
     # Path info.
     if [ "$(id -u)" -eq 0 ]; then
@@ -38,8 +37,8 @@ __twoline_simple() {
 
     # Environment info.
     existing_info=false
-    { [ ! -z "$venv_info" ] || [ ! -z "$nvm_info" ]; } && PS1="$PS1 with"
-    for info in "$venv_info" "$nvm_info"; do
+    [ ! -z "$venv_info" ] && PS1="$PS1 with"
+    for info in "$venv_info"; do
       [ -z "$info" ] && continue
       [ "$existing_info" = true ] && PS1="$PS1,"
       PS1="$PS1 $FG_COLOR_3$info$RESET"

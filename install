@@ -28,7 +28,7 @@ declare -a programs=(
   atool cabextract highlight imagemagick p7zip ranger w3m
   rtorrent
   rxvt-unicode xrdb tmux
-  cppcheck ctags curl llvm-clang nodejs pandoc pip ripgrep vim
+  cppcheck ctags curl llvm-clang pandoc pip ripgrep vim
   weechat
   texlive-all xdotool zathura zathura-mupdf
 )
@@ -62,10 +62,8 @@ xrdb ~/.Xresources
 # Installing development related programs and tools.
 vim -c helptags ALL -c q!
 ~/.vim/pack/plugins/start/fzf/install --all --xdg --no-update-rc
-NVM_DIR=~/.local/share/nvm/ &&
-  mkdir -pv $NVM_DIR &&
-  curl --silent --show-error --fail https://raw.githubusercontent.com/creationix/nvm/master/install.sh | sh
 python3 -m pip install --user autopep8 flake8 pylint python-language-server yapf
-sudo npm install --global eslint javascript-typescript-langserver prettier
+NPM_PREFIX=~/.local/share/n curl --silent --show-error --fail --location https://git.io/n-install | bash
+npm install --global @bitwarden/cli eslint javascript-typescript-langserver prettier
 curl --silent --show-error --fail https://sh.rustup.rs | sh -s -- -y --no-modify-path --default-toolchain nightly --component clippy rustfmt rust-analyzer-preview rust-src &&
   rustup install stable

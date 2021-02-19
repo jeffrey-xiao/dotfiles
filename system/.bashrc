@@ -36,16 +36,12 @@ set -o vi
 # Enable programmable completion features.
 [ -f /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 [ -f "$config_dir/fzf/fzf.bash" ] && . "$config_dir/fzf/fzf.bash"
-[ -f "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
 
 # Bash specific configuration.
 [ -f "$config_dir/bash/bash_twoline_simple" ] && . "$config_dir/bash/bash_twoline_simple"
 [ -f "$config_dir/bash/bash_aliases" ] && . "$config_dir/bash/bash_aliases"
 [ -f "$config_dir/bash/bash_functions" ] && . "$config_dir/bash/bash_functions"
 [ -f "$config_dir/bash/bash_bookmarks" ] && . "$config_dir/bash/bash_bookmarks"
-
-# Enabling nvm.
-[ -f "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use
 
 # Add ssh keys.
 ssh-add -l >/dev/null || ssh-add

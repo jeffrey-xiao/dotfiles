@@ -59,16 +59,6 @@ __venv_info() {
   echo "${VIRTUAL_ENV##*/} v$version"
 }
 
-__nvm_info() {
-  # nvm not installed.
-  type -t nvm >/dev/null || return
-
-  version=$(nvm current)
-  # nvm using system.
-  [ "$version" = 'system' ] && return
-  echo "nvm $version"
-}
-
 __is_ssh() {
   [ -n "$SSH_CONNECTION" ] || [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]
 }

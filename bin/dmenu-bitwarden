@@ -1,0 +1,59 @@
+#!/bin/sh
+
+set -euo pipefail
+
+__help="Usage: ${0##*/} [OPTIONS]
+
+Display a dmenu for accounts stored in BitWarden. The default BitWarden account
+to use is specified by the BITWARDEN_EMAIL environment variable.
+
+Options:
+  -h, --help               display this help and exit
+  -a, --account ACCOUNT    the BitWarden account
+                           (default: \$BITWARDEN_EMAIL)"
+
+unset bitwarden_email
+
+check_argument() { [ $# -ge 2 ] || { echo "Error: flag $1 requires an argument." && exit 1; } }
+
+while [ ! $# -eq 0 ]; do
+  case "$1" in
+    -h | --help)
+      echo "$__help"
+      exit 0
+      ;;
+    -a | --account)
+      check_argument "$@"
+      bitwarden_email=$2
+      shift
+      ;;
+    *)
+      break;
+      ;;
+  esac
+  shift
+done
+
+[ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
+
+bitwarden_email=${bitwarden_email:-$BITWARDEN_EMAIL}
+
+dmenu_cmd() {
+  rofi -i -fuzzy -dmenu -p "$1"
+}
+
+status="$(bw status | jq '.status' --raw-output)"
+if [ $status == "unauthenticated" ]; then
+  password="$(rofi -dmenu -p "Password" -password)"
+  session_key="$(bw login $bitwarden_email $password --raw)"
+elif [ $status == "locked" ]; then
+password="$(rofi -dmenu -p "Password" -password)"
+session_key="$(bw unlock $password --raw)"
+fi
+
+items="$(bw list items --session $session_key)"
+selected_name=$(printf '%s' "$items" | jq -r ".[] | .name" | dmenu_cmd "Account")
+[ -z "$selected_name" ] && exit
+
+id=$(echo $items | jq -r ".[] | select(.name = \"$selected_name\") | .id")
+bw get password $id --session $session_key | xclip -in -selection clipboard

@@ -60,7 +60,7 @@
 [alias]
   # Log.
   l = log --graph
-  ls = log --pretty=oneline
+  ls = log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short
   lp = log --graph --patch
 
   # Diff.

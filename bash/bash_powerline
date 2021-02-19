@@ -36,7 +36,6 @@ __powerline() {
 
     git_info="$(__git_info)"
     venv_info="$(__venv_info)"
-    nvm_info="$(__nvm_info)"
 
     # Path info.
     if __is_ssh; then
@@ -50,7 +49,7 @@ __powerline() {
     [ ! -z "$git_info" ] && push_section "$git_info" "$FG_COLOR_4" "$BG_COLOR_4"
 
     # Environment info.
-    for info in "$venv_info" "$nvm_info"; do
+    for info in "$venv_info"; do
       [ -z "$info" ] && continue
       get_color
       push_section "$info" $colors

@@ -16,7 +16,6 @@ __twoline() {
 
     git_info="$(__git_info)"
     venv_info="$(__venv_info)"
-    nvm_info="$(__nvm_info)"
 
     # Path info.
     if [ "$(id -u)" -eq 0 ]; then
@@ -37,7 +36,7 @@ __twoline() {
     [ ! -z "$git_info" ] && PS1="$PS1─[$FG_COLOR_3$git_info$RESET$FG_EXIT]"
 
     # Environment info.
-    for info in "$venv_info" "$nvm_info"; do
+    for info in "$venv_info"; do
       [ -z "$info" ] && continue
       PS1="$PS1─[$FG_COLOR_3$info$RESET$FG_EXIT]"
     done

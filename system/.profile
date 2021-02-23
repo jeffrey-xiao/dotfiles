@@ -6,8 +6,8 @@ runtime_dir=${XDG_RUNTIME_DIR:-"/run/user/$UID"}
 
 # Set PATH to include user's bin directories.
 export PATH="$PATH:$HOME/.local/bin"
-# Include cargo, mix, java, and n binaries.
-export PATH="$PATH:$HOME/.cargo/bin:$HOME/.mix/escripts:/usr/lib64/openjdk-11/bin:$data_dir/n/bin"
+# Include cargo, mix, java, n, and npm binaries.
+export PATH="$PATH:$HOME/.cargo/bin:$HOME/.mix/escripts:/usr/lib64/openjdk-11/bin:$data_dir/n/bin:$data_dir/npm/bin"
 
 # Environment variables for default programs.
 export BROWSER=firefox
@@ -25,7 +25,7 @@ export MPD_PORT=6600
 export GTK2_RC_FILES="$config_dir/gtk-2.0/gtkrc"
 export INPUTRC="$config_dir/bash/inputrc"
 export LESSHISTFILE="$runtime_dir/less/history"
-export N_PREFIX="$data_dir/n"
+export N_PREFIX="$data_dir"
 export PYLINTHOME="$data_dir/pylint"
 export WEECHAT_HOME="$config_dir/weechat"
 export BSPWM_SOCKET="$runtime_dir/bspwm.socket"

@@ -66,7 +66,9 @@ for curr_monitor in $monitors; do
     for i in $(seq $total $((total + curr - 1))); do
       curr_desktop=$(bspc query --desktops --desktop "$i")
       bspc desktop --focus "$curr_desktop"
-      bspc desktop "$curr_desktop" --to-monitor "$curr_monitor"
+      # If the desktop is already on the monitor, then the following command
+      # will have a non-zero exit code.
+      bspc desktop "$curr_desktop" --to-monitor "$curr_monitor" || true
     done
     bspc query --monitor "$curr_monitor" --tree | jq '.desktops[].name' | sort -n | xargs bspc monitor "$curr_monitor" --reorder-desktops
   fi

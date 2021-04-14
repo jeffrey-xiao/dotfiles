@@ -76,6 +76,7 @@ URxvt.internalBorder:     4
 URxvt.termName:           xterm-256color
 URxvt.saveLines:          100000
 URxvt.buffered:           true
+URxvt.intensityStyles:    false
 
 ! Rofi appearance.
 rofi.bw:                  0

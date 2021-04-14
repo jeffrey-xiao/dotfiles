@@ -45,6 +45,8 @@ done
 [ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
 
 output=${output:-${XDG_VIDEOS_DIR:-"$HOME/Videos"}/$(date +%s).mp4}
+sound_index=0
+microphone_index=29
 
 if pgrep --exact ffmpeg; then
   pkill --exact -INT ffmpeg
@@ -66,9 +68,9 @@ else
 fi
 
 if [ -z ${voice:-} ]; then
-  input=1
+  input=$sound_index
 else
-  input=2
+  input=$microphone_index
 fi
 
 ffmpeg -f x11grab -s "$dimensions" -i :0.0+"$offset" -f pulse -i $input "$output"

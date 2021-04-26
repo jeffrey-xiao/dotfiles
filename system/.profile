@@ -46,5 +46,3 @@ fi
 [ -z "$SSH_AUTH_SOCK" ] &&
   [ -z "$SSH_AGENT" ] &&
   eval "$(ssh-agent)"
-
-export LPASS_AGENT_TIMEOUT=0

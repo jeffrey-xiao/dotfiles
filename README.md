@@ -92,6 +92,7 @@ the exception of the colors in `dircolors`, `ranger`, and `weechat`.
   internals interface for the backlight device.
 - [`bin/keyboard`](bin/keyboard): Change the keyboard device name.
 - [`bin/touchpad`](bin/touchpad): Change the touchpad device name.
+- [`bin/record`](bin/record): Change the PulseAudio device indexes.
 - [`git/config`](git/config): Change the username and email.
 - [`polybar/config`](polybar/config): Change the adapter and battery name.
 - [`weechat/irc.conf`](weechat/irc.conf): Change the username and nicks.

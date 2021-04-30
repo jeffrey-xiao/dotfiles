@@ -7,14 +7,14 @@ mcd() {
 
 # Print pid, cpu usage percentage, and process name of the processes consuming
 # the most cpu.
-process_cpu() {
+process-cpu() {
   count=${1:-10}
   ps axo pid,cmd,%cpu,%mem --sort=-%cpu | head -n "$count"
 }
 
 # Print pid, memory usage percentage, and process name of the processes consuming
 # the most memory.
-process_mem() {
+process-mem() {
   count=${1:-10}
   ps axo pid,cmd,%cpu,%mem --sort=-%mem | head -n "$count"
 }

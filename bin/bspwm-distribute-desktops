@@ -50,31 +50,43 @@ monitors=$(polybar --list-monitors | cut --delimiter=':' --fields=1)
 monitor_count=$(echo "$monitors" | wc -l)
 focused_desktop=$(bspc query --desktops --desktop .focused)
 initial_desktop_count="$(bspc query --desktops | wc -l)"
+
 q=$((desktop_count / monitor_count))
 r=$((desktop_count % monitor_count))
 total=0
 
-for curr_monitor in $monitors; do
-  curr=$q
-  if [ $r -gt 0 ]; then
-    curr=$((curr + 1))
-    r=$((r - 1))
-  fi
+if [ "$initial_desktop_count" -eq "$desktop_count" ]; then
+  # Reorder desktops.
+  echo "reorder"
+  for curr_monitor in $monitors; do
+    curr=$q
+    if [ $r -gt 0 ]; then
+      curr=$((curr + 1))
+      r=$((r - 1))
+    fi
 
-  if [ "$initial_desktop_count" -ge "$desktop_count" ]; then
     # Move desktops.
     for i in $(seq $total $((total + curr - 1))); do
       curr_desktop=$(bspc query --desktops --desktop "$i")
-      bspc desktop --focus "$curr_desktop"
       # If the desktop is already on the monitor, then the following command
       # will have a non-zero exit code.
       bspc desktop "$curr_desktop" --to-monitor "$curr_monitor" || true
     done
     bspc query --monitor "$curr_monitor" --tree | jq '.desktops[].name' | sort -n | xargs bspc monitor "$curr_monitor" --reorder-desktops
-  fi
+    total=$((total + curr))
+  done
+else
   # Initialize desktops.
-  bspc monitor "$curr_monitor" --reset-desktops $(seq $total $((total + curr - 1)))
-  total=$((total + curr))
-done
+  for curr_monitor in $monitors; do
+    curr=$q
+    if [ $r -gt 0 ]; then
+      curr=$((curr + 1))
+      r=$((r - 1))
+    fi
 
-bspc desktop --focus "$focused_desktop"
+    bspc monitor "$curr_monitor" --reset-desktops $(seq $total $((total + curr - 1)))
+    bspc query --desktops
+    total=$((total + curr))
+  done
+  bspc desktop --focus "$focused_desktop"
+fi

@@ -4,30 +4,21 @@ set -euo pipefail
 
 __help="Usage: ${0##*/} [OPTIONS]
 
-Evenly distribute a specified number of bwpsm desktops across all active
-monitors. If there are more active desktops than specified, than trim the extra
-ones. If there are fewer active desktops than specified, than add new ones. The
-default number of desktops to distribute across is 10.
+Evenly distribute a series of named bwpsm desktops across all active monitors.
+If the number of desktops does not match the number of expected desktops, then
+reinitialize all desktops for all monitors.
 
 Options:
   -h, --help              display this help and exit
-  -d, --desktops COUNT    the number of desktops to distribute
-                          (default: 10)"
 
-desktop_count=10
-
-check_argument() { [ $# -ge 2 ] || { echo "Error: flag $1 requires an argument." && exit 1; } }
+Positional Arguments:
+  FILES                   an ordered list of desktop names to distribute"
 
 while [ ! $# -eq 0 ]; do
   case "$1" in
     -h | --help)
       echo "$__help"
       exit 0
-      ;;
-    -d | --desktops)
-      check_argument "$@"
-      desktop_count=$2
-      shift
       ;;
     *)
       break;
@@ -36,8 +27,7 @@ while [ ! $# -eq 0 ]; do
   shift
 done
 
-[ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
-
+desktop_count=$#
 monitors=$(
   xrandr |
     grep '\bconnected\b' |
@@ -55,38 +45,32 @@ q=$((desktop_count / monitor_count))
 r=$((desktop_count % monitor_count))
 total=0
 
-if [ "$initial_desktop_count" -eq "$desktop_count" ]; then
-  # Reorder desktops.
-  echo "reorder"
-  for curr_monitor in $monitors; do
-    curr=$q
-    if [ $r -gt 0 ]; then
-      curr=$((curr + 1))
-      r=$((r - 1))
-    fi
+for curr_monitor in $monitors; do
+  curr=$q
+  if [ $r -gt 0 ]; then
+    curr=$((curr + 1))
+    r=$((r - 1))
+  fi
 
-    # Move desktops.
-    for i in $(seq $total $((total + curr - 1))); do
-      curr_desktop=$(bspc query --desktops --desktop "$i")
+  # Move desktops.
+  desktops=""
+  for i in $(seq $((total + 1)) $((total + curr))); do
+    if [ -z "$desktops" ]; then
+      desktops="${!i}"
+    else
+      desktops="$desktops ${!i}"
+    fi
+    if [ "$i" -lt "$initial_desktop_count" ]; then
+      curr_desktop=$(bspc query --desktops --desktop "${!i}")
       # If the desktop is already on the monitor, then the following command
       # will have a non-zero exit code.
       bspc desktop "$curr_desktop" --to-monitor "$curr_monitor" || true
-    done
-    bspc query --monitor "$curr_monitor" --tree | jq '.desktops[].name' | sort -n | xargs bspc monitor "$curr_monitor" --reorder-desktops
-    total=$((total + curr))
-  done
-else
-  # Initialize desktops.
-  for curr_monitor in $monitors; do
-    curr=$q
-    if [ $r -gt 0 ]; then
-      curr=$((curr + 1))
-      r=$((r - 1))
     fi
-
-    bspc monitor "$curr_monitor" --reset-desktops $(seq $total $((total + curr - 1)))
-    bspc query --desktops
-    total=$((total + curr))
   done
-  bspc desktop --focus "$focused_desktop"
-fi
+  if [ "$initial_desktop_count" -eq "$desktop_count" ]; then
+    bspc monitor "$curr_monitor" --reorder-desktops $desktops
+  else
+    bspc monitor "$curr_monitor" --reset-desktops $desktops
+  fi
+  total=$((total + curr))
+done

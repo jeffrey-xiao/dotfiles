@@ -29,11 +29,7 @@ bspc config normal_border_color "$COLOR_0"
 bspc config presel_feedback_color "$COLOR_3"
 
 # bspwm rules.
-bspc rule --add Firefox desktop=1
-bspc rule --add URxvt:music desktop=0
-bspc rule --add URxvt:torrent desktop=8
 bspc rule --add Zathura state=tiled
-bspc rule --add mpv desktop=9
 
 # Appearance and notifications startup applications.
 xsetroot -cursor_name left_ptr

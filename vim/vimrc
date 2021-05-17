@@ -170,10 +170,6 @@ command! MRU call fzf#run(fzf#wrap({
 set grepformat^=%f:%l:%c:%m
 if executable('rg')
   set grepprg=rg\ --vimgrep
-elseif executable('ag')
-  set grepprg=ag\ --vimgrep
-elseif executable('ack')
-  set grepprg=ack\ --nocolor\ --nogroup
 else
   set grepprg=grep\ --recursive\ --line-number
 endif

@@ -37,10 +37,6 @@ export RXVT_SOCKET="$runtime_dir/urxvtd.socket"
 # Setting rg as the default source for fzf, falling back to ag and ack.
 if [ -x "$(command -v rg)" ]; then
   export FZF_DEFAULT_COMMAND='rg --hidden --files'
-elif [ -x "$(command -v ag)" ]; then
-  export FZF_DEFAULT_COMMAND='ag --hidden -g ""'
-elif [ -x "$(command -v ack)" ]; then
-  export FZF_DEFAULT_COMMAND='ack -g ""'
 fi
 
 [ -z "$SSH_AUTH_SOCK" ] &&

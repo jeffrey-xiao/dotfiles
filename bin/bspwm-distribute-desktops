@@ -60,7 +60,7 @@ for curr_monitor in $monitors; do
     else
       desktops="$desktops ${!i}"
     fi
-    if [ "$i" -lt "$initial_desktop_count" ]; then
+    if [ "$initial_desktop_count" -eq "$desktop_count" ]; then
       curr_desktop=$(bspc query --desktops --desktop "${!i}")
       # If the desktop is already on the monitor, then the following command
       # will have a non-zero exit code.

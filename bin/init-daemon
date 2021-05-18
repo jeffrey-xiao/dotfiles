@@ -46,7 +46,7 @@ while [ ! $# -eq 0 ]; do
 done
 
 [ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
-[ ! -z "${process:-}" ] || { echo 'Error: must specific PROCESS.' && exit 1; }
+[ ! -z ${process:-} ] || { echo 'Error: must specific PROCESS.' && exit 1; }
 
 script=${script:-$process}
 

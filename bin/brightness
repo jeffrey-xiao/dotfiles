@@ -41,7 +41,7 @@ sub_set() {
   elif [ "$curr_brightness" -lt "$min_brightness" ]; then
     curr_brightness=$min_brightness
   fi
-  echo "echo $curr_brightness > $brightness_file" | sudo bash
+  echo "$curr_brightness" >"$brightness_file"
 }
 
 sub_inc() {

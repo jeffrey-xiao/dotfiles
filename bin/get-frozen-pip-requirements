@@ -34,7 +34,7 @@ done
 
 [ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
 [ -x "$(command -v virtualenv)" ] || { echo 'Error: virtualenv is not installed.' && exit 1; }
-[ -f "$requirements_file" ] || { echo 'Error: FILE must be requirements file.' && exit 1; }
+[ -f "${requirements_file:-}" ] || { echo 'Error: FILE must be requirements file.' && exit 1; }
 
 tmp=$(mktemp --directory -t venv.XXXXXXXXXX) || exit 1
 trap 'rm -rf "$tmp"' EXIT

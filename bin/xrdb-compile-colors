@@ -51,7 +51,7 @@ while [ ! $# -eq 0 ]; do
 done
 
 [ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
-[ -f "$template" ] || { echo 'TEMPLATE must be a file.' && exit 1; }
+[ -f "${template:-}" ] || { echo 'TEMPLATE must be a file.' && exit 1; }
 
 xresources=${xresources:-$HOME/.Xresources}
 

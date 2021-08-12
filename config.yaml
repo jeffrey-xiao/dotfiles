@@ -99,7 +99,6 @@ picom:
 polybar:
   link: ~/.config/polybar/
   dependencies:
-    - font-awesome-ttf
     - polybar
 
 ranger:

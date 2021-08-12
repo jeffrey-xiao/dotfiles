@@ -24,7 +24,7 @@ declare -a programs=(
   ncmpcpp
   picom
   redshift yt-dlc
-  font-awesome-ttf polybar
+  polybar
   atool cabextract highlight imagemagick p7zip ranger w3m
   rtorrent
   rxvt-unicode xrdb tmux

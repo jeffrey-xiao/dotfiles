@@ -8,26 +8,15 @@ height = 21
 background = ${xrdb:color8}
 foreground = ${xrdb:color14}
 
-line-size = 3
-
-padding = 0
-
-; Default font.
 font-0 = "Iosevka SS04:size=11;3"
-
-; Japanese characters.
-font-1 = "M+ 2c:style=regular:size=11;2"
-
-; Icons.
-font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=10;2"
-font-3 = "Font Awesome 5 Free:style=Solid:pixelsize=10;2"
-font-4 = "Font Awesome 5 Brands:pixelsize=10;2"
+font-1 = "Iosevka SS04:size=11:weight=bold;3"
+font-2 = "M+ 2c:style=regular:size=11;2"
 
 tray-position = right
 
 modules-left = bspwm mpd
 modules-center = left date separator weather right
-modules-right = memory cpu wired-network wireless-network pulseaudio battery
+modules-right = temperature wired-network wireless-network pulseaudio battery
 
 [module/bspwm]
 type = internal/bspwm
@@ -36,21 +25,17 @@ enable-click = true
 enable-scroll = true
 format = <label-state> <label-mode>
 
+label-dimmed-foreground = ${xrdb:color12}
+
 label-focused = [%name%]
+label-focused-font = 2
 label-focused-foreground = ${xrdb:color3}
-label-focused-background = ${xrdb:color8}
 
 label-occupied = " %name% "
-label-occupied-foreground = ${xrdb:color12}
-label-occupied-background = ${xrdb:color8}
-
-label-dimmed = " %name% "
-label-dimmed-foreground = ${xrdb:color12}
-label-dimmed-background = ${xrdb:color8}
+label-occupied-foreground = ${xrdb:color3}
 
 label-urgent = " %name% "
-label-urgent-foreground = ${xrdb:color12}
-label-urgent-background = ${xrdb:color8}
+label-urgent-foreground = ${xrdb:color1}
 
 label-empty =
 
@@ -60,18 +45,25 @@ type = internal/mpd
 host = /tmp/mpd
 port = 6600
 
-format-online = <icon-prev> <toggle> <icon-next> <label-song>
-format-online-padding = 1
-
-format-offline = <label-offline>
-format-offline-padding = 1
-
 label-song = %artist% - %title%
-label-offline = MPD is offline
-icon-play = 
-icon-pause = 
-icon-prev = 
-icon-next = 
+
+format-online = <label-song>
+format-online-padding = 2
+
+format-playing-prefix = "%{T2}M%{T-} "
+format-playing-prefix-foreground = ${xrdb:color4}
+
+format-paused-prefix = "%{T2}M%{T-} "
+format-paused-prefix-foreground = ${xrdb:color3}
+
+format-stopped = " "
+format-stopped-prefix = "%{T2}M%{T-}"
+format-stopped-prefix-foreground = ${xrdb:color3}
+
+format-offline = " "
+format-offline-padding = 1
+format-offline-prefix = "%{T2}M%{T-}"
+format-offline-prefix-foreground = ${xrdb:color1}
 
 [module/date]
 type = internal/date
@@ -98,103 +90,109 @@ type = custom/script
 exec = get-weather
 interval = 300
 
-[module/memory]
+[module/temperature]
+type = internal/temperature
+
+interval = 3
+
+format-prefix = " %{T2}T%{T-} "
+format-prefix-foreground = ${xrdb:color4}
+format-background = ${xrdb:color15}
+
+format-warn-prefix = " %{T2}T%{T-} "
+format-warn-prefix-foreground = ${xrdb:color1}
+format-warn-background = ${xrdb:color15}
+
+label-foreground = ${xrdb:color10}
+label-padding-right = 1
+
+label-warn-foreground = ${xrdb:color10}
+label-warn-padding-right = 1
+
+[module/mem]
 type = internal/memory
 
 interval = 3
 
-label-foreground = ${xrdb:color10}
-label-background = ${xrdb:color15}
-label-padding-right = 1
-
-format-prefix = " "
-format-prefix-padding-left = 1
+format-prefix = "%{T2}M%{T-} "
 format-prefix-foreground = ${xrdb:color4}
-format-prefix-background = ${xrdb:color15}
+format-background = ${xrdb:color15}
+
+label = %percentage_used%%
+label-foreground = ${xrdb:color10}
+label-padding-right = 1
 
 [module/cpu]
 type = internal/cpu
 
 interval = 3
 
+format-prefix = "%{T2}C%{T-} "
+format-prefix-foreground = ${xrdb:color4}
+format-background = ${xrdb:color15}
+
 label = %percentage%%
 label-foreground = ${xrdb:color10}
-label-background = ${xrdb:color15}
 label-padding-right = 1
-
-format-prefix = " "
-format-prefix-padding-left = 1
-format-prefix-foreground = ${xrdb:color4}
-format-prefix-background = ${xrdb:color15}
 
 [module/wired-network]
 type = internal/network
 
 interface = ${env:WIRED_INTERFACE}
 
-label-connected = %local_ip%
-label-connected-padding-right = 1
-label-connected-foreground = ${xrdb:color10}
-label-connected-background = ${xrdb:color15}
-
-format-connected-prefix = " "
-format-connected-prefix-padding-left = 1
+format-connected-prefix = "%{T2}LAN%{T-} "
 format-connected-prefix-foreground = ${xrdb:color4}
-format-connected-prefix-background = ${xrdb:color15}
+format-connected-background = ${xrdb:color15}
 
-format-disconnected-prefix = ""
-format-disconnected-prefix-padding-left = 1
-format-disconnected-prefix-foreground = ${xrdb:color4}
-format-disconnected-prefix-background = ${xrdb:color15}
+format-disconnected-prefix = "%{T2}LAN%{T-}"
+format-disconnected-prefix-foreground = ${xrdb:color1}
+format-disconnected-background = ${xrdb:color15}
+
+label-connected = %local_ip%
+label-connected-foreground = ${xrdb:color10}
+label-connected-padding-right = 1
+
+label-disconnected = " "
+label-disconnected-foreground = ${xrdb:color10}
+label-disconnected-padding-right = 0
 
 [module/wireless-network]
 type = internal/network
 
 interface = ${env:WIFI_INTERFACE}
 
-label-connected = %essid%
-label-connected-padding-right = 1
-label-connected-foreground = ${xrdb:color10}
-label-connected-background = ${xrdb:color15}
-
-label-disconnected = none
-label-disconnected-padding-right = 1
-label-disconnected-foreground = ${xrdb:color10}
-label-disconnected-background = ${xrdb:color15}
-
-format-connected-prefix = " "
-format-connected-prefix-padding-left = 1
+format-connected-prefix = "%{T2}WLAN%{T-} "
 format-connected-prefix-foreground = ${xrdb:color4}
-format-connected-prefix-background = ${xrdb:color15}
+format-connected-background = ${xrdb:color15}
 
-format-disconnected-prefix = " "
-format-disconnected-prefix-padding-left = 1
+format-disconnected-prefix = "%{T2}WLAN%{T-}"
 format-disconnected-prefix-foreground = ${xrdb:color1}
-format-disconnected-prefix-background = ${xrdb:color15}
+format-disconnected-background = ${xrdb:color15}
+
+label-connected = %essid%
+label-connected-foreground = ${xrdb:color10}
+label-connected-padding-right = 1
+
+label-disconnected = " "
+label-disconnected-foreground = ${xrdb:color10}
+label-disconnected-padding-right = 0
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <ramp-volume><label-volume>
+format-volume-prefix = "%{T2}V%{T-} "
+format-volume-prefix-foreground = ${xrdb:color4}
+format-volume-background = ${xrdb:color15}
+
+format-muted-prefix = "%{T2}V%{T-} "
+format-muted-prefix-foreground = ${xrdb:color1}
+format-muted-background = ${xrdb:color15}
 
 label-volume-foreground = ${xrdb:color10}
-label-volume-background = ${xrdb:color15}
 label-volume-padding-right = 1
+
 label-muted-foreground = ${xrdb:color10}
-label-muted-background = ${xrdb:color15}
 label-muted-padding-right = 1
-
-ramp-volume-0 = " "
-ramp-volume-1 = " "
-ramp-volume-2 = " "
-ramp-volume-foreground = ${xrdb:color4}
-ramp-volume-background = ${xrdb:color15}
-ramp-volume-padding-left = 1
-
-format-muted-prefix = " "
-format-muted-prefix-foreground = ${xrdb:color1}
-format-muted-prefix-background = ${xrdb:color15}
-format-muted-prefix-padding-left = 1
 
 [module/battery]
 type = internal/battery
@@ -206,12 +204,16 @@ full-at = 99
 battery = BAT0
 adapter = AC
 
-format-charging = <animation-charging><label-charging>
+format-charging-prefix = "%{T2}B%{T-} "
+format-charging-prefix-foreground = ${xrdb:color4}
 format-charging-background = ${xrdb:color15}
 
-format-discharging = <ramp-capacity><label-discharging>
+format-discharging-prefix = "%{T2}B%{T-} "
+format-discharging-foreground = ${xrdb:color1}
 format-discharging-background = ${xrdb:color15}
 
+format-full-prefix = "%{T2}B%{T-} "
+format-full-prefix-foreground = ${xrdb:color4}
 format-full-background = ${xrdb:color15}
 
 label-charging = %percentage%%
@@ -225,24 +227,3 @@ label-discharging-padding-right = 1
 label-full = %percentage%%
 label-full-foreground = ${xrdb:color10}
 label-full-padding-right = 1
-
-animation-charging-0 = " "
-animation-charging-1 = " "
-animation-charging-2 = " "
-animation-charging-3 = " "
-animation-charging-4 = " "
-animation-charging-foreground = ${xrdb:color4}
-animation-charging-padding-left = 1
-
-ramp-capacity-0 = " "
-ramp-capacity-1 = " "
-ramp-capacity-2 = " "
-ramp-capacity-3 = " "
-ramp-capacity-4 = " "
-ramp-capacity-0-foreground = ${xrdb:color1}
-ramp-capacity-foreground = ${xrdb:color4}
-ramp-capacity-padding-left = 1
-
-format-full-prefix = " "
-format-full-prefix-foreground = ${xrdb:color4}
-format-full-prefix-padding-left = 1

@@ -48,17 +48,17 @@ port = 6600
 label-song = %artist% - %title%
 
 format-online = <label-song>
-format-online-padding = 2
+format-online-padding = 1
 
-format-playing-prefix = "%{T2}M%{T-} "
+format-playing-prefix = "%{A1:mpc toggle:}%{T2}M%{T-}%{A} "
 format-playing-prefix-foreground = ${xrdb:color4}
 
-format-paused-prefix = "%{T2}M%{T-} "
-format-paused-prefix-foreground = ${xrdb:color3}
+format-paused-prefix = "%{A1:mpc toggle:}%{T2}M%{T-}%{A} "
+format-paused-prefix-foreground = ${xrdb:color1}
 
 format-stopped = " "
-format-stopped-prefix = "%{T2}M%{T-}"
-format-stopped-prefix-foreground = ${xrdb:color3}
+format-stopped-prefix = "%{A1:mpc toggle:}%{T2}M%{T-}%{A}"
+format-stopped-prefix-foreground = ${xrdb:color1}
 
 format-offline = " "
 format-offline-padding = 1

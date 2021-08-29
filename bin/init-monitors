@@ -32,8 +32,8 @@ check_connected() {
   echo "$connected_monitors" | grep --silent "\\b$1\\b"
 }
 
-if check_connected 'HDMI-0'; then
-  xrandr --output eDP-1-1 --mode 1920x1080 --output HDMI-0 --mode 1920x1080 --auto --right-of eDP-1-1
+if check_connected 'DP-1-1' && check_connected 'DP-1-2-2'; then
+  xrandr --output DP-1-1 --mode 2560x1440 --left-of eDP-1-1 --output DP-1-2-2 --mode 2560x1440 --left-of DP-1-1 --output eDP-1-1 --mode 1920x1080
 else
   xrandr --output eDP-1-1 --mode 1920x1080
 fi

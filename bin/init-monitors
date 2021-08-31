@@ -28,12 +28,16 @@ xrandr_output="$(xrandr)"
 connected_monitors=$(echo "$xrandr_output" | grep '\bconnected\b' | cut --delimiter=' ' --fields=1)
 disconnected_monitors=$(echo "$xrandr_output" | grep '\bdisconnected\b' | cut --delimiter=' ' --fields=1)
 
-check_connected() {
-  echo "$connected_monitors" | grep --silent "\\b$1\\b"
+query_connected() {
+  echo "$connected_monitors" | grep --only-matching "$1"
 }
 
-if check_connected 'DP-1-1' && check_connected 'DP-1-2-2'; then
-  xrandr --output DP-1-1 --mode 2560x1440 --left-of eDP-1-1 --output DP-1-2-2 --mode 2560x1440 --left-of DP-1-1 --output eDP-1-1 --mode 1920x1080
+if query_connected '^DP-[0-9]-[0-9]$' && query_connected '^DP-[0-9]-[0-9]-[0-9]$'; then
+  dp1=$(query_connected '^DP-[0-9]-[0-9]$')
+  dp2=$(query_connected '^DP-[0-9]-[0-9]-[0-9]$')
+  xrandr --output $dp1    --mode 2560x1440 --left-of eDP-1-1 \
+         --output $dp2    --mode 2560x1440 --left-of $dp1    \
+         --output eDP-1-1 --mode 1920x1080
 else
   xrandr --output eDP-1-1 --mode 1920x1080
 fi

@@ -17,7 +17,7 @@ super + {_,shift +} e
   bspc node --{equalize,balance}
 
 super + z
-  bspc node -n last.!automatic
+  bspc node --to-node last.!automatic
 
 # Focus node by direction.
 super + {h,j,k,l}
@@ -143,9 +143,12 @@ XF86TouchpadToggle
   set-touchpad
 
 # Media player hotkeys.
-XF86Audio{Play,Pause,Next,Prev,Stop}
-  mpc {play,pause,next,prev,pause}
+XF86Audio{Play,Next,Prev,Stop}
+  mpc {toggle,next,prev,stop}
 
 # Mpd hotkeys.
 super + {p,bracketleft,bracketright}
   mpc {toggle,prev,next}
+
+super + shift + d
+  killall Discord

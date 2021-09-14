@@ -71,6 +71,7 @@ for curr_monitor in $monitors; do
   # monitors, we might add extraneous desktops.
   if [ "$initial_desktop_count" -ge "$desktop_count" ]; then
     bspc monitor "$curr_monitor" --reorder-desktops $desktops
+    bspc monitor "$curr_monitor" --reset-desktops $desktops
   else
     bspc monitor "$curr_monitor" --reset-desktops $desktops
   fi

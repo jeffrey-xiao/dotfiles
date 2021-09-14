@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -euo pipefail
 
@@ -25,7 +25,15 @@ done
 [ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
 
 pactl subscribe | while read -r line; do
-  if echo "$line" | grep --extended-regexp --silent 'sink #0'; then
-    robar-volume
+  if [[ $line =~ sink\ #([0-9]+) ]]; then
+    sink=${BASH_REMATCH[1]:-}
+    if [[ -n $sink && "$(pactl list sinks short | grep "^$sink" | cut --fields 2)" == "$(pactl get-default-sink)" ]]; then
+      volume=$(volume)
+      if echo "$volume" | grep --fixed-strings --silent 'muted'; then
+        echo "mute ${volume%\% muted}"
+      else
+        echo "default ${volume%\%}"
+      fi
+    fi
   fi
-done
+done | robar show-stream

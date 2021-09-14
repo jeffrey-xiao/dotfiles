@@ -26,9 +26,7 @@ done
 
 volume=$(volume)
 if echo "$volume" | grep --fixed-strings --silent 'muted'; then
-  value=$(echo "${volume%\%}" | awk '{printf "%.2f\n", $1 / 100}')
-  robar show mute "$value"
+  robar show mute ${volume%\% muted}
 else
-  value=$(echo "${volume%\% muted}" | awk '{printf "%.2f\n", $1 / 100}')
-  robar show default "$value"
+  robar show default ${volume%\%}
 fi

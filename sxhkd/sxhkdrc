@@ -129,14 +129,14 @@ shift + alt + Print
 
 # Audio hotkeys.
 XF86Audio{Raise,Lower}Volume
-  volume {inc 5,dec 5} && robar-volume
+  volume {inc 5,dec 5}
 
 XF86AudioMute
-  volume toggle && robar-volume
+  volume toggle
 
 # Screen brightness hotkeys.
 XF86MonBrightness{Up,Down}
-  sudo brightness {inc 5,dec 5} && robar-brightness
+  sudo brightness {inc 5,dec 5}
 
 # Touchpad controls.
 XF86TouchpadToggle

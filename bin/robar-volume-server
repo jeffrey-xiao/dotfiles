@@ -24,6 +24,8 @@ done
 
 [ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
 
+while ! pgrep --exact --full "robar start" >/dev/null; do sleep 1; done
+
 pactl subscribe | while read -r line; do
   if [[ $line =~ sink\ #([0-9]+) ]]; then
     sink=${BASH_REMATCH[1]:-}

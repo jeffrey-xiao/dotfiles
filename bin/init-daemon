@@ -52,7 +52,7 @@ script=${script:-$process}
 
 if [ ! -z ${restart:-} ]; then
   killall --quiet "$process" || true
-  while pgrep --exact "$process" >/dev/null; do sleep 1; done
+  while pgrep --exact --full "$script" >/dev/null; do sleep 1; done
 fi
 
 pgrep --exact "$process" >/dev/null || eval "$script"

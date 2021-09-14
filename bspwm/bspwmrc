@@ -37,6 +37,8 @@ init-daemon --process picom &
 init-daemon --process dunst &
 init-daemon --process notify-battery &
 init-daemon --process robar --script "robar start" &
+init-daemon --process robar-volume-server &
+init-daemon --process robar-brightness-server &
 
 # Tray applets.
 init-daemon --process blueman-applet &

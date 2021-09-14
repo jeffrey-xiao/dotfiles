@@ -19,13 +19,13 @@ Subcommands:
 
 check_no_positionals() { [ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; } }
 
-amixer_info=$(amixer sget Master)
-left=$(echo "$amixer_info" | grep 'Left:' | awk --field-separator='[][]' '{ print $2 }')
-left=${left%\%}
-right=$(echo "$amixer_info" | grep 'Right:' | awk --field-separator='[][]' '{ print $2 }')
-right=${right%\%}
-
 sub_status() {
+  amixer_info=$(amixer sget Master)
+  left=$(echo "$amixer_info" | grep 'Left:' | awk --field-separator='[][]' '{ print $2 }')
+  left=${left%\%}
+  right=$(echo "$amixer_info" | grep 'Right:' | awk --field-separator='[][]' '{ print $2 }')
+  right=${right%\%}
+
   check_no_positionals "$@"
   volume=$(((left + right) * 100 / 200))
   if echo "$amixer_info" | grep --silent '\[on\]'; then

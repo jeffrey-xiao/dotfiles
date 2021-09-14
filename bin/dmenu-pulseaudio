@@ -1,0 +1,40 @@
+#!/bin/sh
+
+set -euo pipefail
+
+__help="Usage: ${0##*/} [OPTIONS]
+
+Display a dmenu for PulseAudio sinks.
+
+Options:
+  -h, --help               display this help and exit"
+
+while [ ! $# -eq 0 ]; do
+  case "$1" in
+    -h | --help)
+      echo "$__help"
+      exit 0
+      ;;
+    *)
+      break;
+      ;;
+  esac
+  shift
+done
+
+[ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
+
+dmenu_cmd() {
+  rofi -i -fuzzy -dmenu -p "$1"
+}
+
+sink="$(pactl list short sinks | cut --fields=2 | dmenu_cmd 'sink')"
+[ -z "$sink" ] && exit
+
+inputs="$(pactl list sink-inputs short | cut --fields=1)"
+
+for input in $inputs; do
+  pactl move-sink-input "$input" "$sink"
+done
+
+pactl set-default-sink "$sink"

@@ -55,10 +55,6 @@ super + shift + r
 super + shift + q
   bspc node --close
 
-# Power options.
-super + x
-  dmenu-power
-
 # Lock screen.
 super + shift + x
   lock --suspend
@@ -93,14 +89,8 @@ super + b
 super + shift + b
   firefox --private-window
 
-super + n
-  rofi-network-manager
-
 super + m
   urxvtc -name music -e ncmpcpp
-
-super + shift + m
-  rofi-mpd
 
 super + y
   urxvtc -name explorer -e ranger
@@ -113,6 +103,10 @@ super + i
 
 super + d
   rofi -show run
+
+# dmenu and rofi applications.
+super + shift + d ; {b,d,m,n,p,x}
+  {dmenu-bitwarden,dmenu-xrandr,rofi-mpd,rofi-network-manager,dmenu-pulseaudio,dmenu-power}
 
 # Screenshots and video recording hotkeys.
 Print
@@ -149,6 +143,3 @@ XF86Audio{Play,Next,Prev,Stop}
 # Mpd hotkeys.
 super + {p,bracketleft,bracketright}
   mpc {toggle,prev,next}
-
-super + shift + d
-  killall Discord

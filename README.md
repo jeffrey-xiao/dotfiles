@@ -80,7 +80,6 @@ the exception of the colors in `dircolors`, `ranger`, and `weechat`.
 
 - [`bin/brightness`](bin/brightness): Change the path to the system internals interface for the
   backlight device.
-- [`bin/bspwm-distribute-desktops`](bin/bspwm-distribute-desktops): Change number of desktops.
 - [`bin/download-album-art`](bin/download-album-art): Define `LAST_FM_KEY`.
 - [`bin/get-cpu-temperature`](bin/get-cpu-temperature): Change the path to the system internals
   interface for the thermal device.

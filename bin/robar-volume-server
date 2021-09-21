@@ -26,15 +26,26 @@ done
 
 while ! pgrep --exact --full "robar start" >/dev/null; do sleep 1; done
 
+last_volume=0
+last_profile="default"
+
 pactl subscribe | while read -r line; do
   if [[ $line =~ sink\ #([0-9]+) ]]; then
     sink=${BASH_REMATCH[1]:-}
     if [[ -n $sink && "$(pactl list sinks short | grep "^$sink" | cut --fields 2)" == "$(pactl get-default-sink)" ]]; then
       volume=$(volume)
       if echo "$volume" | grep --fixed-strings --silent 'muted'; then
-        echo "mute ${volume%\% muted}"
+        volume="${volume%\% muted}"
+        profile="mute"
       else
-        echo "default ${volume%\%}"
+        volume="${volume%\%}"
+        profile="default"
+      fi
+
+      if [ $last_volume -ne $volume ] || [ $last_profile != $profile ]; then
+        echo "$profile $volume"
+        last_volume=$volume
+        last_profile=$profile
       fi
     fi
   fi

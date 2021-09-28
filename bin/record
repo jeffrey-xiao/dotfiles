@@ -45,8 +45,9 @@ done
 [ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
 
 output=${output:-${XDG_VIDEOS_DIR:-"$HOME/Videos"}/$(date +%s).mp4}
-sound_index=0
-microphone_index=29
+# PulseAudio device names can be determined with `pactl list sources short`.
+sound_name="alsa_output.pci-0000_00_1f.3.analog-stereo.monitor"
+microphone_name="alsa_input.pci-0000_00_1f.3.analog-stereo"
 
 if pgrep --exact ffmpeg; then
   pkill --exact -INT ffmpeg

@@ -77,39 +77,3 @@ URxvt.termName:           xterm-256color
 URxvt.saveLines:          100000
 URxvt.buffered:           true
 URxvt.intensityStyles:    false
-
-! Rofi appearance.
-rofi.bw:                  0
-rofi.font:                Iosevka SS04 12
-rofi.eh:                  2
-rofi.color-window:        ARGB(f2, BASE_03), ARGB(f2, BASE_03), ARGB(f2, BASE_01)
-rofi.color-normal:        ARGB(00, BASE_03), ARGB(f2, BASE_1), ARGB(00, BASE_03), ARGB(00, BASE_03), ARGB(f2, YELLOW)
-rofi.color-urgent:        ARGB(00, BASE_03), ARGB(f2, YELLOW), ARGB(00, BASE_03), ARGB(00, BASE_03), ARGB(f2, YELLOW)
-rofi.color-active:        ARGB(00, BASE_03), ARGB(f2, YELLOW), ARGB(00, BASE_03), ARGB(00, BASE_03), ARGB(f2, YELLOW)
-rofi.line-margin:         0
-rofi.separator-style:     solid
-rofi.hide-scrollbar:      true
-
-! Rofi layout.
-rofi.lines:               16
-rofi.width:               100
-rofi.padding:             250
-rofi.fullscreen:          true
-rofi.yoffset:             0
-rofi.columns:             2
-
-! Rofi keybindings.
-rofi.kb-remove-char-back: BackSpace,Shift+BackSpace
-rofi.kb-accept-entry:     Return,KP_Enter
-rofi.kb-row-left:         Control-h
-rofi.kb-row-down:         Control-j
-rofi.kb-row-up:           Control-k
-rofi.kb-row-right:        Control-l
-rofi.kb-remove-to-eol:
-
-! Rofi other configuration.
-rofi.monitor:             -4
-rofi.matching:            fuzzy
-rofi.terminal:            urxvtc
-rofi.ssh-client:          ssh
-rofi.ssh-command:         {terminal} -e {ssh-client} {host}

@@ -18,7 +18,6 @@ bspwm:
     - network-manager
     - numix-gtk-theme
     - papirus-icon-theme
-    - rofi
     - scrot
     - slop
     - sysstat
@@ -111,6 +110,11 @@ ranger:
     - p7zip
     - ranger
     - w3m
+
+rofi:
+  link: ~/.config/rofi/
+  dependencies:
+    - rofi
 
 rtorrent:
   link: ~/.config/rtorrent/

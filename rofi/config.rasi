@@ -1,0 +1,173 @@
+configuration {
+  font: "Iosevka SS04 14";
+  terminal: "urxvtc";
+  kb-mode-complete: "";
+  kb-remove-to-eol: "";
+  kb-remove-char-back: "BackSpace,Shift+BackSpace";
+  kb-accept-entry: "Return,KP_Enter";
+  kb-row-left: "Control+h";
+  kb-row-down: "Control+j";
+  kb-row-up: "Control+k";
+  kb-row-right: "Control+l";
+  monitor: "-4";
+  sidebar-mode: true;
+}
+
+* {
+  base-03: #002b36;
+  base-02: #073642;
+  base-01: #586e75;
+  base-00: #657b83;
+  base-0: #839496;
+  base-1: #93a1a1;
+  base-2: #eee8d5;
+  base-3: #fdf6e3;
+  yellow: #b58900;
+  orange: #cb4b16;
+  red: #dc322f;
+  magenta: #d33682;
+  violet: #6c71c4;
+  blue: #268bd2;
+  cyan: #2aa198;
+  green: #859900;
+}
+
+element {
+  padding: 4px;
+  cursor: pointer;
+  border: 0;
+}
+
+element normal.normal {
+  background-color: var(base-03);
+  text-color: var(base-1);
+}
+
+element normal.urgent {
+  background-color: var(base-03);
+  text-color: var(red);
+}
+
+element normal.active {
+  background-color: var(base-03);
+  text-color: var(yellow);
+}
+
+element selected.normal {
+  background-color: var(base-1);
+  text-color: var(base-02);
+}
+
+element selected.urgent {
+  background-color: var(base-1);
+  text-color: var(red);
+}
+
+element selected.active {
+  background-color: var(base-1);
+  text-color: var(yellow);
+}
+
+element alternate.normal {
+  background-color: var(base-03);
+  text-color: var(base-1);
+}
+
+element alternate.urgent {
+  background-color: var(base-03);
+  text-color: var(red);
+}
+
+element alternate.active {
+  background-color: var(base-03);
+  text-color: var(yellow);
+}
+
+window {
+  fullscreen: true;
+  background-color: var(base-03);
+  border: 0px;
+  border-color: var(yellow);
+  padding: 0 30%;
+  children: [space, mainbox, space];
+}
+
+space {
+  expand: true;
+}
+
+mainbox {
+  expand: false;
+  background-color: var(blue);
+  children: [inputbar, message, listview, mode-switcher];
+  spacing: 0px;
+}
+
+inputbar {
+  background-color: var(base-03);
+  text-color: var(normal-foreground);
+  children: [prompt, textbox-prompt-colon, entry, num-filtered-rows, textbox-num-sep, num-rows];
+  padding: 4px;
+  spacing: 0px;
+}
+
+prompt {
+  text-color: var(base-2);
+}
+
+textbox-prompt-colon {
+  str: ":";
+  text-color: var(base-2);
+}
+
+entry {
+  cursor: text;
+  spacing: 0;
+  placeholder: "Type to filter";
+  placeholder-color: var(base-0);
+  text-color: var(base-1);
+}
+
+num-filtered-rows {
+  text-color: var(base-1);
+}
+
+textbox-num-sep {
+  text-color: var(base-1);
+}
+
+num-rows {
+  text-color: var(base-1);
+}
+
+listview {
+  expand: true;
+  columns: 2;
+  fixed-columns: true;
+  lines: 16;
+  border: 0px;
+  background-color: var(base-03);
+  padding: 0px;
+}
+
+mode-switcher {
+  expand: false;
+  background-color: var(base-03);
+  padding: 16px;
+}
+
+button {
+  border: 2px;
+  border-color: var(base-1);
+  border-radius: 4px;
+  background-color: var(base-03);
+  color: var(base-1);
+  padding: 4px 0px;
+  margin: 0px 16px;
+  horizontal-align: 0.5;
+}
+
+button selected.normal {
+  background-color: var(base-1);
+  color: var(base-02);
+}

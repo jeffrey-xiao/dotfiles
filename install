@@ -14,7 +14,7 @@ log_file="$DOTFILES_DIR/install.log"
 printf '' > "$log_file"
 
 declare -a programs=(
-  acpi blueman bspwm i3lock imagemagick jq network-manager numix-gtk-theme papirus-icon-theme rofi scrot slop sysstat xbacklight xclip xinput xsetroot
+  acpi blueman bspwm i3lock imagemagick jq network-manager numix-gtk-theme papirus-icon-theme scrot slop sysstat xbacklight xclip xinput xsetroot
   dunst
   feh
   mkfontscale xset
@@ -27,6 +27,7 @@ declare -a programs=(
   polybar
   atool cabextract highlight imagemagick p7zip ranger w3m
   rtorrent
+  rofi
   rxvt-unicode xrdb tmux
   cppcheck ctags curl llvm-clang pandoc pip ripgrep vim
   weechat

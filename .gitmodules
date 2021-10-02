@@ -7,9 +7,6 @@
 [submodule "vim/pack/plugins/start/vim-sandwich"]
 	path = vim/pack/plugins/start/vim-sandwich
 	url = https://github.com/machakann/vim-sandwich
-[submodule "vim/pack/plugins/start/indentline"]
-	path = vim/pack/plugins/start/indentline
-	url = https://github.com/yggdroot/indentline
 [submodule "vim/pack/plugins/start/vim-minisnip"]
 	path = vim/pack/plugins/start/vim-minisnip
 	url = https://github.com/joereynolds/vim-minisnip

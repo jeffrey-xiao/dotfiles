@@ -28,9 +28,9 @@ nnoremap <buffer> o <CR>
 " Open and focus on results.
 nnoremap <buffer> <C-o> <CR><C-w>b
 " Open in horizontal split.
-nnoremap <buffer> x <C-w><CR><C-w>K
+nnoremap <buffer> s <C-w><CR><C-w>K
 " Open in horizontal split and focus on results.
-nnoremap <buffer> <C-x> <C-w><CR><C-w>K<C-w>b
+nnoremap <buffer> <C-s> <C-w><CR><C-w>K<C-w>b
 
 " Quit Vim if the last window is a quickfix window.
 autocmd BufEnter <buffer> nested if winnr('$') < 2 | q | endif

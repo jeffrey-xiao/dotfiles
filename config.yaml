@@ -100,17 +100,6 @@ polybar:
   dependencies:
     - polybar
 
-ranger:
-  link: ~/.config/ranger/
-  dependencies:
-    - atool
-    - cabextract
-    - highlight
-    - imagemagick
-    - p7zip
-    - ranger
-    - w3m
-
 rofi:
   link: ~/.config/rofi/
   dependencies:
@@ -148,6 +137,17 @@ tmux:
   link: ~/.config/tmux/
   dependencies:
     - tmux
+
+vifm:
+  link: ~/.config/vifm/
+  dependencies:
+    - atool
+    - cabextract
+    - highlight
+    - imagemagick
+    - p7zip
+    - vifm
+    - w3m
 
 vim:
   link: ~/.vim/

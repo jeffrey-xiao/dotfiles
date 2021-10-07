@@ -34,10 +34,9 @@ export RXVT_SOCKET="$runtime_dir/urxvtd.socket"
 # Setting bash secrets.
 [ -f "$config_dir/bash/bash_secrets" ] && . "$config_dir/bash/bash_secrets"
 
-# Setting rg as the default source for fzf, falling back to ag and ack.
-if [ -x "$(command -v rg)" ]; then
-  export FZF_DEFAULT_COMMAND='rg --hidden --files'
-fi
+# Fzf options.
+[ -x "$(command -v rg)" ] && export FZF_DEFAULT_COMMAND='rg --hidden --files'
+export FZF_DEFAULT_OPTS='--exact --color=fg:14,bg:8,bg+:8,hl:3,hl+:3,pointer:4'
 
 [ -z "$SSH_AUTH_SOCK" ] &&
   [ -z "$SSH_AGENT" ] &&

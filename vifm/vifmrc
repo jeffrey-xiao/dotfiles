@@ -1,0 +1,152 @@
+" Settings.
+set confirm=permdelete
+set fillchars=vborder:│
+set grepprg='rg --vimgrep'
+set history=100
+set nohlsearch
+set ignorecase
+set incsearch
+set iooptions=fastfilecloning
+set norunexec
+set rulerformat=''
+set scrolloff=1
+set shell=/bin/sh
+set sizefmt=units:iec,precision:2
+set smartcase
+set sortnumbers
+set statusline="%1* %A %u:%g %* %d │ %E %= %{&sort} │ %a free %1* %l/%S "
+set suggestoptions=normal,visual,view,otherpane,keys,marks,registers
+set syscalls
+set tabprefix=' %N:'
+set tabsuffix=' '
+set timefmt=%F\ %R
+set vifminfo=bmarks,bookmarks,dhistory,state,cs,chistory,shistory,phistory,fhistory,registers
+set vimhelp
+set wildmenu
+set wildstyle=popup
+
+" Colorscheme.
+highlight Win ctermbg=8
+highlight AuxWin ctermbg=8
+highlight OtherWin ctermbg=8
+highlight Border ctermfg=0 ctermbg=0
+highlight TabLine ctermfg=8 ctermbg=10
+highlight TabLineSel ctermfg=14 ctermbg=8
+highlight TopLine ctermfg=14 ctermbg=0
+highlight TopLineSel ctermfg=14 ctermbg=0
+highlight Cmdline ctermfg=14 ctermbg=8
+highlight Statusline ctermfg=14 ctermbg=0
+highlight Directory ctermfg=4
+highlight Link ctermfg=5
+highlight BrokenLink ctermfg=7 ctermbg=1
+highlight HardLink ctermfg=5
+highlight Executable ctermfg=1
+highlight Socket ctermfg=5 ctermbg=blue
+highlight Fifo ctermfg=0 ctermbg=blue
+highlight User1 ctermfg=0 ctermbg=14
+
+" Marks.
+mark d ~/Downloads
+mark h ~/
+mark w ~/Documents/workspace
+
+" Mappings.
+cnoremap <c-j> <tab>
+cnoremap <c-k> <s-tab>
+
+nnoremap cd :cd<space>
+nnoremap S :sort<cr>
+nnoremap w :view<cr>
+vnoremap w :view<cr>gv
+nnoremap t tj
+nnoremap V :%select<cr>
+
+if executable('xclip')
+  nnoremap yd :!echo %d | xclip -selection clipboard %i<cr>
+  nnoremap yf :!echo %c:p | xclip -selection clipboard %i<cr>
+endif
+
+nnoremap I cw<c-a>
+nnoremap cc cw<c-u>
+nnoremap A cw
+
+nnoremap <space>r :restart full<cr>
+nnoremap <space>t :!urxvtc & disown<cr>
+
+" Commands.
+command! df df -h %m 2> /dev/null
+command! diff vim -d %f %F
+command! run !!./%f
+command! make !!make %a
+command! mkcd :mkdir %a | cd %a
+command! vgrep vim "+grep %a"
+command! compress [ -n '%a' ] && apack '%a' %f
+command! extract aunpack %f
+
+" Pdf.
+filextype {*.pdf},<application/pdf> zathura %c %i & disown
+filextype {*.ps,*.eps,*.ps.gz},<application/postscript> zathura %c %i & disown
+filextype {*.djvu},<image/vnd.djvu> zathura %c %i & disown
+
+fileviewer {*.pdf},<application/pdf> pdftotext -nopgbrk %c -
+
+" Music.
+filetype {*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus},<audio/*>
+  \ mpv %f --no-audio-display,
+fileviewer {*.mp3},<audio/mpeg> mp3info
+fileviewer {*.flac},<audio/flac> soxi
+
+" Video
+filextype {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
+  \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
+  \*.as[fx]},
+  \<video/*>
+  \ umpv %f,
+fileviewer {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
+  \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
+  \*.as[fx]},
+  \<video/*>
+  \ ffprobe -pretty %c 2>&1
+
+" Web.
+filextype {*.html,*.htm},<text/html> firefox %f &,
+
+" Man page.
+filetype {*.[1-8]},<text/troff> man ./%c
+fileviewer {*.[1-8]},<text/troff> man ./%c | col -b
+
+" Images.
+filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*> feh %f &
+fileviewer {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
+  \ imgt %px %py %pw %ph %c
+  \ %pc
+  \ imgt %px %py %pw %ph
+
+filetype *.md5 md5sum -c %f %S
+filetype *.sha1 sha1sum -c %f %S
+filetype *.sha256 sha256sum -c %f %S
+filetype *.sha512 sha512sum -c %f %S
+filetype {*.asc},<application/pgp-signature> !!gpg --verify %c
+
+" Archive previews.
+fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip -sf %c
+fileviewer *.tgz,*.tar.gz tar -tzf %c
+fileviewer *.tar.bz2,*.tbz2 tar -tjf %c
+fileviewer *.tar.txz,*.txz xz --list %c
+fileviewer {*.tar},<application/x-tar> tar -tf %c
+fileviewer {*.rar},<application/x-rar> unrar v %c
+fileviewer {*.7z},<application/x-7z-compressed> 7z l %c
+
+" Office files
+filextype {*.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx,*.ppt},
+  \<application/vnd.openxmlformats-officedocument.*,
+  \application/msword,
+  \application/vnd.ms-excel>
+  \ libreoffice %f &
+fileviewer {*.doc},<application/msword> catdoc %c
+fileviewer {*.docx},<application/vnd.openxmlformats-officedocument.wordprocessingml.document>
+  \ docx2txt.pl %f -
+
+filetype *[^/],<text/*> vim %f
+fileviewer *[^/],<text/*> cat
+fileviewer */ tree -L 2 -I .git %c

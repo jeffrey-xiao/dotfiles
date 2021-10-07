@@ -93,7 +93,7 @@ super + m
   urxvtc -name music -e ncmpcpp
 
 super + y
-  urxvtc -name explorer -e ranger
+  urxvtc -name explorer -e vifm
 
 super + u
   zathura

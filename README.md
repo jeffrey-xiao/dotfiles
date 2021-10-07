@@ -9,10 +9,12 @@ This repository contains all the dotfiles I use for my Solus machine.
 ## List of Software
 
 ```
+application launcher → rofi
 audio player         → mpc, mpd, ncmpcpp
 compositor           → picom
 document viewer      → zathura
-file manager         → ranger
+file manager         → vifm
+hotkey daemon        → sxhkd
 irc client           → weechat
 media player         → mpv
 notification daemon  → dunst
@@ -74,7 +76,7 @@ dotinstall
 ## Color Scheme
 
 The color scheme used is `solarized-dark`. Most programs will take the colors in `.Xresources` with
-the exception of the colors in `dircolors`, `ranger`, and `weechat`.
+the exception of the colors in `dircolors` and `weechat`.
 
 ## Personal Configuration
 

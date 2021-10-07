@@ -107,7 +107,7 @@ inputbar {
   background-color: var(base-03);
   text-color: var(normal-foreground);
   children: [prompt, textbox-prompt-colon, entry, num-filtered-rows, textbox-num-sep, num-rows];
-  padding: 4px;
+  padding: 4px 12px 8px 12px;
   spacing: 0px;
 }
 
@@ -144,10 +144,14 @@ listview {
   expand: true;
   columns: 2;
   fixed-columns: true;
-  lines: 16;
+  lines: 12;
   border: 0px;
   background-color: var(base-03);
   padding: 0px;
+}
+
+element {
+  padding: 8px 12px;
 }
 
 mode-switcher {

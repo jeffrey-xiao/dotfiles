@@ -1,0 +1,114 @@
+#!/bin/sh
+
+set -euo pipefail
+
+__help="Usage: ${0##*/} [OPTIONS] X Y COLUMNS LINES FILE PATH
+
+Display an image preview of a file using w3mimgdisplay.
+
+Options:
+  -h, --help    display this help and exit
+
+Positional Arguments:
+  X             column to display the top-left corner of the image
+  Y             line to display the top-left corner of the image
+  COLUMNS       number of columns displayed in the terminal
+  LINES         number of lines displayed in the terminal
+  FILE          file to display an image preview of
+  PATH          path of the file; only used for caching non-image files"
+
+check_no_positionals() { [ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; } }
+
+while [ ! $# -eq 0 ]; do
+  case "$1" in
+    -h | --help)
+      echo "$__help"
+      exit 0
+      ;;
+    *)
+      break
+      ;;
+  esac
+  shift
+done
+
+w3mimgdisplay='/usr/lib/w3m/w3mimgdisplay'
+font_height=18
+font_width=7
+
+[ $# -ge 1 ] || { echo "Error: X is mandatory positional argument." && exit 1; }
+x=$1
+shift
+
+[ $# -ge 1 ] || { echo "Error: Y is mandatory positional argument." && exit 1; }
+y=$1
+shift
+
+[ $# -ge 1 ] || { echo "Error: COLUMNS is mandatory positional argument." && exit 1; }
+columns=$1
+shift
+
+[ $# -ge 1 ] || { echo "Error: LINES is mandatory positional argument." && exit 1; }
+lines=$1
+shift
+
+file=${1:-}
+path=${2:-}
+
+if [ -z "$file" ]; then
+  x=$((font_width * x))
+  y=$((font_height * y))
+  printf "6;$x;$y;$((font_width * (columns + 1)));$((font_height * (lines + 1)))\n3;" | "$w3mimgdisplay"
+else
+  cache_dir=${XDG_DATA_HOME:-"$HOME/.cache"}
+  cached_path=$cache_dir/vifm/img-cache
+
+  case $file in
+    (*.*) extension=${file##*.};;
+    (*)   extension="";;
+  esac
+
+  cached_img_name=$cached_path/${path//\//%}%${file}
+  cached_img_path=${cached_img_name}.png
+  escape() {
+    printf "%q" "$1"
+  }
+  case $extension in
+    "bmp" | "jpg" | "jpeg" | "png" | "gif" | "xpm" ) ;;
+    "pdf")
+      conv_command="pdftoppm -png -singlefile $(escape "$file") $(escape "$cached_img_name")" ;;
+    "avi" | "mp4" | "ogv" | "mkv" | "mov" | "webm")
+      conv_command="ffmpegthumbnailer -i $(escape "$file") -o $(escape "$cached_img_path") -s 0" ;;
+  esac
+  if [ -n "${conv_command:-}" ]; then
+    if [ ! -f "$cached_img_path" ]; then
+      eval "$conv_command"
+    fi
+    file=$cached_img_path
+  fi
+
+  widthheight=$(printf '5;%s' "$file" | "$w3mimgdisplay")
+  width=${widthheight% *}
+  height=${widthheight#* }
+
+  if [ -z "$width" ] || [ -z "$height" ]; then
+    echo 'Error: failed to obtain image size.'
+    exit 1
+  fi
+
+  max_width=$((font_width * columns))
+  max_height=$((font_height * lines))
+  if [ "$width" -gt "$max_width" ]; then
+    height=$((height * max_width / width))
+    width=$max_width
+  fi
+
+  if [ "$height" -gt "$max_height" ]; then
+    width=$((width * max_height / height))
+    height=$max_height
+  fi
+
+  x=$((font_width * x))
+  y=$((font_height * y))
+  printf '0;1;%s;%s;%s;%s;;;;;%s\n4;\n3;' "$x" "$y" "$width" "$height" "$file" | "$w3mimgdisplay"
+fi

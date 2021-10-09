@@ -88,26 +88,26 @@ command! extract aunpack %f
 filextype {*.pdf},<application/pdf> zathura %c %i & disown
 filextype {*.ps,*.eps,*.ps.gz},<application/postscript> zathura %c %i & disown
 filextype {*.djvu},<image/vnd.djvu> zathura %c %i & disown
-
-fileviewer {*.pdf},<application/pdf> pdftotext -nopgbrk %c -
+fileviewer {*.pdf},<application/pdf>
+  \ image-preview %px %py %pw %ph %c %d
+  \ %pc
+  \ image-preview %px %py %pw %ph
 
 " Music.
-filetype {*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus},<audio/*>
+filetype {*.wav,*.mp3,*.mp4,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus},<audio/*>
   \ mpv %f --no-audio-display,
 fileviewer {*.mp3},<audio/mpeg> mp3info
 fileviewer {*.flac},<audio/flac> soxi
 
 " Video
-filextype {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
-  \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
-  \*.as[fx]},
-  \<video/*>
-  \ umpv %f,
-fileviewer {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
-  \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
-  \*.as[fx]},
-  \<video/*>
-  \ ffprobe -pretty %c 2>&1
+filextype {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,*.fl[icv],*.m2v,*.mov,
+  \*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,*.as[fx]},<video/*>
+  \ umpv %f &,
+fileviewer {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,*.fl[icv],*.m2v,*.mov,
+  \*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,*.as[fx]},<video/*>
+  \ image-preview %px %py %pw %ph %c %d
+  \ %pc
+  \ image-preview %px %py %pw %ph
 
 " Web.
 filextype {*.html,*.htm},<text/html> firefox %f &,
@@ -119,9 +119,9 @@ fileviewer {*.[1-8]},<text/troff> man ./%c | col -b
 " Images.
 filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*> feh %f &
 fileviewer {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
-  \ imgt %px %py %pw %ph %c
+  \ image-preview %px %py %pw %ph %c
   \ %pc
-  \ imgt %px %py %pw %ph
+  \ image-preview %px %py %pw %ph
 
 filetype *.md5 md5sum -c %f %S
 filetype *.sha1 sha1sum -c %f %S

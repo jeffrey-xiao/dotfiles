@@ -138,7 +138,7 @@ let s:fzf_tags_options = [
 let g:fzf_action = {
       \ 'ctrl-t': 'tab split',
       \ 'ctrl-v': 'vsplit',
-      \ 'ctrl-x': 'split',
+      \ 'ctrl-s': 'split',
       \ }
 function! s:fzf_tags_sink(lines) abort
   if empty(a:lines)
@@ -237,6 +237,7 @@ set linebreak
 set scrolloff=1
 set sidescrolloff=5
 set t_ZH=
+set regexpengine=1
 
 " Folding.
 set foldmethod=indent

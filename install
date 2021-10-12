@@ -29,7 +29,7 @@ declare -a programs=(
   rofi
   rxvt-unicode xrdb tmux
   vifm atool cabextract highlight imagemagick p7zip w3m
-  cppcheck ctags curl llvm-clang pandoc pip ripgrep vim
+  vim cppcheck ctags curl llvm-clang pandoc pip ripgrep
   weechat
   zathura texlive-all xdotool zathura-mupdf
 )

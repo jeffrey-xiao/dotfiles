@@ -20,7 +20,7 @@ for template_name in "$DOTFILES_DIR"/**/*.template; do
 done
 
 # Link to .config/$folder.
-for folder in bash bspwm dunst feh git htop mpd mpv ncmpcpp picom polybar rofi rtorrent sxhkd tmux vifm weechat zathura; do
+for folder in bash bspwm dunst feh git htop mpd mpv ncmpcpp picom polybar rofi rtorrent sxhkd tmux vifm zathura; do
   mkdir -pv ~/.config/$folder/
   for f in "$DOTFILES_DIR"/$folder/!(*.template); do
     ln -sfv "$f" ~/.config/$folder/
@@ -43,6 +43,9 @@ mkdir -pv ~/.vim/
 for f in "$DOTFILES_DIR"/vim/!(*.template); do
   ln -sfv "$f" ~/.vim/
 done
+
+# Initialize weechat config.
+weechat --run-command "$(cat ./weechat/weechatrc | sed 's/\$/\\$/g' | tr '\n' ';');/quit"
 
 # Link miscellaneous config.
 cp -u "$DOTFILES_DIR"/misc/redshift.conf ~/.config/

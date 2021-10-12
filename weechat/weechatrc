@@ -1,0 +1,46 @@
+/mouse enable
+
+/set spell.check.default_dict en
+/set spell.check.suggestions 3
+/set spell.color.suggestion *green
+/spell enable
+
+/set logger.level.core.weechat 0
+/set logger.level.irc 4
+/set logger.mask.irc %Y/$server/$channel.%m-%d.log
+
+/set script.scripts.download_enabled true
+/script install autosort.py
+
+/set irc.look.color_nicks_in_nicklist on
+/set irc.look.part_closes_buffer on
+/set irc.look.server_buffer independent
+
+/set weechat.bar.status.color_bg 0
+/set weechat.bar.status.color_fg 14
+/set weechat.bar.title.color_bg 0
+/set weechat.bar.title.color_fg 14
+/set weechat.bar.title.size 0
+/set weechat.look.buffer_time_format "%H:%M:%S"
+/set weechat.look.color_nick_offline yes
+/set weechat.look.prefix_join "—>"
+/set weechat.look.prefix_quit "<—"
+/set weechat.look.prefix_same_nick " "
+/set weechat.look.prefix_suffix "│"
+
+/set fset.color.line_selected_bg1 14
+/set fset.color.name_selected 0
+/set fset.color.type_selected 0
+/set fset.color.value_selected 0
+
+/set buflist.format.buffer "${color_hotlist}${format_number}${indent}${format_nick_prefix}${format_name}"
+/set buflist.format.buffer_current "${color:0,14}${format_number}${indent}${format_nick_prefix}${format_name}"
+/set buflist.format.hotlist_highlight "${color:1}"
+/set buflist.format.hotlist_low "${color:15}"
+/set buflist.format.hotlist_message "${color:0}"
+/set buflist.format.hotlist_message "${color:3}"
+/set buflist.format.number "${buffer.number}. "
+
+/server add libera irc.libera.chat/6697 -ssl
+/set irc.server.libera.autoconnect on
+/set irc.server.libera.autojoin "#bspwm,#linux,#mechboards,#rofi,#solus,#tmux,#vim"

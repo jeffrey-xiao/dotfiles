@@ -171,7 +171,9 @@ vim:
     - vim
 
 weechat:
-  link: ~/.config/weechat/
+  link: []
+  postlink:
+    - weechat --run-command "$(cat ./weechat/weechatrc | sed 's/\$/\\$/g' | tr '\n' ';');/quit"
   dependencies:
     - weechat
 

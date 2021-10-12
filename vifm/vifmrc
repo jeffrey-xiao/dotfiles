@@ -74,6 +74,16 @@ nnoremap A cw
 nnoremap <space>r :restart full<cr>
 nnoremap <space>t :!urxvtc & disown<cr>
 
+nnoremap <esc>1 1gt
+nnoremap <esc>2 2gt
+nnoremap <esc>3 3gt
+nnoremap <esc>4 4gt
+nnoremap <esc>5 5gt
+nnoremap <esc>6 6gt
+nnoremap <esc>7 7gt
+nnoremap <esc>8 8gt
+nnoremap <esc>9 9gt
+
 " Commands.
 command! df df -h %m 2> /dev/null
 command! diff vim -d %f %F
@@ -150,4 +160,4 @@ fileviewer {*.docx},<application/vnd.openxmlformats-officedocument.wordprocessin
 
 filetype *[^/],<text/*> vim %f
 fileviewer *[^/],<text/*> cat
-fileviewer */ tree -L 2 -I .git %c
+fileviewer */ tree -a -L 2 -I .git %c

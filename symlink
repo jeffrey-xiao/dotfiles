@@ -20,7 +20,7 @@ for template_name in "$DOTFILES_DIR"/**/*.template; do
 done
 
 # Link to .config/$folder.
-for folder in bash bspwm dunst feh git htop mpd mpv ncmpcpp picom polybar rofi rtorrent sxhkd tmux vifm zathura; do
+for folder in bash bspwm dunst feh git mpd mpv ncmpcpp picom polybar rofi rtorrent sxhkd tmux vifm zathura; do
   mkdir -pv ~/.config/$folder/
   for f in "$DOTFILES_DIR"/$folder/!(*.template); do
     ln -sfv "$f" ~/.config/$folder/

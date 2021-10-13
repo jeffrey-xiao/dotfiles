@@ -55,7 +55,7 @@ gtk:
     - settings.ini: ~/.config/gtk-3.0/
 
 htop:
-  link: ~/.config/htop/
+  link: []
   dependencies:
     - htop
 

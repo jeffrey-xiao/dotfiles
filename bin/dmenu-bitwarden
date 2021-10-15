@@ -36,7 +36,7 @@ done
 
 [ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
 
-bitwarden_email=${bitwarden_email:-$BITWARDEN_EMAIL}
+bitwarden_email=${bitwarden_email:-$BW_EMAIL}
 
 dmenu_cmd() {
   rofi -i -fuzzy -dmenu -p "$1"

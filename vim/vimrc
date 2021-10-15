@@ -1,12 +1,6 @@
 filetype plugin indent on
 syntax on
 
-" Config for indentLine.
-let g:indentLine_char = '|'
-let g:indentLine_concealcursor = 0
-let g:indentLine_color_term = 10
-let g:indentLine_fileTypeExclude = [ 'markdown', 'json', 'tex' ]
-
 " Config for ALE.
 let g:ale_linters = {
       \ 'cpp': ['clang', 'cppcheck'],
@@ -18,7 +12,6 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_format = '[%linter%] %s'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_lint_on_text_changed = 'never'
-let g:ale_set_quickfix = 0
 let g:ale_sign_column_always = 1
 
 " Config for vim-lsp.
@@ -133,7 +126,7 @@ let s:fzf_tags_options = [
       \ '--with-nth=1,2,3',
       \ '--nth=1,2',
       \ '--tiebreak=index',
-      \ '--expect=ctrl-t,ctrl-v,ctrl-x',
+      \ '--expect=ctrl-t,ctrl-v,ctrl-s',
       \ ]
 let g:fzf_action = {
       \ 'ctrl-t': 'tab split',
@@ -260,7 +253,6 @@ set nomousehide
 " UI config.
 set laststatus=2
 set showmatch
-set showcmd
 set shortmess=aIT
 set hidden
 
@@ -359,13 +351,6 @@ nnoremap gV `[v`]
 
 " Consistent behavior.
 nnoremap Y y$
-
-" Sharing snippets.
-command! -range=% SP <line1>,<line2>w !curl --form 'sprunge=<-' http://sprunge.us | tr --delete '\n' | xclip -in -selection clipboard
-command! -range=% CL <line1>,<line2>w !curl --form 'clbin=<-' https://clbin.com | tr --delete '\n' | xclip -in -selection clipboard
-command! -range=% VP <line1>,<line2>w !curl --form 'text=<-' http://vpaste.net | tr --delete '\n' | xclip -in -selection clipboard
-command! -range=% IX <line1>,<line2>w !curl --form 'f:1=<-' ix.io | tr --delete '\n' | xclip -in -selection clipboard
-command! -range=% TB <line1>,<line2>w !nc termbin.com 9999 | tr --delete '\n' | xclip -in -selection clipboard
 
 " Backspace to switch to alternate file.
 nnoremap <BS> <C-^>

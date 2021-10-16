@@ -75,8 +75,9 @@ dotinstall
 
 ## Color Scheme
 
-The color scheme used is `solarized-dark`. Most programs will take the colors in `.Xresources` with
-the exception of the colors in `dircolors` and `weechat`.
+The color scheme used is `solarized-dark` and the 16 system colors is set using `.Xresources`. All
+configuration files directly use these 16 colors. `dircolors` specifies these colors using 3-bit
+ANSI escape codes.
 
 ## Personal Configuration
 

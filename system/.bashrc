@@ -25,9 +25,6 @@ shopt -s dotglob
 shopt -s extglob
 shopt -s globstar
 
-# Enable vi mode.
-set -o vi
-
 # Enable ls color output.
 [ -f "$config_dir/bash/dircolors" ] &&
   [ -x "$(command -v dircolors)" ] &&

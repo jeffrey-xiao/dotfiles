@@ -1,5 +1,6 @@
 " Settings.
 set confirm=permdelete
+set cpoptions='s'
 set fillchars=vborder:│
 set grepprg='rg --vimgrep'
 set history=100

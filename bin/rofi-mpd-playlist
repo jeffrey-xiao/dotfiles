@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -euo pipefail
+set -eu
 
 if [ $# -eq 0 ]; then
   mpc lsplaylists

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -euo pipefail
+set -eu
 
 __help="Usage: ${0##*/} [OPTIONS]
 
@@ -49,7 +49,7 @@ dimensions=$(xdpyinfo | awk '/dimensions/{print $2}')
 trap 'rm -f "$(img_path $index)"' EXIT
 ffmpeg -hide_banner -loglevel warning -f x11grab -video_size "$dimensions" -i "$DISPLAY" -y -filter_complex 'boxblur=10' -vframes 1 "$(img_path $index)"
 
-if [ ! -z "${lock_image:-}" ]; then
+if [ -n "${lock_image:-}" ]; then
   # Lockscreen image info.
   [ ! -L "$lock_image" ] && lock_file=$(readlink --canonicalize "$lock_image")
 
@@ -84,7 +84,7 @@ else
   i3lock -e -i "$(img_path $index)"
 fi
 
-if [ ! -z ${suspend:-} ]; then
+if [ -n "${suspend:-}" ]; then
   systemctl suspend
 fi
 

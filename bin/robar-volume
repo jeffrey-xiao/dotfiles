@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -euo pipefail
+set -eu
 
 __help="Usage: ${0##*/} [OPTIONS]
 
@@ -26,7 +26,7 @@ done
 
 volume=$(volume)
 if echo "$volume" | grep --fixed-strings --silent 'muted'; then
-  robar show mute ${volume%\% muted}
+  robar show mute "${volume%\% muted}"
 else
-  robar show default ${volume%\%}
+  robar show default "${volume%\%}"
 fi

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -euo pipefail
+set -eu
 
 __help="Usage: ${0##*/} [OPTIONS]
 
@@ -36,12 +36,12 @@ file="${XDG_PICTURES_DIR:-"$HOME/Pictures"}/Screenshots/$(date +%s).png"
 if [ -z ${select:-} ]; then
   # Screenshot entire desktop.
   scrot "$file"
-  notify-send --urgency=low 'Took screenshot (desktop)' -i $file
+  notify-send --urgency=low 'Took screenshot (desktop)' -i "$file"
 else
   # Screenshot area.
   slop=$(slop --format '%g') || exit 1
   import -window root -crop "$slop" "$file"
-  notify-send --urgency=low 'Took screenshot (area)' -i $file
+  notify-send --urgency=low 'Took screenshot (area)' -i "$file"
 fi
 
 xclip "$file" -selection clipboard -target image/png

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -euo pipefail
+set -eu
 
 __help="Usage: ${0##*/} [OPTIONS]
 
@@ -67,5 +67,5 @@ api_key=${api_key:-$LAST_FM_KEY}
 resp=$(curl --silent --get "$api_endpoint" --data-urlencode 'format=json' --data-urlencode "api_key=$api_key" --data-urlencode "album=$album")
 image_url=$(echo "$resp" | jq --raw-output ".results.albummatches.album[] | select(.artist == \"$artist\").image[-1][\"#text\"]")
 
-[ ! -z "$image_url" ] || { echo 'Error: failed to find image.' && exit 1; }
+[ -n "$image_url" ] || { echo 'Error: failed to find image.' && exit 1; }
 wget --quiet "$image_url" --output-document="$output"

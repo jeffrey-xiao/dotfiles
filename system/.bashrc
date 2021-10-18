@@ -35,10 +35,10 @@ shopt -s globstar
 [ -f "$config_dir/fzf/fzf.bash" ] && . "$config_dir/fzf/fzf.bash"
 
 # Bash specific configuration.
-[ -f "$config_dir/bash/bash_twoline_simple" ] && . "$config_dir/bash/bash_twoline_simple"
 [ -f "$config_dir/bash/bash_aliases" ] && . "$config_dir/bash/bash_aliases"
-[ -f "$config_dir/bash/bash_functions" ] && . "$config_dir/bash/bash_functions"
 [ -f "$config_dir/bash/bash_bookmarks" ] && . "$config_dir/bash/bash_bookmarks"
+[ -f "$config_dir/bash/bash_functions" ] && . "$config_dir/bash/bash_functions"
+[ -f "$config_dir/bash/bash_prompt" ] && . "$config_dir/bash/bash_prompt"
 
 # Add ssh keys.
 ssh-add -l >/dev/null || ssh-add

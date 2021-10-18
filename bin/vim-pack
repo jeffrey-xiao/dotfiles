@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -euo pipefail
+set -eu
 
 __help="Usage: ${0##*/} [OPTIONS] [SUBCOMMAND]
 
@@ -24,7 +24,7 @@ sub_add() {
   shift
   check_no_positionals "$@"
 
-  git submodule add --depth=1 $git_url
+  git submodule add --depth=1 "$git_url"
 }
 
 sub_remove() {
@@ -33,12 +33,12 @@ sub_remove() {
   shift
   check_no_positionals "$@"
 
-  git_folder=$(cat $package/.git)
-  git_folder="${git_folder:8}"
+  git_folder=$(cat "$package"/.git)
+  git_folder="${git_folder#gitdir: }"
 
-  git submodule deinit --force -- $package
-  /bin/rm -rf "$package/$git_folder"
-  git rm -f $package
+  git submodule deinit --force -- "$package"
+  /bin/rm -rf "${package:?}/$git_folder"
+  git rm -f "$package"
 }
 
 sub_update() {
@@ -47,7 +47,7 @@ sub_update() {
   shift
   check_no_positionals "$@"
 
-  git submodule update --depth=1 --remote $package
+  git submodule update --depth=1 --remote "$package"
 }
 
 sub_update_all() {
@@ -66,6 +66,6 @@ sub="$1"
 [ "$sub" = '-h' ] || [ "$sub" = '--help' ] && { echo "$__help" && exit 0; }
 [ "$(command -v "sub_$sub")" ] || { printf "Error: unknown subcommand: %s.\\n\\n%s\\n" "$sub" "$__help" && exit 1; }
 shift
-mkdir -p $dir
-cd $dir
+mkdir -p "$dir"
+cd "$dir"
 "sub_$sub" "$@"

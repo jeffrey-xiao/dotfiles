@@ -24,21 +24,30 @@ __git_info() {
   local git_eng='env LANG=C git'
 
   # Get current branch name or short SHA1 hash for detached head.
-  local branch="$($git_eng symbolic-ref --short HEAD 2>/dev/null || $git_eng describe --tags --always 2>/dev/null)"
+  branch="$($git_eng symbolic-ref --short HEAD 2>/dev/null || $git_eng describe --tags --always 2>/dev/null)"
+  local branch
 
   # Git branch not found.
   [ -n "$branch" ] || return
 
   local marks
-  local status=$($git_eng status --porcelain 2>/dev/null)
+  status=$($git_eng status --porcelain 2>/dev/null)
+  local status
 
-  local all="$(printf '%s' "$status" | grep --count "^.*$" | trim)"
-  local unstaged="$(printf '%s' "$status" | grep --count '^ \w' | trim)"
-  local uncommited="$(printf '%s' "$status" | grep --count '^\w\(\w\|\s\)' | trim)"
-  local untracked="$((all - unstaged - uncommited))"
-  local stat="$($git_eng status --porcelain --branch | grep '^##' | grep --only-matching '\[.\+\]$')"
-  local ahead="$(echo "$stat" | grep --only-matching 'ahead [[:digit:]]\+' | grep --only-matching '[[:digit:]]\+')"
-  local behind="$(echo "$stat" | grep --only-matching 'behind [[:digit:]]\+' | grep --only-matching '[[:digit:]]\+')"
+  all="$(printf '%s' "$status" | grep --count "^.*$" | trim)"
+  local all
+  unstaged="$(printf '%s' "$status" | grep --count '^ \w' | trim)"
+  local unstaged
+  uncommited="$(printf '%s' "$status" | grep --count '^\w\(\w\|\s\)' | trim)"
+  local uncommited
+  untracked="$((all - unstaged - uncommited))"
+  local untracked
+  stat="$($git_eng status --porcelain --branch | grep '^##' | grep --only-matching '\[.\+\]$')"
+  local stat
+  ahead="$(echo "$stat" | grep --only-matching 'ahead [[:digit:]]\+' | grep --only-matching '[[:digit:]]\+')"
+  local ahead
+  behind="$(echo "$stat" | grep --only-matching 'behind [[:digit:]]\+' | grep --only-matching '[[:digit:]]\+')"
+  local behind
 
   [ "$untracked" -eq '0' ] || marks+=" $GIT_UNTRACKED_SYMBOL$untracked"
   [ "$unstaged" -eq '0' ] || marks+=" $GIT_UNSTAGED_SYMBOL$unstaged"
@@ -54,7 +63,7 @@ __venv_info() {
   [ -x "$(command -v virtualenv)" ] || return
 
   # venv not found.
-  [ -z $VIRTUAL_ENV ] && return
+  [ -z "$VIRTUAL_ENV" ] && return
   version=$(python --version | cut --delimiter=' ' --fields=2-)
   echo "${VIRTUAL_ENV##*/} v$version"
 }

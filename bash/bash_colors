@@ -42,6 +42,45 @@ __initialize_colors() {
   readonly REVERSE="\\[$(tput rev)\\]"
   readonly RESET="\\[$(tput sgr0)\\]"
   readonly BOLD="\\[$(tput bold)\\]"
+
+  export FG_COLOR_0
+  export FG_COLOR_1
+  export FG_COLOR_2
+  export FG_COLOR_3
+  export FG_COLOR_4
+  export FG_COLOR_5
+  export FG_COLOR_6
+  export FG_COLOR_7
+  export FG_COLOR_8
+  export FG_COLOR_9
+  export FG_COLOR_10
+  export FG_COLOR_11
+  export FG_COLOR_12
+  export FG_COLOR_13
+  export FG_COLOR_14
+  export FG_COLOR_15
+
+  export BG_COLOR_0
+  export BG_COLOR_1
+  export BG_COLOR_2
+  export BG_COLOR_3
+  export BG_COLOR_4
+  export BG_COLOR_5
+  export BG_COLOR_6
+  export BG_COLOR_7
+  export BG_COLOR_8
+  export BG_COLOR_9
+  export BG_COLOR_10
+  export BG_COLOR_11
+  export BG_COLOR_12
+  export BG_COLOR_13
+  export BG_COLOR_14
+  export BG_COLOR_15
+
+  export DIM
+  export REVERSE
+  export RESET
+  export BOLD
 }
 
 __initialize_colors

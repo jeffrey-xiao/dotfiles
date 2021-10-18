@@ -42,7 +42,7 @@ pactl subscribe | while read -r line; do
         profile="default"
       fi
 
-      if [ $last_volume -ne $volume ] || [ $last_profile != $profile ]; then
+      if [ "$last_volume" -ne "$volume" ] || [ "$last_profile" != "$profile" ]; then
         echo "$profile $volume"
         last_volume=$volume
         last_profile=$profile

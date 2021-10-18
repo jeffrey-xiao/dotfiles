@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -euo pipefail
+set -eu
 
 __help="Usage: ${0##*/} [OPTIONS]
 
@@ -46,11 +46,11 @@ while [ ! $# -eq 0 ]; do
 done
 
 [ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
-[ ! -z ${process:-} ] || { echo 'Error: must specific PROCESS.' && exit 1; }
+[ -n "${process:-}" ] || { echo 'Error: must specific PROCESS.' && exit 1; }
 
 script=${script:-$process}
 
-if [ ! -z ${restart:-} ]; then
+if [ -n "${restart:-}" ]; then
   killall --quiet "$process" || true
   while pgrep --exact --full "$script" >/dev/null; do sleep 1; done
 fi

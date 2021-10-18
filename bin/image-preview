@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -euo pipefail
+set -eu
 
 __help="Usage: ${0##*/} [OPTIONS] X Y COLUMNS LINES FILE PATH
 
@@ -58,7 +58,7 @@ path=${2:-}
 if [ -z "$file" ]; then
   x=$((font_width * x))
   y=$((font_height * y))
-  printf "6;$x;$y;$((font_width * (columns + 1)));$((font_height * (lines + 1)))\n3;" | "$w3mimgdisplay"
+  printf "6;%s;%s;%s;%s\n3;" "$x" "$y" "$((font_width * (columns + 1)))" "$((font_height * (lines + 1)))" | "$w3mimgdisplay"
 else
   cache_dir=${XDG_DATA_HOME:-"$HOME/.cache"}
   cached_path=$cache_dir/vifm/img-cache
@@ -68,10 +68,10 @@ else
     (*)   extension="";;
   esac
 
-  cached_img_name=$cached_path/${path//\//%}%${file}
+  cached_img_name=$cached_path/$(echo "$path" | tr / %)%${file}
   cached_img_path=${cached_img_name}.png
   escape() {
-    printf "%q" "$1"
+    printf "'%s'" "$(printf '%s' "$1" | sed -e "s/'/'\\\\''/g")"
   }
   case $extension in
     "bmp" | "jpg" | "jpeg" | "png" | "gif" | "xpm" ) ;;

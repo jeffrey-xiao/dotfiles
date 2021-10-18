@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -euo pipefail
+set -eu
 
 __help="Usage: ${0##*/} [OPTIONS]
 
@@ -43,11 +43,11 @@ dmenu_cmd() {
 }
 
 password="$(rofi -dmenu -p "Password" -password)"
-session_key="$(bw unlock $password --raw)"
+session_key="$(bw unlock "$password" --raw)"
 
-items="$(bw list items --session $session_key)"
+items="$(bw list items --session "$session_key")"
 selected_name=$(printf '%s' "$items" | jq -r ".[] | .name" | dmenu_cmd "Account")
 [ -z "$selected_name" ] && exit
 
-id=$(echo $items | jq -r ".[] | select(.name == \"$selected_name\") | .id")
-bw get password $id --session $session_key | xclip -in -selection clipboard
+id=$(echo "$items" | jq -r ".[] | select(.name == \"$selected_name\") | .id")
+bw get password "$id" --session "$session_key" | xclip -in -selection clipboard

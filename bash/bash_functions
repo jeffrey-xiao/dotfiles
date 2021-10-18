@@ -2,19 +2,20 @@
 
 # Create directory and cd into.
 mcd() {
-  mkdir -p "$1" && cd "$1"
+  mkdir -p "$1"
+  cd "$1" || exit
 }
 
 # Print pid, cpu usage percentage, and process name of the processes consuming
 # the most cpu.
-process-cpu() {
+process_cpu() {
   count=${1:-10}
   ps axo pid,cmd,%cpu,%mem --sort=-%cpu | head -n "$count"
 }
 
 # Print pid, memory usage percentage, and process name of the processes consuming
 # the most memory.
-process-mem() {
+process_mem() {
   count=${1:-10}
   ps axo pid,cmd,%cpu,%mem --sort=-%mem | head -n "$count"
 }

@@ -154,7 +154,7 @@ vim:
   postlink:
     - vim -c helptags ALL -c q!
     - ~/.vim/pack/plugins/start/fzf/install --all --xdg --no-update-rc
-    - python3 -m pip install --user autopep8 flake8 pylint python-language-server yapf
+    - python3 -m pip install --user autopep8 black flake8 pylint python-language-server
     - NPM_PREFIX=~/.local/share/n curl --silent --show-error --fail --location https://git.io/n-install | bash
     - npm install --global @bitwarden/cli eslint javascript-typescript-langserver prettier
     - >
@@ -168,6 +168,7 @@ vim:
     - pandoc
     - pip
     - ripgrep
+    - shellcheck
     - vim
 
 weechat:

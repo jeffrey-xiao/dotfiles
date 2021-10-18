@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -euo pipefail
+set -eu
 
 __help="Usage: ${0##*/} [OPTIONS]
 
@@ -41,7 +41,7 @@ trap 'rm -rf "$tmp"' EXIT
 
 virtualenv --python=python3 "$tmp" 1>/dev/null &&
   . "$tmp"/bin/activate &&
-  pip install --requirement="$1" 1>/dev/null &&
+  pip install --requirement="$requirements_file" 1>/dev/null &&
   pip freeze &&
   rm -rf "$tmp" &&
   trap - EXIT

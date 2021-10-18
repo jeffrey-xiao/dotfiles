@@ -2,7 +2,7 @@
 
 config_dir=${XDG_CONFIG_HOME:-"$HOME/.config"}
 
-__twoline() {
+__prompt() {
   ps1() {
     # Check the exit code of the previous command and display different
     # colors in the prompt accordingly.
@@ -12,7 +12,7 @@ __twoline() {
       FG_EXIT="$FG_COLOR_1"
     fi
 
-    PS1="$(__title)\\n$FG_EXIT┌─"
+    PS1="$(__title)\\n"
 
     git_info="$(__git_info)"
     venv_info="$(__venv_info)"
@@ -30,19 +30,23 @@ __twoline() {
       path_info="$(__path_info)"
     fi
 
-    PS1="$PS1[$path_color$path_info$RESET$FG_EXIT]"
+    PS1="$PS1$path_color$path_info$RESET"
 
     # Git info.
-    [ ! -z "$git_info" ] && PS1="$PS1─[$FG_COLOR_3$git_info$RESET$FG_EXIT]"
+    [ -n "$git_info" ] && PS1="$PS1 on $RESET$FG_COLOR_3$git_info$RESET"
 
     # Environment info.
+    existing_info=false
+    [ -n "$venv_info" ] && PS1="$PS1 with"
     for info in "$venv_info"; do
       [ -z "$info" ] && continue
-      PS1="$PS1─[$FG_COLOR_3$info$RESET$FG_EXIT]"
+      [ "$existing_info" = true ] && PS1="$PS1,"
+      PS1="$PS1 $FG_COLOR_3$info$RESET"
+      existing_info=true
     done
 
-    PS1="$PS1\\n$FG_EXIT└─╼$RESET "
-    PS2="$FG_EXIT└─╼$RESET "
+    PS1="$PS1\\n$FG_EXIT» $RESET"
+    PS2="$FG_EXIT» $RESET"
   }
   . "$config_dir/bash/bash_symbols"
   . "$config_dir/bash/bash_colors"
@@ -50,6 +54,5 @@ __twoline() {
   PROMPT_COMMAND=ps1
 }
 
-PROMPT_DIRTRIM=3
-__twoline
-unset __twoline
+__prompt
+unset __prompt

@@ -31,14 +31,41 @@ window manager       → bspwm
 ### Code Formatters, Linters, and Language Servers
 
 ```
-Bash         → shfmt
-C++          → clangd, clang-format, cppcheck
-Elixir       → elixir-ls, mix-format
-Go           → gofmt
-Java         → clang-format
-JavaScript   → javascript-typescript-langserver, eslint, prettier
-Python       → autopep, flake8, pylint, python-language-server, yapf
-Rust         → clippy, rust-analyzer, rustfmt
+bash
+├─ formatter       → shfmt
+└─ linter          → shellcheck
+
+c++
+├─ formatter       → clang-format
+├─ language-server → clangd
+└─ linter          → cppcheck
+
+elixir
+├─ formatter       → mix-format
+├─ language-server → elixir-ls
+└─ linter          → credo
+
+go
+├─ formatter       → gofmt
+└─ language-server → gopls
+
+java
+└─ formatter       → clang-format
+
+javascript
+├─ formatter       → prettier
+├─ language-server → javascript-typescript-langserver
+└─ linter          → eslint
+
+python
+├─ formatter       → black
+├─ language-server → python-language-server
+└─ linter          → autopep, flake8, pylint
+
+rust
+├─ formatter       → rustfmt
+├─ language-server → rust-analyzer
+└─ linter          → clippy
 ```
 
 Configuration files are found in [`misc/`](misc/).

@@ -1,5 +1,5 @@
 #!/bin/sh
 
-set -euo pipefail
+set -eu
 
 rofi -modi 'song:rofi-mpd-song#playlist:rofi-mpd-playlist#album:rofi-mpd-album' -show song

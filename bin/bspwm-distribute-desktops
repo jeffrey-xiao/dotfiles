@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -euo pipefail
+set -eu
 
 __help="Usage: ${0##*/} [OPTIONS]
 
@@ -38,7 +38,6 @@ monitors=$(
 )
 monitors=$(polybar --list-monitors | cut --delimiter=':' --fields=1)
 monitor_count=$(echo "$monitors" | wc -l)
-focused_desktop=$(bspc query --desktops --desktop .focused)
 initial_desktop_count="$(bspc query --desktops | wc -l)"
 
 q=$((desktop_count / monitor_count))
@@ -55,16 +54,16 @@ for curr_monitor in $monitors; do
   # Move desktops.
   desktops=""
   for i in $(seq $((total + 1)) $((total + curr))); do
+    eval desktop="\${$i}"
     if [ -z "$desktops" ]; then
-      desktops="${!i}"
+      desktops="$desktop"
     else
-      desktops="$desktops ${!i}"
+      desktops="$desktops $desktop"
     fi
     if [ "$initial_desktop_count" -ge "$desktop_count" ]; then
-      curr_desktop=$(bspc query --desktops --desktop "${!i}")
       # If the desktop is already on the monitor, then the following command
       # will have a non-zero exit code.
-      bspc desktop "$curr_desktop" --to-monitor "$curr_monitor" || true
+      bspc desktop "$desktop" --to-monitor "$curr_monitor" || true
     fi
   done
   # Empty monitors will have a default desktop named "Desktop" so when adding

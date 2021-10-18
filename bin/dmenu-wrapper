@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -euo pipefail
+set -eu
 
 [ -x "$(command -v "$1")" ] || { echo 'Error: Argument 1 must be a rofi script.' && exit 1; }
 

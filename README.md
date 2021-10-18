@@ -4,7 +4,7 @@
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 ![Busy Screen](screenshots/busy.png)
 
-This repository contains all the dotfiles I use for my Solus machine.
+This repository contains all the dotfiles I use.
 
 ## List of Software
 

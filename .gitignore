@@ -1,10 +1,3 @@
-# Ignore vim-plug.
-vim/autoload/plug.vim
-
-# Ignore weechat logs.
-weechat/weechat.log
-weechat/logs
-
 # Ignore virtualenv.
 venv/
 

@@ -31,38 +31,38 @@ window manager       → bspwm
 ### Code Formatters, Linters, and Language Servers
 
 ```
-bash
+Bash
 ├─ formatter       → shfmt
 └─ linter          → shellcheck
 
-c++
+C++
 ├─ formatter       → clang-format
 ├─ language-server → clangd
 └─ linter          → cppcheck
 
-elixir
+Elixir
 ├─ formatter       → mix-format
 ├─ language-server → elixir-ls
 └─ linter          → credo
 
-go
+Go
 ├─ formatter       → gofmt
 └─ language-server → gopls
 
-java
+Java
 └─ formatter       → clang-format
 
-javascript
+JavaScript
 ├─ formatter       → prettier
 ├─ language-server → javascript-typescript-langserver
 └─ linter          → eslint
 
-python
+Python
 ├─ formatter       → black
 ├─ language-server → python-language-server
 └─ linter          → autopep, flake8, pylint
 
-rust
+Rust
 ├─ formatter       → rustfmt
 ├─ language-server → rust-analyzer
 └─ linter          → clippy
@@ -124,7 +124,6 @@ ANSI escape codes.
 - [`bin/record`](bin/record): Change the PulseAudio device indexes.
 - [`git/config`](git/config): Change the username and email.
 - [`polybar/config`](polybar/config): Change the adapter and battery name.
-- [`weechat/irc.conf`](weechat/irc.conf): Change the username and nicks.
 
 ## License
 

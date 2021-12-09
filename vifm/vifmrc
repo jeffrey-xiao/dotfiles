@@ -1,6 +1,7 @@
 " Settings.
 set confirm=permdelete
-set cpoptions='s'
+set cpoptions='st'
+set nodotfiles
 set fillchars=vborder:│
 set grepprg='rg --vimgrep'
 set history=100
@@ -38,6 +39,7 @@ highlight TopLineSel ctermfg=14 ctermbg=0
 highlight Cmdline ctermfg=14 ctermbg=8
 highlight Statusline ctermfg=14 ctermbg=0
 highlight WildMenu cterm=inverse
+highlight Selected ctermfg=2
 highlight Directory ctermfg=4
 highlight Link ctermfg=5
 highlight BrokenLink ctermfg=7 ctermbg=1

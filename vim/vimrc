@@ -16,6 +16,8 @@ let g:ale_sign_column_always = 1
 
 " Config for vim-lsp.
 let g:lsp_diagnostics_enabled = 0
+let g:lsp_diagnostics_highlights_enabled = 0
+let g:lsp_document_code_action_signs_enabled = 0
 
 function! s:setup_lsp() abort
   if executable('pyls')

@@ -143,3 +143,10 @@ XF86Audio{Play,Next,Prev,Stop}
 # Mpd hotkeys.
 super + {p,bracketleft,bracketright}
   mpc {toggle,prev,next}
+
+# Dunst hotkeys.
+ctrl + {_,shift +} space
+  dunstctl {close,close-all}
+
+ctrl + grave
+  dunstctl history-pop

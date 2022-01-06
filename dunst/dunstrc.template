@@ -1,9 +1,11 @@
 [global]
   follow = mouse
-  geometry = "300x5-10+150"
+  width = 300
+  height = 200
+  offset = 10x150
   padding = 8
   horizontal_padding = 8
-  separator_color = "{color3}"
+  separator_color = frame
   idle_threshold = 120
   font = "Iosevka SS04 11"
   markup = full
@@ -15,23 +17,20 @@
   max_icon_size = 64
   icon_path = /usr/share/icons/Papirus-Dark/32x32/status/:/usr/share/icons/Papirus-Dark/32x32/devices/
 
-[shortcuts]
-  close = ctrl+space
-  close_all = ctrl+shift+space
-  history = ctrl+grave
-  context = ctrl+shift+period
-
 [urgency_low]
   background = "{color0}"
-  foreground = "{color3}"
+  foreground = "{color7}"
+  frame_color = "{color7}"
   timeout = 5
 
 [urgency_normal]
   background = "{color0}"
-  foreground = "{color15}"
+  foreground = "{color3}"
+  frame_color = "{color3}"
   timeout = 20
 
 [urgency_critical]
   background = "{color0}"
   foreground = "{color1}"
+  frame_color = "{color1}"
   timeout = 0

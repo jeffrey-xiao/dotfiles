@@ -1,6 +1,6 @@
 " Settings.
 set confirm=permdelete
-set cpoptions='st'
+set cpoptions='s'
 set nodotfiles
 set fillchars=vborder:│
 set grepprg='rg --vimgrep'

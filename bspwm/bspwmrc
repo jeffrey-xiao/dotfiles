@@ -31,31 +31,27 @@ bspc config presel_feedback_color "$COLOR_3"
 # bspwm rules.
 bspc rule --add Zathura state=tiled
 
-# Appearance and notifications startup applications.
+# Initialize monitors.
+init-monitors
+
+# Change appearance of pointer.
 xsetroot -cursor_name left_ptr
-init-daemon --process picom &
+
+# Startup applications.
 init-daemon --process dunst &
+init-daemon --process mpd
 init-daemon --process notify-battery &
+init-daemon --process picom &
 init-daemon --process robar --script "robar start" &
-init-daemon --process robar-volume-server &
 init-daemon --process robar-brightness-server &
+init-daemon --process robar-volume-server &
+init-daemon --process sxhkd &
+init-daemon --process urxvtd --script "urxvtd --quiet --fork --opendisplay"
 
 # Tray applets.
 init-daemon --process blueman-applet &
 init-daemon --process nm-applet &
 init-daemon --process redshift-gtk &
 
-# Hotkey daemon.
-init-daemon --process sxhkd &
-
-# Urxvtd daemon.
-init-daemon --process urxvtd --script "urxvtd --quiet --fork --opendisplay"
-
-# Mpd.
-init-daemon --process mpd
-
 # Initialize fonts.
 xset +fp "$HOME/.local/share/fonts" && xset fp rehash
-
-# Initialize monitors.
-init-monitors

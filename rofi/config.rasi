@@ -1,5 +1,5 @@
 configuration {
-  font: "Iosevka SS04 14";
+  font: "Iosevka Term SS06 14";
   terminal: "urxvtc";
   kb-mode-complete: "";
   kb-remove-to-eol: "";

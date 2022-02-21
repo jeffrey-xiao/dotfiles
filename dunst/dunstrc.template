@@ -7,7 +7,7 @@
   horizontal_padding = 8
   separator_color = frame
   idle_threshold = 120
-  font = "Iosevka SS04 11"
+  font = "Iosevka Term SS06 11"
   markup = full
   format = "<b>%s</b>\n%b"
   alignment = center

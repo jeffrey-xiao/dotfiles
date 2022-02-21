@@ -8,8 +8,8 @@ height = 21
 background = ${xrdb:color8}
 foreground = ${xrdb:color14}
 
-font-0 = "Iosevka SS04:size=11;3"
-font-1 = "Iosevka SS04:size=11:weight=bold;3"
+font-0 = "Iosevka Term SS06:size=11;3"
+font-1 = "Iosevka Term SS06:size=11:weight=bold;3"
 font-2 = "M+ 2c:style=regular:size=11;2"
 
 tray-position = right

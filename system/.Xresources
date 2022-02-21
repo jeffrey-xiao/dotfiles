@@ -61,8 +61,8 @@ URxvt*scrollWithBuffer:   true
 URxvt*scrollTtyKeypress:  true
 
 ! Urxvt font.
-URxvt.font:               xft:Iosevka SS04:medium:size=11
-URxvt.boldFont:           xft:Iosevka SS04:medium:style=bold:size=11
+URxvt.font:               xft:Iosevka Term SS06:style=Regular:size=10
+URxvt.boldFont:           xft:Iosevka Term SS06:style=bold:size=10
 URxvt.letterSpace:        -1
 URxvt.lineSpace:          0
 

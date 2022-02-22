@@ -56,7 +56,7 @@ super + shift + q
   bspc node --close
 
 # Lock screen.
-super + shift + x
+super + x
   lock --suspend
 
 # Preselect splitting area for next window.
@@ -83,6 +83,9 @@ super + shift + alt + {h,j,k,l}
 super + Return
   urxvtc
 
+super + v
+  zathura
+
 super + b
   firefox
 
@@ -92,15 +95,13 @@ super + shift + b
 super + m
   urxvtc -name music -e ncmpcpp
 
+super + t
+  urxvtc -name torrent -e rtorrent
+
 super + y
   urxvtc -name explorer -e vifm
 
-super + u
-  zathura
-
-super + i
-  urxvtc -name torrent -e rtorrent
-
+# dmenu and rofi applications.
 super + d
   rofi -show run
 

@@ -63,8 +63,8 @@ xrdb ~/.Xresources
 # Installing development related programs and tools.
 vim -c helptags ALL -c q!
 ~/.vim/pack/plugins/start/fzf/install --all --xdg --no-update-rc
-python3 -m pip install --user autopep8 black flake8 pylint python-language-server
+python3 -m pip install --user autopep8 black flake8 pylint pyright
 NPM_PREFIX=~/.local/share/n curl --silent --show-error --fail --location https://git.io/n-install | bash
-npm install --global @bitwarden/cli eslint javascript-typescript-langserver prettier
+npm install --global @bitwarden/cli eslint prettier typescript typescript-language-server
 curl --silent --show-error --fail https://sh.rustup.rs | sh -s -- -y --no-modify-path --default-toolchain nightly --component clippy rustfmt rust-analyzer-preview rust-src &&
   rustup install stable

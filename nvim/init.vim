@@ -60,6 +60,9 @@ command! MRU call fzf#run(fzf#wrap({
       \ 'source': v:oldfiles,
       \ }))
 
+# Config for nvim-lspconfig.
+lua require('init')
+
 " Config for vim-dirvish.
 let g:loaded_netrwPlugin = 1
 let g:dirvish_mode = ':sort ,^.*[\/],'
@@ -70,80 +73,6 @@ let g:gutentags_generate_on_empty_buffer = 1
 
 " Config for vim-minisnip
 let g:minisnip_dir = s:data_dir.'/minisnip'
-
-" Config for vim-lsp.
-let g:lsp_diagnostics_enabled = 0
-let g:lsp_diagnostics_highlights_enabled = 0
-let g:lsp_document_code_action_signs_enabled = 0
-
-function! s:setup_lsp() abort
-  if executable('pyls')
-    call lsp#register_server({
-          \ 'name': 'pyls',
-          \ 'cmd': {server_info->['pyls']},
-          \ 'whitelist': ['python'],
-          \ })
-  endif
-  if executable('clangd')
-    call lsp#register_server({
-          \ 'name': 'clangd',
-          \ 'cmd': {server_info->['clangd']},
-          \ 'whitelist': ['c', 'cpp'],
-          \ })
-  endif
-  if executable('rls')
-    call lsp#register_server({
-          \ 'name': 'rust-analyzer',
-          \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rust-analyzer']},
-          \ 'root_uri': {server_info->lsp#utils#path_to_uri(
-            \ lsp#utils#find_nearest_parent_file_directory(
-              \ lsp#utils#get_buffer_path(),
-              \ ['Cargo.toml']
-            \ )
-          \ )},
-          \ 'whitelist': ['rust'],
-          \ })
-  endif
-  if executable('javascript-typescript-stdio')
-    call lsp#register_server({
-          \ 'name': 'javascript-typescript-langserver',
-          \ 'cmd': {server_info->['javascript-typescript-stdio']},
-          \ 'root_uri': {server_info->lsp#utils#path_to_uri(
-            \ lsp#utils#find_nearest_parent_file_directory(
-              \ lsp#utils#get_buffer_path(),
-              \ ['tsconfig.json', 'package.json']
-            \ )
-          \ )},
-          \ 'whitelist': ['javascript', 'typescriptreact'],
-          \ })
-  endif
-  if executable('elixir-ls')
-    call lsp#register_server({
-          \ 'name': 'elixir-ls',
-          \ 'cmd': {server_info->['elixir-ls']},
-          \ 'root_uri': {server_info->lsp#utils#path_to_uri(
-            \ lsp#utils#find_nearest_parent_file_directory(
-              \ lsp#utils#get_buffer_path(),
-              \ ['mix.exs']
-            \ )
-          \ )},
-          \ 'whitelist': ['elixir'],
-          \ })
-  endif
-endfunction
-
-function! s:on_lsp_buffer_enabled() abort
-    setlocal omnifunc=lsp#complete
-    setlocal keywordprg=:LspHover
-    nmap <buffer> gd <plug>(lsp-definition)
-    nmap <buffer> gr <plug>(lsp-references)
-endfunction
-
-augroup lsp_setup
-  autocmd!
-  autocmd User lsp_setup call <SID>setup_lsp()
-  autocmd User lsp_buffer_enabled call <SID>on_lsp_buffer_enabled()
-augroup END
 
 " Config for vim-signify.
 let g:signify_sign_show_count = 0
@@ -356,13 +285,14 @@ set cursorline
 
 function! s:highlight() abort
   " General highlighting.
-  highlight Error cterm=None ctermfg=1 ctermbg=8
+  highlight Error cterm=none ctermfg=1 ctermbg=none
   highlight Normal ctermbg=none
+  highlight NormalFloat ctermbg=8
   highlight NormalNC ctermbg=0
-  highlight SpecialKey ctermbg=8
+  highlight SpecialKey ctermbg=none
   highlight SpellBad cterm=underline ctermfg=none
   highlight SpellCap cterm=underline ctermfg=none
-  highlight VertSplit ctermbg=8
+  highlight VertSplit ctermbg=none
 
   " Highlighting for sign column symbols.
   highlight SignColumn ctermbg=0

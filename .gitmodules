@@ -13,12 +13,6 @@
 [submodule "vim/pack/plugins/start/ale"]
 	path = nvim/pack/plugins/start/ale
 	url = https://github.com/w0rp/ale
-[submodule "vim/pack/plugins/start/async.vim"]
-	path = nvim/pack/plugins/start/async.vim
-	url = https://github.com/prabirshrestha/async.vim
-[submodule "vim/pack/plugins/start/vim-lsp"]
-	path = nvim/pack/plugins/start/vim-lsp
-	url = https://github.com/prabirshrestha/vim-lsp
 [submodule "vim/pack/plugins/start/vim-signify"]
 	path = nvim/pack/plugins/start/vim-signify
 	url = https://github.com/mhinz/vim-signify
@@ -64,3 +58,6 @@
 [submodule "vim/pack/plugins/start/vim-solarized8"]
 	path = nvim/pack/plugins/start/vim-solarized8
 	url = https://github.com/lifepillar/vim-solarized8
+[submodule "nvim/pack/plugins/start/nvim-lspconfig"]
+	path = nvim/pack/plugins/start/nvim-lspconfig
+	url = https://github.com/neovim/nvim-lspconfig

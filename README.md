@@ -54,12 +54,12 @@ Java
 
 JavaScript
 ├─ formatter       → prettier
-├─ language-server → javascript-typescript-langserver
+├─ language-server → typescript-language-server
 └─ linter          → eslint
 
 Python
 ├─ formatter       → black
-├─ language-server → python-language-server
+├─ language-server → pyright
 └─ linter          → autopep, flake8, pylint
 
 Rust

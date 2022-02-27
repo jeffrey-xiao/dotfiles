@@ -22,6 +22,7 @@ set syscalls
 set tabprefix=' %N:'
 set tabsuffix=' '
 set timefmt=%F\ %R
+set vicmd=nvim
 set vifminfo=bmarks,bookmarks,dhistory,state,cs,chistory,shistory,phistory,fhistory,registers
 set vimhelp
 set wildmenu

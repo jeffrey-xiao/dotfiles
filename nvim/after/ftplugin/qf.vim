@@ -2,7 +2,6 @@
 setlocal number
 setlocal norelativenumber
 setlocal nobuflisted
-call statusline#Update()
 call window#FitHeight(3, 10)
 
 let b:is_qf = empty(getloclist(0))

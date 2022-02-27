@@ -4,7 +4,7 @@ set -eu
 
 __help="Usage: ${0##*/} [OPTIONS] [SUBCOMMAND]
 
-Manage Vim8 packages.
+Manage Vim8/Neovim packages.
 
 Options:
   -h, --help     display this help and exit
@@ -55,10 +55,10 @@ sub_update_all() {
   git submodule update --depth=1 --remote
 }
 
-dir="$HOME/.vim/pack/plugins/start/"
+dir="$HOME/.local/share/nvim/site/pack/plugins/start/"
 if [ $# -ge 1 ] && [ "$1" = 'opt' ]; then
   shift
-  dir="$HOME/.vim/pack/plugins/opt/"
+  dir="$HOME/.local/share/nvim/site/pack/plugins/opt/"
 fi
 
 [ $# -ge 1 ] || { printf "Error: missing subcommand.\\n\\n%s\\n" "$__help" && exit 0; }

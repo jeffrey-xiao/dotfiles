@@ -1,34 +1,16 @@
-" Updates the status line for the current window and the last window.
-function! statusline#Update() abort
-  call setwinvar(winnr(), '&statusline', '%!statusline#Statusline('.winnr().')')
-  if winnr('#') != 0
-    call setwinvar(winnr('#'), '&statusline', '%!statusline#Statusline('.winnr('#').')')
-  endif
-endfunction
-
-" Returns the status line for a specific window.
-function! statusline#Statusline(winnum) abort
+function! statusline#Statusline() abort
   let l:status = ''
-  if a:winnum == winnr()
-    let l:status .= '%#StatusLineLight#'
-    let l:status .= ' %f%{statusline#Flags()} %#StatusLineDark# %{statusline#GitInfo()}'
-    let l:status .= '%='
-    let l:status .= '%{strlen(&filetype)?&filetype:"no ft"}'
-    let l:status .= ' │ %{strlen(&fileencoding)?&fileencoding:&encoding}'
-    let l:status .= ' │ %{&fileformat}'
-    let l:status .= ' %#StatusLineLight#'
-    let l:status .= ' %l/%L: %3c'
-    let l:status .= ' %#StatusLineAccent#'
-    let l:status .= '%{statusline#WarningFlags()}'
-    let l:status .= '%{statusline#AleFlags()}'
-  else
-    let l:status .= '%#StatusLineDark#'
-    let l:status .= ' %f'
-    let l:status .= '%='
-    let l:status .= '%p%%'
-    let l:status .= ' %#StatusLineLight#'
-    let l:status .= ' %l/%L: %3c '
-  endif
+  let l:status .= '%#StatusLineLight#'
+  let l:status .= ' %f%{statusline#Flags()} %#StatusLineDark# %{statusline#GitInfo()}'
+  let l:status .= '%='
+  let l:status .= '%{strlen(&filetype)?&filetype:"no ft"}'
+  let l:status .= ' │ %{strlen(&fileencoding)?&fileencoding:&encoding}'
+  let l:status .= ' │ %{&fileformat}'
+  let l:status .= ' %#StatusLineLight#'
+  let l:status .= ' %l/%L: %3c'
+  let l:status .= ' %#StatusLineAccent#'
+  let l:status .= '%{statusline#WarningFlags()}'
+  let l:status .= '%{statusline#AleFlags()}'
   return l:status
 endfunction
 

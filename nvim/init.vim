@@ -1,7 +1,13 @@
 filetype plugin indent on
 syntax on
 
-" Config for ALE.
+if $XDG_DATA_DIR ==# ""
+  let s:data_dir = $HOME.'/.local/share/nvim'
+else
+  let s:data_dir = $XDG_DATA_DIR.'/nvim'
+endif
+
+" Config for ale.
 let g:ale_linters = {
       \ 'cpp': ['clang', 'cppcheck'],
       \ 'java': ['javac'],
@@ -13,6 +19,57 @@ let g:ale_echo_msg_format = '[%linter%] %s'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_sign_column_always = 1
+
+" Config for fzf.
+let s:fzf_tags_options = [
+      \ '--no-multi',
+      \ '--delimiter= ',
+      \ '--with-nth=1,2,3',
+      \ '--nth=1,2',
+      \ '--tiebreak=index',
+      \ '--expect=ctrl-t,ctrl-v,ctrl-s',
+      \ ]
+let g:fzf_action = {
+      \ 'ctrl-t': 'tab split',
+      \ 'ctrl-v': 'vsplit',
+      \ 'ctrl-s': 'split',
+      \ }
+function! s:fzf_tags_sink(lines) abort
+  if empty(a:lines)
+    return
+  endif
+  let l:cmd = get(g:fzf_action, remove(a:lines, 0), 'e')
+  let l:query = a:lines[0]
+  let l:parts = split(l:query, '\%u00a0')
+  let l:excmd = matchstr(l:parts[3], '^.*\ze;"')
+  execute 'silent ' l:cmd l:parts[1]
+  let [l:magic, &magic] = [&magic, 0]
+  execute l:excmd
+  let &magic = l:magic
+endfunction
+
+command! Tags call fzf#run(fzf#wrap({
+      \ 'source': 'get-relative-tags '.join(map(tagfiles(), 'fnamemodify(v:val, ":S")')),
+      \ 'options': s:fzf_tags_options,
+      \ 'sink*': function('s:fzf_tags_sink'),
+      \ }))
+command! Buffers call fzf#run(fzf#wrap({
+      \ 'source': filter(map(range(1, bufnr('$')), 'bufname(v:val)'), 'len(v:val)'),
+      \ }))
+command! MRU call fzf#run(fzf#wrap({
+      \ 'source': v:oldfiles,
+      \ }))
+
+" Config for vim-dirvish.
+let g:loaded_netrwPlugin = 1
+let g:dirvish_mode = ':sort ,^.*[\/],'
+
+" Config for vim-gutentags.
+let g:gutentags_cache_dir = s:data_dir.'/tags/'
+let g:gutentags_generate_on_empty_buffer = 1
+
+" Config for vim-minisnip
+let g:minisnip_dir = s:data_dir.'/minisnip'
 
 " Config for vim-lsp.
 let g:lsp_diagnostics_enabled = 0
@@ -88,17 +145,9 @@ augroup lsp_setup
   autocmd User lsp_buffer_enabled call <SID>on_lsp_buffer_enabled()
 augroup END
 
-" Config for signify.
+" Config for vim-signify.
 let g:signify_sign_show_count = 0
 let g:signify_vcs_list = [ 'git' ]
-
-" Config for vim-dirvish.
-let g:loaded_netrwPlugin = 1
-let g:dirvish_mode = ':sort ,^.*[\/],'
-
-" Config for vim-gutentags.
-let g:gutentags_cache_dir = '~/.vim/cache/tags/'
-let g:gutentags_generate_on_empty_buffer = 1
 
 " Config for vimtex.
 let g:latex_view_general_viewer = 'zathura'
@@ -121,46 +170,6 @@ let g:vimtex_syntax_minted = [
       \ ]
 let g:vimtex_view_method = 'zathura'
 
-" Config for fzf.
-let s:fzf_tags_options = [
-      \ '--no-multi',
-      \ '--delimiter= ',
-      \ '--with-nth=1,2,3',
-      \ '--nth=1,2',
-      \ '--tiebreak=index',
-      \ '--expect=ctrl-t,ctrl-v,ctrl-s',
-      \ ]
-let g:fzf_action = {
-      \ 'ctrl-t': 'tab split',
-      \ 'ctrl-v': 'vsplit',
-      \ 'ctrl-s': 'split',
-      \ }
-function! s:fzf_tags_sink(lines) abort
-  if empty(a:lines)
-    return
-  endif
-  let l:cmd = get(g:fzf_action, remove(a:lines, 0), 'e')
-  let l:query = a:lines[0]
-  let l:parts = split(l:query, '\%u00a0')
-  let l:excmd = matchstr(l:parts[3], '^.*\ze;"')
-  execute 'silent ' l:cmd l:parts[1]
-  let [l:magic, &magic] = [&magic, 0]
-  execute l:excmd
-  let &magic = l:magic
-endfunction
-
-command! Tags call fzf#run(fzf#wrap({
-      \ 'source': 'get-relative-tags '.join(map(tagfiles(), 'fnamemodify(v:val, ":S")')),
-      \ 'options': s:fzf_tags_options,
-      \ 'sink*': function('s:fzf_tags_sink'),
-      \ }))
-command! Buffers call fzf#run(fzf#wrap({
-      \ 'source': filter(map(range(1, bufnr('$')), 'bufname(v:val)'), 'len(v:val)'),
-      \ }))
-command! MRU call fzf#run(fzf#wrap({
-      \ 'source': v:oldfiles,
-      \ }))
-
 " Setting grepprg.
 set grepformat^=%f:%l:%c:%m
 if executable('rg')
@@ -176,36 +185,40 @@ command! -nargs=+ -complete=file_in_path -bar Grep cgetexpr <SID>grep(<q-args>) 
 command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr <SID>grep(<q-args>) | echom "Finished lgrep."
 
 " Editing config.
-set backspace=indent,eol,start
+set autowrite
+set autowriteall
+set completeopt=noinsert,menuone,noselect
 set infercase
-set formatoptions+=jn
+set diffopt=filler,internal,algorithm:histogram,indent-heuristic
+set encoding=utf-8
+set formatoptions+=n
+set linebreak
 set nojoinspaces
-set pumheight=10
-if exists('+completeopt')
-  set completeopt=noinsert,menuone,noselect
-endif
+set nowrap
+set undofile
 
-" Indentation and wrapping.
+" Indentation.
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab
-set autoindent
-set smarttab
 set cindent
-set nowrap
 
-" Line numbers and column config.
+" UI config.
 set number
 set relativenumber
 set colorcolumn=100
+set showmatch
+set shortmess=aIT
+set pumheight=10
+set splitbelow
+set splitright
 
 " Disable bells.
 set visualbell
 set t_vb=
 
 " Searching config.
-set incsearch
 set nohlsearch
 set ignorecase
 set smartcase
@@ -213,10 +226,12 @@ set smartcase
 " Color scheme config.
 set t_Co=16
 set background=dark
+let g:solarized_use16=1
 colorscheme solarized8
 
 " Wildmenu config.
-set wildmenu
+set wildoptions-=pum
+set wildmode=longest:full,full
 set wildignore=.hg,.git,.svn                     " Version control.
 set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files.
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " Binary images.
@@ -227,72 +242,20 @@ set wildignore+=*.pdf,*.zip,*.so                 " Binaries.
 set wildignore+=*.pyc,*.pyo                      " Python byte code.
 
 " Displaying text.
+set list
+set listchars=tab:¦\ ,nbsp:•,trail:·,extends:→,precedes:←
+set fillchars+=vert:│
 set lazyredraw
-set linebreak
 set scrolloff=1
 set sidescrolloff=5
-set t_ZH=
-set regexpengine=1
 
 " Folding.
 set foldmethod=indent
 set foldlevel=99
 
-" List and fill chars config.
-set list
-set listchars=tab:¦\ ,nbsp:•,trail:·,extends:→,precedes:←
-set fillchars+=vert:│
-
-" Encoding config.
-set encoding=utf-8
-scriptencoding utf-8
-set fileencoding=utf-8
-
 " Mouse config.
 set mouse=a
 set nomousehide
-
-" UI config.
-set laststatus=2
-set showmatch
-set shortmess=aIT
-set hidden
-
-" Consistent splitting.
-set splitbelow
-set splitright
-
-" Reading and writing files.
-set autoread
-set autowrite
-
-" Vim info config.
-set viminfo='1000  " Remember marks for last 1000 files.
-set viminfo+=<1000 " Remember up to 1000 lines in each register.
-set viminfo+=s1000 " Remember up to 1MB in each register.
-set viminfo+=/1000 " Remember last 1000 search patterns.
-set viminfo+=:1000 " Remember last 1000 commands.
-set viminfo+=n$HOME/.vim/cache/viminfo/info
-
-" Setting undo and swp directories. Remove backup files.
-set nobackup
-set undofile
-set undodir=~/.vim/cache/undo//
-set directory=~/.vim/cache/swp//
-
-" Use histogram and indent-heuristic for diffs.
-if has("patch-8.1.360")
-  set diffopt=filler,internal,algorithm:histogram,indent-heuristic
-endif
-
-" Create necessary directories if they are missing.
-if exists('*mkdir')
-  for s:dir in ['/.vim/cache/swp/', '/.vim/cache/undo/', '/.vim/cache/tags/', '/.vim/cache/viminfo/']
-    if !isdirectory($HOME.s:dir)
-      call mkdir($HOME.s:dir, 'p')
-    endif
-  endfor
-endif
 
 " Remap leader.
 let g:mapleader="\<Space>"
@@ -351,9 +314,6 @@ nnoremap <silent> <leader>r :source $MYVIMRC<CR>
 " Visually select pasted or yanked text.
 nnoremap gV `[v`]
 
-" Consistent behavior.
-nnoremap Y y$
-
 " Backspace to switch to alternate file.
 nnoremap <BS> <C-^>
 
@@ -396,11 +356,13 @@ set cursorline
 
 function! s:highlight() abort
   " General highlighting.
-  highlight SpecialKey ctermbg=8
-  highlight VertSplit ctermbg=8
-  highlight SpellBad cterm=underline ctermfg=None
-  highlight SpellCap cterm=underline ctermfg=None
   highlight Error cterm=None ctermfg=1 ctermbg=8
+  highlight Normal ctermbg=none
+  highlight NormalNC ctermbg=0
+  highlight SpecialKey ctermbg=8
+  highlight SpellBad cterm=underline ctermfg=none
+  highlight SpellCap cterm=underline ctermfg=none
+  highlight VertSplit ctermbg=8
 
   " Highlighting for sign column symbols.
   highlight SignColumn ctermbg=0
@@ -436,23 +398,28 @@ augroup quickfix_group
   autocmd BufHidden,QuitPre * nested if &filetype != 'qf' | silent! lclose | endif
 augroup END
 
-" Cursorline autocommands.
-augroup cursorline_group
-  autocmd!
-  autocmd WinLeave * set nocursorline
-  autocmd WinEnter,BufEnter * set cursorline
-augroup END
-
-" Numbering autocommands.
-augroup numbering_group
-  autocmd!
-  autocmd WinLeave * set norelativenumber
-  autocmd WinEnter,BufEnter * if &filetype != 'qf' && &filetype != 'help' | set relativenumber | endif
-augroup END
-
 " Searching highlighting autocommands.
 augroup search_group
   autocmd!
   autocmd CmdlineEnter [/\?] set hlsearch
   autocmd CmdlineLeave [/\?] set nohlsearch
+augroup END
+
+" Autocommands to differentiate active window.
+function! s:active_window() abort
+  set cursorline
+  if &filetype != 'qf' && &filetype != 'help'
+    set relativenumber
+  endif
+endfunction
+
+function! s:inactive_window() abort
+  set nocursorline
+  set norelativenumber
+endfunction
+
+augroup active_window_group
+  autocmd!
+  autocmd WinLeave * call <SID>inactive_window()
+  autocmd WinEnter,BufEnter * call <SID>active_window()
 augroup END

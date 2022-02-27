@@ -35,7 +35,7 @@ alias mkdir='mkdir -pv'
 alias wget='wget --continue'
 
 # Vim aliases.
-alias vim='vim --servername VIM'
+alias vim='nvim'
 
 # Tmux aliases.
 alias tmux-update-env='eval $(tmux show-environment -s)'

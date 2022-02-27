@@ -1,6 +1,6 @@
 " Settings.
 set confirm=permdelete
-set cpoptions='s'
+set cpoptions='st'
 set nodotfiles
 set fillchars=vborder:│
 set grepprg='rg --vimgrep'
@@ -89,11 +89,11 @@ nnoremap <esc>9 9gt
 
 " Commands.
 command! df df -h %m 2> /dev/null
-command! diff vim -d %f %F
+command! diff nvim -d %f %F
 command! run !!./%f
 command! make !!make %a
 command! mkcd :mkdir %a | cd %a
-command! vgrep vim "+grep %a"
+command! vgrep nvim "+grep %a"
 command! compress [ -n '%a' ] && apack '%a' %f
 command! extract aunpack %f
 
@@ -161,6 +161,6 @@ fileviewer {*.doc},<application/msword> catdoc %c
 fileviewer {*.docx},<application/vnd.openxmlformats-officedocument.wordprocessingml.document>
   \ docx2txt.pl %f -
 
-filetype *[^/],<text/*> vim %f
+filetype *[^/],<text/*> nvim %f
 fileviewer *[^/],<text/*> cat
 fileviewer */ tree -a -L 2 -I .git %c

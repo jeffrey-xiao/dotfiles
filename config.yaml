@@ -90,6 +90,31 @@ ncmpcpp:
   dependencies:
     - ncmpcpp
 
+nvim:
+  link:
+    - pack: ~/.local/share/nvim/site/
+    - minisnip: ~/.local/share/nvim/
+    - "*": ~/.config/nvim
+  postlink:
+    - nvim -c helptags ALL -c q!
+    - ~/.local/share/nvim/site/pack/plugins/start/fzf/install --all --xdg --no-update-rc
+    - python3 -m pip install --user autopep8 black flake8 pylint python-language-server
+    - NPM_PREFIX=~/.local/share/n curl --silent --show-error --fail --location https://git.io/n-install | bash
+    - npm install --global @bitwarden/cli eslint javascript-typescript-langserver prettier
+    - >
+      curl --silent --show-error --fail https://sh.rustup.rs | sh -s -- -y --no-modify-path --default-toolchain nightly --component clippy rustfmt rust-analyzer-preview rust-src &&
+      rustup install stable
+  dependencies:
+    - cppcheck
+    - ctags
+    - curl
+    - llvm-clang
+    - pandoc
+    - pip
+    - ripgrep
+    - shellcheck
+    - vim
+
 picom:
   link: ~/.config/picom/
   dependencies:
@@ -148,28 +173,6 @@ vifm:
     - p7zip
     - vifm
     - w3m
-
-vim:
-  link: ~/.vim/
-  postlink:
-    - vim -c helptags ALL -c q!
-    - ~/.vim/pack/plugins/start/fzf/install --all --xdg --no-update-rc
-    - python3 -m pip install --user autopep8 black flake8 pylint python-language-server
-    - NPM_PREFIX=~/.local/share/n curl --silent --show-error --fail --location https://git.io/n-install | bash
-    - npm install --global @bitwarden/cli eslint javascript-typescript-langserver prettier
-    - >
-      curl --silent --show-error --fail https://sh.rustup.rs | sh -s -- -y --no-modify-path --default-toolchain nightly --component clippy rustfmt rust-analyzer-preview rust-src &&
-      rustup install stable
-  dependencies:
-    - cppcheck
-    - ctags
-    - curl
-    - llvm-clang
-    - pandoc
-    - pip
-    - ripgrep
-    - shellcheck
-    - vim
 
 weechat:
   link: []

@@ -32,9 +32,9 @@ query_connected() {
   echo "$connected_monitors" | grep --only-matching "$1"
 }
 
-if query_connected '^DP-1-1-3$' && query_connected '^DP-1-1-2'; then
+if query_connected '^DP-1-1-3$' && query_connected '^DP-1-1-2$'; then
   xrandr --output DP-1-1-3 --mode 2560x1440
-  xrandr --output DP-1-1-2 --mode 2560x1440 --left-of DP-1-1-3
+  xrandr --output DP-1-1-2 --mode 2560x1440 --left-of DP-1-1-3 --rotate right
   xrandr --output eDP-1-1  --off
 else
   xrandr --output eDP-1-1 --mode 1920x1080

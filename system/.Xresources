@@ -62,12 +62,12 @@ URxvt*scrollTtyKeypress:  true
 
 ! Urxvt font.
 URxvt.font:               xft:Iosevka Term SS06:style=Regular:size=10
-URxvt.boldFont:           xft:Iosevka Term SS06:style=bold:size=10
+URxvt.boldFont:           xft:Iosevka Term SS06:style=Bold:size=10
 URxvt.letterSpace:        -1
 URxvt.lineSpace:          0
 
 ! Urxvt extensions.
-URxvt.perl-ext-common:    default,matcher
+URxvt.perl-ext-common:    default,matcher,-confirm-paste
 URxvt.url-launcher:       /usr/bin/xdg-open
 URxvt.matcher.button:     1
 

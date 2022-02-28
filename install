@@ -22,6 +22,7 @@ declare -a programs=(
   mpd mpc-client
   mpv
   ncmpcpp
+  nvim cppcheck ctags curl llvm-clang pandoc pip ripgrep shellcheck
   picom
   redshift yt-dlc
   polybar
@@ -29,7 +30,6 @@ declare -a programs=(
   rofi
   rxvt-unicode xrdb tmux
   vifm atool cabextract highlight imagemagick p7zip w3m
-  vim cppcheck ctags curl llvm-clang pandoc pip ripgrep shellcheck
   weechat
   zathura texlive-all xdotool zathura-mupdf
 )
@@ -61,7 +61,7 @@ fc-cache --force --verbose
 xrdb ~/.Xresources
 
 # Installing development related programs and tools.
-vim -c helptags ALL -c q!
+nvim -c helptags ALL -c q!
 ~/.vim/pack/plugins/start/fzf/install --all --xdg --no-update-rc
 python3 -m pip install --user autopep8 black flake8 pylint pyright
 NPM_PREFIX=~/.local/share/n curl --silent --show-error --fail --location https://git.io/n-install | bash

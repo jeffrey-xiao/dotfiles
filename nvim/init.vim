@@ -237,7 +237,7 @@ set winminheight=0
 command! Zoom call window#Zoom()
 nnoremap <silent> <leader>z :Zoom<CR>
 
-" Reload .vimrc.
+" Reload vimrc.
 nnoremap <silent> <leader>r :source $MYVIMRC<CR>
 
 " Visually select pasted or yanked text.
@@ -292,7 +292,7 @@ function! s:highlight() abort
   highlight SpecialKey ctermbg=none
   highlight SpellBad cterm=underline ctermfg=none
   highlight SpellCap cterm=underline ctermfg=none
-  highlight VertSplit ctermbg=none
+  highlight VertSplit ctermfg=10 ctermbg=0
 
   " Highlighting for sign column symbols.
   highlight SignColumn ctermbg=0

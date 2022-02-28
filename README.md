@@ -20,10 +20,9 @@ media player         → mpv
 notification daemon  → dunst
 shell                → bash
 status bar           → polybar
-system monitor       → htop
 terminal emulator    → rxvt-unicode
 terminal multiplexer → tmux
-text editor          → vim
+text editor          → nvim
 torrent client       → rtorrent
 window manager       → bspwm
 ```

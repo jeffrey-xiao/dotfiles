@@ -38,14 +38,16 @@ mkdir -pv ~/.config/{gtk-2.0,gtk-3.0}
 ln -sfv "$DOTFILES_DIR"/gtk/gtkrc-2.0 ~/.config/gtk-2.0/gtkrc
 ln -sfv "$DOTFILES_DIR"/gtk/settings.ini ~/.config/gtk-3.0/
 
-# Link vim config.
-mkdir -pv ~/.vim/
-for f in "$DOTFILES_DIR"/vim/!(*.template); do
-  ln -sfv "$f" ~/.vim/
+# Link nvim config.
+mkdir -pv ~/.local/share/nvim/site
+ln -sfv "$DOTFILES_DIR"/nvim/pack ~/.local/share/nvim/site/
+ln -sfv "$DOTFILES_DIR"/nvim/minisnip ~/.local/share/nvim/
+for f in "$DOTFILES_DIR"/nvim/!(pack|minisnip); do
+  ln -sfv "$f" ~/.config/nvim
 done
 
 # Initialize weechat config.
-weechat --run-command "$(cat ./weechat/weechatrc | sed 's/\$/\\$/g' | tr '\n' ';');/quit"
+weechat --run-command "$(sed 's/\$/\\$/g' "$DOTFILES_DIR"/weechat/weechatrc | tr '\n' ';');/quit"
 
 # Link miscellaneous config.
 cp -u "$DOTFILES_DIR"/misc/redshift.conf ~/.config/

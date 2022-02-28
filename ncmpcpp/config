@@ -56,7 +56,7 @@ jump_to_now_playing_song_at_start = yes
 
 # External settings.
 search_engine_default_search_mode = 1
-external_editor = vim
+external_editor = nvim
 use_console_editor = yes
 
 # Tag settings.

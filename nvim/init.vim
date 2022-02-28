@@ -60,7 +60,7 @@ command! MRU call fzf#run(fzf#wrap({
       \ 'source': v:oldfiles,
       \ }))
 
-# Config for nvim-lspconfig.
+" Config for nvim-lspconfig.
 lua require('init')
 
 " Config for vim-dirvish.

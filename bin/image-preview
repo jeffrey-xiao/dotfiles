@@ -82,6 +82,7 @@ else
   esac
   if [ -n "${conv_command:-}" ]; then
     if [ ! -f "$cached_img_path" ]; then
+      mkdir -p "$cached_path"
       eval "$conv_command"
     fi
     file=$cached_img_path

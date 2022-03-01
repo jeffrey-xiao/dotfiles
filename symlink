@@ -22,7 +22,7 @@ done
 # Link to .config/$folder.
 for folder in bash bspwm dunst feh git mpd mpv ncmpcpp picom polybar rofi rtorrent sxhkd tmux vifm zathura; do
   mkdir -pv ~/.config/$folder/
-  for f in "$DOTFILES_DIR"/$folder/!(*.template); do
+  for f in "$DOTFILES_DIR"/"$folder"/!(*.template); do
     ln -sfv "$f" ~/.config/$folder/
   done
 done
@@ -53,13 +53,7 @@ weechat --run-command "$(sed 's/\$/\\$/g' "$DOTFILES_DIR"/weechat/weechatrc | tr
 cp -u "$DOTFILES_DIR"/misc/redshift.conf ~/.config/
 
 # Create data directories.
-mkdir -pv ~/.local/share/{bash,less,mpd/playlists,ncmpcpp,rtorrent/sessions}/
+mkdir -pv ~/.local/share/{bash,less,mpd/playlists,ncmpcpp}/
 
 # Initialize database file for mpd.
 touch ~/.local/share/mpd/database
-
-# Create screenshot folder for mpv.
-mkdir -pv ~/Pictures/Screenshots/
-
-# Create complete, and incomplete downloads for rtorrent.
-mkdir -pv ~/Downloads/{complete,incomplete}/

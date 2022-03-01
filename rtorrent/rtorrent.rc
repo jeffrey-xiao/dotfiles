@@ -17,11 +17,16 @@ max_uploads_global = 30
 throttle.global_down.max_rate.set_kb = 0
 throttle.global_up.max_rate.set_kb = 300
 
+# Create necessary directories.
+execute2={mkdir,-p,~/.local/share/rtorrent/}
+execute2={mkdir,-p,~/Downloads/incomplete/}
+execute2={mkdir,-p,~/Downloads/complete/}
+
 # Default directory to save the downloaded torrents.
 directory.default.set = ~/Downloads/incomplete
 
 # Default session directory.
-session = ~/.local/share/rtorrent/sessions
+session = ~/.local/share/rtorrent/
 
 # Watch a directory for new torrents.
 schedule2 = watch_directory_1,5,5,"load.start=~/Downloads/*.torrent,d.custom1.set=~/Downloads/complete"

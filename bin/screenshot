@@ -31,17 +31,19 @@ done
 
 [ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
 
-file="${XDG_PICTURES_DIR:-"$HOME/Pictures"}/Screenshots/$(date +%s).png"
+screenshot_dir="${XDG_PICTURES_DIR:-"$HOME/Pictures"}/Screenshots/"
+screenshot_file="$screenshot_dir/$(date +%s).png"
 
+mkdir -p "$screenshot_dir"
 if [ -z ${select:-} ]; then
   # Screenshot entire desktop.
-  scrot "$file"
-  notify-send --urgency=low 'Took screenshot (desktop)' -i "$file"
+  scrot "$screenshot_file"
+  notify-send --urgency=low 'Took screenshot (desktop)' -i "$screenshot_file"
 else
   # Screenshot area.
   slop=$(slop --format '%g') || exit 1
-  import -window root -crop "$slop" "$file"
-  notify-send --urgency=low 'Took screenshot (area)' -i "$file"
+  import -window root -crop "$slop" "$screenshot_file"
+  notify-send --urgency=low 'Took screenshot (area)' -i "$screenshot_file"
 fi
 
-xclip "$file" -selection clipboard -target image/png
+xclip "$screenshot_file" -selection clipboard -target image/png

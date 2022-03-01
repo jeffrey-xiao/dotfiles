@@ -36,11 +36,11 @@ declare -a programs=(
 programs_string=$(join " " "${programs[@]}")
 installed_program_list=$(eopkg list-installed --install-info)
 
-# Installing necessary applications (need to install component system.devel separately).
+# Install necessary applications (need to install component system.devel separately).
 sudo eopkg install --yes-all --component system.devel
 sudo eopkg install --yes-all $programs_string
 
-# Checking if applications are installed.
+# Check if applications are installed.
 for f in "${programs[@]}"; do
   if [ "$(echo "$installed_program_list" | grep --count "$f ")" -eq 1 ]; then
     echo "$f successfully installed." >>"$log_file"
@@ -49,9 +49,7 @@ for f in "${programs[@]}"; do
   fi
 done
 
-# Installing powerline fonts.
-sudo rm -f /usr/share/fonts/conf.d/70-no-bitmaps.conf &&
-  sudo ln -svf /usr/share/fontconfig/conf.avail/70-yes-bitmaps.conf /usr/share/fonts/conf.d
+# Install fonts.
 mkdir -pv ~/.local/share/fonts/ &&
   cp -u ./fonts/*.{ttf,bdf} ~/.local/share/fonts/ &&
   (cd ~/.local/share/fonts/ && mkfontdir && mkfontscale)
@@ -60,7 +58,7 @@ fc-cache --force --verbose
 # Apply ~/.Xresources.
 xrdb ~/.Xresources
 
-# Installing development related programs and tools.
+# Install development related programs and tools.
 nvim -c helptags ALL -c q!
 ~/.vim/pack/plugins/start/fzf/install --all --xdg --no-update-rc
 python3 -m pip install --user autopep8 black flake8 pylint pyright

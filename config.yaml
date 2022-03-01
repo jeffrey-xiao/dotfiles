@@ -35,9 +35,6 @@ fonts:
   link: []
   postlink:
     - >
-      sudo rm -f /usr/share/fonts/conf.d/70-no-bitmaps.conf &&
-      sudo ln -svf /usr/share/fontconfig/conf.avail/70-yes-bitmaps.conf /usr/share/fonts/conf.d
-    - >
       mkdir -pv ~/.local/share/fonts/ &&
       cp -u ./fonts/*.{ttf,bdf} ~/.local/share/fonts/ &&
       (cd ~/.local/share/fonts/ && mkfontdir && mkfontscale)
@@ -78,8 +75,6 @@ mpd:
 
 mpv:
   link: ~/.config/mpv/
-  postlink:
-    - mkdir -pv ~/Pictures/Screenshots/
   dependencies:
     - mpv
 
@@ -132,8 +127,6 @@ rofi:
 
 rtorrent:
   link: ~/.config/rtorrent/
-  postlink:
-    - mkdir -pv ~/Downloads/{incomplete,complete}/ ~/.local/share/rtorrent/sessions/
   dependencies:
     - rtorrent
 

@@ -2,6 +2,64 @@
 
 config_dir=${XDG_CONFIG_HOME:-"$HOME/.config"}
 
+__trim() {
+  awk '{$1=$1};1'
+}
+
+__title() {
+  echo '\033]0;\u@\h:\w\007'
+}
+
+__path_info() {
+  echo '\w'
+}
+
+__git_info() {
+  # Git not found.
+  [ -x "$(command -v git)" ] || return
+
+  # Force git output in English to make our work easier.
+  git_eng='env LANG=C git'
+
+  # Get current branch name or short SHA1 hash for detached head.
+  branch="$($git_eng symbolic-ref --short HEAD 2>/dev/null || $git_eng describe --tags --always 2>/dev/null)"
+
+  # Git branch not found.
+  [ -n "$branch" ] || return
+
+  status=$($git_eng status --porcelain 2>/dev/null)
+
+  all="$(printf '%s' "$status" | grep --count "^.*$" | __trim)"
+  unstaged="$(printf '%s' "$status" | grep --count '^ \w' | __trim)"
+  uncommited="$(printf '%s' "$status" | grep --count '^\w\(\w\|\s\)' | __trim)"
+  untracked="$((all - unstaged - uncommited))"
+  stat="$($git_eng status --porcelain --branch | grep '^##' | grep --only-matching '\[.\+\]$')"
+  ahead="$(echo "$stat" | grep --only-matching 'ahead [[:digit:]]\+' | grep --only-matching '[[:digit:]]\+')"
+  behind="$(echo "$stat" | grep --only-matching 'behind [[:digit:]]\+' | grep --only-matching '[[:digit:]]\+')"
+
+  [ "$untracked" -eq '0' ] || marks="$marks $GIT_UNTRACKED_SYMBOL$untracked"
+  [ "$unstaged" -eq '0' ] || marks="$marks $GIT_UNSTAGED_SYMBOL$unstaged"
+  [ "$uncommited" -eq '0' ] || marks="$marks $GIT_UNCOMMITED_SYMBOL$uncommited"
+  [ -n "$ahead" ] && marks="$marks $GIT_NEED_PUSH_SYMBOL$ahead"
+  [ -n "$behind" ] && marks="$marks $GIT_NEED_PULL_SYMBOL$behind"
+
+  echo "$branch$marks"
+}
+
+__venv_info() {
+  # virtualenv not installed.
+  [ -x "$(command -v virtualenv)" ] || return
+
+  # venv not found.
+  [ -z "$VIRTUAL_ENV" ] && return
+  version=$(python --version | cut --delimiter=' ' --fields=2-)
+  echo "${VIRTUAL_ENV##*/} v$version"
+}
+
+__is_ssh() {
+  [ -n "$SSH_CONNECTION" ] || [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]
+}
+
 __prompt() {
   ps1() {
     # Check the exit code of the previous command and display different
@@ -48,9 +106,7 @@ __prompt() {
     PS1="$PS1\\n$FG_EXIT» $RESET"
     PS2="$FG_EXIT» $RESET"
   }
-  . "$config_dir/bash/bash_symbols"
-  . "$config_dir/bash/bash_colors"
-  . "$config_dir/bash/bash_info"
+  . "$config_dir/bash/bash_formatting"
   PROMPT_COMMAND=ps1
 }
 

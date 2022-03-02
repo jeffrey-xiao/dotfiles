@@ -13,8 +13,8 @@ process_cpu() {
   ps axo pid,cmd,%cpu,%mem --sort=-%cpu | head -n "$count"
 }
 
-# Print pid, memory usage percentage, and process name of the processes consuming
-# the most memory.
+# Print pid, memory usage percentage, and process name of the processes
+# consuming the most memory.
 process_mem() {
   count=${1:-10}
   ps axo pid,cmd,%cpu,%mem --sort=-%mem | head -n "$count"

@@ -87,7 +87,7 @@ content = " ]"
 
 [module/weather]
 type = custom/script
-exec = get-weather
+exec = weather
 interval = 300
 
 [module/temperature]

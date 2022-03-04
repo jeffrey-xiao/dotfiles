@@ -49,7 +49,7 @@ function! s:fzf_tags_sink(lines) abort
 endfunction
 
 command! Tags call fzf#run(fzf#wrap({
-      \ 'source': 'get-relative-tags '.join(map(tagfiles(), 'fnamemodify(v:val, ":S")')),
+      \ 'source': 'ctags-relative '.join(map(tagfiles(), 'fnamemodify(v:val, ":S")')),
       \ 'options': s:fzf_tags_options,
       \ 'sink*': function('s:fzf_tags_sink'),
       \ }))

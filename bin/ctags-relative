@@ -4,7 +4,7 @@ set -eu
 
 __help="Usage: ${0##*/} [OPTIONS] FILES
 
-Converts the paths in a list of tag files from absolute paths to relative
+Converts the paths in a list of ctag files from absolute paths to relative
 paths.
 
 Options:

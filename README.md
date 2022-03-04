@@ -101,23 +101,19 @@ dotinstall
 
 ## Color Scheme
 
-The color scheme used is `solarized-dark` and the 16 system colors is set using `.Xresources`. All
+The color scheme used is `solarized-dark` and the 16 system colors are set using `.Xresources`. All
 configuration files directly use these 16 colors. `dircolors` specifies these colors using 3-bit
 ANSI escape codes.
 
 ## Personal Configuration
 
-- [`bin/brightness`](bin/brightness): Change the path to the system internals interface for the
-  backlight device.
+- [`bin/brightness`](bin/brightness): Change the path to the system internals interface for the backlight device.
 - [`bin/download-album-art`](bin/download-album-art): Define `LAST_FM_KEY`.
-- [`bin/get-cpu-temperature`](bin/get-cpu-temperature): Change the path to the system internals
-  interface for the thermal device.
-- [`bin/get-weather`](bin/get-weather): Define `OPEN_WEATHER_MAP_KEY`.
+- [`bin/cpu-temperature`](bin/cpu-temperature): Change the path to the system internals interface for the thermal device.
+- [`bin/weather`](bin/weather): Define `OPEN_WEATHER_MAP_KEY`.
 - [`bin/init-monitors`](bin/init-monitors): Change the monitor setup.
-- [`bin/notify-battery`](bin/notify-battery): Change the path to the system internals interface for
-  the power supply device.
-- [`bin/robar-brightness-server`](bin/robar-brightness-server): Change the path to the system
-  internals interface for the backlight device.
+- [`bin/notify-battery`](bin/notify-battery): Change the path to the system internals interface for the power supply device.
+- [`bin/robar-brightness-server`](bin/robar-brightness-server): Change the path to the system internals interface for the backlight device.
 - [`bin/keyboard`](bin/keyboard): Change the keyboard device name.
 - [`bin/touchpad`](bin/touchpad): Change the touchpad device name.
 - [`bin/record`](bin/record): Change the PulseAudio device indexes.

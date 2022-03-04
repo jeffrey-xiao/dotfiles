@@ -29,10 +29,10 @@ connected_monitors=$(echo "$xrandr_output" | grep '\bconnected\b' | cut --delimi
 disconnected_monitors=$(echo "$xrandr_output" | grep '\bdisconnected\b' | cut --delimiter=' ' --fields=1)
 
 query_connected() {
-  echo "$connected_monitors" | grep --only-matching "$1"
+  echo "$connected_monitors" | grep --only-matching "^$1$"
 }
 
-if query_connected '^DP-1-1-3$' && query_connected '^DP-1-1-2$'; then
+if query_connected 'DP-1-1-3' && query_connected 'DP-1-1-2'; then
   xrandr --output DP-1-1-3 --mode 2560x1440
   xrandr --output DP-1-1-2 --mode 2560x1440 --left-of DP-1-1-3 --rotate right
   xrandr --output eDP-1-1  --off

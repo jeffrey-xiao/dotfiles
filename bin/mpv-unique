@@ -1,0 +1,86 @@
+#!/usr/bin/env python3
+
+"""
+This script emulates "unique application" functionality on Linux. When starting
+playback with this script, it will try to reuse an already running instance of
+mpv (but only if that was started with mpv-unique). Other mpv instances (not
+started by mpv-unique) are ignored, and the script doesn't know about them.
+This only takes filenames as arguments. Custom options can't be used; the
+script interprets them as filenames. If mpv is already running, the files
+passed to mpv-unique are appended to mpv's internal playlist. If a file does
+not exist or is otherwise not playable, mpv will skip the playlist entry when
+attempting to play it (from the GUI perspective, it's silently ignored). If mpv
+isn't running yet, this script will start mpv and let it control the current
+terminal. It will not write output to stdout/stderr, because this will
+typically just fill ~/.xsession-errors with garbage. mpv will terminate if
+there are no more files to play, and running the mpv-unique script after that
+will start a new mpv instance.
+
+NOTE: you can supply custom mpv path and options with the MPV environment
+variable. The environment variable will be split on whitespace, and the first
+item is used as path to mpv binary and the rest is passed as options _if_ the
+script starts mpv. If mpv is not started by the script (i.e. mpv is already
+running), this will be ignored.
+"""
+
+import errno
+import os
+import socket
+import string
+import subprocess
+import sys
+
+
+def is_url(filename):
+    '''Returns true if the provided filename is a URL'''
+    parts = filename.split("://", 1)
+    if len(parts) < 2:
+        return False
+    # If the protocol prefix contains no special characters, then it's a URL.
+    allowed_symbols = string.ascii_letters + string.digits + "_"
+    prefix = parts[0]
+    return all(map(lambda c: c in allowed_symbols, prefix))
+
+
+def get_absolute(filename):
+    '''Returns the absolute path to the provided filename'''
+    if not is_url(filename):
+        return os.path.abspath(filename)
+    return filename
+
+
+def main():
+    '''Main entrypoint'''
+    files = sys.argv[1:]
+
+    files = [get_absolute(f) for f in files]
+    sock_path = os.path.join("/tmp/mpv-unique")
+    sock = None
+
+    try:
+        sock = socket.socket(socket.AF_UNIX)
+        sock.connect(sock_path)
+    except socket.error as err:
+        if err.errno == errno.ECONNREFUSED:
+            sock = None
+        elif err.errno == errno.ENOENT:
+            sock = None
+        else:
+            raise err
+
+    if sock:
+        for file in files:
+            # Escape '\', '\n', and '"' in file path.
+            file = file.replace("\\", "\\\\").replace('"', '\\"').replace("\n", "\\n")
+            file = '"' + file + '"'
+            sock.send(("raw loadfile " + file + " append\n").encode("utf-8"))
+    else:
+        # Let mpv recreate socket if it doesn't already exist.
+        opts = (os.getenv("MPV") or "mpv").split()
+        opts.extend(["--no-terminal", "--input-ipc-server=" + sock_path, "--"])
+        opts.extend(files)
+        subprocess.check_call(opts)
+
+
+if __name__ == "__main__":
+    main()

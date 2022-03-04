@@ -33,14 +33,6 @@ super + shift + {h,j,k,l}
 super + {_,shift +} {1-9,0}
   bspc {desktop --focus,node --to-desktop} "$(bspc query --desktops --desktop {1-9,0})"
 
-# Move desktop to selected monitor.
-super + shift + {Left,Down,Up,Right}
-  desktop=$(bspc query --desktops --desktop focused); \
-  monitor=$(bspc query --monitors --monitor {west,south,north,east}); \
-  bspc desktop --to-monitor "$monitor"; \
-  bspc query --monitor "$monitor" --tree | jq ".desktops[].name" | sort -n | xargs bspc monitor "$monitor" --reorder-desktops; \
-  bspc desktop --focus "$desktop"
-
 # Focus selected monitor.
 super + {Left,Down,Up,Right}
   direction={west,south,north,east}; \

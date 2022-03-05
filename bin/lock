@@ -8,8 +8,6 @@ Lock the screen using i3lock.
 
 Options:
   -h, --help           display this help and exit
-  -i, --image IMAGE    path to custom lock image instead of i3lock unlock
-                       indicator
   -s, --suspend        suspend after locking the screen"
 
 unset suspend
@@ -23,11 +21,6 @@ while [ ! $# -eq 0 ]; do
       echo "$__help"
       exit 0
       ;;
-    -i | --image)
-      check_argument "$@"
-      lock_image="$2"
-      shift
-      ;;
     -s | --suspend)
       suspend=1
       ;;
@@ -40,53 +33,15 @@ done
 
 [ -z "$*" ] || { echo "Error: unexpected positional arguments: $*." && exit 1; }
 
-img_path() {
-  echo "/tmp/blurred_screen_$1.png"
-}
-
-index=0
 dimensions=$(xdpyinfo | awk '/dimensions/{print $2}')
-trap 'rm -f "$(img_path $index)"' EXIT
-ffmpeg -hide_banner -loglevel warning -f x11grab -video_size "$dimensions" -i "$DISPLAY" -y -filter_complex 'boxblur=10' -vframes 1 "$(img_path $index)"
-
-if [ -n "${lock_image:-}" ]; then
-  # Lockscreen image info.
-  [ ! -L "$lock_image" ] && lock_file=$(readlink --canonicalize "$lock_image")
-
-  # Dimensions of lock image.
-  r=$(file "$lock_file" | grep --only-matching '[0-9]* x [0-9]*')
-  rx=$(echo "$r" | cut --delimiter=' ' --fields=1)
-  ry=$(echo "$r" | cut --delimiter=' ' --fields=3)
-
-  sr=$(xrandr | grep '\bconnected\b' | sed 's/primary //' | cut --fields=3 --delimiter=' ')
-  for dimensions in $sr; do
-    # Monitor dimensions.
-    srx=$(echo "$dimensions" | cut --delimiter='x' --fields=1)
-    sry=$(echo "$dimensions" | cut --delimiter='x' --fields=2 | cut --delimiter='+' --fields=1)
-
-    # Monitor offsets.
-    srxo=$(echo "$dimensions" | cut --delimiter='x' --fields=2 | cut --delimiter='+' --fields=2)
-    sryo=$(echo "$dimensions" | cut --delimiter='x' --fields=2 | cut --delimiter='+' --fields=3)
-
-    # Lock image location.
-    px=$((srxo + srx / 2 - rx / 2))
-    py=$((sryo + sry / 2 - ry / 2))
-
-    ffmpeg -hide_banner -loglevel warning -i "$(img_path $index)" -i "$lock_file" -y -filter_complex "overlay=$px:$py" -vframes 1 "$(img_path "$((index + 1))")"
-    /bin/rm -f "$(img_path $index)"
-    trap - EXIT
-    index=$((index + 1))
-    trap 'rm -f "$(img_path $index)"' EXIT
-  done
-
-  i3lock -e -u -i "$(img_path $index)"
-else
-  i3lock -e -i "$(img_path $index)"
-fi
+img_path=/tmp/blurred_screen.png
+ffmpeg -hide_banner -loglevel warning -f x11grab -video_size "$dimensions" -i "$DISPLAY" -y -filter_complex 'boxblur=10' -vframes 1 "$img_path"
+trap '/bin/rm -f "$img_path"' EXIT
+i3lock -e -i "$img_path"
 
 if [ -n "${suspend:-}" ]; then
   systemctl suspend
 fi
 
-/bin/rm -f "$(img_path $index)"
+/bin/rm -f "$img_path"
 trap - EXIT

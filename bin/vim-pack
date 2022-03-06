@@ -2,12 +2,12 @@
 
 set -eu
 
-__help="Usage: ${0##*/} [OPTIONS] [SUBCOMMAND]
+__help="Usage: ${0##*/} [OPTIONS] SUBCOMMAND
 
 Manage Vim8/Neovim packages.
 
 Options:
-  -h, --help     display this help and exit
+  -h, --help                 display this help and exit
 
 Subcommands:
   add GIT_URL                add package

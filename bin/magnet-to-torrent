@@ -16,11 +16,20 @@ Options:
 Positional Arguments:
   LINKS                 a list of magnet links to convert"
 
+unset download_dir
+
+check_argument() { [ $# -ge 2 ] || { echo "Error: flag $1 requires an argument." && exit 1; } }
+
 while [ ! $# -eq 0 ]; do
   case "$1" in
     -h | --help)
       echo "$__help"
       exit 0
+      ;;
+    --download-dir)
+      check_argument "$@"
+      download_dir="$2"
+      shift
       ;;
     *)
       break
@@ -29,7 +38,7 @@ while [ ! $# -eq 0 ]; do
   shift
 done
 
-download_dir=${XDG_DOWNLOAD_DIR:-"$HOME/Downloads"}
+download_dir=${download_dir:-${XDG_DOWNLOAD_DIR:-"$HOME/Downloads"}}
 for magnet_link in "$@"; do
   if [[ "$magnet_link" =~ xt=urn:btih:([^&/]+) ]]; then
     echo "d10:magnet-uri${#magnet_link}:${magnet_link}e" > "$download_dir/meta-${BASH_REMATCH[1]}.torrent"

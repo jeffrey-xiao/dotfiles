@@ -9,10 +9,10 @@ If the number of desktops does not match the number of expected desktops, then
 reinitialize all desktops for all monitors.
 
 Options:
-  -h, --help              display this help and exit
+  -h, --help    this help and exit
 
 Positional Arguments:
-  FILES                   an ordered list of desktop names to distribute"
+  FILES         an ordered list of desktop names to distribute"
 
 while [ ! $# -eq 0 ]; do
   case "$1" in

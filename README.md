@@ -107,16 +107,18 @@ ANSI escape codes.
 
 ## Personal Configuration
 
-- [`bin/brightness`](bin/brightness): Change the path to the system internals interface for the backlight device.
-- [`bin/download-album-art`](bin/download-album-art): Define `LAST_FM_KEY`.
-- [`bin/cpu-temperature`](bin/cpu-temperature): Change the path to the system internals interface for the thermal device.
-- [`bin/weather`](bin/weather): Define `OPEN_WEATHER_MAP_KEY`.
+- [`bin/brightness`](bin/brightness): Change the path to the system internals interface for the
+  backlight device.
+- [`bin/cpu-temperature`](bin/cpu-temperature): Change the path to the system internals interface
+  for the thermal device.
 - [`bin/init-monitors`](bin/init-monitors): Change the monitor setup.
-- [`bin/notify-battery`](bin/notify-battery): Change the path to the system internals interface for the power supply device.
-- [`bin/robar-brightness-server`](bin/robar-brightness-server): Change the path to the system internals interface for the backlight device.
+- [`bin/notify-battery`](bin/notify-battery): Change the path to the system internals interface for
+  the power supply device.
+- [`bin/robar-brightness-server`](bin/robar-brightness-server): Change the path to the system
+  internals interface for the backlight device.
 - [`bin/keyboard`](bin/keyboard): Change the keyboard device name.
 - [`bin/touchpad`](bin/touchpad): Change the touchpad device name.
-- [`bin/record`](bin/record): Change the PulseAudio device indexes.
+- [`bin/record`](bin/record): Change the PulseAudio device names.
 - [`git/config`](git/config): Change the username and email.
 - [`polybar/config`](polybar/config): Change the adapter and battery name.
 

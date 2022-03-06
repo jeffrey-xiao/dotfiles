@@ -72,7 +72,7 @@ let g:gutentags_cache_dir = s:data_dir.'/tags/'
 let g:gutentags_generate_on_empty_buffer = 1
 
 " Config for vim-minisnip
-let g:minisnip_dir = s:data_dir.'/minisnip'
+let g:minisnip_dir = s:data_dir.'/minisnip/'
 
 " Config for vim-signify.
 let g:signify_sign_show_count = 0
@@ -118,8 +118,7 @@ set autowrite
 set autowriteall
 set completeopt=noinsert,menuone,noselect
 set infercase
-set diffopt=filler,internal,algorithm:histogram,indent-heuristic
-set encoding=utf-8
+set diffopt+=algorithm:histogram,indent-heuristic
 set formatoptions+=n
 set linebreak
 set nojoinspaces

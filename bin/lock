@@ -7,11 +7,10 @@ __help="Usage: ${0##*/} [OPTIONS]
 Lock the screen using i3lock.
 
 Options:
-  -h, --help           display this help and exit
-  -s, --suspend        suspend after locking the screen"
+  -h, --help       display this help and exit
+  -s, --suspend    suspend after locking the screen"
 
 unset suspend
-unset lock_image
 
 check_argument() { [ $# -ge 2 ] || { echo "Error: flag $1 requires an argument." && exit 1; } }
 

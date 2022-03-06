@@ -9,9 +9,9 @@ between 0 and 15, inclusive, using the corresponding color in Xresources. The
 default Xresources config to use is \$HOME/.Xresources.
 
 Options:
-  -h, --help                display this help and exit
-  -x, --xresources FILE     the Xresources file to read from
-                            (default: \$HOME/.Xresources)"
+  -h, --help               display this help and exit
+  -x, --xresources FILE    the Xresources file to read from
+                           (default: \$HOME/.Xresources)"
 
 unset xresources
 

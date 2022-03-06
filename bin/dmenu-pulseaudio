@@ -7,7 +7,7 @@ __help="Usage: ${0##*/} [OPTIONS]
 Display a dmenu for PulseAudio sinks.
 
 Options:
-  -h, --help               display this help and exit"
+  -h, --help    display this help and exit"
 
 while [ ! $# -eq 0 ]; do
   case "$1" in

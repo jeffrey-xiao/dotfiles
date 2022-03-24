@@ -87,7 +87,7 @@ super + shift + b
 super + m
   urxvtc -name music -e ncmpcpp
 
-super + t
+super + u
   urxvtc -name torrent -e rtorrent
 
 super + y

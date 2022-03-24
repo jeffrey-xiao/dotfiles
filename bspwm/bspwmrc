@@ -15,7 +15,7 @@ bspc config single_monocle true
 
 # Pointer configuration.
 bspc config click_to_focus button1
-bspc config focus_follows_pointer true
+bspc config focus_follows_pointer false
 
 # Monitor configuration.
 bspc config remove_disabled_monitors true

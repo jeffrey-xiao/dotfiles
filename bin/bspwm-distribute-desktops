@@ -12,7 +12,7 @@ Options:
   -h, --help    this help and exit
 
 Positional Arguments:
-  FILES         an ordered list of desktop names to distribute"
+  DESKTOPS      ordered list of desktop names to distribute"
 
 while [ ! $# -eq 0 ]; do
   case "$1" in
@@ -43,7 +43,6 @@ initial_desktop_count="$(bspc query --desktops | wc -l)"
 q=$((desktop_count / monitor_count))
 r=$((desktop_count % monitor_count))
 total=0
-
 for curr_monitor in $monitors; do
   curr=$q
   if [ $r -gt 0 ]; then
@@ -52,6 +51,24 @@ for curr_monitor in $monitors; do
   fi
 
   # Move desktops.
+  for i in $(seq $((total + 1)) $((total + curr))); do
+    eval desktop="\${$i}"
+    bspc desktop "$desktop" --to-monitor "$curr_monitor" || true
+  done
+  total=$((total + curr))
+done
+
+q=$((desktop_count / monitor_count))
+r=$((desktop_count % monitor_count))
+total=0
+for curr_monitor in $monitors; do
+  curr=$q
+  if [ $r -gt 0 ]; then
+    curr=$((curr + 1))
+    r=$((r - 1))
+  fi
+
+  # Reset desktops.
   desktops=""
   for i in $(seq $((total + 1)) $((total + curr))); do
     eval desktop="\${$i}"
@@ -60,14 +77,7 @@ for curr_monitor in $monitors; do
     else
       desktops="$desktops $desktop"
     fi
-    if [ "$initial_desktop_count" -ge "$desktop_count" ]; then
-      # If the desktop is already on the monitor, then the following command
-      # will have a non-zero exit code.
-      bspc desktop "$desktop" --to-monitor "$curr_monitor" || true
-    fi
   done
-  # Empty monitors will have a default desktop named "Desktop" so when adding
-  # monitors, we might add extraneous desktops.
   if [ "$initial_desktop_count" -ge "$desktop_count" ]; then
     bspc monitor "$curr_monitor" --reorder-desktops $desktops
     bspc monitor "$curr_monitor" --reset-desktops $desktops

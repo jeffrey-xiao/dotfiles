@@ -97,8 +97,7 @@ super + y
 super + d
   rofi -show run
 
-# dmenu and rofi applications.
-super + shift + d ; {b,d,m,n,p,x}
+super + shift + d; {b,d,m,n,p,x}
   {dmenu-bitwarden,dmenu-xrandr,rofi-mpd,rofi-network-manager,dmenu-pulseaudio,dmenu-power}
 
 # Screenshots and video recording hotkeys.

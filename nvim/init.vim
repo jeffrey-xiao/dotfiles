@@ -116,7 +116,7 @@ command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr <SID>grep(<q-args>)
 " Editing config.
 set autowrite
 set autowriteall
-set completeopt=noinsert,menuone,noselect
+set completeopt+=longest,menuone
 set infercase
 set diffopt+=algorithm:histogram,indent-heuristic
 set formatoptions+=n

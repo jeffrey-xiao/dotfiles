@@ -307,39 +307,20 @@ function! s:highlight() abort
   highlight StatusLineAccent ctermfg=15 ctermbg=1
 endfunction
 
-" Highlighting autocommands.
-augroup highlighting_group
+augroup custom
   autocmd!
+  " Highlighting overrides.
   autocmd VimEnter,ColorScheme * call <SID>highlight()
-augroup end
 
-" Quickfix relative autocommands.
-augroup quickfix_group
-  autocmd!
+  " Quickfix.
   autocmd QuickFixCmdPost [^l]* nested if &filetype != 'tex' | cwindow | endif
   autocmd BufHidden,QuitPre * nested if &filetype != 'qf' | silent! lclose | endif
-augroup END
 
-" Searching highlighting autocommands.
-augroup search_group
-  autocmd!
+  " Searching.
   autocmd CmdlineEnter [/\?] set hlsearch
   autocmd CmdlineLeave [/\?] set nohlsearch
-augroup END
 
-" Autocommands to differentiate active window.
-function! s:active_window() abort
-  if &filetype != 'qf' && &filetype != 'help'
-    set relativenumber
-  endif
-endfunction
-
-function! s:inactive_window() abort
-  set norelativenumber
-endfunction
-
-augroup active_window_group
-  autocmd!
-  autocmd WinLeave * call <SID>inactive_window()
-  autocmd WinEnter,BufEnter * call <SID>active_window()
-augroup END
+  " Relative line number.
+  autocmd WinEnter * if &filetype != 'qf' && &filetype != 'help' | set relativenumber | endif
+  autocmd WinLeave * set norelativenumber
+augroup end

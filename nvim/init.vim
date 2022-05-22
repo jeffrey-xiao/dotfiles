@@ -106,12 +106,8 @@ if executable('rg')
 else
   set grepprg=grep\ --recursive\ --line-number
 endif
-
-function! s:grep(args) abort
-  return system(&grepprg.' '.a:args)
-endfunction
-command! -nargs=+ -complete=file_in_path -bar Grep cgetexpr <SID>grep(<q-args>) | echom "Finished grep."
-command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr <SID>grep(<q-args>) | echom "Finished lgrep."
+cnoreabbrev <expr> grep  (getcmdtype() ==# ':' && getcmdline() =~# '^grep')  ? 'silent grep'  : 'grep'
+cnoreabbrev <expr> lgrep (getcmdtype() ==# ':' && getcmdline() =~# '^lgrep') ? 'silent lgrep' : 'lgrep'
 
 " Editing config.
 set autowrite
@@ -135,6 +131,7 @@ set cindent
 " UI config.
 set number
 set relativenumber
+set cursorline
 set colorcolumn=100
 set showmatch
 set shortmess=aIT
@@ -272,15 +269,11 @@ nnoremap <leader>gL :Gclog %<CR>
 nnoremap <leader>gb :Git blame<CR>
 nnoremap <leader>gg :Ggrep<Space>
 
-
 " Fzf keybindings.
 nnoremap <leader>f :FZF<CR>
 nnoremap <leader>t :Tags<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>m :MRU<CR>
-
-" Highlight current line.
-set cursorline
 
 function! s:highlight() abort
   " General highlighting.
@@ -336,14 +329,12 @@ augroup END
 
 " Autocommands to differentiate active window.
 function! s:active_window() abort
-  set cursorline
   if &filetype != 'qf' && &filetype != 'help'
     set relativenumber
   endif
 endfunction
 
 function! s:inactive_window() abort
-  set nocursorline
   set norelativenumber
 endfunction
 

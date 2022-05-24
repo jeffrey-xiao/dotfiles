@@ -71,7 +71,7 @@ let g:dirvish_mode = ':sort ,^.*[\/],'
 let g:gutentags_cache_dir = s:data_dir.'/tags/'
 let g:gutentags_generate_on_empty_buffer = 1
 
-" Config for vim-minisnip
+" Config for vim-minisnip.
 let g:minisnip_dir = s:data_dir.'/minisnip/'
 
 " Config for vim-signify.
@@ -117,7 +117,6 @@ set infercase
 set diffopt+=algorithm:histogram,indent-heuristic
 set formatoptions+=n
 set linebreak
-set nojoinspaces
 set nowrap
 set undofile
 
@@ -139,17 +138,12 @@ set pumheight=10
 set splitbelow
 set splitright
 
-" Disable bells.
-set visualbell
-set t_vb=
-
 " Searching config.
 set nohlsearch
 set ignorecase
 set smartcase
 
 " Color scheme config.
-set t_Co=16
 set background=dark
 let g:solarized_use16=1
 colorscheme solarized8
@@ -157,19 +151,10 @@ colorscheme solarized8
 " Wildmenu config.
 set wildoptions-=pum
 set wildmode=longest:full,full
-set wildignore=.hg,.git,.svn                     " Version control.
-set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files.
-set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " Binary images.
-set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " Compiled object files.
-set wildignore+=*.sw?                            " Vim swap files.
-set wildignore+=*.DS_Store                       " OSX garbage.
-set wildignore+=*.pdf,*.zip,*.so                 " Binaries.
-set wildignore+=*.pyc,*.pyo                      " Python byte code.
 
 " Displaying text.
 set list
 set listchars=tab:¦\ ,nbsp:•,trail:·,extends:→,precedes:←
-set fillchars+=vert:│
 set lazyredraw
 set scrolloff=1
 set sidescrolloff=5
@@ -182,11 +167,11 @@ set foldlevel=99
 set mouse=a
 set nomousehide
 
-" Remap leader.
 let g:mapleader="\<Space>"
 
-" Regular j, k moves across visual lines.
-" Numbered j, k moves across physical lines.
+" 1. Regular j, k moves across visual lines.
+" 2. Numbered j, k moves across physical lines.
+" 3. Add a mark to update the jumplist.
 nnoremap <expr> j v:count ? 'm'''.v:count.'j' : 'gj'
 nnoremap <expr> k v:count ? 'm'''.v:count.'k' : 'gk'
 
@@ -215,6 +200,12 @@ endfunction
 command! StripWhitespace :call <SID>strip_whitespace()
 nnoremap <leader>s :StripWhitespace<CR>
 
+" Tmux-like window zooming.
+set winminwidth=0
+set winminheight=0
+command! Zoom call window#Zoom()
+nnoremap <silent> <leader>z :Zoom<CR>
+
 " Clipboard keybindings.
 nnoremap <leader>y "+y
 xnoremap <leader>y "+y
@@ -226,24 +217,6 @@ nnoremap <silent> <Right> :vertical resize +2<CR>
 nnoremap <silent> <Left> :vertical resize -2<CR>
 nnoremap <silent> <Up> :resize +2<CR>
 nnoremap <silent> <Down> :resize -2<CR>
-
-" Tmux-like window zooming.
-set winminwidth=0
-set winminheight=0
-command! Zoom call window#Zoom()
-nnoremap <silent> <leader>z :Zoom<CR>
-
-" Reload vimrc.
-nnoremap <silent> <leader>r :source $MYVIMRC<CR>
-
-" Visually select pasted or yanked text.
-nnoremap gV `[v`]
-
-" Backspace to switch to alternate file.
-nnoremap <BS> <C-^>
-
-" Write with sudo.
-cmap w!! w !sudo tee >/dev/null %
 
 " Bracket expansion.
 inoremap {<CR> {<CR>}<C-o>O
@@ -274,6 +247,12 @@ nnoremap <leader>f :FZF<CR>
 nnoremap <leader>t :Tags<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>m :MRU<CR>
+
+" Miscellaneous bindings.
+nnoremap <silent> <leader>r :source $MYVIMRC<CR>
+nnoremap gV `[v`]
+nnoremap <BS> <C-^>
+cmap w!! w !sudo tee >/dev/null %
 
 function! s:highlight() abort
   " General highlighting.

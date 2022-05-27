@@ -22,11 +22,9 @@ let g:ale_sign_column_always = 1
 
 " Config for fzf.
 let s:fzf_tags_options = [
-      \ '--no-multi',
       \ '--delimiter= ',
       \ '--with-nth=1,2,3',
       \ '--nth=1,2',
-      \ '--tiebreak=index',
       \ '--expect=ctrl-t,ctrl-v,ctrl-s',
       \ ]
 let g:fzf_action = {
@@ -38,7 +36,7 @@ function! s:fzf_tags_sink(lines) abort
   if empty(a:lines)
     return
   endif
-  let l:cmd = get(g:fzf_action, remove(a:lines, 0), 'e')
+  let l:cmd = get(g:fzf_action, remove(a:lines, 0), 'edit')
   let l:query = a:lines[0]
   let l:parts = split(l:query, '\%u00a0')
   let l:excmd = matchstr(l:parts[3], '^.*\ze;"')
@@ -113,12 +111,38 @@ cnoreabbrev <expr> lgrep (getcmdtype() ==# ':' && getcmdline() =~# '^lgrep') ? '
 set autowrite
 set autowriteall
 set completeopt+=longest,menuone
-set infercase
 set diffopt+=algorithm:histogram,indent-heuristic
+set foldlevel=99
+set foldmethod=indent
 set formatoptions+=n
-set linebreak
+set ignorecase
+set infercase
+set mouse=a
+set nohlsearch
 set nowrap
+set smartcase
 set undofile
+
+" Displaying text.
+set lazyredraw
+set linebreak
+set list
+set listchars=tab:¦\ ,nbsp:•,trail:·,extends:→,precedes:←
+set scrolloff=1
+set sidescrolloff=5
+
+" UI config.
+set colorcolumn=100
+set cursorline
+set number
+set pumheight=10
+set relativenumber
+set shortmess=aIT
+set showmatch
+set splitbelow
+set splitright
+set wildmode=longest:full,full
+set wildoptions-=pum
 
 " Indentation.
 set tabstop=2
@@ -127,45 +151,10 @@ set shiftwidth=2
 set expandtab
 set cindent
 
-" UI config.
-set number
-set relativenumber
-set cursorline
-set colorcolumn=100
-set showmatch
-set shortmess=aIT
-set pumheight=10
-set splitbelow
-set splitright
-
-" Searching config.
-set nohlsearch
-set ignorecase
-set smartcase
-
-" Color scheme config.
+" Colorscheme config.
 set background=dark
 let g:solarized_use16=1
 colorscheme solarized8
-
-" Wildmenu config.
-set wildoptions-=pum
-set wildmode=longest:full,full
-
-" Displaying text.
-set list
-set listchars=tab:¦\ ,nbsp:•,trail:·,extends:→,precedes:←
-set lazyredraw
-set scrolloff=1
-set sidescrolloff=5
-
-" Folding.
-set foldmethod=indent
-set foldlevel=99
-
-" Mouse config.
-set mouse=a
-set nomousehide
 
 let g:mapleader="\<Space>"
 
@@ -191,14 +180,12 @@ call s:map_unimpaired('t', 't')
 
 " Strip trailing whitespace.
 function! s:strip_whitespace() abort
-  let l:saved_search = @/
   let l:saved_view = winsaveview()
-  %s/\s\+$//e
+  keeppatterns %s/\s\+$//e
   call winrestview(l:saved_view)
-  let @/ = l:saved_search
 endfunction
 command! StripWhitespace :call <SID>strip_whitespace()
-nnoremap <leader>s :StripWhitespace<CR>
+nnoremap <silent> <leader>s :StripWhitespace<CR>
 
 " Tmux-like window zooming.
 set winminwidth=0
@@ -220,11 +207,8 @@ nnoremap <silent> <Down> :resize -2<CR>
 
 " Bracket expansion.
 inoremap {<CR> {<CR>}<C-o>O
-inoremap {;    {<CR>};<C-o>O
 inoremap (<CR> (<CR>)<C-o>O
-inoremap (;    (<CR>);<C-o>O
 inoremap [<CR> [<CR>]<C-o>O
-inoremap [;    [<CR>];<C-o>O
 
 " Fugitive bindings.
 nnoremap <leader>gs :Git<CR>

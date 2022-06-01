@@ -29,7 +29,7 @@ alias fgrep='fgrep --color=auto'
 alias diff='diff --color=auto'
 
 # Handy shortcuts.
-alias alert='exit_code=$?; notify-send --urgency=low "$(history | tail --lines=1 | sed --expression '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')" "$([ $exit_code = 0 ] && echo Success || echo Error)"'
 alias tmux-update-env='eval $(tmux show-environment -s)'
+alias vi='nvim'
 alias vim='nvim'
 alias wget='wget --continue'

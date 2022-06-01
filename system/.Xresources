@@ -52,13 +52,13 @@ Xft.hintstyle:            hintslight
 *pointerColorForeground:  #BASE_1
 
 ! Urxvt scrolling.
-URxvt.scrollstyle:        plain
-URxvt.scrollColor:        #BASE_00
 URxvt.scrollBar_right:    true
+URxvt.scrollColor:        #BASE_00
+URxvt.scrollTtyKeypress:  true
+URxvt.scrollTtyOutput:    false
+URxvt.scrollWithBuffer:   true
+URxvt.scrollstyle:        plain
 URxvt.thickness:          2
-URxvt*scrollTtyOutput:    false
-URxvt*scrollWithBuffer:   true
-URxvt*scrollTtyKeypress:  true
 
 ! Urxvt font.
 URxvt.font:               xft:Iosevka Term SS06:style=Regular:size=11,xft:M+ 2c:style=Regular:size=11
@@ -73,7 +73,6 @@ URxvt.matcher.button:     1
 
 ! Urxvt other configuration.
 URxvt.internalBorder:     4
-URxvt.termName:           xterm-256color
 URxvt.saveLines:          100000
 URxvt.buffered:           true
 URxvt.intensityStyles:    false
